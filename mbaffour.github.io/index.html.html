@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Michael Baffour Awuah - Microbiology PhD Student</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #8B2635 0%, #5C1A1B 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        header h1 {
+            color: #667eea;
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            color: #666;
+            font-size: 1.2rem;
+        }
+
+        nav {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 20px;
+            z-index: 100;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+            font-size: 1.1rem;
+        }
+
+        nav a:hover {
+            color: #764ba2;
+        }
+
+        section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #667eea;
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 0.5rem;
+        }
+
+        .about-content {
+            display: flex;
+            gap: 2rem;
+            align-items: start;
+            flex-wrap: wrap;
+        }
+
+        .profile-img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 4rem;
+            flex-shrink: 0;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .cv-download {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+            margin-top: 1rem;
+        }
+
+        .cv-download:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .blog-post {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-left: 4px solid #667eea;
+        }
+
+        .blog-post:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+        }
+
+        .blog-post h3 {
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+
+        .blog-date {
+            color: #999;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.8rem 1.5rem;
+            background: white;
+            border-radius: 50px;
+            text-decoration: none;
+            color: #667eea;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .social-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: white;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            nav ul {
+                gap: 1rem;
+            }
+
+            .about-content {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .profile-img {
+                width: 150px;
+                height: 150px;
+                font-size: 3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Michael Baffour Awuah</h1>
+            <p>Microbiology PhD Student | Research Scientist</p>
+        </header>
+
+        <nav>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#research">Research</a></li>
+                <li><a href="#cv">CV</a></li>
+                <li><a href="#blog">Blog</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+
+        <section id="about">
+            <h2>About Me</h2>
+            <div class="about-content">
+                <div class="profile-img">MBA</div>
+                <div class="about-text">
+                    <p>Howdy! I'm a PhD student in Microbiology at Texas A&M University, passionate about understanding the intricate world of bacteriophages and how these prolific bacteria-killers unleash their arsenal of tools & tricks to defeat their foes in the ever-raging arms evolutionary race.</p>
+                    <p style="margin-top: 1rem;">My research focuses on lysis inhibition in bacteriophage N4, a phenomenon this phage uses to delay host lysis, enabling it to utilize the host as a phage factory to produce 3000 viral particles per infected cell in a span of 3-6 hours. Through decoding how phages interact with their host and environment, I hope to gain a better understanding of these communication networks and reverse engineer it for biotechnological applications such as high titer phage production for therapy & programmable microbial biofactories. Additionally, I have an interest in environmental phage discovery and have isolated three bacteriophages which I have had the pleasure of characterizing extensively with undergraduates I have been privileged to work with. I'm dedicated to advancing scientific knowledge through rigorous research and innovative approaches to solving the most challenging problems.</p>
+                    <p style="margin-top: 1rem;">As I approach the completion of my doctoral studies, I'm excited to transition into roles where I can contribute to solving the world's most challenging problems and making groundbreaking discoveries along the way.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="research">
+            <h2>Research Interests</h2>
+            <p><strong>Primary Focus:</strong> Bacteriophage biology & host–pathogen interactions</p>
+            <p style="margin-top: 1rem;"><strong>Techniques & Methods:</strong> 
+Molecular & Genetic Techniques:
+Molecular cloning and recombinant DNA assembly, PCR and qPCR, gene knockout and functional validation, DNA/RNA extraction and quantification, protein expression and purification, SDS-PAGE and Western blotting, and phage genome modification and engineering.
+
+Microbial & Phage Biology:
+Microbial culture and aseptic techniques, bacteriophage isolation and characterization, host–pathogen interaction assays, phage engineering.
+
+Imaging & Analytical Methods:
+Microscopy, enzymatic and biochemical assays, spectrophotometric and fluorometric analyses, optical density and growth kinetics measurements, and high-throughput assay development.
+
+Bioinformatics & Computational Analysis:
+Genome annotation and comparative genomics, functional and structural genomics, metagenomic and transcriptomic data analysis, phage genome design and modification pipelines, statistical data analysis (R, Python), and data visualization.
+
+Experimental Design & Research Practices:
+Experimental design and troubleshooting, laboratory documentation and traceability, Good Laboratory Practices (GLP), scientific writing and figure preparation, and mentoring undergraduate researchers.</p>
+            <p style="margin-top: 1rem;"><strong>Key Publications:</strong></p>
+            <ul style="margin-left: 2rem; margin-top: 0.5rem;">
+                <li>Publication 1 - Journal Name (Year)</li>
+                <li>Publication 2 - Journal Name (Year)</li>
+                <li>Publication 3 - Journal Name (Year)</li>
+            </ul>
+        </section>
+
+        <section id="cv">
+            <h2>Curriculum Vitae</h2>
+            <p>Download my complete CV to learn more about my academic background, research experience, publications, and professional accomplishments.</p>
+            <a href="your-cv.pdf" class="cv-download" download>📄 Download CV (PDF)</a>
+            <p style="margin-top: 1rem; color: #666; font-size: 0.9rem;"><em>
+        </section>
+
+        <section id="blog">
+            <h2>Blog & Updates</h2>
+            <div class="blog-grid">
+                <div class="blog-post">
+                    <h3>My Research Journey</h3>
+                    <p class="blog-date">October 2025</p>
+                    <p>Reflecting on the challenges and triumphs of my PhD experience, from my first experiment to defending my dissertation proposal...</p>
+                </div>
+                <div class="blog-post">
+                    <h3>Understanding Antimicrobial Resistance</h3>
+                    <p class="blog-date">September 2025</p>
+                    <p>A deep dive into one of the most pressing issues in modern medicine and how my research contributes to finding solutions...</p>
+                </div>
+                <div class="blog-post">
+                    <h3>Life in the Lab</h3>
+                    <p class="blog-date">August 2025</p>
+                    <p>Behind the scenes of a microbiology research lab - the daily routines, unexpected discoveries, and collaborative moments that define scientific life...</p>
+                </div>
+            </div>
+            <p style="margin-top: 1.5rem; color: #666;"><em> </em></p>
+        </section>
+
+        <section id="contact">
+            <h2>Connect With Me</h2>
+            <p style="text-align: center; margin-bottom: 1.5rem;">I'm always interested in collaboration opportunities, discussing research, or connecting with fellow scientists.</p>
+            <div class="social-links">
+                <a href="mailto:baffour@tamu.edu" class="social-link">📧 Email</a>
+                <a href="https://www.linkedin.com/in/mba-101b/" class="social-link" target="_blank">💼 LinkedIn</a>
+                <a href="https://twitter.com/yourhandle" class="social-link" target="_blank">🐦 Twitter</a>
+                <a href="https://scholar.google.com/citations?user=e5_h_2YAAAAJ&hl=en" class="social-link" target="_blank">🎓 Google Scholar</a>
+                <a href="https://orcid.org/my-orcid?orcid=0009-0007-9036-413X" class="social-link" target="_blank">🔬 ORCID</a>
+                <a href="https://github.com/mbaffour" class="social-link" target="_blank">💻 GitHub</a>
+            </div>
+            <p style="text-align: center; margin-top: 1.5rem; color: #666; font-size: 0.9rem;"><em>Update the links above with your actual profiles</em></p>
+        </section>
+
+        <footer>
+            <p>&copy; 2025 Michael Baffour Awuah. All rights reserved.</p>
+            <p>Built with passion for science and discovery</p>
+        </footer>
+    </div>
+</body>
+</html>
