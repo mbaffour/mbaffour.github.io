@@ -3,330 +3,1789 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Michael Baffour Awuah - Microbiology PhD Student</title>
+    <meta name="description" content="Michael Baffour Awuah - PhD Candidate in Microbiology at Texas A&M University. Bacteriophage biology, lysis inhibition, and genomic engineering researcher.">
+    <meta name="keywords" content="bacteriophage, microbiology, phage biology, lysis inhibition, Texas A&M, PhD, genomic engineering, antimicrobial resistance">
+    <meta name="author" content="Michael Baffour Awuah">
+    <meta property="og:title" content="Michael Baffour Awuah - Phage Biologist">
+    <meta property="og:description" content="PhD Candidate researching bacteriophage lysis inhibition at Texas A&M University">
+    <meta property="og:type" content="website">
+    <title>Michael Baffour Awuah | Phage Biology &amp; Genomic Engineering</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        /* ============================================================
+           CSS CUSTOM PROPERTIES
+           To change colors, fonts, or spacing, edit these variables.
+        ============================================================ */
+        :root {
+            --bg-primary: #0b0f1a;
+            --bg-secondary: #111827;
+            --bg-card: #151c2e;
+            --bg-card-hover: #1a2340;
+            --accent-teal: #00ffd5;
+            --accent-violet: #8a6cff;
+            --accent-teal-dim: rgba(0, 255, 213, 0.15);
+            --accent-violet-dim: rgba(138, 108, 255, 0.15);
+            --text-primary: #e8e6e3;
+            --text-secondary: #9ca3af;
+            --text-muted: #6b7280;
+            --glow-teal: 0 0 20px rgba(0, 255, 213, 0.3);
+            --glow-violet: 0 0 20px rgba(138, 108, 255, 0.3);
+            --border-subtle: rgba(255, 255, 255, 0.06);
+            --font-display: 'Georgia', 'Times New Roman', serif;
+            --font-body: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            --font-mono: 'Courier New', Courier, monospace;
+            --nav-height: 60px;
+        }
+
+        /* ============================================================
+           RESET & BASE
+        ============================================================ */
+        *, *::before, *::after {
+            margin: 0; padding: 0; box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #8B2635 0%, #5C1A1B 100%);
-            min-height: 100vh;
+            font-family: var(--font-body);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
         }
 
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 20px;
+        ::selection {
+            background: var(--accent-teal);
+            color: var(--bg-primary);
         }
 
-        header {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 2rem;
-            border-radius: 15px;
-            margin-bottom: 2rem;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-            text-align: center;
-        }
+        a { color: var(--accent-teal); text-decoration: none; transition: all 0.3s ease; }
+        a:hover { color: #fff; }
 
-        header h1 {
-            color: #667eea;
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        header p {
-            color: #666;
-            font-size: 1.2rem;
-        }
-
-        nav {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 1rem;
-            border-radius: 15px;
-            margin-bottom: 2rem;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-            position: sticky;
-            top: 20px;
-            z-index: 100;
-        }
-
-        nav ul {
-            list-style: none;
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 2rem;
-        }
-
-        nav a {
-            color: #667eea;
-            text-decoration: none;
-            font-weight: 600;
-            transition: color 0.3s;
-            font-size: 1.1rem;
-        }
-
-        nav a:hover {
-            color: #764ba2;
-        }
-
-        section {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 2rem;
-            margin-bottom: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-        }
-
-        h2 {
-            color: #667eea;
-            margin-bottom: 1.5rem;
-            font-size: 2rem;
-            border-bottom: 3px solid #667eea;
-            padding-bottom: 0.5rem;
-        }
-
-        .about-content {
-            display: flex;
-            gap: 2rem;
-            align-items: start;
-            flex-wrap: wrap;
-        }
-
-        .profile-img {
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        /* ============================================================
+           NAVIGATION — Sticky top bar
+           To add/remove nav items, edit the <nav> HTML below.
+        ============================================================ */
+        .nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            height: var(--nav-height);
+            background: rgba(11, 15, 26, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-subtle);
+            z-index: 1000;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
-            font-size: 4rem;
-            flex-shrink: 0;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+            transition: background 0.3s;
         }
 
-        .about-text {
-            flex: 1;
-            min-width: 300px;
+        .nav-inner {
+            max-width: 1200px;
+            width: 100%;
+            padding: 0 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
         }
 
-        .cv-download {
-            display: inline-block;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 1rem 2rem;
-            border-radius: 50px;
-            text-decoration: none;
+        .nav-logo {
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            color: var(--accent-teal);
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
             font-weight: 600;
-            transition: transform 0.3s, box-shadow 0.3s;
-            margin-top: 1rem;
+            position: relative;
+            padding-bottom: 2px;
         }
 
-        .cv-download:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px; left: 0;
+            width: 0; height: 2px;
+            background: var(--accent-teal);
+            transition: width 0.3s ease;
         }
 
-        .blog-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 1.5rem;
+        .nav-links a:hover { color: var(--accent-teal); }
+        .nav-links a:hover::after { width: 100%; }
+
+        .nav-toggle {
+            display: none;
+            background: none; border: none;
+            color: var(--accent-teal);
+            font-size: 1.5rem;
+            cursor: pointer;
         }
 
-        .blog-post {
-            background: white;
-            padding: 1.5rem;
-            border-radius: 10px;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
-            border-left: 4px solid #667eea;
-        }
-
-        .blog-post:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-        }
-
-        .blog-post h3 {
-            color: #667eea;
-            margin-bottom: 0.5rem;
-        }
-
-        .blog-date {
-            color: #999;
-            font-size: 0.9rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .social-links {
+        /* ============================================================
+           HERO SECTION — Canvas background + intro
+           The canvas draws animated bacteriophages. See JS section
+           "PHAGE CANVAS ANIMATION" to adjust speed, count, colors.
+        ============================================================ */
+        .hero {
+            position: relative;
+            min-height: 100vh;
             display: flex;
-            gap: 1.5rem;
-            flex-wrap: wrap;
+            align-items: center;
             justify-content: center;
-            margin-top: 1rem;
+            overflow: hidden;
         }
 
-        .social-link {
+        .hero-canvas {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: 1;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: radial-gradient(ellipse at center, transparent 0%, var(--bg-primary) 75%);
+            z-index: 2;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            text-align: center;
+            padding: 2rem;
+            max-width: 800px;
+        }
+
+        .hero-label {
+            display: inline-block;
+            font-size: 0.75rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-teal);
+            border: 1px solid rgba(0, 255, 213, 0.3);
+            padding: 0.4rem 1.2rem;
+            border-radius: 50px;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 0.8s ease forwards;
+            opacity: 0;
+        }
+
+        .hero-name {
+            font-family: var(--font-display);
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 0.8rem;
+            animation: fadeInUp 0.8s ease 0.2s forwards;
+            opacity: 0;
+        }
+
+        .hero-name .glow {
+            background: linear-gradient(135deg, var(--accent-teal), var(--accent-violet));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            filter: drop-shadow(0 0 30px rgba(0, 255, 213, 0.3));
+        }
+
+        .hero-tagline {
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 0.8s ease 0.4s forwards;
+            opacity: 0;
+        }
+
+        .hero-tagline span {
+            color: var(--accent-violet);
+        }
+
+        .hero-statement {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            line-height: 1.8;
+            animation: fadeInUp 0.8s ease 0.6s forwards;
+            opacity: 0;
+        }
+
+        .hero-buttons {
             display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.8s ease 0.8s forwards;
+            opacity: 0;
+        }
+
+        .btn {
+            display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            padding: 0.8rem 1.5rem;
-            background: white;
+            padding: 0.85rem 2rem;
             border-radius: 50px;
-            text-decoration: none;
-            color: #667eea;
+            font-size: 0.9rem;
             font-weight: 600;
-            transition: transform 0.3s, box-shadow 0.3s;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
         }
 
-        .social-link:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent-teal), #00ccaa);
+            color: var(--bg-primary);
         }
 
+        .btn-primary:hover {
+            box-shadow: var(--glow-teal);
+            transform: translateY(-2px);
+            color: var(--bg-primary);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--accent-violet);
+            border: 1px solid var(--accent-violet);
+        }
+
+        .btn-secondary:hover {
+            background: var(--accent-violet-dim);
+            box-shadow: var(--glow-violet);
+            transform: translateY(-2px);
+            color: var(--accent-violet);
+        }
+
+        /* ============================================================
+           SECTION COMMON STYLES
+        ============================================================ */
+        .section {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-label {
+            font-size: 0.75rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-teal);
+            display: block;
+            margin-bottom: 0.8rem;
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+
+        .section-title .highlight {
+            background: linear-gradient(135deg, var(--accent-teal), var(--accent-violet));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-subtitle {
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+            font-size: 1rem;
+        }
+
+        .section-divider {
+            border: none;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--border-subtle), transparent);
+            margin: 0 2rem;
+        }
+
+        /* ============================================================
+           ABOUT SECTION
+        ============================================================ */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        .about-photo-area {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .about-photo {
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            border: 3px solid var(--accent-teal);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-display);
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--accent-teal);
+            background: var(--bg-card);
+            box-shadow: 0 0 40px rgba(0, 255, 213, 0.1);
+            position: relative;
+            overflow: hidden;
+            /*
+                =============================================
+                HOW TO ADD YOUR PHOTO:
+                1. Add your photo file (e.g., "headshot.jpg") 
+                   to the same folder as this HTML file.
+                2. Uncomment the <img> tag inside the 
+                   .about-photo div in the HTML below.
+                3. Delete or comment out the "MBA" text span.
+                =============================================
+            */
+        }
+
+        .about-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        .about-stats {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .stat-pill {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            white-space: nowrap;
+        }
+
+        .stat-pill strong {
+            color: var(--accent-teal);
+        }
+
+        .about-text p {
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+        }
+
+        .about-text p:first-child::first-letter {
+            font-family: var(--font-display);
+            font-size: 3rem;
+            float: left;
+            line-height: 1;
+            margin-right: 0.5rem;
+            color: var(--accent-teal);
+        }
+
+        /* ============================================================
+           RESEARCH CARDS
+           To add/remove research areas, edit the HTML cards below.
+        ============================================================ */
+        .research-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .research-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .research-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 3px;
+            background: linear-gradient(90deg, var(--accent-teal), var(--accent-violet));
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .research-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(0, 255, 213, 0.2);
+            box-shadow: 0 8px 40px rgba(0, 255, 213, 0.08);
+        }
+
+        .research-card:hover::before { opacity: 1; }
+
+        .research-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .research-card h3 {
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            color: var(--text-primary);
+            margin-bottom: 0.8rem;
+        }
+
+        .research-card p {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .research-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .research-tag {
+            font-size: 0.7rem;
+            padding: 0.25rem 0.7rem;
+            border-radius: 50px;
+            background: var(--accent-teal-dim);
+            color: var(--accent-teal);
+            letter-spacing: 0.5px;
+        }
+
+        /* ============================================================
+           LYSIS CURVE VISUALIZATION
+        ============================================================ */
+        .viz-container {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-top: 3rem;
+            position: relative;
+        }
+
+        .viz-title {
+            font-family: var(--font-display);
+            font-size: 1.3rem;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .viz-subtitle {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .lysis-canvas-wrap {
+            position: relative;
+            width: 100%;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        #lysisCanvas {
+            width: 100%;
+            height: 300px;
+            display: block;
+        }
+
+        .lysis-tooltip {
+            position: absolute;
+            background: rgba(11, 15, 26, 0.95);
+            border: 1px solid var(--accent-teal);
+            border-radius: 10px;
+            padding: 0.8rem 1rem;
+            font-size: 0.8rem;
+            color: var(--text-primary);
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.2s;
+            max-width: 200px;
+            z-index: 10;
+        }
+
+        .lysis-tooltip.visible { opacity: 1; }
+
+        .lysis-tooltip strong {
+            color: var(--accent-teal);
+            display: block;
+            margin-bottom: 0.3rem;
+            font-size: 0.85rem;
+        }
+
+        .lysis-legend {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .lysis-legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+        }
+
+        .legend-dot {
+            width: 10px; height: 10px;
+            border-radius: 50%;
+        }
+
+        /* ============================================================
+           PUBLICATIONS SECTION
+           To add publications, edit the `publications` array in JS.
+           Filter buttons auto-filter by status field.
+        ============================================================ */
+        .pub-filters {
+            display: flex;
+            gap: 0.8rem;
+            justify-content: center;
+            margin-bottom: 2.5rem;
+            flex-wrap: wrap;
+        }
+
+        .pub-filter-btn {
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            border: 1px solid var(--border-subtle);
+            background: transparent;
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            letter-spacing: 0.5px;
+            font-family: var(--font-body);
+        }
+
+        .pub-filter-btn.active,
+        .pub-filter-btn:hover {
+            border-color: var(--accent-teal);
+            color: var(--accent-teal);
+            background: var(--accent-teal-dim);
+        }
+
+        .pub-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .pub-entry {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            padding: 1.5rem 2rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+        }
+
+        .pub-entry:hover {
+            border-color: rgba(0, 255, 213, 0.15);
+        }
+
+        .pub-entry.latest {
+            border-left: 3px solid var(--accent-teal);
+        }
+
+        .pub-year-badge {
+            background: var(--accent-teal-dim);
+            color: var(--accent-teal);
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 0.3rem 0.8rem;
+            border-radius: 6px;
+            white-space: nowrap;
+            flex-shrink: 0;
+            margin-top: 0.2rem;
+        }
+
+        .pub-content { flex: 1; }
+
+        .pub-title {
+            font-family: var(--font-display);
+            font-size: 1.05rem;
+            color: var(--text-primary);
+            margin-bottom: 0.4rem;
+            line-height: 1.4;
+        }
+
+        .pub-journal {
+            font-size: 0.85rem;
+            color: var(--accent-violet);
+            font-style: italic;
+            margin-bottom: 0.5rem;
+        }
+
+        .pub-meta {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .pub-status {
+            font-size: 0.7rem;
+            padding: 0.2rem 0.6rem;
+            border-radius: 50px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .pub-status.published { background: rgba(0, 255, 213, 0.15); color: var(--accent-teal); }
+        .pub-status.preprint { background: rgba(138, 108, 255, 0.15); color: var(--accent-violet); }
+        .pub-status.in-review { background: rgba(255, 200, 50, 0.15); color: #ffc832; }
+
+        .pub-doi {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .pub-doi a { color: var(--accent-teal); }
+        .pub-doi a:hover { text-decoration: underline; color: #fff; }
+
+        /* ============================================================
+           BLOG SECTION
+           To add blog posts, edit the `blogPosts` array in JS.
+           Supports optional images — put image files in your 
+           GitHub repo and reference them by relative path.
+        ============================================================ */
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .blog-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(138, 108, 255, 0.2);
+            box-shadow: 0 8px 40px rgba(138, 108, 255, 0.08);
+        }
+
+        .blog-card-img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            display: block;
+            background: linear-gradient(135deg, var(--bg-secondary), var(--bg-card));
+        }
+
+        .blog-card-img-placeholder {
+            width: 100%;
+            height: 180px;
+            background: linear-gradient(135deg, #0d1526, #151c2e);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            opacity: 0.5;
+        }
+
+        .blog-card-body {
+            padding: 1.5rem;
+        }
+
+        .blog-card-date {
+            font-size: 0.75rem;
+            color: var(--accent-violet);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 0.6rem;
+        }
+
+        .blog-card h3 {
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            color: var(--text-primary);
+            margin-bottom: 0.6rem;
+            line-height: 1.4;
+        }
+
+        .blog-card p {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .blog-card-link {
+            display: inline-block;
+            margin-top: 1rem;
+            font-size: 0.8rem;
+            color: var(--accent-teal);
+            letter-spacing: 0.5px;
+            font-weight: 600;
+        }
+
+        .blog-card-link:hover { color: #fff; }
+
+        .blog-external-badge {
+            display: inline-block;
+            font-size: 0.65rem;
+            background: var(--accent-violet-dim);
+            color: var(--accent-violet);
+            padding: 0.15rem 0.5rem;
+            border-radius: 50px;
+            margin-left: 0.5rem;
+            vertical-align: middle;
+        }
+
+        /* ============================================================
+           CV SECTION
+        ============================================================ */
+        .cv-block {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            padding: 3rem;
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cv-block::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 3px;
+            background: linear-gradient(90deg, var(--accent-teal), var(--accent-violet));
+        }
+
+        .cv-block p {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        /* ============================================================
+           CONTACT SECTION
+        ============================================================ */
+        .contact-links {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .contact-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .contact-btn:hover {
+            border-color: var(--accent-teal);
+            color: var(--accent-teal);
+            box-shadow: var(--glow-teal);
+            transform: translateY(-2px);
+        }
+
+        .contact-btn .icon { font-size: 1.1rem; }
+
+        /* ============================================================
+           FOOTER
+        ============================================================ */
         footer {
             text-align: center;
-            padding: 2rem;
-            color: white;
-            font-size: 0.9rem;
+            padding: 3rem 2rem;
+            border-top: 1px solid var(--border-subtle);
+            margin-top: 2rem;
         }
 
+        footer p {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            margin-bottom: 0.3rem;
+        }
+
+        footer .footer-dna {
+            color: var(--accent-teal);
+            opacity: 0.3;
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            letter-spacing: 3px;
+            margin-top: 1rem;
+        }
+
+        /* ============================================================
+           ANIMATIONS
+        ============================================================ */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ============================================================
+           RESPONSIVE
+        ============================================================ */
         @media (max-width: 768px) {
-            header h1 {
-                font-size: 2rem;
-            }
-
-            nav ul {
-                gap: 1rem;
-            }
-
-            .about-content {
+            .nav-links { display: none; }
+            .nav-links.open {
+                display: flex;
                 flex-direction: column;
-                align-items: center;
+                position: absolute;
+                top: var(--nav-height);
+                left: 0; right: 0;
+                background: rgba(11, 15, 26, 0.98);
+                padding: 1.5rem;
+                gap: 1rem;
+                border-bottom: 1px solid var(--border-subtle);
             }
-
-            .profile-img {
-                width: 150px;
-                height: 150px;
-                font-size: 3rem;
-            }
+            .nav-toggle { display: block; }
+            .about-grid { grid-template-columns: 1fr; justify-items: center; }
+            .about-text p:first-child::first-letter { font-size: 2.5rem; }
+            .pub-entry { flex-direction: column; gap: 0.8rem; }
+            .section { padding: 4rem 1.5rem; }
+            .cv-block { padding: 2rem; }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>Michael Baffour Awuah</h1>
-            <p>Microbiology PhD Student | Research Scientist</p>
-        </header>
 
-        <nav>
-            <ul>
+    <!-- ============================================================
+         NAVIGATION
+         To add a new section link: add an <li><a href="#id">Label</a></li>
+    ============================================================ -->
+    <nav class="nav" id="navbar">
+        <div class="nav-inner">
+            <div class="nav-logo">M.B.A.</div>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">&#9776;</button>
+            <ul class="nav-links" id="navLinks">
                 <li><a href="#about">About</a></li>
                 <li><a href="#research">Research</a></li>
-                <li><a href="#cv">CV</a></li>
+                <li><a href="#publications">Publications</a></li>
                 <li><a href="#blog">Blog</a></li>
+                <li><a href="#cv">CV</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
-        </nav>
+        </div>
+    </nav>
 
-        <section id="about">
-            <h2>About Me</h2>
-            <div class="about-content">
-                <div class="profile-img">MBA</div>
-                <div class="about-text">
-                    <p>Howdy! I'm a PhD student in Microbiology at Texas A&M University, passionate about understanding the intricate world of bacteriophages and how these prolific bacteria-killers unleash their arsenal of tools & tricks to defeat their foes in the ever-raging arms evolutionary race.</p>
-                    <p style="margin-top: 1rem;">My research focuses on lysis inhibition in bacteriophage N4, a phenomenon this phage uses to delay host lysis, enabling it to utilize the host as a phage factory to produce 3000 viral particles per infected cell in a span of 3-6 hours. Through decoding how phages interact with their host and environment, I hope to gain a better understanding of these communication networks and reverse engineer it for biotechnological applications such as high titer phage production for therapy & programmable microbial biofactories. Additionally, I have an interest in environmental phage discovery and have isolated three bacteriophages which I have had the pleasure of characterizing extensively with undergraduates I have been privileged to work with. I'm dedicated to advancing scientific knowledge through rigorous research and innovative approaches to solving the most challenging problems.</p>
-                    <p style="margin-top: 1rem;">As I approach the completion of my doctoral studies, I'm excited to transition into roles where I can contribute to solving the world's most challenging problems and making groundbreaking discoveries along the way.</p>
+    <!-- ============================================================
+         HERO SECTION
+         The canvas renders animated bacteriophages. The hero copy
+         can be edited directly here in the HTML.
+    ============================================================ -->
+    <section class="hero" id="hero">
+        <canvas class="hero-canvas" id="heroCanvas"></canvas>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <span class="hero-label">Texas A&amp;M University &middot; Department of Microbiology</span>
+            <h1 class="hero-name">Michael <span class="glow">Baffour Awuah</span></h1>
+            <p class="hero-tagline">Phage Biology <span>&middot;</span> Lysis Inhibition <span>&middot;</span> Genomic Engineering</p>
+            <p class="hero-statement">Decoding the molecular decision-making systems of bacteriophage N4 &mdash; understanding how viruses hijack, reprogram, and ultimately destroy bacterial cells to engineer next-generation antimicrobial strategies.</p>
+            <div class="hero-buttons">
+                <a href="#publications" class="btn btn-primary">&#x1F4D6; View Publications</a>
+                <!--
+                    =============================================
+                    HOW TO LINK YOUR CV:
+                    1. Add your CV PDF (e.g., "Awuah_CV.pdf") to
+                       the same folder / GitHub repo.
+                    2. Change "Awuah_CV.pdf" below to your filename.
+                    =============================================
+                -->
+                <a href="Awuah_CV.pdf" class="btn btn-secondary" download>&#x1F4C4; Download CV</a>
+            </div>
+        </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- ============================================================
+         ABOUT SECTION
+    ============================================================ -->
+    <section class="section fade-in" id="about">
+        <div class="section-header">
+            <span class="section-label">Who I Am</span>
+            <h2 class="section-title">About <span class="highlight">Me</span></h2>
+        </div>
+        <div class="about-grid">
+            <div class="about-photo-area">
+                <div class="about-photo">
+                    <!--
+                        =============================================
+                        TO ADD YOUR PHOTO:
+                        1. Place your image file (e.g., headshot.jpg) 
+                           in the same folder as this index.html.
+                        2. Uncomment the line below and update the 
+                           src attribute to your filename.
+                        3. Remove or comment out the <span>MBA</span>.
+                        =============================================
+                    -->
+                    <!-- <img src="headshot.jpg" alt="Michael Baffour Awuah"> -->
+                    <span>MBA</span>
+                </div>
+                <div class="about-stats">
+                    <span class="stat-pill"><strong>4th Year</strong> PhD</span>
+                    <span class="stat-pill"><strong>3</strong> Phages Isolated</span>
+                    <span class="stat-pill"><strong>N4</strong> Specialist</span>
                 </div>
             </div>
-        </section>
+            <div class="about-text">
+                <p>Howdy! I'm a PhD candidate in Microbiology at Texas A&amp;M University, driven by a fascination with how bacteriophages &mdash; the most abundant biological entities on the planet &mdash; wage molecular warfare against their bacterial hosts. My research sits at the intersection of virology, molecular biology, and genomic engineering.</p>
+                <p>My primary work centers on lysis inhibition in bacteriophage N4, a remarkable phenomenon whereby the phage strategically delays host cell lysis to transform each infected bacterium into a high-output viral factory, producing up to 3,000 viral particles per cell within 3&ndash;6 hours. By decoding these phage decision-making systems, I aim to reverse-engineer them for biotechnological applications including high-titer phage production for therapy and programmable microbial biofactories.</p>
+                <p>Beyond my primary project, I have a passion for environmental phage discovery. I have isolated and characterized three novel bacteriophages alongside talented undergraduates I've had the privilege of mentoring. As I approach the completion of my doctoral studies, I'm eager to bring my expertise in phage biology, molecular engineering, and computational genomics to roles tackling humanity's most pressing challenges.</p>
+            </div>
+        </div>
+    </section>
 
-        <section id="research">
-            <h2>Research Interests</h2>
-            <p><strong>Primary Focus:</strong> Bacteriophage biology & host–pathogen interactions</p>
-            <p style="margin-top: 1rem;"><strong>Techniques & Methods:</strong> 
-Molecular & Genetic Techniques:
-Molecular cloning and recombinant DNA assembly, PCR and qPCR, gene knockout and functional validation, DNA/RNA extraction and quantification, protein expression and purification, SDS-PAGE and Western blotting, and phage genome modification and engineering.
+    <hr class="section-divider">
 
-Microbial & Phage Biology:
-Microbial culture and aseptic techniques, bacteriophage isolation and characterization, host–pathogen interaction assays, phage engineering.
-
-Imaging & Analytical Methods:
-Microscopy, enzymatic and biochemical assays, spectrophotometric and fluorometric analyses, optical density and growth kinetics measurements, and high-throughput assay development.
-
-Bioinformatics & Computational Analysis:
-Genome annotation and comparative genomics, functional and structural genomics, metagenomic and transcriptomic data analysis, phage genome design and modification pipelines, statistical data analysis (R, Python), and data visualization.
-
-Experimental Design & Research Practices:
-Experimental design and troubleshooting, laboratory documentation and traceability, Good Laboratory Practices (GLP), scientific writing and figure preparation, and mentoring undergraduate researchers.</p>
-            <p style="margin-top: 1rem;"><strong>Key Publications:</strong></p>
-            <ul style="margin-left: 2rem; margin-top: 0.5rem;">
-                <li>Publication 1 - Journal Name (Year)</li>
-                <li>Publication 2 - Journal Name (Year)</li>
-                <li>Publication 3 - Journal Name (Year)</li>
-            </ul>
-        </section>
-
-        <section id="cv">
-            <h2>Curriculum Vitae</h2>
-            <p>Download my complete CV to learn more about my academic background, research experience, publications, and professional accomplishments.</p>
-            <a href="your-cv.pdf" class="cv-download" download>📄 Download CV (PDF)</a>
-            <p style="margin-top: 1rem; color: #666; font-size: 0.9rem;"><em>
-        </section>
-
-        <section id="blog">
-            <h2>Blog & Updates</h2>
-            <div class="blog-grid">
-                <div class="blog-post">
-                    <h3>My Research Journey</h3>
-                    <p class="blog-date">October 2025</p>
-                    <p>Reflecting on the challenges and triumphs of my PhD experience, from my first experiment to defending my dissertation proposal...</p>
-                </div>
-                <div class="blog-post">
-                    <h3>Understanding Antimicrobial Resistance</h3>
-                    <p class="blog-date">September 2025</p>
-                    <p>A deep dive into one of the most pressing issues in modern medicine and how my research contributes to finding solutions...</p>
-                </div>
-                <div class="blog-post">
-                    <h3>Life in the Lab</h3>
-                    <p class="blog-date">August 2025</p>
-                    <p>Behind the scenes of a microbiology research lab - the daily routines, unexpected discoveries, and collaborative moments that define scientific life...</p>
+    <!-- ============================================================
+         RESEARCH SECTION
+    ============================================================ -->
+    <section class="section fade-in" id="research">
+        <div class="section-header">
+            <span class="section-label">What I Study</span>
+            <h2 class="section-title">Research <span class="highlight">Focus</span></h2>
+            <p class="section-subtitle">Bridging molecular virology and engineering to unlock the potential of bacteriophages.</p>
+        </div>
+        <div class="research-grid">
+            <div class="research-card">
+                <span class="research-icon">🦠</span>
+                <h3>Phage Biology</h3>
+                <p>Investigating lysis inhibition mechanisms in bacteriophage N4 and understanding how phages make temporal decisions during infection cycles.</p>
+                <div class="research-tags">
+                    <span class="research-tag">Lysis Inhibition</span>
+                    <span class="research-tag">N4</span>
+                    <span class="research-tag">Host-Pathogen</span>
                 </div>
             </div>
-            <p style="margin-top: 1.5rem; color: #666;"><em> </em></p>
-        </section>
-
-        <section id="contact">
-            <h2>Connect With Me</h2>
-            <p style="text-align: center; margin-bottom: 1.5rem;">I'm always interested in collaboration opportunities, discussing research, or connecting with fellow scientists.</p>
-            <div class="social-links">
-                <a href="mailto:baffour@tamu.edu" class="social-link">📧 Email</a>
-                <a href="https://www.linkedin.com/in/mba-101b/" class="social-link" target="_blank">💼 LinkedIn</a>
-                <a href="https://twitter.com/AwuahMB" class="social-link" target="_blank">🐦 Twitter</a>
-                <a href="https://scholar.google.com/citations?user=e5_h_2YAAAAJ&hl=en" class="social-link" target="_blank">🎓 Google Scholar</a>
-                <a href="https://orcid.org/my-orcid?orcid=0009-0007-9036-413X" class="social-link" target="_blank">🔬 ORCID</a>
-                <a href="https://github.com/mbaffour" class="social-link" target="_blank">💻 GitHub</a>
+            <div class="research-card">
+                <span class="research-icon">🧬</span>
+                <h3>Molecular Engineering</h3>
+                <p>Engineering phage-based systems for high-titer production and developing programmable microbial biofactories through reverse-engineered viral machinery.</p>
+                <div class="research-tags">
+                    <span class="research-tag">Cloning</span>
+                    <span class="research-tag">Gene Knockouts</span>
+                    <span class="research-tag">Protein Expression</span>
+                </div>
             </div>
-            <p style="text-align: center; margin-top: 1.5rem; color: #666; font-size: 0.9rem;"><em></em></p>
-        </section>
+            <div class="research-card">
+                <span class="research-icon">💻</span>
+                <h3>Computational Genomics</h3>
+                <p>Leveraging RNA-seq, comparative genomics, and custom bioinformatics pipelines to decode transcriptomic landscapes of phage-host interactions.</p>
+                <div class="research-tags">
+                    <span class="research-tag">RNA-seq</span>
+                    <span class="research-tag">DESeq2</span>
+                    <span class="research-tag">R / Python</span>
+                </div>
+            </div>
+            <div class="research-card">
+                <span class="research-icon">🔬</span>
+                <h3>Experimental Systems</h3>
+                <p>Developing high-throughput assays for phage characterization, including plaque morphology, electron microscopy, host range, and kill curve analyses.</p>
+                <div class="research-tags">
+                    <span class="research-tag">Kill Curves</span>
+                    <span class="research-tag">EM</span>
+                    <span class="research-tag">Host Range</span>
+                </div>
+            </div>
+        </div>
 
-        <footer>
-            <p>&copy; 2025 Michael Baffour Awuah. All rights reserved.</p>
-            <p>Built with passion for science and discovery</p>
-        </footer>
-    </div>
+        <!-- Interactive Lysis Curve Visualization -->
+        <div class="viz-container fade-in">
+            <h3 class="viz-title">Interactive: Phage Infection Cycle</h3>
+            <p class="viz-subtitle">Hover over the curve to explore each phase of the lytic cycle with lysis inhibition.</p>
+            <div class="lysis-canvas-wrap">
+                <canvas id="lysisCanvas"></canvas>
+                <div class="lysis-tooltip" id="lysisTooltip"></div>
+            </div>
+            <div class="lysis-legend">
+                <span class="lysis-legend-item"><span class="legend-dot" style="background:var(--accent-teal)"></span> Normal Lysis</span>
+                <span class="lysis-legend-item"><span class="legend-dot" style="background:var(--accent-violet)"></span> Lysis Inhibited (N4)</span>
+            </div>
+        </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- ============================================================
+         PUBLICATIONS SECTION
+         Publications are rendered from JS. Edit the `publications`
+         array in the <script> section to add/remove/update.
+    ============================================================ -->
+    <section class="section fade-in" id="publications">
+        <div class="section-header">
+            <span class="section-label">My Work</span>
+            <h2 class="section-title"><span class="highlight">Publications</span></h2>
+            <p class="section-subtitle">Peer-reviewed research and ongoing work in phage biology and genomics.</p>
+        </div>
+        <div class="pub-filters" id="pubFilters">
+            <button class="pub-filter-btn active" data-filter="all">All</button>
+            <button class="pub-filter-btn" data-filter="published">Published</button>
+            <button class="pub-filter-btn" data-filter="preprint">Preprint</button>
+            <button class="pub-filter-btn" data-filter="in-review">In Review</button>
+        </div>
+        <div class="pub-list" id="pubList"></div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- ============================================================
+         BLOG SECTION
+         Blog posts rendered from JS. Edit `blogPosts` array.
+         Supports images and external links.
+    ============================================================ -->
+    <section class="section fade-in" id="blog">
+        <div class="section-header">
+            <span class="section-label">Updates &amp; Writing</span>
+            <h2 class="section-title">Blog &amp; <span class="highlight">News</span></h2>
+            <p class="section-subtitle">Thoughts on research, science communication, and the phage world.</p>
+        </div>
+        <div class="blog-grid" id="blogGrid"></div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- ============================================================
+         CV SECTION
+    ============================================================ -->
+    <section class="section fade-in" id="cv">
+        <div class="section-header">
+            <span class="section-label">Credentials</span>
+            <h2 class="section-title">Curriculum <span class="highlight">Vitae</span></h2>
+        </div>
+        <div class="cv-block">
+            <p>PhD Candidate in Microbiology at Texas A&amp;M University specializing in bacteriophage biology, molecular engineering, and computational genomics. Experienced in leading independent research projects, mentoring undergraduates, and building bioinformatics pipelines from scratch.</p>
+            <!--
+                =============================================
+                HOW TO LINK YOUR CV:
+                1. Add your CV PDF to the same folder / repo.
+                2. Change the href to your filename.
+                =============================================
+            -->
+            <a href="Awuah_CV.pdf" class="btn btn-primary" download>&#x1F4C4; Download Full CV</a>
+        </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- ============================================================
+         CONTACT SECTION
+         Update links below with your actual URLs.
+    ============================================================ -->
+    <section class="section fade-in" id="contact">
+        <div class="section-header">
+            <span class="section-label">Get in Touch</span>
+            <h2 class="section-title">Connect <span class="highlight">With Me</span></h2>
+            <p class="section-subtitle">Interested in collaboration, phage research, or just want to talk science? I'd love to hear from you.</p>
+        </div>
+        <div class="contact-links">
+            <a href="mailto:baffour@tamu.edu" class="contact-btn"><span class="icon">&#x2709;</span> Email</a>
+            <a href="https://www.linkedin.com/in/mba-101b/" class="contact-btn" target="_blank" rel="noopener"><span class="icon">&#x1F4BC;</span> LinkedIn</a>
+            <a href="https://scholar.google.com/citations?user=e5_h_2YAAAAJ&hl=en" class="contact-btn" target="_blank" rel="noopener"><span class="icon">&#x1F393;</span> Google Scholar</a>
+            <a href="https://orcid.org/my-orcid?orcid=0009-0007-9036-413X" class="contact-btn" target="_blank" rel="noopener"><span class="icon">&#x1F52C;</span> ORCID</a>
+            <a href="https://github.com/mbaffour" class="contact-btn" target="_blank" rel="noopener"><span class="icon">&#x1F4BB;</span> GitHub</a>
+            <a href="https://twitter.com/AwuahMB" class="contact-btn" target="_blank" rel="noopener"><span class="icon">&#x1F426;</span> Twitter/X</a>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         FOOTER
+    ============================================================ -->
+    <footer>
+        <p>&copy; 2025 Michael Baffour Awuah. All rights reserved.</p>
+        <p>Built with passion for phage science and discovery.</p>
+        <div class="footer-dna">ATCG &middot; TAGC &middot; GCTA &middot; CGAT &middot; ATCG &middot; TAGC &middot; GCTA</div>
+    </footer>
+
+    <!-- ============================================================
+         JAVASCRIPT
+    ============================================================ -->
+    <script>
+    /* ==============================================================
+       PUBLICATION DATA
+       ===============================================================
+       HOW TO ADD A PUBLICATION:
+       Add a new object to this array. Fields:
+         title    — Paper title (string)
+         authors  — Author list (string) — use "Awuah MB" for yourself
+         journal  — Journal name (string)
+         year     — Publication year (number)
+         doi      — DOI URL string, or null if not yet assigned
+         status   — One of: "published", "preprint", "in-review"
+         latest   — Set to true for ONE entry to highlight it
+       
+       Example:
+         {
+           title: "My New Paper Title",
+           authors: "Awuah MB, Collaborator A, Advisor B",
+           journal: "Nature Microbiology",
+           year: 2026,
+           doi: "https://doi.org/10.1234/example",
+           status: "published",
+           latest: true
+         }
+    =============================================================== */
+    const publications = [
+        {
+            title: "Characterization of Lysis Inhibition Mechanisms in Bacteriophage N4",
+            authors: "Awuah MB, Advisor Name",
+            journal: "Journal of Virology",
+            year: 2025,
+            doi: null,
+            status: "in-review",
+            latest: true
+        },
+        {
+            title: "Transcriptomic Landscape of Phage N4 Infection: Wild-Type vs. Rapid Lysis Mutants",
+            authors: "Awuah MB, Collaborator A, Advisor Name",
+            journal: "mBio",
+            year: 2025,
+            doi: null,
+            status: "in-review",
+            latest: false
+        },
+        {
+            title: "Isolation and Characterization of Three Novel Bacteriophages from Environmental Sources",
+            authors: "Awuah MB, Undergraduate A, Undergraduate B, Advisor Name",
+            journal: "Microbiology Resource Announcements",
+            year: 2024,
+            doi: "https://doi.org/10.1234/placeholder",
+            status: "published",
+            latest: false
+        },
+        {
+            title: "Lysis Bandit: An R Shiny Application for High-Throughput Kill Curve Analysis",
+            authors: "Awuah MB",
+            journal: "bioRxiv",
+            year: 2024,
+            doi: "https://doi.org/10.1234/placeholder2",
+            status: "preprint",
+            latest: false
+        }
+    ];
+
+    /* ==============================================================
+       BLOG POST DATA
+       ===============================================================
+       HOW TO ADD A BLOG POST:
+       Add a new object to this array. Fields:
+         title    — Post title (string)
+         date     — Display date (string, e.g., "October 2025")
+         summary  — Short description (string, 1-2 sentences)
+         image    — (optional) Relative path to an image file, or null
+                    e.g., "blog-images/lab-photo.jpg"
+         link     — (optional) URL to full post if hosted elsewhere
+                    Use null for posts that are just previews.
+                    If this is an external link, set external: true
+         external — (optional) true if the link goes to another website
+       
+       Example (blog post with image, hosted here):
+         {
+           title: "New Paper Accepted!",
+           date: "March 2026",
+           summary: "Excited to share our latest findings...",
+           image: "blog-images/celebration.jpg",
+           link: null,
+           external: false
+         }
+
+       Example (external press coverage):
+         {
+           title: "Featured in TAMU Research Magazine",
+           date: "January 2026",
+           summary: "Our phage work was highlighted in...",
+           image: "blog-images/tamu-feature.jpg",
+           link: "https://example.com/article-about-me",
+           external: true
+         }
+    =============================================================== */
+    const blogPosts = [
+        {
+            title: "My PhD Journey: From First Plaque to Dissertation",
+            date: "October 2025",
+            summary: "Reflecting on the challenges and triumphs of my doctoral experience — from the first experiment that didn't work to the moment everything clicked with the N4 lysis inhibition system.",
+            image: null,
+            link: null,
+            external: false,
+            emoji: "🧫"
+        },
+        {
+            title: "Why Bacteriophages Are the Future of Medicine",
+            date: "September 2025",
+            summary: "As antibiotic resistance surges globally, phage therapy is emerging as one of our most promising weapons. Here's why I think we're entering a golden age of phage research.",
+            image: null,
+            link: null,
+            external: false,
+            emoji: "💊"
+        },
+        {
+            title: "Building Lysis Bandit: From Script to Shiny App",
+            date: "August 2025",
+            summary: "How I built a custom R Shiny application to automate optical density analysis for our lab, and why computational tools matter in wet-lab science.",
+            image: null,
+            link: null,
+            external: false,
+            emoji: "💻"
+        }
+    ];
+
+    /* ==============================================================
+       RENDER PUBLICATIONS
+    =============================================================== */
+    function renderPublications(filter = 'all') {
+        const container = document.getElementById('pubList');
+        const filtered = filter === 'all' 
+            ? publications 
+            : publications.filter(p => p.status === filter);
+        
+        container.innerHTML = filtered.map(pub => `
+            <div class="pub-entry ${pub.latest ? 'latest' : ''}">
+                <span class="pub-year-badge">${pub.year}</span>
+                <div class="pub-content">
+                    <div class="pub-title">${pub.title}</div>
+                    <div class="pub-journal">${pub.authors} &mdash; ${pub.journal}</div>
+                    <div class="pub-meta">
+                        <span class="pub-status ${pub.status}">${pub.status === 'in-review' ? 'In Review' : pub.status.charAt(0).toUpperCase() + pub.status.slice(1)}</span>
+                        ${pub.doi ? `<span class="pub-doi"><a href="${pub.doi}" target="_blank" rel="noopener">DOI &#x2197;</a></span>` : ''}
+                        ${pub.latest ? '<span class="pub-status published" style="background:rgba(0,255,213,0.08)">★ Latest</span>' : ''}
+                    </div>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    // Filter button events
+    document.getElementById('pubFilters').addEventListener('click', (e) => {
+        if (e.target.classList.contains('pub-filter-btn')) {
+            document.querySelectorAll('.pub-filter-btn').forEach(b => b.classList.remove('active'));
+            e.target.classList.add('active');
+            renderPublications(e.target.dataset.filter);
+        }
+    });
+
+    renderPublications();
+
+    /* ==============================================================
+       RENDER BLOG POSTS
+    =============================================================== */
+    function renderBlog() {
+        const container = document.getElementById('blogGrid');
+        container.innerHTML = blogPosts.map(post => `
+            <div class="blog-card">
+                ${post.image 
+                    ? `<img class="blog-card-img" src="${post.image}" alt="${post.title}" loading="lazy">`
+                    : `<div class="blog-card-img-placeholder">${post.emoji || '🧬'}</div>`
+                }
+                <div class="blog-card-body">
+                    <div class="blog-card-date">${post.date}</div>
+                    <h3>${post.title}${post.external ? '<span class="blog-external-badge">External</span>' : ''}</h3>
+                    <p>${post.summary}</p>
+                    ${post.link ? `<a href="${post.link}" class="blog-card-link" target="${post.external ? '_blank' : '_self'}" rel="noopener">Read More &#x2192;</a>` : ''}
+                </div>
+            </div>
+        `).join('');
+    }
+
+    renderBlog();
+
+    /* ==============================================================
+       MOBILE NAV TOGGLE
+    =============================================================== */
+    document.getElementById('navToggle').addEventListener('click', () => {
+        document.getElementById('navLinks').classList.toggle('open');
+    });
+
+    // Close mobile nav on link click
+    document.querySelectorAll('.nav-links a').forEach(a => {
+        a.addEventListener('click', () => {
+            document.getElementById('navLinks').classList.remove('open');
+        });
+    });
+
+    /* ==============================================================
+       SCROLL ANIMATIONS (Fade-in on scroll)
+    =============================================================== */
+    const fadeEls = document.querySelectorAll('.fade-in');
+    const fadeObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                fadeObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1 });
+
+    fadeEls.forEach(el => fadeObserver.observe(el));
+
+    /* ==============================================================
+       HERO CANVAS — ANIMATED BACTERIOPHAGES
+       Adjust PHAGE_COUNT, speed, and colors here.
+    =============================================================== */
+    (function() {
+        const canvas = document.getElementById('heroCanvas');
+        const ctx = canvas.getContext('2d');
+        let w, h;
+        const PHAGE_COUNT = 18; /* Change this to add/remove phages */
+        const phages = [];
+
+        function resize() {
+            w = canvas.width = canvas.offsetWidth;
+            h = canvas.height = canvas.offsetHeight;
+        }
+
+        window.addEventListener('resize', resize);
+        resize();
+
+        class Phage {
+            constructor() {
+                this.reset();
+            }
+
+            reset() {
+                this.x = Math.random() * w;
+                this.y = Math.random() * h;
+                this.size = 12 + Math.random() * 20;
+                this.speed = 0.15 + Math.random() * 0.35;
+                this.angle = Math.random() * Math.PI * 2;
+                this.rotSpeed = (Math.random() - 0.5) * 0.005;
+                this.rotation = Math.random() * Math.PI * 2;
+                this.opacity = 0.06 + Math.random() * 0.18;
+                this.color = Math.random() > 0.5 
+                    ? `rgba(0, 255, 213, ${this.opacity})`
+                    : `rgba(138, 108, 255, ${this.opacity})`;
+                this.drift = Math.random() * Math.PI * 2;
+                this.driftSpeed = 0.002 + Math.random() * 0.003;
+            }
+
+            update() {
+                this.drift += this.driftSpeed;
+                this.x += Math.cos(this.angle) * this.speed + Math.sin(this.drift) * 0.2;
+                this.y += Math.sin(this.angle) * this.speed + Math.cos(this.drift) * 0.15;
+                this.rotation += this.rotSpeed;
+
+                // Wrap around
+                if (this.x < -60) this.x = w + 60;
+                if (this.x > w + 60) this.x = -60;
+                if (this.y < -60) this.y = h + 60;
+                if (this.y > h + 60) this.y = -60;
+            }
+
+            draw() {
+                ctx.save();
+                ctx.translate(this.x, this.y);
+                ctx.rotate(this.rotation);
+                
+                const s = this.size;
+                
+                // Icosahedral head
+                ctx.beginPath();
+                for (let i = 0; i < 6; i++) {
+                    const a = (Math.PI * 2 / 6) * i - Math.PI / 2;
+                    const px = Math.cos(a) * s * 0.5;
+                    const py = Math.sin(a) * s * 0.5;
+                    i === 0 ? ctx.moveTo(px, py) : ctx.lineTo(px, py);
+                }
+                ctx.closePath();
+                ctx.fillStyle = this.color;
+                ctx.fill();
+                ctx.strokeStyle = this.color;
+                ctx.lineWidth = 1;
+                ctx.stroke();
+
+                // Tail
+                ctx.beginPath();
+                ctx.moveTo(0, s * 0.5);
+                ctx.lineTo(0, s * 1.3);
+                ctx.strokeStyle = this.color;
+                ctx.lineWidth = 1.5;
+                ctx.stroke();
+
+                // Tail fibers
+                const fiberY = s * 1.3;
+                for (let i = -1; i <= 1; i += 2) {
+                    ctx.beginPath();
+                    ctx.moveTo(0, fiberY);
+                    ctx.quadraticCurveTo(i * s * 0.3, fiberY + s * 0.15, i * s * 0.5, fiberY + s * 0.4);
+                    ctx.strokeStyle = this.color;
+                    ctx.lineWidth = 1;
+                    ctx.stroke();
+                }
+
+                // Baseplate
+                ctx.beginPath();
+                ctx.moveTo(-s * 0.2, s * 1.25);
+                ctx.lineTo(s * 0.2, s * 1.25);
+                ctx.strokeStyle = this.color;
+                ctx.lineWidth = 1.5;
+                ctx.stroke();
+
+                ctx.restore();
+            }
+        }
+
+        for (let i = 0; i < PHAGE_COUNT; i++) {
+            phages.push(new Phage());
+        }
+
+        // Floating bacteria (small ellipses)
+        const bacteria = [];
+        for (let i = 0; i < 8; i++) {
+            bacteria.push({
+                x: Math.random() * w,
+                y: Math.random() * h,
+                rx: 6 + Math.random() * 10,
+                ry: 3 + Math.random() * 5,
+                speed: 0.1 + Math.random() * 0.2,
+                angle: Math.random() * Math.PI * 2,
+                rotation: Math.random() * Math.PI,
+                opacity: 0.03 + Math.random() * 0.06,
+                drift: Math.random() * Math.PI * 2
+            });
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, w, h);
+
+            // Draw bacteria
+            bacteria.forEach(b => {
+                b.drift += 0.002;
+                b.x += Math.cos(b.angle) * b.speed + Math.sin(b.drift) * 0.1;
+                b.y += Math.sin(b.angle) * b.speed;
+                b.rotation += 0.002;
+
+                if (b.x < -40) b.x = w + 40;
+                if (b.x > w + 40) b.x = -40;
+                if (b.y < -40) b.y = h + 40;
+                if (b.y > h + 40) b.y = -40;
+
+                ctx.save();
+                ctx.translate(b.x, b.y);
+                ctx.rotate(b.rotation);
+                ctx.beginPath();
+                ctx.ellipse(0, 0, b.rx, b.ry, 0, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(0, 255, 213, ${b.opacity})`;
+                ctx.fill();
+                ctx.restore();
+            });
+
+            // Draw phages
+            phages.forEach(p => {
+                p.update();
+                p.draw();
+            });
+
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+    })();
+
+    /* ==============================================================
+       LYSIS CURVE — INTERACTIVE VISUALIZATION
+       Shows phage infection phases with hover tooltips.
+    =============================================================== */
+    (function() {
+        const canvas = document.getElementById('lysisCanvas');
+        const ctx = canvas.getContext('2d');
+        const tooltip = document.getElementById('lysisTooltip');
+        const wrap = canvas.parentElement;
+
+        const phases = [
+            {
+                name: "Adsorption",
+                range: [0, 0.12],
+                desc: "Phage attaches to bacterial surface receptors. Tail fibers recognize specific host molecules."
+            },
+            {
+                name: "DNA Injection",
+                range: [0.12, 0.22],
+                desc: "Phage injects its genome through the cell membrane into the host cytoplasm."
+            },
+            {
+                name: "Early Gene Expression",
+                range: [0.22, 0.38],
+                desc: "Host machinery is hijacked. Phage early genes shut down bacterial defenses and redirect transcription."
+            },
+            {
+                name: "Replication",
+                range: [0.38, 0.58],
+                desc: "Massive phage DNA replication and protein synthesis. The cell becomes a viral factory."
+            },
+            {
+                name: "Lysis Inhibition (N4)",
+                range: [0.58, 0.82],
+                desc: "N4 delays lysis, enabling continued replication. Burst size increases from ~200 to ~3,000 particles per cell."
+            },
+            {
+                name: "Lysis & Release",
+                range: [0.82, 1.0],
+                desc: "Holins and lysins destroy the cell wall. Thousands of progeny phages burst out to infect new hosts."
+            }
+        ];
+
+        let W, H, dpr;
+
+        function resize() {
+            dpr = window.devicePixelRatio || 1;
+            W = wrap.offsetWidth;
+            H = 300;
+            canvas.width = W * dpr;
+            canvas.height = H * dpr;
+            canvas.style.width = W + 'px';
+            canvas.style.height = H + 'px';
+            ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+            drawCurve();
+        }
+
+        window.addEventListener('resize', resize);
+
+        function lysisNormal(t) {
+            if (t < 0.12) return 0.1;
+            if (t < 0.22) return 0.1 + (t - 0.12) * 1.5;
+            if (t < 0.55) return 0.25 + (t - 0.22) * 2.0;
+            if (t < 0.65) return 0.91 + (t - 0.55) * 0.5;
+            // Normal lysis drop
+            if (t < 0.75) return 0.96 - (t - 0.65) * 8.0;
+            return 0.16 - (t - 0.75) * 0.3;
+        }
+
+        function lysisInhibited(t) {
+            if (t < 0.12) return 0.1;
+            if (t < 0.22) return 0.1 + (t - 0.12) * 1.5;
+            if (t < 0.55) return 0.25 + (t - 0.22) * 2.0;
+            if (t < 0.82) return 0.91 + (t - 0.55) * 0.25;
+            // Delayed lysis drop
+            if (t < 0.92) return 0.975 - (t - 0.82) * 8.5;
+            return 0.125 - (t - 0.92) * 0.5;
+        }
+
+        function drawCurve(hoverT) {
+            ctx.clearRect(0, 0, W, H);
+
+            const pad = { top: 30, bottom: 50, left: 50, right: 20 };
+            const gw = W - pad.left - pad.right;
+            const gh = H - pad.top - pad.bottom;
+
+            // Axes
+            ctx.strokeStyle = 'rgba(255,255,255,0.1)';
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(pad.left, pad.top);
+            ctx.lineTo(pad.left, H - pad.bottom);
+            ctx.lineTo(W - pad.right, H - pad.bottom);
+            ctx.stroke();
+
+            // Y-axis label
+            ctx.save();
+            ctx.translate(15, H / 2);
+            ctx.rotate(-Math.PI / 2);
+            ctx.fillStyle = 'rgba(255,255,255,0.4)';
+            ctx.font = '11px sans-serif';
+            ctx.textAlign = 'center';
+            ctx.fillText('Intracellular Phage Particles', 0, 0);
+            ctx.restore();
+
+            // X-axis label
+            ctx.fillStyle = 'rgba(255,255,255,0.4)';
+            ctx.font = '11px sans-serif';
+            ctx.textAlign = 'center';
+            ctx.fillText('Time Post-Infection', W / 2, H - 10);
+
+            // Phase background shading on hover
+            if (hoverT !== undefined) {
+                const phase = phases.find(p => hoverT >= p.range[0] && hoverT < p.range[1]);
+                if (phase) {
+                    const x1 = pad.left + phase.range[0] * gw;
+                    const x2 = pad.left + phase.range[1] * gw;
+                    ctx.fillStyle = 'rgba(0, 255, 213, 0.04)';
+                    ctx.fillRect(x1, pad.top, x2 - x1, gh);
+                }
+            }
+
+            // Helper to draw a curve
+            function drawLine(fn, color, lineWidth) {
+                ctx.beginPath();
+                ctx.strokeStyle = color;
+                ctx.lineWidth = lineWidth;
+                const steps = 200;
+                for (let i = 0; i <= steps; i++) {
+                    const t = i / steps;
+                    const x = pad.left + t * gw;
+                    const val = Math.max(0, Math.min(1, fn(t)));
+                    const y = pad.top + gh - val * gh;
+                    i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+                }
+                ctx.stroke();
+            }
+
+            // Normal lysis curve
+            drawLine(lysisNormal, 'rgba(0, 255, 213, 0.4)', 2);
+
+            // Lysis-inhibited curve (N4)
+            drawLine(lysisInhibited, 'rgba(138, 108, 255, 0.8)', 2.5);
+
+            // Glow effect for inhibited curve
+            ctx.shadowColor = 'rgba(138, 108, 255, 0.3)';
+            ctx.shadowBlur = 10;
+            drawLine(lysisInhibited, 'rgba(138, 108, 255, 0.3)', 4);
+            ctx.shadowBlur = 0;
+
+            // Hover indicator
+            if (hoverT !== undefined) {
+                const x = pad.left + hoverT * gw;
+                ctx.setLineDash([4, 4]);
+                ctx.strokeStyle = 'rgba(255,255,255,0.2)';
+                ctx.lineWidth = 1;
+                ctx.beginPath();
+                ctx.moveTo(x, pad.top);
+                ctx.lineTo(x, H - pad.bottom);
+                ctx.stroke();
+                ctx.setLineDash([]);
+
+                // Dot on inhibited curve
+                const val = Math.max(0, Math.min(1, lysisInhibited(hoverT)));
+                const dotY = pad.top + gh - val * gh;
+                ctx.beginPath();
+                ctx.arc(x, dotY, 5, 0, Math.PI * 2);
+                ctx.fillStyle = '#8a6cff';
+                ctx.fill();
+                ctx.strokeStyle = '#fff';
+                ctx.lineWidth = 2;
+                ctx.stroke();
+            }
+        }
+
+        canvas.addEventListener('mousemove', (e) => {
+            const rect = canvas.getBoundingClientRect();
+            const mx = e.clientX - rect.left;
+            const my = e.clientY - rect.top;
+            const pad = { left: 50, right: 20 };
+            const gw = W - pad.left - pad.right;
+            const t = (mx - pad.left) / gw;
+
+            if (t >= 0 && t <= 1) {
+                const phase = phases.find(p => t >= p.range[0] && t < p.range[1]);
+                if (phase) {
+                    tooltip.innerHTML = `<strong>${phase.name}</strong>${phase.desc}`;
+                    tooltip.classList.add('visible');
+                    
+                    let tx = mx + 15;
+                    let ty = my - 20;
+                    if (tx + 210 > W) tx = mx - 215;
+                    if (ty < 0) ty = 10;
+                    
+                    tooltip.style.left = tx + 'px';
+                    tooltip.style.top = ty + 'px';
+                } else {
+                    tooltip.classList.remove('visible');
+                }
+                drawCurve(t);
+            } else {
+                tooltip.classList.remove('visible');
+                drawCurve();
+            }
+        });
+
+        canvas.addEventListener('mouseleave', () => {
+            tooltip.classList.remove('visible');
+            drawCurve();
+        });
+
+        // Touch support
+        canvas.addEventListener('touchmove', (e) => {
+            e.preventDefault();
+            const rect = canvas.getBoundingClientRect();
+            const touch = e.touches[0];
+            const mx = touch.clientX - rect.left;
+            const pad = { left: 50, right: 20 };
+            const gw = W - pad.left - pad.right;
+            const t = (mx - pad.left) / gw;
+            if (t >= 0 && t <= 1) drawCurve(t);
+        }, { passive: false });
+
+        resize();
+    })();
+
+    /* ==============================================================
+       NAVBAR SCROLL EFFECT
+    =============================================================== */
+    let lastScroll = 0;
+    window.addEventListener('scroll', () => {
+        const nav = document.getElementById('navbar');
+        const scrollY = window.scrollY;
+        if (scrollY > 100) {
+            nav.style.background = 'rgba(11, 15, 26, 0.95)';
+        } else {
+            nav.style.background = 'rgba(11, 15, 26, 0.85)';
+        }
+        lastScroll = scrollY;
+    });
+    </script>
 </body>
 </html>
