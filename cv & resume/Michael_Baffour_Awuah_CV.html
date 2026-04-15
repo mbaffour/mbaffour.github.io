@@ -1,0 +1,1060 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Michael Baffour Awuah – CV</title>
+<meta name="description" content="CV of Michael Baffour Awuah, Ph.D. Candidate in Microbiology at Texas A&M University. Bacteriophage biology, molecular cloning, CRISPR engineering, functional genomics.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:wght@600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #0f1b2d;
+  --deep: #162236;
+  --accent: #4a9eff;
+  --accent-glow: #4a9eff33;
+  --accent2: #00d4aa;
+  --accent2-glow: #00d4aa22;
+  --text: #e0e6ed;
+  --text-secondary: #8899aa;
+  --text-muted: #5a6a7a;
+  --surface: #1a2a40;
+  --surface-hover: #1f3050;
+  --border: #2a3a50;
+  --white: #ffffff;
+  --warm: #ffd166;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: var(--accent) var(--deep);
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--navy);
+  color: var(--text);
+  line-height: 1.65;
+  overflow-x: hidden;
+}
+
+/* ── Animated background ── */
+.bg-grid {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background-image:
+    radial-gradient(ellipse 80% 50% at 50% -20%, var(--accent-glow) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 40% at 80% 100%, var(--accent2-glow) 0%, transparent 60%);
+}
+
+/* ── Main container ── */
+.container {
+  position: relative; z-index: 1;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ── Navigation ── */
+nav {
+  position: sticky; top: 0; z-index: 100;
+  backdrop-filter: blur(20px) saturate(1.5);
+  -webkit-backdrop-filter: blur(20px) saturate(1.5);
+  background: rgba(15, 27, 45, 0.85);
+  border-bottom: 1px solid var(--border);
+  padding: 12px 0;
+  transition: box-shadow 0.3s;
+}
+nav.scrolled { box-shadow: 0 4px 30px rgba(0,0,0,0.3); }
+.nav-inner {
+  max-width: 860px; margin: 0 auto; padding: 0 24px;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 16px; flex-wrap: wrap;
+}
+.nav-name {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700; font-size: 1.1rem; color: var(--white);
+  white-space: nowrap;
+}
+.nav-links { display: flex; gap: 6px; flex-wrap: wrap; }
+.nav-links a {
+  color: var(--text-secondary); text-decoration: none;
+  font-size: 0.78rem; font-weight: 500; padding: 4px 10px;
+  border-radius: 6px; transition: all 0.2s;
+  letter-spacing: 0.02em;
+}
+.nav-links a:hover, .nav-links a.active {
+  color: var(--accent); background: var(--accent-glow);
+}
+
+/* ── Hero ── */
+.hero {
+  padding: 80px 0 48px;
+  text-align: center;
+}
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.2rem, 5vw, 3.2rem);
+  font-weight: 800;
+  color: var(--white);
+  margin-bottom: 8px;
+  letter-spacing: -0.02em;
+}
+.hero .tagline {
+  font-size: 1.05rem;
+  color: var(--accent);
+  font-weight: 500;
+  margin-bottom: 16px;
+}
+.hero .dept {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin-bottom: 24px;
+}
+.contact-row {
+  display: flex; flex-wrap: wrap; justify-content: center;
+  gap: 12px 24px; margin-bottom: 20px;
+}
+.contact-row a, .contact-row span {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 0.82rem; color: var(--text-secondary);
+  text-decoration: none; transition: color 0.2s;
+}
+.contact-row a:hover { color: var(--accent); }
+.contact-row svg { width: 15px; height: 15px; flex-shrink: 0; }
+
+.tag-row {
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 8px;
+  margin-top: 16px;
+}
+.tag {
+  font-size: 0.72rem; font-weight: 600; letter-spacing: 0.06em;
+  text-transform: uppercase; padding: 4px 12px;
+  border-radius: 100px; border: 1px solid var(--border);
+  color: var(--text-secondary); background: var(--surface);
+  transition: all 0.25s;
+}
+.tag:hover {
+  border-color: var(--accent); color: var(--accent);
+  box-shadow: 0 0 12px var(--accent-glow);
+}
+
+/* ── Section ── */
+section { padding: 40px 0 16px; }
+
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem; font-weight: 700;
+  color: var(--white);
+  margin-bottom: 4px;
+  display: flex; align-items: center; gap: 12px;
+}
+.section-title::before {
+  content: ''; display: block;
+  width: 4px; height: 28px;
+  background: linear-gradient(180deg, var(--accent), var(--accent2));
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+.section-rule {
+  height: 1px; border: none;
+  background: linear-gradient(90deg, var(--accent) 0%, transparent 80%);
+  margin: 8px 0 24px;
+}
+
+/* ── Cards ── */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 24px 28px;
+  margin-bottom: 16px;
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+.card::before {
+  content: ''; position: absolute;
+  top: 0; left: 0; width: 3px; height: 100%;
+  background: linear-gradient(180deg, var(--accent), var(--accent2));
+  opacity: 0; transition: opacity 0.3s;
+}
+.card:hover {
+  border-color: var(--accent);
+  box-shadow: 0 4px 24px rgba(74,158,255,0.08);
+  transform: translateY(-1px);
+}
+.card:hover::before { opacity: 1; }
+
+.card-header {
+  display: flex; justify-content: space-between;
+  align-items: flex-start; gap: 12px;
+  margin-bottom: 6px; flex-wrap: wrap;
+}
+.card-title {
+  font-weight: 700; font-size: 0.95rem; color: var(--white);
+}
+.card-date {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem; color: var(--accent);
+  white-space: nowrap; padding: 2px 10px;
+  background: var(--accent-glow); border-radius: 6px;
+  font-weight: 500;
+}
+.card-subtitle {
+  font-size: 0.85rem; color: var(--text-secondary);
+  font-style: italic; margin-bottom: 12px;
+}
+.card-location {
+  font-size: 0.78rem; color: var(--text-muted);
+  margin-bottom: 12px;
+}
+
+/* ── Bullet list ── */
+.bullets { list-style: none; padding: 0; }
+.bullets li {
+  position: relative; padding-left: 18px;
+  margin-bottom: 8px; font-size: 0.85rem;
+  color: var(--text); line-height: 1.6;
+}
+.bullets li::before {
+  content: ''; position: absolute;
+  left: 0; top: 9px;
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  opacity: 0.7;
+}
+
+/* ── Expandable sections ── */
+.expand-toggle {
+  background: none; border: none; cursor: pointer;
+  color: var(--accent); font-size: 0.78rem;
+  font-weight: 600; padding: 4px 0;
+  display: flex; align-items: center; gap: 4px;
+  margin-top: 4px; transition: opacity 0.2s;
+}
+.expand-toggle:hover { opacity: 0.8; }
+.expand-toggle svg {
+  width: 14px; height: 14px;
+  transition: transform 0.3s;
+}
+.expand-toggle.open svg { transform: rotate(180deg); }
+.expandable {
+  max-height: 0; overflow: hidden;
+  transition: max-height 0.4s ease;
+}
+.expandable.open { max-height: 2000px; }
+
+/* ── Table ── */
+.cv-table {
+  width: 100%; border-collapse: separate;
+  border-spacing: 0; font-size: 0.82rem;
+  margin-top: 8px;
+}
+.cv-table th {
+  text-align: left; padding: 8px 12px;
+  color: var(--accent); font-weight: 600;
+  font-size: 0.72rem; text-transform: uppercase;
+  letter-spacing: 0.06em;
+  border-bottom: 1px solid var(--border);
+}
+.cv-table td {
+  padding: 8px 12px; border-bottom: 1px solid rgba(42,58,80,0.5);
+  color: var(--text);
+}
+.cv-table tr:hover td { background: var(--surface-hover); }
+
+/* ── Presentations timeline ── */
+.pres-year {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem; font-weight: 600;
+  color: var(--accent2); margin: 16px 0 8px;
+  padding: 2px 10px; background: var(--accent2-glow);
+  border-radius: 6px; display: inline-block;
+}
+.pres-item {
+  font-size: 0.82rem; color: var(--text);
+  padding: 6px 0 6px 18px; position: relative;
+  border-left: 1px solid var(--border);
+  margin-left: 8px;
+}
+.pres-item::before {
+  content: ''; position: absolute;
+  left: -4px; top: 12px;
+  width: 7px; height: 7px;
+  border-radius: 50%; background: var(--accent2);
+}
+.pres-item .ptype {
+  font-size: 0.7rem; font-weight: 600;
+  color: var(--accent); background: var(--accent-glow);
+  padding: 1px 8px; border-radius: 4px;
+  margin-left: 6px;
+}
+
+/* ── Award badge ── */
+.award-item {
+  display: flex; gap: 12px; align-items: flex-start;
+  margin-bottom: 12px; font-size: 0.85rem;
+}
+.award-icon {
+  width: 32px; height: 32px; flex-shrink: 0;
+  background: var(--accent-glow); border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--accent); font-size: 1rem;
+}
+.award-name { font-weight: 600; color: var(--white); }
+.award-desc { font-size: 0.78rem; color: var(--text-secondary); }
+
+/* ── Mentorship ── */
+.mentee-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 10px; margin-top: 8px;
+}
+.mentee-chip {
+  background: var(--surface-hover);
+  border: 1px solid var(--border);
+  border-radius: 8px; padding: 10px 14px;
+  font-size: 0.8rem; transition: border-color 0.2s;
+}
+.mentee-chip:hover { border-color: var(--accent); }
+.mentee-chip .mname { font-weight: 600; color: var(--white); }
+.mentee-chip .mtopic { color: var(--text-secondary); font-size: 0.75rem; margin-top: 2px; }
+
+/* ── Skills pills ── */
+.skill-group { margin-bottom: 16px; }
+.skill-group-title {
+  font-weight: 700; font-size: 0.82rem; color: var(--accent);
+  margin-bottom: 8px; text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.pills { display: flex; flex-wrap: wrap; gap: 6px; }
+.pill {
+  font-size: 0.75rem; padding: 4px 12px;
+  border: 1px solid var(--border); border-radius: 100px;
+  color: var(--text); background: var(--surface);
+  transition: all 0.25s; cursor: default;
+}
+.pill:hover {
+  border-color: var(--accent); color: var(--accent);
+  background: var(--accent-glow);
+}
+
+/* ── Leadership grid ── */
+.lead-item {
+  display: flex; gap: 10px; align-items: baseline;
+  margin-bottom: 6px; font-size: 0.82rem;
+}
+.lead-role { font-weight: 600; color: var(--white); white-space: nowrap; }
+.lead-sep { color: var(--text-muted); }
+.lead-org { color: var(--text-secondary); }
+.lead-date {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.68rem; color: var(--text-muted);
+  margin-left: auto; white-space: nowrap;
+}
+
+/* ── Footer ── */
+footer {
+  text-align: center; padding: 48px 0 32px;
+  font-size: 0.78rem; color: var(--text-muted);
+  border-top: 1px solid var(--border);
+  margin-top: 40px;
+  position: relative;
+  overflow: hidden;
+}
+footer a { color: var(--accent); text-decoration: none; }
+.footer-tagline {
+  font-size: 0.9rem; color: var(--text-secondary);
+  margin-bottom: 8px; font-weight: 500;
+}
+.footer-animation {
+  display: flex; justify-content: center; align-items: center;
+  gap: 24px; margin: 16px 0 12px;
+  font-size: 1.4rem; height: 40px;
+}
+.footer-animation .anim-item {
+  display: inline-block;
+  animation: float 3s ease-in-out infinite;
+}
+.footer-animation .anim-item:nth-child(1) { animation-delay: 0s; }
+.footer-animation .anim-item:nth-child(2) { animation-delay: 0.4s; }
+.footer-animation .anim-item:nth-child(3) { animation-delay: 0.8s; }
+.footer-animation .anim-item:nth-child(4) { animation-delay: 1.2s; }
+.footer-animation .anim-item:nth-child(5) { animation-delay: 1.6s; }
+
+/* Rocket flies across */
+.rocket-track {
+  position: relative; width: 100%; height: 30px;
+  margin: 8px 0 16px; overflow: hidden;
+}
+.rocket-fly {
+  position: absolute; font-size: 1.2rem;
+  animation: rocketFly 8s linear infinite;
+  top: 4px;
+}
+.rocket-fly::after {
+  content: '✨'; font-size: 0.7rem;
+  position: absolute; right: 20px; top: 2px;
+  animation: twinkle 0.5s ease-in-out infinite alternate;
+}
+@keyframes rocketFly {
+  0% { left: -40px; opacity: 0; }
+  5% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { left: calc(100% + 40px); opacity: 0; }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  25% { transform: translateY(-6px) rotate(-3deg); }
+  75% { transform: translateY(4px) rotate(3deg); }
+}
+@keyframes twinkle {
+  0% { opacity: 0.3; transform: scale(0.8); }
+  100% { opacity: 1; transform: scale(1.2); }
+}
+
+/* Phage SVG animation */
+.phage-svg {
+  animation: phageWiggle 2.5s ease-in-out infinite;
+}
+@keyframes phageWiggle {
+  0%, 100% { transform: rotate(0deg) translateY(0); }
+  25% { transform: rotate(5deg) translateY(-4px); }
+  50% { transform: rotate(-3deg) translateY(2px); }
+  75% { transform: rotate(4deg) translateY(-2px); }
+}
+
+/* Bacteria SVG animation */
+.bacteria-svg {
+  animation: bacteriaPulse 3s ease-in-out infinite;
+}
+@keyframes bacteriaPulse {
+  0%, 100% { transform: scale(1) rotate(0deg); }
+  33% { transform: scale(1.1) rotate(5deg); }
+  66% { transform: scale(0.95) rotate(-3deg); }
+}
+
+/* ── Print styles ── */
+@media print {
+  body { background: white; color: #222; }
+  .bg-grid, nav { display: none; }
+  .card { border: 1px solid #ddd; box-shadow: none; background: white; }
+  .card:hover { transform: none; }
+  .section-title { color: #1a2744; }
+  .hero h1 { color: #1a2744; }
+  .hero .tagline { color: #2c5f8a; }
+  a { color: #2c5f8a; }
+  .footer-animation, .rocket-track { display: none; }
+  .expandable { max-height: none !important; }
+}
+
+/* ── Mobile ── */
+@media (max-width: 600px) {
+  .hero { padding: 60px 0 32px; }
+  .hero h1 { font-size: 2rem; }
+  .card { padding: 18px 20px; }
+  .card-header { flex-direction: column; }
+  .lead-date { margin-left: 0; display: block; }
+  .mentee-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div class="bg-grid"></div>
+
+<!-- Navigation -->
+<nav id="mainNav">
+  <div class="nav-inner">
+    <span class="nav-name">M.B. Awuah</span>
+    <div class="nav-links">
+      <a href="#education">Education</a>
+      <a href="#research">Research</a>
+      <a href="#publications">Publications</a>
+      <a href="#presentations">Talks</a>
+      <a href="#teaching">Teaching</a>
+      <a href="#awards">Awards</a>
+      <a href="#mentorship">Mentorship</a>
+      <a href="#skills">Skills</a>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+
+<!-- Hero -->
+<header class="hero" id="top">
+  <h1>Michael Baffour Awuah</h1>
+  <p class="tagline">Ph.D. Candidate in Microbiology &amp; Bacteriophage Biology</p>
+  <p class="dept">Department of Biology, Texas A&amp;M University, College Station, TX</p>
+
+  <div class="contact-row">
+    <a href="mailto:baffour@tamu.edu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 4 10 8 10-8"/></svg>
+      baffour@tamu.edu
+    </a>
+    <span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      (979) 326-6958
+    </span>
+    <a href="https://github.com/mbaffour" target="_blank">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+      mbaffour
+    </a>
+    <a href="https://www.linkedin.com/in/mba-101b" target="_blank">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+      LinkedIn
+    </a>
+  </div>
+
+  <div class="tag-row">
+    <span class="tag">Bacteriophage Biology</span>
+    <span class="tag">CRISPR Engineering</span>
+    <span class="tag">Functional Genomics</span>
+    <span class="tag">RNA-seq</span>
+    <span class="tag">Molecular Cloning</span>
+    <span class="tag">Protein Biochemistry</span>
+    <span class="tag">Bioinformatics</span>
+  </div>
+</header>
+
+<!-- Education -->
+<section id="education">
+  <h2 class="section-title">Education</h2>
+  <hr class="section-rule">
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">Ph.D., Biology (Microbiology)</div>
+      <span class="card-date">Aug 2022 – Present</span>
+    </div>
+    <div class="card-subtitle">Texas A&amp;M University, College Station, TX</div>
+    <ul class="bullets">
+      <li><strong>Dissertation:</strong> Delaying the Inevitable – Lysis Inhibition in Bacteriophage N4</li>
+      <li><strong>Advisor:</strong> Dr. Jolene Ramsey</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">B.Sc., Biochemistry (First Class Honors)</div>
+      <span class="card-date">Aug 2016 – Jun 2020</span>
+    </div>
+    <div class="card-subtitle">University of Cape Coast, Cape Coast, Ghana</div>
+    <ul class="bullets">
+      <li><strong>Dissertation:</strong> Physicochemical, Functional and Nutritional Analysis of a Juice Blend and Mixed Fruit Nectar Formulated From Pineapple and Underutilized Tropical Fruits</li>
+      <li><strong>Mini Project:</strong> Qualitative Phytochemical Analysis, Total Antioxidant Activity and Total Phenolics of <em>Terminalia catappa</em></li>
+      <li><strong>Advisor:</strong> Dr. Jerry Ampofo-Asiama</li>
+    </ul>
+  </div>
+</section>
+
+<!-- Research Experience -->
+<section id="research">
+  <h2 class="section-title">Research Experience</h2>
+  <hr class="section-rule">
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">Department of Biology, Texas A&amp;M University</div>
+      <span class="card-date">Aug 2022 – Present</span>
+    </div>
+    <div class="card-subtitle">Graduate Researcher, Ramsey Laboratory</div>
+    <div class="card-location">College Station, TX</div>
+    <ul class="bullets">
+      <li>Identified and characterized the minimal gene set required for Bacteriophage N4 lysis through systematic CRISPR-based deletion analysis and functional genomics, discovering a novel lysis regulator.</li>
+      <li>Performed RNA-seq transcriptomic profiling to uncover transcriptional differences between wild-type N4 and rapid-lysis lineages, revealing key regulatory networks governing lysis timing.</li>
+      <li>Engineered bacteriophage N4 mutants using combinatorial genetics, designing complex genetic circuits to study how bacterial growth phases affect translation machinery availability during infection.</li>
+      <li>Isolated, purified, and characterized seven novel <em>E. coli</em> 4s-infecting bacteriophages from environmental samples using TEM, restriction analysis, and lysis phenotype assays.</li>
+    </ul>
+    <button class="expand-toggle" onclick="toggle(this)">
+      Show more
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+    </button>
+    <div class="expandable">
+      <ul class="bullets">
+        <li>Sequenced, assembled, and annotated genomes of seven novel phages, integrating morphological, genomic, and lysis kinetics data to classify phage diversity.</li>
+        <li>Quantified LPS content and total protein in phage lysates via BCA assays, comparing disruptin vs. spanin LPS-quenching properties.</li>
+        <li>Designed and optimized primers for molecular cloning, including plasmid design, construction, and verification for gene expression and complementation studies using SnapGene.</li>
+        <li>Developed fluorophore-based reporter assays (GFP/mCherry) for real-time monitoring of lysis protein expression.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">West African Center for Cell Biology of Infectious Pathogens</div>
+      <span class="card-date">Jun – Jul 2022</span>
+    </div>
+    <div class="card-subtitle">Graduate Intern, Molecular Biology Laboratory</div>
+    <div class="card-location">University of Ghana, Legon, Ghana</div>
+    <ul class="bullets">
+      <li>Performed antimicrobial susceptibility testing on sixteen drug-resistant bacterial strains from the Greater Accra Regional Hospital, providing data-driven disinfectant recommendations for infection control.</li>
+      <li>Determined MICs of three commonly used disinfectants against bacteria isolated from nose masks, contributing to public health research.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">Department of Biochemistry, University of Cape Coast</div>
+      <span class="card-date">Sep 2020 – Oct 2021</span>
+    </div>
+    <div class="card-subtitle">Research &amp; Teaching Assistant</div>
+    <div class="card-location">Cape Coast, Ghana</div>
+    <ul class="bullets">
+      <li>Conducted molecular characterization of <em>H. pylori</em> virulence and antibiotic resistance genes from clinical gastroduodenal specimens, linking genotypes to pathology severity.</li>
+      <li>Investigated qualitative and quantitative phytochemical properties of methanolic leaf extracts of <em>Anthocleista nobilis</em>, its extraction kinetics, and antimicrobial susceptibility against selected bacterial strains.</li>
+      <li>Assisted in optimizing ultrasound-assisted extraction of phenolic compounds and antioxidant activity from <em>Solanum torvum</em>.</li>
+      <li>Served as field and laboratory assistant for MPhil Fisheries Science studies on genetic diversity and microbiome of small pelagic fish species and nutritional quality of oysters in Ghana.</li>
+    </ul>
+    <button class="expand-toggle" onclick="toggle(this)">
+      Show more
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+    </button>
+    <div class="expandable">
+      <ul class="bullets">
+        <li>Mentored third-year undergraduate Biochemistry students in a study on the antimicrobial activity of ginger and phytochemical properties of <em>Garcinia kola</em>.</li>
+        <li>Guided final-year Clinical Nutrition and Dietetics students in research on the antioxidant properties of <em>Parkia biglobosa</em>.</li>
+        <li>Planned experiments, prepared reagents, ran trials, organized experimental setups, and guided students in lab sessions to ensure accurate and reproducible results.</li>
+        <li>Managed an inventory of chemicals and equipment in the laboratory and ensured equipment and glassware were maintained in optimal working condition.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">Department of Biochemistry, University of Cape Coast</div>
+      <span class="card-date">Jan 2018 – Jun 2020</span>
+    </div>
+    <div class="card-subtitle">Undergraduate Researcher</div>
+    <div class="card-location">Cape Coast, Ghana</div>
+    <ul class="bullets">
+      <li>Deduced phytochemical composition of almond pulp extracts and elucidated antioxidant activity through DPPH radical scavenging activity and total phenolic content via chemical and spectrophotometric methods.</li>
+      <li>Optimized mixing ratios and formulated juice blends and mixed fruit nectars from underutilized tropical fruits (pineapple, pawpaw, soursop).</li>
+      <li>Studied the effects of blending and blending ratios on the nutritional quality of the product.</li>
+      <li>Investigated changes in physicochemical properties — color, pH, titratable acidity, total soluble solids, and viscosity — resulting from blending and nectar formulation.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">Noguchi Memorial Institute for Medical Research</div>
+      <span class="card-date">Jun – Jul 2019</span>
+    </div>
+    <div class="card-subtitle">Research Intern</div>
+    <div class="card-location">University of Ghana, Accra, Ghana</div>
+    <ul class="bullets">
+      <li>Completed rotations in general parasitology, entomology, molecular biology, vector, and parasite culture laboratories.</li>
+      <li>Executed techniques including DNA &amp; RNA extraction, PCR, gel electrophoresis, urine filtration, urine chemistry, microscopy for malaria diagnosis, and Kato-Katz analysis for <em>Schistosoma</em> egg identification.</li>
+      <li>Cultured <em>Plasmodium</em>, <em>Leishmania</em>, and <em>Trypanosoma</em> spp. to assist in ongoing research across multiple parasitology laboratories.</li>
+      <li>Established vector breeding colonies for transmission studies at the Vestergaard Vector Laboratories.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- Other Work Experience -->
+<section id="other-work">
+  <h2 class="section-title">Other Work Experience</h2>
+  <hr class="section-rule">
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">The Community Hospital – Ashongman</div>
+      <span class="card-date">Jun – Aug 2018</span>
+    </div>
+    <div class="card-subtitle">Biomedical Scientist Intern</div>
+    <div class="card-location">Accra, Ghana</div>
+    <ul class="bullets">
+      <li>Managed laboratory decontamination procedures, monitored equipment performance, and documented data.</li>
+      <li>Handled sample intake, assigned pathology numbers, and distributed samples for analysis.</li>
+      <li>Prepared reagents and conducted routine diagnostic tests.</li>
+      <li>Established and managed a mobile laboratory unit during high-demand periods.</li>
+      <li>Conducted phlebotomy and performed cross-matching assays for blood transfusion compatibility.</li>
+      <li>Documented test results to support medical diagnosis.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">Taifa Polyclinic</div>
+      <span class="card-date">Jun – Aug 2017</span>
+    </div>
+    <div class="card-subtitle">Biomedical Scientist Intern</div>
+    <div class="card-location">Accra, Ghana</div>
+    <ul class="bullets">
+      <li>Managed workspace decontamination, equipment monitoring, and data documentation.</li>
+      <li>Handled sample acceptance, allocation of pathology numbers, and distribution for analysis.</li>
+      <li>Prepared reagents for tests and conducted routine diagnostic tests.</li>
+      <li>Conducted phlebotomy for blood sample collection.</li>
+      <li>Documented test results for medical diagnosis support.</li>
+      <li>Administered client feedback questionnaires.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- Publications -->
+<section id="publications">
+  <h2 class="section-title">Publications</h2>
+  <hr class="section-rule">
+  <div class="card">
+    <p style="font-size:0.88rem;line-height:1.7;">
+      <strong>Awuah MB</strong>, Martin C, Chamblee JS, Tomaszewski AJ, Sullivan TE, Emilia Q, Tran S, Snowden JH, Niemiec KA, Zhu J, Ramsey J.
+      <em>Phage N4 uses a SAR endolysin-holin system for host cell lysis.</em>
+      <span style="color:var(--text-secondary);">bioRxiv [Preprint]. 2025 Nov 12:2025.11.12.688109.
+      doi: <a href="https://doi.org/10.1101/2025.11.12.688109" target="_blank" style="color:var(--accent);">10.1101/2025.11.12.688109</a>.
+      PMID: 41292803; PMCID: PMC12642591.</span>
+    </p>
+  </div>
+</section>
+
+<!-- Presentations -->
+<section id="presentations">
+  <h2 class="section-title">Presentations</h2>
+  <hr class="section-rule">
+  <div class="card">
+    <div class="pres-year">2025</div>
+    <div class="pres-item">"Phage N4 lysis inhibition – the viral death race" — Students' Postdoc Research Conference, College Station, TX <span class="ptype">Poster</span></div>
+
+    <div class="pres-year">2024</div>
+    <div class="pres-item">"Breaking Up The Breakdown: How An Open Reading Frame Inhibits Lysis In Bacteriophage N4" — Texas ASM Branch Meeting, UTMB, Galveston, TX <span class="ptype">Poster</span></div>
+    <div class="pres-item">"Breaking Up The Breakdown: How An Open Reading Frame Inhibits Lysis In Bacteriophage N4" — Mol. Genetics of Bacteria &amp; Phages Meeting, UW-Madison <span class="ptype">Poster</span></div>
+    <div class="pres-item">"Bacteriophage N4 Lysis Inhibition Unraveling Ancient Mechanism With Modern Insights" — Bio &amp; Chem Sci Symposium, College Station, TX <span class="ptype">Oral</span></div>
+    <div class="pres-item">"Bacteriophage N4 Lysis Inhibition – Ancient Conundrum Meets Novel Culprit" — Texas ASM Branch Meeting, Cedar Hill, TX <span class="ptype">Oral</span></div>
+    <div class="pres-item">"Phage N4 lysis inhibition – the viral death race" — Students' Postdoc Research Conference, College Station, TX <span class="ptype">Poster + Blitz</span></div>
+    <div class="pres-item">"Delaying the Inevitable – Bacteriophage N4 Lysis Inhibition" — BIOGSA, College Station, TX <span class="ptype">Oral</span></div>
+
+    <button class="expand-toggle" onclick="toggle(this)">
+      Earlier presentations
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+    </button>
+    <div class="expandable">
+      <div class="pres-year">2023</div>
+      <div class="pres-item">"Delaying the Inevitable – Bacteriophage N4 Lysis Inhibition" — Mol. Genetics of Bacteria &amp; Phages Meeting, UW-Madison <span class="ptype">Poster</span></div>
+      <div class="pres-item">"Phage Lysis Inhibition is Phruitful Procrastination" — Diversity in Science Symposium, Texas A&amp;M University <span class="ptype">Poster</span></div>
+      <div class="pres-item">"Phage Lysis Inhibition is Phruitful Procrastination" — Texas ASM Branch Meeting, Abilene Christian University <span class="ptype">Poster</span></div>
+
+      <div class="pres-year">2021</div>
+      <div class="pres-item">"Mendeley Referencing Tool For Dissertation Writing" — GHABSA, UCC <span class="ptype">Lecture</span></div>
+
+      <div class="pres-year">2020</div>
+      <div class="pres-item">"G6PD Deficiency" — GHABSA National Congress, UCC <span class="ptype">Poster</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- Teaching -->
+<section id="teaching">
+  <h2 class="section-title">Teaching Experience</h2>
+  <hr class="section-rule">
+  <div class="card">
+    <table class="cv-table">
+      <thead>
+        <tr><th>Course</th><th>Students</th><th>Term</th><th>Institution</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>BIOL 111 Intro Biology I</td><td>48</td><td>Fall 2022</td><td>Texas A&amp;M</td></tr>
+        <tr><td>BIOL 112 Intro Biology II</td><td>48</td><td>Spring 2023</td><td>Texas A&amp;M</td></tr>
+        <tr><td>General Biochemistry Practical</td><td>209</td><td>Fall 2020</td><td>U. Cape Coast</td></tr>
+        <tr><td>Biochemical Techniques I</td><td>150</td><td>Fall 2020</td><td>U. Cape Coast</td></tr>
+        <tr><td>Diversity of Living Organisms</td><td>Class of 2023</td><td>Fall 2020</td><td>U. Cape Coast</td></tr>
+        <tr><td>Biological Oxidation &amp; Bioenergetics</td><td>169</td><td>Fall 2020</td><td>U. Cape Coast</td></tr>
+        <tr><td>Biostatistics</td><td>Class of 2022</td><td>Fall 2020</td><td>U. Cape Coast</td></tr>
+        <tr><td>Enzyme Action &amp; Catalysis</td><td>169</td><td>Fall 2021</td><td>U. Cape Coast</td></tr>
+        <tr><td>Biochemical Techniques (Mini Project)</td><td>5</td><td>Fall 2021</td><td>U. Cape Coast</td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:0.8rem;color:var(--text-secondary);margin-top:12px;">Facilitated microteaching training for new TAs (2023–present).</p>
+  </div>
+</section>
+
+<!-- Awards -->
+<section id="awards">
+  <h2 class="section-title">Funding &amp; Awards</h2>
+  <hr class="section-rule">
+  <div class="card">
+    <div class="award-item">
+      <div class="award-icon">🏆</div>
+      <div>
+        <div class="award-name">Thomas L. Patterson Graduate Student Fellowship (2025)</div>
+        <div class="award-desc">Outstanding research in bacteriophage biology – discovery of a novel lysis regulator in Bacteriophage N4</div>
+      </div>
+    </div>
+    <div class="award-item">
+      <div class="award-icon">🎓</div>
+      <div>
+        <div class="award-name">Mol. Genetics of Bacteria &amp; Phages Meeting Registration Waiver (2024)</div>
+        <div class="award-desc">$525</div>
+      </div>
+    </div>
+    <div class="award-item">
+      <div class="award-icon">🎓</div>
+      <div>
+        <div class="award-name">BIOGSA Engagement Scholarship (2023)</div>
+        <div class="award-desc">$250 – Texas A&amp;M Department of Biology</div>
+      </div>
+    </div>
+    <div class="award-item">
+      <div class="award-icon">🎓</div>
+      <div>
+        <div class="award-name">Mol. Genetics of Bacteria &amp; Phages Meeting Registration Waiver (2023)</div>
+        <div class="award-desc">$500</div>
+      </div>
+    </div>
+    <div class="award-item">
+      <div class="award-icon">📚</div>
+      <div>
+        <div class="award-name">COCOBOD CMB Scholarship (2012–2015)</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Mentorship -->
+<section id="mentorship">
+  <h2 class="section-title">Mentorship</h2>
+  <hr class="section-rule">
+
+  <div class="card">
+    <div class="card-title" style="margin-bottom:12px;">Graduate Student Mentor — Texas A&amp;M University</div>
+    <div class="mentee-grid">
+      <div class="mentee-chip"><div class="mname">Annie Koh</div><div class="mtopic">Characterization of three <em>E. coli</em> 4s phages</div></div>
+      <div class="mentee-chip"><div class="mname">Philip Lotaire</div><div class="mtopic">N4 Lysis Inhibition, Host Specificity &amp; Receptor Discovery</div></div>
+      <div class="mentee-chip"><div class="mname">Matthew Fan</div><div class="mtopic">Mechanism of action of bacteriocins</div></div>
+      <div class="mentee-chip"><div class="mname">Teja Vemulapalli</div><div class="mtopic">Bacteriophage N4 Lysis Inhibition</div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title" style="margin-bottom:12px;">Research Mentor — University of Cape Coast</div>
+    <div class="mentee-grid">
+      <div class="mentee-chip"><div class="mname">Bridget Ahema Agyemang</div><div class="mtopic">Phytochemical eval. of <em>Garcinia kola</em></div></div>
+      <div class="mentee-chip"><div class="mname">Bertha Klenam Hamenu</div><div class="mtopic">Phytochemical eval. of <em>Garcinia kola</em></div></div>
+      <div class="mentee-chip"><div class="mname">Ekow Etwire</div><div class="mtopic">Phytochemical eval. of <em>Garcinia kola</em></div></div>
+      <div class="mentee-chip"><div class="mname">Samuel Ofosu</div><div class="mtopic">Phytochemical eval. of <em>Garcinia kola</em></div></div>
+      <div class="mentee-chip"><div class="mname">Emmanuel Luri</div><div class="mtopic">Phytochemical eval. of <em>Garcinia kola</em></div></div>
+      <div class="mentee-chip"><div class="mname">Christian Okine</div><div class="mtopic">Phytochemical eval. of <em>Garcinia kola</em></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- Leadership -->
+<section id="leadership">
+  <h2 class="section-title">Leadership, Service &amp; Community</h2>
+  <hr class="section-rule">
+  <div class="card">
+    <div class="lead-item"><span class="lead-role">Judge</span><span class="lead-sep">—</span><span class="lead-org">Texas Junior Science &amp; Humanities Symposium</span><span class="lead-date">Jan 2025</span></div>
+    <div class="lead-item"><span class="lead-role">Judge</span><span class="lead-sep">—</span><span class="lead-org">SACNAS Diversity in Science Symposium</span><span class="lead-date">Apr 2024</span></div>
+    <div class="lead-item"><span class="lead-role">Volunteer</span><span class="lead-sep">—</span><span class="lead-org">Darwin Day, Texas A&amp;M University</span><span class="lead-date">Feb 2024</span></div>
+    <div class="lead-item"><span class="lead-role">Microteaching Mentor</span><span class="lead-sep">—</span><span class="lead-org">Biology Dept, TAMU</span><span class="lead-date">Aug 2023 &amp; 2024</span></div>
+    <div class="lead-item"><span class="lead-role">Invited Speaker</span><span class="lead-sep">—</span><span class="lead-org">Vizta Edu – Study Abroad Journey</span><span class="lead-date">Aug 2023</span></div>
+    <div class="lead-item"><span class="lead-role">Editor-in-Chief</span><span class="lead-sep">—</span><span class="lead-org">GHABSA UCC Chapter</span><span class="lead-date">2019–2020</span></div>
+    <div class="lead-item"><span class="lead-role">National Editor</span><span class="lead-sep">—</span><span class="lead-org">Ghana Biochemistry Students Association</span><span class="lead-date">2019–2020</span></div>
+    <div class="lead-item"><span class="lead-role">Co-founder &amp; Editor</span><span class="lead-sep">—</span><span class="lead-org">FillaHQ.com (UCC campus media)</span><span class="lead-date">2017–2020</span></div>
+    <div class="lead-item"><span class="lead-role">Volunteer</span><span class="lead-sep">—</span><span class="lead-org">Verifie Health</span><span class="lead-date">Nov 2018 – Present</span></div>
+    <div class="lead-item"><span class="lead-role">Member</span><span class="lead-sep">—</span><span class="lead-org">NUGS UCC Research &amp; Sponsorship Committee</span><span class="lead-date">2018–2019</span></div>
+    <div class="lead-item"><span class="lead-role">Volunteer</span><span class="lead-sep">—</span><span class="lead-org">UCC SRC Community Outreach</span><span class="lead-date">May 2017</span></div>
+    <div class="lead-item"><span class="lead-role">Volunteer Teacher</span><span class="lead-sep">—</span><span class="lead-org">Great Messiah International School</span><span class="lead-date">2015–2016</span></div>
+  </div>
+</section>
+
+<!-- Skills -->
+<section id="skills">
+  <h2 class="section-title">Technical Expertise</h2>
+  <hr class="section-rule">
+  <div class="card">
+    <div class="skill-group">
+      <div class="skill-group-title">Molecular Virology &amp; Synthetic Biology</div>
+      <div class="pills">
+        <span class="pill">Phage Isolation &amp; Characterization</span>
+        <span class="pill">Phage Genomics</span>
+        <span class="pill">CRISPR-based Engineering</span>
+        <span class="pill">Lysis Mechanism Elucidation</span>
+        <span class="pill">Phage-Host Interactions</span>
+        <span class="pill">High-titer Production</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">Molecular Biology</div>
+      <div class="pills">
+        <span class="pill">PCR / qPCR</span>
+        <span class="pill">Molecular Cloning</span>
+        <span class="pill">DNA/RNA Extraction</span>
+        <span class="pill">Gel Electrophoresis</span>
+        <span class="pill">Genome Assembly</span>
+        <span class="pill">Restriction Digestion</span>
+        <span class="pill">TEM</span>
+        <span class="pill">SDS-PAGE</span>
+        <span class="pill">Western Blotting</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">Protein Biochemistry</div>
+      <div class="pills">
+        <span class="pill">BCA / Bradford Assays</span>
+        <span class="pill">LPS Quantification</span>
+        <span class="pill">OM Protein Characterization</span>
+        <span class="pill">Fluorophore Reporters (GFP/mCherry)</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">Microbiology &amp; Biochemistry</div>
+      <div class="pills">
+        <span class="pill">BSL2 Culture (5+ yrs)</span>
+        <span class="pill">AST / MIC Determination</span>
+        <span class="pill">Phytochemical Profiling</span>
+        <span class="pill">DPPH / Folin-Ciocalteu</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">Genomics &amp; Bioinformatics</div>
+      <div class="pills">
+        <span class="pill">NGS / RNA-seq</span>
+        <span class="pill">Comparative Genomics</span>
+        <span class="pill">Phylogenetics</span>
+        <span class="pill">Differential Expression</span>
+        <span class="pill">Functional Annotation</span>
+        <span class="pill">SnapGene</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">Computational &amp; Data Science</div>
+      <div class="pills">
+        <span class="pill">R</span>
+        <span class="pill">R Shiny</span>
+        <span class="pill">Python</span>
+        <span class="pill">Data Visualization</span>
+        <span class="pill">Pipeline Development</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Certifications -->
+<section id="certifications">
+  <h2 class="section-title">Training &amp; Certifications</h2>
+  <hr class="section-rule">
+  <div class="card">
+    <ul class="bullets">
+      <li>Academy For Future Faculty, Texas A&amp;M University (Fall 2023)</li>
+      <li>IBRO-ARC Workshop on Zebrafish as a Tool for Neuroscience Research in Africa (Nov 2021)</li>
+      <li>GHABSA Annual National Congress (Feb 2020)</li>
+      <li>Training on Food Value Chain Standards (Nov 2019)</li>
+      <li>NMIMR Biosafety Training (Jun 2018)</li>
+      <li>AI Fluency Framework &amp; Foundations Certificate</li>
+      <li>Strategic Thinking Certificate</li>
+      <li>Biomedical Research Investigators and Key Personnel Certification</li>
+    </ul>
+  </div>
+</section>
+
+<!-- Membership -->
+<section id="membership">
+  <h2 class="section-title">Professional Membership</h2>
+  <hr class="section-rule">
+  <div class="card">
+    <p style="font-size:0.88rem;">American Society for Microbiology (ASM) — January 2021 – Present</p>
+  </div>
+</section>
+
+</div>
+
+<footer>
+  <div class="footer-animation">
+    <!-- Bacteria SVG -->
+    <svg class="bacteria-svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
+      <ellipse cx="18" cy="18" rx="10" ry="7" fill="#00d4aa" opacity="0.7"/>
+      <ellipse cx="18" cy="18" rx="10" ry="7" stroke="#00d4aa" stroke-width="1.5" fill="none"/>
+      <circle cx="14" cy="16" r="1.5" fill="#0f1b2d" opacity="0.5"/>
+      <circle cx="20" cy="19" r="1" fill="#0f1b2d" opacity="0.4"/>
+      <line x1="8" y1="15" x2="4" y2="11" stroke="#00d4aa" stroke-width="1.2" stroke-linecap="round"/>
+      <line x1="28" y1="15" x2="32" y2="11" stroke="#00d4aa" stroke-width="1.2" stroke-linecap="round"/>
+      <line x1="10" y1="22" x2="7" y2="27" stroke="#00d4aa" stroke-width="1.2" stroke-linecap="round"/>
+      <line x1="26" y1="22" x2="29" y2="27" stroke="#00d4aa" stroke-width="1.2" stroke-linecap="round"/>
+      <line x1="18" y1="11" x2="18" y2="6" stroke="#00d4aa" stroke-width="1.2" stroke-linecap="round"/>
+    </svg>
+
+    <!-- Phage SVG -->
+    <svg class="phage-svg" width="36" height="50" viewBox="0 0 36 50" fill="none">
+      <polygon points="18,0 24,12 12,12" fill="#4a9eff" opacity="0.8"/>
+      <polygon points="18,0 24,12 12,12" stroke="#4a9eff" stroke-width="1" fill="none"/>
+      <rect x="16.5" y="12" width="3" height="20" rx="1.5" fill="#4a9eff" opacity="0.7"/>
+      <line x1="18" y1="32" x2="10" y2="44" stroke="#4a9eff" stroke-width="1.2" stroke-linecap="round"/>
+      <line x1="18" y1="32" x2="18" y2="46" stroke="#4a9eff" stroke-width="1.2" stroke-linecap="round"/>
+      <line x1="18" y1="32" x2="26" y2="44" stroke="#4a9eff" stroke-width="1.2" stroke-linecap="round"/>
+      <circle cx="10" cy="44" r="1.5" fill="#4a9eff" opacity="0.5"/>
+      <circle cx="18" cy="46" r="1.5" fill="#4a9eff" opacity="0.5"/>
+      <circle cx="26" cy="44" r="1.5" fill="#4a9eff" opacity="0.5"/>
+    </svg>
+
+    <!-- Another bacteria -->
+    <svg class="bacteria-svg" width="32" height="32" viewBox="0 0 32 32" fill="none" style="animation-delay: 1s;">
+      <ellipse cx="16" cy="16" rx="8" ry="6" fill="#ffd166" opacity="0.5"/>
+      <ellipse cx="16" cy="16" rx="8" ry="6" stroke="#ffd166" stroke-width="1.2" fill="none"/>
+      <circle cx="13" cy="14" r="1" fill="#0f1b2d" opacity="0.4"/>
+      <circle cx="18" cy="17" r="0.8" fill="#0f1b2d" opacity="0.3"/>
+      <line x1="9" y1="13" x2="5" y2="9" stroke="#ffd166" stroke-width="1" stroke-linecap="round"/>
+      <line x1="23" y1="13" x2="27" y2="9" stroke="#ffd166" stroke-width="1" stroke-linecap="round"/>
+      <line x1="16" y1="10" x2="16" y2="5" stroke="#ffd166" stroke-width="1" stroke-linecap="round"/>
+    </svg>
+  </div>
+
+  <div class="rocket-track">
+    <span class="rocket-fly">🚀</span>
+  </div>
+
+  <p class="footer-tagline">Built with passion for science and discovery.</p>
+  <p>&copy; 2026 Michael Baffour Awuah &nbsp;|&nbsp; <a href="mailto:baffour@tamu.edu">baffour@tamu.edu</a></p>
+</footer>
+
+<script>
+// Expand/collapse
+function toggle(btn) {
+  const expandable = btn.nextElementSibling;
+  btn.classList.toggle('open');
+  expandable.classList.toggle('open');
+  btn.childNodes[0].textContent = expandable.classList.contains('open') ? 'Show less ' : 'Show more ';
+}
+
+// Nav scroll effect
+const nav = document.getElementById('mainNav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 40);
+});
+
+// Active nav link on scroll
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-links a');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      navLinks.forEach(l => l.classList.remove('active'));
+      const active = document.querySelector(`.nav-links a[href="#${entry.target.id}"]`);
+      if (active) active.classList.add('active');
+    }
+  });
+}, { rootMargin: '-30% 0px -70% 0px' });
+sections.forEach(s => observer.observe(s));
+
+// Fade-in cards on scroll
+const cards = document.querySelectorAll('.card');
+const cardObs = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.opacity = '1';
+      entry.target.style.transform = 'translateY(0)';
+    }
+  });
+}, { threshold: 0.1 });
+cards.forEach(c => {
+  c.style.opacity = '0';
+  c.style.transform = 'translateY(20px)';
+  c.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+  cardObs.observe(c);
+});
+</script>
+</body>
+</html>

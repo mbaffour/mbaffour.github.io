@@ -16,10 +16,10 @@
            To change colors, fonts, or spacing, edit these variables.
         ============================================================ */
         :root {
-            --bg-primary: #0b0f1a;
-            --bg-secondary: #111827;
-            --bg-card: #151c2e;
-            --bg-card-hover: #1a2340;
+            --bg-primary: #1b2333;
+            --bg-secondary: #212d40;
+            --bg-card: #26334a;
+            --bg-card-hover: #2c3a54;
             --accent-teal: #00ffd5;
             --accent-violet: #8a6cff;
             --accent-teal-dim: rgba(0, 255, 213, 0.15);
@@ -29,7 +29,7 @@
             --text-muted: #6b7280;
             --glow-teal: 0 0 20px rgba(0, 255, 213, 0.3);
             --glow-violet: 0 0 20px rgba(138, 108, 255, 0.3);
-            --border-subtle: rgba(255, 255, 255, 0.06);
+            --border-subtle: rgba(255, 255, 255, 0.09);
             --font-display: 'Georgia', 'Times New Roman', serif;
             --font-body: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
             --font-mono: 'Courier New', Courier, monospace;
@@ -957,7 +957,7 @@
                     2. Change "Awuah_CV.pdf" below to your filename.
                     =============================================
                 -->
-                <a href="Awuah_CV.pdf" class="btn btn-secondary" download>&#x1F4C4; Download CV</a>
+                <a href="cv & resume/Michael_Baffour_Awuah_CV.pdf" class="btn btn-secondary" download>&#x1F4C4; Download CV</a>
             </div>
         </div>
     </section>
@@ -1045,13 +1045,14 @@
                 </div>
             </div>
             <div class="research-card">
-                <span class="research-icon">🔬</span>
-                <h3>Experimental Systems</h3>
-                <p>Developing high-throughput assays for phage characterization, including plaque morphology, electron microscopy, host range, and kill curve analyses.</p>
+                <span class="research-icon">🌍</span>
+                <h3>Environmental Phage Discovery & Characterization</h3>
+                <p>Isolating and characterizing novel bacteriophages from environmental sources, combining classical microbiology with transmission electron microscopy, host range profiling, and genomic analysis to describe new phage diversity.</p>
                 <div class="research-tags">
-                    <span class="research-tag">Kill Curves</span>
-                    <span class="research-tag">EM</span>
+                    <span class="research-tag">Phage Isolation</span>
+                    <span class="research-tag">TEM / Microscopy</span>
                     <span class="research-tag">Host Range</span>
+                    <span class="research-tag">Genomics</span>
                 </div>
             </div>
         </div>
@@ -1121,14 +1122,11 @@
         </div>
         <div class="cv-block">
             <p>PhD Candidate in Microbiology at Texas A&amp;M University specializing in bacteriophage biology, molecular engineering, and computational genomics. Experienced in leading independent research projects, mentoring undergraduates, and building bioinformatics pipelines from scratch.</p>
-            <!--
-                =============================================
-                HOW TO LINK YOUR CV:
-                1. Add your CV PDF to the same folder / repo.
-                2. Change the href to your filename.
-                =============================================
-            -->
-            <a href="Awuah_CV.pdf" class="btn btn-primary" download>&#x1F4C4; Download Full CV</a>
+            <div style="display:flex;flex-wrap:wrap;gap:1rem;margin-top:1.5rem;">
+                <a href="cv & resume/Michael_Baffour_Awuah_CV.html" class="btn btn-primary" target="_blank" rel="noopener">&#x1F4C4; View HTML CV</a>
+                <a href="cv & resume/Michael_Baffour_Awuah_CV.pdf" class="btn btn-secondary" download>&#x2B07; Download CV (PDF)</a>
+                <a href="cv & resume/Michael B Awuah.pdf" class="btn btn-secondary" download>&#x2B07; Download Resume (PDF)</a>
+            </div>
         </div>
     </section>
 
@@ -1193,40 +1191,13 @@
     =============================================================== */
     const publications = [
         {
-            title: "Characterization of Lysis Inhibition Mechanisms in Bacteriophage N4",
-            authors: "Awuah MB, Advisor Name",
-            journal: "Journal of Virology",
-            year: 2025,
-            doi: null,
-            status: "in-review",
-            latest: true
-        },
-        {
-            title: "Transcriptomic Landscape of Phage N4 Infection: Wild-Type vs. Rapid Lysis Mutants",
-            authors: "Awuah MB, Collaborator A, Advisor Name",
-            journal: "mBio",
-            year: 2025,
-            doi: null,
-            status: "in-review",
-            latest: false
-        },
-        {
-            title: "Isolation and Characterization of Three Novel Bacteriophages from Environmental Sources",
-            authors: "Awuah MB, Undergraduate A, Undergraduate B, Advisor Name",
-            journal: "Microbiology Resource Announcements",
-            year: 2024,
-            doi: "https://doi.org/10.1234/placeholder",
-            status: "published",
-            latest: false
-        },
-        {
-            title: "Lysis Bandit: An R Shiny Application for High-Throughput Kill Curve Analysis",
-            authors: "Awuah MB",
+            title: "Phage N4 uses a SAR endolysin-holin system for host cell lysis",
+            authors: "Awuah MB, Martin C, Chamblee JS, Tomaszewski AJ, Sullivan TE, Emilia Q, Tran S, Snowden JH, Niemiec KA, Zhu J, Ramsey J",
             journal: "bioRxiv",
-            year: 2024,
-            doi: "https://doi.org/10.1234/placeholder2",
+            year: 2025,
+            doi: "https://doi.org/10.1101/2025.11.12.688109",
             status: "preprint",
-            latest: false
+            latest: true
         }
     ];
 
@@ -1267,30 +1238,84 @@
     =============================================================== */
     const blogPosts = [
         {
-            title: "My PhD Journey: From First Plaque to Dissertation",
+            title: "I Built a Free GraphPad Alternative for Lysis Curves — in R Shiny",
+            date: "April 2026",
+            summary: "My PI told me to plot in R — so instead of writing the same ggplot2 code for every experiment, I built a browser-based Shiny app that does it automatically. 19 metrics, 7 variability modes, full export.",
+            image: null,
+            link: "https://mbaffour.github.io/lysis-curve-app/blogpost.html",
+            external: true,
+            emoji: "📈"
+        },
+        {
+            title: "Dilution Designer — A Free Tool for 96-Well Plate Experiments",
+            date: "April 2026",
+            summary: "I kept doing the same mental math every time I set up a plate reader experiment — stock volumes, dilution factors, pipetting across rows. So I built a browser tool to do it for me.",
+            image: null,
+            link: "https://mbaffour.github.io/dilution-designer/blog.html",
+            external: true,
+            emoji: "🧪"
+        },
+        {
+            title: "FigureLab: A Browser-Based Figure Assembly Tool for Microscopists",
+            date: "March 2026",
+            summary: "At a conference I watched someone struggle to assemble microscopy images across three apps. Later I spent two hours doing the same thing for a manuscript. So I built FigureLab — no installs, no exports, just open and assemble.",
+            image: null,
+            link: "https://github.com/mbaffour/FigureLab/blob/master/BLOGPOST.md",
+            external: true,
+            emoji: "🖼️"
+        },
+        {
+            title: "Introducing NCLEX Pro Simulator — Built for Future Nurses",
+            date: "March 2026",
+            summary: "Watching someone grind through nursing school — pharmacology at midnight, care plans on weekends — made me want to help. This free simulator offers adaptive practice questions and AI-powered clinical rationales for NCLEX prep.",
+            image: null,
+            link: "https://mbaffour.github.io/nclex-simulator/blog_public.html",
+            external: true,
+            emoji: "📋"
+        },
+        {
+            title: "CellMorphR: Python Tool for Cell Morphology Quantification and Graphing",
+            date: "March 2026",
+            summary: "A Python-based pipeline for quantifying cell morphology parameters from microscopy data, computing statistics, and generating publication-ready graphs.",
+            image: null,
+            link: "https://github.com/mbaffour/CellMorphR",
+            external: true,
+            emoji: "🔬"
+        },
+        {
+            title: "AlphaFold Stoichiometry Generator: Automating Multi-Chain Input for Structure Prediction",
+            date: "March 2026",
+            summary: "An R script that automates the generation of stoichiometry strings for AlphaFold multi-chain predictions, reducing manual formatting errors when submitting complex protein complexes.",
+            image: null,
+            link: "https://github.com/mbaffour/AlphaFold-Stoichiometry-Generator",
+            external: true,
+            emoji: "🧬"
+        },
+        {
+            title: "killcurveplot: Plotting Phage Lysis and Kill Curves in R",
+            date: "March 2026",
+            summary: "A lightweight R package for generating clean, customizable lysis and kill curve plots from raw OD data — built for fast, reproducible visualization in phage biology workflows.",
+            image: null,
+            link: "https://github.com/mbaffour/killcurveplot",
+            external: true,
+            emoji: "📉"
+        },
+        {
+            title: "SeqDedupe: FASTA Sequence Deduplication with R Shiny",
+            date: "February 2026",
+            summary: "An R Shiny app for removing duplicate sequences from FASTA files. Upload your file, deduplicate, and download clean output — useful for genomics and comparative phage analysis.",
+            image: null,
+            link: "https://github.com/mbaffour/SeqDedupe",
+            external: true,
+            emoji: "🧹"
+        },
+        {
+            title: "N4 Lysis Paper Codes: R Shiny Apps for Lysis Curve Plotting & FASTA Reformatting",
             date: "October 2025",
-            summary: "Reflecting on the challenges and triumphs of my doctoral experience — from the first experiment that didn't work to the moment everything clicked with the N4 lysis inhibition system.",
+            summary: "A collection of R Shiny apps developed alongside the N4 lysis paper — including tools for visualizing lysis curves and batch-reformatting FASTA files for downstream analysis.",
             image: null,
-            link: null,
-            external: false,
-            emoji: "🧫"
-        },
-        {
-            title: "Why Bacteriophages Are the Future of Medicine",
-            date: "September 2025",
-            summary: "As antibiotic resistance surges globally, phage therapy is emerging as one of our most promising weapons. Here's why I think we're entering a golden age of phage research.",
-            image: null,
-            link: null,
-            external: false,
-            emoji: "💊"
-        },
-        {
-            title: "Building Lysis Bandit: From Script to Shiny App",
-            date: "August 2025",
-            summary: "How I built a custom R Shiny application to automate optical density analysis for our lab, and why computational tools matter in wet-lab science.",
-            image: null,
-            link: null,
-            external: false,
+            link: "https://github.com/mbaffour/N4-Lysis-paper-codes",
+            external: true,
             emoji: "💻"
         }
     ];
