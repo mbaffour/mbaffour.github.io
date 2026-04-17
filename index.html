@@ -1217,7 +1217,7 @@
     ============================================================ -->
     <footer>
         <p>&copy; 2025 Michael Baffour Awuah. All rights reserved.</p>
-        <p>Scientist. Builder. Explorer.</p>
+        <p>Built with passion for science and discovery.</p>
         <div class="footer-dna">
             <span style="color:#f4c430">A</span><span style="color:#1a8040">T</span><span style="color:#c41e3a">C</span><span style="color:#f5edd8">G</span>
             &middot;
@@ -1716,24 +1716,27 @@
 
         window.addEventListener('resize', resize);
 
+        // smoothstep: zero-derivative at both ends → smooth S-curve joins
+        function smo(t) { return t * t * (3 - 2 * t); }
+        function sp(t, t0, t1, y0, y1) {
+            const s = Math.max(0, Math.min(1, (t - t0) / (t1 - t0)));
+            return y0 + smo(s) * (y1 - y0);
+        }
+
         function lysisNormal(t) {
-            if (t < 0.12) return 0.1;
-            if (t < 0.22) return 0.1 + (t - 0.12) * 1.5;
-            if (t < 0.55) return 0.25 + (t - 0.22) * 2.0;
-            if (t < 0.65) return 0.91 + (t - 0.55) * 0.5;
-            // Normal lysis drop
-            if (t < 0.75) return 0.96 - (t - 0.65) * 8.0;
-            return 0.16 - (t - 0.75) * 0.3;
+            // No lag — cells already in exponential phase at time of infection
+            if (t < 0.58) return sp(t, 0, 0.58, 0.04, 0.93);
+            if (t < 0.66) return sp(t, 0.58, 0.66, 0.93, 0.97);
+            if (t < 0.83) return sp(t, 0.66, 0.83, 0.97, 0.07);
+            return Math.max(0.02, sp(t, 0.83, 1.0, 0.07, 0.02));
         }
 
         function lysisInhibited(t) {
-            if (t < 0.12) return 0.1;
-            if (t < 0.22) return 0.1 + (t - 0.12) * 1.5;
-            if (t < 0.55) return 0.25 + (t - 0.22) * 2.0;
-            if (t < 0.82) return 0.91 + (t - 0.55) * 0.25;
-            // Delayed lysis drop
-            if (t < 0.92) return 0.975 - (t - 0.82) * 8.5;
-            return 0.125 - (t - 0.92) * 0.5;
+            // No lag — extended rise due to lysis inhibition (N4)
+            if (t < 0.80) return sp(t, 0, 0.80, 0.04, 0.97);
+            if (t < 0.87) return sp(t, 0.80, 0.87, 0.97, 0.99);
+            if (t < 0.97) return sp(t, 0.87, 0.97, 0.99, 0.06);
+            return Math.max(0.02, sp(t, 0.97, 1.0, 0.06, 0.02));
         }
 
         function drawCurve(hoverT) {
