@@ -502,6 +502,90 @@
         }
 
         /* ============================================================
+           LYSIS CURVE VISUALIZATION
+        ============================================================ */
+        .viz-container {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-top: 3rem;
+            position: relative;
+            box-shadow: 0 2px 16px rgba(0,0,0,0.05);
+        }
+
+        .viz-title {
+            font-family: var(--font-display);
+            font-size: 1.3rem;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .viz-subtitle {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .lysis-canvas-wrap {
+            position: relative;
+            width: 100%;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        #lysisCanvas {
+            width: 100%;
+            height: 300px;
+            display: block;
+        }
+
+        .lysis-tooltip {
+            position: absolute;
+            background: rgba(10, 8, 2, 0.97);
+            border: 1px solid var(--accent-teal);
+            border-radius: 10px;
+            padding: 0.8rem 1rem;
+            font-size: 0.8rem;
+            color: var(--text-primary);
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.2s;
+            max-width: 200px;
+            z-index: 10;
+        }
+
+        .lysis-tooltip.visible { opacity: 1; }
+
+        .lysis-tooltip strong {
+            color: var(--accent-teal);
+            display: block;
+            margin-bottom: 0.3rem;
+            font-size: 0.85rem;
+        }
+
+        .lysis-legend {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .lysis-legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+        }
+
+        .legend-dot {
+            width: 10px; height: 10px;
+            border-radius: 50%;
+        }
+
+        /* ============================================================
            PUBLICATIONS SECTION
            To add publications, edit the `publications` array in JS.
            Filter buttons auto-filter by status field.
@@ -793,11 +877,9 @@
         }
 
         footer .footer-dna {
-            color: var(--accent-teal);
-            opacity: 0.3;
             font-family: var(--font-mono);
-            font-size: 0.65rem;
-            letter-spacing: 3px;
+            font-size: 0.75rem;
+            letter-spacing: 4px;
             margin-top: 1rem;
         }
 
@@ -1035,6 +1117,19 @@
             </div>
         </div>
 
+        <!-- Interactive Lysis Curve Visualization -->
+        <div class="viz-container fade-in">
+            <h3 class="viz-title">Interactive: Phage Infection Cycle</h3>
+            <p class="viz-subtitle">Hover over the curve to explore each phase of the lytic cycle with lysis inhibition.</p>
+            <div class="lysis-canvas-wrap">
+                <canvas id="lysisCanvas"></canvas>
+                <div class="lysis-tooltip" id="lysisTooltip"></div>
+            </div>
+            <div class="lysis-legend">
+                <span class="lysis-legend-item"><span class="legend-dot" style="background:var(--accent-teal)"></span> Normal Lysis</span>
+                <span class="lysis-legend-item"><span class="legend-dot" style="background:var(--accent-violet)"></span> Lysis Inhibited (N4)</span>
+            </div>
+        </div>
     </section>
 
     <hr class="section-divider">
@@ -1122,8 +1217,22 @@
     ============================================================ -->
     <footer>
         <p>&copy; 2025 Michael Baffour Awuah. All rights reserved.</p>
-        <p>Built with passion for phage science and discovery.</p>
-        <div class="footer-dna">ATCG &middot; TAGC &middot; GCTA &middot; CGAT &middot; ATCG &middot; TAGC &middot; GCTA</div>
+        <p>Scientist. Builder. Explorer.</p>
+        <div class="footer-dna">
+            <span style="color:#f4c430">A</span><span style="color:#1a8040">T</span><span style="color:#c41e3a">C</span><span style="color:#f5edd8">G</span>
+            &middot;
+            <span style="color:#1a8040">T</span><span style="color:#f4c430">A</span><span style="color:#f5edd8">G</span><span style="color:#c41e3a">C</span>
+            &middot;
+            <span style="color:#c41e3a">G</span><span style="color:#f5edd8">C</span><span style="color:#f4c430">T</span><span style="color:#1a8040">A</span>
+            &middot;
+            <span style="color:#f5edd8">C</span><span style="color:#c41e3a">G</span><span style="color:#1a8040">A</span><span style="color:#f4c430">T</span>
+            &middot;
+            <span style="color:#f4c430">A</span><span style="color:#1a8040">T</span><span style="color:#c41e3a">C</span><span style="color:#f5edd8">G</span>
+            &middot;
+            <span style="color:#1a8040">T</span><span style="color:#f4c430">A</span><span style="color:#f5edd8">G</span><span style="color:#c41e3a">C</span>
+            &middot;
+            <span style="color:#c41e3a">G</span><span style="color:#f5edd8">C</span><span style="color:#f4c430">T</span><span style="color:#1a8040">A</span>
+        </div>
     </footer>
 
     <!-- ============================================================
@@ -1546,6 +1655,232 @@
         }
 
         animate();
+    })();
+
+    /* ==============================================================
+       LYSIS CURVE — INTERACTIVE VISUALIZATION
+       Shows phage infection phases with hover tooltips.
+    =============================================================== */
+    (function() {
+        const canvas = document.getElementById('lysisCanvas');
+        const ctx = canvas.getContext('2d');
+        const tooltip = document.getElementById('lysisTooltip');
+        const wrap = canvas.parentElement;
+
+        const phases = [
+            {
+                name: "Adsorption",
+                range: [0, 0.12],
+                desc: "Phage attaches to bacterial surface receptors. Tail fibers recognize specific host molecules."
+            },
+            {
+                name: "DNA Injection",
+                range: [0.12, 0.22],
+                desc: "Phage injects its genome through the cell membrane into the host cytoplasm."
+            },
+            {
+                name: "Early Gene Expression",
+                range: [0.22, 0.38],
+                desc: "Host machinery is hijacked. Phage early genes shut down bacterial defenses and redirect transcription."
+            },
+            {
+                name: "Replication",
+                range: [0.38, 0.58],
+                desc: "Massive phage DNA replication and protein synthesis. The cell becomes a viral factory."
+            },
+            {
+                name: "Lysis Inhibition (N4)",
+                range: [0.58, 0.82],
+                desc: "N4 delays lysis, enabling continued replication. Burst size increases from ~200 to ~3,000 particles per cell."
+            },
+            {
+                name: "Lysis & Release",
+                range: [0.82, 1.0],
+                desc: "Holins and lysins destroy the cell wall. Thousands of progeny phages burst out to infect new hosts."
+            }
+        ];
+
+        let W, H, dpr;
+
+        function resize() {
+            dpr = window.devicePixelRatio || 1;
+            W = wrap.offsetWidth;
+            H = 300;
+            canvas.width = W * dpr;
+            canvas.height = H * dpr;
+            canvas.style.width = W + 'px';
+            canvas.style.height = H + 'px';
+            ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+            drawCurve();
+        }
+
+        window.addEventListener('resize', resize);
+
+        function lysisNormal(t) {
+            if (t < 0.12) return 0.1;
+            if (t < 0.22) return 0.1 + (t - 0.12) * 1.5;
+            if (t < 0.55) return 0.25 + (t - 0.22) * 2.0;
+            if (t < 0.65) return 0.91 + (t - 0.55) * 0.5;
+            // Normal lysis drop
+            if (t < 0.75) return 0.96 - (t - 0.65) * 8.0;
+            return 0.16 - (t - 0.75) * 0.3;
+        }
+
+        function lysisInhibited(t) {
+            if (t < 0.12) return 0.1;
+            if (t < 0.22) return 0.1 + (t - 0.12) * 1.5;
+            if (t < 0.55) return 0.25 + (t - 0.22) * 2.0;
+            if (t < 0.82) return 0.91 + (t - 0.55) * 0.25;
+            // Delayed lysis drop
+            if (t < 0.92) return 0.975 - (t - 0.82) * 8.5;
+            return 0.125 - (t - 0.92) * 0.5;
+        }
+
+        function drawCurve(hoverT) {
+            ctx.clearRect(0, 0, W, H);
+
+            const pad = { top: 30, bottom: 50, left: 50, right: 20 };
+            const gw = W - pad.left - pad.right;
+            const gh = H - pad.top - pad.bottom;
+
+            // Axes
+            ctx.strokeStyle = 'rgba(255,255,255,0.1)';
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(pad.left, pad.top);
+            ctx.lineTo(pad.left, H - pad.bottom);
+            ctx.lineTo(W - pad.right, H - pad.bottom);
+            ctx.stroke();
+
+            // Y-axis label
+            ctx.save();
+            ctx.translate(15, H / 2);
+            ctx.rotate(-Math.PI / 2);
+            ctx.fillStyle = 'rgba(255,255,255,0.4)';
+            ctx.font = '11px sans-serif';
+            ctx.textAlign = 'center';
+            ctx.fillText('Intracellular Phage Particles', 0, 0);
+            ctx.restore();
+
+            // X-axis label
+            ctx.fillStyle = 'rgba(255,255,255,0.4)';
+            ctx.font = '11px sans-serif';
+            ctx.textAlign = 'center';
+            ctx.fillText('Time Post-Infection', W / 2, H - 10);
+
+            // Phase background shading on hover
+            if (hoverT !== undefined) {
+                const phase = phases.find(p => hoverT >= p.range[0] && hoverT < p.range[1]);
+                if (phase) {
+                    const x1 = pad.left + phase.range[0] * gw;
+                    const x2 = pad.left + phase.range[1] * gw;
+                    ctx.fillStyle = 'rgba(0, 255, 213, 0.04)';
+                    ctx.fillRect(x1, pad.top, x2 - x1, gh);
+                }
+            }
+
+            // Helper to draw a curve
+            function drawLine(fn, color, lineWidth) {
+                ctx.beginPath();
+                ctx.strokeStyle = color;
+                ctx.lineWidth = lineWidth;
+                const steps = 200;
+                for (let i = 0; i <= steps; i++) {
+                    const t = i / steps;
+                    const x = pad.left + t * gw;
+                    const val = Math.max(0, Math.min(1, fn(t)));
+                    const y = pad.top + gh - val * gh;
+                    i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+                }
+                ctx.stroke();
+            }
+
+            // Normal lysis curve
+            drawLine(lysisNormal, 'rgba(0, 255, 213, 0.4)', 2);
+
+            // Lysis-inhibited curve (N4)
+            drawLine(lysisInhibited, 'rgba(138, 108, 255, 0.8)', 2.5);
+
+            // Glow effect for inhibited curve
+            ctx.shadowColor = 'rgba(138, 108, 255, 0.3)';
+            ctx.shadowBlur = 10;
+            drawLine(lysisInhibited, 'rgba(138, 108, 255, 0.3)', 4);
+            ctx.shadowBlur = 0;
+
+            // Hover indicator
+            if (hoverT !== undefined) {
+                const x = pad.left + hoverT * gw;
+                ctx.setLineDash([4, 4]);
+                ctx.strokeStyle = 'rgba(255,255,255,0.2)';
+                ctx.lineWidth = 1;
+                ctx.beginPath();
+                ctx.moveTo(x, pad.top);
+                ctx.lineTo(x, H - pad.bottom);
+                ctx.stroke();
+                ctx.setLineDash([]);
+
+                // Dot on inhibited curve
+                const val = Math.max(0, Math.min(1, lysisInhibited(hoverT)));
+                const dotY = pad.top + gh - val * gh;
+                ctx.beginPath();
+                ctx.arc(x, dotY, 5, 0, Math.PI * 2);
+                ctx.fillStyle = '#8a6cff';
+                ctx.fill();
+                ctx.strokeStyle = '#fff';
+                ctx.lineWidth = 2;
+                ctx.stroke();
+            }
+        }
+
+        canvas.addEventListener('mousemove', (e) => {
+            const rect = canvas.getBoundingClientRect();
+            const mx = e.clientX - rect.left;
+            const my = e.clientY - rect.top;
+            const pad = { left: 50, right: 20 };
+            const gw = W - pad.left - pad.right;
+            const t = (mx - pad.left) / gw;
+
+            if (t >= 0 && t <= 1) {
+                const phase = phases.find(p => t >= p.range[0] && t < p.range[1]);
+                if (phase) {
+                    tooltip.innerHTML = `<strong>${phase.name}</strong>${phase.desc}`;
+                    tooltip.classList.add('visible');
+                    
+                    let tx = mx + 15;
+                    let ty = my - 20;
+                    if (tx + 210 > W) tx = mx - 215;
+                    if (ty < 0) ty = 10;
+                    
+                    tooltip.style.left = tx + 'px';
+                    tooltip.style.top = ty + 'px';
+                } else {
+                    tooltip.classList.remove('visible');
+                }
+                drawCurve(t);
+            } else {
+                tooltip.classList.remove('visible');
+                drawCurve();
+            }
+        });
+
+        canvas.addEventListener('mouseleave', () => {
+            tooltip.classList.remove('visible');
+            drawCurve();
+        });
+
+        // Touch support
+        canvas.addEventListener('touchmove', (e) => {
+            e.preventDefault();
+            const rect = canvas.getBoundingClientRect();
+            const touch = e.touches[0];
+            const mx = touch.clientX - rect.left;
+            const pad = { left: 50, right: 20 };
+            const gw = W - pad.left - pad.right;
+            const t = (mx - pad.left) / gw;
+            if (t >= 0 && t <= 1) drawCurve(t);
+        }, { passive: false });
+
+        resize();
     })();
 
     /* ==============================================================
