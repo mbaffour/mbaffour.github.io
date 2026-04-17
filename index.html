@@ -16,20 +16,20 @@
            To change colors, fonts, or spacing, edit these variables.
         ============================================================ */
         :root {
-            --bg-primary: #1b2333;
-            --bg-secondary: #212d40;
-            --bg-card: #26334a;
-            --bg-card-hover: #2c3a54;
-            --accent-teal: #00ffd5;
-            --accent-violet: #8a6cff;
-            --accent-teal-dim: rgba(0, 255, 213, 0.15);
-            --accent-violet-dim: rgba(138, 108, 255, 0.15);
-            --text-primary: #e8e6e3;
-            --text-secondary: #9ca3af;
+            --bg-primary: #f4f7ff;
+            --bg-secondary: #eaeeff;
+            --bg-card: #ffffff;
+            --bg-card-hover: #f5f3ff;
+            --accent-teal: #0abf9c;
+            --accent-violet: #8b5cf6;
+            --accent-teal-dim: rgba(10, 191, 156, 0.12);
+            --accent-violet-dim: rgba(139, 92, 246, 0.12);
+            --text-primary: #111827;
+            --text-secondary: #374151;
             --text-muted: #6b7280;
-            --glow-teal: 0 0 20px rgba(0, 255, 213, 0.3);
-            --glow-violet: 0 0 20px rgba(138, 108, 255, 0.3);
-            --border-subtle: rgba(255, 255, 255, 0.09);
+            --glow-teal: 0 4px 24px rgba(10, 191, 156, 0.25);
+            --glow-violet: 0 4px 24px rgba(139, 92, 246, 0.25);
+            --border-subtle: rgba(0, 0, 0, 0.07);
             --font-display: 'Georgia', 'Times New Roman', serif;
             --font-body: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
             --font-mono: 'Courier New', Courier, monospace;
@@ -63,7 +63,7 @@
         }
 
         a { color: var(--accent-teal); text-decoration: none; transition: all 0.3s ease; }
-        a:hover { color: #fff; }
+        a:hover { color: var(--accent-violet); }
 
         /* ============================================================
            NAVIGATION — Sticky top bar
@@ -73,10 +73,11 @@
             position: fixed;
             top: 0; left: 0; right: 0;
             height: var(--nav-height);
-            background: rgba(11, 15, 26, 0.85);
+            background: rgba(244, 247, 255, 0.92);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             border-bottom: 1px solid var(--border-subtle);
+            box-shadow: 0 1px 20px rgba(0,0,0,0.06);
             z-index: 1000;
             display: flex;
             align-items: center;
@@ -149,6 +150,7 @@
             align-items: center;
             justify-content: center;
             overflow: hidden;
+            background: linear-gradient(135deg, #0f172a 0%, #1e1040 60%, #0c1a2e 100%);
         }
 
         .hero-canvas {
@@ -162,7 +164,7 @@
             position: absolute;
             top: 0; left: 0;
             width: 100%; height: 100%;
-            background: radial-gradient(ellipse at center, transparent 0%, var(--bg-primary) 75%);
+            background: radial-gradient(ellipse at center, transparent 0%, #0f172a 75%);
             z-index: 2;
         }
 
@@ -434,6 +436,7 @@
             transition: all 0.4s ease;
             position: relative;
             overflow: hidden;
+            box-shadow: 0 2px 16px rgba(0,0,0,0.05);
         }
 
         .research-card::before {
@@ -448,8 +451,8 @@
 
         .research-card:hover {
             transform: translateY(-4px);
-            border-color: rgba(0, 255, 213, 0.2);
-            box-shadow: 0 8px 40px rgba(0, 255, 213, 0.08);
+            border-color: rgba(139, 92, 246, 0.25);
+            box-shadow: 0 12px 40px rgba(139, 92, 246, 0.12);
         }
 
         .research-card:hover::before { opacity: 1; }
@@ -499,6 +502,7 @@
             padding: 2rem;
             margin-top: 3rem;
             position: relative;
+            box-shadow: 0 2px 16px rgba(0,0,0,0.05);
         }
 
         .viz-title {
@@ -529,7 +533,7 @@
 
         .lysis-tooltip {
             position: absolute;
-            background: rgba(11, 15, 26, 0.95);
+            background: rgba(255, 255, 255, 0.97);
             border: 1px solid var(--accent-teal);
             border-radius: 10px;
             padding: 0.8rem 1rem;
@@ -620,6 +624,7 @@
             display: flex;
             align-items: flex-start;
             gap: 1.5rem;
+            box-shadow: 0 1px 12px rgba(0,0,0,0.04);
         }
 
         .pub-entry:hover {
@@ -685,7 +690,7 @@
         }
 
         .pub-doi a { color: var(--accent-teal); }
-        .pub-doi a:hover { text-decoration: underline; color: #fff; }
+        .pub-doi a:hover { text-decoration: underline; color: var(--accent-violet); }
 
         /* ============================================================
            BLOG SECTION
@@ -705,12 +710,13 @@
             border-radius: 16px;
             overflow: hidden;
             transition: all 0.4s ease;
+            box-shadow: 0 2px 16px rgba(0,0,0,0.05);
         }
 
         .blog-card:hover {
             transform: translateY(-4px);
-            border-color: rgba(138, 108, 255, 0.2);
-            box-shadow: 0 8px 40px rgba(138, 108, 255, 0.08);
+            border-color: rgba(139, 92, 246, 0.25);
+            box-shadow: 0 12px 40px rgba(139, 92, 246, 0.12);
         }
 
         .blog-card-img {
@@ -724,7 +730,7 @@
         .blog-card-img-placeholder {
             width: 100%;
             height: 180px;
-            background: linear-gradient(135deg, #0d1526, #151c2e);
+            background: linear-gradient(135deg, #eaeeff, #f0ecff);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -767,7 +773,7 @@
             font-weight: 600;
         }
 
-        .blog-card-link:hover { color: #fff; }
+        .blog-card-link:hover { color: var(--accent-violet); }
 
         .blog-external-badge {
             display: inline-block;
@@ -793,6 +799,7 @@
             margin: 0 auto;
             position: relative;
             overflow: hidden;
+            box-shadow: 0 4px 30px rgba(0,0,0,0.07);
         }
 
         .cv-block::before {
@@ -899,7 +906,7 @@
                 position: absolute;
                 top: var(--nav-height);
                 left: 0; right: 0;
-                background: rgba(11, 15, 26, 0.98);
+                background: rgba(244, 247, 255, 0.99);
                 padding: 1.5rem;
                 gap: 1rem;
                 border-bottom: 1px solid var(--border-subtle);
