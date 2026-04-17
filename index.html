@@ -16,20 +16,27 @@
            To change colors, fonts, or spacing, edit these variables.
         ============================================================ */
         :root {
-            --bg-primary: #0d1525;
-            --bg-secondary: #131f35;
-            --bg-card: #192338;
-            --bg-card-hover: #1f2d47;
-            --accent-teal: #0abf9c;
-            --accent-violet: #8b5cf6;
-            --accent-teal-dim: rgba(10, 191, 156, 0.13);
-            --accent-violet-dim: rgba(139, 92, 246, 0.13);
-            --text-primary: #e8e6f0;
-            --text-secondary: #94a3b8;
-            --text-muted: #64748b;
-            --glow-teal: 0 4px 24px rgba(10, 191, 156, 0.3);
-            --glow-violet: 0 4px 24px rgba(139, 92, 246, 0.3);
-            --border-subtle: rgba(255, 255, 255, 0.07);
+            --bg-primary: #0a0802;
+            --bg-secondary: #130f04;
+            --bg-card: #1c1709;
+            --bg-card-hover: #261f0c;
+            --accent-teal: #f4c430;
+            --accent-violet: #1a8040;
+            --accent-red: #c41e3a;
+            --accent-teal-dim: rgba(244, 196, 48, 0.12);
+            --accent-violet-dim: rgba(26, 128, 64, 0.12);
+            --text-primary: #f5edd8;
+            --text-secondary: #c4a870;
+            --text-muted: #8b7248;
+            --glow-teal: 0 4px 28px rgba(244, 196, 48, 0.4);
+            --glow-violet: 0 4px 28px rgba(26, 128, 64, 0.35);
+            --border-subtle: rgba(244, 196, 48, 0.1);
+            --kente: repeating-linear-gradient(90deg,
+                #f4c430 0 8px, #0a0802 8px 13px,
+                #1a8040 13px 21px, #0a0802 21px 26px,
+                #c41e3a 26px 34px, #0a0802 34px 39px,
+                #f4c430 39px 47px, #0a0802 47px 52px,
+                #1a8040 52px 60px);
             --font-display: 'Georgia', 'Times New Roman', serif;
             --font-body: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
             --font-mono: 'Courier New', Courier, monospace;
@@ -73,11 +80,12 @@
             position: fixed;
             top: 0; left: 0; right: 0;
             height: var(--nav-height);
-            background: rgba(13, 21, 37, 0.88);
+            background: rgba(10, 8, 2, 0.9);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border-subtle);
-            box-shadow: 0 1px 20px rgba(0,0,0,0.3);
+            border-bottom: 3px solid transparent;
+            border-image: var(--kente) 1;
+            box-shadow: 0 2px 24px rgba(0,0,0,0.5);
             z-index: 1000;
             display: flex;
             align-items: center;
@@ -182,7 +190,7 @@
             letter-spacing: 3px;
             text-transform: uppercase;
             color: var(--accent-teal);
-            border: 1px solid rgba(0, 255, 213, 0.3);
+            border: 1px solid rgba(244, 196, 48, 0.35);
             padding: 0.4rem 1.2rem;
             border-radius: 50px;
             margin-bottom: 1.5rem;
@@ -205,7 +213,7 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            filter: drop-shadow(0 0 30px rgba(0, 255, 213, 0.3));
+            filter: drop-shadow(0 0 30px rgba(244, 196, 48, 0.5));
         }
 
         .hero-tagline {
@@ -256,7 +264,7 @@
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, var(--accent-teal), #00ccaa);
+            background: linear-gradient(135deg, #f4c430, #d4a520);
             color: var(--bg-primary);
         }
 
@@ -326,9 +334,10 @@
 
         .section-divider {
             border: none;
-            height: 1px;
-            background: linear-gradient(to right, transparent, var(--border-subtle), transparent);
-            margin: 0 2rem;
+            height: 5px;
+            background: var(--kente);
+            margin: 0;
+            opacity: 0.75;
         }
 
         /* ============================================================
@@ -361,7 +370,7 @@
             font-weight: 700;
             color: var(--accent-teal);
             background: var(--bg-card);
-            box-shadow: 0 0 40px rgba(0, 255, 213, 0.1);
+            box-shadow: 0 0 40px rgba(244, 196, 48, 0.15);
             position: relative;
             overflow: hidden;
             /*
@@ -443,16 +452,16 @@
             content: '';
             position: absolute;
             top: 0; left: 0;
-            width: 100%; height: 3px;
-            background: linear-gradient(90deg, var(--accent-teal), var(--accent-violet));
+            width: 100%; height: 4px;
+            background: var(--kente);
             opacity: 0;
             transition: opacity 0.4s ease;
         }
 
         .research-card:hover {
             transform: translateY(-4px);
-            border-color: rgba(139, 92, 246, 0.25);
-            box-shadow: 0 12px 40px rgba(139, 92, 246, 0.12);
+            border-color: rgba(244, 196, 48, 0.3);
+            box-shadow: 0 12px 40px rgba(244, 196, 48, 0.1);
         }
 
         .research-card:hover::before { opacity: 1; }
@@ -533,7 +542,7 @@
 
         .lysis-tooltip {
             position: absolute;
-            background: rgba(13, 21, 37, 0.97);
+            background: rgba(10, 8, 2, 0.97);
             border: 1px solid var(--accent-teal);
             border-radius: 10px;
             padding: 0.8rem 1rem;
@@ -628,7 +637,7 @@
         }
 
         .pub-entry:hover {
-            border-color: rgba(0, 255, 213, 0.15);
+            border-color: rgba(244, 196, 48, 0.25);
         }
 
         .pub-entry.latest {
@@ -715,8 +724,8 @@
 
         .blog-card:hover {
             transform: translateY(-4px);
-            border-color: rgba(139, 92, 246, 0.25);
-            box-shadow: 0 12px 40px rgba(139, 92, 246, 0.12);
+            border-color: rgba(196, 30, 58, 0.3);
+            box-shadow: 0 12px 40px rgba(196, 30, 58, 0.1);
         }
 
         .blog-card-img {
@@ -730,7 +739,7 @@
         .blog-card-img-placeholder {
             width: 100%;
             height: 180px;
-            background: linear-gradient(135deg, #0d1525, #192338);
+            background: linear-gradient(135deg, #0a0802, #1c1709);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -906,7 +915,7 @@
                 position: absolute;
                 top: var(--nav-height);
                 left: 0; right: 0;
-                background: rgba(13, 21, 37, 0.99);
+                background: rgba(10, 8, 2, 0.99);
                 padding: 1.5rem;
                 gap: 1rem;
                 border-bottom: 1px solid var(--border-subtle);
@@ -917,6 +926,34 @@
             .pub-entry { flex-direction: column; gap: 0.8rem; }
             .section { padding: 4rem 1.5rem; }
             .cv-block { padding: 2rem; }
+            .hero-adinkra { width: 220px; right: 4%; }
+        }
+
+        /* ============================================================
+           KENTE & ADINKRA DECORATIVE ELEMENTS
+        ============================================================ */
+        .hero-adinkra {
+            position: absolute;
+            right: 8%;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 300px;
+            color: #f4c430;
+            opacity: 0.07;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .hero-kente-bar {
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 6px;
+            background: var(--kente);
+            z-index: 4;
+        }
+
+        .cv-block::before {
+            background: var(--kente);
         }
     </style>
 </head>
@@ -949,6 +986,24 @@
     <section class="hero" id="hero">
         <canvas class="hero-canvas" id="heroCanvas"></canvas>
         <div class="hero-overlay"></div>
+        <div class="hero-adinkra" aria-hidden="true">
+            <svg viewBox="0 0 220 280" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <ellipse cx="110" cy="140" rx="32" ry="48"/>
+                <path d="M78,112 C66,92 54,74 60,56 C66,38 90,37 100,54 C105,63 106,75 110,83"/>
+                <path d="M142,112 C154,92 166,74 160,56 C154,38 130,37 120,54 C115,63 114,75 110,83"/>
+                <path d="M94,62 C99,50 121,50 126,62"/>
+                <circle cx="110" cy="42" r="6" fill="currentColor"/>
+                <path d="M78,168 C66,188 54,206 60,224 C66,242 90,243 100,226 C105,217 106,205 110,197"/>
+                <path d="M142,168 C154,188 166,206 160,224 C154,242 130,243 120,226 C115,217 114,205 110,197"/>
+                <path d="M94,218 C99,230 121,230 126,218"/>
+                <circle cx="110" cy="238" r="6" fill="currentColor"/>
+                <path d="M78,132 C60,130 42,137 30,130 C18,123 18,112 30,105 C42,98 60,105 78,102"/>
+                <circle cx="22" cy="117" r="6" fill="currentColor"/>
+                <path d="M142,132 C160,130 178,137 190,130 C202,123 202,112 190,105 C178,98 160,105 142,102"/>
+                <circle cx="198" cy="117" r="6" fill="currentColor"/>
+            </svg>
+        </div>
+        <div class="hero-kente-bar"></div>
         <div class="hero-content">
             <span class="hero-label">Texas A&amp;M University &middot; Department of Microbiology</span>
             <h1 class="hero-name">Michael <span class="glow">Baffour Awuah</span></h1>
@@ -1457,9 +1512,12 @@
                 this.rotSpeed = (Math.random() - 0.5) * 0.005;
                 this.rotation = Math.random() * Math.PI * 2;
                 this.opacity = 0.06 + Math.random() * 0.18;
-                this.color = Math.random() > 0.5 
-                    ? `rgba(0, 255, 213, ${this.opacity})`
-                    : `rgba(138, 108, 255, ${this.opacity})`;
+                const _r = Math.random();
+                this.color = _r < 0.5
+                    ? `rgba(244, 196, 48, ${this.opacity})`
+                    : _r < 0.82
+                        ? `rgba(26, 128, 64, ${this.opacity})`
+                        : `rgba(196, 30, 58, ${this.opacity})`;
                 this.drift = Math.random() * Math.PI * 2;
                 this.driftSpeed = 0.002 + Math.random() * 0.003;
             }
@@ -1570,7 +1628,7 @@
                 ctx.rotate(b.rotation);
                 ctx.beginPath();
                 ctx.ellipse(0, 0, b.rx, b.ry, 0, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(0, 255, 213, ${b.opacity})`;
+                ctx.fillStyle = `rgba(244, 196, 48, ${b.opacity})`;
                 ctx.fill();
                 ctx.restore();
             });
