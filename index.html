@@ -1035,6 +1035,212 @@
         }
 
         /* ============================================================
+           2025 UI ENHANCEMENTS
+           Dark glassmorphism · Ambient orbs · Layered shadows ·
+           Shimmer buttons · Glow typography · Frosted cards
+        ============================================================ */
+
+        /* — Ambient floating gradient orbs (body level) — */
+        body::before, body::after {
+            content: '';
+            position: fixed;
+            pointer-events: none;
+            z-index: 0;
+            border-radius: 50%;
+            filter: blur(130px);
+        }
+        body::before {
+            width: 700px; height: 700px;
+            top: -250px; left: -200px;
+            background: radial-gradient(circle, rgba(244,196,48,0.09), transparent 70%);
+            animation: orbDrift 22s ease-in-out infinite;
+        }
+        body::after {
+            width: 550px; height: 550px;
+            bottom: 5%; right: -180px;
+            background: radial-gradient(circle, rgba(26,128,64,0.09), transparent 70%);
+            animation: orbDrift 28s ease-in-out infinite reverse;
+        }
+        @keyframes orbDrift {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33%       { transform: translate(30px, -40px) scale(1.06); }
+            66%       { transform: translate(-25px, 35px) scale(0.94); }
+        }
+
+        /* Ensure all main content sits above orbs */
+        .nav, .hero, .section, footer, hr { position: relative; z-index: 1; }
+
+        /* — Hero scroll indicator — */
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 2.5rem; left: 50%;
+            transform: translateX(-50%);
+            width: 1px; height: 56px;
+            background: linear-gradient(to bottom, rgba(244,196,48,0.6), transparent);
+            animation: scrollPulse 2.2s ease-in-out infinite;
+            z-index: 4;
+            pointer-events: none;
+        }
+        @keyframes scrollPulse {
+            0%, 100% { opacity: 0; transform: translateX(-50%) translateY(0); }
+            50%       { opacity: 1; transform: translateX(-50%) translateY(12px); }
+        }
+
+        /* — Section title glow — */
+        .section-title .highlight {
+            filter: drop-shadow(0 0 18px rgba(244,196,48,0.28));
+        }
+
+        /* — Glassmorphism cards — */
+        .research-card {
+            background: rgba(28, 23, 9, 0.55);
+            backdrop-filter: blur(14px) saturate(140%);
+            -webkit-backdrop-filter: blur(14px) saturate(140%);
+            box-shadow:
+                0 1px 2px rgba(0,0,0,0.5),
+                0 8px 28px rgba(0,0,0,0.28),
+                inset 0 1px 0 rgba(255,255,255,0.04),
+                0 0 0 1px rgba(244,196,48,0.06);
+        }
+        .research-card:hover {
+            box-shadow:
+                0 2px 4px rgba(0,0,0,0.5),
+                0 20px 56px rgba(0,0,0,0.35),
+                0 0 60px rgba(244,196,48,0.09),
+                inset 0 1px 0 rgba(255,255,255,0.06),
+                0 0 0 1px rgba(244,196,48,0.18);
+        }
+
+        .blog-card {
+            background: rgba(28, 23, 9, 0.55);
+            backdrop-filter: blur(14px) saturate(140%);
+            -webkit-backdrop-filter: blur(14px) saturate(140%);
+            box-shadow:
+                0 1px 2px rgba(0,0,0,0.5),
+                0 8px 28px rgba(0,0,0,0.28),
+                inset 0 1px 0 rgba(255,255,255,0.04),
+                0 0 0 1px rgba(244,196,48,0.05);
+        }
+        .blog-card:hover {
+            box-shadow:
+                0 2px 4px rgba(0,0,0,0.5),
+                0 20px 56px rgba(0,0,0,0.35),
+                inset 0 1px 0 rgba(255,255,255,0.07);
+        }
+
+        .pub-entry {
+            background: rgba(28, 23, 9, 0.5);
+            backdrop-filter: blur(10px) saturate(130%);
+            -webkit-backdrop-filter: blur(10px) saturate(130%);
+            box-shadow:
+                0 1px 2px rgba(0,0,0,0.4),
+                0 4px 16px rgba(0,0,0,0.2),
+                inset 0 1px 0 rgba(255,255,255,0.03);
+        }
+        .pub-entry:hover {
+            box-shadow:
+                0 2px 4px rgba(0,0,0,0.4),
+                0 12px 36px rgba(0,0,0,0.28),
+                0 0 40px rgba(244,196,48,0.06),
+                inset 0 1px 0 rgba(255,255,255,0.05);
+        }
+
+        .viz-container {
+            background: rgba(28, 23, 9, 0.5);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow:
+                0 4px 24px rgba(0,0,0,0.25),
+                inset 0 1px 0 rgba(255,255,255,0.03);
+        }
+
+        .cv-block {
+            background: rgba(28, 23, 9, 0.55);
+            backdrop-filter: blur(14px) saturate(140%);
+            -webkit-backdrop-filter: blur(14px) saturate(140%);
+            box-shadow:
+                0 8px 40px rgba(0,0,0,0.3),
+                inset 0 1px 0 rgba(255,255,255,0.04),
+                0 0 0 1px rgba(244,196,48,0.07);
+        }
+
+        /* — Stat pills — glass treatment — */
+        .stat-pill {
+            background: rgba(28, 23, 9, 0.6);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.05), 0 2px 8px rgba(0,0,0,0.25);
+        }
+
+        /* — Contact buttons — glass — */
+        .contact-btn {
+            background: rgba(28, 23, 9, 0.5);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.04), 0 4px 16px rgba(0,0,0,0.2);
+        }
+
+        /* — Active filter pill glow — */
+        .pub-filter-btn.active {
+            box-shadow: 0 0 18px rgba(244,196,48,0.2), inset 0 1px 0 rgba(255,255,255,0.06);
+        }
+
+        /* — Primary button shimmer — */
+        .btn-primary {
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-primary::after {
+            content: '';
+            position: absolute;
+            top: -50%; left: -100%;
+            width: 55%; height: 200%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.18), transparent);
+            transform: skewX(-20deg);
+            animation: btnShimmer 3.5s ease-in-out infinite;
+            pointer-events: none;
+        }
+        @keyframes btnShimmer {
+            0%   { left: -100%; }
+            60%, 100% { left: 200%; }
+        }
+
+        /* — About photo glow pulse — */
+        .about-photo {
+            animation: photoGlow 5s ease-in-out infinite alternate;
+        }
+        @keyframes photoGlow {
+            from { box-shadow: 0 0 30px rgba(244,196,48,0.12); }
+            to   { box-shadow: 0 0 70px rgba(244,196,48,0.28), 0 0 120px rgba(244,196,48,0.07); }
+        }
+
+        /* — Section divider glow — */
+        .section-divider {
+            box-shadow: 0 0 12px rgba(244,196,48,0.18);
+        }
+
+        /* — Research tag hover — */
+        .research-tag {
+            transition: background 0.25s, color 0.25s;
+            cursor: default;
+        }
+        .research-tag:hover {
+            background: rgba(244,196,48,0.22);
+            color: var(--text-primary);
+        }
+
+        /* — Blog thumb: richer gradient fade at bottom — */
+        .blog-card-thumb::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 40px;
+            background: linear-gradient(to bottom, transparent, rgba(10,8,2,0.45));
+            pointer-events: none;
+        }
+
+        /* ============================================================
            RESPONSIVE — Tablet + Mobile
         ============================================================ */
         @media (max-width: 768px) {
