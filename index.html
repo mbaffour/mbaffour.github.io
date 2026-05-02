@@ -736,15 +736,45 @@
             background: linear-gradient(135deg, var(--bg-secondary), var(--bg-card));
         }
 
-        .blog-card-img-placeholder {
+        .blog-card-thumb {
             width: 100%;
-            height: 180px;
-            background: linear-gradient(135deg, #0a0802, #1c1709);
+            height: 160px;
+            position: relative;
+            overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 3rem;
-            opacity: 0.5;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        .blog-card-thumb-bg {
+            position: absolute;
+            inset: 0;
+        }
+        .blog-card-thumb-emojis {
+            position: relative;
+            display: flex;
+            gap: 0.6rem;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            padding: 0 1rem;
+        }
+        .blog-card-thumb-emojis span {
+            font-size: 1.9rem;
+            filter: drop-shadow(0 2px 8px rgba(0,0,0,0.5));
+        }
+        .blog-card-thumb-emojis span:first-child {
+            font-size: 2.8rem;
+        }
+        .blog-card-thumb-label {
+            position: relative;
+            font-family: var(--font-mono);
+            font-size: 0.6rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            opacity: 0.55;
+            color: #fff;
         }
 
         .blog-card-body {
@@ -783,6 +813,18 @@
         }
 
         .blog-card-link:hover { color: #fff; }
+
+        .blog-card-actions {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+
+        .blog-card-link-app {
+            color: var(--accent-violet);
+        }
+        .blog-card-link-app:hover { color: #fff; }
 
         .blog-external-badge {
             display: inline-block;
@@ -1439,10 +1481,14 @@
             summary: "A free, open-source QR code generator that embeds Ghanaian Adinkra symbols, Kente cloth patterns, and world cultural motifs directly into QR corner squares — supporting 10 content types, print-ready business cards, and full client-side privacy.",
             image: null,
             link: "https://mbaffour.github.io/qr-forge/blog.html",
+            appLink: "https://mbaffour.github.io/qr-forge/",
             external: true,
             emoji: "⬛",
             category: "personal",
-            tags: ["JavaScript", "QR Code", "Cultural Art", "PWA"]
+            tags: ["JavaScript", "QR Code", "Cultural Art", "PWA"],
+            thumbBg: "linear-gradient(135deg, #0a0802 0%, #1a1200 60%, #261800 100%)",
+            thumbEmojis: ["⬛", "🔲", "⊞", "🎨"],
+            thumbLabel: "QR Code Generator"
         },
         {
             title: "Introducing NCLEX Pro Simulator — Built for Future Nurses",
@@ -1450,32 +1496,29 @@
             summary: "Watching someone grind through nursing school — pharmacology at midnight, care plans on weekends — made me want to help. This free simulator offers adaptive practice questions and AI-powered clinical rationales for NCLEX prep.",
             image: null,
             link: "https://mbaffour.github.io/nclex-simulator/blog_public.html",
+            appLink: "https://mbaffour.github.io/nclex-simulator/",
             external: true,
             emoji: "📋",
             category: "personal",
-            tags: ["JavaScript", "Nursing", "Adaptive Quiz", "AI"]
+            tags: ["JavaScript", "Nursing", "Adaptive Quiz", "AI"],
+            thumbBg: "linear-gradient(135deg, #060b12 0%, #0a1525 60%, #0d1e35 100%)",
+            thumbEmojis: ["📋", "💊", "🩺", "✅"],
+            thumbLabel: "NCLEX Exam Simulator"
         },
         {
-            title: "fitness-forge — Offline-First Fitness PWA",
+            title: "Fitness Forge — Build. Log. Forge.",
             date: "2025",
-            summary: "A fully-featured offline-first fitness PWA: workout logging, progress tracking, and a custom exercise library — all stored locally with no account required. Built for athletes who want full ownership of their data.",
+            summary: "A fully offline-first fitness PWA: AI-generated 12–16 week programs, 60+ exercise database, workout logging, and progress tracking — all stored locally. No account, no server, no tracking.",
             image: null,
-            link: "https://mbaffour.github.io/fitness-forge/",
+            link: "https://mbaffour.github.io/fitness-forge/blog.html",
+            appLink: "https://mbaffour.github.io/fitness-forge/",
             external: true,
             emoji: "🏋️",
             category: "personal",
-            tags: ["PWA", "JavaScript", "IndexedDB", "Fitness"]
-        },
-        {
-            title: "fitnessforge — Fitness Companion App",
-            date: "2025",
-            summary: "Companion fitness tracking application with workout planning and session history. Works entirely offline — no login, no sync, no tracking.",
-            image: null,
-            link: "https://github.com/mbaffour/fitnessforge",
-            external: true,
-            emoji: "💪",
-            category: "personal",
-            tags: ["PWA", "JavaScript", "Fitness", "Offline"]
+            tags: ["PWA", "JavaScript", "Offline-First", "Fitness"],
+            thumbBg: "linear-gradient(135deg, #0d0905 0%, #1a0e06 60%, #2a1508 100%)",
+            thumbEmojis: ["🏋️", "📈", "💪", "🔥"],
+            thumbLabel: "Fitness PWA"
         },
         /* ── SCIENCE TOOLS ──────────────────────────────────────── */
         {
@@ -1484,10 +1527,14 @@
             summary: "My PI told me to plot in R — so instead of writing the same ggplot2 code for every experiment, I built a browser-based Shiny app that does it automatically. 19 metrics, 7 variability modes, full export.",
             image: null,
             link: "https://mbaffour.github.io/lysis-curve-app/blogpost.html",
+            appLink: "https://mbaffour.github.io/lysis-curve-app/",
             external: true,
             emoji: "📈",
             category: "science",
-            tags: ["R Shiny", "Phage Biology", "Data Viz", "OD600"]
+            tags: ["R Shiny", "Phage Biology", "Data Viz", "OD600"],
+            thumbBg: "linear-gradient(135deg, #030c0a 0%, #061510 60%, #081e16 100%)",
+            thumbEmojis: ["📈", "🦠", "📉", "🔬"],
+            thumbLabel: "Lysis Curve Plotter"
         },
         {
             title: "Dilution Designer — A Free Tool for 96-Well Plate Experiments",
@@ -1495,10 +1542,14 @@
             summary: "I kept doing the same mental math every time I set up a plate reader experiment — stock volumes, dilution factors, pipetting across rows. So I built a browser tool to do it for me.",
             image: null,
             link: "https://mbaffour.github.io/dilution-designer/blog.html",
+            appLink: "https://mbaffour.github.io/dilution-designer/",
             external: true,
             emoji: "🧪",
             category: "science",
-            tags: ["JavaScript", "Lab Tool", "96-Well", "Offline"]
+            tags: ["JavaScript", "Lab Tool", "96-Well", "Offline"],
+            thumbBg: "linear-gradient(135deg, #060a0e 0%, #0a1220 60%, #0c1a2e 100%)",
+            thumbEmojis: ["🧪", "💉", "🔢", "📊"],
+            thumbLabel: "96-Well Plate Tool"
         },
         {
             title: "FigureLab: A Browser-Based Figure Assembly Tool for Microscopists",
@@ -1509,7 +1560,10 @@
             external: true,
             emoji: "🖼️",
             category: "science",
-            tags: ["JavaScript", "Microscopy", "Figure Assembly", "Browser"]
+            tags: ["JavaScript", "Microscopy", "Figure Assembly", "Browser"],
+            thumbBg: "linear-gradient(135deg, #080608 0%, #120d18 60%, #1a1225 100%)",
+            thumbEmojis: ["🖼️", "🔬", "🧫", "📐"],
+            thumbLabel: "Figure Assembly"
         },
         {
             title: "datamask — Privacy-First Data Anonymization for Researchers",
@@ -1517,10 +1571,14 @@
             summary: "Privacy-first local data anonymization tool for researchers. Masks, shuffles, or replaces sensitive columns in CSV/Excel files entirely in the browser — no data ever leaves your machine.",
             image: null,
             link: "https://mbaffour.github.io/datamask/blog.html",
+            appLink: "https://mbaffour.github.io/datamask/",
             external: true,
             emoji: "🔒",
             category: "science",
-            tags: ["JavaScript", "Privacy", "Data Anonymization", "Offline"]
+            tags: ["JavaScript", "Privacy", "Data Anonymization", "Offline"],
+            thumbBg: "linear-gradient(135deg, #050a06 0%, #091408 60%, #0d1e0d 100%)",
+            thumbEmojis: ["🔒", "📊", "🛡️", "🔑"],
+            thumbLabel: "Data Anonymizer"
         },
         {
             title: "batchcrop — Fast Offline Batch Image Cropper",
@@ -1528,10 +1586,14 @@
             summary: "Fast offline-first batch image cropper with 5 crop shapes and live preview — zero uploads, zero accounts. Built for researchers and microscopists needing quick bulk image prep.",
             image: null,
             link: "https://mbaffour.github.io/batchcrop/blog.html",
+            appLink: "https://mbaffour.github.io/batchcrop/",
             external: true,
             emoji: "✂️",
             category: "science",
-            tags: ["JavaScript", "Image Processing", "Offline", "Microscopy"]
+            tags: ["JavaScript", "Image Processing", "Offline", "Microscopy"],
+            thumbBg: "linear-gradient(135deg, #090606 0%, #170d0a 60%, #221410 100%)",
+            thumbEmojis: ["✂️", "🖼️", "📐", "🔲"],
+            thumbLabel: "Batch Image Cropper"
         },
         {
             title: "CellMorphR: Python Tool for Cell Morphology Quantification and Graphing",
@@ -1542,7 +1604,10 @@
             external: true,
             emoji: "🔬",
             category: "science",
-            tags: ["Python", "Morphology", "Microscopy", "Statistics"]
+            tags: ["Python", "Morphology", "Microscopy", "Statistics"],
+            thumbBg: "linear-gradient(135deg, #040910 0%, #071428 60%, #0b1e40 100%)",
+            thumbEmojis: ["🔬", "🧫", "📏", "📊"],
+            thumbLabel: "Cell Morphology"
         },
         {
             title: "AlphaFold Stoichiometry Generator: Automating Multi-Chain Input for Structure Prediction",
@@ -1553,7 +1618,10 @@
             external: true,
             emoji: "🧬",
             category: "science",
-            tags: ["R", "AlphaFold", "Structural Biology", "Automation"]
+            tags: ["R", "AlphaFold", "Structural Biology", "Automation"],
+            thumbBg: "linear-gradient(135deg, #060a04 0%, #0e1608 60%, #182410 100%)",
+            thumbEmojis: ["🧬", "🔗", "🧩", "⚗️"],
+            thumbLabel: "AlphaFold Tool"
         },
         {
             title: "killcurveplot: Plotting Phage Lysis and Kill Curves in R",
@@ -1564,7 +1632,10 @@
             external: true,
             emoji: "📉",
             category: "science",
-            tags: ["R Package", "Phage Biology", "Visualization", "OD600"]
+            tags: ["R Package", "Phage Biology", "Visualization", "OD600"],
+            thumbBg: "linear-gradient(135deg, #080504 0%, #160b07 60%, #220f09 100%)",
+            thumbEmojis: ["📉", "🦠", "📊", "💀"],
+            thumbLabel: "R Package"
         },
         {
             title: "SeqDedupe: FASTA Sequence Deduplication with R Shiny",
@@ -1575,7 +1646,10 @@
             external: true,
             emoji: "🧹",
             category: "science",
-            tags: ["R Shiny", "Genomics", "FASTA", "Bioinformatics"]
+            tags: ["R Shiny", "Genomics", "FASTA", "Bioinformatics"],
+            thumbBg: "linear-gradient(135deg, #040a06 0%, #081508 60%, #0e2010 100%)",
+            thumbEmojis: ["🧹", "🧬", "📄", "✅"],
+            thumbLabel: "FASTA Deduplication"
         },
         {
             title: "N4 Lysis Paper Codes: R Shiny Apps for Lysis Curve Plotting & FASTA Reformatting",
@@ -1586,7 +1660,10 @@
             external: true,
             emoji: "💻",
             category: "science",
-            tags: ["R Shiny", "Lysis Curves", "N4", "FASTA"]
+            tags: ["R Shiny", "Lysis Curves", "N4", "FASTA"],
+            thumbBg: "linear-gradient(135deg, #040808 0%, #081212 60%, #0e1e1e 100%)",
+            thumbEmojis: ["💻", "🦠", "📈", "🧬"],
+            thumbLabel: "Paper Code Repository"
         }
     ];
 
@@ -1646,7 +1723,13 @@
                                <span class="news-icon">${post.emoji || '📰'}</span>
                                <span class="news-source">${post.newsSource || 'News'}</span>
                            </div>`
-                        : `<div class="blog-card-img-placeholder">${post.emoji || '🧬'}</div>`
+                        : `<div class="blog-card-thumb">
+                               <div class="blog-card-thumb-bg" style="background:${post.thumbBg || 'linear-gradient(135deg,#0a0802,#1c1709)'}"></div>
+                               <div class="blog-card-thumb-emojis">
+                                   ${(post.thumbEmojis || [post.emoji || '🧬']).map((e,i) => `<span>${e}</span>`).join('')}
+                               </div>
+                               <div class="blog-card-thumb-label">${post.thumbLabel || ''}</div>
+                           </div>`
                 }
                 <div class="blog-card-body">
                     <div class="blog-card-date">${post.date}</div>
@@ -1657,10 +1740,16 @@
                         ? `<div class="research-tags">${post.tags.map(t => `<span class="research-tag">${t}</span>`).join('')}</div>`
                         : ''
                     }
-                    ${post.link
-                        ? `<a href="${post.link}" class="blog-card-link" target="${post.external ? '_blank' : '_self'}" rel="noopener">${linkLabels[cat(post)] || 'Read More &#x2192;'}</a>`
-                        : ''
-                    }
+                    <div class="blog-card-actions">
+                        ${post.link
+                            ? `<a href="${post.link}" class="blog-card-link" target="${post.external ? '_blank' : '_self'}" rel="noopener">${cat(post) === 'news' ? 'Read More &#x2192;' : 'Read Blog &#x2192;'}</a>`
+                            : ''
+                        }
+                        ${post.appLink
+                            ? `<a href="${post.appLink}" class="blog-card-link blog-card-link-app" target="_blank" rel="noopener">Open Tool &#x2197;</a>`
+                            : ''
+                        }
+                    </div>
                 </div>
             </div>
         `).join('');

@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Fitness Forge — A fully offline-first fitness PWA with AI-generated training programs, workout logging, and progress tracking. No account, no cloud, no tracking.">
+    <meta property="og:title" content="Fitness Forge — Build Your Program">
+    <meta property="og:description" content="An offline-first fitness PWA that generates 12-16 week programs based on your goals and tracks every session locally.">
+    <meta property="og:type" content="article">
+    <title>Fitness Forge — Build Your Program | Michael Baffour Awuah</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Georgia&family=Segoe+UI:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0a0802;
+            --bg-card: #1c1709;
+            --bg-raised: #231e0a;
+            --fire: #ff6b1a;
+            --fire-dim: rgba(255, 107, 26, 0.12);
+            --gold: #f4c430;
+            --gold-dim: rgba(244, 196, 48, 0.12);
+            --green: #1a8040;
+            --text: #f5edd8;
+            --text-2: #c4a870;
+            --text-3: #8b7248;
+            --border: rgba(244, 196, 48, 0.1);
+            --kente: repeating-linear-gradient(90deg,
+                #f4c430 0 8px, #0a0802 8px 13px,
+                #1a8040 13px 21px, #0a0802 21px 26px,
+                #c41e3a 26px 34px, #0a0802 34px 39px,
+                #f4c430 39px 47px, #0a0802 47px 52px,
+                #1a8040 52px 60px);
+            --font-display: Georgia, 'Times New Roman', serif;
+            --font-body: 'Segoe UI', Helvetica, Arial, sans-serif;
+            --font-mono: 'Fira Code', 'Courier New', monospace;
+        }
+
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a { color: var(--gold); text-decoration: none; transition: color 0.2s; }
+        a:hover { color: #fff; }
+
+        /* NAV */
+        .nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            height: 56px;
+            background: rgba(10, 8, 2, 0.92);
+            backdrop-filter: blur(16px);
+            border-bottom: 3px solid transparent;
+            border-image: var(--kente) 1;
+            display: flex;
+            align-items: center;
+            padding: 0 2rem;
+            z-index: 100;
+            gap: 1rem;
+        }
+        .nav-back {
+            font-size: 0.8rem;
+            color: var(--text-2);
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        .nav-back:hover { color: var(--gold); }
+        .nav-title {
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            color: var(--fire);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-left: auto;
+        }
+
+        /* HERO */
+        .hero {
+            margin-top: 56px;
+            padding: 5rem 2rem 4rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 1px solid var(--border);
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--fire), rgba(255, 107, 26, 0.2));
+        }
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 50% 0%, rgba(255, 107, 26, 0.07) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .hero-label {
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--fire);
+            font-family: var(--font-mono);
+            margin-bottom: 1rem;
+        }
+        .hero-title {
+            font-family: var(--font-display);
+            font-size: clamp(2.2rem, 5vw, 3.5rem);
+            font-weight: 700;
+            color: var(--text);
+            line-height: 1.15;
+            margin-bottom: 1rem;
+        }
+        .hero-title span {
+            background: linear-gradient(135deg, var(--fire), #ffb347);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero-sub {
+            font-size: 1.05rem;
+            color: var(--text-2);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            line-height: 1.6;
+        }
+        .hero-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            justify-content: center;
+            margin-bottom: 2.5rem;
+        }
+        .tag {
+            font-size: 0.7rem;
+            font-family: var(--font-mono);
+            padding: 0.2rem 0.7rem;
+            border-radius: 4px;
+            border: 1px solid;
+        }
+        .tag-fire { background: var(--fire-dim); color: var(--fire); border-color: rgba(255,107,26,0.25); }
+        .tag-gold { background: var(--gold-dim); color: var(--gold); border-color: rgba(244,196,48,0.2); }
+        .tag-muted { background: rgba(255,255,255,0.04); color: var(--text-3); border-color: var(--border); }
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--fire);
+            color: #0d0d0b;
+            font-family: var(--font-mono);
+            font-size: 0.82rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            padding: 0.75rem 2rem;
+            border-radius: 6px;
+            transition: background 0.2s, transform 0.2s;
+        }
+        .hero-cta:hover {
+            background: #ff8540;
+            color: #0d0d0b;
+            transform: translateY(-1px);
+        }
+
+        /* MAIN CONTENT */
+        .container {
+            max-width: 780px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section {
+            padding: 4rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+        .section:last-child { border-bottom: none; }
+
+        .section-label {
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--fire);
+            margin-bottom: 0.75rem;
+            display: block;
+        }
+        .section-title {
+            font-family: var(--font-display);
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 1.5rem;
+            line-height: 1.3;
+        }
+        p {
+            color: var(--text-2);
+            margin-bottom: 1.2rem;
+            font-size: 0.97rem;
+            line-height: 1.75;
+        }
+        p:last-child { margin-bottom: 0; }
+
+        /* FEATURE GRID */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        .feature-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 1.25rem;
+            transition: border-color 0.3s, transform 0.3s;
+        }
+        .feature-card:hover {
+            border-color: rgba(255, 107, 26, 0.3);
+            transform: translateY(-2px);
+        }
+        .feature-icon {
+            font-size: 1.6rem;
+            margin-bottom: 0.6rem;
+            display: block;
+        }
+        .feature-card h3 {
+            font-family: var(--font-mono);
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--fire);
+            margin-bottom: 0.4rem;
+        }
+        .feature-card p {
+            font-size: 0.82rem;
+            color: var(--text-2);
+            line-height: 1.5;
+            margin-bottom: 0;
+        }
+
+        /* THEME GRID */
+        .theme-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-top: 1.5rem;
+        }
+        .theme-chip {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 0.4rem 0.8rem;
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--text-2);
+        }
+        .theme-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 2px;
+            flex-shrink: 0;
+        }
+
+        /* TECH STACK */
+        .tech-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        /* STAT ROW */
+        .stat-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        .stat-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 1rem 1.5rem;
+            flex: 1;
+            min-width: 140px;
+            text-align: center;
+        }
+        .stat-box .stat-num {
+            font-family: var(--font-mono);
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--fire);
+            display: block;
+        }
+        .stat-box .stat-label {
+            font-size: 0.75rem;
+            color: var(--text-3);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-family: var(--font-mono);
+        }
+
+        /* BLOCKQUOTE */
+        blockquote {
+            border-left: 3px solid var(--fire);
+            padding: 1rem 1.5rem;
+            background: var(--bg-card);
+            border-radius: 0 10px 10px 0;
+            margin: 1.5rem 0;
+            color: var(--text-2);
+            font-style: italic;
+        }
+
+        /* FOOTER */
+        .blog-footer {
+            text-align: center;
+            padding: 3rem 2rem 4rem;
+            border-top: 3px solid transparent;
+            border-image: var(--kente) 1;
+        }
+        .blog-footer p {
+            font-size: 0.82rem;
+            color: var(--text-3);
+            text-align: center;
+        }
+        .blog-footer a { color: var(--gold); }
+        .btn-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            background: var(--fire);
+            color: #0d0d0b;
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 0.7rem 1.5rem;
+            border-radius: 6px;
+            transition: background 0.2s;
+        }
+        .btn-primary:hover { background: #ff8540; color: #0d0d0b; }
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            background: transparent;
+            color: var(--text);
+            border: 1px solid var(--border);
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 0.7rem 1.5rem;
+            border-radius: 6px;
+            transition: border-color 0.2s, color 0.2s;
+        }
+        .btn-secondary:hover { border-color: var(--gold); color: var(--gold); }
+
+        @media (max-width: 600px) {
+            .hero { padding: 3.5rem 1.25rem 3rem; }
+            .container { padding: 0 1.25rem; }
+            .feature-grid { grid-template-columns: 1fr; }
+            .stat-row { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="nav">
+        <a href="https://mbaffour.github.io/#blog" class="nav-back">&#x2190; Portfolio</a>
+        <span class="nav-title">Fitness Forge</span>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-label">Personal Project · May 2025</div>
+        <h1 class="hero-title">Build. Log. <span>Forge.</span></h1>
+        <p class="hero-sub">
+            A fully offline-first fitness PWA with AI-generated training programs, a 60+ exercise database, and complete workout logging — all stored locally. No account, no server, no tracking.
+        </p>
+        <div class="hero-tags">
+            <span class="tag tag-fire">PWA</span>
+            <span class="tag tag-fire">Offline-First</span>
+            <span class="tag tag-gold">Vanilla JS</span>
+            <span class="tag tag-gold">Zero Dependencies</span>
+            <span class="tag tag-muted">localStorage</span>
+            <span class="tag tag-muted">No Account Required</span>
+        </div>
+        <a href="https://mbaffour.github.io/fitness-forge/" class="hero-cta" target="_blank" rel="noopener">
+            &#x26A1; Launch App
+        </a>
+    </section>
+
+    <!-- MOTIVATION -->
+    <div class="container">
+        <section class="section">
+            <span class="section-label">Why I Built This</span>
+            <h2 class="section-title">Every fitness app wants your data. This one doesn't.</h2>
+            <p>
+                I've tried a lot of fitness apps. Every single one of them wants an account. Then they want your email. Then they want to sync your workouts to a cloud you don't control. Some of them monetize your data. Most of them stop working the moment you lose internet or let your subscription lapse.
+            </p>
+            <p>
+                I train in a gym with spotty wifi. I don't want to create an account to track a deadlift. I want to open an app, log my session, and close it. Simple.
+            </p>
+            <blockquote>
+                The goal was a tool that's yours, entirely — running on your device, storing nothing externally, asking nothing of you except your reps.
+            </blockquote>
+            <p>
+                Fitness Forge is that tool. Everything lives in your browser's localStorage. There's no backend, no sync, no login. You can install it on your phone like a native app and use it in airplane mode. If you clear your browser data, your logs go with it — but that's the trade-off for full local ownership.
+            </p>
+        </section>
+
+        <!-- STATS -->
+        <section class="section">
+            <span class="section-label">By the Numbers</span>
+            <h2 class="section-title">What's inside</h2>
+            <div class="stat-row">
+                <div class="stat-box">
+                    <span class="stat-num">60+</span>
+                    <span class="stat-label">Exercises</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-num">16</span>
+                    <span class="stat-label">Week Programs</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-num">5</span>
+                    <span class="stat-label">Themes</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-num">0</span>
+                    <span class="stat-label">Dependencies</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- FEATURES -->
+        <section class="section">
+            <span class="section-label">Features</span>
+            <h2 class="section-title">Everything a serious athlete needs</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <span class="feature-icon">🧠</span>
+                    <h3>Smart Program Generator</h3>
+                    <p>7-question onboarding quiz generates a personalized 12–16 week training program based on your goals, experience, and available equipment.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">🏗️</span>
+                    <h3>Manual Workout Builder</h3>
+                    <p>Prefer full control? Build your own weekly splits from scratch with custom exercises, sets, reps, rest periods, and notes.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">📋</span>
+                    <h3>Workout Logging</h3>
+                    <p>Log every session with sets, reps, and weights. Full session history stored locally — your data, your device.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">📈</span>
+                    <h3>Progress Tracking</h3>
+                    <p>Strength benchmarks relative to bodyweight, cardio targets, and phase-by-phase progress visualization across your program.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">📅</span>
+                    <h3>7-Day Schedule View</h3>
+                    <p>See your full week at a glance — what's scheduled, what's done, and what's coming — organized by training phase.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">📱</span>
+                    <h3>Installable PWA</h3>
+                    <p>Install directly to your home screen on Android or iOS. Works offline. No app store, no download, no permissions required.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">🎯</span>
+                    <h3>Goal Personalization</h3>
+                    <p>Tailors programs to your goal (strength, hypertrophy, endurance), training frequency (3–6 days/week), and cardio preferences.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">🔒</span>
+                    <h3>100% Private</h3>
+                    <p>No server, no account, no analytics. All data stays in localStorage. Nothing is ever transmitted anywhere.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- THEMES -->
+        <section class="section">
+            <span class="section-label">Aesthetics</span>
+            <h2 class="section-title">Five themes for every environment</h2>
+            <p>
+                The default aesthetic is dark industrial — forge fire and carbon steel. For brighter environments or different moods, four additional themes are built in. All themes use the same Fira Code monospace typeface for a consistent, data-forward feel.
+            </p>
+            <div class="theme-grid">
+                <div class="theme-chip">
+                    <span class="theme-dot" style="background:#ff6b1a;"></span>
+                    Forge (default)
+                </div>
+                <div class="theme-chip">
+                    <span class="theme-dot" style="background:#f5edd8;"></span>
+                    Day
+                </div>
+                <div class="theme-chip">
+                    <span class="theme-dot" style="background:#7b5ea7;"></span>
+                    Ambient
+                </div>
+                <div class="theme-chip">
+                    <span class="theme-dot" style="background:#7ab3c8;"></span>
+                    Steel
+                </div>
+                <div class="theme-chip">
+                    <span class="theme-dot" style="background:#ffb347;"></span>
+                    Ember
+                </div>
+            </div>
+        </section>
+
+        <!-- TECH -->
+        <section class="section">
+            <span class="section-label">Under the Hood</span>
+            <h2 class="section-title">Vanilla JS. Zero build step. Zero dependencies.</h2>
+            <p>
+                Fitness Forge is built with plain HTML, CSS, and JavaScript ES modules — no React, no bundler, no node_modules. It deploys as static files to GitHub Pages and runs instantly anywhere. The only external dependency is Chart.js for progress graphs.
+            </p>
+            <p>
+                State is managed via a lightweight store module using localStorage for persistence. The service worker enables full offline functionality and installability as a PWA.
+            </p>
+            <div class="tech-list">
+                <span class="tag tag-gold">Vanilla JS (ES Modules)</span>
+                <span class="tag tag-gold">CSS Custom Properties</span>
+                <span class="tag tag-gold">localStorage</span>
+                <span class="tag tag-gold">Service Worker</span>
+                <span class="tag tag-gold">Chart.js</span>
+                <span class="tag tag-muted">Fira Code</span>
+                <span class="tag tag-muted">GitHub Pages</span>
+            </div>
+        </section>
+    </div>
+
+    <!-- FOOTER CTA -->
+    <footer class="blog-footer">
+        <div class="btn-group">
+            <a href="https://mbaffour.github.io/fitness-forge/" class="btn-primary" target="_blank" rel="noopener">
+                &#x26A1; Launch Fitness Forge
+            </a>
+            <a href="https://github.com/mbaffour/fitness-forge" class="btn-secondary" target="_blank" rel="noopener">
+                &#x1F4BB; View on GitHub
+            </a>
+        </div>
+        <p>Built by <a href="https://mbaffour.github.io">Michael Baffour Awuah</a> &mdash; a phage biologist who codes.</p>
+    </footer>
+
+</body>
+</html>
