@@ -1092,6 +1092,96 @@
             filter: drop-shadow(0 0 18px rgba(244,196,48,0.28));
         }
 
+        /* ============================================================
+           IMMERSIVE LAYER — Noise · Grid · Beams · Cursor · Tilt
+        ============================================================ */
+
+        /* Grain noise overlay (SVG turbulence, mix-blend: overlay) */
+        .noise-overlay {
+            position: fixed;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='250'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='250' height='250' filter='url(%23n)' opacity='0.45'/%3E%3C/svg%3E");
+            opacity: 0.038;
+            pointer-events: none;
+            z-index: 9998;
+            mix-blend-mode: overlay;
+        }
+
+        /* Cursor spotlight — radius set via JS --cx --cy variables */
+        .cursor-glow {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 9997;
+            background: radial-gradient(
+                circle 380px at var(--cx, -999px) var(--cy, -999px),
+                rgba(244, 196, 48, 0.045),
+                transparent 70%
+            );
+            transition: background 0.08s ease;
+        }
+
+        /* Hero: fine grid lines (precision / scientific feel) */
+        .hero {
+            background-image:
+                linear-gradient(rgba(244,196,48,0.025) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(244,196,48,0.025) 1px, transparent 1px),
+                linear-gradient(135deg, #0f172a 0%, #1e1040 60%, #0c1a2e 100%);
+            background-size: 56px 56px, 56px 56px, 100% 100%;
+        }
+
+        /* Hero: central spotlight beam from top */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -10%; left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 70%;
+            background: linear-gradient(
+                to bottom,
+                transparent,
+                rgba(244,196,48,0.5) 25%,
+                rgba(244,196,48,0.2) 60%,
+                transparent
+            );
+            box-shadow: 0 0 60px 30px rgba(244,196,48,0.04);
+            z-index: 2;
+            pointer-events: none;
+            animation: beamPulse 6s ease-in-out infinite;
+        }
+        @keyframes beamPulse {
+            0%, 100% { opacity: 0.6; }
+            50%       { opacity: 1; }
+        }
+
+        /* Hero: secondary wide cone halo at base of beam */
+        .hero-canvas + .hero-overlay::after {
+            content: '';
+            position: absolute;
+            top: 15%; left: 50%;
+            transform: translateX(-50%);
+            width: 600px; height: 600px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(244,196,48,0.05) 0%, transparent 65%);
+            pointer-events: none;
+            animation: haloBreath 8s ease-in-out infinite;
+        }
+        @keyframes haloBreath {
+            0%, 100% { opacity: 0.6; transform: translateX(-50%) scale(1); }
+            50%       { opacity: 1; transform: translateX(-50%) scale(1.12); }
+        }
+
+        /* 3D tilt — applied by JS, needs hardware acceleration */
+        .research-card, .blog-card {
+            will-change: transform;
+            transform-style: preserve-3d;
+        }
+        /* Disable tilt on mobile (no hover) */
+        @media (hover: none) {
+            .research-card, .blog-card { will-change: auto; }
+        }
+
         /* — Glassmorphism cards — */
         .research-card {
             background: rgba(28, 23, 9, 0.55);
@@ -1376,6 +1466,10 @@
     </style>
 </head>
 <body>
+
+    <!-- Immersive overlays -->
+    <div class="noise-overlay" aria-hidden="true"></div>
+    <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
 
     <!-- ============================================================
          NAVIGATION
@@ -2052,6 +2146,46 @@
             renderBlog(e.target.dataset.filter);
         }
     });
+
+    /* ==============================================================
+       IMMERSIVE: CURSOR SPOTLIGHT + 3D CARD TILT
+    =============================================================== */
+
+    /* Cursor spotlight — update CSS variable on mouse move */
+    (function() {
+        const glow = document.getElementById('cursorGlow');
+        if (!glow || window.matchMedia('(hover: none)').matches) return;
+        document.addEventListener('mousemove', (e) => {
+            glow.style.setProperty('--cx', e.clientX + 'px');
+            glow.style.setProperty('--cy', e.clientY + 'px');
+        });
+        document.addEventListener('mouseleave', () => {
+            glow.style.setProperty('--cx', '-999px');
+            glow.style.setProperty('--cy', '-999px');
+        });
+    })();
+
+    /* 3D tilt on research cards and blog cards */
+    (function() {
+        if (window.matchMedia('(hover: none)').matches) return;
+        const TILT = 6; // max degrees
+        document.querySelectorAll('.research-card, .blog-card').forEach(card => {
+            let raf;
+            card.addEventListener('mousemove', (e) => {
+                cancelAnimationFrame(raf);
+                raf = requestAnimationFrame(() => {
+                    const r = card.getBoundingClientRect();
+                    const x = (e.clientX - r.left) / r.width  - 0.5;
+                    const y = (e.clientY - r.top)  / r.height - 0.5;
+                    card.style.transform = `translateY(-6px) perspective(900px) rotateX(${-y * TILT}deg) rotateY(${x * TILT}deg)`;
+                });
+            });
+            card.addEventListener('mouseleave', () => {
+                cancelAnimationFrame(raf);
+                card.style.transform = '';
+            });
+        });
+    })();
 
     /* ==============================================================
        MOBILE NAV TOGGLE
