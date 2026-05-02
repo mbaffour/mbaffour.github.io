@@ -1035,9 +1035,10 @@
         }
 
         /* ============================================================
-           RESPONSIVE
+           RESPONSIVE — Tablet + Mobile
         ============================================================ */
         @media (max-width: 768px) {
+            /* Nav */
             .nav-links { display: none; }
             .nav-links.open {
                 display: flex;
@@ -1047,16 +1048,97 @@
                 left: 0; right: 0;
                 background: rgba(10, 8, 2, 0.99);
                 padding: 1.5rem;
-                gap: 1rem;
+                gap: 1.2rem;
                 border-bottom: 1px solid var(--border-subtle);
+                z-index: 999;
             }
+            .nav-links.open a { font-size: 1rem; }
             .nav-toggle { display: block; }
-            .about-grid { grid-template-columns: 1fr; justify-items: center; }
-            .about-text p:first-child::first-letter { font-size: 2.5rem; }
-            .pub-entry { flex-direction: column; gap: 0.8rem; }
-            .section { padding: 4rem 1.5rem; }
-            .cv-block { padding: 2rem; }
-            .hero-adinkra { width: 220px; right: 4%; }
+
+            /* Hero */
+            .hero { min-height: 100svh; }
+            .hero-content { padding: 1.5rem 1rem; }
+            .hero-label {
+                font-size: 0.65rem;
+                letter-spacing: 1.5px;
+                padding: 0.35rem 0.9rem;
+            }
+            .hero-name { font-size: clamp(1.9rem, 8vw, 3rem); }
+            .hero-tagline { font-size: 0.75rem; letter-spacing: 1px; }
+            .hero-statement { font-size: 0.95rem; }
+            .hero-buttons { gap: 0.75rem; }
+            .btn { padding: 0.75rem 1.4rem; font-size: 0.85rem; }
+            .hero-adinkra { width: 160px; opacity: 0.04; right: 2%; }
+
+            /* Sections */
+            .section { padding: 3.5rem 1.25rem; }
+            .section-header { margin-bottom: 2.5rem; }
+            .section-subtitle { font-size: 0.9rem; }
+
+            /* About */
+            .about-grid { grid-template-columns: 1fr; justify-items: center; gap: 2rem; }
+            .about-photo { width: 180px; height: 180px; font-size: 2.8rem; }
+            .about-stats { gap: 0.75rem; }
+            .stat-pill { font-size: 0.75rem; padding: 0.4rem 0.8rem; white-space: normal; text-align: center; }
+            .about-text p:first-child::first-letter { font-size: 2rem; }
+
+            /* Research */
+            .research-grid { grid-template-columns: 1fr; }
+            .research-card { padding: 1.5rem; }
+            .viz-container { padding: 1.25rem; }
+            #lysisCanvas { height: 220px; }
+
+            /* Publications */
+            .pub-filters {
+                display: flex;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                flex-wrap: nowrap;
+                gap: 0.5rem;
+                padding-bottom: 0.5rem;
+                justify-content: flex-start;
+                scrollbar-width: none;
+            }
+            .pub-filters::-webkit-scrollbar { display: none; }
+            .pub-filter-btn { white-space: nowrap; flex-shrink: 0; padding: 0.4rem 1rem; }
+            .pub-entry {
+                flex-direction: column;
+                gap: 0.75rem;
+                padding: 1.25rem;
+            }
+            .pub-title { font-size: 0.95rem; }
+
+            /* Blog / Projects */
+            .blog-grid { grid-template-columns: 1fr; gap: 1rem; }
+            .blog-card-body { padding: 1.1rem; }
+            .blog-card-actions { gap: 0.75rem; }
+
+            /* CV */
+            .cv-block { padding: 1.75rem 1.25rem; }
+            .cv-block > div { flex-direction: column; }
+
+            /* Contact */
+            .contact-links { gap: 0.75rem; }
+            .contact-btn { padding: 0.7rem 1.1rem; font-size: 0.8rem; }
+
+            /* Footer */
+            footer { padding: 2rem 1.25rem; }
+            .footer-dna { letter-spacing: 2px; font-size: 0.65rem; }
+        }
+
+        /* Small phones */
+        @media (max-width: 480px) {
+            .hero-adinkra { display: none; }
+            .section { padding: 3rem 1rem; }
+            .section-title { font-size: clamp(1.6rem, 7vw, 2.2rem); }
+            .hero-name { font-size: clamp(1.7rem, 9vw, 2.4rem); }
+            .hero-buttons { flex-direction: column; align-items: center; }
+            .btn { width: 100%; max-width: 280px; justify-content: center; }
+            .about-photo { width: 150px; height: 150px; }
+            .contact-links { flex-direction: column; align-items: center; }
+            .contact-btn { width: 100%; max-width: 280px; justify-content: center; }
+            .blog-card-actions { flex-direction: column; gap: 0.5rem; }
+            .research-card { padding: 1.25rem; }
         }
 
         /* ============================================================
