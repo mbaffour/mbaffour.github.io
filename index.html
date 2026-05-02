@@ -796,6 +796,96 @@
         }
 
         /* ============================================================
+           PROJECTS — Category accent bars, hover glows, badges
+        ============================================================ */
+
+        /* Top accent bar per category */
+        .blog-card[data-category="science"]::before,
+        .blog-card[data-category="personal"]::before,
+        .blog-card[data-category="news"]::before {
+            content: '';
+            display: block;
+            height: 3px;
+        }
+        .blog-card[data-category="science"]::before {
+            background: linear-gradient(90deg, var(--accent-teal), rgba(244, 196, 48, 0.2));
+        }
+        .blog-card[data-category="personal"]::before {
+            background: linear-gradient(90deg, #e07b30, rgba(224, 123, 48, 0.2));
+        }
+        .blog-card[data-category="news"]::before {
+            background: linear-gradient(90deg, var(--accent-violet), rgba(26, 128, 64, 0.2));
+        }
+
+        /* Context-aware hover glows (higher specificity via [data-category]) */
+        .blog-card[data-category="science"]:hover {
+            border-color: rgba(244, 196, 48, 0.35);
+            box-shadow: 0 12px 40px rgba(244, 196, 48, 0.12);
+        }
+        .blog-card[data-category="personal"]:hover {
+            border-color: rgba(224, 123, 48, 0.35);
+            box-shadow: 0 12px 40px rgba(224, 123, 48, 0.12);
+        }
+        .blog-card[data-category="news"]:hover {
+            border-color: rgba(26, 128, 64, 0.35);
+            box-shadow: 0 12px 40px rgba(26, 128, 64, 0.12);
+        }
+
+        /* Category badge pill */
+        .blog-card-category {
+            display: inline-block;
+            font-size: 0.62rem;
+            padding: 0.15rem 0.6rem;
+            border-radius: 50px;
+            font-weight: 700;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+        .blog-card-category.science {
+            background: var(--accent-teal-dim);
+            color: var(--accent-teal);
+        }
+        .blog-card-category.personal {
+            background: rgba(224, 123, 48, 0.12);
+            color: #e07b30;
+        }
+        .blog-card-category.news {
+            background: var(--accent-violet-dim);
+            color: var(--accent-violet);
+        }
+
+        /* Tech tag spacing inside cards (slight override of research-tags top margin) */
+        .blog-card-body .research-tags {
+            margin-top: 0.75rem;
+        }
+
+        /* News card styled header (when no image) */
+        .blog-card-news-header {
+            width: 100%;
+            height: 130px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.4rem;
+            background: linear-gradient(135deg, #0a140d, #0d1f13);
+            border-bottom: 1px solid rgba(26, 128, 64, 0.15);
+        }
+        .blog-card-news-header .news-source {
+            font-size: 0.7rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--accent-violet);
+            font-weight: 700;
+            font-family: var(--font-mono);
+        }
+        .blog-card-news-header .news-icon {
+            font-size: 2.2rem;
+            opacity: 0.8;
+        }
+
+        /* ============================================================
            CV SECTION
         ============================================================ */
         .cv-block {
@@ -969,7 +1059,7 @@
                 <li><a href="#about">About</a></li>
                 <li><a href="#research">Research</a></li>
                 <li><a href="#publications">Publications</a></li>
-                <li><a href="#blog">Blog</a></li>
+                <li><a href="#blog">Projects</a></li>
                 <li><a href="#cv">CV</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
@@ -1157,15 +1247,21 @@
     <hr class="section-divider">
 
     <!-- ============================================================
-         BLOG SECTION
-         Blog posts rendered from JS. Edit `blogPosts` array.
-         Supports images and external links.
+         PROJECTS & BLOG SECTION
+         Posts rendered from JS. Edit `blogPosts` array.
+         Supports images, categories, tags, and external links.
     ============================================================ -->
     <section class="section fade-in" id="blog">
         <div class="section-header">
-            <span class="section-label">Updates &amp; Writing</span>
-            <h2 class="section-title">Blog &amp; <span class="highlight">News</span></h2>
-            <p class="section-subtitle">Thoughts on research, science communication, and the phage world.</p>
+            <span class="section-label">Tools &amp; Builds</span>
+            <h2 class="section-title">Projects &amp; <span class="highlight">Blog</span></h2>
+            <p class="section-subtitle">Science tools, personal builds, and research updates.</p>
+        </div>
+        <div class="pub-filters" id="blogFilters">
+            <button class="pub-filter-btn active" data-filter="all">All</button>
+            <button class="pub-filter-btn" data-filter="science">Science Tools</button>
+            <button class="pub-filter-btn" data-filter="personal">Personal Projects</button>
+            <button class="pub-filter-btn" data-filter="news">News</button>
         </div>
         <div class="blog-grid" id="blogGrid"></div>
     </section>
@@ -1311,50 +1407,42 @@
          }
     =============================================================== */
     const blogPosts = [
+        /* ── NEWS ──────────────────────────────────────────────── */
         {
             title: "Michael Awuah Awarded 2025 Thomas L. Patterson Graduate Student Fellowship",
             date: "August 2025",
-            summary: "Awarded the prestigious 2025 Thomas L. Patterson Graduate Student Fellowship from the Center for Phage Technology — recognizing outstanding graduate-level research on bacteriophage biology. The fellowship was established by Dr. Steffanie Strathdee and Dr. Thomas Patterson following the CPT's landmark involvement in phage therapy in the US.",
+            summary: "Awarded the prestigious 2025 Thomas L. Patterson Graduate Student Fellowship from the Center for Phage Technology — recognizing outstanding graduate-level research on bacteriophage biology.",
             image: null,
+            newsSource: "College of Arts & Sciences · TAMU",
             link: "https://artsci.tamu.edu/biology/updates/michael-awuah-award.html",
             external: true,
-            emoji: "🏆"
+            emoji: "🏆",
+            category: "news",
+            tags: ["Fellowship", "Award", "2025", "CPT"]
         },
+        {
+            title: "CPT Spotlight: Michael Awuah — 2025 Thomas L. Patterson Fellow",
+            date: "August 2025",
+            summary: "The Center for Phage Technology spotlights Michael Awuah's award of the 2025 Thomas L. Patterson Graduate Student Fellowship, established by Dr. Steffanie Strathdee and Dr. Thomas Patterson following CPT's landmark involvement in phage therapy in the US.",
+            image: null,
+            newsSource: "Center for Phage Technology · TAMU",
+            link: "https://cpt.tamu.edu/michael-awuah-awarded-2025-thomas-l-patterson-graduate-student-fellowship/",
+            external: true,
+            emoji: "🦠",
+            category: "news",
+            tags: ["Fellowship", "Phage Therapy", "CPT", "2025"]
+        },
+        /* ── PERSONAL PROJECTS ──────────────────────────────────── */
         {
             title: "Introducing QR Forge — Where Tradition Meets Technology",
             date: "April 2026",
-            summary: "A free, open-source QR code generator that embeds Ghanaian Adinkra symbols, Kente cloth patterns, and world cultural motifs directly into QR corner squares — supporting 10 content types, print-ready business cards, and full client-side privacy with no server or account needed.",
+            summary: "A free, open-source QR code generator that embeds Ghanaian Adinkra symbols, Kente cloth patterns, and world cultural motifs directly into QR corner squares — supporting 10 content types, print-ready business cards, and full client-side privacy.",
             image: null,
             link: "https://mbaffour.github.io/qr-forge/blog.html",
             external: true,
-            emoji: "⬛"
-        },
-        {
-            title: "I Built a Free GraphPad Alternative for Lysis Curves — in R Shiny",
-            date: "April 2026",
-            summary: "My PI told me to plot in R — so instead of writing the same ggplot2 code for every experiment, I built a browser-based Shiny app that does it automatically. 19 metrics, 7 variability modes, full export.",
-            image: null,
-            link: "https://mbaffour.github.io/lysis-curve-app/blogpost.html",
-            external: true,
-            emoji: "📈"
-        },
-        {
-            title: "Dilution Designer — A Free Tool for 96-Well Plate Experiments",
-            date: "April 2026",
-            summary: "I kept doing the same mental math every time I set up a plate reader experiment — stock volumes, dilution factors, pipetting across rows. So I built a browser tool to do it for me.",
-            image: null,
-            link: "https://mbaffour.github.io/dilution-designer/blog.html",
-            external: true,
-            emoji: "🧪"
-        },
-        {
-            title: "FigureLab: A Browser-Based Figure Assembly Tool for Microscopists",
-            date: "March 2026",
-            summary: "At a conference I watched someone struggle to assemble microscopy images across three apps. Later I spent two hours doing the same thing for a manuscript. So I built FigureLab — no installs, no exports, just open and assemble.",
-            image: null,
-            link: "https://github.com/mbaffour/FigureLab/blob/master/BLOGPOST.md",
-            external: true,
-            emoji: "🖼️"
+            emoji: "⬛",
+            category: "personal",
+            tags: ["JavaScript", "QR Code", "Cultural Art", "PWA"]
         },
         {
             title: "Introducing NCLEX Pro Simulator — Built for Future Nurses",
@@ -1363,7 +1451,87 @@
             image: null,
             link: "https://mbaffour.github.io/nclex-simulator/blog_public.html",
             external: true,
-            emoji: "📋"
+            emoji: "📋",
+            category: "personal",
+            tags: ["JavaScript", "Nursing", "Adaptive Quiz", "AI"]
+        },
+        {
+            title: "fitness-forge — Offline-First Fitness PWA",
+            date: "2025",
+            summary: "A fully-featured offline-first fitness PWA: workout logging, progress tracking, and a custom exercise library — all stored locally with no account required. Built for athletes who want full ownership of their data.",
+            image: null,
+            link: "https://github.com/mbaffour/fitness-forge",
+            external: true,
+            emoji: "🏋️",
+            category: "personal",
+            tags: ["PWA", "JavaScript", "IndexedDB", "Fitness"]
+        },
+        {
+            title: "fitnessforge — Fitness Companion App",
+            date: "2025",
+            summary: "Companion fitness tracking application with workout planning and session history. Works entirely offline — no login, no sync, no tracking.",
+            image: null,
+            link: "https://github.com/mbaffour/fitnessforge",
+            external: true,
+            emoji: "💪",
+            category: "personal",
+            tags: ["PWA", "JavaScript", "Fitness", "Offline"]
+        },
+        /* ── SCIENCE TOOLS ──────────────────────────────────────── */
+        {
+            title: "I Built a Free GraphPad Alternative for Lysis Curves — in R Shiny",
+            date: "April 2026",
+            summary: "My PI told me to plot in R — so instead of writing the same ggplot2 code for every experiment, I built a browser-based Shiny app that does it automatically. 19 metrics, 7 variability modes, full export.",
+            image: null,
+            link: "https://mbaffour.github.io/lysis-curve-app/blogpost.html",
+            external: true,
+            emoji: "📈",
+            category: "science",
+            tags: ["R Shiny", "Phage Biology", "Data Viz", "OD600"]
+        },
+        {
+            title: "Dilution Designer — A Free Tool for 96-Well Plate Experiments",
+            date: "April 2026",
+            summary: "I kept doing the same mental math every time I set up a plate reader experiment — stock volumes, dilution factors, pipetting across rows. So I built a browser tool to do it for me.",
+            image: null,
+            link: "https://mbaffour.github.io/dilution-designer/blog.html",
+            external: true,
+            emoji: "🧪",
+            category: "science",
+            tags: ["JavaScript", "Lab Tool", "96-Well", "Offline"]
+        },
+        {
+            title: "FigureLab: A Browser-Based Figure Assembly Tool for Microscopists",
+            date: "March 2026",
+            summary: "At a conference I watched someone struggle to assemble microscopy images across three apps. Later I spent two hours doing the same thing for a manuscript. So I built FigureLab — no installs, no exports, just open and assemble.",
+            image: null,
+            link: "https://github.com/mbaffour/FigureLab/blob/master/BLOGPOST.md",
+            external: true,
+            emoji: "🖼️",
+            category: "science",
+            tags: ["JavaScript", "Microscopy", "Figure Assembly", "Browser"]
+        },
+        {
+            title: "datamask — Privacy-First Data Anonymization for Researchers",
+            date: "2025",
+            summary: "Privacy-first local data anonymization tool for researchers. Masks, shuffles, or replaces sensitive columns in CSV/Excel files entirely in the browser — no data ever leaves your machine.",
+            image: null,
+            link: "https://github.com/mbaffour/datamask",
+            external: true,
+            emoji: "🔒",
+            category: "science",
+            tags: ["JavaScript", "Privacy", "Data Anonymization", "Offline"]
+        },
+        {
+            title: "batchcrop — Fast Offline Batch Image Cropper",
+            date: "2025",
+            summary: "Fast offline-first batch image cropper with 5 crop shapes and live preview — zero uploads, zero accounts. Built for researchers and microscopists needing quick bulk image prep.",
+            image: null,
+            link: "https://github.com/mbaffour/batchcrop",
+            external: true,
+            emoji: "✂️",
+            category: "science",
+            tags: ["JavaScript", "Image Processing", "Offline", "Microscopy"]
         },
         {
             title: "CellMorphR: Python Tool for Cell Morphology Quantification and Graphing",
@@ -1372,7 +1540,9 @@
             image: null,
             link: "https://github.com/mbaffour/CellMorphR",
             external: true,
-            emoji: "🔬"
+            emoji: "🔬",
+            category: "science",
+            tags: ["Python", "Morphology", "Microscopy", "Statistics"]
         },
         {
             title: "AlphaFold Stoichiometry Generator: Automating Multi-Chain Input for Structure Prediction",
@@ -1381,7 +1551,9 @@
             image: null,
             link: "https://github.com/mbaffour/AlphaFold-Stoichiometry-Generator",
             external: true,
-            emoji: "🧬"
+            emoji: "🧬",
+            category: "science",
+            tags: ["R", "AlphaFold", "Structural Biology", "Automation"]
         },
         {
             title: "killcurveplot: Plotting Phage Lysis and Kill Curves in R",
@@ -1390,7 +1562,9 @@
             image: null,
             link: "https://github.com/mbaffour/killcurveplot",
             external: true,
-            emoji: "📉"
+            emoji: "📉",
+            category: "science",
+            tags: ["R Package", "Phage Biology", "Visualization", "OD600"]
         },
         {
             title: "SeqDedupe: FASTA Sequence Deduplication with R Shiny",
@@ -1399,7 +1573,9 @@
             image: null,
             link: "https://github.com/mbaffour/SeqDedupe",
             external: true,
-            emoji: "🧹"
+            emoji: "🧹",
+            category: "science",
+            tags: ["R Shiny", "Genomics", "FASTA", "Bioinformatics"]
         },
         {
             title: "N4 Lysis Paper Codes: R Shiny Apps for Lysis Curve Plotting & FASTA Reformatting",
@@ -1408,7 +1584,9 @@
             image: null,
             link: "https://github.com/mbaffour/N4-Lysis-paper-codes",
             external: true,
-            emoji: "💻"
+            emoji: "💻",
+            category: "science",
+            tags: ["R Shiny", "Lysis Curves", "N4", "FASTA"]
         }
     ];
 
@@ -1440,7 +1618,7 @@
     // Filter button events
     document.getElementById('pubFilters').addEventListener('click', (e) => {
         if (e.target.classList.contains('pub-filter-btn')) {
-            document.querySelectorAll('.pub-filter-btn').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('#pubFilters .pub-filter-btn').forEach(b => b.classList.remove('active'));
             e.target.classList.add('active');
             renderPublications(e.target.dataset.filter);
         }
@@ -1449,27 +1627,54 @@
     renderPublications();
 
     /* ==============================================================
-       RENDER BLOG POSTS
+       RENDER BLOG / PROJECTS
     =============================================================== */
-    function renderBlog() {
+    const categoryLabels = { science: 'Science Tool', personal: 'Personal Project', news: 'News' };
+    const linkLabels     = { science: 'View Project &#x2197;', personal: 'View Project &#x2197;', news: 'Read More &#x2192;' };
+
+    function renderBlog(filter = 'all') {
         const container = document.getElementById('blogGrid');
-        container.innerHTML = blogPosts.map(post => `
-            <div class="blog-card">
-                ${post.image 
+        const posts = filter === 'all' ? blogPosts : blogPosts.filter(p => p.category === filter);
+        const cat = p => p.category || 'news';
+
+        container.innerHTML = posts.map(post => `
+            <div class="blog-card" data-category="${cat(post)}">
+                ${post.image
                     ? `<img class="blog-card-img" src="${post.image}" alt="${post.title}" loading="lazy">`
-                    : `<div class="blog-card-img-placeholder">${post.emoji || '🧬'}</div>`
+                    : cat(post) === 'news'
+                        ? `<div class="blog-card-news-header">
+                               <span class="news-icon">${post.emoji || '📰'}</span>
+                               <span class="news-source">${post.newsSource || 'News'}</span>
+                           </div>`
+                        : `<div class="blog-card-img-placeholder">${post.emoji || '🧬'}</div>`
                 }
                 <div class="blog-card-body">
                     <div class="blog-card-date">${post.date}</div>
-                    <h3>${post.title}${post.external ? '<span class="blog-external-badge">External</span>' : ''}</h3>
+                    <span class="blog-card-category ${cat(post)}">${categoryLabels[cat(post)] || 'Post'}</span>
+                    <h3>${post.title}${post.external ? ' <span style="font-size:0.75em;opacity:0.6">&#x2197;</span>' : ''}</h3>
                     <p>${post.summary}</p>
-                    ${post.link ? `<a href="${post.link}" class="blog-card-link" target="${post.external ? '_blank' : '_self'}" rel="noopener">Read More &#x2192;</a>` : ''}
+                    ${post.tags && post.tags.length
+                        ? `<div class="research-tags">${post.tags.map(t => `<span class="research-tag">${t}</span>`).join('')}</div>`
+                        : ''
+                    }
+                    ${post.link
+                        ? `<a href="${post.link}" class="blog-card-link" target="${post.external ? '_blank' : '_self'}" rel="noopener">${linkLabels[cat(post)] || 'Read More &#x2192;'}</a>`
+                        : ''
+                    }
                 </div>
             </div>
         `).join('');
     }
 
     renderBlog();
+
+    document.getElementById('blogFilters').addEventListener('click', (e) => {
+        if (e.target.classList.contains('pub-filter-btn')) {
+            document.querySelectorAll('#blogFilters .pub-filter-btn').forEach(b => b.classList.remove('active'));
+            e.target.classList.add('active');
+            renderBlog(e.target.dataset.filter);
+        }
+    });
 
     /* ==============================================================
        MOBILE NAV TOGGLE
