@@ -433,7 +433,7 @@
         ============================================================ */
         .research-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
             gap: 1.5rem;
         }
 
@@ -709,7 +709,7 @@
         ============================================================ */
         .blog-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(min(320px, 100%), 1fr));
             gap: 1.5rem;
         }
 
@@ -1333,6 +1333,24 @@
         /* ============================================================
            RESPONSIVE — Tablet + Mobile
         ============================================================ */
+
+        /* Mobile: disable expensive effects that cause rendering bugs on iOS/Android */
+        @media (max-width: 768px) {
+            body::before, body::after { display: none; }
+            .noise-overlay { display: none; }
+            .cursor-glow { display: none; }
+            .research-card, .blog-card, .pub-entry, .cv-block, .stat-pill, .contact-btn {
+                backdrop-filter: none;
+                -webkit-backdrop-filter: none;
+            }
+            /* Ensure fade-in sections are always visible (IntersectionObserver may miss them on slow mobile connections) */
+            .fade-in {
+                opacity: 1;
+                transform: none;
+                transition: none;
+            }
+        }
+
         @media (max-width: 768px) {
             /* Nav */
             .nav-links { display: none; }
@@ -1352,7 +1370,8 @@
             .nav-toggle { display: block; }
 
             /* Hero */
-            .hero { min-height: 100svh; }
+            .hero { min-height: 100svh; min-height: 100vh; }
+            .hero-canvas { height: 100%; min-height: 100vh; }
             .hero-content { padding: 1.5rem 1rem; }
             .hero-label {
                 font-size: 0.65rem;
@@ -1365,6 +1384,9 @@
             .hero-buttons { gap: 0.75rem; }
             .btn { padding: 0.75rem 1.4rem; font-size: 0.85rem; }
             .hero-adinkra { width: 160px; opacity: 0.04; right: 2%; }
+            /* Disable heavy hero effects on mobile */
+            .hero::before, .hero::after { display: none; }
+            .hero-canvas + .hero-overlay::after { display: none; }
 
             /* Sections */
             .section { padding: 3.5rem 1.25rem; }
@@ -1376,6 +1398,7 @@
             .about-photo { width: 180px; height: 180px; font-size: 2.8rem; }
             .about-stats { gap: 0.75rem; }
             .stat-pill { font-size: 0.75rem; padding: 0.4rem 0.8rem; white-space: normal; text-align: center; }
+            .about-text { width: 100%; }
             .about-text p:first-child::first-letter { font-size: 2rem; }
 
             /* Research */
