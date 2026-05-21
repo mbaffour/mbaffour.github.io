@@ -236,6 +236,14 @@
         }
         .nav-avatar.show { opacity: 1; transform: scale(1); display: inline-block; position: static; }
         .nav-logo:has(.nav-avatar.show) .dot { opacity: 0; transform: scale(0); width: 0; margin: 0; }
+        .nav-name-short { display: none; }
+        @media (max-width: 1080px) {
+            .nav-name-full { display: none; }
+            .nav-name-short { display: inline; }
+        }
+        @media (max-width: 480px) {
+            .nav-name-short { font-size: 0.95rem; }
+        }
         @keyframes pulse {
             0%, 100% { opacity: 0.6; transform: scale(1); }
             50%      { opacity: 1;   transform: scale(1.18); }
@@ -1071,6 +1079,54 @@
             background: linear-gradient(180deg, rgba(244, 196, 48, 0.06), var(--bg-card));
             box-shadow: var(--glow-gold);
         }
+        .pub-entry.has-altmetric { grid-template-columns: 70px 1fr auto; }
+        .altmetric-wrap {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.35rem;
+            padding-left: 1rem;
+            border-left: 1px dashed var(--border);
+            min-width: 80px;
+        }
+        .altmetric-wrap .altmetric-embed { transform: scale(0.9); }
+        .altmetric-label {
+            font-family: var(--font-mono);
+            font-size: 0.62rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--ink-3);
+        }
+        .pub-toggle {
+            margin: 1.2rem auto 0;
+            display: block;
+            background: transparent;
+            border: 1px dashed var(--border-strong);
+            color: var(--gold);
+            padding: 0.7rem 1.4rem;
+            border-radius: 50px;
+            font-family: var(--font-mono);
+            font-size: 0.78rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all .2s ease;
+        }
+        .pub-toggle:hover {
+            background: var(--gold-dim);
+            border-style: solid;
+            border-color: var(--gold);
+        }
+        @media (max-width: 640px) {
+            .pub-entry.has-altmetric { grid-template-columns: 1fr; }
+            .altmetric-wrap {
+                border-left: 0;
+                border-top: 1px dashed var(--border);
+                padding-left: 0;
+                padding-top: 0.8rem;
+                flex-direction: row;
+            }
+        }
         .pub-year {
             font-family: var(--font-display);
             font-size: 1.85rem;
@@ -1729,56 +1785,251 @@
         /* ============================================================
            CONTACT
         ============================================================ */
-        .contact-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 0.85rem;
-            max-width: 780px;
+        /* ============================================================
+           CONTACT — creative redesign
+        ============================================================ */
+        .contact-wrap {
+            position: relative;
+            max-width: 760px;
             margin: 0 auto;
+            padding: 2rem 0;
         }
-        .contact-btn {
-            display: flex;
+        .contact-canvas {
+            position: absolute;
+            inset: -1rem -2rem;
+            width: calc(100% + 4rem);
+            height: 100%;
+            pointer-events: none;
+            opacity: 0.45;
+            z-index: 0;
+        }
+        .contact-primary {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: auto 1fr auto;
             align-items: center;
-            gap: 0.75rem;
-            padding: 1.1rem 1.3rem;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
+            gap: 1.2rem;
+            padding: 1.6rem 1.8rem;
+            background: linear-gradient(135deg, rgba(244, 196, 48, 0.10), rgba(26, 128, 64, 0.06));
+            border: 1px solid var(--gold);
             border-radius: var(--radius);
             color: var(--ink);
-            transition: all .25s ease;
-            font-weight: 500;
+            box-shadow: var(--glow-gold);
+            transition: transform .25s ease, box-shadow .25s ease;
+            overflow: hidden;
         }
-        .contact-btn:hover {
-            border-color: var(--gold);
-            background: var(--bg-card-hover);
-            color: var(--gold);
-            transform: translateY(-2px);
+        .contact-primary::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(380px circle at var(--mx, 50%) var(--my, 50%),
+                rgba(244, 196, 48, 0.18), transparent 60%);
+            opacity: 0;
+            transition: opacity .3s ease;
+            pointer-events: none;
         }
-        .contact-btn .icon {
-            width: 36px; height: 36px;
+        .contact-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 14px 40px rgba(244, 196, 48, 0.45);
+            color: var(--ink);
+        }
+        .contact-primary:hover::before { opacity: 1; }
+        .contact-primary-icon {
+            font-size: 2.2rem;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: var(--gold-dim);
-            border-radius: 8px;
-            font-size: 1.15rem;
+            width: 56px; height: 56px;
+            background: var(--gold);
+            color: var(--bg);
+            border-radius: 14px;
+            box-shadow: 0 6px 20px rgba(244, 196, 48, 0.5);
+            position: relative;
+            z-index: 1;
         }
-        .contact-btn span:last-child {
-            display: flex;
-            flex-direction: column;
-        }
-        .contact-btn .label {
-            font-size: 0.8rem;
-            color: var(--ink-3);
+        .contact-primary-text { display: flex; flex-direction: column; line-height: 1.3; position: relative; z-index: 1; }
+        .contact-primary-label {
             font-family: var(--font-mono);
+            font-size: 0.72rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 0.25rem;
+        }
+        .contact-primary-addr {
+            font-family: var(--font-display);
+            font-size: 1.35rem;
+            font-weight: 600;
+            color: var(--ink);
+            letter-spacing: -0.01em;
+        }
+        .contact-primary-copy {
+            position: relative;
+            z-index: 1;
+            color: var(--ink-2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 38px; height: 38px;
+            border-radius: 10px;
+            border: 1px solid var(--border-strong);
+            cursor: pointer;
+            transition: all .2s ease;
+        }
+        .contact-primary-copy:hover { color: var(--gold); border-color: var(--gold); background: rgba(244, 196, 48, 0.08); }
+        .copy-feedback {
+            position: absolute;
+            right: calc(100% + 8px);
+            background: var(--gold);
+            color: var(--bg);
+            padding: 0.3rem 0.7rem;
+            border-radius: 6px;
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            font-weight: 700;
             letter-spacing: 0.08em;
             text-transform: uppercase;
+            white-space: nowrap;
+            opacity: 0;
+            transform: translateX(8px);
+            transition: opacity .25s ease, transform .25s ease;
+            pointer-events: none;
         }
-        .contact-btn .target {
-            font-size: 0.92rem;
+        .copy-feedback.show { opacity: 1; transform: translateX(0); }
+
+        .contact-open-to {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+            margin-top: 1.8rem;
+            padding: 1rem 1.4rem;
+            background: rgba(10, 8, 2, 0.55);
+            border: 1px solid var(--border);
+            border-left: 3px solid var(--green);
+            border-radius: var(--radius-sm);
+        }
+        .open-pulse {
+            width: 9px; height: 9px;
+            background: var(--green);
+            border-radius: 50%;
+            box-shadow: 0 0 12px var(--green);
+            animation: pulse 1.8s ease-in-out infinite;
+            flex-shrink: 0;
+        }
+        .open-label {
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--green);
+            font-weight: 700;
+        }
+        .open-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+        .open-tags span {
+            font-family: var(--font-body);
+            font-size: 0.82rem;
+            color: var(--ink-2);
+            padding: 0.18rem 0.55rem;
+            background: rgba(26, 128, 64, 0.10);
+            border: 1px solid rgba(26, 128, 64, 0.30);
+            border-radius: 50px;
+        }
+
+        .contact-orbits {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 0.75rem;
+            margin-top: 1.5rem;
+        }
+        .orbit-link {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 1rem 0.55rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            color: var(--ink-2);
+            text-decoration: none;
+            transition: all .25s ease;
+            overflow: hidden;
+        }
+        .orbit-link::before {
+            content: '';
+            position: absolute;
+            inset: 0 0 auto 0;
+            height: 2px;
+            background: var(--accent, var(--gold));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform .3s ease;
+        }
+        .orbit-link:hover {
+            transform: translateY(-3px);
+            border-color: var(--accent, var(--gold));
             color: var(--ink);
+            background: var(--bg-card-hover);
         }
-        .contact-btn:hover .target { color: var(--gold); }
+        .orbit-link:hover::before { transform: scaleX(1); }
+        .orbit-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 38px; height: 38px;
+            border-radius: 50%;
+            background: rgba(244, 196, 48, 0.08);
+            color: var(--accent, var(--gold));
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+        .orbit-link:hover .orbit-icon {
+            background: var(--accent, var(--gold));
+            color: var(--bg);
+        }
+        .orbit-label {
+            font-family: var(--font-mono);
+            font-size: 0.66rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--ink-3);
+        }
+        .orbit-link:hover .orbit-label { color: var(--ink); }
+
+        .contact-foot {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            color: var(--ink-3);
+            font-size: 0.82rem;
+            margin-top: 1.8rem;
+        }
+        .contact-foot kbd {
+            font-family: var(--font-mono);
+            background: rgba(0,0,0,0.4);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 1px 6px;
+            font-size: 0.75rem;
+            color: var(--gold);
+        }
+
+        @media (max-width: 720px) {
+            .contact-orbits { grid-template-columns: repeat(3, 1fr); }
+            .contact-primary { grid-template-columns: auto 1fr; }
+            .contact-primary-copy { grid-column: 2; justify-self: end; margin-top: 0.5rem; }
+        }
+        @media (max-width: 420px) {
+            .contact-orbits { grid-template-columns: repeat(2, 1fr); }
+            .contact-primary-addr { font-size: 1.1rem; }
+        }
 
         /* ============================================================
            COMMAND PALETTE
@@ -2005,6 +2256,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js" async></script>
 </head>
 <body>
     <div class="cursor-glow" id="cursorGlow"></div>
@@ -2018,7 +2270,8 @@
             <a href="#hero" class="nav-logo">
                 <img src="headshot-sm.jpg" alt="" class="nav-avatar" id="navAvatar" aria-hidden="true">
                 <span class="dot" id="navDot"></span>
-                <span>M. Baffour Awuah</span>
+                <span class="nav-name-full">Michael Baffour Awuah</span>
+                <span class="nav-name-short">Michael B. Awuah</span>
             </a>
             <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">☰</button>
             <ul class="nav-links" id="navLinks">
@@ -2503,35 +2756,74 @@
     <!-- ===== CONTACT ===== -->
     <section class="section fade-in" id="contact">
         <div class="section-header">
-            <span class="section-label">Get in Touch</span>
-            <h2 class="section-title">Connect <span class="highlight">With Me</span></h2>
+            <span class="section-label">Let's Talk Phages</span>
+            <h2 class="section-title">Get in <span class="highlight">Touch</span></h2>
             <p class="section-subtitle">Collaboration, phage research, scientific software, or just talking shop — I'd love to hear from you.</p>
         </div>
-        <div class="contact-grid">
-            <a href="mailto:baffour@tamu.edu" class="contact-btn">
-                <span class="icon">✉</span>
-                <span><span class="label">Email</span><span class="target">baffour@tamu.edu</span></span>
+
+        <div class="contact-wrap">
+            <!-- Floating phages in the background -->
+            <canvas class="contact-canvas" id="contactCanvas" aria-hidden="true"></canvas>
+
+            <!-- Primary email CTA -->
+            <a href="mailto:baffour@tamu.edu" class="contact-primary" id="contactEmail">
+                <span class="contact-primary-icon">✉</span>
+                <div class="contact-primary-text">
+                    <span class="contact-primary-label">Email me directly</span>
+                    <span class="contact-primary-addr">baffour@tamu.edu</span>
+                </div>
+                <span class="contact-primary-copy" id="copyBtn" title="Copy address">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                    <span class="copy-feedback" id="copyFeedback">Copied!</span>
+                </span>
             </a>
-            <a href="https://www.linkedin.com/in/mba-101b/" class="contact-btn" target="_blank" rel="noopener">
-                <span class="icon">in</span>
-                <span><span class="label">LinkedIn</span><span class="target">/in/mba-101b</span></span>
-            </a>
-            <a href="https://scholar.google.com/citations?user=e5_h_2YAAAAJ&hl=en" class="contact-btn" target="_blank" rel="noopener">
-                <span class="icon">🎓</span>
-                <span><span class="label">Scholar</span><span class="target">Google Scholar</span></span>
-            </a>
-            <a href="https://orcid.org/0009-0007-9036-413X" class="contact-btn" target="_blank" rel="noopener">
-                <span class="icon">🆔</span>
-                <span><span class="label">ORCID</span><span class="target">0009-0007-9036-413X</span></span>
-            </a>
-            <a href="https://github.com/mbaffour" class="contact-btn" target="_blank" rel="noopener">
-                <span class="icon">⌥</span>
-                <span><span class="label">GitHub</span><span class="target">@mbaffour</span></span>
-            </a>
-            <a href="https://twitter.com/AwuahMB" class="contact-btn" target="_blank" rel="noopener">
-                <span class="icon">𝕏</span>
-                <span><span class="label">Twitter</span><span class="target">@AwuahMB</span></span>
-            </a>
+
+            <!-- Open to status -->
+            <div class="contact-open-to">
+                <span class="open-pulse"></span>
+                <span class="open-label">Open to:</span>
+                <span class="open-tags">
+                    <span>Biotech R&amp;D</span>
+                    <span>AI for science</span>
+                    <span>Translational research</span>
+                    <span>Scientific software</span>
+                    <span>Collaborations</span>
+                </span>
+            </div>
+
+            <!-- Orbital social links -->
+            <div class="contact-orbits">
+                <a href="https://scholar.google.com/citations?user=e5_h_2YAAAAJ&hl=en" class="orbit-link" target="_blank" rel="noopener" style="--accent: var(--gold);">
+                    <span class="orbit-icon">🎓</span>
+                    <span class="orbit-label">Scholar</span>
+                </a>
+                <a href="https://github.com/mbaffour" class="orbit-link" target="_blank" rel="noopener" style="--accent: var(--ink);">
+                    <span class="orbit-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12c0 5.3 3.4 9.8 8.2 11.4.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.5-1.4-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-6 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2 1-.3 2-.4 3-.4s2 .1 3 .4c2.3-1.5 3.3-1.2 3.3-1.2.7 1.7.3 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6C20.6 21.8 24 17.3 24 12 24 5.4 18.6 0 12 0z"/></svg>
+                    </span>
+                    <span class="orbit-label">GitHub</span>
+                </a>
+                <a href="https://www.linkedin.com/in/mba-101b/" class="orbit-link" target="_blank" rel="noopener" style="--accent: #0a66c2;">
+                    <span class="orbit-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14C2.2 0 0 2.2 0 5v14c0 2.8 2.2 5 5 5h14c2.8 0 5-2.2 5-5V5c0-2.8-2.2-5-5-5zM7 19H4V9h3v10zM5.5 7.5C4.5 7.5 4 6.8 4 6s.7-1.5 1.5-1.5S7 5.2 7 6s-.7 1.5-1.5 1.5zM20 19h-3v-5.5c0-1.4-.6-2-1.7-2-1 0-1.3.7-1.3 2V19h-3V9h3v1.1c.5-.7 1.3-1.4 2.7-1.4 2.2 0 3.3 1.5 3.3 4V19z"/></svg>
+                    </span>
+                    <span class="orbit-label">LinkedIn</span>
+                </a>
+                <a href="https://twitter.com/AwuahMB" class="orbit-link" target="_blank" rel="noopener" style="--accent: var(--ink);">
+                    <span class="orbit-icon">𝕏</span>
+                    <span class="orbit-label">Twitter / X</span>
+                </a>
+                <a href="https://orcid.org/0009-0007-9036-413X" class="orbit-link" target="_blank" rel="noopener" style="--accent: #a6ce39;">
+                    <span class="orbit-icon">
+                        <svg width="20" height="20" viewBox="0 0 256 256" fill="currentColor"><circle cx="128" cy="128" r="128"/><g fill="#fff"><path d="M86.3 186.2H70.9V79.1h15.4v107.1zM108.9 79.1h41.6c39.6 0 57 28.3 57 53.6 0 27.5-21.5 53.6-56.8 53.6h-41.8V79.1zm15.4 93.3h24.5c34.9 0 42.9-26.5 42.9-39.7 0-21.5-13.7-39.7-43.7-39.7h-23.7v79.4zM88.7 56.8c0 5.5-4.5 10.1-10.1 10.1s-10.1-4.6-10.1-10.1c0-5.6 4.5-10.1 10.1-10.1s10.1 4.6 10.1 10.1z"/></g></svg>
+                    </span>
+                    <span class="orbit-label">ORCID</span>
+                </a>
+            </div>
+
+            <p class="contact-foot">
+                Press <kbd>⌘K</kbd> to jump anywhere on the site, or just send me a phage joke.
+            </p>
         </div>
     </section>
 
@@ -3251,15 +3543,10 @@
     /* ==============================================================
        RENDER — Publications
     =============================================================== */
+    let postersExpanded = false;
+
     function renderPublications(filter = 'all') {
         const container = document.getElementById('pubList');
-        const filtered = filter === 'all'
-            ? publications
-            : publications.filter(p => p.kind === filter || p.status === filter);
-        if (filtered.length === 0) {
-            container.innerHTML = '<div class="pub-empty">Nothing in this category yet — stay tuned.</div>';
-            return;
-        }
         const labelFor = s => ({
             'in-review': 'In Review',
             'preprint':  'Preprint',
@@ -3267,23 +3554,64 @@
             'talk':      'Talk',
             'poster':    'Poster'
         })[s] || (s[0].toUpperCase() + s.slice(1));
-        container.innerHTML = filtered.map(pub => {
+
+        let posterCount = 0;
+        let filtered;
+        if (filter === 'all') {
+            // Default view: papers + talks only. Posters collapse behind a toggle.
+            const main = publications.filter(p => p.kind !== 'poster');
+            const posters = publications.filter(p => p.kind === 'poster');
+            posterCount = posters.length;
+            filtered = postersExpanded ? publications : main;
+        } else {
+            filtered = publications.filter(p => p.kind === filter || p.status === filter);
+        }
+
+        if (filtered.length === 0) {
+            container.innerHTML = '<div class="pub-empty">Nothing in this category yet — stay tuned.</div>';
+            return;
+        }
+
+        const renderEntry = pub => {
             const auth = (pub.authors || '').replace(/Awuah MB/, '<em>Awuah MB</em>');
+            const doi = pub.doi ? pub.doi.replace(/^https?:\/\/doi\.org\//, '') : '';
+            const altmetric = pub.kind === 'paper' && doi
+                ? `<div class="altmetric-wrap" title="Click for full attention details"><div class="altmetric-embed" data-badge-type="donut" data-badge-popover="right" data-doi="${doi}" data-hide-no-mentions="false"></div><span class="altmetric-label">attention</span></div>`
+                : '';
             return `
-            <div class="pub-entry ${pub.latest ? 'latest' : ''}">
+            <div class="pub-entry ${pub.latest ? 'latest' : ''} ${pub.kind === 'paper' ? 'has-altmetric' : ''}">
                 <div class="pub-year">${pub.year}</div>
-                <div>
+                <div class="pub-body">
                     <div class="pub-title">${pub.title}</div>
                     <div class="pub-authors">${auth}</div>
                     <div class="pub-journal">${pub.journal}</div>
                     <div class="pub-meta">
                         <span class="pub-status ${pub.status}">${labelFor(pub.status)}</span>
                         ${pub.doi ? `<span class="pub-doi"><a href="${pub.doi}" target="_blank" rel="noopener">DOI ↗</a></span>` : ''}
+                        ${pub.kind === 'paper' && doi ? `<span class="pub-doi"><a href="https://www.biorxiv.org/content/${doi}v1.full.pdf" target="_blank" rel="noopener">PDF ↓</a></span>` : ''}
                         ${pub.latest ? '<span class="pub-status preprint">★ Latest</span>' : ''}
                     </div>
                 </div>
+                ${altmetric}
             </div>`;
-        }).join('');
+        };
+
+        let html = filtered.map(renderEntry).join('');
+        if (filter === 'all' && posterCount > 0) {
+            html += `<button class="pub-toggle" id="pubToggle">
+                ${postersExpanded
+                    ? `← Hide ${posterCount} posters`
+                    : `Show ${posterCount} more posters →`}
+            </button>`;
+        }
+        container.innerHTML = html;
+        const toggle = document.getElementById('pubToggle');
+        if (toggle) toggle.addEventListener('click', () => {
+            postersExpanded = !postersExpanded;
+            renderPublications('all');
+        });
+        // Re-trigger Altmetric badges after re-render
+        if (window._altmetric_embed_init) window._altmetric_embed_init();
     }
 
     /* ==============================================================
@@ -4250,6 +4578,116 @@
     /* ==============================================================
        NAVBAR SCROLL CONDENSE
     =============================================================== */
+    /* Contact: copy email + mouse glow on primary card */
+    (function() {
+        const card = document.getElementById('contactEmail');
+        const copyBtn = document.getElementById('copyBtn');
+        const fb = document.getElementById('copyFeedback');
+        if (card) {
+            card.addEventListener('mousemove', (e) => {
+                const r = card.getBoundingClientRect();
+                card.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+                card.style.setProperty('--my', (e.clientY - r.top) + 'px');
+            });
+        }
+        if (copyBtn && fb) {
+            copyBtn.addEventListener('click', async (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                try {
+                    await navigator.clipboard.writeText('baffour@tamu.edu');
+                    fb.classList.add('show');
+                    fb.textContent = 'Copied!';
+                    setTimeout(() => fb.classList.remove('show'), 1600);
+                } catch {
+                    fb.classList.add('show');
+                    fb.textContent = 'Press ⌘C';
+                    setTimeout(() => fb.classList.remove('show'), 1600);
+                }
+            });
+        }
+    })();
+
+    /* Contact canvas: phages drifting toward the email card */
+    (function() {
+        const canvas = document.getElementById('contactCanvas');
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+        const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+        let w, h, dpr;
+        function resize() {
+            dpr = devicePixelRatio || 1;
+            w = canvas.offsetWidth;
+            h = canvas.offsetHeight;
+            canvas.width = w * dpr; canvas.height = h * dpr;
+            ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        }
+        const ro = new ResizeObserver(resize);
+        ro.observe(canvas);
+        resize();
+
+        const PAL = ['244, 196, 48', '26, 128, 64', '196, 30, 58'];
+        const phages = [];
+        for (let i = 0; i < 18; i++) {
+            phages.push({
+                x: Math.random() * w,
+                y: Math.random() * h,
+                size: 10 + Math.random() * 14,
+                vx: (Math.random() - 0.5) * 0.18,
+                vy: (Math.random() - 0.5) * 0.18,
+                rot: Math.random() * Math.PI * 2,
+                rotSpeed: (Math.random() - 0.5) * 0.008,
+                opacity: 0.18 + Math.random() * 0.18,
+                color: PAL[Math.floor(Math.random() * PAL.length)]
+            });
+        }
+        function draw(p) {
+            ctx.save();
+            ctx.translate(p.x, p.y);
+            ctx.rotate(p.rot);
+            ctx.strokeStyle = `rgba(${p.color}, ${p.opacity})`;
+            ctx.fillStyle = `rgba(${p.color}, ${p.opacity})`;
+            ctx.lineWidth = 1.1;
+            const s = p.size;
+            ctx.beginPath();
+            for (let i = 0; i < 6; i++) {
+                const a = (Math.PI * 2 / 6) * i - Math.PI / 2;
+                const px = Math.cos(a) * s * 0.5;
+                const py = Math.sin(a) * s * 0.5;
+                i === 0 ? ctx.moveTo(px, py) : ctx.lineTo(px, py);
+            }
+            ctx.closePath();
+            ctx.fill();
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(0, s * 0.5);
+            ctx.lineTo(0, s * 1.3);
+            ctx.stroke();
+            for (let i = -1; i <= 1; i += 2) {
+                ctx.beginPath();
+                ctx.moveTo(0, s * 1.3);
+                ctx.quadraticCurveTo(i * s * 0.3, s * 1.45, i * s * 0.5, s * 1.7);
+                ctx.stroke();
+            }
+            ctx.restore();
+        }
+        function tick() {
+            ctx.clearRect(0, 0, w, h);
+            phages.forEach(p => {
+                if (!reduceMotion) {
+                    p.x += p.vx; p.y += p.vy; p.rot += p.rotSpeed;
+                    if (p.x < -40) p.x = w + 40;
+                    if (p.x > w + 40) p.x = -40;
+                    if (p.y < -40) p.y = h + 40;
+                    if (p.y > h + 40) p.y = -40;
+                }
+                draw(p);
+            });
+            if (!reduceMotion) requestAnimationFrame(tick);
+        }
+        tick();
+    })();
+
     /* "Currently" badge rotation */
     (function() {
         const badge = document.getElementById('nowBadge');
