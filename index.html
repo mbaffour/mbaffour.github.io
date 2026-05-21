@@ -1306,6 +1306,51 @@
         }
         .rec-link:hover { text-decoration: underline; }
 
+        /* Recognition card with feature photo */
+        .rec-card.has-photo { padding: 0; overflow: hidden; }
+        .rec-card.has-photo .rec-photo {
+            width: 100%;
+            aspect-ratio: 16 / 10;
+            overflow: hidden;
+            position: relative;
+            background: var(--bg-3);
+        }
+        .rec-card.has-photo .rec-photo img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            transition: transform .6s ease;
+        }
+        .rec-card.has-photo:hover .rec-photo img { transform: scale(1.04); }
+        .rec-card.has-photo .rec-photo::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, transparent 60%, rgba(10, 8, 2, 0.85));
+        }
+        .rec-card.has-photo .rec-photo-tag {
+            position: absolute;
+            bottom: 0.7rem;
+            left: 0.85rem;
+            font-family: var(--font-mono);
+            font-size: 0.66rem;
+            letter-spacing: 0.16em;
+            color: var(--gold);
+            background: rgba(10, 8, 2, 0.75);
+            border: 1px solid var(--border-strong);
+            padding: 0.22rem 0.55rem;
+            border-radius: 4px;
+            z-index: 2;
+            text-transform: uppercase;
+        }
+        .rec-card.has-photo .rec-body { padding: 1.4rem 1.6rem 1.6rem; }
+        .rec-card.has-photo .rec-icon {
+            position: absolute;
+            top: 0.7rem;
+            right: 0.85rem;
+            margin-bottom: 0;
+            z-index: 2;
+        }
+
         /* ============================================================
            GALLERY — Life in the Lab
         ============================================================ */
@@ -2260,12 +2305,24 @@
             <p class="section-subtitle">Awards, outreach, judging, and the trainees I've had the privilege of working alongside.</p>
         </div>
         <div class="rec-grid">
-            <div class="rec-card award" style="--accent: var(--gold);">
+            <div class="rec-card award has-photo" style="--accent: var(--gold);">
+                <div class="rec-photo">
+                    <img src="patterson-card.jpg" alt="Receiving the Thomas L. Patterson Fellowship at CPT, Texas A&M" loading="lazy">
+                    <span class="rec-photo-tag">August 2025</span>
+                </div>
                 <span class="rec-icon">🏆</span>
-                <div class="rec-date">August 2025</div>
-                <h3>Thomas L. Patterson Graduate Student Fellowship</h3>
-                <p>Awarded by the Center for Phage Technology at Texas A&amp;M — established by Dr. Steffanie Strathdee and Dr. Thomas Patterson following CPT's landmark involvement in phage therapy in the US.</p>
-                <a class="rec-link" href="https://cpt.tamu.edu/michael-awuah-awarded-2025-thomas-l-patterson-graduate-student-fellowship/" target="_blank" rel="noopener">Read announcement ↗</a>
+                <div class="rec-body">
+                    <h3>Thomas L. Patterson Graduate Student Fellowship</h3>
+                    <p>Awarded by the Center for Phage Technology at Texas A&amp;M — established by Dr. Steffanie Strathdee and Dr. Thomas Patterson following CPT's landmark involvement in phage therapy in the US.</p>
+                    <a class="rec-link" href="https://cpt.tamu.edu/michael-awuah-awarded-2025-thomas-l-patterson-graduate-student-fellowship/" target="_blank" rel="noopener">Read announcement ↗</a>
+                </div>
+            </div>
+            <div class="rec-card talks" style="--accent: var(--gold);">
+                <span class="rec-icon">🎤</span>
+                <div class="rec-date">2024–2025</div>
+                <h3>Invited Lectures &amp; Talks</h3>
+                <p>Delivered department lectures and conference talks on phage N4 lysis inhibition — including <em>"Bacteriophage are prolific bacterial predators"</em> and <em>"The Viral Death Race."</em></p>
+                <a class="rec-link" href="#gallery">See gallery ↓</a>
             </div>
             <div class="rec-card mentor" style="--accent: var(--red);">
                 <span class="rec-icon">🧫</span>
@@ -2285,6 +2342,12 @@
                 <div class="rec-date">Annual</div>
                 <h3>Texas JSHS Judging</h3>
                 <p>Judge for the Texas Junior Science &amp; Humanities Symposium — evaluating high-school research projects and providing feedback to the next generation of scientists.</p>
+            </div>
+            <div class="rec-card service" style="--accent: var(--green);">
+                <span class="rec-icon">🎪</span>
+                <div class="rec-date">2023–2024</div>
+                <h3>Community &amp; Phage Outreach</h3>
+                <p>Phage Princess &amp; Phage Pirate, K–12 demos, and lab tours — bringing bacteriophage biology to non-specialists with cardboard, color, and a lot of explaining what a phage actually is.</p>
             </div>
         </div>
     </section>
@@ -2594,11 +2657,18 @@
     =============================================================== */
     const gallery = [
         {
+            src: "gallery/gallery-tem.jpg",
+            tag: "Imaging",
+            caption: "Phage particles on the TEM screen — capsids, tails, and all.",
+            sub: "Transmission electron microscopy",
+            layout: "feature"
+        },
+        {
             src: "gallery/gallery-talk.jpg",
             tag: "Talks",
             caption: "Presenting <em>Phage N4 Lysis Inhibition — The Viral Death Race</em>.",
             sub: "Department of Biology · TAMU",
-            layout: "feature"
+            layout: "tall"
         },
         {
             src: "gallery/gallery-phage-hunt.jpg",
@@ -2608,11 +2678,53 @@
             layout: "tall"
         },
         {
+            src: "gallery/gallery-prolific-predators.jpg",
+            tag: "Talks",
+            caption: "<em>Bacteriophage are prolific bacterial predators.</em>",
+            sub: "Department lecture",
+            layout: "wide"
+        },
+        {
+            src: "gallery/gallery-patterson-ceremony.jpg",
+            tag: "Award",
+            caption: "Receiving the 2025 Thomas L. Patterson Fellowship.",
+            sub: "Center for Phage Technology · TAMU",
+            layout: "square"
+        },
+        {
+            src: "gallery/gallery-patterson-group.jpg",
+            tag: "Award",
+            caption: "Celebrating with the lab — Patterson Fellowship.",
+            sub: "August 2025",
+            layout: "wide"
+        },
+        {
+            src: "gallery/gallery-phage-princess.jpg",
+            tag: "Outreach",
+            caption: "Phage outreach — <em>Phage Princess &amp; Phage Pirate.</em>",
+            sub: "Public engagement at TAMU",
+            layout: "tall"
+        },
+        {
+            src: "gallery/gallery-cpt-group.jpg",
+            tag: "Lab",
+            caption: "Center for Phage Technology — the people behind the science.",
+            sub: "CPT lab portrait",
+            layout: "wide"
+        },
+        {
             src: "gallery/gallery-whiteboard.jpg",
             tag: "Brainwork",
             caption: "Sketching the N4 lysis decision tree.",
             sub: "Ramsey Lab whiteboard",
-            layout: "wide"
+            layout: "square"
+        },
+        {
+            src: "gallery/gallery-flasks.jpg",
+            tag: "Bench",
+            caption: "Phage prep flasks in the Ramsey Lab phage room.",
+            sub: "Sample collection",
+            layout: "square"
         },
         {
             src: "gallery/gallery-asm-microbe.jpg",
@@ -2633,28 +2745,35 @@
             tag: "Bench",
             caption: "At my bench in the Ramsey Lab.",
             sub: "A regular Tuesday",
-            layout: "tall"
+            layout: "square"
         },
         {
             src: "gallery/gallery-whiteboard-ny.jpg",
             tag: "Brainwork",
-            caption: "Working out amber suppressor logic — <em>tRNA · gp65am · LE392</em>.",
-            sub: "Bonus: Happy New Year",
+            caption: "Amber suppressor logic — <em>tRNA · gp65am · LE392</em>.",
+            sub: "Whiteboard scratchpad",
             layout: "wide"
         },
         {
-            src: "gallery/gallery-monarch.jpg",
-            tag: "Molecular biology",
-            caption: "Monarch nucleic acid purification — a daily companion.",
-            sub: "Bench staples",
+            src: "gallery/gallery-lab-social.jpg",
+            tag: "Lab life",
+            caption: "Lab social — biology, snacks, and laughter.",
+            sub: "BSBE hallway",
             layout: "square"
         },
         {
-            src: "gallery/gallery-phage-prep.jpg",
-            tag: "Bench",
-            caption: "Phage sample under UV illumination.",
-            sub: "Sample prep",
+            src: "gallery/gallery-football.jpg",
+            tag: "Aggies",
+            caption: "Game day at Kyle Field with the lab.",
+            sub: "Texas A&amp;M football",
             layout: "square"
+        },
+        {
+            src: "gallery/gallery-aggie-ring.jpg",
+            tag: "Aggies",
+            caption: "Ordered my Aggie Ring.",
+            sub: "Aggie Ring Plaza",
+            layout: "tall"
         },
         {
             src: "gallery/gallery-nasa.jpg",
