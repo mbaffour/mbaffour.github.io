@@ -1301,6 +1301,30 @@
             border: 1px solid;
         }
         .proj-category-pill.science  { color: var(--gold);  background: var(--gold-dim);  border-color: var(--gold); }
+        .proj-featured-badge {
+            position: absolute;
+            top: 0.6rem;
+            left: 0.6rem;
+            z-index: 3;
+            font-family: var(--font-mono);
+            font-size: 0.62rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            font-weight: 700;
+            color: var(--bg);
+            background: linear-gradient(135deg, var(--gold), #ffd968);
+            padding: 0.22rem 0.55rem;
+            border-radius: 4px;
+            box-shadow: 0 4px 14px rgba(244, 196, 48, 0.45);
+        }
+        .proj-card.featured {
+            border-color: rgba(244, 196, 48, 0.25);
+            box-shadow: 0 0 0 1px rgba(244, 196, 48, 0.10), 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+        .proj-card.featured:hover {
+            border-color: var(--gold);
+            box-shadow: var(--glow-gold), 0 12px 28px rgba(0, 0, 0, 0.45);
+        }
         .proj-category-pill.personal { color: var(--green); background: var(--green-dim); border-color: var(--green); }
         .proj-category-pill.news     { color: var(--red);   background: var(--red-dim);   border-color: var(--red); }
 
@@ -1670,9 +1694,234 @@
         .tf-fiber-btn[data-fiber="lps"]  { color: #f4c430; border-color: rgba(244, 196, 48, 0.30); }
         .tf-fiber-btn[data-fiber="ompc"] { color: #4cc97d; border-color: rgba(76, 201, 125, 0.30); }
         .tf-fiber-btn[data-fiber="lamb"] { color: #ff6b8a; border-color: rgba(255, 107, 138, 0.30); }
+        .tf-fiber-btn[data-fiber="pili"] { color: #4cb8ff; border-color: rgba(76, 184, 255, 0.30); }
         .tf-fiber-btn.active[data-fiber="lps"]  { background: rgba(244, 196, 48, 0.18); border-color: #f4c430; box-shadow: 0 0 12px rgba(244, 196, 48, 0.4); }
         .tf-fiber-btn.active[data-fiber="ompc"] { background: rgba(76, 201, 125, 0.18); border-color: #4cc97d; box-shadow: 0 0 12px rgba(76, 201, 125, 0.4); }
         .tf-fiber-btn.active[data-fiber="lamb"] { background: rgba(255, 107, 138, 0.18); border-color: #ff6b8a; box-shadow: 0 0 12px rgba(255, 107, 138, 0.4); }
+        .tf-fiber-btn.active[data-fiber="pili"] { background: rgba(76, 184, 255, 0.18); border-color: #4cb8ff; box-shadow: 0 0 12px rgba(76, 184, 255, 0.4); }
+
+        /* Pause button + level badge */
+        .tf-pause-btn {
+            pointer-events: auto;
+            background: rgba(10, 8, 2, 0.7);
+            color: var(--gold);
+            border: 1px solid rgba(244, 196, 48, 0.20);
+            border-radius: 6px;
+            width: 30px; height: 30px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all .15s ease;
+            align-self: flex-start;
+        }
+        .tf-pause-btn:hover { border-color: var(--gold); background: rgba(244, 196, 48, 0.10); }
+        .tf-level-badge {
+            font-family: var(--font-mono);
+            font-size: 0.58rem;
+            letter-spacing: 0.14em;
+            color: var(--gold);
+            background: rgba(244, 196, 48, 0.10);
+            border: 1px solid rgba(244, 196, 48, 0.30);
+            border-radius: 50px;
+            padding: 1px 7px;
+            font-weight: 700;
+            transition: all .25s ease;
+        }
+        .tf-level-badge.bump { transform: scale(1.18); background: var(--gold); color: var(--bg); }
+
+        /* Setup screen */
+        .tf-setup { width: 100%; }
+        .tf-setup-title {
+            font-family: var(--font-display);
+            font-size: 1.55rem;
+            background: linear-gradient(135deg, var(--gold) 0%, #4cc97d 100%);
+            -webkit-background-clip: text; background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.25rem;
+            font-weight: 600;
+            text-align: center;
+        }
+        .tf-setup-sub {
+            font-family: var(--font-mono);
+            font-size: 0.66rem;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--ink-3);
+            text-align: center;
+            margin-bottom: 1.1rem;
+        }
+        .tf-setup-group {
+            margin-bottom: 0.9rem;
+        }
+        .tf-setup-label {
+            font-family: var(--font-mono);
+            font-size: 0.62rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--ink-3);
+            margin-bottom: 0.4rem;
+            display: block;
+        }
+        .tf-phage-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 0.35rem;
+        }
+        .tf-phage-opt, .tf-dur-opt {
+            background: rgba(10, 8, 2, 0.55);
+            border: 1px solid rgba(244, 196, 48, 0.18);
+            border-radius: 7px;
+            padding: 0.5rem 0.4rem;
+            text-align: center;
+            cursor: pointer;
+            font-family: var(--font-mono);
+            color: var(--ink-2);
+            transition: all .15s ease;
+        }
+        .tf-phage-opt:hover, .tf-dur-opt:hover {
+            border-color: var(--gold);
+            background: rgba(244, 196, 48, 0.08);
+            color: var(--ink);
+        }
+        .tf-phage-opt.active, .tf-dur-opt.active {
+            border-color: var(--gold);
+            background: rgba(244, 196, 48, 0.18);
+            color: var(--gold);
+            box-shadow: 0 0 10px rgba(244, 196, 48, 0.25);
+        }
+        .tf-phage-name {
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            display: block;
+            line-height: 1.1;
+        }
+        .tf-phage-stat {
+            font-size: 0.56rem;
+            color: var(--ink-4);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-top: 0.18rem;
+            display: block;
+        }
+        .tf-phage-opt.active .tf-phage-stat { color: var(--ink-3); }
+        .tf-phage-lore {
+            font-family: var(--font-body);
+            font-size: 0.74rem;
+            font-style: italic;
+            color: var(--ink-2);
+            line-height: 1.35;
+            margin-top: 0.55rem;
+            padding: 0.55rem 0.7rem;
+            background: rgba(10, 8, 2, 0.45);
+            border-left: 2px solid var(--gold);
+            border-radius: 4px;
+            min-height: 2.6rem;
+        }
+        .tf-dur-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 0.35rem;
+        }
+        .tf-dur-opt { padding: 0.5rem 0.2rem; font-size: 0.74rem; }
+
+        /* Results screen */
+        .tf-results-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.5rem;
+            margin: 0.8rem 0 0.7rem;
+        }
+        .tf-result-cell {
+            background: rgba(10, 8, 2, 0.55);
+            border: 1px solid rgba(244, 196, 48, 0.14);
+            border-radius: 6px;
+            padding: 0.5rem 0.7rem;
+            text-align: left;
+        }
+        .tf-result-key {
+            font-family: var(--font-mono);
+            font-size: 0.58rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--ink-3);
+            display: block;
+        }
+        .tf-result-val {
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            color: var(--gold);
+            font-weight: 700;
+            line-height: 1.1;
+            display: block;
+            margin-top: 0.1rem;
+        }
+        .tf-bio-explain {
+            font-family: var(--font-body);
+            font-size: 0.78rem;
+            color: var(--ink-2);
+            line-height: 1.5;
+            background: rgba(76, 201, 125, 0.06);
+            border-left: 2px solid var(--green);
+            padding: 0.55rem 0.75rem;
+            border-radius: 4px;
+            text-align: left;
+            margin-bottom: 0.7rem;
+        }
+        .tf-bio-explain strong { color: var(--ink); }
+        .tf-result-actions {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .tf-btn-secondary {
+            font-family: var(--font-mono);
+            font-size: 0.74rem;
+            font-weight: 700;
+            letter-spacing: 0.10em;
+            text-transform: uppercase;
+            background: transparent;
+            color: var(--ink-2);
+            border: 1px solid var(--border-strong);
+            padding: 0.55rem 1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all .2s ease;
+        }
+        .tf-btn-secondary:hover { color: var(--gold); border-color: var(--gold); }
+
+        /* Mobile joystick */
+        .tf-joystick {
+            display: none;
+            position: absolute;
+            bottom: 70px;
+            left: 12px;
+            width: 80px; height: 80px;
+            border-radius: 50%;
+            background: rgba(10, 8, 2, 0.55);
+            border: 1.5px solid rgba(244, 196, 48, 0.30);
+            pointer-events: auto;
+            z-index: 3;
+            touch-action: none;
+        }
+        .tf-joystick-thumb {
+            position: absolute;
+            top: 50%; left: 50%;
+            width: 32px; height: 32px;
+            background: var(--gold);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0 14px rgba(244, 196, 48, 0.5);
+            transition: background .15s ease;
+            pointer-events: none;
+        }
+        .tf-joystick.active .tf-joystick-thumb { background: #fff8d6; }
+        @media (hover: none), (pointer: coarse) {
+            .tf-joystick { display: block; }
+        }
 
         .tf-overlay {
             position: absolute;
@@ -3272,11 +3521,13 @@
                             <div class="tf-hud-row">
                                 <div class="tf-stat"><span class="tf-stat-label">SCORE</span><span class="tf-stat-val" id="tfScore">0</span></div>
                                 <div class="tf-stat"><span class="tf-stat-label">LYSES</span><span class="tf-stat-val" id="tfLyses">0</span></div>
-                                <div class="tf-stat"><span class="tf-stat-label">TIME</span><span class="tf-stat-val" id="tfTime">90</span></div>
+                                <div class="tf-stat"><span class="tf-stat-label" id="tfTimeLabel">TIME</span><span class="tf-stat-val" id="tfTime">90</span></div>
+                                <button class="tf-pause-btn" id="tfPauseBtn" title="Pause [P]" aria-label="Pause">⏸</button>
                             </div>
                             <div class="tf-hp-wrap">
                                 <div class="tf-hp-bar"><div class="tf-hp-fill" id="tfHpFill"></div></div>
                                 <span class="tf-hp-label">HP</span>
+                                <span class="tf-level-badge" id="tfLevel">LVL 1</span>
                             </div>
                             <div class="tf-fiber-wrap">
                                 <span class="tf-fiber-label">TAIL FIBER</span>
@@ -3284,29 +3535,25 @@
                                     <button class="tf-fiber-btn active" data-fiber="lps"  title="LPS · [1]">LPS</button>
                                     <button class="tf-fiber-btn"        data-fiber="ompc" title="OmpC · [2]">OmpC</button>
                                     <button class="tf-fiber-btn"        data-fiber="lamb" title="LamB · [3]">LamB</button>
+                                    <button class="tf-fiber-btn"        data-fiber="pili" title="Pili · [4]">Pili</button>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Start / over screen -->
+                        <!-- Setup / start / pause / over screen -->
                         <div class="tf-overlay" id="tfOverlay">
-                            <div class="tf-overlay-card">
-                                <h4 class="tf-overlay-title" id="tfOverlayTitle">TailFiber</h4>
-                                <p class="tf-overlay-text" id="tfOverlayText">
-                                    Dock to bacteria using the matching tail fiber. Dodge antibodies (Y-shapes). Outrun macrophages (red blobs).
-                                </p>
-                                <div class="tf-overlay-keys">
-                                    <span><kbd>↑↓←→</kbd> move</span>
-                                    <span><kbd>1</kbd><kbd>2</kbd><kbd>3</kbd> swap fiber</span>
-                                    <span><kbd>P</kbd> pause</span>
-                                </div>
-                                <button class="tf-btn-play" id="tfPlay">▶ Play</button>
-                                <p class="tf-overlay-foot">90 seconds. As many lyses as you can.</p>
+                            <div class="tf-overlay-card" id="tfOverlayCard">
+                                <!-- Body swapped per screen by JS -->
                             </div>
                         </div>
 
                         <!-- Toast tip -->
                         <div class="tf-toast" id="tfToast"></div>
+
+                        <!-- Mobile joystick -->
+                        <div class="tf-joystick" id="tfJoystick" aria-hidden="true">
+                            <div class="tf-joystick-thumb" id="tfJoyThumb"></div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -3721,6 +3968,7 @@
     const tools = [
         {
             title: "Lysis Curve Plotter",
+            featured: true,
             blurb: "Browser-based R Shiny app for plotting phage lysis curves — 19 metrics, 7 variability modes, full export. Replaces hours of ggplot2 boilerplate per experiment.",
             tech: ["R Shiny", "OD600", "Data Viz"],
             stack: "r",
@@ -3741,6 +3989,7 @@
         },
         {
             title: "FigureLab",
+            featured: true,
             blurb: "Browser-based microscopy figure assembly — no installs, no exports, just open and build publication-ready panels.",
             tech: ["JavaScript", "Microscopy", "Figures"],
             stack: "js",
@@ -3771,6 +4020,7 @@
         },
         {
             title: "CellMorphR",
+            featured: true,
             blurb: "Python pipeline for quantifying cell morphology from microscopy data — statistics, publication-ready plots, reproducible workflows.",
             tech: ["Python", "Morphology", "Stats"],
             stack: "py",
@@ -4385,10 +4635,11 @@
         const container = document.getElementById('toolsGrid');
         const filtered = filter === 'all' ? tools : tools.filter(t => t.stack === filter);
         container.innerHTML = filtered.map(t => `
-            <div class="proj-card" data-stack="${t.stack}">
+            <div class="proj-card ${t.featured ? 'featured' : ''}" data-stack="${t.stack}">
                 <div class="proj-thumb">
                     ${SVG_PREVIEWS[t.preview] || ''}
                     <span class="proj-category-pill science">${t.stack.toUpperCase()}</span>
+                    ${t.featured ? '<span class="proj-featured-badge">★ Featured</span>' : ''}
                     <span class="proj-thumb-label">${t.label}</span>
                 </div>
                 <div class="proj-body">
@@ -4923,9 +5174,32 @@
             ctx.restore();
         }
 
+        // Cursor-aware: drifters get gentle attraction toward the cursor when nearby
+        const cursor = { x: -9999, y: -9999, active: false };
+        document.addEventListener('mousemove', (e) => {
+            if (matchMedia('(hover: none)').matches) return;
+            cursor.x = e.clientX + window.scrollX;
+            cursor.y = e.clientY + window.scrollY;
+            cursor.active = true;
+        }, { passive: true });
+        document.addEventListener('mouseleave', () => { cursor.active = false; });
+
         function tick() {
             ctx.clearRect(0, 0, w, h);
             drifters.forEach(d => {
+                if (cursor.active) {
+                    const dx = cursor.x - d.x;
+                    const dy = cursor.y - d.y;
+                    const dist = Math.hypot(dx, dy);
+                    if (dist < 160 && dist > 0) {
+                        // Subtle attraction (so phages drift toward where you look)
+                        d.vx += (dx / dist) * 0.0035;
+                        d.vy += (dy / dist) * 0.0035;
+                    }
+                }
+                // Light friction to keep speeds tame
+                d.vx *= 0.997;
+                d.vy *= 0.997;
                 d.x += d.vx;
                 d.y += d.vy;
                 d.rot += d.rotSpeed;
@@ -5500,11 +5774,10 @@
     updateScrollUI();
 
     /* ==============================================================
-       TAILFIBER — playable mini-game
-       Concept: control a phage, match tail fiber to bacterial
-       receptor, dodge antibodies + macrophages, lyse before time runs
-       out. Real biology: receptor specificity (LPS/OmpC/LamB),
-       adsorption, host defense, burst.
+       TAILFIBER — playable mini-game v2
+       Real-phage character select, duration choice, 4 receptors,
+       difficulty levels, stats tracking, biology results screen,
+       virtual joystick for touch.
     =============================================================== */
     (function() {
         const wrap = document.getElementById('tfWrap');
@@ -5512,50 +5785,104 @@
         const canvas = document.getElementById('tfCanvas');
         const ctx = canvas.getContext('2d');
         const overlay = document.getElementById('tfOverlay');
-        const overlayTitle = document.getElementById('tfOverlayTitle');
-        const overlayText = document.getElementById('tfOverlayText');
-        const playBtn = document.getElementById('tfPlay');
+        const overlayCard = document.getElementById('tfOverlayCard');
         const scoreEl = document.getElementById('tfScore');
         const lysesEl = document.getElementById('tfLyses');
         const timeEl  = document.getElementById('tfTime');
+        const timeLabelEl = document.getElementById('tfTimeLabel');
         const hpFill  = document.getElementById('tfHpFill');
+        const levelEl = document.getElementById('tfLevel');
+        const pauseBtn = document.getElementById('tfPauseBtn');
         const fiberBtns = document.querySelectorAll('.tf-fiber-btn');
         const toast   = document.getElementById('tfToast');
+        const joystick = document.getElementById('tfJoystick');
+        const joyThumb = document.getElementById('tfJoyThumb');
+        const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
         const RECEPTORS = {
             lps:  { name: 'LPS',  color: '#f4c430', glow: 'rgba(244,196,48,0.45)' },
             ompc: { name: 'OmpC', color: '#4cc97d', glow: 'rgba(76,201,125,0.45)' },
-            lamb: { name: 'LamB', color: '#ff6b8a', glow: 'rgba(255,107,138,0.45)' }
+            lamb: { name: 'LamB', color: '#ff6b8a', glow: 'rgba(255,107,138,0.45)' },
+            pili: { name: 'Pili', color: '#4cb8ff', glow: 'rgba(76,184,255,0.45)' }
         };
-        const FIBER_KEYS = ['lps', 'ompc', 'lamb'];
+        const FIBER_KEYS = ['lps', 'ompc', 'lamb', 'pili'];
+
+        // Phage characters — each with real-biology flavor
+        const PHAGES = {
+            generic: {
+                name: 'φ-Generic', short: 'Generic',
+                preferred: 'lps',
+                speed: 1.0, hpMax: 100, burstBonus: 0, immuneRes: 1.0,
+                bonus: '', lore: 'A versatile coliphage — no specialty, balanced stats. Good for learning.'
+            },
+            t4: {
+                name: 'T4', short: 'T4',
+                preferred: 'ompc',
+                speed: 0.95, hpMax: 110, burstBonus: 30, immuneRes: 0.9,
+                bonus: 'Tail fibers recognize OmpC; thick tube + strong baseplate.',
+                lore: 'T4: large myovirus, contractile tail. Binds OmpC + LPS on E. coli. Big and tough.'
+            },
+            lambda: {
+                name: 'λ (Lambda)', short: 'λ',
+                preferred: 'lamb',
+                speed: 1.15, hpMax: 85, burstBonus: 10, immuneRes: 1.0,
+                bonus: 'Specialized for LamB (maltose porin); fast adsorption.',
+                lore: 'Lambda: temperate siphovirus. J-protein on the tail tip binds LamB on E. coli K-12. Fast and surgical.'
+            },
+            n4: {
+                name: 'N4', short: 'N4',
+                preferred: 'ompc',
+                speed: 0.9, hpMax: 100, burstBonus: 80, immuneRes: 1.0,
+                bonus: 'Lysis-inhibited — bigger burst per lyse.',
+                lore: 'N4: podovirus that delays lysis to maximize burst size. Each lyse rewards bigger bursts and more score.'
+            },
+            icp1: {
+                name: 'ICP1', short: 'ICP1',
+                preferred: 'pili',
+                speed: 1.10, hpMax: 95, burstBonus: 20, immuneRes: 0.65,
+                bonus: 'Anti-CRISPR / immune evasion (-35% damage).',
+                lore: 'ICP1: targets Vibrio cholerae O1 via pili/O-antigen. Carries anti-CRISPR genes — takes less damage from defenses.'
+            }
+        };
+        const PHAGE_KEYS = ['generic', 't4', 'lambda', 'n4', 'icp1'];
+
+        const DURATIONS = [
+            { key: 30,   label: '30s' },
+            { key: 60,   label: '1 min' },
+            { key: 120,  label: '2 min' },
+            { key: 300,  label: '5 min' },
+            { key: 0,    label: '∞' }
+        ];
 
         const TIPS = [
-            'Match your tail fiber color to the receptor.',
-            'Y-shapes are antibodies — they neutralize phages.',
-            'Press 1, 2, 3 to swap tail fiber type instantly.',
-            'Red blobs are macrophages — they engulf you.',
-            'Each correct dock = +100 + a burst of progeny phages.',
-            'No matching bacteria? Switch fiber type — it costs nothing.'
+            'Match your tail fiber color to the receptor on the bacterium.',
+            'Y-shapes are antibodies — neutralize on contact.',
+            'Press 1/2/3/4 (or tap) to swap tail fiber type.',
+            'Red blobs are macrophages — they engulf and damage you.',
+            'Each correct dock = +100, +HP regen, and burst progeny.',
+            'Level up every 30s — more receptor variety, faster antibodies.'
         ];
 
         let W, H, dpr;
-        let state = 'idle'; // idle | playing | paused | over
+        let state = 'setup'; // setup | playing | paused | over
         let player, bacteria, antibodies, macrophages, particles;
-        let score, hp, lyses, timeLeft;
-        let spawnT, abSpawnT, macSpawnT, tipT, tipIdx;
+        let score, hp, lyses, missed, neutralized, macHits, dockAttempts, timeLeft, elapsed;
+        let level = 1;
+        let chosenPhage = 'generic';
+        let chosenDuration = 60;
+        let spawnT, abSpawnT, macSpawnT, tipT, tipIdx, levelT;
         let lastT = 0, rafId = null;
         const keys = {};
         const pointer = { x: 0, y: 0, active: false };
+        const joy = { active: false, dx: 0, dy: 0, cx: 0, cy: 0 };
         let currentFiber = 'lps';
         let shakeT = 0;
 
         function resize() {
             dpr = devicePixelRatio || 1;
             const r = canvas.getBoundingClientRect();
-            W = r.width;
-            H = r.height;
-            canvas.width = W * dpr;
-            canvas.height = H * dpr;
+            W = r.width; H = r.height;
+            canvas.width = W * dpr; canvas.height = H * dpr;
             ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
         }
 
@@ -5564,21 +5891,28 @@
 
         // ===== Entities =====
         function makePlayer() {
+            const p = PHAGES[chosenPhage];
             return {
                 x: W / 2, y: H / 2,
                 vx: 0, vy: 0,
                 size: 11,
-                speed: 0.42,
+                speed: 0.42 * p.speed,
                 friction: 0.92,
                 rot: 0,
                 invuln: 0
             };
         }
+        function activeReceptorsForLevel() {
+            // Level 1: 3 receptors. Level 2+: all 4.
+            if (level === 1) return ['lps', 'ompc', 'lamb'];
+            return ['lps', 'ompc', 'lamb', 'pili'];
+        }
         function makeBacterium() {
             const margin = 60;
             const x = rand(margin, W - margin);
             const y = rand(margin, H - margin);
-            const receptor = FIBER_KEYS[Math.floor(Math.random() * FIBER_KEYS.length)];
+            const pool = activeReceptorsForLevel();
+            const receptor = pool[Math.floor(Math.random() * pool.length)];
             return {
                 x, y,
                 vx: rand(-0.06, 0.06),
@@ -5595,7 +5929,7 @@
         function makeAntibody() {
             const side = Math.floor(Math.random() * 4);
             let x, y, vx, vy;
-            const sp = rand(0.30, 0.55);
+            const sp = rand(0.30, 0.55) * (1 + (level - 1) * 0.18);
             if (side === 0)      { x = -20;     y = rand(0, H); vx = sp;  vy = rand(-0.1, 0.1); }
             else if (side === 1) { x = W + 20;  y = rand(0, H); vx = -sp; vy = rand(-0.1, 0.1); }
             else if (side === 2) { x = rand(0, W); y = -20;     vx = rand(-0.1, 0.1); vy = sp; }
@@ -5605,13 +5939,7 @@
         function makeMacrophage() {
             const x = Math.random() < 0.5 ? -40 : W + 40;
             const y = rand(40, H - 40);
-            return {
-                x, y,
-                vx: 0, vy: 0,
-                size: 28,
-                speed: 0.16,
-                wobble: 0
-            };
+            return { x, y, vx: 0, vy: 0, size: 28, speed: 0.16 + level * 0.02, wobble: 0 };
         }
         function makeParticle(x, y, color, opts = {}) {
             return {
@@ -5626,16 +5954,176 @@
             };
         }
 
+        // ===== UI helpers =====
+        function showToast(msg, ms = 2500) {
+            toast.textContent = msg;
+            toast.classList.add('show');
+            clearTimeout(showToast._t);
+            showToast._t = setTimeout(() => toast.classList.remove('show'), ms);
+        }
+        function setFiber(key) {
+            currentFiber = key;
+            fiberBtns.forEach(b => b.classList.toggle('active', b.dataset.fiber === currentFiber));
+            showToast(`Tail fiber: ${RECEPTORS[key].name}`, 1200);
+        }
+        function updateHP() {
+            const pct = Math.max(0, (hp / PHAGES[chosenPhage].hpMax) * 100);
+            hpFill.style.width = pct + '%';
+            hpFill.classList.toggle('low', pct < 50);
+            hpFill.classList.toggle('critical', pct < 25);
+        }
+        function setLevel(n) {
+            if (level === n) return;
+            level = n;
+            levelEl.textContent = `LVL ${n}`;
+            levelEl.classList.add('bump');
+            setTimeout(() => levelEl.classList.remove('bump'), 600);
+            const msgs = {
+                2: 'Level 2 — Type IV pili emerge. Faster antibodies.',
+                3: 'Level 3 — Macrophages on patrol.',
+                4: 'Level 4 — Maximum immune pressure.'
+            };
+            if (msgs[n]) showToast(msgs[n], 2800);
+        }
+
+        // ===== Screens (overlay content swap) =====
+        function renderSetup() {
+            const p = PHAGES[chosenPhage];
+            overlayCard.innerHTML = `
+                <div class="tf-setup">
+                    <h4 class="tf-setup-title">TailFiber</h4>
+                    <div class="tf-setup-sub">A scientifically-grounded phage simulator</div>
+
+                    <div class="tf-setup-group">
+                        <label class="tf-setup-label">Pick your phage</label>
+                        <div class="tf-phage-grid">
+                            ${PHAGE_KEYS.map(k => `
+                                <button class="tf-phage-opt ${k === chosenPhage ? 'active' : ''}" data-phage="${k}">
+                                    <span class="tf-phage-name">${PHAGES[k].short}</span>
+                                    <span class="tf-phage-stat">${PHAGES[k].preferred.toUpperCase()}</span>
+                                </button>
+                            `).join('')}
+                        </div>
+                        <div class="tf-phage-lore" id="tfPhageLore">${p.lore}</div>
+                    </div>
+
+                    <div class="tf-setup-group">
+                        <label class="tf-setup-label">Duration</label>
+                        <div class="tf-dur-grid">
+                            ${DURATIONS.map(d => `
+                                <button class="tf-dur-opt ${d.key === chosenDuration ? 'active' : ''}" data-dur="${d.key}">${d.label}</button>
+                            `).join('')}
+                        </div>
+                    </div>
+
+                    <div class="tf-overlay-keys">
+                        <span><kbd>↑↓←→</kbd> move</span>
+                        <span><kbd>1</kbd><kbd>2</kbd><kbd>3</kbd><kbd>4</kbd> fiber</span>
+                        <span><kbd>P</kbd> pause</span>
+                    </div>
+
+                    <button class="tf-btn-play" id="tfPlay">▶ Play</button>
+                </div>
+            `;
+
+            // Wire up
+            overlayCard.querySelectorAll('.tf-phage-opt').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    chosenPhage = btn.dataset.phage;
+                    overlayCard.querySelectorAll('.tf-phage-opt').forEach(b => b.classList.toggle('active', b.dataset.phage === chosenPhage));
+                    document.getElementById('tfPhageLore').textContent = PHAGES[chosenPhage].lore;
+                });
+            });
+            overlayCard.querySelectorAll('.tf-dur-opt').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    chosenDuration = parseInt(btn.dataset.dur, 10);
+                    overlayCard.querySelectorAll('.tf-dur-opt').forEach(b => b.classList.toggle('active', parseInt(b.dataset.dur, 10) === chosenDuration));
+                });
+            });
+            document.getElementById('tfPlay').addEventListener('click', startGame);
+        }
+
+        function renderPaused() {
+            overlayCard.innerHTML = `
+                <h4 class="tf-overlay-title">Paused</h4>
+                <p class="tf-overlay-text">Take a breath. Press <kbd>P</kbd> or click resume.</p>
+                <button class="tf-btn-play" id="tfResume">▶ Resume</button>
+                <button class="tf-btn-secondary" id="tfQuit" style="margin-top:0.5rem">↺ Quit run</button>
+            `;
+            document.getElementById('tfResume').addEventListener('click', resumeGame);
+            document.getElementById('tfQuit').addEventListener('click', () => {
+                state = 'setup';
+                renderSetup();
+            });
+        }
+
+        function renderResults() {
+            const acc = dockAttempts > 0 ? Math.round((lyses / dockAttempts) * 100) : 0;
+            const timePlayed = chosenDuration === 0
+                ? `${Math.floor(elapsed)}s survived`
+                : `${chosenDuration - Math.ceil(timeLeft)}s of ${chosenDuration}s`;
+            const p = PHAGES[chosenPhage];
+
+            // Educational explanation tuned to playstyle
+            let bio;
+            if (lyses === 0) {
+                bio = `<strong>Adsorption failed</strong>. In real phage biology, this is what happens when the tail fibers can't recognize a host receptor. <strong>${p.short}</strong> prefers <strong>${RECEPTORS[p.preferred].name}</strong> — try keeping that fiber active and looking for matching bacteria.`;
+            } else if (acc >= 80 && lyses >= 5) {
+                bio = `<strong>High adsorption efficiency.</strong> ${lyses} successful dockings at ${acc}% accuracy means your tail fibers recognized the right receptors quickly — the kind of specificity that gives real phages narrow but devastating host ranges.`;
+            } else if (missed > lyses) {
+                bio = `<strong>Receptor mismatch.</strong> You attempted to dock on the wrong receptor more often than not. In nature this would just be a bounce — phage tail fibers are specific to one or two host molecules (LPS, OmpC, LamB, pili).`;
+            } else if (neutralized >= 4) {
+                bio = `<strong>Heavy neutralization.</strong> ${neutralized} antibody hits — IgG and IgM antibodies coat phages and prevent adsorption. Phage therapy in vivo has to contend with this.`;
+            } else {
+                bio = `<strong>Solid run.</strong> ${lyses} successful lyses with ${neutralized} antibody hits. ${p.short} ${p.bonus || 'kept docking despite the immune barriers'}.`;
+            }
+
+            overlayCard.innerHTML = `
+                <h4 class="tf-overlay-title">${lyses >= 15 ? 'Phage Therapy Success' : lyses >= 8 ? 'Productive Infection' : 'Run Complete'}</h4>
+                <p class="tf-overlay-text">${p.short} · ${timePlayed}</p>
+
+                <div class="tf-results-grid">
+                    <div class="tf-result-cell"><span class="tf-result-key">Score</span><span class="tf-result-val">${score}</span></div>
+                    <div class="tf-result-cell"><span class="tf-result-key">Lyses</span><span class="tf-result-val">${lyses}</span></div>
+                    <div class="tf-result-cell"><span class="tf-result-key">Accuracy</span><span class="tf-result-val">${acc}%</span></div>
+                    <div class="tf-result-cell"><span class="tf-result-key">Mismatched docks</span><span class="tf-result-val">${missed}</span></div>
+                    <div class="tf-result-cell"><span class="tf-result-key">Antibody hits</span><span class="tf-result-val">${neutralized}</span></div>
+                    <div class="tf-result-cell"><span class="tf-result-key">Macrophage hits</span><span class="tf-result-val">${macHits}</span></div>
+                </div>
+
+                <div class="tf-bio-explain">${bio}</div>
+
+                <div class="tf-result-actions">
+                    <button class="tf-btn-play" id="tfReplay">▶ Play again</button>
+                    <button class="tf-btn-secondary" id="tfChange">↺ Change phage</button>
+                </div>
+            `;
+            document.getElementById('tfReplay').addEventListener('click', startGame);
+            document.getElementById('tfChange').addEventListener('click', () => {
+                state = 'setup';
+                renderSetup();
+            });
+        }
+
         // ===== Game lifecycle =====
         function startGame() {
             player = makePlayer();
+            const p = PHAGES[chosenPhage];
             bacteria = []; antibodies = []; macrophages = []; particles = [];
-            score = 0; hp = 100; lyses = 0; timeLeft = 90;
-            spawnT = 0; abSpawnT = 2; macSpawnT = 25;
-            tipT = 6; tipIdx = 0;
-            currentFiber = 'lps';
-            updateFiberUI();
-            // seed bacteria
+            score = 0; hp = p.hpMax; lyses = 0;
+            missed = 0; neutralized = 0; macHits = 0; dockAttempts = 0;
+            timeLeft = chosenDuration; elapsed = 0;
+            level = 1;
+            spawnT = 0; abSpawnT = 2; macSpawnT = 28;
+            tipT = 5; tipIdx = 0; levelT = 30;
+            currentFiber = p.preferred;
+            fiberBtns.forEach(b => b.classList.toggle('active', b.dataset.fiber === currentFiber));
+            updateHP();
+            levelEl.textContent = 'LVL 1';
+            scoreEl.textContent = '0';
+            lysesEl.textContent = '0';
+            timeLabelEl.textContent = chosenDuration === 0 ? 'TIME' : 'TIME';
+            timeEl.textContent = chosenDuration === 0 ? '0' : chosenDuration;
             for (let i = 0; i < 4; i++) bacteria.push(makeBacterium());
             state = 'playing';
             overlay.classList.add('hidden');
@@ -5646,18 +6134,14 @@
         }
         function endGame() {
             state = 'over';
+            renderResults();
             overlay.classList.remove('hidden');
-            overlayTitle.textContent = lyses >= 10 ? 'Phage Therapy Success' : 'Run Complete';
-            overlayText.innerHTML = `You lysed <strong style="color:var(--gold)">${lyses}</strong> bacteria for <strong style="color:var(--gold)">${score}</strong> points. ${lyses >= 15 ? "That's tournament territory." : lyses >= 8 ? "Solid run." : "Try a different fiber strategy."}`;
-            playBtn.textContent = '▶ Play again';
         }
         function pauseGame() {
             if (state !== 'playing') return;
             state = 'paused';
+            renderPaused();
             overlay.classList.remove('hidden');
-            overlayTitle.textContent = 'Paused';
-            overlayText.textContent = 'Press P or click play to resume.';
-            playBtn.textContent = '▶ Resume';
         }
         function resumeGame() {
             state = 'playing';
@@ -5666,44 +6150,40 @@
             tick(lastT);
         }
 
-        function showToast(msg, ms = 2500) {
-            toast.textContent = msg;
-            toast.classList.add('show');
-            clearTimeout(showToast._t);
-            showToast._t = setTimeout(() => toast.classList.remove('show'), ms);
-        }
-
-        function setFiber(key) {
-            currentFiber = key;
-            updateFiberUI();
-            showToast(`Tail fiber: ${RECEPTORS[key].name}`, 1500);
-        }
-        function updateFiberUI() {
-            fiberBtns.forEach(b => b.classList.toggle('active', b.dataset.fiber === currentFiber));
-        }
-
-        function hurt(amount) {
+        function hurt(amount, source) {
             if (player.invuln > 0) return;
-            hp = Math.max(0, hp - amount);
+            const p = PHAGES[chosenPhage];
+            const actual = amount * p.immuneRes;
+            hp = Math.max(0, hp - actual);
             player.invuln = 0.6;
             wrap.classList.add('hurt');
             shakeT = 0.25;
             setTimeout(() => wrap.classList.remove('hurt'), 320);
+            if (source === 'antibody') neutralized++;
+            else if (source === 'macrophage') macHits++;
             updateHP();
             if (hp <= 0) endGame();
-        }
-        function updateHP() {
-            hpFill.style.width = hp + '%';
-            hpFill.classList.toggle('low', hp < 50);
-            hpFill.classList.toggle('critical', hp < 25);
         }
 
         // ===== Update loop =====
         function update(dt) {
+            elapsed += dt;
+
             // Time
-            timeLeft -= dt;
-            if (timeLeft <= 0) { timeLeft = 0; endGame(); return; }
-            timeEl.textContent = Math.ceil(timeLeft);
+            if (chosenDuration > 0) {
+                timeLeft -= dt;
+                if (timeLeft <= 0) { timeLeft = 0; endGame(); return; }
+                timeEl.textContent = Math.ceil(timeLeft);
+            } else {
+                timeEl.textContent = Math.floor(elapsed);
+            }
+
+            // Level progression every 30s
+            levelT -= dt;
+            if (levelT <= 0) {
+                setLevel(level + 1);
+                levelT = 30;
+            }
 
             // Player input
             let dx = 0, dy = 0;
@@ -5711,12 +6191,15 @@
             if (keys['ArrowRight'] || keys['d'] || keys['D']) dx += 1;
             if (keys['ArrowUp']    || keys['w'] || keys['W']) dy -= 1;
             if (keys['ArrowDown']  || keys['s'] || keys['S']) dy += 1;
-            // Touch / mouse pointer follow
             if (pointer.active) {
                 const px = pointer.x - player.x;
                 const py = pointer.y - player.y;
                 const d = Math.hypot(px, py);
                 if (d > 8) { dx += px / d; dy += py / d; }
+            }
+            if (joy.active) {
+                dx += joy.dx;
+                dy += joy.dy;
             }
             const mag = Math.hypot(dx, dy);
             if (mag > 0) {
@@ -5728,41 +6211,50 @@
             player.vy *= player.friction;
             player.x += player.vx;
             player.y += player.vy;
-            // Bounds
             const m = player.size;
             if (player.x < m) { player.x = m; player.vx *= -0.4; }
             if (player.x > W - m) { player.x = W - m; player.vx *= -0.4; }
             if (player.y < m) { player.y = m; player.vy *= -0.4; }
             if (player.y > H - m) { player.y = H - m; player.vy *= -0.4; }
-            player.rot = Math.atan2(player.vy, player.vx);
+            if (Math.abs(player.vx) > 0.05 || Math.abs(player.vy) > 0.05) {
+                player.rot = Math.atan2(player.vy, player.vx);
+            }
             player.invuln = Math.max(0, player.invuln - dt);
 
-            // Bacteria
+            // Bacteria: drift, gentle attraction toward player when near
             bacteria.forEach(b => {
                 b.x += b.vx; b.y += b.vy; b.rot += b.rotSpeed; b.pulse += dt * 2;
                 if (b.x < 20 || b.x > W - 20) b.vx *= -1;
                 if (b.y < 20 || b.y > H - 20) b.vy *= -1;
-                // Collision with player
+                const px = player.x - b.x, py = player.y - b.y;
+                const d = Math.hypot(px, py);
+                if (d < 70 && d > 0) {
+                    b.vx += (px / d) * 0.004;
+                    b.vy += (py / d) * 0.004;
+                }
+                // Collision
                 const r = (player.size + b.rad) * 0.95;
                 if (dist2(player, b) < r * r) {
+                    dockAttempts++;
                     if (b.receptor === currentFiber) {
-                        // SUCCESS — lyse
-                        score += 100; lyses++;
+                        const p = PHAGES[chosenPhage];
+                        const burstBase = 100;
+                        score += burstBase + p.burstBonus;
+                        lyses++;
                         scoreEl.textContent = score;
                         lysesEl.textContent = lyses;
-                        hp = Math.min(100, hp + 6); updateHP();
-                        // Burst particles
+                        hp = Math.min(p.hpMax, hp + 6); updateHP();
                         const c = RECEPTORS[b.receptor].color;
-                        for (let i = 0; i < 18; i++) {
+                        const burstCount = 18 + Math.min(20, Math.floor(p.burstBonus / 5));
+                        for (let i = 0; i < burstCount; i++) {
                             particles.push(makeParticle(b.x, b.y, c, { life: rand(0.5, 1.0), kind: 'phage', size: rand(2, 4) }));
                         }
                         b.hp = 0;
-                        // Random tip occasionally
-                        if (lyses === 3) showToast('Tip: switch fibers with 1, 2, 3.', 2400);
+                        if (lyses === 3) showToast('Tip: swap fibers with 1/2/3/4.', 2400);
                         if (lyses === 6) showToast('Tip: avoid the Y-shaped antibodies.', 2400);
                         if (lyses === 10) showToast('Excellent adsorption efficiency!', 2400);
                     } else {
-                        // Wrong fiber — bounce
+                        missed++;
                         const a = Math.atan2(player.y - b.y, player.x - b.x);
                         player.vx += Math.cos(a) * 2.2;
                         player.vy += Math.sin(a) * 2.2;
@@ -5777,25 +6269,24 @@
 
             // Spawn bacteria
             spawnT -= dt;
-            if (spawnT <= 0 && bacteria.length < 6) {
+            const maxBact = 5 + Math.min(3, level - 1);
+            if (spawnT <= 0 && bacteria.length < maxBact) {
                 bacteria.push(makeBacterium());
-                spawnT = rand(1.6, 2.8);
+                spawnT = rand(1.6, 2.8) - (level - 1) * 0.15;
             }
 
-            // Antibodies
+            // Antibodies — home toward player
             antibodies.forEach(a => {
                 a.x += a.vx; a.y += a.vy; a.rot += a.rotSpeed;
-                // Light gravity toward player
                 const px = player.x - a.x, py = player.y - a.y;
                 const d = Math.hypot(px, py);
                 if (d < 200) {
                     a.vx += (px / d) * 0.005;
                     a.vy += (py / d) * 0.005;
                 }
-                // Collision
                 const r = (player.size + a.size) * 0.7;
                 if (dist2(player, a) < r * r) {
-                    hurt(12);
+                    hurt(12, 'antibody');
                     a.dead = true;
                     for (let i = 0; i < 6; i++) particles.push(makeParticle(a.x, a.y, '#c4a8ff', { life: 0.5 }));
                 }
@@ -5804,35 +6295,33 @@
             abSpawnT -= dt;
             if (abSpawnT <= 0) {
                 antibodies.push(makeAntibody());
-                // Faster as time goes on
-                const intensity = 1 - (timeLeft / 90);
-                abSpawnT = rand(1.4, 3.5) - intensity * 1.0;
+                const intensity = Math.min(1, elapsed / 90);
+                abSpawnT = Math.max(0.6, rand(1.4, 3.5) - intensity * 1.2 - (level - 1) * 0.3);
             }
 
-            // Macrophages — appear later
+            // Macrophages — from level 3 onwards, or 60s in
             macSpawnT -= dt;
-            if (macSpawnT <= 0 && macrophages.length < 2 && timeLeft < 70) {
+            const macActive = level >= 3 || elapsed > 55;
+            if (macSpawnT <= 0 && macrophages.length < 2 && macActive) {
                 macrophages.push(makeMacrophage());
-                macSpawnT = rand(20, 32);
+                macSpawnT = rand(22, 34) - (level - 1) * 2;
                 showToast('⚠ Macrophage incoming!', 2200);
             }
-            macrophages.forEach(m => {
-                const px = player.x - m.x, py = player.y - m.y;
+            macrophages.forEach(mac => {
+                const px = player.x - mac.x, py = player.y - mac.y;
                 const d = Math.hypot(px, py);
-                if (d > 0) { m.vx = (px / d) * m.speed; m.vy = (py / d) * m.speed; }
-                m.x += m.vx; m.y += m.vy;
-                m.wobble += dt * 3;
-                const r = (player.size + m.size) * 0.7;
-                if (dist2(player, m) < r * r) hurt(18);
+                if (d > 0) { mac.vx = (px / d) * mac.speed; mac.vy = (py / d) * mac.speed; }
+                mac.x += mac.vx; mac.y += mac.vy;
+                mac.wobble += dt * 3;
+                const r = (player.size + mac.size) * 0.7;
+                if (dist2(player, mac) < r * r) hurt(18, 'macrophage');
             });
 
             // Particles
             particles.forEach(p => {
                 p.age += dt;
-                p.x += p.vx;
-                p.y += p.vy;
-                p.vx *= 0.96;
-                p.vy *= 0.96;
+                p.x += p.vx; p.y += p.vy;
+                p.vx *= 0.96; p.vy *= 0.96;
             });
             particles = particles.filter(p => p.age < p.life);
 
@@ -5853,9 +6342,8 @@
             ctx.save();
             ctx.translate(player.x, player.y);
             ctx.rotate(player.rot + Math.PI / 2);
-            // Capsid hexagon
-            ctx.beginPath();
             const s = player.size;
+            ctx.beginPath();
             for (let i = 0; i < 6; i++) {
                 const a = (Math.PI * 2 / 6) * i - Math.PI / 2;
                 const px = Math.cos(a) * s * 0.7;
@@ -5863,32 +6351,23 @@
                 i === 0 ? ctx.moveTo(px, py) : ctx.lineTo(px, py);
             }
             ctx.closePath();
-            ctx.fillStyle = `${c}cc`;
-            ctx.fill();
+            ctx.fillStyle = `${c}cc`; ctx.fill();
             ctx.lineWidth = 1.5;
             ctx.strokeStyle = c;
             ctx.shadowColor = c;
             ctx.shadowBlur = player.invuln > 0 ? 0 : 8;
             ctx.stroke();
             ctx.shadowBlur = 0;
-            // Tail
             ctx.beginPath();
-            ctx.moveTo(0, s * 0.7);
-            ctx.lineTo(0, s * 1.6);
-            ctx.lineWidth = 1.5;
-            ctx.stroke();
-            // Baseplate
+            ctx.moveTo(0, s * 0.7); ctx.lineTo(0, s * 1.6);
+            ctx.lineWidth = 1.5; ctx.stroke();
             ctx.beginPath();
-            ctx.moveTo(-s * 0.4, s * 1.5);
-            ctx.lineTo(s * 0.4, s * 1.5);
+            ctx.moveTo(-s * 0.4, s * 1.5); ctx.lineTo(s * 0.4, s * 1.5);
             ctx.stroke();
-            // Fibers (colored to match current spec)
             ctx.beginPath();
             ctx.moveTo(0, s * 1.6); ctx.lineTo(-s * 0.8, s * 2.2);
             ctx.moveTo(0, s * 1.6); ctx.lineTo(s * 0.8, s * 2.2);
-            ctx.lineWidth = 1.4;
-            ctx.stroke();
-            // Invuln flicker
+            ctx.lineWidth = 1.4; ctx.stroke();
             if (player.invuln > 0 && Math.floor(player.invuln * 20) % 2 === 0) {
                 ctx.globalAlpha = 0.3;
                 ctx.fillStyle = '#fff';
@@ -5905,7 +6384,6 @@
             ctx.save();
             ctx.translate(b.x, b.y);
             ctx.rotate(b.rot);
-            // Body (capsule)
             const len = b.len, rad = b.rad;
             const grd = ctx.createLinearGradient(-len/2, 0, len/2, 0);
             grd.addColorStop(0, 'rgba(26, 128, 64, 0.25)');
@@ -5917,12 +6395,8 @@
             ctx.lineTo(-len/2 + rad, rad);
             ctx.arc(-len/2 + rad, 0, rad, Math.PI/2, Math.PI*1.5);
             ctx.closePath();
-            ctx.fillStyle = grd;
-            ctx.fill();
-            ctx.strokeStyle = '#1a8040';
-            ctx.lineWidth = 1.5;
-            ctx.stroke();
-            // Receptor hotspots (3 spots)
+            ctx.fillStyle = grd; ctx.fill();
+            ctx.strokeStyle = '#1a8040'; ctx.lineWidth = 1.5; ctx.stroke();
             ctx.shadowColor = rec.glow;
             ctx.shadowBlur = 12 + Math.sin(b.pulse) * 3;
             ctx.fillStyle = rec.color;
@@ -5931,9 +6405,24 @@
                 ctx.arc(i * (len/3 - 4), 0, 3.2, 0, Math.PI * 2);
                 ctx.fill();
             }
+            // Pili decoration if this is a pili bacterium
+            if (b.receptor === 'pili') {
+                ctx.shadowBlur = 0;
+                ctx.strokeStyle = rec.color;
+                ctx.lineWidth = 1;
+                for (let i = -1; i <= 1; i++) {
+                    ctx.beginPath();
+                    ctx.moveTo(i * (len/3 - 4), -rad);
+                    ctx.lineTo(i * (len/3 - 4) + (i || 1) * 4, -rad - 6);
+                    ctx.stroke();
+                    ctx.beginPath();
+                    ctx.moveTo(i * (len/3 - 4), rad);
+                    ctx.lineTo(i * (len/3 - 4) + (i || 1) * 4, rad + 6);
+                    ctx.stroke();
+                }
+            }
             ctx.shadowBlur = 0;
             ctx.restore();
-            // Receptor label (small, above)
             ctx.save();
             ctx.font = 'bold 9px JetBrains Mono, monospace';
             ctx.fillStyle = rec.color;
@@ -5947,19 +6436,13 @@
             ctx.save();
             ctx.translate(a.x, a.y);
             ctx.rotate(a.rot);
-            ctx.strokeStyle = '#c4a8ff';
-            ctx.lineWidth = 1.5;
-            ctx.lineCap = 'round';
+            ctx.strokeStyle = '#c4a8ff'; ctx.lineWidth = 1.5; ctx.lineCap = 'round';
             const s = a.size;
             ctx.beginPath();
-            ctx.moveTo(0, s);
-            ctx.lineTo(0, -s * 0.2);
-            ctx.moveTo(0, -s * 0.2);
-            ctx.lineTo(-s * 0.7, -s);
-            ctx.moveTo(0, -s * 0.2);
-            ctx.lineTo(s * 0.7, -s);
+            ctx.moveTo(0, s); ctx.lineTo(0, -s * 0.2);
+            ctx.moveTo(0, -s * 0.2); ctx.lineTo(-s * 0.7, -s);
+            ctx.moveTo(0, -s * 0.2); ctx.lineTo(s * 0.7, -s);
             ctx.stroke();
-            // Fab tips
             ctx.fillStyle = 'rgba(196, 168, 255, 0.4)';
             ctx.beginPath();
             ctx.arc(-s * 0.7, -s, 1.6, 0, Math.PI * 2);
@@ -5973,16 +6456,10 @@
             ctx.translate(m.x, m.y);
             const s = m.size + Math.sin(m.wobble) * 1.5;
             ctx.fillStyle = 'rgba(196, 30, 58, 0.18)';
-            ctx.beginPath();
-            ctx.arc(0, 0, s + 4, 0, Math.PI * 2);
-            ctx.fill();
+            ctx.beginPath(); ctx.arc(0, 0, s + 4, 0, Math.PI * 2); ctx.fill();
             ctx.fillStyle = 'rgba(196, 30, 58, 0.42)';
-            ctx.beginPath();
-            ctx.arc(0, 0, s, 0, Math.PI * 2);
-            ctx.fill();
-            // Pseudopod tendrils
-            ctx.strokeStyle = 'rgba(196, 30, 58, 0.55)';
-            ctx.lineWidth = 1;
+            ctx.beginPath(); ctx.arc(0, 0, s, 0, Math.PI * 2); ctx.fill();
+            ctx.strokeStyle = 'rgba(196, 30, 58, 0.55)'; ctx.lineWidth = 1;
             for (let i = 0; i < 6; i++) {
                 const a = (Math.PI * 2 / 6) * i + m.wobble * 0.2;
                 ctx.beginPath();
@@ -6012,19 +6489,14 @@
             ctx.lineWidth = 1;
             const step = 30;
             for (let x = 0; x < W; x += step) {
-                ctx.beginPath();
-                ctx.moveTo(x, 0); ctx.lineTo(x, H);
-                ctx.stroke();
+                ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, H); ctx.stroke();
             }
             for (let y = 0; y < H; y += step) {
-                ctx.beginPath();
-                ctx.moveTo(0, y); ctx.lineTo(W, y);
-                ctx.stroke();
+                ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke();
             }
         }
 
         function render() {
-            // Camera shake
             const sx = shakeT > 0 ? (Math.random() - 0.5) * shakeT * 14 : 0;
             const sy = shakeT > 0 ? (Math.random() - 0.5) * shakeT * 14 : 0;
             ctx.setTransform(dpr, 0, 0, dpr, sx * dpr, sy * dpr);
@@ -6048,28 +6520,24 @@
 
         // ===== Input =====
         function onKeyDown(e) {
-            if (!wrap.matches(':hover, :focus-within') && document.activeElement !== wrap && state !== 'playing') return;
-            // Only intercept keys when game has focus / is playing
             const k = e.key;
-            if (k === 'ArrowUp' || k === 'ArrowDown' || k === 'ArrowLeft' || k === 'ArrowRight' ||
-                k === 'w' || k === 'a' || k === 's' || k === 'd' ||
-                k === 'W' || k === 'A' || k === 'S' || k === 'D') {
-                if (state === 'playing') { keys[k] = true; e.preventDefault(); }
-            } else if (k === '1') { setFiber('lps'); }
-            else if (k === '2') { setFiber('ompc'); }
-            else if (k === '3') { setFiber('lamb'); }
-            else if (k === 'p' || k === 'P') {
-                if (state === 'playing') pauseGame();
-                else if (state === 'paused') resumeGame();
+            if (state === 'playing') {
+                if (['ArrowUp','ArrowDown','ArrowLeft','ArrowRight','w','a','s','d','W','A','S','D'].includes(k)) {
+                    keys[k] = true; e.preventDefault(); return;
+                }
+                if (k === '1') { setFiber('lps'); return; }
+                if (k === '2') { setFiber('ompc'); return; }
+                if (k === '3') { setFiber('lamb'); return; }
+                if (k === '4') { setFiber('pili'); return; }
+                if (k === 'p' || k === 'P') { pauseGame(); return; }
+            } else if (state === 'paused') {
+                if (k === 'p' || k === 'P') { resumeGame(); }
             }
         }
-        function onKeyUp(e) {
-            keys[e.key] = false;
-        }
+        function onKeyUp(e) { keys[e.key] = false; }
         document.addEventListener('keydown', onKeyDown);
         document.addEventListener('keyup', onKeyUp);
 
-        // Pointer (mouse + touch)
         function updatePointer(e) {
             const r = canvas.getBoundingClientRect();
             const t = e.touches ? e.touches[0] : e;
@@ -6078,16 +6546,55 @@
         }
         wrap.addEventListener('mousedown', (e) => {
             if (state !== 'playing') return;
+            if (e.target.closest('.tf-pause-btn, .tf-fiber-btn, .tf-joystick')) return;
             pointer.active = true; updatePointer(e); e.preventDefault();
         });
-        wrap.addEventListener('mousemove', (e) => {
-            if (!pointer.active) return;
-            updatePointer(e);
-        });
+        wrap.addEventListener('mousemove', (e) => { if (pointer.active) updatePointer(e); });
         wrap.addEventListener('mouseup', () => { pointer.active = false; });
         wrap.addEventListener('mouseleave', () => { pointer.active = false; });
+
+        // Joystick (touch)
+        function joyStart(e) {
+            const t = e.touches ? e.touches[0] : e;
+            const r = joystick.getBoundingClientRect();
+            joy.cx = r.left + r.width / 2;
+            joy.cy = r.top + r.height / 2;
+            joy.active = true;
+            joystick.classList.add('active');
+            joyMove(e);
+            e.preventDefault();
+        }
+        function joyMove(e) {
+            if (!joy.active) return;
+            const t = e.touches ? e.touches[0] : e;
+            let dx = t.clientX - joy.cx;
+            let dy = t.clientY - joy.cy;
+            const max = 32;
+            const d = Math.hypot(dx, dy);
+            if (d > max) { dx = (dx / d) * max; dy = (dy / d) * max; }
+            joyThumb.style.transform = `translate(calc(-50% + ${dx}px), calc(-50% + ${dy}px))`;
+            joy.dx = dx / max;
+            joy.dy = dy / max;
+            e.preventDefault();
+        }
+        function joyEnd() {
+            joy.active = false;
+            joy.dx = 0; joy.dy = 0;
+            joystick.classList.remove('active');
+            joyThumb.style.transform = 'translate(-50%, -50%)';
+        }
+        joystick.addEventListener('touchstart', joyStart, { passive: false });
+        joystick.addEventListener('touchmove',  joyMove,  { passive: false });
+        joystick.addEventListener('touchend',   joyEnd);
+        joystick.addEventListener('touchcancel',joyEnd);
+        joystick.addEventListener('mousedown',  joyStart);
+        window.addEventListener('mousemove',    (e) => { if (joy.active) joyMove(e); });
+        window.addEventListener('mouseup',      joyEnd);
+
+        // Non-joystick touch on the play field for drag-to-move
         wrap.addEventListener('touchstart', (e) => {
             if (state !== 'playing') return;
+            if (e.target.closest('.tf-pause-btn, .tf-fiber-btn, .tf-joystick')) return;
             pointer.active = true; updatePointer(e); e.preventDefault();
         }, { passive: false });
         wrap.addEventListener('touchmove', (e) => {
@@ -6096,16 +6603,19 @@
         }, { passive: false });
         wrap.addEventListener('touchend', () => { pointer.active = false; });
 
-        // Fiber buttons
-        fiberBtns.forEach(b => b.addEventListener('click', () => setFiber(b.dataset.fiber)));
+        // Fiber buttons (works during play)
+        fiberBtns.forEach(b => b.addEventListener('click', () => {
+            if (state === 'playing') setFiber(b.dataset.fiber);
+        }));
 
-        // Play button
-        playBtn.addEventListener('click', () => {
-            if (state === 'paused') resumeGame();
-            else startGame();
+        // Pause button
+        pauseBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (state === 'playing') pauseGame();
+            else if (state === 'paused') resumeGame();
         });
 
-        // Resize observation
+        // Resize
         const ro = new ResizeObserver(resize);
         ro.observe(canvas);
         resize();
@@ -6114,17 +6624,19 @@
         updateHP();
         scoreEl.textContent = '0';
         lysesEl.textContent = '0';
-        timeEl.textContent = '90';
+        timeEl.textContent = chosenDuration === 0 ? '0' : chosenDuration;
+        levelEl.textContent = 'LVL 1';
+        renderSetup();
 
-        // Render an idle frame
+        // Decorative idle render so the canvas isn't blank
         function idleFrame() {
             ctx.clearRect(0, 0, W, H);
             drawGrid();
-            // Decorative bacteria for idle look
             const decor = [
                 { x: W * 0.30, y: H * 0.42, len: 36, rad: 11, rot: 0.2, pulse: 0, receptor: 'lps' },
                 { x: W * 0.70, y: H * 0.58, len: 38, rad: 12, rot: -0.4, pulse: 1.0, receptor: 'ompc' },
-                { x: W * 0.52, y: H * 0.26, len: 32, rad: 10, rot: 0.6, pulse: 2.0, receptor: 'lamb' }
+                { x: W * 0.50, y: H * 0.30, len: 32, rad: 10, rot: 0.6, pulse: 2.0, receptor: 'lamb' },
+                { x: W * 0.30, y: H * 0.74, len: 34, rad: 11, rot: 0.3, pulse: 1.5, receptor: 'pili' }
             ];
             decor.forEach(drawBacterium);
         }
