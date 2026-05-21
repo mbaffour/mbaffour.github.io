@@ -219,7 +219,23 @@
             border-radius: 50%;
             box-shadow: 0 0 12px var(--gold);
             animation: pulse 2.4s ease-in-out infinite;
+            transition: opacity .3s ease, transform .3s ease;
         }
+        .nav-avatar {
+            width: 30px; height: 30px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 1.5px solid var(--gold);
+            box-shadow: 0 0 10px rgba(244, 196, 48, 0.4);
+            opacity: 0;
+            transform: scale(0.6);
+            transition: opacity .3s ease, transform .35s cubic-bezier(.34, 1.56, .64, 1);
+            display: none;
+            position: absolute;
+            margin-left: -2px;
+        }
+        .nav-avatar.show { opacity: 1; transform: scale(1); display: inline-block; position: static; }
+        .nav-logo:has(.nav-avatar.show) .dot { opacity: 0; transform: scale(0); width: 0; margin: 0; }
         @keyframes pulse {
             0%, 100% { opacity: 0.6; transform: scale(1); }
             50%      { opacity: 1;   transform: scale(1.18); }
@@ -595,7 +611,9 @@
             0%, 100% { transform: translateY(0) rotate(0); }
             50%      { transform: translateY(-3px) rotate(-6deg); }
         }
-        .now-badge .now-text { display: flex; flex-direction: column; line-height: 1.3; }
+        .now-badge .now-text { display: flex; flex-direction: column; line-height: 1.3; min-width: 0; }
+        .now-badge .now-body, .now-badge .now-icon { transition: opacity .35s ease; }
+        .now-badge.fading .now-body, .now-badge.fading .now-icon { opacity: 0; }
         .now-badge .now-label {
             font-family: var(--font-mono);
             font-size: 0.62rem;
@@ -1014,6 +1032,20 @@
             color: var(--gold);
             border-color: var(--gold);
         }
+        .filter-count {
+            display: inline-block;
+            margin-left: 0.4rem;
+            padding: 1px 6px;
+            background: rgba(244, 196, 48, 0.12);
+            border-radius: 50px;
+            font-size: 0.68rem;
+            color: var(--ink-3);
+            font-weight: 700;
+        }
+        .filter-btn.active .filter-count {
+            background: var(--gold);
+            color: var(--bg);
+        }
 
         .pub-list {
             display: flex;
@@ -1092,6 +1124,8 @@
         .pub-status.published { color: var(--green); border-color: var(--green); background: var(--green-dim); }
         .pub-status.preprint  { color: var(--gold);  border-color: var(--gold);  background: var(--gold-dim); }
         .pub-status.in-review { color: var(--red);   border-color: var(--red);   background: var(--red-dim); }
+        .pub-status.talk      { color: #c4a8ff; border-color: rgba(196,168,255,0.6); background: rgba(196,168,255,0.10); }
+        .pub-status.poster    { color: #ff9b6c; border-color: rgba(255,155,108,0.6); background: rgba(255,155,108,0.10); }
         .pub-doi a {
             font-family: var(--font-mono);
             font-size: 0.78rem;
@@ -1653,6 +1687,14 @@
             line-height: 1.75;
             margin-bottom: 1.2rem;
         }
+        .about-cv-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border);
+        }
         .about-text p:first-child::first-letter {
             font-family: var(--font-display);
             font-size: 3rem;
@@ -1974,7 +2016,8 @@
     <nav class="nav" id="navbar">
         <div class="nav-inner">
             <a href="#hero" class="nav-logo">
-                <span class="dot"></span>
+                <img src="headshot-sm.jpg" alt="" class="nav-avatar" id="navAvatar" aria-hidden="true">
+                <span class="dot" id="navDot"></span>
                 <span>M. Baffour Awuah</span>
             </a>
             <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">☰</button>
@@ -2035,7 +2078,7 @@
             </div>
 
             <div class="now-badge" id="nowBadge" aria-label="Current status">
-                <span class="now-icon">🦠</span>
+                <span class="now-icon" id="nowIcon">🦠</span>
                 <span class="now-text">
                     <span class="now-label">Currently</span>
                     <span class="now-body" id="nowBody">Wrapping up the N4 lysis preprint &amp; building new R Shiny tools for the lab.</span>
@@ -2100,6 +2143,11 @@
                 <p>My primary project decodes <em>lysis inhibition</em> in bacteriophage N4 — the phenomenon where the phage strategically delays host cell lysis to transform each infected bacterium into a high-output viral factory (up to ~3,000 viral particles per cell within 3–6 hours). By reverse-engineering these decision-making systems, I aim to power high-titer phage production for therapy and programmable microbial biofactories.</p>
                 <p>Alongside the wet lab, I build open-source tools. Not because they'll go on my CV, but because writing the same <code>ggplot2</code> boilerplate twelve times will make anyone snap. Every tool here was built to solve a real problem I or someone next to me hit. Most are browser-based, privacy-first, and zero-install.</p>
                 <p>As I approach the completion of my doctoral studies, I'm interested in roles where wet-lab phage biology, computational genomics, and tool-building all matter — biotech R&amp;D, AI-for-science startups, translational research labs, or scientific software teams.</p>
+                <div class="about-cv-actions">
+                    <a href="cv & resume/Michael_Baffour_Awuah_CV.html" class="btn btn-primary" target="_blank" rel="noopener">📄 View HTML CV</a>
+                    <a href="cv & resume/Michael_Baffour_Awuah_CV.pdf" class="btn btn-secondary" download>⬇ CV (PDF)</a>
+                    <a href="cv & resume/Michael B Awuah.pdf" class="btn btn-ghost" download>⬇ Résumé (PDF)</a>
+                </div>
             </div>
         </div>
     </section>
@@ -2323,19 +2371,14 @@
 
     <hr class="section-divider">
 
-    <!-- ===== PUBLICATIONS ===== -->
+    <!-- ===== OUTPUT (Publications + Talks) ===== -->
     <section class="section fade-in" id="publications">
         <div class="section-header">
-            <span class="section-label">Peer-reviewed Work</span>
-            <h2 class="section-title"><span class="highlight">Publications</span> &amp; Preprints</h2>
-            <p class="section-subtitle">Where the science lives. More in the pipeline — links update as papers post.</p>
+            <span class="section-label">Peer-Reviewed Work · Talks · Posters</span>
+            <h2 class="section-title">Scientific <span class="highlight">Output</span></h2>
+            <p class="section-subtitle">Papers, preprints, and talks. More in the pipeline — links update as work lands.</p>
         </div>
-        <div class="pub-filters" id="pubFilters">
-            <button class="filter-btn active" data-filter="all">All</button>
-            <button class="filter-btn" data-filter="published">Published</button>
-            <button class="filter-btn" data-filter="preprint">Preprint</button>
-            <button class="filter-btn" data-filter="in-review">In Review</button>
-        </div>
+        <div class="pub-filters" id="pubFilters"></div>
         <div class="pub-list" id="pubList"></div>
     </section>
 
@@ -2348,12 +2391,7 @@
             <h2 class="section-title">Scientific <span class="highlight">Tools</span></h2>
             <p class="section-subtitle">Software I built because I needed it &mdash; and shipped because other labs might too. Browser-first, privacy-first, reproducible by default.</p>
         </div>
-        <div class="pub-filters" id="toolFilters">
-            <button class="filter-btn active" data-filter="all">All Tools</button>
-            <button class="filter-btn" data-filter="r">R / Shiny</button>
-            <button class="filter-btn" data-filter="js">Web / JS</button>
-            <button class="filter-btn" data-filter="py">Python</button>
-        </div>
+        <div class="pub-filters" id="toolFilters"></div>
         <div class="card-grid" id="toolsGrid"></div>
     </section>
 
@@ -2435,6 +2473,7 @@
             <h2 class="section-title">Life in the <span class="highlight">Lab</span></h2>
             <p class="section-subtitle">Whiteboards, conferences, outreach, and the occasional rocket engine — the science doesn't happen in a vacuum.</p>
         </div>
+        <div class="pub-filters" id="galleryFilters"></div>
         <div class="gallery-grid" id="galleryGrid"></div>
     </section>
 
@@ -2446,25 +2485,6 @@
             <figcaption class="lightbox-cap" id="lightboxCap"></figcaption>
         </figure>
     </div>
-
-    <hr class="section-divider">
-
-    <!-- ===== CV ===== -->
-    <section class="section fade-in" id="cv">
-        <div class="section-header">
-            <span class="section-label">Credentials</span>
-            <h2 class="section-title">Curriculum <span class="highlight">Vitae</span></h2>
-            <p class="section-subtitle">The long-form version, in PDF and HTML.</p>
-        </div>
-        <div class="cv-block">
-            <p>PhD Candidate in Microbiology at Texas A&amp;M University specializing in bacteriophage biology, molecular engineering, computational genomics, and scientific software. Experienced in leading independent research, mentoring undergraduates, and shipping bioinformatics pipelines from first principles.</p>
-            <div class="cv-actions">
-                <a href="cv & resume/Michael_Baffour_Awuah_CV.html" class="btn btn-primary" target="_blank" rel="noopener">📄 View HTML CV</a>
-                <a href="cv & resume/Michael_Baffour_Awuah_CV.pdf" class="btn btn-secondary" download>⬇ CV (PDF)</a>
-                <a href="cv & resume/Michael B Awuah.pdf" class="btn btn-ghost" download>⬇ Résumé (PDF)</a>
-            </div>
-        </div>
-    </section>
 
     <hr class="section-divider">
 
@@ -2538,6 +2558,7 @@
     =============================================================== */
     const publications = [
         {
+            kind: "paper",
             title: "Phage N4 uses a SAR endolysin-holin system for host cell lysis",
             authors: "Awuah MB, Martin C, Chamblee JS, Tomaszewski AJ, Sullivan TE, Emilia Q, Tran S, Snowden JH, Niemiec KA, Zhu J, Ramsey J",
             journal: "bioRxiv",
@@ -2545,6 +2566,30 @@
             doi: "https://doi.org/10.1101/2025.11.12.688109",
             status: "preprint",
             latest: true
+        },
+        {
+            kind: "talk",
+            title: "Phage N4 Lysis Inhibition — The Viral Death Race",
+            authors: "Awuah MB",
+            journal: "Data Blitz · TAMU Biology Student &amp; Postdoc Research Conference",
+            year: 2025,
+            status: "talk"
+        },
+        {
+            kind: "talk",
+            title: "Bacteriophage are prolific bacterial predators",
+            authors: "Awuah MB",
+            journal: "Bio &amp; Chem Sciences Symposium · College Station, TX",
+            year: 2024,
+            status: "talk"
+        },
+        {
+            kind: "poster",
+            title: "Phage N4 Lysis Inhibition — The Viral Death Race (poster)",
+            authors: "Awuah MB, Zamora I",
+            journal: "Ramsey Lab · Center for Phage Technology",
+            year: 2024,
+            status: "poster"
         }
     ];
 
@@ -2894,20 +2939,63 @@
         }
     ];
 
-    function renderGallery() {
+    /* Map gallery tags to broad categories */
+    const TAG_CATEGORY = {
+        'Imaging': 'research', 'Discovery': 'research', 'Brainwork': 'research',
+        'Equipment': 'research', 'Posters': 'research', 'Molecular biology': 'research',
+        'Bench': 'bench',
+        'Talks': 'talks',
+        'Outreach': 'outreach',
+        'Award': 'awards',
+        'Conference': 'community', 'Lab': 'community', 'Community': 'community',
+        'Lab life': 'community',
+        'Aggies': 'aggies', 'Off duty': 'aggies', 'Curiosity': 'aggies',
+        'Science': 'community'
+    };
+    function catFor(g) { return TAG_CATEGORY[g.tag] || 'other'; }
+    function plainText(s) { return (s || '').replace(/<[^>]*>/g, ''); }
+
+    function renderGallery(filter = 'all') {
         const grid = document.getElementById('galleryGrid');
         if (!grid) return;
-        grid.innerHTML = gallery.map((g, i) => `
-            <div class="gallery-item ${g.layout || 'square'}" data-idx="${i}">
-                <img src="${g.src}" alt="${g.caption}" loading="lazy">
+        const items = filter === 'all' ? gallery : gallery.filter(g => catFor(g) === filter);
+        grid.innerHTML = items.map(g => {
+            const idx = gallery.indexOf(g);
+            return `
+            <div class="gallery-item ${g.layout || 'square'}" data-idx="${idx}">
+                <img src="${g.src}" alt="${plainText(g.caption)}" loading="lazy">
                 <div class="gallery-overlay">
                     <span class="gallery-tag">${g.tag}</span>
                     <div class="gallery-caption">${g.caption}</div>
                 </div>
-            </div>
-        `).join('');
+            </div>`;
+        }).join('');
     }
+
+    /* Build gallery filter buttons */
+    (function() {
+        const root = document.getElementById('galleryFilters');
+        const counts = gallery.reduce((a, g) => {
+            const c = catFor(g); a[c] = (a[c] || 0) + 1; return a;
+        }, {});
+        const map = [
+            ['all',       'All',       gallery.length],
+            ['research',  'Research',  counts.research  || 0],
+            ['bench',     'Bench',     counts.bench     || 0],
+            ['talks',     'Talks',     counts.talks     || 0],
+            ['awards',    'Awards',    counts.awards    || 0],
+            ['outreach',  'Outreach',  counts.outreach  || 0],
+            ['community', 'Community', counts.community || 0],
+            ['aggies',    'Off-Duty',  counts.aggies    || 0]
+        ];
+        root.innerHTML = map.filter(([,,n]) => n > 0 || true).map(([k, label, n], i) => `
+            <button class="filter-btn ${i === 0 ? 'active' : ''}" data-filter="${k}">
+                ${label} <span class="filter-count">${n}</span>
+            </button>
+        `).join('');
+    })();
     renderGallery();
+    wireFilter('galleryFilters', renderGallery);
 
     /* Lightbox */
     (function() {
@@ -3094,13 +3182,22 @@
     =============================================================== */
     function renderPublications(filter = 'all') {
         const container = document.getElementById('pubList');
-        const filtered = filter === 'all' ? publications : publications.filter(p => p.status === filter);
+        const filtered = filter === 'all'
+            ? publications
+            : publications.filter(p => p.kind === filter || p.status === filter);
         if (filtered.length === 0) {
-            container.innerHTML = '<div class="pub-empty">No publications in this category yet — stay tuned.</div>';
+            container.innerHTML = '<div class="pub-empty">Nothing in this category yet — stay tuned.</div>';
             return;
         }
+        const labelFor = s => ({
+            'in-review': 'In Review',
+            'preprint':  'Preprint',
+            'published': 'Published',
+            'talk':      'Talk',
+            'poster':    'Poster'
+        })[s] || (s[0].toUpperCase() + s.slice(1));
         container.innerHTML = filtered.map(pub => {
-            const auth = pub.authors.replace(/Awuah MB/, '<em>Awuah MB</em>');
+            const auth = (pub.authors || '').replace(/Awuah MB/, '<em>Awuah MB</em>');
             return `
             <div class="pub-entry ${pub.latest ? 'latest' : ''}">
                 <div class="pub-year">${pub.year}</div>
@@ -3109,7 +3206,7 @@
                     <div class="pub-authors">${auth}</div>
                     <div class="pub-journal">${pub.journal}</div>
                     <div class="pub-meta">
-                        <span class="pub-status ${pub.status}">${pub.status === 'in-review' ? 'In Review' : pub.status[0].toUpperCase() + pub.status.slice(1)}</span>
+                        <span class="pub-status ${pub.status}">${labelFor(pub.status)}</span>
                         ${pub.doi ? `<span class="pub-doi"><a href="${pub.doi}" target="_blank" rel="noopener">DOI ↗</a></span>` : ''}
                         ${pub.latest ? '<span class="pub-status preprint">★ Latest</span>' : ''}
                     </div>
@@ -3177,10 +3274,45 @@
     /* ==============================================================
        INITIAL RENDER + FILTERS
     =============================================================== */
+    /* Build pub/talks/posters filter buttons with counts */
+    (function() {
+        const root = document.getElementById('pubFilters');
+        const c = { paper: 0, talk: 0, poster: 0 };
+        publications.forEach(p => { c[p.kind] = (c[p.kind] || 0) + 1; });
+        const map = [
+            ['all',    'All',     publications.length],
+            ['paper',  'Papers',  c.paper || 0],
+            ['talk',   'Talks',   c.talk  || 0],
+            ['poster', 'Posters', c.poster || 0]
+        ];
+        root.innerHTML = map.map(([k, label, n], i) => `
+            <button class="filter-btn ${i === 0 ? 'active' : ''}" data-filter="${k}">
+                ${label} <span class="filter-count">${n}</span>
+            </button>
+        `).join('');
+    })();
+
     renderPublications();
     renderTools();
     renderProjects();
     document.getElementById('toolCount').textContent = tools.length + projects.length;
+
+    /* Build tool filter buttons with counts */
+    (function() {
+        const root = document.getElementById('toolFilters');
+        const counts = tools.reduce((a, t) => { a[t.stack] = (a[t.stack] || 0) + 1; return a; }, {});
+        const map = [
+            ['all',  'All Tools', tools.length],
+            ['r',    'R / Shiny', counts.r || 0],
+            ['js',   'Web / JS',  counts.js || 0],
+            ['py',   'Python',    counts.py || 0]
+        ];
+        root.innerHTML = map.map(([k, label, n], i) => `
+            <button class="filter-btn ${i === 0 ? 'active' : ''}" data-filter="${k}">
+                ${label} <span class="filter-count">${n}</span>
+            </button>
+        `).join('');
+    })();
 
     function wireFilter(filtersId, renderFn) {
         const root = document.getElementById(filtersId);
@@ -3234,6 +3366,7 @@
        NAV: ACTIVE SECTION HIGHLIGHT
     =============================================================== */
     const navIds = ['about', 'research', 'playground', 'publications', 'tools', 'projects', 'recognition', 'gallery', 'contact'];
+    /* (CV merged into About — no separate section.) */
     const sectionEls = navIds.map(id => document.getElementById(id)).filter(Boolean);
     const navAnchors = Array.from(document.querySelectorAll('.nav-links a')).filter(a => a.getAttribute('href') && a.getAttribute('href').startsWith('#'));
 
@@ -4046,8 +4179,34 @@
     /* ==============================================================
        NAVBAR SCROLL CONDENSE
     =============================================================== */
+    /* "Currently" badge rotation */
+    (function() {
+        const badge = document.getElementById('nowBadge');
+        const icon  = document.getElementById('nowIcon');
+        const body  = document.getElementById('nowBody');
+        if (!badge) return;
+        const messages = [
+            { icon: '🦠', text: 'Wrapping up the N4 lysis preprint &amp; building new R Shiny tools for the lab.' },
+            { icon: '🧫', text: 'Mentoring undergrads through phage isolation, TEM, and genome annotation.' },
+            { icon: '🔬', text: 'Hunting for new phages in Texas creeks and characterizing them by TEM.' },
+            { icon: '🧬', text: 'Reverse-engineering N4’s lysis decisions for high-titer phage production.' },
+            { icon: '💻', text: 'Shipping open scientific software &mdash; browser-first, privacy-first, zero-install.' }
+        ];
+        let i = 0;
+        setInterval(() => {
+            i = (i + 1) % messages.length;
+            badge.classList.add('fading');
+            setTimeout(() => {
+                icon.textContent = messages[i].icon;
+                body.innerHTML = messages[i].text;
+                badge.classList.remove('fading');
+            }, 360);
+        }, 5600);
+    })();
+
     const progress = document.getElementById('scrollProgress');
     const toTop = document.getElementById('toTop');
+    const navAvatar = document.getElementById('navAvatar');
     let lastY = 0;
     function updateScrollUI() {
         const nav = document.getElementById('navbar');
@@ -4059,6 +4218,7 @@
         const pct = docH > 0 ? (y / docH) * 100 : 0;
         progress.style.width = pct + '%';
         toTop.classList.toggle('show', y > 600);
+        if (navAvatar) navAvatar.classList.toggle('show', y > window.innerHeight * 0.6);
         lastY = y;
     }
     window.addEventListener('scroll', updateScrollUI, { passive: true });
