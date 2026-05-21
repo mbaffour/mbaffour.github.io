@@ -106,17 +106,21 @@
             background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.96  0 0 0 0 0.85  0 0 0 0 0.52  0 0 0 1 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
         }
 
-        /* Ambient microbiology layer — full-document drift */
+        /* Ambient microbiology layer — viewport-fixed for performance */
         .ambient-canvas {
-            position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw;
+            height: 100vh;
             pointer-events: none;
             z-index: 0;
             opacity: 0.55;
         }
         body > main, body > section, body > footer, body > .section, body > nav { position: relative; z-index: 1; }
+        @media (hover: none) and (pointer: coarse) {
+            /* Disable the heavy ambient layer on touch devices */
+            .ambient-canvas { display: none; }
+        }
 
         /* Scroll progress bar */
         .scroll-progress {
@@ -898,7 +902,7 @@
         }
         .playground-canvas {
             width: 100%;
-            height: 360px;
+            height: clamp(320px, 42vh, 460px);
             display: block;
         }
         .playground-controls {
@@ -1464,9 +1468,9 @@
         }
         .concept-grid {
             display: grid;
-            grid-template-columns: 1.3fr 1fr;
+            grid-template-columns: minmax(280px, 380px) 1fr;
             gap: 2.4rem;
-            align-items: center;
+            align-items: stretch;
             position: relative;
         }
         .concept-title {
@@ -1550,8 +1554,9 @@
         .concept-viz {
             position: relative;
             display: flex;
-            align-items: center;
-            justify-content: center;
+            align-items: stretch;
+            justify-content: stretch;
+            min-width: 0;
         }
         .concept-svg {
             width: 100%;
@@ -1576,8 +1581,8 @@
         .tf-wrap {
             position: relative;
             width: 100%;
-            max-width: 440px;
-            aspect-ratio: 5 / 4;
+            min-height: 460px;
+            aspect-ratio: 16 / 11;
             background: radial-gradient(120% 80% at 50% 30%, #0e1c14 0%, #060b08 80%);
             border: 1px solid var(--border-strong);
             border-radius: 12px;
@@ -1586,7 +1591,27 @@
             user-select: none;
             -webkit-user-select: none;
             touch-action: none;
+            transition: border-color .2s ease;
         }
+        /* Fullscreen takeover */
+        .tf-wrap.tf-fullscreen {
+            position: fixed !important;
+            inset: 0 !important;
+            width: 100vw !important;
+            height: 100vh !important;
+            max-width: none !important;
+            aspect-ratio: auto !important;
+            border-radius: 0;
+            border-color: var(--gold);
+            z-index: 9999;
+        }
+        .tf-wrap.tf-fullscreen .tf-hud { padding: 1.2rem 1.5rem; }
+        .tf-wrap.tf-fullscreen .tf-stat { min-width: 80px; padding: 0.5rem 0.8rem; }
+        .tf-wrap.tf-fullscreen .tf-stat-val { font-size: 1.3rem; }
+        .tf-wrap.tf-fullscreen .tf-fiber-btn { padding: 0.6rem 1rem; font-size: 0.9rem; }
+        .tf-wrap.tf-fullscreen .tf-overlay-card { max-width: 540px; padding: 2rem; }
+        .tf-wrap.tf-fullscreen .tf-overlay-title { font-size: 2.4rem; }
+        body.tf-locked { overflow: hidden; }
         .tf-canvas {
             position: absolute;
             inset: 0;
@@ -1700,9 +1725,11 @@
         .tf-fiber-btn.active[data-fiber="lamb"] { background: rgba(255, 107, 138, 0.18); border-color: #ff6b8a; box-shadow: 0 0 12px rgba(255, 107, 138, 0.4); }
         .tf-fiber-btn.active[data-fiber="pili"] { background: rgba(76, 184, 255, 0.18); border-color: #4cb8ff; box-shadow: 0 0 12px rgba(76, 184, 255, 0.4); }
 
-        /* Pause button + level badge */
+        /* Pause + fullscreen buttons must sit above the overlay */
         .tf-pause-btn {
             pointer-events: auto;
+            position: relative;
+            z-index: 10;
             background: rgba(10, 8, 2, 0.7);
             color: var(--gold);
             border: 1px solid rgba(244, 196, 48, 0.20);
@@ -3522,6 +3549,7 @@
                                 <div class="tf-stat"><span class="tf-stat-label">SCORE</span><span class="tf-stat-val" id="tfScore">0</span></div>
                                 <div class="tf-stat"><span class="tf-stat-label">LYSES</span><span class="tf-stat-val" id="tfLyses">0</span></div>
                                 <div class="tf-stat"><span class="tf-stat-label" id="tfTimeLabel">TIME</span><span class="tf-stat-val" id="tfTime">90</span></div>
+                                <button class="tf-pause-btn" id="tfFullBtn" title="Fullscreen [F]" aria-label="Toggle fullscreen">⛶</button>
                                 <button class="tf-pause-btn" id="tfPauseBtn" title="Pause [P]" aria-label="Pause">⏸</button>
                             </div>
                             <div class="tf-hp-wrap">
@@ -5044,29 +5072,43 @@
             }
         }
 
-        // Build organism mix — heavy on phages, but with variety
+        // Build organism mix — scale by viewport area so big screens
+        // don't pay 50-organism redraw cost just because they have pixels.
+        const viewportArea = innerWidth * innerHeight;
+        const densityMult = viewportArea > 1600 * 1000
+            ? 0.7  // 1080p+ desktops: lighter, big canvas already feels full
+            : viewportArea > 1100 * 700
+                ? 1.0
+                : 0.85; // small screens
         const recipe = [
-            ['phage', 16],
-            ['rod', 8],
-            ['coccus', 7],
-            ['plasmid', 6],
-            ['helix', 5],
-            ['ribosome', 8]
+            ['phage', Math.round(14 * densityMult)],
+            ['rod', Math.round(7 * densityMult)],
+            ['coccus', Math.round(6 * densityMult)],
+            ['plasmid', Math.round(5 * densityMult)],
+            ['helix', Math.round(4 * densityMult)],
+            ['ribosome', Math.round(7 * densityMult)]
         ];
         const organisms = [];
         recipe.forEach(([kind, n]) => {
             for (let i = 0; i < n; i++) organisms.push(new Organism(kind));
         });
 
+        let visible = true, looping = false;
         function tick() {
+            if (!visible || reduceMotion) { looping = false; return; }
             ctx.clearRect(0, 0, w, h);
-            organisms.forEach(o => {
-                if (!reduceMotion) o.update();
-                o.draw();
-            });
-            if (!reduceMotion) requestAnimationFrame(tick);
+            organisms.forEach(o => { o.update(); o.draw(); });
+            requestAnimationFrame(tick);
         }
-        tick();
+        function startLoop() { if (!looping && visible && !reduceMotion) { looping = true; tick(); } }
+        const io = new IntersectionObserver(es => {
+            es.forEach(e => { visible = e.isIntersecting; if (visible) startLoop(); });
+        }, { threshold: 0 });
+        io.observe(canvas);
+        // Draw one static frame so it's not blank before loop starts
+        ctx.clearRect(0, 0, w, h);
+        organisms.forEach(o => o.draw());
+        startLoop();
     })();
 
     /* ==============================================================
@@ -5080,11 +5122,16 @@
         const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
         if (reduceMotion) return;
         let w, h, dpr;
+        // Render at a *lower* internal resolution than the screen DPR.
+        // Ambient is background fluff — full-res redraws are wasted GPU.
         function resize() {
-            dpr = devicePixelRatio || 1;
+            const realDpr = devicePixelRatio || 1;
+            // 0.6x of physical pixels still looks fine for soft shapes
+            dpr = Math.min(realDpr, 1) * 0.65;
             w = canvas.offsetWidth;
             h = canvas.offsetHeight;
-            canvas.width = w * dpr; canvas.height = h * dpr;
+            canvas.width = Math.max(1, Math.round(w * dpr));
+            canvas.height = Math.max(1, Math.round(h * dpr));
             ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
         }
         window.addEventListener('resize', resize);
@@ -5093,7 +5140,8 @@
         const PALETTE = ['244, 196, 48', '26, 128, 64', '196, 30, 58'];
         const drifters = [];
         const KINDS = ['phage', 'rod', 'plasmid', 'helix', 'coccus'];
-        for (let i = 0; i < 45; i++) {
+        const ambientCount = innerWidth * innerHeight > 1600 * 1000 ? 28 : 38;
+        for (let i = 0; i < ambientCount; i++) {
             drifters.push({
                 kind: KINDS[Math.floor(Math.random() * KINDS.length)],
                 x: Math.random() * w,
@@ -5175,56 +5223,61 @@
         }
 
         // Cursor-aware: drifters get gentle attraction toward the cursor when nearby
+        // Stored in viewport coords (canvas is position:fixed)
         const cursor = { x: -9999, y: -9999, active: false };
         document.addEventListener('mousemove', (e) => {
             if (matchMedia('(hover: none)').matches) return;
-            cursor.x = e.clientX + window.scrollX;
-            cursor.y = e.clientY + window.scrollY;
+            cursor.x = e.clientX;
+            cursor.y = e.clientY;
             cursor.active = true;
         }, { passive: true });
         document.addEventListener('mouseleave', () => { cursor.active = false; });
 
-        function tick() {
-            ctx.clearRect(0, 0, w, h);
-            drifters.forEach(d => {
-                if (cursor.active) {
-                    const dx = cursor.x - d.x;
-                    const dy = cursor.y - d.y;
-                    const dist = Math.hypot(dx, dy);
-                    if (dist < 160 && dist > 0) {
-                        // Subtle attraction (so phages drift toward where you look)
-                        d.vx += (dx / dist) * 0.0035;
-                        d.vy += (dy / dist) * 0.0035;
+        // Throttle to ~30fps — background ambience doesn't need 60fps
+        const FRAME_MS = 1000 / 30;
+        let lastFrame = 0;
+        function tick(t) {
+            if (!running) return;
+            if (t - lastFrame >= FRAME_MS) {
+                lastFrame = t;
+                ctx.clearRect(0, 0, w, h);
+                for (let i = 0; i < drifters.length; i++) {
+                    const d = drifters[i];
+                    if (cursor.active) {
+                        const dx = cursor.x - d.x;
+                        const dy = cursor.y - d.y;
+                        const dist2 = dx * dx + dy * dy;
+                        if (dist2 < 25600 && dist2 > 0) {
+                            const dist = Math.sqrt(dist2);
+                            d.vx += (dx / dist) * 0.0035;
+                            d.vy += (dy / dist) * 0.0035;
+                        }
                     }
+                    d.vx *= 0.997;
+                    d.vy *= 0.997;
+                    d.x += d.vx;
+                    d.y += d.vy;
+                    d.rot += d.rotSpeed;
+                    if (d.x < -50) d.x = w + 50;
+                    if (d.x > w + 50) d.x = -50;
+                    if (d.y < -50) d.y = h + 50;
+                    if (d.y > h + 50) d.y = -50;
+                    drawShape(d);
                 }
-                // Light friction to keep speeds tame
-                d.vx *= 0.997;
-                d.vy *= 0.997;
-                d.x += d.vx;
-                d.y += d.vy;
-                d.rot += d.rotSpeed;
-                if (d.x < -50) d.x = w + 50;
-                if (d.x > w + 50) d.x = -50;
-                if (d.y < -50) d.y = h + 50;
-                if (d.y > h + 50) d.y = -50;
-                drawShape(d);
-            });
+            }
             requestAnimationFrame(tick);
         }
-        tick();
 
-        // Track ambient canvas size to whole document, not just viewport
-        const fitToDoc = () => {
-            const docH = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight);
-            if (Math.abs(canvas.offsetHeight - docH) > 50) {
-                canvas.style.height = docH + 'px';
-                resize();
-            }
-        };
-        fitToDoc();
-        window.addEventListener('load', fitToDoc);
-        const ro = new ResizeObserver(fitToDoc);
-        ro.observe(document.body);
+        // Pause when tab hidden or user prefers reduced motion already handled above
+        let running = true;
+        document.addEventListener('visibilitychange', () => {
+            const shouldRun = !document.hidden;
+            if (shouldRun && !running) { running = true; requestAnimationFrame(tick); }
+            else { running = shouldRun; }
+        });
+        // Viewport-fixed: just resize on viewport change, no doc-height tracking
+        window.addEventListener('resize', resize);
+        requestAnimationFrame(tick);
     })();
 
     /* ==============================================================
@@ -5269,7 +5322,7 @@
         function resize() {
             dpr = devicePixelRatio || 1;
             W = wrap.offsetWidth - 32;
-            H = 360;
+            H = Math.max(320, Math.min(460, Math.round(window.innerHeight * 0.42)));
             canvas.width = W * dpr;
             canvas.height = H * dpr;
             canvas.style.width = W + 'px';
@@ -5710,21 +5763,28 @@
             }
             ctx.restore();
         }
+        let cVisible = false, cLooping = false;
         function tick() {
+            if (!cVisible || reduceMotion) { cLooping = false; return; }
             ctx.clearRect(0, 0, w, h);
             phages.forEach(p => {
-                if (!reduceMotion) {
-                    p.x += p.vx; p.y += p.vy; p.rot += p.rotSpeed;
-                    if (p.x < -40) p.x = w + 40;
-                    if (p.x > w + 40) p.x = -40;
-                    if (p.y < -40) p.y = h + 40;
-                    if (p.y > h + 40) p.y = -40;
-                }
+                p.x += p.vx; p.y += p.vy; p.rot += p.rotSpeed;
+                if (p.x < -40) p.x = w + 40;
+                if (p.x > w + 40) p.x = -40;
+                if (p.y < -40) p.y = h + 40;
+                if (p.y > h + 40) p.y = -40;
                 draw(p);
             });
-            if (!reduceMotion) requestAnimationFrame(tick);
+            requestAnimationFrame(tick);
         }
-        tick();
+        function cStart() { if (!cLooping && cVisible && !reduceMotion) { cLooping = true; tick(); } }
+        const cIo = new IntersectionObserver(es => {
+            es.forEach(e => { cVisible = e.isIntersecting; if (cVisible) cStart(); });
+        }, { threshold: 0 });
+        cIo.observe(canvas);
+        // Static frame so it's not empty when section first paints
+        ctx.clearRect(0, 0, w, h);
+        phages.forEach(draw);
     })();
 
     /* "Currently" badge rotation */
@@ -5793,6 +5853,7 @@
         const hpFill  = document.getElementById('tfHpFill');
         const levelEl = document.getElementById('tfLevel');
         const pauseBtn = document.getElementById('tfPauseBtn');
+        const fullBtn = document.getElementById('tfFullBtn');
         const fiberBtns = document.querySelectorAll('.tf-fiber-btn');
         const toast   = document.getElementById('tfToast');
         const joystick = document.getElementById('tfJoystick');
@@ -6613,6 +6674,40 @@
             e.stopPropagation();
             if (state === 'playing') pauseGame();
             else if (state === 'paused') resumeGame();
+        });
+
+        // Fullscreen toggle (CSS-driven, with body lock + resize)
+        function toggleFullscreen() {
+            const on = wrap.classList.toggle('tf-fullscreen');
+            document.body.classList.toggle('tf-locked', on);
+            fullBtn.textContent = on ? '⊠' : '⛶';
+            fullBtn.title = on ? 'Exit fullscreen [F or Esc]' : 'Fullscreen [F]';
+            // Try the real Fullscreen API too (graceful no-op if blocked)
+            if (on) {
+                try { wrap.requestFullscreen?.({ navigationUI: 'hide' }).catch(()=>{}); } catch {}
+            } else {
+                try { if (document.fullscreenElement) document.exitFullscreen?.(); } catch {}
+            }
+            // Schedule a resize after layout settles
+            requestAnimationFrame(() => requestAnimationFrame(resize));
+        }
+        fullBtn.addEventListener('click', (e) => { e.stopPropagation(); toggleFullscreen(); });
+        // Sync class if user exits via browser ESC out of native fullscreen
+        document.addEventListener('fullscreenchange', () => {
+            if (!document.fullscreenElement && wrap.classList.contains('tf-fullscreen')) {
+                wrap.classList.remove('tf-fullscreen');
+                document.body.classList.remove('tf-locked');
+                fullBtn.textContent = '⛶';
+                requestAnimationFrame(resize);
+            }
+        });
+        // Keyboard: F to toggle, ESC to exit
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'f' || e.key === 'F') {
+                if (wrap.matches(':hover') || state !== 'setup') { toggleFullscreen(); e.preventDefault(); }
+            } else if (e.key === 'Escape' && wrap.classList.contains('tf-fullscreen')) {
+                toggleFullscreen();
+            }
         });
 
         // Resize
