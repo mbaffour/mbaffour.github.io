@@ -1307,6 +1307,164 @@
         .rec-link:hover { text-decoration: underline; }
 
         /* ============================================================
+           GALLERY — Life in the Lab
+        ============================================================ */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            grid-auto-rows: 180px;
+            gap: 0.75rem;
+        }
+        .gallery-item {
+            position: relative;
+            border-radius: var(--radius);
+            overflow: hidden;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            cursor: pointer;
+            transition: transform .4s ease, border-color .3s ease, box-shadow .4s ease;
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform .6s cubic-bezier(.2, .8, .2, 1), filter .4s ease;
+        }
+        .gallery-item:hover {
+            border-color: var(--gold);
+            transform: translateY(-3px);
+            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.5), var(--glow-gold);
+            z-index: 2;
+        }
+        .gallery-item:hover img {
+            transform: scale(1.06);
+            filter: brightness(1.08) saturate(1.05);
+        }
+        .gallery-overlay {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 0.9rem 1rem;
+            background: linear-gradient(180deg, transparent 30%, rgba(10, 8, 2, 0.85) 100%);
+            opacity: 0;
+            transition: opacity .35s ease;
+        }
+        .gallery-item:hover .gallery-overlay { opacity: 1; }
+        .gallery-tag {
+            display: inline-block;
+            align-self: flex-start;
+            font-family: var(--font-mono);
+            font-size: 0.62rem;
+            letter-spacing: 0.16em;
+            color: var(--gold);
+            background: rgba(10, 8, 2, 0.75);
+            border: 1px solid var(--border-strong);
+            padding: 0.18rem 0.5rem;
+            border-radius: 4px;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+        }
+        .gallery-caption {
+            font-family: var(--font-display);
+            color: var(--ink);
+            font-size: 0.92rem;
+            line-height: 1.3;
+            font-weight: 500;
+        }
+        /* Masonry-style spans (large 1, mid 2-3, small 4-5) */
+        .gallery-item.feature { grid-column: span 3; grid-row: span 2; }
+        .gallery-item.tall    { grid-column: span 2; grid-row: span 2; }
+        .gallery-item.wide    { grid-column: span 3; grid-row: span 1; }
+        .gallery-item.square  { grid-column: span 2; grid-row: span 1; }
+
+        /* Lightbox */
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            background: rgba(10, 8, 2, 0.96);
+            backdrop-filter: blur(8px);
+            z-index: 300;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            animation: cmdkFade .2s ease;
+            cursor: zoom-out;
+        }
+        .lightbox.open { display: flex; }
+        .lightbox-figure {
+            max-width: min(94vw, 1200px);
+            max-height: 92vh;
+            display: flex;
+            flex-direction: column;
+            cursor: default;
+        }
+        .lightbox img {
+            max-width: 100%;
+            max-height: 84vh;
+            border-radius: var(--radius);
+            border: 1px solid var(--border-strong);
+            box-shadow: 0 28px 60px rgba(0, 0, 0, 0.7);
+            display: block;
+            margin: 0 auto;
+        }
+        .lightbox-cap {
+            text-align: center;
+            color: var(--ink-2);
+            font-family: var(--font-display);
+            font-size: 1rem;
+            margin-top: 1rem;
+            font-style: italic;
+        }
+        .lightbox-cap small {
+            display: block;
+            color: var(--ink-3);
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin-top: 0.4rem;
+            font-style: normal;
+        }
+        .lightbox-close {
+            position: absolute;
+            top: 1.2rem; right: 1.2rem;
+            width: 42px; height: 42px;
+            border-radius: 50%;
+            background: rgba(244, 196, 48, 0.1);
+            border: 1px solid var(--border-strong);
+            color: var(--gold);
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+        .lightbox-close:hover { background: var(--gold); color: var(--bg); }
+
+        @media (max-width: 920px) {
+            .gallery-grid { grid-template-columns: repeat(4, 1fr); grid-auto-rows: 150px; }
+            .gallery-item.feature { grid-column: span 4; grid-row: span 2; }
+            .gallery-item.tall    { grid-column: span 2; grid-row: span 2; }
+            .gallery-item.wide    { grid-column: span 4; grid-row: span 1; }
+            .gallery-item.square  { grid-column: span 2; grid-row: span 1; }
+        }
+        @media (max-width: 600px) {
+            .gallery-grid { grid-template-columns: 1fr 1fr; grid-auto-rows: 140px; }
+            .gallery-item.feature, .gallery-item.tall,
+            .gallery-item.wide, .gallery-item.square {
+                grid-column: span 2; grid-row: span 1;
+            }
+            .gallery-item.feature { grid-row: span 2; }
+        }
+        /* Always show overlay on touch */
+        @media (hover: none) {
+            .gallery-overlay { opacity: 1; }
+        }
+
+        /* ============================================================
            ABOUT
         ============================================================ */
         .about-grid {
@@ -1742,6 +1900,7 @@
                 <li><a href="#tools">Tools</a></li>
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#recognition">Recognition</a></li>
+                <li><a href="#gallery">Gallery</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#contact">Contact</a></li>
                 <li><button class="nav-cmdk" id="cmdkOpen" aria-label="Open command palette">
@@ -2132,6 +2291,27 @@
 
     <hr class="section-divider">
 
+    <!-- ===== LIFE IN THE LAB GALLERY ===== -->
+    <section class="section fade-in" id="gallery">
+        <div class="section-header">
+            <span class="section-label">Behind the Bench</span>
+            <h2 class="section-title">Life in the <span class="highlight">Lab</span></h2>
+            <p class="section-subtitle">Whiteboards, conferences, outreach, and the occasional rocket engine — the science doesn't happen in a vacuum.</p>
+        </div>
+        <div class="gallery-grid" id="galleryGrid"></div>
+    </section>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
+        <button class="lightbox-close" id="lightboxClose" aria-label="Close">✕</button>
+        <figure class="lightbox-figure" onclick="event.stopPropagation()">
+            <img id="lightboxImg" src="" alt="">
+            <figcaption class="lightbox-cap" id="lightboxCap"></figcaption>
+        </figure>
+    </div>
+
+    <hr class="section-divider">
+
     <!-- ===== ABOUT ===== -->
     <section class="section fade-in" id="about">
         <div class="section-header">
@@ -2406,6 +2586,91 @@
             preview: "fitness"
         }
     ];
+
+    /* ==============================================================
+       DATA — Gallery (Life in the Lab)
+       Adding a new photo: drop file in /gallery/, add an entry here.
+       Layouts: feature (3w × 2h), tall (2w × 2h), wide (3w × 1h), square (2w × 1h)
+    =============================================================== */
+    const gallery = [
+        {
+            src: "gallery/gallery-whiteboard.jpg",
+            tag: "Brainwork",
+            caption: "Sketching the N4 lysis decision tree on the whiteboard.",
+            sub: "Ramsey Lab · 2025",
+            layout: "feature"
+        },
+        {
+            src: "gallery/gallery-asm-microbe.jpg",
+            tag: "Conference",
+            caption: "ASM Microbe — with the Ramsey Lab crew.",
+            sub: "Houston · June 2023",
+            layout: "tall"
+        },
+        {
+            src: "gallery/gallery-bench.jpg",
+            tag: "Bench",
+            caption: "At my bench in the Ramsey Lab.",
+            sub: "Day in the life",
+            layout: "wide"
+        },
+        {
+            src: "gallery/gallery-nasa.jpg",
+            tag: "Curiosity",
+            caption: "Beneath the engine cluster — Johnson Space Center.",
+            sub: "Houston, TX",
+            layout: "square"
+        },
+        {
+            src: "gallery/gallery-phage-prep.jpg",
+            tag: "Bench",
+            caption: "Phage sample under UV illumination.",
+            sub: "Sample prep",
+            layout: "square"
+        }
+    ];
+
+    function renderGallery() {
+        const grid = document.getElementById('galleryGrid');
+        if (!grid) return;
+        grid.innerHTML = gallery.map((g, i) => `
+            <div class="gallery-item ${g.layout || 'square'}" data-idx="${i}">
+                <img src="${g.src}" alt="${g.caption}" loading="lazy">
+                <div class="gallery-overlay">
+                    <span class="gallery-tag">${g.tag}</span>
+                    <div class="gallery-caption">${g.caption}</div>
+                </div>
+            </div>
+        `).join('');
+    }
+    renderGallery();
+
+    /* Lightbox */
+    (function() {
+        const box = document.getElementById('lightbox');
+        const img = document.getElementById('lightboxImg');
+        const cap = document.getElementById('lightboxCap');
+        const close = document.getElementById('lightboxClose');
+        if (!box) return;
+        function open(i) {
+            const g = gallery[i];
+            if (!g) return;
+            img.src = g.src;
+            img.alt = g.caption;
+            cap.innerHTML = `${g.caption}${g.sub ? '<small>' + g.sub + '</small>' : ''}`;
+            box.classList.add('open');
+        }
+        function shut() { box.classList.remove('open'); img.src = ''; }
+        document.getElementById('galleryGrid').addEventListener('click', (e) => {
+            const item = e.target.closest('.gallery-item');
+            if (item) open(parseInt(item.dataset.idx, 10));
+        });
+        close.addEventListener('click', shut);
+        box.addEventListener('click', (e) => { if (e.target === box) shut(); });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && box.classList.contains('open')) shut();
+        });
+    })();
 
     /* ==============================================================
        SVG PREVIEW LIBRARY
