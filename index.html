@@ -11,6 +11,7 @@
     <meta property="og:type" content="website">
     <meta name="theme-color" content="#0a0802">
     <title>Michael Baffour Awuah — Phage Biologist &amp; Tool-Builder</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><polygon points='16,5 25,10 25,18 16,23 7,18 7,10' fill='%23f4c430' stroke='%23f4c430' stroke-width='1.5'/><line x1='16' y1='23' x2='16' y2='28' stroke='%23f4c430' stroke-width='2' stroke-linecap='round'/><line x1='13' y1='28' x2='19' y2='28' stroke='%23f4c430' stroke-width='2' stroke-linecap='round'/></svg>">
     <style>
         /* ============================================================
            DESIGN TOKENS
@@ -116,6 +117,43 @@
             opacity: 0.55;
         }
         body > main, body > section, body > footer, body > .section, body > nav { position: relative; z-index: 1; }
+
+        /* Scroll progress bar */
+        .scroll-progress {
+            position: fixed;
+            top: 0; left: 0;
+            height: 3px;
+            width: 0%;
+            background: linear-gradient(90deg, var(--gold), var(--green), var(--red));
+            z-index: 101;
+            transition: width .15s ease-out;
+            box-shadow: 0 0 14px rgba(244, 196, 48, 0.5);
+        }
+
+        /* Back-to-top floating button */
+        .to-top {
+            position: fixed;
+            right: 1.5rem;
+            bottom: 1.5rem;
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            background: var(--gold);
+            color: var(--bg);
+            border: 0;
+            cursor: pointer;
+            font-size: 1.2rem;
+            box-shadow: 0 8px 22px rgba(244, 196, 48, 0.35), 0 0 0 1px rgba(0,0,0,0.2);
+            z-index: 99;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity .25s ease, transform .25s ease, background .2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .to-top.show { opacity: 1; transform: none; }
+        .to-top:hover { background: #fff8d6; }
 
         /* Cursor spotlight (desktop only) */
         .cursor-glow {
@@ -1929,6 +1967,8 @@
 <body>
     <div class="cursor-glow" id="cursorGlow"></div>
     <canvas class="ambient-canvas" id="ambientCanvas" aria-hidden="true"></canvas>
+    <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+    <button class="to-top" id="toTop" aria-label="Back to top">↑</button>
 
     <!-- ===== NAV ===== -->
     <nav class="nav" id="navbar">
@@ -1939,6 +1979,7 @@
             </a>
             <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">☰</button>
             <ul class="nav-links" id="navLinks">
+                <li><a href="#about">About</a></li>
                 <li><a href="#research">Research</a></li>
                 <li><a href="#playground">Playground</a></li>
                 <li><a href="#publications">Publications</a></li>
@@ -1946,7 +1987,6 @@
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#recognition">Recognition</a></li>
                 <li><a href="#gallery">Gallery</a></li>
-                <li><a href="#about">About</a></li>
                 <li><a href="#contact">Contact</a></li>
                 <li><button class="nav-cmdk" id="cmdkOpen" aria-label="Open command palette">
                     <span>Search</span> <kbd>⌘K</kbd>
@@ -2031,6 +2071,40 @@
             <p>Awards, outreach, mentoring &amp; service.</p>
         </a>
     </div>
+
+    <!-- ===== ABOUT ===== -->
+    <section class="section fade-in" id="about">
+        <div class="section-header">
+            <span class="section-label">Who I Am</span>
+            <h2 class="section-title">About <span class="highlight">Me</span></h2>
+        </div>
+        <div class="about-grid">
+            <div class="about-photo-area">
+                <div class="about-photo-ring">
+                    <div class="about-photo-orbits" aria-hidden="true">
+                        <span>🦠</span><span>🧬</span><span>🔬</span><span>🧫</span>
+                    </div>
+                    <div class="about-photo">
+                        <img src="headshot.jpg" alt="Michael Baffour Awuah" loading="lazy">
+                    </div>
+                </div>
+                <div class="about-stats">
+                    <span class="stat-pill"><strong>4th Year</strong> PhD Candidate</span>
+                    <span class="stat-pill"><strong>3</strong> Phages Isolated</span>
+                    <span class="stat-pill"><strong>12+</strong> Open Tools</span>
+                    <span class="stat-pill"><strong>N4</strong> Lysis Specialist</span>
+                </div>
+            </div>
+            <div class="about-text">
+                <p>Howdy! I'm a PhD candidate in Microbiology at Texas A&amp;M University, working in the Ramsey Lab and affiliated with the Center for Phage Technology. My research lives at the intersection of virology, molecular biology, computational genomics, and software engineering.</p>
+                <p>My primary project decodes <em>lysis inhibition</em> in bacteriophage N4 — the phenomenon where the phage strategically delays host cell lysis to transform each infected bacterium into a high-output viral factory (up to ~3,000 viral particles per cell within 3–6 hours). By reverse-engineering these decision-making systems, I aim to power high-titer phage production for therapy and programmable microbial biofactories.</p>
+                <p>Alongside the wet lab, I build open-source tools. Not because they'll go on my CV, but because writing the same <code>ggplot2</code> boilerplate twelve times will make anyone snap. Every tool here was built to solve a real problem I or someone next to me hit. Most are browser-based, privacy-first, and zero-install.</p>
+                <p>As I approach the completion of my doctoral studies, I'm interested in roles where wet-lab phage biology, computational genomics, and tool-building all matter — biotech R&amp;D, AI-for-science startups, translational research labs, or scientific software teams.</p>
+            </div>
+        </div>
+    </section>
+
+    <hr class="section-divider">
 
     <!-- ===== RESEARCH ===== -->
     <section class="section fade-in" id="research">
@@ -2375,40 +2449,6 @@
 
     <hr class="section-divider">
 
-    <!-- ===== ABOUT ===== -->
-    <section class="section fade-in" id="about">
-        <div class="section-header">
-            <span class="section-label">Who I Am</span>
-            <h2 class="section-title">About <span class="highlight">Me</span></h2>
-        </div>
-        <div class="about-grid">
-            <div class="about-photo-area">
-                <div class="about-photo-ring">
-                    <div class="about-photo-orbits" aria-hidden="true">
-                        <span>🦠</span><span>🧬</span><span>🔬</span><span>🧫</span>
-                    </div>
-                    <div class="about-photo">
-                        <img src="headshot.jpg" alt="Michael Baffour Awuah at the American Art gallery" loading="lazy">
-                    </div>
-                </div>
-                <div class="about-stats">
-                    <span class="stat-pill"><strong>4th Year</strong> PhD Candidate</span>
-                    <span class="stat-pill"><strong>3</strong> Phages Isolated</span>
-                    <span class="stat-pill"><strong>12+</strong> Open Tools</span>
-                    <span class="stat-pill"><strong>N4</strong> Lysis Specialist</span>
-                </div>
-            </div>
-            <div class="about-text">
-                <p>Howdy! I'm a PhD candidate in Microbiology at Texas A&amp;M University, working in the Ramsey Lab and affiliated with the Center for Phage Technology. My research lives at the intersection of virology, molecular biology, computational genomics, and software engineering.</p>
-                <p>My primary project decodes <em>lysis inhibition</em> in bacteriophage N4 — the phenomenon where the phage strategically delays host cell lysis to transform each infected bacterium into a high-output viral factory (up to ~3,000 viral particles per cell within 3–6 hours). By reverse-engineering these decision-making systems, I aim to power high-titer phage production for therapy and programmable microbial biofactories.</p>
-                <p>Alongside the wet lab, I build open-source tools. Not because they'll go on my CV, but because writing the same `ggplot2` boilerplate twelve times will make anyone snap. Every tool here was built to solve a real problem I or someone next to me hit. Most are browser-based, privacy-first, and zero-install.</p>
-                <p>As I approach the completion of my doctoral studies, I'm interested in roles where wet-lab phage biology, computational genomics, and tool-building all matter — biotech R&amp;D, AI-for-science startups, translational research labs, or scientific software teams.</p>
-            </div>
-        </div>
-    </section>
-
-    <hr class="section-divider">
-
     <!-- ===== CV ===== -->
     <section class="section fade-in" id="cv">
         <div class="section-header">
@@ -2478,7 +2518,7 @@
     <!-- ===== FOOTER ===== -->
     <footer>
         <p>&copy; 2026 Michael Baffour Awuah · All rights reserved.</p>
-        <p>Built with care, R, and a lot of coffee.</p>
+        <p>Built with passion for science &amp; discovery.</p>
         <div class="footer-dna">
             <span style="color:#f4c430">A</span><span style="color:#1a8040">T</span><span style="color:#c41e3a">C</span><span style="color:#f5edd8">G</span>
             ·
@@ -2834,8 +2874,8 @@
         {
             src: "gallery/gallery-soccer.jpg",
             tag: "Off duty",
-            caption: "Pickup soccer with the crew at Davis Diamond.",
-            sub: "Aggies after hours",
+            caption: "Pickup soccer with the crew.",
+            sub: "Penberthy Sports &amp; Athletics Complex",
             layout: "square"
         },
         {
@@ -2848,8 +2888,8 @@
         {
             src: "gallery/gallery-phage-prep.jpg",
             tag: "Bench",
-            caption: "Phage sample under UV illumination.",
-            sub: "Sample prep",
+            caption: "Watching bands of phage after ultracentrifugation — prepping for dialysis.",
+            sub: "How the nice TEMs happen",
             layout: "square"
         }
     ];
@@ -3193,7 +3233,7 @@
     /* ==============================================================
        NAV: ACTIVE SECTION HIGHLIGHT
     =============================================================== */
-    const navIds = ['research', 'playground', 'publications', 'tools', 'projects', 'recognition', 'about', 'contact'];
+    const navIds = ['about', 'research', 'playground', 'publications', 'tools', 'projects', 'recognition', 'gallery', 'contact'];
     const sectionEls = navIds.map(id => document.getElementById(id)).filter(Boolean);
     const navAnchors = Array.from(document.querySelectorAll('.nav-links a')).filter(a => a.getAttribute('href') && a.getAttribute('href').startsWith('#'));
 
@@ -3285,7 +3325,7 @@
                 this.angle = Math.random() * Math.PI * 2;
                 this.rotSpeed = (Math.random() - 0.5) * 0.006;
                 this.rotation = Math.random() * Math.PI * 2;
-                this.opacity = 0.08 + Math.random() * 0.18;
+                this.opacity = 0.10 + Math.random() * 0.22;
                 this.color = pickColor(this.opacity);
                 this.strokeWidth = 1 + Math.random() * 0.5;
                 this.drift = Math.random() * Math.PI * 2;
@@ -3453,12 +3493,12 @@
 
         // Build organism mix — heavy on phages, but with variety
         const recipe = [
-            ['phage', 8],
-            ['rod', 4],
-            ['coccus', 3],
-            ['plasmid', 3],
-            ['helix', 3],
-            ['ribosome', 4]
+            ['phage', 16],
+            ['rod', 8],
+            ['coccus', 7],
+            ['plasmid', 6],
+            ['helix', 5],
+            ['ribosome', 8]
         ];
         const organisms = [];
         recipe.forEach(([kind, n]) => {
@@ -3500,7 +3540,7 @@
         const PALETTE = ['244, 196, 48', '26, 128, 64', '196, 30, 58'];
         const drifters = [];
         const KINDS = ['phage', 'rod', 'plasmid', 'helix', 'coccus'];
-        for (let i = 0; i < 22; i++) {
+        for (let i = 0; i < 45; i++) {
             drifters.push({
                 kind: KINDS[Math.floor(Math.random() * KINDS.length)],
                 x: Math.random() * w,
@@ -3510,7 +3550,7 @@
                 rot: Math.random() * Math.PI * 2,
                 rotSpeed: (Math.random() - 0.5) * 0.002,
                 size: 10 + Math.random() * 16,
-                opacity: 0.025 + Math.random() * 0.04,
+                opacity: 0.035 + Math.random() * 0.06,
                 color: PALETTE[Math.floor(Math.random() * PALETTE.length * 0.7)]
             });
         }
@@ -4006,15 +4046,24 @@
     /* ==============================================================
        NAVBAR SCROLL CONDENSE
     =============================================================== */
+    const progress = document.getElementById('scrollProgress');
+    const toTop = document.getElementById('toTop');
     let lastY = 0;
-    window.addEventListener('scroll', () => {
+    function updateScrollUI() {
         const nav = document.getElementById('navbar');
         const y = window.scrollY;
         nav.style.background = y > 80
             ? 'rgba(10, 8, 2, 0.92)'
             : 'rgba(10, 8, 2, 0.78)';
+        const docH = document.documentElement.scrollHeight - window.innerHeight;
+        const pct = docH > 0 ? (y / docH) * 100 : 0;
+        progress.style.width = pct + '%';
+        toTop.classList.toggle('show', y > 600);
         lastY = y;
-    });
+    }
+    window.addEventListener('scroll', updateScrollUI, { passive: true });
+    toTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+    updateScrollUI();
     </script>
 </body>
 </html>
