@@ -105,6 +105,18 @@
             background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.96  0 0 0 0 0.85  0 0 0 0 0.52  0 0 0 1 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
         }
 
+        /* Ambient microbiology layer — full-document drift */
+        .ambient-canvas {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.55;
+        }
+        body > main, body > section, body > footer, body > .section, body > nav { position: relative; z-index: 1; }
+
         /* Cursor spotlight (desktop only) */
         .cursor-glow {
             position: fixed;
@@ -516,6 +528,46 @@
             letter-spacing: 0.18em;
             text-transform: uppercase;
             color: var(--ink-3);
+        }
+
+        /* "Currently" status badge under hero */
+        .now-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-top: 2.4rem;
+            padding: 0.7rem 1.2rem 0.7rem 0.9rem;
+            background: rgba(10, 8, 2, 0.65);
+            border: 1px solid var(--border-strong);
+            border-radius: 50px;
+            backdrop-filter: blur(8px);
+            text-align: left;
+            max-width: 540px;
+            margin-left: auto; margin-right: auto;
+            opacity: 0;
+            animation: fadeUp 1.4s 0.85s ease forwards;
+        }
+        .now-badge .now-icon {
+            font-size: 1.3rem;
+            filter: drop-shadow(0 0 8px rgba(244, 196, 48, 0.5));
+            flex-shrink: 0;
+            animation: floaty 4s ease-in-out infinite;
+        }
+        @keyframes floaty {
+            0%, 100% { transform: translateY(0) rotate(0); }
+            50%      { transform: translateY(-3px) rotate(-6deg); }
+        }
+        .now-badge .now-text { display: flex; flex-direction: column; line-height: 1.3; }
+        .now-badge .now-label {
+            font-family: var(--font-mono);
+            font-size: 0.62rem;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 0.18em;
+        }
+        .now-badge .now-body {
+            color: var(--ink-2);
+            font-size: 0.86rem;
         }
 
         /* Hero scroll cue */
@@ -1264,27 +1316,80 @@
             align-items: start;
         }
         .about-photo {
-            width: 230px; height: 230px;
+            width: 240px; height: 240px;
             border-radius: 50%;
             border: 3px solid var(--gold);
             background: linear-gradient(135deg, var(--bg-3), var(--bg-2));
             display: flex;
             align-items: center;
             justify-content: center;
-            font-family: var(--font-display);
-            font-size: 4.5rem;
-            font-weight: 600;
             color: var(--gold);
-            box-shadow: var(--glow-gold);
+            box-shadow: var(--glow-gold), inset 0 0 0 6px rgba(10, 8, 2, 0.6);
             margin-bottom: 1.4rem;
             position: relative;
             overflow: hidden;
+            transition: transform .4s ease, box-shadow .4s ease;
+        }
+        .about-photo img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform .6s ease, filter .6s ease;
+        }
+        .about-photo:hover img {
+            transform: scale(1.06);
+            filter: saturate(1.1);
         }
         .about-photo::after {
             content: '';
             position: absolute;
             inset: 0;
-            background: radial-gradient(circle at 30% 30%, rgba(244, 196, 48, 0.12), transparent 60%);
+            background: radial-gradient(circle at 30% 25%, rgba(244, 196, 48, 0.15), transparent 65%);
+            pointer-events: none;
+            mix-blend-mode: screen;
+        }
+        /* orbiting decoration around the headshot */
+        .about-photo-ring {
+            position: relative;
+            width: 280px; height: 280px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 0.6rem;
+        }
+        .about-photo-ring::before,
+        .about-photo-ring::after {
+            content: '';
+            position: absolute;
+            border-radius: 50%;
+            border: 1px dashed rgba(244, 196, 48, 0.25);
+            inset: 0;
+            animation: spin 36s linear infinite;
+        }
+        .about-photo-ring::after {
+            inset: 12px;
+            border-color: rgba(26, 128, 64, 0.22);
+            animation-direction: reverse;
+            animation-duration: 48s;
+        }
+        .about-photo-orbits {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            animation: spin 22s linear infinite;
+        }
+        .about-photo-orbits span {
+            position: absolute;
+            font-size: 18px;
+            filter: drop-shadow(0 0 6px rgba(244, 196, 48, 0.5));
+        }
+        .about-photo-orbits span:nth-child(1) { top: -6px;  left: 50%;  transform: translateX(-50%); }
+        .about-photo-orbits span:nth-child(2) { top: 50%;   right: -6px; transform: translateY(-50%); }
+        .about-photo-orbits span:nth-child(3) { bottom: -6px; left: 50%; transform: translateX(-50%); }
+        .about-photo-orbits span:nth-child(4) { top: 50%;   left: -6px;  transform: translateY(-50%); }
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to   { transform: rotate(360deg); }
         }
         .about-stats {
             display: flex;
@@ -1620,6 +1725,7 @@
 </head>
 <body>
     <div class="cursor-glow" id="cursorGlow"></div>
+    <canvas class="ambient-canvas" id="ambientCanvas" aria-hidden="true"></canvas>
 
     <!-- ===== NAV ===== -->
     <nav class="nav" id="navbar">
@@ -1682,6 +1788,14 @@
                     <div class="hero-stat-value">N4</div>
                     <div class="hero-stat-label">Lysis Specialist</div>
                 </div>
+            </div>
+
+            <div class="now-badge" id="nowBadge" aria-label="Current status">
+                <span class="now-icon">🦠</span>
+                <span class="now-text">
+                    <span class="now-label">Currently</span>
+                    <span class="now-body" id="nowBody">Wrapping up the N4 lysis preprint &amp; building new R Shiny tools for the lab.</span>
+                </span>
             </div>
         </div>
         <div class="hero-cue">
@@ -2026,9 +2140,13 @@
         </div>
         <div class="about-grid">
             <div class="about-photo-area">
-                <div class="about-photo">
-                    <!-- Replace with <img src="headshot.jpg" alt="Michael Baffour Awuah"> when ready -->
-                    <span>MBA</span>
+                <div class="about-photo-ring">
+                    <div class="about-photo-orbits" aria-hidden="true">
+                        <span>🦠</span><span>🧬</span><span>🔬</span><span>🧫</span>
+                    </div>
+                    <div class="about-photo">
+                        <img src="headshot.jpg" alt="Michael Baffour Awuah at the American Art gallery" loading="lazy">
+                    </div>
                 </div>
                 <div class="about-stats">
                     <span class="stat-pill"><strong>4th Year</strong> PhD Candidate</span>
@@ -2644,14 +2762,16 @@
     }
 
     /* ==============================================================
-       HERO CANVAS — Animated phages
+       HERO CANVAS — Floating microbiology zoo
+       Phages, bacteria (rods + cocci), plasmids, DNA helices, ribosomes.
+       Density and palette tuned for ambient (low-distraction) presence.
     =============================================================== */
     (function() {
         const canvas = document.getElementById('heroCanvas');
+        if (!canvas) return;
         const ctx = canvas.getContext('2d');
+        const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
         let w, h;
-        const PHAGES = 14;
-        const phages = [];
 
         function resize() {
             w = canvas.width = canvas.offsetWidth;
@@ -2660,40 +2780,60 @@
         window.addEventListener('resize', resize);
         resize();
 
-        class Phage {
-            constructor() { this.reset(); }
+        const PALETTE = ['244, 196, 48', '26, 128, 64', '196, 30, 58'];
+        const pickColor = (op) => `rgba(${PALETTE[Math.floor(Math.random() * PALETTE.length * 0.62)]}, ${op})`;
+
+        class Organism {
+            constructor(kind) {
+                this.kind = kind;
+                this.reset();
+            }
             reset() {
                 this.x = Math.random() * w;
                 this.y = Math.random() * h;
-                this.size = 14 + Math.random() * 22;
-                this.speed = 0.12 + Math.random() * 0.30;
+                this.size = 12 + Math.random() * 22;
+                this.speed = 0.07 + Math.random() * 0.28;
                 this.angle = Math.random() * Math.PI * 2;
-                this.rotSpeed = (Math.random() - 0.5) * 0.005;
+                this.rotSpeed = (Math.random() - 0.5) * 0.006;
                 this.rotation = Math.random() * Math.PI * 2;
-                this.opacity = 0.08 + Math.random() * 0.16;
-                const r = Math.random();
-                this.color = r < 0.55
-                    ? `rgba(244, 196, 48, ${this.opacity})`
-                    : r < 0.85
-                        ? `rgba(26, 128, 64, ${this.opacity})`
-                        : `rgba(196, 30, 58, ${this.opacity})`;
+                this.opacity = 0.08 + Math.random() * 0.18;
+                this.color = pickColor(this.opacity);
+                this.strokeWidth = 1 + Math.random() * 0.5;
                 this.drift = Math.random() * Math.PI * 2;
                 this.driftSpeed = 0.002 + Math.random() * 0.003;
+                this.pulse = Math.random() * Math.PI * 2;
             }
             update() {
                 this.drift += this.driftSpeed;
-                this.x += Math.cos(this.angle) * this.speed + Math.sin(this.drift) * 0.2;
-                this.y += Math.sin(this.angle) * this.speed + Math.cos(this.drift) * 0.15;
+                this.pulse += 0.02;
+                this.x += Math.cos(this.angle) * this.speed + Math.sin(this.drift) * 0.18;
+                this.y += Math.sin(this.angle) * this.speed + Math.cos(this.drift) * 0.14;
                 this.rotation += this.rotSpeed;
-                if (this.x < -60) this.x = w + 60;
-                if (this.x > w + 60) this.x = -60;
-                if (this.y < -60) this.y = h + 60;
-                if (this.y > h + 60) this.y = -60;
+                const m = 80;
+                if (this.x < -m) this.x = w + m;
+                if (this.x > w + m) this.x = -m;
+                if (this.y < -m) this.y = h + m;
+                if (this.y > m + h) this.y = -m;
             }
             draw() {
                 ctx.save();
                 ctx.translate(this.x, this.y);
                 ctx.rotate(this.rotation);
+                ctx.strokeStyle = this.color;
+                ctx.fillStyle = this.color;
+                ctx.lineWidth = this.strokeWidth;
+                switch (this.kind) {
+                    case 'phage':    this.drawPhage();    break;
+                    case 'rod':      this.drawRod();      break;
+                    case 'coccus':   this.drawCoccus();   break;
+                    case 'plasmid':  this.drawPlasmid();  break;
+                    case 'helix':    this.drawHelix();    break;
+                    case 'ribosome': this.drawRibosome(); break;
+                }
+                ctx.restore();
+            }
+            // Bacteriophage (icosahedral capsid + tail + fibers)
+            drawPhage() {
                 const s = this.size;
                 ctx.beginPath();
                 for (let i = 0; i < 6; i++) {
@@ -2703,42 +2843,283 @@
                     i === 0 ? ctx.moveTo(px, py) : ctx.lineTo(px, py);
                 }
                 ctx.closePath();
-                ctx.fillStyle = this.color;
                 ctx.fill();
-                ctx.strokeStyle = this.color;
-                ctx.lineWidth = 1;
                 ctx.stroke();
                 ctx.beginPath();
                 ctx.moveTo(0, s * 0.5);
                 ctx.lineTo(0, s * 1.3);
-                ctx.strokeStyle = this.color;
-                ctx.lineWidth = 1.4;
                 ctx.stroke();
                 const fy = s * 1.3;
                 for (let i = -1; i <= 1; i += 2) {
                     ctx.beginPath();
                     ctx.moveTo(0, fy);
                     ctx.quadraticCurveTo(i * s * 0.3, fy + s * 0.15, i * s * 0.5, fy + s * 0.4);
-                    ctx.strokeStyle = this.color;
-                    ctx.lineWidth = 1;
                     ctx.stroke();
                 }
                 ctx.beginPath();
                 ctx.moveTo(-s * 0.2, s * 1.25);
                 ctx.lineTo(s * 0.2, s * 1.25);
-                ctx.lineWidth = 1.4;
                 ctx.stroke();
-                ctx.restore();
+            }
+            // Rod-shaped bacterium (E. coli-like)
+            drawRod() {
+                const len = this.size * 1.8;
+                const rad = this.size * 0.42;
+                ctx.beginPath();
+                ctx.moveTo(-len/2 + rad, -rad);
+                ctx.lineTo(len/2 - rad, -rad);
+                ctx.arc(len/2 - rad, 0, rad, -Math.PI/2, Math.PI/2);
+                ctx.lineTo(-len/2 + rad, rad);
+                ctx.arc(-len/2 + rad, 0, rad, Math.PI/2, Math.PI*1.5);
+                ctx.closePath();
+                ctx.fill();
+                ctx.stroke();
+                // membrane highlight
+                ctx.beginPath();
+                ctx.moveTo(-len/2 + rad, -rad * 0.6);
+                ctx.lineTo(len/2 - rad, -rad * 0.6);
+                ctx.strokeStyle = `rgba(245, 237, 216, ${this.opacity * 0.5})`;
+                ctx.stroke();
+            }
+            // Coccus (spherical cell, possibly diplo- or tetra-)
+            drawCoccus() {
+                const r = this.size * 0.55;
+                const pulse = 1 + Math.sin(this.pulse) * 0.04;
+                ctx.beginPath();
+                ctx.arc(-r * 0.7, 0, r * pulse, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.stroke();
+                ctx.beginPath();
+                ctx.arc(r * 0.7, 0, r * pulse, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.stroke();
+            }
+            // Plasmid (closed circular DNA loop)
+            drawPlasmid() {
+                const r = this.size * 0.6;
+                ctx.beginPath();
+                // wavy circle to suggest supercoiled DNA
+                const segments = 36;
+                for (let i = 0; i <= segments; i++) {
+                    const t = (i / segments) * Math.PI * 2;
+                    const wob = Math.sin(t * 3 + this.pulse) * 1.4;
+                    const x = Math.cos(t) * (r + wob);
+                    const y = Math.sin(t) * (r + wob);
+                    i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+                }
+                ctx.closePath();
+                ctx.stroke();
+                // inner loop (supercoiled twist)
+                ctx.beginPath();
+                ctx.arc(0, 0, r * 0.55, 0, Math.PI * 1.4);
+                ctx.stroke();
+            }
+            // DNA double helix segment
+            drawHelix() {
+                const len = this.size * 2.6;
+                const amp = this.size * 0.3;
+                const segments = 26;
+                // Strand A
+                ctx.beginPath();
+                for (let i = 0; i <= segments; i++) {
+                    const t = i / segments;
+                    const x = -len/2 + t * len;
+                    const y = Math.sin(t * Math.PI * 3) * amp;
+                    i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+                }
+                ctx.stroke();
+                // Strand B (phase-shifted)
+                ctx.beginPath();
+                for (let i = 0; i <= segments; i++) {
+                    const t = i / segments;
+                    const x = -len/2 + t * len;
+                    const y = Math.sin(t * Math.PI * 3 + Math.PI) * amp;
+                    i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+                }
+                ctx.stroke();
+                // base-pair rungs (every few segments)
+                for (let i = 2; i < segments; i += 4) {
+                    const t = i / segments;
+                    const x = -len/2 + t * len;
+                    const y1 = Math.sin(t * Math.PI * 3) * amp;
+                    const y2 = Math.sin(t * Math.PI * 3 + Math.PI) * amp;
+                    ctx.beginPath();
+                    ctx.moveTo(x, y1);
+                    ctx.lineTo(x, y2);
+                    ctx.stroke();
+                }
+            }
+            // Ribosome (two-subunit blob)
+            drawRibosome() {
+                const r1 = this.size * 0.55;
+                const r2 = this.size * 0.40;
+                ctx.beginPath();
+                ctx.arc(0, -r2 * 0.4, r1, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.beginPath();
+                ctx.arc(0, r1 * 0.6, r2, 0, Math.PI * 2);
+                ctx.fill();
             }
         }
-        for (let i = 0; i < PHAGES; i++) phages.push(new Phage());
+
+        // Build organism mix — heavy on phages, but with variety
+        const recipe = [
+            ['phage', 8],
+            ['rod', 4],
+            ['coccus', 3],
+            ['plasmid', 3],
+            ['helix', 3],
+            ['ribosome', 4]
+        ];
+        const organisms = [];
+        recipe.forEach(([kind, n]) => {
+            for (let i = 0; i < n; i++) organisms.push(new Organism(kind));
+        });
 
         function tick() {
             ctx.clearRect(0, 0, w, h);
-            phages.forEach(p => { p.update(); p.draw(); });
+            organisms.forEach(o => {
+                if (!reduceMotion) o.update();
+                o.draw();
+            });
+            if (!reduceMotion) requestAnimationFrame(tick);
+        }
+        tick();
+    })();
+
+    /* ==============================================================
+       AMBIENT MICROBIOLOGY LAYER (background canvas, full page)
+       Very low-density drift to make the whole site feel "alive".
+    =============================================================== */
+    (function() {
+        const canvas = document.getElementById('ambientCanvas');
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+        const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (reduceMotion) return;
+        let w, h, dpr;
+        function resize() {
+            dpr = devicePixelRatio || 1;
+            w = canvas.offsetWidth;
+            h = canvas.offsetHeight;
+            canvas.width = w * dpr; canvas.height = h * dpr;
+            ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        }
+        window.addEventListener('resize', resize);
+        resize();
+
+        const PALETTE = ['244, 196, 48', '26, 128, 64', '196, 30, 58'];
+        const drifters = [];
+        const KINDS = ['phage', 'rod', 'plasmid', 'helix', 'coccus'];
+        for (let i = 0; i < 22; i++) {
+            drifters.push({
+                kind: KINDS[Math.floor(Math.random() * KINDS.length)],
+                x: Math.random() * w,
+                y: Math.random() * h,
+                vx: (Math.random() - 0.5) * 0.05,
+                vy: (Math.random() - 0.5) * 0.05,
+                rot: Math.random() * Math.PI * 2,
+                rotSpeed: (Math.random() - 0.5) * 0.002,
+                size: 10 + Math.random() * 16,
+                opacity: 0.025 + Math.random() * 0.04,
+                color: PALETTE[Math.floor(Math.random() * PALETTE.length * 0.7)]
+            });
+        }
+
+        function drawShape(d) {
+            ctx.save();
+            ctx.translate(d.x, d.y);
+            ctx.rotate(d.rot);
+            ctx.strokeStyle = `rgba(${d.color}, ${d.opacity})`;
+            ctx.fillStyle = `rgba(${d.color}, ${d.opacity * 0.45})`;
+            ctx.lineWidth = 1;
+            const s = d.size;
+            switch (d.kind) {
+                case 'phage':
+                    ctx.beginPath();
+                    for (let i = 0; i < 6; i++) {
+                        const a = (Math.PI * 2 / 6) * i - Math.PI / 2;
+                        const px = Math.cos(a) * s * 0.5;
+                        const py = Math.sin(a) * s * 0.5;
+                        i === 0 ? ctx.moveTo(px, py) : ctx.lineTo(px, py);
+                    }
+                    ctx.closePath();
+                    ctx.fill(); ctx.stroke();
+                    ctx.beginPath();
+                    ctx.moveTo(0, s * 0.5); ctx.lineTo(0, s * 1.25);
+                    ctx.stroke();
+                    break;
+                case 'rod':
+                    const len = s * 1.6, rad = s * 0.38;
+                    ctx.beginPath();
+                    ctx.moveTo(-len/2 + rad, -rad);
+                    ctx.lineTo(len/2 - rad, -rad);
+                    ctx.arc(len/2 - rad, 0, rad, -Math.PI/2, Math.PI/2);
+                    ctx.lineTo(-len/2 + rad, rad);
+                    ctx.arc(-len/2 + rad, 0, rad, Math.PI/2, Math.PI*1.5);
+                    ctx.closePath();
+                    ctx.fill(); ctx.stroke();
+                    break;
+                case 'plasmid':
+                    ctx.beginPath();
+                    ctx.arc(0, 0, s * 0.55, 0, Math.PI * 2);
+                    ctx.stroke();
+                    break;
+                case 'helix':
+                    ctx.beginPath();
+                    for (let i = 0; i <= 20; i++) {
+                        const t = i / 20;
+                        const x = -s + t * 2 * s;
+                        const y = Math.sin(t * Math.PI * 3) * s * 0.25;
+                        i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+                    }
+                    ctx.stroke();
+                    ctx.beginPath();
+                    for (let i = 0; i <= 20; i++) {
+                        const t = i / 20;
+                        const x = -s + t * 2 * s;
+                        const y = Math.sin(t * Math.PI * 3 + Math.PI) * s * 0.25;
+                        i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+                    }
+                    ctx.stroke();
+                    break;
+                case 'coccus':
+                    ctx.beginPath();
+                    ctx.arc(0, 0, s * 0.5, 0, Math.PI * 2);
+                    ctx.fill(); ctx.stroke();
+                    break;
+            }
+            ctx.restore();
+        }
+
+        function tick() {
+            ctx.clearRect(0, 0, w, h);
+            drifters.forEach(d => {
+                d.x += d.vx;
+                d.y += d.vy;
+                d.rot += d.rotSpeed;
+                if (d.x < -50) d.x = w + 50;
+                if (d.x > w + 50) d.x = -50;
+                if (d.y < -50) d.y = h + 50;
+                if (d.y > h + 50) d.y = -50;
+                drawShape(d);
+            });
             requestAnimationFrame(tick);
         }
         tick();
+
+        // Track ambient canvas size to whole document, not just viewport
+        const fitToDoc = () => {
+            const docH = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight);
+            if (Math.abs(canvas.offsetHeight - docH) > 50) {
+                canvas.style.height = docH + 'px';
+                resize();
+            }
+        };
+        fitToDoc();
+        window.addEventListener('load', fitToDoc);
+        const ro = new ResizeObserver(fitToDoc);
+        ro.observe(document.body);
     })();
 
     /* ==============================================================
