@@ -106,7 +106,9 @@
             background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.96  0 0 0 0 0.85  0 0 0 0 0.52  0 0 0 1 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
         }
 
-        /* Ambient microbiology layer — viewport-fixed for performance */
+        /* Ambient microbiology layer — viewport-fixed for performance.
+           Opacity is updated from JS based on scroll so the hero
+           doesn't fight with the hero canvas. */
         .ambient-canvas {
             position: fixed;
             top: 0; left: 0;
@@ -114,7 +116,8 @@
             height: 100vh;
             pointer-events: none;
             z-index: 0;
-            opacity: 0.55;
+            opacity: 0;
+            transition: opacity .4s ease;
         }
         body > main, body > section, body > footer, body > .section, body > nav { position: relative; z-index: 1; }
         @media (hover: none) and (pointer: coarse) {
@@ -348,6 +351,22 @@
         }
 
         .section-header { text-align: center; margin-bottom: 3.5rem; }
+        .section-header.left { text-align: left; max-width: 720px; margin-left: 0; margin-right: auto; }
+        .section-header.left .section-subtitle { margin-left: 0; }
+        .section-header.bare .section-label { display: none; }
+        .section-header.compact { margin-bottom: 2rem; }
+        /* Soft kente accent under the title when label is hidden */
+        .section-header.bare .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background: var(--kente);
+            opacity: 0.7;
+            margin: 1rem auto 0;
+            border-radius: 2px;
+        }
+        .section-header.left.bare .section-title::after { margin-left: 0; }
         .section-label {
             display: inline-block;
             font-family: var(--font-mono);
@@ -505,6 +524,22 @@
             animation: fadeUp 1.2s .55s ease forwards;
             opacity: 0;
         }
+        .hero-cv-link {
+            display: inline-block;
+            margin-top: 1rem;
+            font-family: var(--font-mono);
+            font-size: 0.78rem;
+            letter-spacing: 0.08em;
+            color: var(--ink-3);
+            text-decoration: none;
+            border-bottom: 1px dashed var(--border-strong);
+            padding-bottom: 1px;
+            transition: color .2s ease, border-color .2s ease;
+            animation: fadeUp 1.3s .7s ease forwards;
+            opacity: 0;
+        }
+        .hero-cv-link:hover { color: var(--gold); border-bottom-color: var(--gold); }
+
 
         .btn {
             display: inline-flex;
@@ -1305,21 +1340,14 @@
             border: 1px solid;
         }
         .proj-category-pill.science  { color: var(--gold);  background: var(--gold-dim);  border-color: var(--gold); }
-        .proj-featured-badge {
-            position: absolute;
-            top: 0.6rem;
-            left: 0.6rem;
-            z-index: 3;
-            font-family: var(--font-mono);
-            font-size: 0.62rem;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            font-weight: 700;
-            color: var(--bg);
-            background: linear-gradient(135deg, var(--gold), #ffd968);
-            padding: 0.22rem 0.55rem;
-            border-radius: 4px;
-            box-shadow: 0 4px 14px rgba(244, 196, 48, 0.45);
+        .proj-featured-star {
+            display: inline-block;
+            color: var(--gold);
+            font-size: 0.85em;
+            margin-right: 0.18rem;
+            filter: drop-shadow(0 0 4px rgba(244, 196, 48, 0.6));
+            vertical-align: middle;
+            line-height: 1;
         }
         .proj-card.featured {
             border-color: rgba(244, 196, 48, 0.25);
@@ -2082,6 +2110,87 @@
         /* ============================================================
            RECOGNITION & SERVICE
         ============================================================ */
+        /* Featured Patterson hero — sits above the grid */
+        .rec-hero {
+            display: grid;
+            grid-template-columns: minmax(260px, 360px) 1fr;
+            gap: 1.8rem;
+            align-items: stretch;
+            background: linear-gradient(135deg, rgba(244, 196, 48, 0.08), rgba(10, 8, 2, 0.45));
+            border: 1px solid var(--gold);
+            border-radius: var(--radius);
+            overflow: hidden;
+            margin-bottom: 1.4rem;
+            box-shadow: var(--glow-gold);
+        }
+        .rec-hero-photo {
+            position: relative;
+            aspect-ratio: 4 / 3;
+            overflow: hidden;
+            background: var(--bg-3);
+        }
+        .rec-hero-photo img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            transition: transform .6s ease;
+        }
+        .rec-hero:hover .rec-hero-photo img { transform: scale(1.03); }
+        .rec-hero-photo::after {
+            content: '';
+            position: absolute; inset: 0;
+            background: linear-gradient(180deg, transparent 55%, rgba(10, 8, 2, 0.85));
+        }
+        .rec-hero-tag {
+            position: absolute;
+            bottom: 0.8rem; left: 0.9rem;
+            font-family: var(--font-mono);
+            font-size: 0.66rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--gold);
+            background: rgba(10, 8, 2, 0.75);
+            border: 1px solid var(--border-strong);
+            padding: 0.25rem 0.6rem;
+            border-radius: 4px;
+            z-index: 2;
+        }
+        .rec-hero-body {
+            padding: 1.6rem 1.8rem 1.6rem 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .rec-hero-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 42px; height: 42px;
+            background: rgba(244, 196, 48, 0.16);
+            border: 1px solid var(--gold);
+            border-radius: 10px;
+            font-size: 1.2rem;
+            margin-bottom: 0.85rem;
+        }
+        .rec-hero-title {
+            font-family: var(--font-display);
+            font-size: 1.35rem;
+            font-weight: 600;
+            color: var(--ink);
+            line-height: 1.25;
+            margin-bottom: 0.6rem;
+        }
+        .rec-hero-body p {
+            color: var(--ink-3);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 0.85rem;
+        }
+        @media (max-width: 760px) {
+            .rec-hero { grid-template-columns: 1fr; }
+            .rec-hero-body { padding: 1.4rem 1.4rem 1.6rem; }
+            .rec-hero-photo { aspect-ratio: 16 / 10; }
+        }
+
         .rec-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -2091,10 +2200,15 @@
             background: var(--bg-card);
             border: 1px solid var(--border);
             border-radius: var(--radius);
-            padding: 1.6rem;
+            padding: 1.6rem 1.6rem 1.4rem;
             position: relative;
             overflow: hidden;
-            transition: all .3s ease;
+            transition: transform .3s ease, border-color .3s ease, background .3s ease;
+        }
+        .rec-card:hover {
+            border-color: var(--border-strong);
+            background: var(--bg-card-hover);
+            transform: translateY(-4px);
         }
         .rec-card::before {
             content: '';
@@ -2103,11 +2217,6 @@
             height: 3px;
             background: var(--accent, var(--gold));
             opacity: 0.6;
-        }
-        .rec-card:hover {
-            border-color: var(--border-strong);
-            background: var(--bg-card-hover);
-            transform: translateY(-3px);
         }
         .rec-icon {
             display: inline-flex;
@@ -3040,7 +3149,8 @@
             .nav-links a { font-size: 0.95rem; }
             .nav-toggle { display: inline-flex; }
 
-            .section { padding: 4rem 1.25rem; }
+            .section { padding: 3rem 1.25rem; }
+            .section-header { margin-bottom: 2rem; }
             .glance { grid-template-columns: repeat(2, 1fr); padding: 0 1.25rem; }
             .hero-stats { gap: 1.4rem; }
             .hero-buttons { flex-direction: column; align-items: stretch; max-width: 280px; margin-left: auto; margin-right: auto; }
@@ -3129,8 +3239,8 @@
             <div class="hero-buttons">
                 <a href="#publications" class="btn btn-primary">📖 View Publications</a>
                 <a href="#tools" class="btn btn-secondary">🧰 Open Toolbox</a>
-                <a href="cv & resume/Michael_Baffour_Awuah_CV.pdf" class="btn btn-ghost" download>📄 Download CV</a>
             </div>
+            <a href="cv & resume/Michael_Baffour_Awuah_CV.pdf" class="hero-cv-link" download>↓ Download CV</a>
 
             <div class="hero-stats">
                 <div class="hero-stat">
@@ -3230,7 +3340,7 @@
 
     <!-- ===== RESEARCH ===== -->
     <section class="section fade-in" id="research">
-        <div class="section-header">
+        <div class="section-header bare">
             <span class="section-label">What I Study</span>
             <h2 class="section-title">Research <span class="highlight">Focus</span></h2>
             <p class="section-subtitle">Bridging molecular virology and engineering to unlock the potential of bacteriophages — from lysis decision-making to programmable biofactories.</p>
@@ -3447,7 +3557,7 @@
 
     <!-- ===== OUTPUT (Publications + Talks) ===== -->
     <section class="section fade-in" id="publications">
-        <div class="section-header">
+        <div class="section-header bare">
             <span class="section-label">Peer-Reviewed Work · Talks · Posters</span>
             <h2 class="section-title">Scientific <span class="highlight">Output</span></h2>
             <p class="section-subtitle">Papers, preprints, and talks. More in the pipeline — links update as work lands.</p>
@@ -3473,7 +3583,7 @@
 
     <!-- ===== SIDE PROJECTS ===== -->
     <section class="section fade-in" id="projects">
-        <div class="section-header">
+        <div class="section-header bare">
             <span class="section-label">Side Builds</span>
             <h2 class="section-title">Personal <span class="highlight">Projects</span></h2>
             <p class="section-subtitle">Things I built outside the lab — usually because someone I care about needed them, or because the problem nagged me until I solved it.</p>
@@ -3685,24 +3795,26 @@
 
     <!-- ===== RECOGNITION & SERVICE ===== -->
     <section class="section fade-in" id="recognition">
-        <div class="section-header">
+        <div class="section-header bare">
             <span class="section-label">Awards · Service · Mentoring</span>
             <h2 class="section-title">Recognition <span class="highlight">&amp; Service</span></h2>
             <p class="section-subtitle">Awards, outreach, judging, and the trainees I've had the privilege of working alongside.</p>
         </div>
-        <div class="rec-grid">
-            <div class="rec-card award has-photo" style="--accent: var(--gold);">
-                <div class="rec-photo">
-                    <img src="patterson-card.jpg" alt="Receiving the Thomas L. Patterson Fellowship at CPT, Texas A&M" loading="lazy">
-                    <span class="rec-photo-tag">August 2025</span>
-                </div>
-                <span class="rec-icon">🏆</span>
-                <div class="rec-body">
-                    <h3>Thomas L. Patterson Graduate Student Fellowship</h3>
-                    <p>Awarded by the Center for Phage Technology at Texas A&amp;M — established by Dr. Steffanie Strathdee and Dr. Thomas Patterson following CPT's landmark involvement in phage therapy in the US.</p>
-                    <a class="rec-link" href="https://cpt.tamu.edu/michael-awuah-awarded-2025-thomas-l-patterson-graduate-student-fellowship/" target="_blank" rel="noopener">Read announcement ↗</a>
-                </div>
+        <!-- Featured award: Patterson Fellowship -->
+        <div class="rec-hero">
+            <div class="rec-hero-photo">
+                <img src="patterson-card.jpg" alt="Receiving the Thomas L. Patterson Fellowship at CPT, Texas A&amp;M" loading="lazy">
+                <span class="rec-hero-tag">August 2025 · Fellowship</span>
             </div>
+            <div class="rec-hero-body">
+                <span class="rec-hero-icon">🏆</span>
+                <h3 class="rec-hero-title">Thomas L. Patterson Graduate Student Fellowship</h3>
+                <p>Awarded by the Center for Phage Technology at Texas A&amp;M — established by Dr. Steffanie Strathdee and Dr. Thomas Patterson following CPT's landmark involvement in phage therapy in the US.</p>
+                <a class="rec-link" href="https://cpt.tamu.edu/michael-awuah-awarded-2025-thomas-l-patterson-graduate-student-fellowship/" target="_blank" rel="noopener">Read announcement ↗</a>
+            </div>
+        </div>
+
+        <div class="rec-grid">
             <div class="rec-card talks" style="--accent: var(--gold);">
                 <span class="rec-icon">🎤</span>
                 <div class="rec-date">2024–2025</div>
@@ -3776,7 +3888,7 @@
 
     <!-- ===== CONTACT ===== -->
     <section class="section fade-in" id="contact">
-        <div class="section-header">
+        <div class="section-header bare">
             <span class="section-label">Let's Talk Phages</span>
             <h2 class="section-title">Get in <span class="highlight">Touch</span></h2>
             <p class="section-subtitle">Collaboration, phage research, scientific software, or just talking shop — I'd love to hear from you.</p>
@@ -4667,11 +4779,10 @@
                 <div class="proj-thumb">
                     ${SVG_PREVIEWS[t.preview] || ''}
                     <span class="proj-category-pill science">${t.stack.toUpperCase()}</span>
-                    ${t.featured ? '<span class="proj-featured-badge">★ Featured</span>' : ''}
                     <span class="proj-thumb-label">${t.label}</span>
                 </div>
                 <div class="proj-body">
-                    <h3>${t.title}</h3>
+                    <h3>${t.featured ? '<span class="proj-featured-star" title="Featured">★</span> ' : ''}${t.title}</h3>
                     <p>${t.blurb}</p>
                     <div class="proj-tags">
                         ${t.tech.map(x => `<span class="research-tag">${x}</span>`).join('')}
@@ -5816,6 +5927,7 @@
     const toTop = document.getElementById('toTop');
     const navAvatar = document.getElementById('navAvatar');
     let lastY = 0;
+    const ambientEl = document.getElementById('ambientCanvas');
     function updateScrollUI() {
         const nav = document.getElementById('navbar');
         const y = window.scrollY;
@@ -5827,6 +5939,14 @@
         progress.style.width = pct + '%';
         toTop.classList.toggle('show', y > 600);
         if (navAvatar) navAvatar.classList.toggle('show', y > window.innerHeight * 0.6);
+        // Fade in ambient layer after the hero — keeps hero clean
+        if (ambientEl) {
+            const heroH = window.innerHeight;
+            const fadeStart = heroH * 0.6;
+            const fadeEnd   = heroH * 1.0;
+            const t = Math.max(0, Math.min(1, (y - fadeStart) / (fadeEnd - fadeStart)));
+            ambientEl.style.opacity = (t * 0.55).toFixed(3);
+        }
         lastY = y;
     }
     window.addEventListener('scroll', updateScrollUI, { passive: true });
