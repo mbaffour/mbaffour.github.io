@@ -3252,7 +3252,7 @@
                     <div class="hero-stat-label">Novel Phages</div>
                 </div>
                 <div class="hero-stat">
-                    <div class="hero-stat-value" id="toolCount">12+</div>
+                    <div class="hero-stat-value" id="toolCount">14+</div>
                     <div class="hero-stat-label">Open Tools</div>
                 </div>
                 <div class="hero-stat">
@@ -3290,7 +3290,7 @@
         <a href="#tools" class="glance-tile" style="--accent: var(--gold);">
             <span class="icon">🧰</span>
             <h3>Open Tools</h3>
-            <p>12+ shipped tools for lab &amp; bioinformatics.</p>
+            <p>14+ shipped tools for lab &amp; bioinformatics.</p>
         </a>
         <a href="#recognition" class="glance-tile" style="--accent: var(--red);">
             <span class="icon">🏆</span>
@@ -3318,7 +3318,7 @@
                 <div class="about-stats">
                     <span class="stat-pill"><strong>4th Year</strong> PhD Candidate</span>
                     <span class="stat-pill"><strong>3</strong> Phages Isolated</span>
-                    <span class="stat-pill"><strong>12+</strong> Open Tools</span>
+                    <span class="stat-pill"><strong>14+</strong> Open Tools</span>
                     <span class="stat-pill"><strong>N4</strong> Lysis Specialist</span>
                 </div>
             </div>
@@ -4208,6 +4208,47 @@
             app:  "https://github.com/mbaffour/N4-Lysis-paper-codes",
             label: "Paper Code Repo",
             preview: "paper"
+        },
+        {
+            title: "CFU Plot Studio",
+            featured: true,
+            blurb: "R Shiny app for publication-ready CFU plots — bar charts, error bars, significance annotations, and reproducible figure exports in one place.",
+            tech: ["R Shiny", "CFU", "Statistics"],
+            stack: "r",
+            blog: "https://github.com/mbaffour/cfu-plot-studio",
+            app:  "https://github.com/mbaffour/cfu-plot-studio",
+            label: "CFU Plotter",
+            preview: "cfu"
+        },
+        {
+            title: "Genomics Kitchen",
+            blurb: "Browser-based sequence preparation toolkit — trim, filter, dedupe, and format sequences for reproducible genomics workflows. No installs.",
+            tech: ["JavaScript", "Genomics", "Offline"],
+            stack: "js",
+            blog: "https://github.com/mbaffour/genomics-kitchen",
+            app:  "https://mbaffour.github.io/genomics-kitchen/",
+            label: "Sequence Prep",
+            preview: "genomicskitchen"
+        },
+        {
+            title: "SeqSieve",
+            blurb: "Browser-based exact sequence deduplication with provenance-preserving exports — upload a FASTA, sieve out duplicates, download clean sequences.",
+            tech: ["JavaScript", "FASTA", "Offline"],
+            stack: "js",
+            blog: "https://github.com/mbaffour/SeqSieve",
+            app:  "https://mbaffour.github.io/SeqSieve/",
+            label: "Seq Deduplication",
+            preview: "seqsieve"
+        },
+        {
+            title: "ReadQraft",
+            blurb: "Desktop FASTQ quality control and trimming without terminal fear — drag in reads, inspect Phred scores, set trim thresholds, export clean files.",
+            tech: ["Python", "FASTQ", "QC"],
+            stack: "py",
+            blog: "https://github.com/mbaffour/ReadQraft",
+            app:  "https://github.com/mbaffour/ReadQraft",
+            label: "FASTQ QC",
+            preview: "readqraft"
         }
     ];
 
@@ -4249,6 +4290,26 @@
                 "fitness-forge/screenshots/schedule.jpg",
                 "fitness-forge/screenshots/analytics.jpg"
             ]
+        },
+        {
+            title: "MCAT Prep",
+            date: "May 2026",
+            blurb: "Full-length MCAT simulator with section breakdowns, time tracking, and AI-generated explanations. Free, browser-based, no account needed.",
+            tech: ["JavaScript", "Adaptive", "AI"],
+            blog: "https://github.com/mbaffour/mcat-prep",
+            app:  "https://mbaffour.github.io/mcat-prep/",
+            label: "MCAT Simulator",
+            preview: "mcat"
+        },
+        {
+            title: "PennyWise+",
+            date: "May 2026",
+            blurb: "Private browser-based finance tracker — log income, categorize spending, visualize trends. Runs fully client-side. No account, no server, no tracking.",
+            tech: ["JavaScript", "Finance", "Offline"],
+            blog: "https://github.com/mbaffour/pennywise-plus",
+            app:  "https://mbaffour.github.io/pennywise-plus/",
+            label: "Finance Tracker",
+            preview: "pennywise"
         }
     ];
 
@@ -4691,6 +4752,136 @@
                 <text x="20" y="125" fill="#1a8040" font-size="11">📈 +5lb bench (vs wk 5)</text>
             </g>
             <path d="M20,140 L60,135 L100,128 L140,122 L180,115 L220,108 L260,98 L300,90" fill="none" stroke="#f4c430" stroke-width="2"/>
+        </svg>`,
+        cfu: `<svg viewBox="0 0 320 160" xmlns="http://www.w3.org/2000/svg">
+            <rect width="320" height="160" fill="#0e0808"/>
+            <g stroke="rgba(244,196,48,0.1)" stroke-width="1">
+                <line x1="46" y1="18" x2="304" y2="18"/><line x1="46" y1="55" x2="304" y2="55"/>
+                <line x1="46" y1="92" x2="304" y2="92"/><line x1="46" y1="129" x2="304" y2="129"/>
+            </g>
+            <line x1="46" y1="14" x2="46" y2="133" stroke="#f4c430" stroke-width="1.5"/>
+            <line x1="46" y1="133" x2="304" y2="133" stroke="#f4c430" stroke-width="1.5"/>
+            <rect x="60"  y="58"  width="28" height="75" fill="#f4c430" opacity="0.75"/>
+            <rect x="104" y="36"  width="28" height="97" fill="#1a8040" opacity="0.8"/>
+            <rect x="148" y="72"  width="28" height="61" fill="#f4c430" opacity="0.6"/>
+            <rect x="192" y="44"  width="28" height="89" fill="#c41e3a" opacity="0.7"/>
+            <rect x="236" y="26"  width="28" height="107" fill="#1a8040" opacity="0.8"/>
+            <rect x="268" y="52"  width="28" height="81" fill="#f4c430" opacity="0.65"/>
+            <g stroke="white" stroke-width="1.5">
+                <line x1="74" y1="48" x2="74" y2="68"/><line x1="69" y1="48" x2="79" y2="48"/><line x1="69" y1="68" x2="79" y2="68"/>
+                <line x1="118" y1="26" x2="118" y2="46"/><line x1="113" y1="26" x2="123" y2="26"/><line x1="113" y1="46" x2="123" y2="46"/>
+            </g>
+            <text x="50" y="152" font-family="JetBrains Mono" font-size="8" fill="#7a8868">CFU/mL · log₁₀ · p&lt;0.05 ✓</text>
+        </svg>`,
+        genomicskitchen: `<svg viewBox="0 0 320 160" xmlns="http://www.w3.org/2000/svg">
+            <rect width="320" height="160" fill="#080e18"/>
+            <g font-family="JetBrains Mono" font-size="9">
+                <rect x="14" y="18" width="72" height="34" fill="#102030" stroke="#1a8040" stroke-width="1" rx="2"/>
+                <text x="20" y="30" fill="#1a8040">INPUT</text>
+                <text x="20" y="44" fill="#6a9490">ATCGATCG…</text>
+                <text x="96" y="38" fill="#f4c430" font-size="13">→</text>
+                <rect x="114" y="18" width="72" height="34" fill="#1a1208" stroke="#f4c430" stroke-width="1" rx="2"/>
+                <text x="120" y="30" fill="#f4c430">TRIM</text>
+                <text x="120" y="44" fill="#a8903a">ATCGAT…</text>
+                <text x="196" y="38" fill="#f4c430" font-size="13">→</text>
+                <rect x="214" y="18" width="92" height="34" fill="#081408" stroke="#1a8040" stroke-width="1" rx="2"/>
+                <text x="220" y="30" fill="#1a8040">CLEAN</text>
+                <text x="220" y="44" fill="#a8c490">ATCGAT</text>
+                <rect x="14"  y="72" width="58" height="20" fill="#182028" stroke="#1a8040" rx="3"/><text x="22" y="85" fill="#1a8040">FILTER</text>
+                <rect x="80"  y="72" width="60" height="20" fill="#182028" stroke="#f4c430" rx="3"/><text x="88" y="85" fill="#f4c430">FORMAT</text>
+                <rect x="148" y="72" width="60" height="20" fill="#182028" stroke="#c41e3a" rx="3"/><text x="156" y="85" fill="#c41e3a">DEDUPE</text>
+                <rect x="216" y="72" width="88" height="20" fill="#182028" stroke="#1a8040" rx="3"/><text x="224" y="85" fill="#1a8040">ANNOTATE</text>
+            </g>
+            <text x="16" y="140" font-family="JetBrains Mono" font-size="8" fill="#7a8868">browser-based · no install · reproducible</text>
+        </svg>`,
+        seqsieve: `<svg viewBox="0 0 320 160" xmlns="http://www.w3.org/2000/svg">
+            <rect width="320" height="160" fill="#08100e"/>
+            <g font-family="JetBrains Mono" font-size="9">
+                <text x="16" y="22" fill="#f4c430">&gt;seq_001</text>
+                <text x="16" y="34" fill="#a8c490">ATCGATCGTAGCT</text>
+                <text x="16" y="52" fill="#f4c430">&gt;seq_002</text>
+                <text x="16" y="64" fill="#a8c490">GCTAGCTAGCTAGC</text>
+                <text x="16" y="82" fill="#7a6238" text-decoration="line-through">&gt;seq_001_dup</text>
+                <text x="16" y="94" fill="#7a6238" text-decoration="line-through">ATCGATCGTAGCT</text>
+                <text x="16" y="112" fill="#7a6238" text-decoration="line-through">&gt;seq_003_dup</text>
+                <text x="16" y="124" fill="#7a6238" text-decoration="line-through">GCTAGCTAGCTAGC</text>
+                <path d="M156,54 L172,54 L172,98 L156,98 Z" fill="none" stroke="#f4c430" stroke-width="1.5" stroke-dasharray="3 2"/>
+                <g stroke="#f4c430" stroke-width="1" opacity="0.6">
+                    <line x1="159" y1="64" x2="169" y2="64"/><line x1="159" y1="72" x2="169" y2="72"/>
+                    <line x1="159" y1="80" x2="169" y2="80"/><line x1="159" y1="88" x2="169" y2="88"/>
+                </g>
+                <text x="183" y="34" fill="#f4c430">&gt;seq_001</text>
+                <text x="183" y="46" fill="#a8c490">ATCGATCGTAGCT</text>
+                <text x="183" y="64" fill="#f4c430">&gt;seq_002</text>
+                <text x="183" y="76" fill="#a8c490">GCTAGCTAGCTAGC</text>
+                <text x="183" y="120" fill="#1a8040" font-size="10">✓ 4 → 2 unique</text>
+            </g>
+        </svg>`,
+        readqraft: `<svg viewBox="0 0 320 160" xmlns="http://www.w3.org/2000/svg">
+            <rect width="320" height="160" fill="#060810"/>
+            <g font-family="JetBrains Mono" font-size="8.5">
+                <text x="14" y="18" fill="#f4c430">@read_001</text>
+                <text x="14" y="30" fill="#a8c490">ATCGATCGTAGCTAGCTTACGATCG</text>
+                <text x="14" y="42" fill="#6a7868">+</text>
+                <text x="14" y="54" fill="#c41e3a">IIIIIHHHGGGFFEEDDCCBBAA@@</text>
+            </g>
+            <line x1="14"  y1="135" x2="305" y2="135" stroke="#f4c430" stroke-width="1"/>
+            <line x1="14"  y1="66"  x2="14"  y2="135" stroke="#f4c430" stroke-width="1"/>
+            <g fill="#1a8040">
+                <rect x="18" y="82" width="10" height="53"/><rect x="31" y="78" width="10" height="57"/>
+                <rect x="44" y="80" width="10" height="55"/><rect x="57" y="77" width="10" height="58"/>
+                <rect x="70" y="83" width="10" height="52"/><rect x="83" y="86" width="10" height="49"/>
+            </g>
+            <g fill="#f4c430">
+                <rect x="96"  y="93" width="10" height="42"/><rect x="109" y="97" width="10" height="38"/>
+                <rect x="122" y="101" width="10" height="34"/><rect x="135" y="104" width="10" height="31"/>
+            </g>
+            <g fill="#c41e3a">
+                <rect x="148" y="110" width="10" height="25"/><rect x="161" y="114" width="10" height="21"/>
+                <rect x="174" y="118" width="10" height="17"/><rect x="187" y="122" width="10" height="13"/>
+            </g>
+            <g font-family="JetBrains Mono" font-size="8.5">
+                <text x="210" y="90"  fill="#7a8868">Phred Q</text>
+                <text x="210" y="106" fill="#1a8040">≥Q30: ✓</text>
+                <text x="210" y="122" fill="#c41e3a">tail: trim</text>
+            </g>
+        </svg>`,
+        mcat: `<svg viewBox="0 0 320 160" xmlns="http://www.w3.org/2000/svg">
+            <rect width="320" height="160" fill="#080a18"/>
+            <rect x="14" y="10" width="292" height="140" fill="#101628" stroke="#1a8040" stroke-width="1.5" rx="5"/>
+            <text x="26" y="28" font-family="JetBrains Mono" font-size="8.5" fill="#f4c430">Q.12 / 59 · biochemistry · 04:32</text>
+            <text x="26" y="44" font-family="Inter" font-size="9" fill="#d8dceb">A catalytic triad in serine proteases</text>
+            <text x="26" y="56" font-family="Inter" font-size="9" fill="#d8dceb">includes His, Asp, and which residue?</text>
+            <g font-family="JetBrains Mono" font-size="9">
+                <rect x="26" y="65" width="264" height="14" fill="rgba(26,128,64,0.15)" stroke="#1a8040"/>
+                <text x="32" y="75" fill="#1a8040">✓  Serine</text>
+                <rect x="26" y="82" width="264" height="13" fill="rgba(196,30,58,0.08)"/>
+                <text x="32" y="92" fill="#7a6238">   Threonine</text>
+                <rect x="26" y="98" width="264" height="13" fill="rgba(196,30,58,0.08)"/>
+                <text x="32" y="108" fill="#7a6238">   Tyrosine</text>
+                <rect x="26" y="114" width="264" height="13" fill="rgba(196,30,58,0.08)"/>
+                <text x="32" y="124" fill="#7a6238">   Cysteine</text>
+            </g>
+            <text x="26" y="143" font-family="JetBrains Mono" font-size="8" fill="#7a8868">MCAT · Chem/Phys · AI rationale ↗</text>
+        </svg>`,
+        pennywise: `<svg viewBox="0 0 320 160" xmlns="http://www.w3.org/2000/svg">
+            <rect width="320" height="160" fill="#080a12"/>
+            <g font-family="JetBrains Mono">
+                <text x="16" y="20" font-size="11" fill="#f4c430">PennyWise+</text>
+                <text x="200" y="20" font-size="9" fill="#1a8040">May 2026</text>
+                <text x="16" y="42" font-size="9" fill="#d8dceb">Rent        </text><text x="120" y="42" font-size="9" fill="#c41e3a">-$1,200</text>
+                <rect x="198" y="34" width="104" height="10" fill="#2a1015"/><rect x="198" y="34" width="80" height="10" fill="#c41e3a" opacity="0.7"/>
+                <text x="16" y="58" font-size="9" fill="#d8dceb">Groceries   </text><text x="120" y="58" font-size="9" fill="#c41e3a">-$340</text>
+                <rect x="198" y="50" width="104" height="10" fill="#2a1015"/><rect x="198" y="50" width="30" height="10" fill="#f4c430" opacity="0.7"/>
+                <text x="16" y="74" font-size="9" fill="#d8dceb">Savings     </text><text x="120" y="74" font-size="9" fill="#1a8040">+$500</text>
+                <rect x="198" y="66" width="104" height="10" fill="#0a1508"/><rect x="198" y="66" width="42" height="10" fill="#1a8040" opacity="0.7"/>
+                <text x="16" y="90" font-size="9" fill="#d8dceb">Transport   </text><text x="120" y="90" font-size="9" fill="#c41e3a">-$95</text>
+                <rect x="198" y="82" width="104" height="10" fill="#2a1015"/><rect x="198" y="82" width="8" height="10" fill="#f4c430" opacity="0.7"/>
+                <line x1="16" y1="106" x2="302" y2="106" stroke="rgba(244,196,48,0.2)" stroke-width="1"/>
+                <text x="16" y="122" font-size="9" fill="#7a8868">Balance</text>
+                <text x="100" y="122" font-size="12" fill="#1a8040">$2,847.50</text>
+                <text x="16" y="148" font-size="8" fill="#7a8868">client-side · 0 uploads · no account</text>
+            </g>
         </svg>`
     };
 
