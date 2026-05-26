@@ -1748,10 +1748,12 @@
         .tf-fiber-btn[data-fiber="ompc"] { color: #4cc97d; border-color: rgba(76, 201, 125, 0.30); }
         .tf-fiber-btn[data-fiber="lamb"] { color: #ff6b8a; border-color: rgba(255, 107, 138, 0.30); }
         .tf-fiber-btn[data-fiber="pili"] { color: #4cb8ff; border-color: rgba(76, 184, 255, 0.30); }
+        .tf-fiber-btn[data-fiber="nfra"] { color: #c084fc; border-color: rgba(192, 132, 252, 0.30); }
         .tf-fiber-btn.active[data-fiber="lps"]  { background: rgba(244, 196, 48, 0.18); border-color: #f4c430; box-shadow: 0 0 12px rgba(244, 196, 48, 0.4); }
         .tf-fiber-btn.active[data-fiber="ompc"] { background: rgba(76, 201, 125, 0.18); border-color: #4cc97d; box-shadow: 0 0 12px rgba(76, 201, 125, 0.4); }
         .tf-fiber-btn.active[data-fiber="lamb"] { background: rgba(255, 107, 138, 0.18); border-color: #ff6b8a; box-shadow: 0 0 12px rgba(255, 107, 138, 0.4); }
         .tf-fiber-btn.active[data-fiber="pili"] { background: rgba(76, 184, 255, 0.18); border-color: #4cb8ff; box-shadow: 0 0 12px rgba(76, 184, 255, 0.4); }
+        .tf-fiber-btn.active[data-fiber="nfra"] { background: rgba(192, 132, 252, 0.18); border-color: #c084fc; box-shadow: 0 0 12px rgba(192, 132, 252, 0.4); }
 
         /* Pause + fullscreen buttons must sit above the overlay */
         .tf-pause-btn {
@@ -3674,6 +3676,7 @@
                                     <button class="tf-fiber-btn"        data-fiber="ompc" title="OmpC · [2]">OmpC</button>
                                     <button class="tf-fiber-btn"        data-fiber="lamb" title="LamB · [3]">LamB</button>
                                     <button class="tf-fiber-btn"        data-fiber="pili" title="Pili · [4]">Pili</button>
+                                    <button class="tf-fiber-btn"        data-fiber="nfra" title="NfrA · [5]">NfrA</button>
                                 </div>
                             </div>
                         </div>
@@ -6175,7 +6178,8 @@
             lps:  { name: 'LPS',  color: '#f4c430', glow: 'rgba(244,196,48,0.45)' },
             ompc: { name: 'OmpC', color: '#4cc97d', glow: 'rgba(76,201,125,0.45)' },
             lamb: { name: 'LamB', color: '#ff6b8a', glow: 'rgba(255,107,138,0.45)' },
-            pili: { name: 'Pili', color: '#4cb8ff', glow: 'rgba(76,184,255,0.45)' }
+            pili: { name: 'Pili', color: '#4cb8ff', glow: 'rgba(76,184,255,0.45)' },
+            nfra: { name: 'NfrA', color: '#c084fc', glow: 'rgba(192,132,252,0.45)' }
         };
         const FIBER_KEYS = ['lps', 'ompc', 'lamb', 'pili'];
 
@@ -6189,31 +6193,31 @@
             },
             t4: {
                 name: 'T4', short: 'T4',
-                preferred: 'ompc',
+                preferred: 'lps',
                 speed: 0.95, hpMax: 110, burstBonus: 30, immuneRes: 0.9,
-                bonus: 'Tail fibers recognize OmpC; thick tube + strong baseplate.',
-                lore: 'T4: large myovirus, contractile tail. Binds OmpC + LPS on E. coli. Big and tough.'
+                bonus: 'Long tail fibers reversibly bind LPS; short tail fibers lock in at the baseplate.',
+                lore: 'T4: large myovirus with contractile tail. Long tail fibers recognize LPS on E. coli; irreversible binding follows at the baseplate. Big, tough, hard to miss.'
             },
             lambda: {
                 name: 'λ (Lambda)', short: 'λ',
                 preferred: 'lamb',
                 speed: 1.15, hpMax: 85, burstBonus: 10, immuneRes: 1.0,
-                bonus: 'Specialized for LamB (maltose porin); fast adsorption.',
-                lore: 'Lambda: temperate siphovirus. J-protein on the tail tip binds LamB on E. coli K-12. Fast and surgical.'
+                bonus: 'J-protein tip targets LamB (maltoporin); fast and precise adsorption.',
+                lore: 'Lambda: temperate siphovirus. The J-protein at the tail tip binds LamB (maltoporin) on E. coli K-12. Fast, surgical, and sometimes goes lysogenic.'
             },
             n4: {
                 name: 'N4', short: 'N4',
-                preferred: 'ompc',
+                preferred: 'nfra',
                 speed: 0.9, hpMax: 100, burstBonus: 80, immuneRes: 1.0,
-                bonus: 'Lysis-inhibited — bigger burst per lyse.',
-                lore: 'N4: podovirus that delays lysis to maximize burst size. Each lyse rewards bigger bursts and more score.'
+                bonus: 'Binds NfrA — a rare outer membrane receptor. Lysis-inhibited: bigger burst per lyse.',
+                lore: 'N4: podovirus that uses NfrA on the outer membrane of E. coli as its primary receptor. Delays lysis to maximize burst size — each lyse scores bigger.'
             },
             icp1: {
                 name: 'ICP1', short: 'ICP1',
-                preferred: 'pili',
+                preferred: 'lps',
                 speed: 1.10, hpMax: 95, burstBonus: 20, immuneRes: 0.65,
-                bonus: 'Anti-CRISPR / immune evasion (-35% damage).',
-                lore: 'ICP1: targets Vibrio cholerae O1 via pili/O-antigen. Carries anti-CRISPR genes — takes less damage from defenses.'
+                bonus: 'Targets O-antigen (LPS) on V. cholerae. Anti-CRISPR genes cut immune damage.',
+                lore: 'ICP1: myovirus that infects Vibrio cholerae O1 by binding the O-antigen of LPS. Carries anti-CRISPR genes — takes less damage from host defenses.'
             }
         };
         const PHAGE_KEYS = ['generic', 't4', 'lambda', 'n4', 'icp1'];
@@ -6275,9 +6279,10 @@
             };
         }
         function activeReceptorsForLevel() {
-            // Level 1: 3 receptors. Level 2+: all 4.
+            // Level 1: 3 receptors. Level 2: add Pili. Level 3+: add NfrA.
             if (level === 1) return ['lps', 'ompc', 'lamb'];
-            return ['lps', 'ompc', 'lamb', 'pili'];
+            if (level === 2) return ['lps', 'ompc', 'lamb', 'pili'];
+            return ['lps', 'ompc', 'lamb', 'pili', 'nfra'];
         }
         function makeBacterium() {
             const margin = 60;
@@ -6352,7 +6357,7 @@
             setTimeout(() => levelEl.classList.remove('bump'), 600);
             const msgs = {
                 2: 'Level 2 — Type IV pili emerge. Faster antibodies.',
-                3: 'Level 3 — Macrophages on patrol.',
+                3: 'Level 3 — NfrA receptors appear. Macrophages on patrol.',
                 4: 'Level 4 — Maximum immune pressure.'
             };
             if (msgs[n]) showToast(msgs[n], 2800);
@@ -6901,6 +6906,7 @@
                 if (k === '2') { setFiber('ompc'); return; }
                 if (k === '3') { setFiber('lamb'); return; }
                 if (k === '4') { setFiber('pili'); return; }
+                if (k === '5') { setFiber('nfra'); return; }
                 if (k === 'p' || k === 'P') { pauseGame(); return; }
             } else if (state === 'paused') {
                 if (k === 'p' || k === 'P') { resumeGame(); }
