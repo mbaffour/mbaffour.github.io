@@ -2794,6 +2794,28 @@
             text-overflow: ellipsis;
             white-space: nowrap;
         }
+        .contact-email-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            flex-shrink: 0;
+        }
+        .contact-email-send {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.35rem 0.75rem;
+            border-radius: 8px;
+            border: 1px solid var(--border-strong);
+            background: transparent;
+            color: var(--gold);
+            font-family: var(--mono);
+            font-size: 0.78rem;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all .2s ease;
+            white-space: nowrap;
+        }
+        .contact-email-send:hover { background: rgba(244, 196, 48, 0.12); border-color: var(--gold); }
         .contact-email-copy {
             background: transparent;
             border: 1px solid var(--border-strong);
@@ -3905,24 +3927,30 @@
             <div class="contact-emails" id="contactEmail">
                 <span class="contact-primary-icon">✉</span>
                 <div class="contact-emails-stack">
-                    <a href="mailto:baffour@tamu.edu" class="contact-email-row primary">
+                    <div class="contact-email-row primary">
                         <div class="contact-email-text">
                             <span class="contact-email-label">Academic</span>
                             <span class="contact-email-addr">baffour@tamu.edu</span>
                         </div>
-                        <button class="contact-email-copy" data-copy="baffour@tamu.edu" title="Copy academic email" aria-label="Copy academic email">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-                        </button>
-                    </a>
-                    <a href="mailto:mbaffour890@gmail.com" class="contact-email-row">
+                        <div class="contact-email-actions">
+                            <a href="mailto:baffour@tamu.edu" class="contact-email-send" title="Open in mail app">Send email ↗</a>
+                            <button class="contact-email-copy" data-copy="baffour@tamu.edu" title="Copy academic email" aria-label="Copy academic email">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="contact-email-row">
                         <div class="contact-email-text">
                             <span class="contact-email-label">Personal</span>
                             <span class="contact-email-addr">mbaffour890@gmail.com</span>
                         </div>
-                        <button class="contact-email-copy" data-copy="mbaffour890@gmail.com" title="Copy personal email" aria-label="Copy personal email">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-                        </button>
-                    </a>
+                        <div class="contact-email-actions">
+                            <a href="mailto:mbaffour890@gmail.com" class="contact-email-send" title="Open in mail app">Send email ↗</a>
+                            <button class="contact-email-copy" data-copy="mbaffour890@gmail.com" title="Copy personal email" aria-label="Copy personal email">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                            </button>
+                        </div>
+                    </div>
                 </div>
                 <span class="copy-feedback" id="copyFeedback">Copied!</span>
             </div>
