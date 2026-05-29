@@ -69,7 +69,7 @@
 
         html {
             scroll-behavior: smooth;
-            scroll-padding-top: 96px;
+            scroll-padding-top: 80px;
             background: var(--bg);
         }
 
@@ -4746,7 +4746,9 @@
             const g = gallery[i];
             if (!g) return;
             img.src = g.src;
-            img.alt = g.caption;
+            const _tmp = document.createElement('span');
+            _tmp.innerHTML = g.caption;
+            img.alt = _tmp.textContent;
             cap.innerHTML = `${g.caption}${g.sub ? '<small>' + g.sub + '</small>' : ''}`;
             box.classList.add('open');
         }
