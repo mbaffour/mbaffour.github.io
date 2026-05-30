@@ -1156,6 +1156,26 @@
             border-style: solid;
             border-color: var(--gold);
         }
+        .pub-group { margin-bottom: 2.4rem; }
+        .pub-group-header {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-bottom: 1rem;
+        }
+        .pub-group-label {
+            font-family: var(--font-mono);
+            font-size: 0.74rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--ink-4);
+            white-space: nowrap;
+        }
+        .pub-group-line {
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
         @media (max-width: 640px) {
             .pub-entry.has-altmetric { grid-template-columns: 1fr; }
             .altmetric-wrap {
@@ -4473,13 +4493,13 @@
        tags drive the filter buttons automatically.
     =============================================================== */
     const posts = [
-        // {
-        //   title: "Post title",
-        //   date: "May 28, 2026",
-        //   tags: ["Lab Notes"],
-        //   blurb: "One or two sentences previewing what the post covers.",
-        //   url: "https://mbaffour.github.io/blog/post-slug.html"
-        // }
+        {
+            title: "Serwaa: My First Scientific Paper",
+            date: "May 30, 2026",
+            tags: ["First Publication", "Phage Biology", "Lab Notes"],
+            blurb: "The story behind my first peer-reviewed paper — a phage named after my grandmother, an undergraduate who made it happen, and what it means to see your name in print for the first time.",
+            url: "https://mbaffour.github.io/blog/serwaa-first-paper.html"
+        }
     ];
 
     /* ==============================================================
@@ -5071,23 +5091,6 @@
             'poster':    'Poster'
         })[s] || (s[0].toUpperCase() + s.slice(1));
 
-        let posterCount = 0;
-        let filtered;
-        if (filter === 'all') {
-            // Default view: papers + talks only. Posters collapse behind a toggle.
-            const main = publications.filter(p => p.kind !== 'poster');
-            const posters = publications.filter(p => p.kind === 'poster');
-            posterCount = posters.length;
-            filtered = postersExpanded ? publications : main;
-        } else {
-            filtered = publications.filter(p => p.kind === filter || p.status === filter);
-        }
-
-        if (filtered.length === 0) {
-            container.innerHTML = '<div class="pub-empty">Nothing in this category yet — stay tuned.</div>';
-            return;
-        }
-
         const renderEntry = pub => {
             const auth = (pub.authors || '').replace(/Awuah MB/, '<em>Awuah MB</em>');
             const doi = pub.doi ? pub.doi.replace(/^https?:\/\/doi\.org\//, '') : '';
@@ -5104,7 +5107,6 @@
                     <div class="pub-meta">
                         <span class="pub-status ${pub.status}">${labelFor(pub.status)}</span>
                         ${pub.doi ? `<span class="pub-doi"><a href="${pub.doi}" target="_blank" rel="noopener">DOI ↗</a></span>` : ''}
-                        ${pub.kind === 'paper' && doi ? `<span class="pub-doi"><a href="https://www.biorxiv.org/content/${doi}v1.full.pdf" target="_blank" rel="noopener">PDF ↓</a></span>` : ''}
                         ${pub.latest ? '<span class="pub-status preprint">★ Latest</span>' : ''}
                     </div>
                 </div>
@@ -5112,21 +5114,44 @@
             </div>`;
         };
 
-        let html = filtered.map(renderEntry).join('');
-        if (filter === 'all' && posterCount > 0) {
-            html += `<button class="pub-toggle" id="pubToggle">
-                ${postersExpanded
-                    ? `← Hide ${posterCount} posters`
-                    : `Show ${posterCount} more posters →`}
-            </button>`;
+        const renderGroup = (label, items) => {
+            if (items.length === 0) return '';
+            return `<div class="pub-group">
+                <div class="pub-group-header">
+                    <span class="pub-group-label">${label}</span>
+                    <span class="pub-group-line"></span>
+                </div>
+                ${items.map(renderEntry).join('')}
+            </div>`;
+        };
+
+        if (filter === 'all') {
+            const papers  = publications.filter(p => p.kind === 'paper');
+            const talks   = publications.filter(p => p.kind === 'talk');
+            const posters = publications.filter(p => p.kind === 'poster');
+            let html = '';
+            html += renderGroup('Papers & Preprints', papers);
+            html += renderGroup('Oral Presentations', talks);
+            if (postersExpanded) {
+                html += renderGroup('Posters', posters);
+            } else if (posters.length > 0) {
+                html += `<button class="pub-toggle" id="pubToggle">Show ${posters.length} posters →</button>`;
+            }
+            container.innerHTML = html;
+        } else {
+            const filtered = publications.filter(p => p.kind === filter || p.status === filter);
+            if (filtered.length === 0) {
+                container.innerHTML = '<div class="pub-empty">Nothing in this category yet — stay tuned.</div>';
+                return;
+            }
+            container.innerHTML = filtered.map(renderEntry).join('');
         }
-        container.innerHTML = html;
+
         const toggle = document.getElementById('pubToggle');
         if (toggle) toggle.addEventListener('click', () => {
             postersExpanded = !postersExpanded;
             renderPublications('all');
         });
-        // Re-trigger Altmetric badges after re-render
         if (window._altmetric_embed_init) window._altmetric_embed_init();
     }
 
