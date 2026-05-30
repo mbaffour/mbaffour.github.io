@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Serwaa: My First Scientific Paper — Michael Baffour Awuah</title>
+    <meta name="description" content="The story behind my first peer-reviewed publication — a phage named after my grandmother, an undergraduate researcher who made it happen, and what it means to see your name in print for the first time.">
+    <meta name="author" content="Michael Baffour Awuah">
+
+    <!-- Open Graph / shareable preview -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Serwaa: My First Scientific Paper">
+    <meta property="og:description" content="The story behind my first peer-reviewed publication — a phage named after my grandmother, an undergraduate researcher who made it happen, and what it means to see your name in print for the first time.">
+    <meta property="og:image" content="https://mbaffour.github.io/blog/images/serwaa-tem.jpg">
+    <meta property="og:url" content="https://mbaffour.github.io/blog/serwaa-first-paper.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Serwaa: My First Scientific Paper">
+    <meta name="twitter:description" content="A phage named after my grandmother, an undergrad who carried the project, and my first publication.">
+    <meta name="twitter:image" content="https://mbaffour.github.io/blog/images/serwaa-tem.jpg">
+
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><polygon points='16,5 25,10 25,18 16,23 7,18 7,10' fill='%23f4c430' stroke='%23f4c430' stroke-width='1.5'/><line x1='16' y1='23' x2='16' y2='28' stroke='%23f4c430' stroke-width='2' stroke-linecap='round'/><line x1='13' y1='28' x2='19' y2='28' stroke='%23f4c430' stroke-width='2' stroke-linecap='round'/></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg:           #0a0802;
+            --bg-2:         #110d04;
+            --bg-card:      #1c1709;
+            --border:       rgba(244, 196, 48, 0.10);
+            --border-strong:rgba(244, 196, 48, 0.22);
+            --gold:    #f4c430;
+            --gold-dim:rgba(244, 196, 48, 0.14);
+            --green:   #1a8040;
+            --green-dim:rgba(26, 128, 64, 0.14);
+            --red:     #c41e3a;
+            --ink:     #f5edd8;
+            --ink-2:   #d8c98c;
+            --ink-3:   #a08652;
+            --ink-4:   #7a6238;
+            --font-display: 'Fraunces', 'Georgia', serif;
+            --font-body:    'Inter', 'Segoe UI', Arial, sans-serif;
+            --font-mono:    'JetBrains Mono', 'Fira Code', monospace;
+            --radius: 14px;
+            --kente: repeating-linear-gradient(90deg,
+                #f4c430 0 8px, #0a0802 8px 13px,
+                #1a8040 13px 21px, #0a0802 21px 26px,
+                #c41e3a 26px 34px, #0a0802 34px 39px,
+                #f4c430 39px 47px, #0a0802 47px 52px,
+                #1a8040 52px 60px);
+        }
+
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; background: var(--bg); }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--bg);
+            color: var(--ink);
+            line-height: 1.7;
+            min-height: 100vh;
+        }
+
+        ::selection { background: var(--gold); color: var(--bg); }
+
+        a { color: var(--gold); text-decoration: none; transition: color .2s; }
+        a:hover { text-decoration: underline; }
+
+        /* ── Nav bar ── */
+        .nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 2rem;
+            height: 60px;
+            background: rgba(10, 8, 2, 0.92);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+        }
+        .nav-brand {
+            font-family: var(--font-display);
+            font-size: 1.05rem;
+            color: var(--ink);
+            text-decoration: none;
+        }
+        .nav-brand:hover { color: var(--gold); text-decoration: none; }
+        .nav-back {
+            font-size: 0.88rem;
+            color: var(--ink-3);
+            font-family: var(--font-mono);
+            transition: color .2s;
+        }
+        .nav-back:hover { color: var(--gold); text-decoration: none; }
+
+        /* ── Kente stripe ── */
+        .kente-bar { height: 5px; background: var(--kente); }
+
+        /* ── Hero ── */
+        .hero {
+            max-width: 780px;
+            margin: 0 auto;
+            padding: 4rem 2rem 2rem;
+        }
+        .post-meta {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.2rem;
+        }
+        .post-tag {
+            font-family: var(--font-mono);
+            font-size: 0.76rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--gold);
+            background: var(--gold-dim);
+            border: 1px solid rgba(244,196,48,0.25);
+            border-radius: 4px;
+            padding: 0.25em 0.7em;
+        }
+        .post-date {
+            font-family: var(--font-mono);
+            font-size: 0.82rem;
+            color: var(--ink-3);
+        }
+        .post-title {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 700;
+            line-height: 1.15;
+            color: var(--ink);
+            margin-bottom: 1rem;
+        }
+        .post-title .highlight {
+            color: var(--gold);
+            font-style: italic;
+        }
+        .post-subtitle {
+            font-size: 1.1rem;
+            color: var(--ink-2);
+            line-height: 1.65;
+            margin-bottom: 1.8rem;
+            max-width: 620px;
+        }
+        .post-byline {
+            display: flex;
+            align-items: center;
+            gap: 0.9rem;
+            padding: 1rem 1.2rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            margin-bottom: 2.5rem;
+        }
+        .byline-text { font-size: 0.9rem; color: var(--ink-2); }
+        .byline-name { font-weight: 600; color: var(--ink); }
+
+        /* ── Featured image ── */
+        .featured-img-wrap {
+            max-width: 780px;
+            margin: 0 auto 0;
+            padding: 0 2rem;
+        }
+        .featured-img-wrap figure {
+            margin: 0;
+            border-radius: var(--radius);
+            overflow: hidden;
+            border: 1px solid var(--border-strong);
+        }
+        .featured-img-wrap img {
+            width: 100%;
+            display: block;
+            object-fit: cover;
+            max-height: 480px;
+        }
+        .featured-img-wrap figcaption {
+            padding: 0.7rem 1rem;
+            background: var(--bg-card);
+            font-size: 0.84rem;
+            color: var(--ink-3);
+            font-style: italic;
+        }
+
+        /* ── Body ── */
+        .post-body {
+            max-width: 780px;
+            margin: 0 auto;
+            padding: 3rem 2rem 5rem;
+        }
+
+        .post-body p {
+            font-size: 1.05rem;
+            color: var(--ink);
+            line-height: 1.8;
+            margin-bottom: 1.6rem;
+        }
+
+        .post-body p:first-child::first-letter {
+            font-family: var(--font-display);
+            font-size: 3.5rem;
+            font-weight: 700;
+            float: left;
+            line-height: 0.85;
+            margin: 0.1em 0.1em 0 0;
+            color: var(--gold);
+        }
+
+        /* ── Section divider ── */
+        .section-break {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin: 2.5rem 0;
+            color: var(--ink-4);
+            font-size: 0.8rem;
+            font-family: var(--font-mono);
+            letter-spacing: 0.1em;
+        }
+        .section-break::before,
+        .section-break::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+
+        /* ── Inline images ── */
+        .post-figure {
+            margin: 2.5rem 0;
+            border-radius: var(--radius);
+            overflow: hidden;
+            border: 1px solid var(--border-strong);
+        }
+        .post-figure img {
+            width: 100%;
+            display: block;
+            object-fit: cover;
+        }
+        .post-figure.portrait img { max-height: 560px; object-position: top center; }
+        .post-figure.landscape img { max-height: 420px; }
+        .post-figure.tem img { max-height: 400px; background: #111; }
+        .post-figure figcaption {
+            padding: 0.75rem 1.1rem;
+            background: var(--bg-card);
+            font-size: 0.84rem;
+            color: var(--ink-3);
+            font-style: italic;
+            border-top: 1px solid var(--border);
+        }
+
+        /* ── Side-by-side figure pair ── */
+        .figure-pair {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin: 2.5rem 0;
+        }
+        .figure-pair .post-figure { margin: 0; }
+        @media (max-width: 600px) {
+            .figure-pair { grid-template-columns: 1fr; }
+        }
+
+        /* ── Pull quote ── */
+        .pull-quote {
+            margin: 2.5rem 0;
+            padding: 1.4rem 1.6rem;
+            border-left: 3px solid var(--gold);
+            background: var(--gold-dim);
+            border-radius: 0 var(--radius) var(--radius) 0;
+        }
+        .pull-quote p {
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            font-style: italic;
+            color: var(--ink);
+            margin: 0 !important;
+        }
+        .pull-quote p::first-letter { all: unset; }
+
+        /* ── Paper citation box ── */
+        .paper-box {
+            margin: 2.5rem 0;
+            padding: 1.4rem 1.6rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border-strong);
+            border-radius: var(--radius);
+        }
+        .paper-box-label {
+            font-family: var(--font-mono);
+            font-size: 0.74rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--green);
+            margin-bottom: 0.6rem;
+        }
+        .paper-box-title {
+            font-family: var(--font-display);
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--ink);
+            margin-bottom: 0.35rem;
+        }
+        .paper-box-authors {
+            font-size: 0.88rem;
+            color: var(--ink-2);
+            margin-bottom: 0.4rem;
+        }
+        .paper-box-journal {
+            font-size: 0.84rem;
+            color: var(--ink-3);
+            font-style: italic;
+            margin-bottom: 0.9rem;
+        }
+        .paper-box-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.88rem;
+            font-weight: 600;
+            color: var(--gold);
+            background: var(--gold-dim);
+            border: 1px solid rgba(244,196,48,0.25);
+            border-radius: 6px;
+            padding: 0.4em 0.9em;
+            text-decoration: none;
+            transition: background .2s;
+        }
+        .paper-box-link:hover { background: rgba(244,196,48,0.24); text-decoration: none; }
+
+        /* ── Footer ── */
+        .post-footer {
+            max-width: 780px;
+            margin: 0 auto;
+            padding: 2rem 2rem 4rem;
+            border-top: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.9rem;
+            color: var(--ink-3);
+            transition: color .2s;
+        }
+        .back-btn:hover { color: var(--gold); text-decoration: none; }
+        .share-row { display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; color: var(--ink-4); }
+        .share-doi {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--ink-3);
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 0.3em 0.7em;
+            border-radius: 6px;
+        }
+
+        @media (max-width: 640px) {
+            .hero, .featured-img-wrap, .post-body, .post-footer { padding-left: 1.2rem; padding-right: 1.2rem; }
+            .nav { padding: 0 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="kente-bar"></div>
+
+<nav class="nav">
+    <a class="nav-brand" href="https://mbaffour.github.io">Michael Baffour Awuah</a>
+    <a class="nav-back" href="https://mbaffour.github.io/#blog">← All posts</a>
+</nav>
+
+<!-- ── Hero ── -->
+<header class="hero">
+    <div class="post-meta">
+        <span class="post-tag">First Publication</span>
+        <span class="post-tag">Phage Biology</span>
+        <span class="post-date">May 30, 2026</span>
+    </div>
+    <h1 class="post-title"><span class="highlight">Serwaa:</span> My First Scientific Paper</h1>
+    <p class="post-subtitle">
+        A phage named after my grandmother, an undergraduate who carried it across the finish line,
+        and what it feels like to see your name in print for the very first time.
+    </p>
+    <div class="post-byline">
+        <div class="byline-text">Written by <span class="byline-name">Michael Baffour Awuah</span> &nbsp;·&nbsp; PhD Candidate, Ramsey Lab · Texas A&amp;M University</div>
+    </div>
+</header>
+
+<!-- ── Featured image: TEM of phage Serwaa ── -->
+<div class="featured-img-wrap">
+    <figure>
+        <img src="images/serwaa-tem.jpg" alt="Transmission electron micrograph of phage Serwaa — icosahedral capsids with flexible tails visible at 7500× magnification, February 2024">
+        <figcaption>Transmission electron micrograph of phage Serwaa. TEM Magnification: 7500K · February 23, 2024 · TAMU Microscopy Core. Scale bar: 0.2 µm.</figcaption>
+    </figure>
+</div>
+
+<!-- ── Post body ── -->
+<main class="post-body">
+
+    <p>I am really excited to share this paper, which is my first ever publication!</p>
+
+    <p>It started as a training project during the first year of my PhD in 2022. At the time, I had no experience working with bacteriophages, and what better way to learn than by getting hands-on experience isolating novel phages from the environment? Over the course of that project, I collected environmental samples, isolated phages, purified them, amplified them, extracted their DNA, and prepared them for sequencing. I initially thought I had discovered seven novel phages, but after further work I realized that only three of them were truly unique.</p>
+
+    <p>One of those phages was Serwaa.</p>
+
+    <div class="paper-box">
+        <div class="paper-box-label">Published · Microbiology Resource Announcements · 2026</div>
+        <div class="paper-box-title">Complete genome sequence of <em>Escherichia</em> Siphophage Serwaa</div>
+        <div class="paper-box-authors">Debrah MA, Awuah MB, Koh A, Ramsey J</div>
+        <div class="paper-box-journal">Microbiology Resource Announcements · e01222-25 · May 29, 2026</div>
+        <a class="paper-box-link" href="https://doi.org/10.1128/mra.01222-25" target="_blank" rel="noopener">
+            Read the paper ↗
+        </a>
+    </div>
+
+    <p>Much of the work on this phage was carried out together with my undergraduate researcher, Annie Koh. Annie is an incredibly hardworking and diligent young woman who I am confident will go on to become an amazing physician in the future. It was a privilege to mentor her and watch her develop as a scientist throughout this project. Together, we worked on isolating and characterizing the phage and generating the data that formed the foundation of this publication.</p>
+
+    <figure class="post-figure landscape">
+        <img src="images/annie-poster.jpg" alt="Annie Koh presenting a scientific poster titled 'Characterization of Four Environmental Escherichia coli 4s Phages' at Texas A&M University">
+        <figcaption>Annie Koh presenting our work on the <em>E. coli</em> 4s phages — including Serwaa — at a Texas A&amp;M symposium. Her dedication to this project was extraordinary.</figcaption>
+    </figure>
+
+    <p>After we generated the phage and sequencing data, my lab mate, Michael Debrah, took the lead on genome annotation, manuscript preparation, and navigating the publication process, ultimately bringing the project across the finish line and getting it published. I am grateful for his efforts in helping transform the work into a published manuscript.</p>
+
+    <div class="section-break">· · ·</div>
+
+    <div class="pull-quote">
+        <p>"This phage holds special meaning for me because of its name."</p>
+    </div>
+
+    <p>Serwaa is named after my grandmother, Kate, whose traditional Ghanaian name is Serwaa, as well as my cousin Sandra, who is also called Serwaa. Both have been tremendous sources of inspiration throughout my educational journey. They have always encouraged me, believed in me, and set wonderful examples through their hard work, resilience, and perseverance. Naming this phage after them felt like a fitting tribute.</p>
+
+    <div class="figure-pair">
+        <figure class="post-figure portrait">
+            <img src="images/grandma-serwaa.jpg" alt="Kate (Serwaa), Michael's grandmother, seated on the right in a traditional Ghanaian setting">
+            <figcaption>My grandmother Kate — Serwaa — on the right. Her name, her strength, and her encouragement live on in this phage.</figcaption>
+        </figure>
+        <figure class="post-figure portrait">
+            <img src="images/cousin-serwaa.jpg" alt="Sandra (Serwaa), Michael's cousin, smiling with a bouquet of flowers">
+            <figcaption>My cousin Sandra — also Serwaa — whose warmth and resilience have always inspired me.</figcaption>
+        </figure>
+    </div>
+
+    <div class="section-break">· · ·</div>
+
+    <p>I am also incredibly grateful to my mentor, Dr. Jolene Ramsey, for her guidance, encouragement, and unwavering support in helping move this project forward. I am thankful to the entire Ramsey Lab for creating an environment where I could learn, grow, and develop as a scientist.</p>
+
+    <figure class="post-figure landscape">
+        <img src="images/lab-halloween.jpg" alt="The Ramsey Lab dressed as each other for Halloween — graduate students and mentors lining a university hallway">
+        <figcaption>The Ramsey Lab — where grad students dress as their mentors (and vice versa) for Halloween. Science is better when it's fun.</figcaption>
+    </figure>
+
+    <p>A special thank you goes to our postdoctoral researcher, Dr. Guadalupe Valencia-Toxqui, who is an absolute rockstar and one of my scientific superheroes. She assisted me with cesium chloride gradient purification, which allowed us to obtain high-quality phage particles, and she was instrumental in helping acquire the TEM images used to characterize this phage. Beyond her technical expertise, she has been an incredible mentor and role model. I look up to her a lot, and I am excited to see all the wonderful things she will accomplish in the future. I have no doubt that she will go on to do amazing things, including one day running a successful lab of her own.</p>
+
+    <div class="section-break">· · ·</div>
+
+    <p>What makes this publication especially meaningful is that it represents the very beginning of my journey in phage biology. What started as a simple training project became my introduction to phage discovery, genomics, microscopy, and scientific research. It helped build the foundation for many of the projects I am working on today and played a major role in shaping me into the scientist I am becoming.</p>
+
+    <p>The story of Serwaa is not over yet. I am currently working on characterizing this phage alongside two other related phages, and Annie and I hope to have a full characterization paper completed by next year. There is still so much to learn from these fascinating viruses, and I am excited to see where this work leads.</p>
+
+    <div class="pull-quote">
+        <p>"I hope this small piece of scientific work serves as a lasting tribute to my grandmother and honors the impact she has had on my life."</p>
+    </div>
+
+    <p>I am excited about the future of phage research and all the discoveries that lie ahead. Most of all, I hope this small piece of scientific work serves as a lasting tribute to my grandmother and honors the impact she has had on my life. In a small way, I hope this work helps immortalize her name and the values she instilled in those around her.</p>
+
+    <p>Thank you to everyone who helped make this possible. Here's to many more discoveries ahead.</p>
+
+</main>
+
+<!-- ── Footer ── -->
+<footer class="post-footer">
+    <a class="back-btn" href="https://mbaffour.github.io/#blog">← Back to all posts</a>
+    <div class="share-row">
+        <span>Paper DOI:</span>
+        <span class="share-doi">10.1128/mra.01222-25</span>
+    </div>
+</footer>
+
+</body>
+</html>
