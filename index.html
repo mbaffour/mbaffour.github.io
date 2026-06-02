@@ -131,7 +131,7 @@
             top: 0; left: 0;
             width: 100vw; height: 100vh;
             pointer-events: none;
-            z-index: -2;
+            z-index: -1;
             /* opacity controlled entirely via canvas globalAlpha — no CSS multiplier */
         }
         @media (prefers-reduced-motion: reduce) {
@@ -5862,11 +5862,8 @@
         const ctx = canvas.getContext('2d');
 
         if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-        const isLowEnd = (navigator.hardwareConcurrency || 4) < 4;
-        const isTouchSmall = matchMedia('(hover: none) and (pointer: coarse) and (max-width: 600px)').matches;
-        if (isTouchSmall) return;
         const isMobile = matchMedia('(hover: none) and (pointer: coarse)').matches;
-        const PM = isMobile ? 0.4 : 1.0; // particle multiplier
+        const PM = isMobile ? 0.5 : 1.0; // particle multiplier
 
         let w, h;
 
@@ -6277,10 +6274,8 @@
             else running = on;
         });
 
-        if (!isLowEnd) {
-            resize();
-            requestAnimationFrame(tick);
-        }
+        resize();
+        requestAnimationFrame(tick);
     })();
 
     /* ==============================================================
