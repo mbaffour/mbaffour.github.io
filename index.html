@@ -132,10 +132,7 @@
             width: 100vw; height: 100vh;
             pointer-events: none;
             z-index: -2;
-            opacity: 0.10;
-        }
-        @media (hover: none) and (pointer: coarse) {
-            .cultural-bg-canvas { opacity: 0.06; }
+            /* opacity controlled entirely via canvas globalAlpha — no CSS multiplier */
         }
         @media (prefers-reduced-motion: reduce) {
             .cultural-bg-canvas { display: none; }
@@ -5875,19 +5872,20 @@
 
         /* ---- colour palettes ---- */
         const J = {
-            wave:    '30,60,120',
-            fuji:    '22,20,35',
-            blossom: '220,140,155',
-            torii:   '110,18,18',
+            wave:    '45,85,160',     // Hokusai deep blue — visible against dark bg
+            fuji:    '55,65,105',     // blue-grey silhouette — lighter than bg
+            snow:    '200,192,175',   // warm snow cap
+            blossom: '230,148,165',   // sakura pink
+            torii:   '185,42,42',     // vermillion red
         };
         const G = {
-            arch:   '22,16,6',
-            adinkra:'175,135,40',
-            kenteG: '244,196,48',
-            kenteGr:'26,128,64',
-            kenteR: '196,30,58',
-            palm:   '14,34,14',
-            wave:   '80,50,20',
+            arch:   '195,150,32',     // gold — echoes site --gold token
+            adinkra:'210,162,38',     // warm gold
+            kenteG: '244,196,48',     // site --gold
+            kenteGr:'26,128,64',      // site --green
+            kenteR: '196,30,58',      // site --red
+            palm:   '28,75,28',       // forest green
+            wave:   '100,68,20',      // warm coastal amber
         };
 
         /* ---- particle arrays ---- */
@@ -5895,34 +5893,34 @@
 
         function initPetals() {
             petals = [];
-            const n = Math.round(18 * PM);
+            const n = Math.round(22 * PM);
             for (let i = 0; i < n; i++) petals.push({
                 x: Math.random() * w * 0.65,
                 y: Math.random() * h,
-                vx: 0.12 + Math.random() * 0.22,
-                vy: 0.08 + Math.random() * 0.18,
-                size: 4 + Math.random() * 5,
+                vx: 0.15 + Math.random() * 0.25,
+                vy: 0.10 + Math.random() * 0.20,
+                size: 5 + Math.random() * 6,
                 rot: Math.random() * Math.PI * 2,
                 rotS: (Math.random() - 0.5) * 0.018,
                 sway: Math.random() * Math.PI * 2,
                 swayS: 0.006 + Math.random() * 0.008,
-                op: 0.06 + Math.random() * 0.08,
+                op: 0.28 + Math.random() * 0.20,
             });
         }
 
         const ADINKRA_TYPES = ['gyenyame', 'adinkrahene', 'sankofa', 'nkyinkyim'];
         function initAdinkraP() {
             adinkraP = [];
-            const n = Math.round(8 * PM);
+            const n = Math.round(10 * PM);
             for (let i = 0; i < n; i++) adinkraP.push({
                 x: w * 0.45 + Math.random() * w * 0.55,
                 y: Math.random() * h,
                 vx: (Math.random() - 0.5) * 0.04,
                 vy: -(0.04 + Math.random() * 0.06),
-                size: 14 + Math.random() * 20,
+                size: 16 + Math.random() * 22,
                 rot: Math.random() * Math.PI * 2,
                 rotS: (Math.random() - 0.5) * 0.002,
-                op: 0.04 + Math.random() * 0.05,
+                op: 0.18 + Math.random() * 0.14,
                 type: ADINKRA_TYPES[i % 4],
             });
         }
@@ -5986,7 +5984,7 @@
             const px = w * 0.28, py = h * 0.62;
             const bw = w * 0.24, bh = h * 0.20;
             ctx.save();
-            ctx.globalAlpha = 0.07;
+            ctx.globalAlpha = 0.28;
             ctx.fillStyle = `rgb(${J.fuji})`;
             ctx.beginPath();
             ctx.moveTo(px, py - bh);
@@ -5996,8 +5994,8 @@
             ctx.closePath();
             ctx.fill();
             // snow cap
-            ctx.globalAlpha = 0.04;
-            ctx.fillStyle = '#e8e0d8';
+            ctx.globalAlpha = 0.22;
+            ctx.fillStyle = `rgb(${J.snow})`;
             ctx.beginPath();
             ctx.moveTo(px, py - bh);
             ctx.lineTo(px - bw * 0.12, py - bh * 0.72);
@@ -6013,7 +6011,7 @@
             const gw = w * 0.09, gh = h * 0.30;
             const pw = Math.max(3, gw * 0.08); // pillar width
             ctx.save();
-            ctx.globalAlpha = 0.045;
+            ctx.globalAlpha = 0.22;
             ctx.fillStyle = `rgb(${J.torii})`;
             // pillars
             ctx.fillRect(gx - gw * 0.5, gy, pw, gh);
@@ -6038,9 +6036,9 @@
             const baseY = h * 0.78;
             ctx.save();
             for (let b = 0; b < 3; b++) {
-                ctx.globalAlpha = 0.04;
+                ctx.globalAlpha = 0.18 - b * 0.03;
                 ctx.strokeStyle = `rgb(${J.wave})`;
-                ctx.lineWidth = 1.5;
+                ctx.lineWidth = 2 - b * 0.3;
                 ctx.beginPath();
                 const yOff = baseY + b * 22;
                 const wl = w / 4;
@@ -6060,7 +6058,7 @@
             const col = h * 0.18, cw = Math.max(4, h * 0.012);
             const gap = h * 0.07;
             ctx.save();
-            ctx.globalAlpha = 0.065;
+            ctx.globalAlpha = 0.28;
             ctx.fillStyle = `rgb(${G.arch})`;
             // columns
             ctx.fillRect(ax - gap * 0.5 - cw, ay - col, cw, col);
@@ -6094,7 +6092,7 @@
             const px = w * 0.96, py = h;
             const th = h * 0.28;
             ctx.save();
-            ctx.globalAlpha = 0.06;
+            ctx.globalAlpha = 0.22;
             ctx.fillStyle = `rgb(${G.palm})`;
             ctx.strokeStyle = `rgb(${G.palm})`;
             // trunk (tapering bezier strip)
@@ -6128,18 +6126,16 @@
         /* ---- Kente strip ---- */
         function drawKenteStrip() {
             const ky = h * 0.07, kx0 = w * 0.6, kx1 = w;
-            const sw = 8, gap = 5, total = sw + gap;
+            const sw = 10, gap = 4, total = sw + gap;
             ctx.save();
-            ctx.globalAlpha = 0.06;
             const colors = [G.kenteG, G.kenteGr, G.kenteR];
             let x = kx0;
             let ci = 0;
             while (x < kx1) {
-                // fade in from left over 80px
-                const fade = Math.min(1, (x - kx0) / 80);
-                ctx.globalAlpha = 0.06 * fade;
+                const fade = Math.min(1, (x - kx0) / 100);
+                ctx.globalAlpha = 0.22 * fade;
                 ctx.fillStyle = `rgb(${colors[ci % 3]})`;
-                ctx.fillRect(x, ky, sw, 3);
+                ctx.fillRect(x, ky, sw, 4);
                 x += total;
                 ci++;
             }
@@ -6152,9 +6148,9 @@
             const baseY = h * 0.68;
             ctx.save();
             for (let b = 0; b < 2; b++) {
-                ctx.globalAlpha = 0.035;
+                ctx.globalAlpha = 0.16 - b * 0.03;
                 ctx.strokeStyle = `rgb(${G.wave})`;
-                ctx.lineWidth = 1.5;
+                ctx.lineWidth = 2 - b * 0.3;
                 ctx.beginPath();
                 const yOff = baseY + b * 25;
                 const wl = w / 3.5;
@@ -6170,9 +6166,9 @@
 
         /* ---- Fixed large adinkra symbols (right side) ---- */
         const FIXED_ADINKRA = [
-            { rx: 0.72, ry: 0.35, sz: 28, type: 'adinkrahene', op: 0.035, phase: 0 },
-            { rx: 0.84, ry: 0.55, sz: 22, type: 'gyenyame',    op: 0.030, phase: 1.2 },
-            { rx: 0.93, ry: 0.28, sz: 20, type: 'nkyinkyim',   op: 0.028, phase: 2.4 },
+            { rx: 0.72, ry: 0.35, sz: 32, type: 'adinkrahene', op: 0.18, phase: 0 },
+            { rx: 0.84, ry: 0.55, sz: 26, type: 'gyenyame',    op: 0.16, phase: 1.2 },
+            { rx: 0.93, ry: 0.28, sz: 24, type: 'nkyinkyim',   op: 0.15, phase: 2.4 },
         ];
         function drawFixedAdinkra() {
             FIXED_ADINKRA.forEach(f => {
