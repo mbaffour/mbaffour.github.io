@@ -125,6 +125,22 @@
             .ambient-canvas { display: none; }
         }
 
+        /* Cultural background canvas — Japan (left) + Ghana (right) */
+        .cultural-bg-canvas {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            pointer-events: none;
+            z-index: -2;
+            opacity: 0.10;
+        }
+        @media (hover: none) and (pointer: coarse) {
+            .cultural-bg-canvas { opacity: 0.06; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .cultural-bg-canvas { display: none; }
+        }
+
         /* Scroll progress bar */
         .scroll-progress {
             position: fixed;
@@ -1155,6 +1171,26 @@
             background: var(--gold-dim);
             border-style: solid;
             border-color: var(--gold);
+        }
+        .pub-group { margin-bottom: 2.4rem; }
+        .pub-group-header {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-bottom: 1rem;
+        }
+        .pub-group-label {
+            font-family: var(--font-mono);
+            font-size: 0.74rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--ink-4);
+            white-space: nowrap;
+        }
+        .pub-group-line {
+            flex: 1;
+            height: 1px;
+            background: var(--border);
         }
         @media (max-width: 640px) {
             .pub-entry.has-altmetric { grid-template-columns: 1fr; }
@@ -3311,8 +3347,17 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <script type="text/javascript" src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js" async></script>
+    <!-- ===== VISITOR ANALYTICS: GoatCounter =====
+         SETUP: Sign up free at https://www.goatcounter.com/
+         Replace "mbaffour" below with your actual GoatCounter site code.
+         Free plan: 100k pageviews/month. No cookies. GDPR-compliant.
+    ===== -->
+    <script data-goatcounter="https://mbaffour.goatcounter.com/count"
+            async src="//gc.zgo.at/count.js"></script>
 </head>
 <body>
+    <!-- ===== CULTURAL BACKGROUND CANVAS ===== -->
+    <canvas class="cultural-bg-canvas" id="culturalBgCanvas" aria-hidden="true"></canvas>
     <div class="cursor-glow" id="cursorGlow"></div>
     <canvas class="ambient-canvas" id="ambientCanvas" aria-hidden="true"></canvas>
     <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
@@ -3383,6 +3428,10 @@
                 <div class="hero-stat">
                     <div class="hero-stat-value">N4</div>
                     <div class="hero-stat-label">Lysis Specialist</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-value" id="visitorCount">—</div>
+                    <div class="hero-stat-label">Site Visitors</div>
                 </div>
             </div>
 
@@ -4155,13 +4204,22 @@
         /* ── Papers / Preprints ──────────────────────────────── */
         {
             kind: "paper",
+            title: "Complete genome sequence of <i>Escherichia</i> Siphophage Serwaa",
+            authors: "Debrah MA, Awuah MB, Koh A, Ramsey J",
+            journal: "Microbiology Resource Announcements",
+            year: 2026,
+            doi: "https://doi.org/10.1128/mra.01222-25",
+            status: "published",
+            latest: true
+        },
+        {
+            kind: "paper",
             title: "Phage N4 uses a SAR endolysin-holin system for host cell lysis",
             authors: "Awuah MB, Martin C, Chamblee JS, Tomaszewski AJ, Sullivan TE, Emilia Q, Tran S, Snowden JH, Niemiec KA, Zhu J, Ramsey J",
             journal: "bioRxiv [Preprint]",
             year: 2025,
             doi: "https://doi.org/10.1101/2025.11.12.688109",
-            status: "preprint",
-            latest: true
+            status: "preprint"
         },
         /* ── Oral talks ──────────────────────────────────────── */
         {
@@ -4464,13 +4522,13 @@
        tags drive the filter buttons automatically.
     =============================================================== */
     const posts = [
-        // {
-        //   title: "Post title",
-        //   date: "May 28, 2026",
-        //   tags: ["Lab Notes"],
-        //   blurb: "One or two sentences previewing what the post covers.",
-        //   url: "https://mbaffour.github.io/blog/post-slug.html"
-        // }
+        {
+            title: "Serwaa: My First Scientific Paper",
+            date: "May 30, 2026",
+            tags: ["First Publication", "Phage Biology", "Lab Notes"],
+            blurb: "The story behind my first peer-reviewed paper — a phage named after my grandmother, an undergraduate who made it happen, and what it means to see your name in print for the first time.",
+            url: "https://mbaffour.github.io/blog/serwaa-first-paper.html"
+        }
     ];
 
     /* ==============================================================
@@ -5062,23 +5120,6 @@
             'poster':    'Poster'
         })[s] || (s[0].toUpperCase() + s.slice(1));
 
-        let posterCount = 0;
-        let filtered;
-        if (filter === 'all') {
-            // Default view: papers + talks only. Posters collapse behind a toggle.
-            const main = publications.filter(p => p.kind !== 'poster');
-            const posters = publications.filter(p => p.kind === 'poster');
-            posterCount = posters.length;
-            filtered = postersExpanded ? publications : main;
-        } else {
-            filtered = publications.filter(p => p.kind === filter || p.status === filter);
-        }
-
-        if (filtered.length === 0) {
-            container.innerHTML = '<div class="pub-empty">Nothing in this category yet — stay tuned.</div>';
-            return;
-        }
-
         const renderEntry = pub => {
             const auth = (pub.authors || '').replace(/Awuah MB/, '<em>Awuah MB</em>');
             const doi = pub.doi ? pub.doi.replace(/^https?:\/\/doi\.org\//, '') : '';
@@ -5095,7 +5136,6 @@
                     <div class="pub-meta">
                         <span class="pub-status ${pub.status}">${labelFor(pub.status)}</span>
                         ${pub.doi ? `<span class="pub-doi"><a href="${pub.doi}" target="_blank" rel="noopener">DOI ↗</a></span>` : ''}
-                        ${pub.kind === 'paper' && doi ? `<span class="pub-doi"><a href="https://www.biorxiv.org/content/${doi}v1.full.pdf" target="_blank" rel="noopener">PDF ↓</a></span>` : ''}
                         ${pub.latest ? '<span class="pub-status preprint">★ Latest</span>' : ''}
                     </div>
                 </div>
@@ -5103,21 +5143,44 @@
             </div>`;
         };
 
-        let html = filtered.map(renderEntry).join('');
-        if (filter === 'all' && posterCount > 0) {
-            html += `<button class="pub-toggle" id="pubToggle">
-                ${postersExpanded
-                    ? `← Hide ${posterCount} posters`
-                    : `Show ${posterCount} more posters →`}
-            </button>`;
+        const renderGroup = (label, items) => {
+            if (items.length === 0) return '';
+            return `<div class="pub-group">
+                <div class="pub-group-header">
+                    <span class="pub-group-label">${label}</span>
+                    <span class="pub-group-line"></span>
+                </div>
+                ${items.map(renderEntry).join('')}
+            </div>`;
+        };
+
+        if (filter === 'all') {
+            const papers  = publications.filter(p => p.kind === 'paper');
+            const talks   = publications.filter(p => p.kind === 'talk');
+            const posters = publications.filter(p => p.kind === 'poster');
+            let html = '';
+            html += renderGroup('Papers & Preprints', papers);
+            html += renderGroup('Oral Presentations', talks);
+            if (postersExpanded) {
+                html += renderGroup('Posters', posters);
+            } else if (posters.length > 0) {
+                html += `<button class="pub-toggle" id="pubToggle">Show ${posters.length} posters →</button>`;
+            }
+            container.innerHTML = html;
+        } else {
+            const filtered = publications.filter(p => p.kind === filter || p.status === filter);
+            if (filtered.length === 0) {
+                container.innerHTML = '<div class="pub-empty">Nothing in this category yet — stay tuned.</div>';
+                return;
+            }
+            container.innerHTML = filtered.map(renderEntry).join('');
         }
-        container.innerHTML = html;
+
         const toggle = document.getElementById('pubToggle');
         if (toggle) toggle.addEventListener('click', () => {
             postersExpanded = !postersExpanded;
             renderPublications('all');
         });
-        // Re-trigger Altmetric badges after re-render
         if (window._altmetric_embed_init) window._altmetric_embed_init();
     }
 
@@ -5786,6 +5849,442 @@
         // Viewport-fixed: just resize on viewport change, no doc-height tracking
         window.addEventListener('resize', resize);
         requestAnimationFrame(tick);
+    })();
+
+    /* ==============================================================
+       CULTURAL BACKGROUND CANVAS
+       Left half  → Japanese (Saitama): Fuji, torii gate, Hokusai waves, cherry blossoms
+       Right half → Ghanaian (Accra/Kumasi): Black Star Gate, palm, kente strips,
+                    coastal waves, Adinkra symbols (Gye Nyame, Adinkrahene, Sankofa, Nkyinkyim)
+       Both sides blend over the centre 30% of the viewport.
+       Throttled to 20 fps — purely decorative.
+    =============================================================== */
+    (function () {
+        const canvas = document.getElementById('culturalBgCanvas');
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+
+        if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        const isLowEnd = (navigator.hardwareConcurrency || 4) < 4;
+        const isTouchSmall = matchMedia('(hover: none) and (pointer: coarse) and (max-width: 600px)').matches;
+        if (isTouchSmall) return;
+        const isMobile = matchMedia('(hover: none) and (pointer: coarse)').matches;
+        const PM = isMobile ? 0.4 : 1.0; // particle multiplier
+
+        let w, h;
+
+        /* ---- colour palettes ---- */
+        const J = {
+            wave:    '30,60,120',
+            fuji:    '22,20,35',
+            blossom: '220,140,155',
+            torii:   '110,18,18',
+        };
+        const G = {
+            arch:   '22,16,6',
+            adinkra:'175,135,40',
+            kenteG: '244,196,48',
+            kenteGr:'26,128,64',
+            kenteR: '196,30,58',
+            palm:   '14,34,14',
+            wave:   '80,50,20',
+        };
+
+        /* ---- particle arrays ---- */
+        let petals = [], adinkraP = [];
+
+        function initPetals() {
+            petals = [];
+            const n = Math.round(18 * PM);
+            for (let i = 0; i < n; i++) petals.push({
+                x: Math.random() * w * 0.65,
+                y: Math.random() * h,
+                vx: 0.12 + Math.random() * 0.22,
+                vy: 0.08 + Math.random() * 0.18,
+                size: 4 + Math.random() * 5,
+                rot: Math.random() * Math.PI * 2,
+                rotS: (Math.random() - 0.5) * 0.018,
+                sway: Math.random() * Math.PI * 2,
+                swayS: 0.006 + Math.random() * 0.008,
+                op: 0.06 + Math.random() * 0.08,
+            });
+        }
+
+        const ADINKRA_TYPES = ['gyenyame', 'adinkrahene', 'sankofa', 'nkyinkyim'];
+        function initAdinkraP() {
+            adinkraP = [];
+            const n = Math.round(8 * PM);
+            for (let i = 0; i < n; i++) adinkraP.push({
+                x: w * 0.45 + Math.random() * w * 0.55,
+                y: Math.random() * h,
+                vx: (Math.random() - 0.5) * 0.04,
+                vy: -(0.04 + Math.random() * 0.06),
+                size: 14 + Math.random() * 20,
+                rot: Math.random() * Math.PI * 2,
+                rotS: (Math.random() - 0.5) * 0.002,
+                op: 0.04 + Math.random() * 0.05,
+                type: ADINKRA_TYPES[i % 4],
+            });
+        }
+
+        /* ---- adinkra symbol drawing ---- */
+        function drawAdinkraSymbol(cx, cy, size, rot, type, op) {
+            ctx.save();
+            ctx.translate(cx, cy);
+            ctx.rotate(rot);
+            ctx.strokeStyle = `rgba(${G.adinkra},${op})`;
+            ctx.fillStyle   = `rgba(${G.adinkra},${op})`;
+            ctx.lineWidth   = Math.max(1, size * 0.07);
+
+            if (type === 'adinkrahene') {
+                // three concentric circles
+                [1, 0.65, 0.35].forEach(r => {
+                    ctx.beginPath();
+                    ctx.arc(0, 0, size * r, 0, Math.PI * 2);
+                    ctx.stroke();
+                });
+            } else if (type === 'gyenyame') {
+                // eye-like shape: two arcs + centre dot
+                ctx.beginPath();
+                ctx.moveTo(-size, 0);
+                ctx.quadraticCurveTo(0, -size * 0.65, size, 0);
+                ctx.quadraticCurveTo(0,  size * 0.65, -size, 0);
+                ctx.stroke();
+                ctx.beginPath();
+                ctx.arc(0, 0, size * 0.18, 0, Math.PI * 2);
+                ctx.fill();
+            } else if (type === 'sankofa') {
+                // heart-like base + backward neck
+                ctx.beginPath();
+                ctx.arc(-size * 0.28, -size * 0.22, size * 0.28, Math.PI, 0);
+                ctx.arc( size * 0.28, -size * 0.22, size * 0.28, Math.PI, 0);
+                ctx.quadraticCurveTo(size * 0.28, size * 0.5, 0, size * 0.75);
+                ctx.quadraticCurveTo(-size * 0.28, size * 0.5, -size * 0.56, -size * 0.22);
+                ctx.closePath();
+                ctx.stroke();
+                // neck arc
+                ctx.beginPath();
+                ctx.moveTo(0, -size * 0.5);
+                ctx.quadraticCurveTo(-size * 0.6, -size * 0.9, -size * 0.2, -size * 0.95);
+                ctx.stroke();
+            } else { // nkyinkyim — four S-curve arms
+                for (let a = 0; a < 4; a++) {
+                    ctx.save();
+                    ctx.rotate(a * Math.PI / 2);
+                    ctx.beginPath();
+                    ctx.moveTo(0, 0);
+                    ctx.bezierCurveTo(size * 0.3, -size * 0.15, size * 0.2, -size * 0.6, size * 0.5, -size * 0.65);
+                    ctx.stroke();
+                    ctx.restore();
+                }
+            }
+            ctx.restore();
+        }
+
+        /* ---- Fuji ---- */
+        function drawFuji() {
+            const px = w * 0.28, py = h * 0.62;
+            const bw = w * 0.24, bh = h * 0.20;
+            ctx.save();
+            ctx.globalAlpha = 0.07;
+            ctx.fillStyle = `rgb(${J.fuji})`;
+            ctx.beginPath();
+            ctx.moveTo(px, py - bh);
+            ctx.quadraticCurveTo(px - bw * 0.5, py, px - bw, py);
+            ctx.lineTo(px + bw, py);
+            ctx.quadraticCurveTo(px + bw * 0.5, py, px, py - bh);
+            ctx.closePath();
+            ctx.fill();
+            // snow cap
+            ctx.globalAlpha = 0.04;
+            ctx.fillStyle = '#e8e0d8';
+            ctx.beginPath();
+            ctx.moveTo(px, py - bh);
+            ctx.lineTo(px - bw * 0.12, py - bh * 0.72);
+            ctx.lineTo(px + bw * 0.12, py - bh * 0.72);
+            ctx.closePath();
+            ctx.fill();
+            ctx.restore();
+        }
+
+        /* ---- Torii gate ---- */
+        function drawTorii() {
+            const gx = w * 0.06, gy = h * 0.55;
+            const gw = w * 0.09, gh = h * 0.30;
+            const pw = Math.max(3, gw * 0.08); // pillar width
+            ctx.save();
+            ctx.globalAlpha = 0.045;
+            ctx.fillStyle = `rgb(${J.torii})`;
+            // pillars
+            ctx.fillRect(gx - gw * 0.5, gy, pw, gh);
+            ctx.fillRect(gx + gw * 0.5 - pw, gy, pw, gh);
+            // nuki (lower crossbeam)
+            ctx.fillRect(gx - gw * 0.5, gy + gh * 0.18, gw, pw * 1.2);
+            // kasagi (top beam — curves up at ends)
+            ctx.beginPath();
+            ctx.moveTo(gx - gw * 0.65, gy + pw * 2);
+            ctx.quadraticCurveTo(gx - gw * 0.45, gy - pw, gx, gy - pw * 1.5);
+            ctx.quadraticCurveTo(gx + gw * 0.45, gy - pw, gx + gw * 0.65, gy + pw * 2);
+            ctx.lineTo(gx + gw * 0.65, gy + pw * 3.5);
+            ctx.lineTo(gx - gw * 0.65, gy + pw * 3.5);
+            ctx.closePath();
+            ctx.fill();
+            ctx.restore();
+        }
+
+        /* ---- Japanese waves ---- */
+        let jWavePhase = 0;
+        function drawJapaneseWaves() {
+            const baseY = h * 0.78;
+            ctx.save();
+            for (let b = 0; b < 3; b++) {
+                ctx.globalAlpha = 0.04;
+                ctx.strokeStyle = `rgb(${J.wave})`;
+                ctx.lineWidth = 1.5;
+                ctx.beginPath();
+                const yOff = baseY + b * 22;
+                const wl = w / 4;
+                const amp = 18 + b * 6;
+                for (let x = 0; x <= w * 0.7; x += 3) {
+                    const y = yOff + Math.sin((x / wl) + jWavePhase + b * 1.1) * amp;
+                    x === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+                }
+                ctx.stroke();
+            }
+            ctx.restore();
+        }
+
+        /* ---- Black Star Gate / Independence Arch ---- */
+        function drawBlackStarGate() {
+            const ax = w * 0.88, ay = h * 0.80;
+            const col = h * 0.18, cw = Math.max(4, h * 0.012);
+            const gap = h * 0.07;
+            ctx.save();
+            ctx.globalAlpha = 0.065;
+            ctx.fillStyle = `rgb(${G.arch})`;
+            // columns
+            ctx.fillRect(ax - gap * 0.5 - cw, ay - col, cw, col);
+            ctx.fillRect(ax + gap * 0.5,       ay - col, cw, col);
+            // arch
+            ctx.beginPath();
+            ctx.arc(ax, ay - col, gap * 0.5 + cw * 0.5, Math.PI, 0);
+            ctx.lineTo(ax + gap * 0.5, ay - col - cw);
+            ctx.arc(ax, ay - col, gap * 0.5 - cw * 0.5, 0, Math.PI, true);
+            ctx.closePath();
+            ctx.fill();
+            // parapet
+            ctx.fillRect(ax - gap * 0.22, ay - col - cw * 1.5 - h * 0.025, gap * 0.44, h * 0.025);
+            // star
+            const sr = h * 0.018, sc = ay - col - cw * 2 - h * 0.025 - sr;
+            ctx.beginPath();
+            for (let i = 0; i < 5; i++) {
+                const a = (i * 4 * Math.PI / 5) - Math.PI / 2;
+                const b = a + (2 * Math.PI / 5);
+                i === 0 ? ctx.moveTo(ax + Math.cos(a) * sr, sc + Math.sin(a) * sr)
+                        : ctx.lineTo(ax + Math.cos(a) * sr, sc + Math.sin(a) * sr);
+                ctx.lineTo(ax + Math.cos(b) * sr * 0.4, sc + Math.sin(b) * sr * 0.4);
+            }
+            ctx.closePath();
+            ctx.fill();
+            ctx.restore();
+        }
+
+        /* ---- Palm tree ---- */
+        function drawPalm() {
+            const px = w * 0.96, py = h;
+            const th = h * 0.28;
+            ctx.save();
+            ctx.globalAlpha = 0.06;
+            ctx.fillStyle = `rgb(${G.palm})`;
+            ctx.strokeStyle = `rgb(${G.palm})`;
+            // trunk (tapering bezier strip)
+            const tw = Math.max(4, th * 0.04);
+            ctx.beginPath();
+            ctx.moveTo(px - tw, py);
+            ctx.quadraticCurveTo(px - tw * 1.5, py - th * 0.5, px - tw * 0.8, py - th);
+            ctx.lineTo(px + tw * 0.8, py - th);
+            ctx.quadraticCurveTo(px + tw * 1.5, py - th * 0.5, px + tw, py);
+            ctx.closePath();
+            ctx.fill();
+            // fronds
+            ctx.lineWidth = Math.max(1.5, tw * 0.7);
+            const tx = px - tw * 0.1, ty = py - th;
+            const fronds = [
+                [-0.8 * Math.PI / 2, 0.72], [-0.55 * Math.PI / 2, 0.65],
+                [-0.25 * Math.PI / 2, 0.58], [0.15 * Math.PI / 2, 0.62],
+                [0.55 * Math.PI / 2, 0.68],
+            ];
+            fronds.forEach(([ang, len]) => {
+                const dx = Math.cos(ang) * th * len;
+                const dy = Math.sin(ang) * th * len * 0.7 + th * 0.15;
+                ctx.beginPath();
+                ctx.moveTo(tx, ty);
+                ctx.quadraticCurveTo(tx + dx * 0.5, ty - th * 0.1 + dy * 0.3, tx + dx, ty + dy);
+                ctx.stroke();
+            });
+            ctx.restore();
+        }
+
+        /* ---- Kente strip ---- */
+        function drawKenteStrip() {
+            const ky = h * 0.07, kx0 = w * 0.6, kx1 = w;
+            const sw = 8, gap = 5, total = sw + gap;
+            ctx.save();
+            ctx.globalAlpha = 0.06;
+            const colors = [G.kenteG, G.kenteGr, G.kenteR];
+            let x = kx0;
+            let ci = 0;
+            while (x < kx1) {
+                // fade in from left over 80px
+                const fade = Math.min(1, (x - kx0) / 80);
+                ctx.globalAlpha = 0.06 * fade;
+                ctx.fillStyle = `rgb(${colors[ci % 3]})`;
+                ctx.fillRect(x, ky, sw, 3);
+                x += total;
+                ci++;
+            }
+            ctx.restore();
+        }
+
+        /* ---- Coastal waves ---- */
+        let gWavePhase = 0;
+        function drawCoastalWaves() {
+            const baseY = h * 0.68;
+            ctx.save();
+            for (let b = 0; b < 2; b++) {
+                ctx.globalAlpha = 0.035;
+                ctx.strokeStyle = `rgb(${G.wave})`;
+                ctx.lineWidth = 1.5;
+                ctx.beginPath();
+                const yOff = baseY + b * 25;
+                const wl = w / 3.5;
+                const amp = 14 + b * 8;
+                for (let x = w * 0.42; x <= w; x += 3) {
+                    const y = yOff + Math.sin((x / wl) + gWavePhase + b * 0.9) * amp;
+                    x <= w * 0.42 + 3 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+                }
+                ctx.stroke();
+            }
+            ctx.restore();
+        }
+
+        /* ---- Fixed large adinkra symbols (right side) ---- */
+        const FIXED_ADINKRA = [
+            { rx: 0.72, ry: 0.35, sz: 28, type: 'adinkrahene', op: 0.035, phase: 0 },
+            { rx: 0.84, ry: 0.55, sz: 22, type: 'gyenyame',    op: 0.030, phase: 1.2 },
+            { rx: 0.93, ry: 0.28, sz: 20, type: 'nkyinkyim',   op: 0.028, phase: 2.4 },
+        ];
+        function drawFixedAdinkra() {
+            FIXED_ADINKRA.forEach(f => {
+                f.phase += 0.0005;
+                drawAdinkraSymbol(w * f.rx, h * f.ry, f.sz, Math.sin(f.phase) * 0.06, f.type, f.op);
+            });
+        }
+
+        /* ---- blend helpers ---- */
+        function blendAlpha(x, side) {
+            // side: 'left' fades out toward centre, 'right' fades in from centre
+            const lo = w * 0.35, hi = w * 0.65;
+            if (side === 'left')  return x <= lo ? 1 : x >= hi ? 0 : 1 - (x - lo) / (hi - lo);
+            return x >= hi ? 1 : x <= lo ? 0 : (x - lo) / (hi - lo);
+        }
+
+        /* ---- cherry blossom update + draw ---- */
+        function updatePetal(p) {
+            p.sway += p.swayS;
+            p.x   += p.vx + Math.sin(p.sway) * 0.15;
+            p.y   += p.vy;
+            p.rot += p.rotS;
+            if (p.x > w * 0.75 || p.y > h + 20) { p.x = -10; p.y = Math.random() * h * 0.8; }
+        }
+        function drawPetal(p) {
+            const fade = blendAlpha(p.x, 'left');
+            if (fade <= 0) return;
+            ctx.save();
+            ctx.translate(p.x, p.y);
+            ctx.rotate(p.rot);
+            for (let i = 0; i < 5; i++) {
+                ctx.save();
+                ctx.rotate((i / 5) * Math.PI * 2);
+                ctx.translate(0, -p.size * 0.6);
+                ctx.scale(1, 1.5);
+                ctx.beginPath();
+                ctx.arc(0, 0, p.size * 0.45, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(${J.blossom},${p.op * fade})`;
+                ctx.fill();
+                ctx.restore();
+            }
+            ctx.restore();
+        }
+
+        /* ---- adinkra particle update + draw ---- */
+        function updateAdinkraP(a) {
+            a.x   += a.vx;
+            a.y   += a.vy;
+            a.rot += a.rotS;
+            if (a.y < -40) { a.y = h + 40; a.x = w * 0.45 + Math.random() * w * 0.55; }
+        }
+        function drawAdinkraParticle(a) {
+            const fade = blendAlpha(a.x, 'right');
+            if (fade <= 0) return;
+            drawAdinkraSymbol(a.x, a.y, a.size, a.rot, a.type, a.op * fade);
+        }
+
+        /* ---- resize ---- */
+        function resize() {
+            const dpr = Math.min(devicePixelRatio || 1, 1.5);
+            w = window.innerWidth;
+            h = window.innerHeight;
+            canvas.width  = Math.round(w * dpr);
+            canvas.height = Math.round(h * dpr);
+            canvas.style.width  = w + 'px';
+            canvas.style.height = h + 'px';
+            ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+            initPetals();
+            initAdinkraP();
+        }
+        window.addEventListener('resize', resize, { passive: true });
+
+        /* ---- animation loop (20fps) ---- */
+        const FRAME_MS = 1000 / 20;
+        let lastFrame = 0, running = true;
+
+        function tick(t) {
+            if (!running) return;
+            requestAnimationFrame(tick);
+            if (t - lastFrame < FRAME_MS) return;
+            lastFrame = t;
+
+            ctx.clearRect(0, 0, w, h);
+
+            jWavePhase += 0.003;
+            gWavePhase += 0.004;
+
+            // Left half — Japanese
+            drawFuji();
+            drawTorii();
+            drawJapaneseWaves();
+            petals.forEach(p => { updatePetal(p); drawPetal(p); });
+
+            // Right half — Ghanaian
+            drawBlackStarGate();
+            drawPalm();
+            drawKenteStrip();
+            drawCoastalWaves();
+            drawFixedAdinkra();
+            adinkraP.forEach(a => { updateAdinkraP(a); drawAdinkraParticle(a); });
+        }
+
+        document.addEventListener('visibilitychange', () => {
+            const on = !document.hidden;
+            if (on && !running) { running = true; requestAnimationFrame(tick); }
+            else running = on;
+        });
+
+        if (!isLowEnd) {
+            resize();
+            requestAnimationFrame(tick);
+        }
     })();
 
     /* ==============================================================
@@ -7256,6 +7755,23 @@
             decor.forEach(drawBacterium);
         }
         idleFrame();
+    })();
+
+    /* ==============================================================
+       GOATCOUNTER VISITOR COUNT DISPLAY
+       Fetches the public aggregate pageview count and injects it
+       into the hero stats strip.
+       REPLACE 'mbaffour' with your GoatCounter site code after
+       signing up at https://www.goatcounter.com/
+    =============================================================== */
+    (function () {
+        const el = document.getElementById('visitorCount');
+        if (!el) return;
+        const GC_CODE = 'mbaffour'; // !! REPLACE WITH YOUR GOATCOUNTER SITE CODE !!
+        fetch(`https://${GC_CODE}.goatcounter.com/counter//.json`, { mode: 'cors' })
+            .then(r => r.ok ? r.json() : Promise.reject())
+            .then(data => { if (data && data.count) el.textContent = data.count; })
+            .catch(() => { /* silently keep the em-dash placeholder */ });
     })();
     </script>
 </body>
