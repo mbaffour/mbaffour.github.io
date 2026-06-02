@@ -131,8 +131,9 @@
             top: 0; left: 0;
             width: 100vw; height: 100vh;
             pointer-events: none;
-            z-index: -1;
-            /* opacity controlled entirely via canvas globalAlpha — no CSS multiplier */
+            z-index: 0;
+            /* sits at same level as ambient canvas; cultural canvas is earlier
+               in DOM so ambient noise texture (0.035 opacity) renders on top */
         }
         @media (prefers-reduced-motion: reduce) {
             .cultural-bg-canvas { display: none; }
