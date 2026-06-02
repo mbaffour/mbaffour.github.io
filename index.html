@@ -5850,85 +5850,123 @@
     })();
 
     /* ==============================================================
-       CULTURAL BACKGROUND CANVAS  v3
-       Left  → Japanese/Saitama: Fuji silhouette, torii, Hokusai rolling waves, blossoms
-       Right → Ghanaian/Accra+Kumasi: Independence Arch, palm, Gulf of Guinea waves, Adinkra
+       CULTURAL BACKGROUND CANVAS  v4
+       Left  → Japanese/Saitama: Mountain range (Fuji hero), torii, Hokusai waves, blossoms
+       Right → Ghanaian/Accra+Kumasi: Independence Arch (realistic), palm, Gulf waves, Adinkra
     =============================================================== */
     (function () {
         const canvas = document.getElementById('culturalBgCanvas');
         if (!canvas) return;
         const ctx = canvas.getContext('2d');
         if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
         const isMobile = matchMedia('(hover: none) and (pointer: coarse)').matches;
         const PM = isMobile ? 0.5 : 1.0;
         let w, h, jPhase = 0, gPhase = 0;
         let petals = [], adinkraParticles = [];
 
-        /* ── helpers ── */
-        function star5(cx, cy, r) {
-            ctx.beginPath();
-            for (let i = 0; i < 5; i++) {
-                const oa = (i * 4 * Math.PI / 5) - Math.PI / 2;
-                const ia = oa + (2 * Math.PI / 5) / 2;
-                i === 0 ? ctx.moveTo(cx + Math.cos(oa)*r, cy + Math.sin(oa)*r)
-                        : ctx.lineTo(cx + Math.cos(oa)*r, cy + Math.sin(oa)*r);
-                ctx.lineTo(cx + Math.cos(ia)*r*0.42, cy + Math.sin(ia)*r*0.42);
-            }
-            ctx.closePath();
-        }
-
-        /* sinusoidal wave outline — caller wraps in beginPath/fill */
-        function waveLine(x0, x1, baseY, amp, wl, phase) {
-            ctx.moveTo(x0, baseY);
-            for (let x = x0; x <= x1; x += 4) {
-                const t = (x / wl) * Math.PI * 2 + phase;
-                ctx.lineTo(x, baseY + amp * Math.sin(t) + amp * 0.28 * Math.sin(t * 2 + 0.6));
+        /* ─── catmull-rom spline through ridge points ─── */
+        function mountainSpline(pts) {
+            ctx.moveTo(pts[0].x, pts[0].y);
+            for (let i = 0; i < pts.length - 1; i++) {
+                const p0 = pts[Math.max(0, i-1)];
+                const p1 = pts[i];
+                const p2 = pts[i+1];
+                const p3 = pts[Math.min(pts.length-1, i+2)];
+                const cp1x = p1.x + (p2.x - p0.x) / 6;
+                const cp1y = p1.y + (p2.y - p0.y) / 6;
+                const cp2x = p2.x - (p3.x - p1.x) / 6;
+                const cp2y = p2.y - (p3.y - p1.y) / 6;
+                ctx.bezierCurveTo(cp1x, cp1y, cp2x, cp2y, p2.x, p2.y);
             }
         }
 
-        /* ══════════════════════════════════════
-           MOUNT FUJI — large bezier silhouette
-        ══════════════════════════════════════ */
-        function drawFuji() {
-            const px = w * 0.20, py = h * 0.40;
-            const baseY = h * 0.80;
-            const bL = w * -0.02, bR = w * 0.52;
-
-            const grad = ctx.createLinearGradient(px, py, px, baseY);
-            grad.addColorStop(0,    'rgba(52,60,98,0.42)');
-            grad.addColorStop(0.45, 'rgba(40,48,82,0.32)');
-            grad.addColorStop(0.80, 'rgba(26,32,62,0.16)');
-            grad.addColorStop(1,    'rgba(14,18,42,0.0)');
-
+        function mountainLayer(pts, baseY, topRgba, midRgba) {
+            const topY = Math.min(...pts.map(p => p.y));
+            const grd = ctx.createLinearGradient(0, topY, 0, baseY);
+            grd.addColorStop(0,    topRgba);
+            grd.addColorStop(0.62, midRgba);
+            grd.addColorStop(1,    'rgba(0,0,0,0)');
             ctx.save();
-            ctx.fillStyle = grad;
+            ctx.fillStyle = grd;
             ctx.beginPath();
-            ctx.moveTo(bL, baseY);
-            ctx.bezierCurveTo(bL+(px-bL)*0.52, baseY, px-(px-bL)*0.16, py+(baseY-py)*0.14, px, py);
-            ctx.bezierCurveTo(px+(bR-px)*0.13, py+(baseY-py)*0.08, bR-(bR-px)*0.27, baseY-(baseY-py)*0.03, bR, baseY);
-            ctx.closePath();
-            ctx.fill();
-
-            /* snow cap */
-            const snowY = py + (baseY - py) * 0.20;
-            const sg = ctx.createLinearGradient(px, py, px, snowY);
-            sg.addColorStop(0,   'rgba(215,205,190,0.32)');
-            sg.addColorStop(0.6, 'rgba(215,205,190,0.12)');
-            sg.addColorStop(1,   'rgba(215,205,190,0.0)');
-            ctx.fillStyle = sg;
-            ctx.beginPath();
-            ctx.moveTo(px, py);
-            ctx.bezierCurveTo(px-(px-bL)*0.09, snowY, px+(bR-px)*0.07, snowY, px+(bR-px)*0.17, snowY);
-            ctx.bezierCurveTo(px+(bR-px)*0.06, snowY+5, px-(px-bL)*0.06, snowY+5, px-(px-bL)*0.17, snowY);
+            mountainSpline(pts);
+            ctx.lineTo(pts[pts.length-1].x, baseY + 2);
+            ctx.lineTo(pts[0].x, baseY + 2);
             ctx.closePath();
             ctx.fill();
             ctx.restore();
         }
 
-        /* ══════════════════════════════════════
+        /* ════════════════════════════════════
+           MOUNTAIN RANGE  — Fuji as hero peak
+        ════════════════════════════════════ */
+        function drawMountainRange() {
+            const baseY = h * 0.81;
+            const fujiX = w * 0.21;
+            const fujiY = h * 0.33;  /* prominent — peak at top third */
+
+            /* subtle sky glow centred behind Fuji */
+            const sg = ctx.createRadialGradient(fujiX, fujiY, 0, fujiX, fujiY, w * 0.34);
+            sg.addColorStop(0,   'rgba(58,68,118,0.10)');
+            sg.addColorStop(0.5, 'rgba(42,52,95,0.05)');
+            sg.addColorStop(1,   'rgba(22,30,65,0.0)');
+            ctx.save(); ctx.fillStyle = sg;
+            ctx.fillRect(0, 0, w * 0.57, h * 0.70);
+            ctx.restore();
+
+            /* FAR layer — distant hazy ridge */
+            mountainLayer([
+                {x:w*-0.05, y:baseY},
+                {x:w*0.03,  y:h*0.68}, {x:w*0.09, y:h*0.72},
+                {x:w*0.14,  y:h*0.64}, {x:w*0.20, y:h*0.69},
+                {x:w*0.25,  y:h*0.61}, {x:w*0.31, y:h*0.66},
+                {x:w*0.37,  y:h*0.63}, {x:w*0.42, y:h*0.70},
+                {x:w*0.48,  y:h*0.74}, {x:w*0.54, y:baseY},
+            ], baseY, 'rgba(38,46,82,0.16)', 'rgba(28,35,65,0.07)');
+
+            /* MID layer — defined range */
+            mountainLayer([
+                {x:w*-0.05, y:baseY},
+                {x:w*0.02,  y:h*0.74}, {x:w*0.07, y:h*0.70},
+                {x:w*0.11,  y:h*0.58}, {x:w*0.15, y:h*0.64},
+                {x:w*0.19,  y:h*0.56}, {x:w*0.23, y:h*0.62},
+                {x:w*0.28,  y:h*0.58}, {x:w*0.33, y:h*0.65},
+                {x:w*0.38,  y:h*0.70}, {x:w*0.44, y:h*0.67},
+                {x:w*0.50,  y:h*0.75}, {x:w*0.55, y:baseY},
+            ], baseY, 'rgba(44,52,90,0.26)', 'rgba(34,42,74,0.12)');
+
+            /* NEAR layer — Fuji dominant + flanking mountains */
+            mountainLayer([
+                {x:w*-0.05, y:baseY},
+                {x:w*0.00,  y:h*0.78}, {x:w*0.04, y:h*0.72},
+                {x:w*0.08,  y:h*0.76}, {x:w*0.12, y:h*0.68},
+                {x:w*0.15,  y:h*0.71},
+                {x:fujiX,   y:fujiY},   /* ← FUJI */
+                {x:w*0.26,  y:h*0.67}, {x:w*0.30, y:h*0.73},
+                {x:w*0.34,  y:h*0.68}, {x:w*0.39, y:h*0.76},
+                {x:w*0.45,  y:h*0.79}, {x:w*0.53, y:baseY},
+            ], baseY, 'rgba(50,58,96,0.44)', 'rgba(38,46,80,0.18)');
+
+            /* FUJI SNOW CAP */
+            const snowBase = fujiY + (baseY - fujiY) * 0.21;
+            const snowGrad = ctx.createLinearGradient(fujiX, fujiY, fujiX, snowBase + 12);
+            snowGrad.addColorStop(0,   'rgba(222,214,200,0.42)');
+            snowGrad.addColorStop(0.5, 'rgba(222,214,200,0.18)');
+            snowGrad.addColorStop(1,   'rgba(222,214,200,0.0)');
+            ctx.save(); ctx.fillStyle = snowGrad;
+            ctx.beginPath();
+            ctx.moveTo(fujiX, fujiY);
+            ctx.bezierCurveTo(fujiX - w*0.04, snowBase + 2,  fujiX - w*0.03, snowBase + 8,  fujiX - w*0.05, snowBase + 11);
+            ctx.quadraticCurveTo(fujiX, snowBase + 16, fujiX + w*0.05, snowBase + 11);
+            ctx.bezierCurveTo(fujiX + w*0.03, snowBase + 8,  fujiX + w*0.04, snowBase + 2,  fujiX, fujiY);
+            ctx.closePath();
+            ctx.fill();
+            ctx.restore();
+        }
+
+        /* ════════════════════════════════════
            TORII GATE
-        ══════════════════════════════════════ */
+        ════════════════════════════════════ */
         function drawTorii() {
             const gx = w * 0.045, gy = h * 0.56;
             const gW = Math.max(60, w * 0.088);
@@ -5950,9 +5988,17 @@
             ctx.restore();
         }
 
-        /* ══════════════════════════════════════
-           ROLLING JAPANESE WAVES  (Hokusai blue) — filled layers
-        ══════════════════════════════════════ */
+        /* ════════════════════════════════════
+           ROLLING JAPANESE WAVES  — filled layers
+        ════════════════════════════════════ */
+        function waveLine(x0, x1, baseY, amp, wl, phase) {
+            ctx.moveTo(x0, baseY);
+            for (let x = x0; x <= x1; x += 4) {
+                const t = (x / wl) * Math.PI * 2 + phase;
+                ctx.lineTo(x, baseY + amp * Math.sin(t) + amp * 0.28 * Math.sin(t * 2 + 0.6));
+            }
+        }
+
         function drawJapaneseWaves() {
             const layers = [
                 { ry:0.800, amp: 9, wl:0.22, a:'rgba(16,40,100,0.10)'  },
@@ -5974,109 +6020,174 @@
             ctx.restore();
         }
 
-        /* ══════════════════════════════════════
+        /* ════════════════════════════════════
            INDEPENDENCE ARCH  (Black Star Gate, Accra)
-           Rectangular passage with semicircle top, carved via evenodd
-        ══════════════════════════════════════ */
+           Architectural rendering with depth, relief, and glow
+        ════════════════════════════════════ */
         function drawIndependenceArch() {
-            const cx = w * 0.84, baseY = h * 0.87;
-            const H  = Math.min(h * 0.23, 200);
-            const W  = H * 0.90;
-            const pW = W * 0.20;
-            const topH = H * 0.24;
-            const opW = W - 2*pW;
-            const archR = opW * 0.50;
+            const cx   = w * 0.81;
+            const by   = h * 0.88;
+            const H    = Math.min(h * 0.26, 225);
+            const W    = H * 1.14;
+            const pW   = W * 0.24;          /* pier width each side */
+            const topH = H * 0.20;          /* entablature height */
+            const opW  = W - 2 * pW;        /* passage width */
+            const archH = opW * 0.55;        /* arch rise (slightly pointed) */
+
+            /* ambient warm glow */
+            const glow = ctx.createRadialGradient(cx, by - H*0.55, 0, cx, by - H*0.55, W*1.6);
+            glow.addColorStop(0,   'rgba(198,162,42,0.08)');
+            glow.addColorStop(0.6, 'rgba(198,162,42,0.03)');
+            glow.addColorStop(1,   'rgba(198,162,42,0.0)');
+            ctx.save(); ctx.fillStyle = glow;
+            ctx.fillRect(cx - W*1.7, by - H*1.5, W*3.4, H*1.8);
+            ctx.restore();
 
             ctx.save();
-            ctx.globalAlpha = 0.30;
-            ctx.fillStyle = 'rgb(198,162,42)';
 
+            /* ── MAIN BODY — evenodd carves the passage ── */
+            ctx.globalAlpha = 0.32;
+            ctx.fillStyle = 'rgb(192,156,40)';
             ctx.beginPath();
-            ctx.rect(cx - W/2, baseY - H, W, H);
+            /* outer rectangle */
+            ctx.rect(cx - W/2, by - H, W, H);
+            /* passage cut-out counter-clockwise */
             const opL = cx - opW/2, opR = cx + opW/2;
-            const archCY = baseY - H + topH + archR;
-            ctx.moveTo(opL, baseY);
-            ctx.lineTo(opL, archCY);
-            ctx.arc(cx, archCY, archR, Math.PI, 0, true);
-            ctx.lineTo(opR, baseY);
+            const archBot = by - H + topH;
+            ctx.moveTo(opL, by);
+            ctx.lineTo(opL, archBot + archH);
+            /* pointed arch curve — two bezier arms */
+            ctx.bezierCurveTo(opL, archBot + archH*0.42, cx - opW*0.36, archBot, cx, archBot);
+            ctx.bezierCurveTo(cx + opW*0.36, archBot, opR, archBot + archH*0.42, opR, archBot + archH);
+            ctx.lineTo(opR, by);
             ctx.closePath();
             ctx.fill('evenodd');
 
-            ctx.globalAlpha = 0.15;
-            ctx.strokeStyle = 'rgb(230,198,72)';
-            ctx.lineWidth = 2;
+            /* ── ENTABLATURE BAND ── */
+            ctx.globalAlpha = 0.40;
+            ctx.fillStyle = 'rgb(212,174,50)';
+            ctx.fillRect(cx - W/2, by - H, W, topH * 0.55);   /* top cornice panel */
+
+            /* relief lines on entablature */
+            ctx.globalAlpha = 0.20;
+            ctx.strokeStyle = 'rgb(245,208,70)';
+            ctx.lineWidth = 1.5;
             ctx.beginPath();
-            ctx.moveTo(cx - W/2 + 2, baseY - H + topH*0.80);
-            ctx.lineTo(cx + W/2 - 2, baseY - H + topH*0.80);
+            ctx.moveTo(cx - W/2 + 3, by - H + topH * 0.32);
+            ctx.lineTo(cx + W/2 - 3, by - H + topH * 0.32);
+            ctx.moveTo(cx - W/2 + 3, by - H + topH * 0.72);
+            ctx.lineTo(cx + W/2 - 3, by - H + topH * 0.72);
             ctx.stroke();
 
-            ctx.globalAlpha = 0.30;
-            ctx.fillStyle = 'rgb(198,162,42)';
-            const pedH = H*0.10, pedW = W*0.09;
-            ctx.fillRect(cx - pedW/2, baseY - H - pedH, pedW, pedH);
+            /* ── PILASTERS  (decorative vertical strips on piers) ── */
+            ctx.globalAlpha = 0.10;
+            ctx.fillStyle = 'rgb(150,115,25)';
+            const plW = pW * 0.22;
+            ctx.fillRect(cx - W/2 + pW*0.22, by - H + topH, plW, H - topH);
+            ctx.fillRect(cx + W/2 - pW*0.22 - plW, by - H + topH, plW, H - topH);
 
-            ctx.globalAlpha = 0.40;
-            ctx.fillStyle = 'rgb(215,178,52)';
-            star5(cx, baseY - H - pedH - H*0.050, H*0.048);
-            ctx.fill();
+            /* ── ARCH SOFFIT SHADOW  (depth inside passage) ── */
+            ctx.globalAlpha = 0.14;
+            ctx.strokeStyle = 'rgb(100,78,15)';
+            ctx.lineWidth = 5;
+            ctx.lineJoin = 'round';
+            ctx.beginPath();
+            ctx.moveTo(opL + 4, by);
+            ctx.lineTo(opL + 4, archBot + archH);
+            ctx.bezierCurveTo(opL+4, archBot+archH*0.42, cx-opW*0.36+4, archBot+4, cx, archBot+4);
+            ctx.bezierCurveTo(cx+opW*0.36-4, archBot+4, opR-4, archBot+archH*0.42, opR-4, archBot+archH);
+            ctx.lineTo(opR - 4, by);
+            ctx.stroke();
+
+            /* ── OBSERVATION TERRACE  (wider slab on top) ── */
+            ctx.globalAlpha = 0.30;
+            ctx.fillStyle = 'rgb(200,164,45)';
+            const terW = W * 1.08, terH = H * 0.055;
+            ctx.fillRect(cx - terW/2, by - H - terH, terW, terH);
+            /* terrace railing hint */
+            ctx.globalAlpha = 0.14;
+            ctx.strokeStyle = 'rgb(230,192,60)';
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(cx - terW/2 + 2, by - H - terH + 3);
+            ctx.lineTo(cx + terW/2 - 2, by - H - terH + 3);
+            ctx.stroke();
+
+            /* ── PEDESTAL ── */
+            ctx.globalAlpha = 0.36;
+            ctx.fillStyle = 'rgb(205,168,46)';
+            const pedH = H * 0.12, pedW = W * 0.10;
+            ctx.fillRect(cx - pedW/2, by - H - terH - pedH, pedW, pedH);
+            /* pedestal cap */
+            ctx.fillRect(cx - pedW*0.65, by - H - terH - pedH - pedH*0.10, pedW*1.30, pedH*0.10);
+
+            /* ── BLACK STAR ── */
+            const starR  = H * 0.056;
+            const starCY = by - H - terH - pedH - starR - 4;
+            /* star glow */
+            const starGlow = ctx.createRadialGradient(cx, starCY, 0, cx, starCY, starR * 3.5);
+            starGlow.addColorStop(0,   'rgba(244,196,48,0.28)');
+            starGlow.addColorStop(0.5, 'rgba(244,196,48,0.10)');
+            starGlow.addColorStop(1,   'rgba(244,196,48,0.0)');
+            ctx.fillStyle = starGlow;
+            ctx.globalAlpha = 1.0;
+            ctx.beginPath(); ctx.arc(cx, starCY, starR * 3.5, 0, Math.PI*2); ctx.fill();
+            /* star body */
+            ctx.globalAlpha = 0.55;
+            ctx.fillStyle = 'rgb(244,202,54)';
+            ctx.beginPath();
+            for (let i = 0; i < 5; i++) {
+                const oa = (i * 4 * Math.PI / 5) - Math.PI / 2;
+                const ia = oa + (2 * Math.PI / 5) / 2;
+                i===0 ? ctx.moveTo(cx + Math.cos(oa)*starR, starCY + Math.sin(oa)*starR)
+                      : ctx.lineTo(cx + Math.cos(oa)*starR, starCY + Math.sin(oa)*starR);
+                ctx.lineTo(cx + Math.cos(ia)*starR*0.40, starCY + Math.sin(ia)*starR*0.40);
+            }
+            ctx.closePath(); ctx.fill();
+
             ctx.restore();
         }
 
-        /* ══════════════════════════════════════
+        /* ════════════════════════════════════
            PALM TREE
-        ══════════════════════════════════════ */
+        ════════════════════════════════════ */
         function drawPalm() {
             const px = w*0.963, baseY = h;
             const tH = Math.min(h*0.30, 245);
             const tW = Math.max(5, tH*0.038);
             ctx.save();
             ctx.globalAlpha = 0.22;
-            ctx.fillStyle   = 'rgb(28,72,28)';
-            ctx.strokeStyle = 'rgb(28,72,28)';
-
+            ctx.fillStyle = 'rgb(28,72,28)'; ctx.strokeStyle = 'rgb(28,72,28)';
             ctx.beginPath();
-            ctx.moveTo(px - tW, baseY);
+            ctx.moveTo(px-tW, baseY);
             ctx.bezierCurveTo(px-tW*1.4, baseY-tH*0.45, px-tW*0.55, baseY-tH*0.82, px-tW*0.5, baseY-tH);
             ctx.lineTo(px+tW*0.5, baseY-tH);
             ctx.bezierCurveTo(px+tW*0.55, baseY-tH*0.82, px+tW*1.4, baseY-tH*0.45, px+tW, baseY);
-            ctx.closePath();
-            ctx.fill();
-
-            ctx.lineWidth = tW*0.75;
-            ctx.lineCap = 'round';
-            const tx = px - tW*0.05, ty = baseY - tH;
-            const fronds = [
-                [-1.52, 0.74, -0.55, 0.55],
-                [-1.10, 0.66, -0.42, 0.44],
-                [-0.62, 0.58, -0.25, 0.38],
-                [-0.10, 0.54, -0.05, 0.34],
-                [ 0.42, 0.58,  0.18, 0.36],
-                [ 0.95, 0.68,  0.38, 0.46],
-                [ 1.38, 0.76,  0.52, 0.58],
-            ];
-            fronds.forEach(([ang, len, cpXf, cpYf]) => {
+            ctx.closePath(); ctx.fill();
+            ctx.lineWidth = tW*0.75; ctx.lineCap = 'round';
+            const tx = px-tW*0.05, ty = baseY-tH;
+            [[-1.52,0.74,-0.55,0.55],[-1.10,0.66,-0.42,0.44],[-0.62,0.58,-0.25,0.38],
+             [-0.10,0.54,-0.05,0.34],[0.42,0.58,0.18,0.36],[0.95,0.68,0.38,0.46],[1.38,0.76,0.52,0.58]]
+            .forEach(([ang,len,cpXf,cpYf]) => {
                 const ex = tx + Math.cos(ang)*tH*len;
                 const ey = ty + Math.sin(Math.abs(ang)*0.55)*tH*len*0.60 + tH*0.14;
-                const cpX = tx + Math.cos(ang)*tH*len*0.50;
-                const cpY = ty + cpYf*tH;
-                ctx.beginPath();
-                ctx.moveTo(tx, ty);
-                ctx.quadraticCurveTo(cpX, cpY, ex, ey);
+                ctx.beginPath(); ctx.moveTo(tx, ty);
+                ctx.quadraticCurveTo(tx+Math.cos(ang)*tH*len*0.50, ty+cpYf*tH, ex, ey);
                 ctx.stroke();
             });
             ctx.restore();
         }
 
-        /* ══════════════════════════════════════
-           ROLLING COASTAL WAVES  (Gulf of Guinea) — filled layers
-        ══════════════════════════════════════ */
+        /* ════════════════════════════════════
+           ROLLING COASTAL WAVES  — Gulf of Guinea
+        ════════════════════════════════════ */
         function drawCoastalWaves() {
             const layers = [
-                { ry:0.790, amp: 8, wl:0.24, a:'rgba(10,60,74,0.09)'   },
-                { ry:0.826, amp:12, wl:0.28, a:'rgba(12,76,92,0.13)'   },
-                { ry:0.858, amp:16, wl:0.33, a:'rgba(14,90,108,0.16)'  },
-                { ry:0.888, amp:20, wl:0.37, a:'rgba(16,100,118,0.18)' },
-                { ry:0.918, amp:24, wl:0.41, a:'rgba(18,110,128,0.20)' },
+                { ry:0.790, amp: 8, wl:0.24, a:'rgba(10,60,74,0.09)'  },
+                { ry:0.826, amp:12, wl:0.28, a:'rgba(12,76,92,0.13)'  },
+                { ry:0.858, amp:16, wl:0.33, a:'rgba(14,90,108,0.16)' },
+                { ry:0.888, amp:20, wl:0.37, a:'rgba(16,100,118,0.18)'},
+                { ry:0.918, amp:24, wl:0.41, a:'rgba(18,110,128,0.20)'},
             ];
             ctx.save();
             layers.forEach((l, i) => {
@@ -6085,15 +6196,14 @@
                 ctx.beginPath();
                 waveLine(w*0.40, w, baseY, l.amp, w*l.wl, gPhase*(1+i*0.12));
                 ctx.lineTo(w, h); ctx.lineTo(w*0.40, h);
-                ctx.closePath();
-                ctx.fill();
+                ctx.closePath(); ctx.fill();
             });
             ctx.restore();
         }
 
-        /* ══════════════════════════════════════
+        /* ════════════════════════════════════
            KENTE STRIP
-        ══════════════════════════════════════ */
+        ════════════════════════════════════ */
         function drawKenteStrip() {
             const ky = h*0.065, kx0 = w*0.58;
             const sw = 10, gap = 4, total = sw+gap;
@@ -6109,9 +6219,9 @@
             ctx.restore();
         }
 
-        /* ══════════════════════════════════════
+        /* ════════════════════════════════════
            ADINKRA SYMBOLS
-        ══════════════════════════════════════ */
+        ════════════════════════════════════ */
         function adinkraAdinkrahene(cx, cy, s, op) {
             ctx.save(); ctx.globalAlpha = op; ctx.strokeStyle = 'rgb(212,170,44)';
             [1, 0.64, 0.32].forEach(r => {
@@ -6120,7 +6230,6 @@
             });
             ctx.restore();
         }
-
         function adinkraGye(cx, cy, s, op) {
             ctx.save(); ctx.globalAlpha = op; ctx.strokeStyle = 'rgb(212,170,44)';
             ctx.lineWidth = Math.max(1.5, s*0.08); ctx.lineCap = 'round';
@@ -6132,70 +6241,59 @@
             ctx.lineWidth = Math.max(1, s*0.055);
             ctx.beginPath();
             ctx.moveTo(cx-s*0.50, cy); ctx.lineTo(cx+s*0.50, cy);
-            ctx.moveTo(cx, cy-s*0.50); ctx.lineTo(cx, cy+s*0.50);
-            ctx.stroke();
+            ctx.moveTo(cx, cy-s*0.50); ctx.lineTo(cx, cy+s*0.50); ctx.stroke();
             [[0,-1],[1,0],[0,1],[-1,0]].forEach(([dx,dy]) => {
                 ctx.beginPath(); ctx.arc(cx+dx*s*0.26, cy+dy*s*0.26, s*0.20, 0, Math.PI*2); ctx.stroke();
             });
             ctx.restore();
         }
-
         function adinkraSankofa(cx, cy, s, op) {
             ctx.save(); ctx.globalAlpha = op; ctx.strokeStyle = 'rgb(212,170,44)';
             ctx.lineWidth = Math.max(1.5, s*0.09); ctx.lineCap = 'round';
             ctx.beginPath();
-            ctx.moveTo(cx, cy + s*0.82);
+            ctx.moveTo(cx, cy+s*0.82);
             ctx.bezierCurveTo(cx-s*0.95, cy+s*0.22, cx-s*0.92, cy-s*0.45, cx-s*0.38, cy-s*0.40);
             ctx.bezierCurveTo(cx-s*0.10, cy-s*0.34, cx, cy-s*0.06, cx, cy-s*0.06);
             ctx.bezierCurveTo(cx, cy-s*0.06, cx+s*0.10, cy-s*0.34, cx+s*0.38, cy-s*0.40);
             ctx.bezierCurveTo(cx+s*0.92, cy-s*0.45, cx+s*0.95, cy+s*0.22, cx, cy+s*0.82);
             ctx.stroke();
             ctx.beginPath();
-            ctx.arc(cx - s*0.20, cy - s*0.68, s*0.30, Math.PI*0.15, Math.PI*1.85);
-            ctx.stroke();
+            ctx.arc(cx-s*0.20, cy-s*0.68, s*0.30, Math.PI*0.15, Math.PI*1.85); ctx.stroke();
             ctx.restore();
         }
-
         function adinkraNkyinkyim(cx, cy, s, op) {
             ctx.save(); ctx.globalAlpha = op; ctx.strokeStyle = 'rgb(212,170,44)';
             ctx.lineWidth = Math.max(1.5, s*0.09); ctx.lineCap = 'round';
             for (let a = 0; a < 4; a++) {
-                ctx.save();
-                ctx.translate(cx, cy); ctx.rotate(a * Math.PI/2);
-                ctx.beginPath();
-                ctx.moveTo(0, 0);
+                ctx.save(); ctx.translate(cx, cy); ctx.rotate(a*Math.PI/2);
+                ctx.beginPath(); ctx.moveTo(0, 0);
                 ctx.bezierCurveTo(s*0.22, -s*0.10, s*0.16, -s*0.58, s*0.46, -s*0.62);
                 ctx.bezierCurveTo(s*0.66, -s*0.62, s*0.57, -s*0.88, s*0.40, -s*0.95);
-                ctx.stroke();
-                ctx.restore();
+                ctx.stroke(); ctx.restore();
             }
             ctx.restore();
         }
-
         const ADINKRA_FNS = {
             adinkrahene: adinkraAdinkrahene, gyenyame: adinkraGye,
-            nkyinkyim: adinkraNkyinkyim,    sankofa:   adinkraSankofa,
+            nkyinkyim:   adinkraNkyinkyim,  sankofa:  adinkraSankofa,
         };
         const ADINKRA_FIXED = [
-            { rx:0.720, ry:0.28, sz:32, fn:'adinkrahene', ph:0.0 },
-            { rx:0.800, ry:0.50, sz:27, fn:'gyenyame',    ph:1.2 },
-            { rx:0.920, ry:0.25, sz:24, fn:'nkyinkyim',   ph:2.4 },
-            { rx:0.670, ry:0.60, sz:24, fn:'sankofa',     ph:0.8 },
+            {rx:0.720, ry:0.28, sz:32, fn:'adinkrahene', ph:0.0},
+            {rx:0.800, ry:0.50, sz:27, fn:'gyenyame',    ph:1.2},
+            {rx:0.920, ry:0.25, sz:24, fn:'nkyinkyim',   ph:2.4},
+            {rx:0.670, ry:0.60, sz:24, fn:'sankofa',     ph:0.8},
         ];
         function drawFixedAdinkra() {
             ADINKRA_FIXED.forEach(f => {
                 f.ph += 0.0005;
-                ctx.save();
-                ctx.translate(w*f.rx, h*f.ry);
-                ctx.rotate(Math.sin(f.ph)*0.04);
-                ADINKRA_FNS[f.fn](0, 0, f.sz, 0.17);
-                ctx.restore();
+                ctx.save(); ctx.translate(w*f.rx, h*f.ry); ctx.rotate(Math.sin(f.ph)*0.04);
+                ADINKRA_FNS[f.fn](0, 0, f.sz, 0.17); ctx.restore();
             });
         }
 
-        /* ══════════════════════════════════════
+        /* ════════════════════════════════════
            CHERRY BLOSSOM PARTICLES
-        ══════════════════════════════════════ */
+        ════════════════════════════════════ */
         function initPetals() {
             petals = [];
             const n = Math.round(22*PM);
@@ -6219,19 +6317,16 @@
             ctx.save(); ctx.translate(p.x, p.y); ctx.rotate(p.rot);
             for (let i = 0; i < 5; i++) {
                 ctx.save();
-                ctx.rotate((i/5)*Math.PI*2);
-                ctx.translate(0, -p.size*0.62);
-                ctx.scale(0.72, 1.40);
+                ctx.rotate((i/5)*Math.PI*2); ctx.translate(0, -p.size*0.62); ctx.scale(0.72, 1.40);
                 ctx.beginPath(); ctx.arc(0, 0, p.size*0.48, 0, Math.PI*2);
-                ctx.fillStyle = `rgba(234,152,170,${(p.op*fade).toFixed(3)})`;
-                ctx.fill(); ctx.restore();
+                ctx.fillStyle = `rgba(234,152,170,${(p.op*fade).toFixed(3)})`; ctx.fill(); ctx.restore();
             }
             ctx.restore();
         }
 
-        /* ══════════════════════════════════════
+        /* ════════════════════════════════════
            ADINKRA FLOATING PARTICLES
-        ══════════════════════════════════════ */
+        ════════════════════════════════════ */
         const TYPES = ['adinkrahene','gyenyame','nkyinkyim','sankofa'];
         function initAdinkraP() {
             adinkraParticles = [];
@@ -6252,8 +6347,7 @@
             const fade = a.x <= w*0.40 ? 0 : a.x >= w*0.60 ? 1 : (a.x-w*0.40)/(w*0.20);
             if (fade <= 0) return;
             ctx.save(); ctx.translate(a.x, a.y); ctx.rotate(a.rot);
-            ADINKRA_FNS[a.type](0, 0, a.size, a.op*fade);
-            ctx.restore();
+            ADINKRA_FNS[a.type](0, 0, a.size, a.op*fade); ctx.restore();
         }
 
         /* ── resize ── */
@@ -6265,9 +6359,9 @@
             ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
             initPetals(); initAdinkraP();
         }
-        window.addEventListener('resize', resize, { passive: true });
+        window.addEventListener('resize', resize, {passive:true});
 
-        /* ── 20fps loop ── */
+        /* ── 20 fps loop ── */
         const FRAME_MS = 1000/20;
         let lastFrame = 0, running = true;
         function tick(t) {
@@ -6277,8 +6371,10 @@
             lastFrame = t;
             ctx.clearRect(0, 0, w, h);
             jPhase += 0.004; gPhase += 0.0038;
-            drawFuji(); drawTorii(); drawJapaneseWaves();
+
+            drawMountainRange(); drawTorii(); drawJapaneseWaves();
             petals.forEach(p => { updatePetal(p); drawPetal(p); });
+
             drawIndependenceArch(); drawPalm(); drawKenteStrip();
             drawCoastalWaves(); drawFixedAdinkra();
             adinkraParticles.forEach(a => { updateAdinkraP(a); drawAdinkraP(a); });
@@ -6291,6 +6387,7 @@
         resize();
         requestAnimationFrame(tick);
     })();
+
 
 
     /* ==============================================================
