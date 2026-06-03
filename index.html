@@ -7,10 +7,45 @@
     <meta name="keywords" content="bacteriophage, phage biology, lysis inhibition, N4, Texas A&M, Ramsey Lab, Center for Phage Technology, reproducible microbiology, bioinformatics tools, FigureLab, CellMorphR">
     <meta name="author" content="Michael Baffour Awuah">
     <meta property="og:title" content="Michael Baffour Awuah — Phage Biologist & Tool-Builder">
-    <meta property="og:description" content="Decoding how bacteriophages take down their bacterial hosts — and shipping open tools that make microbiology reproducible by default.">
+    <meta property="og:description" content="Decoding how bacteriophage N4 controls when it kills its host — and building open tools that make microbiology reproducible by default.">
     <meta property="og:type" content="website">
+    <meta property="og:url" content="https://mbaffour.github.io/">
+    <meta property="og:image" content="https://mbaffour.github.io/headshot.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Michael Baffour Awuah — Phage Biologist & Tool-Builder">
+    <meta name="twitter:description" content="Decoding how bacteriophage N4 controls when it kills its host — and building open tools that make microbiology reproducible by default.">
+    <meta name="twitter:image" content="https://mbaffour.github.io/headshot.jpg">
+    <link rel="canonical" href="https://mbaffour.github.io/">
     <meta name="theme-color" content="#0a0802">
     <title>Michael Baffour Awuah — Phage Biologist &amp; Tool-Builder</title>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Michael Baffour Awuah",
+      "url": "https://mbaffour.github.io/",
+      "image": "https://mbaffour.github.io/headshot.jpg",
+      "jobTitle": "PhD Candidate in Microbiology",
+      "description": "Bacteriophage biologist studying lysis timing in phage N4 and building open-source tools for reproducible microbiology.",
+      "email": "baffour@tamu.edu",
+      "affiliation": {
+        "@type": "Organization",
+        "name": "Texas A&M University — Ramsey Lab, Center for Phage Technology"
+      },
+      "alumniOf": [
+        { "@type": "Organization", "name": "Texas A&M University" },
+        { "@type": "Organization", "name": "University of Cape Coast" }
+      ],
+      "knowsAbout": ["Bacteriophage biology", "Lysis inhibition", "Phage N4", "Molecular genetics", "RNA-seq", "Scientific software"],
+      "sameAs": [
+        "https://scholar.google.com/citations?user=e5_h_2YAAAAJ",
+        "https://orcid.org/0009-0007-9036-413X",
+        "https://github.com/mbaffour",
+        "https://www.linkedin.com/in/mba-101b/",
+        "https://twitter.com/AwuahMB"
+      ]
+    }
+    </script>
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><polygon points='16,5 25,10 25,18 16,23 7,18 7,10' fill='%23f4c430' stroke='%23f4c430' stroke-width='1.5'/><line x1='16' y1='23' x2='16' y2='28' stroke='%23f4c430' stroke-width='2' stroke-linecap='round'/><line x1='13' y1='28' x2='19' y2='28' stroke='%23f4c430' stroke-width='2' stroke-linecap='round'/></svg>">
     <style>
         /* ============================================================
@@ -86,6 +121,10 @@
         }
 
         ::selection { background: var(--gold); color: var(--bg); }
+
+        /* Keyboard accessibility — visible focus ring */
+        :focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 4px; }
+        a:focus:not(:focus-visible), button:focus:not(:focus-visible) { outline: none; }
 
         a { color: var(--gold); text-decoration: none; transition: color .2s ease; }
         a:hover { color: #fff8d6; }
@@ -3372,16 +3411,11 @@
             </a>
             <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">☰</button>
             <ul class="nav-links" id="navLinks">
-                <li><a href="#about">About</a></li>
                 <li><a href="#research">Research</a></li>
-                <li><a href="#playground">Playground</a></li>
                 <li><a href="#publications">Publications</a></li>
-                <li><a href="#tools">Tools</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#blog">Blog</a></li>
-                <li><a href="#next">Next</a></li>
+                <li><a href="#tools">Software</a></li>
                 <li><a href="#recognition">Recognition</a></li>
-                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#about">About</a></li>
                 <li><a href="#contact">Contact</a></li>
                 <li><button class="nav-cmdk" id="cmdkOpen" aria-label="Open command palette">
                     <span>Search</span> <kbd>⌘K</kbd>
@@ -3392,7 +3426,7 @@
 
     <!-- ===== HERO ===== -->
     <section class="hero" id="hero">
-        <canvas class="hero-canvas" id="heroCanvas"></canvas>
+        <canvas class="hero-canvas" id="heroCanvas" aria-hidden="true"></canvas>
         <div class="hero-overlay"></div>
         <div class="hero-content">
             <span class="hero-eyebrow">
@@ -3402,11 +3436,11 @@
             <h1 class="hero-name"><span class="ink">Michael</span> <span class="gold">Baffour Awuah</span></h1>
             <p class="hero-headline">Phage biologist. <span class="accent">Tool-builder.</span></p>
             <p class="hero-statement">
-                I study how bacteriophages take down their bacterial hosts &mdash; and ship open software that makes microbiology experiments reproducible, shareable, and fast.
+                I study how bacteriophage&nbsp;N4 controls <em>when</em> it kills its host &mdash; and I identified the lysis-timing regulator that lets it delay the kill to mass-produce virus. Alongside the bench, I build open software that makes microbiology reproducible by default.
             </p>
             <div class="hero-buttons">
-                <a href="#publications" class="btn btn-primary">📖 View Publications</a>
-                <a href="#tools" class="btn btn-secondary">🧰 Open Toolbox</a>
+                <a href="#research" class="btn btn-primary">🔬 Read the science</a>
+                <a href="#publications" class="btn btn-secondary">📖 Publications</a>
             </div>
             <a href="cv & resume/Michael_Baffour_Awuah_CV.pdf" class="hero-cv-link" download>↓ Download CV</a>
 
@@ -3517,6 +3551,13 @@
             <h2 class="section-title">Research <span class="highlight">Focus</span></h2>
             <p class="section-subtitle">Bridging molecular virology and engineering to unlock the potential of bacteriophages — from lysis decision-making to programmable biofactories.</p>
         </div>
+
+        <div class="research-lead" style="background:linear-gradient(135deg, rgba(244,196,48,0.07), rgba(26,128,64,0.04)); border:1px solid var(--border-strong); border-radius:18px; padding:28px 30px; margin:0 0 36px; max-width:880px;">
+            <p style="font-family:var(--font-mono); font-size:0.72rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--gold); margin:0 0 10px;">The headline finding</p>
+            <p style="font-size:1.08rem; color:var(--ink); margin:0 0 14px; line-height:1.65;">Bacteriophage&nbsp;N4 deliberately delays lysing its host, turning each infected cell into a high-output virus factory — up to <strong>~3,000 particles in 3–6&nbsp;hours</strong>. My first-author work identifies how N4 controls this lysis-timing decision and shows it lyses through a <strong>SAR endolysin–holin system</strong> — reframing the question from <em>whether</em> a phage kills to <em>when</em> it chooses to.</p>
+            <p style="font-size:0.96rem; color:var(--ink-2); margin:0; line-height:1.6;"><span style="color:var(--green); font-weight:600;">Where I'm taking it →</span> Reverse-engineering this timing switch into a control knob for high-titer phage production and programmable microbial biofactories — and shipping the open analysis tools that make those experiments reproducible for the whole field.</p>
+        </div>
+
         <div class="research-grid">
             <div class="research-card">
                 <span class="research-icon">🦠</span>
@@ -3540,8 +3581,8 @@
             </div>
             <div class="research-card">
                 <span class="research-icon">💻</span>
-                <h3>Computational Genomics</h3>
-                <p>Leveraging RNA-seq, comparative genomics, and custom bioinformatics pipelines to decode transcriptomic landscapes of phage–host interactions.</p>
+                <h3>Computational Analysis</h3>
+                <p>Using RNA-seq, differential-expression analysis, and reproducible R/Python pipelines to read the transcriptomic landscape of phage–host interactions.</p>
                 <div class="research-tags">
                     <span class="research-tag">RNA-seq</span>
                     <span class="research-tag">DESeq2</span>
@@ -3668,7 +3709,7 @@
             <div class="playground-grid">
                 <div>
                     <div class="playground-canvas-wrap">
-                        <canvas class="playground-canvas" id="lysisCanvas"></canvas>
+                        <canvas class="playground-canvas" id="lysisCanvas" role="img" aria-label="Interactive plot of a bacterial growth and lysis curve that updates as phage infection parameters are adjusted"></canvas>
                     </div>
                     <div class="playground-meta" id="playgroundMeta">
                         <span>📉 Lysis @ <strong id="metaLysis">—</strong></span>
@@ -3732,7 +3773,7 @@
         <div class="section-header bare">
             <span class="section-label">Peer-Reviewed Work · Talks · Posters</span>
             <h2 class="section-title">Scientific <span class="highlight">Output</span></h2>
-            <p class="section-subtitle">Papers, preprints, and talks. More in the pipeline — links update as work lands.</p>
+            <p class="section-subtitle">Peer-reviewed work, a first-author preprint on N4 lysis, and selected talks. More in the pipeline.</p>
         </div>
         <div class="pub-filters" id="pubFilters"></div>
         <div class="pub-list" id="pubList"></div>
@@ -3743,9 +3784,9 @@
     <!-- ===== TOOLS ===== -->
     <section class="section fade-in" id="tools">
         <div class="section-header">
-            <span class="section-label">Open Source &middot; Lab + Bioinformatics</span>
-            <h2 class="section-title">Scientific <span class="highlight">Tools</span></h2>
-            <p class="section-subtitle">Software I built because I needed it &mdash; and shipped because other labs might too. Browser-first, privacy-first, reproducible by default.</p>
+            <span class="section-label">Open Source &middot; Reproducible Phage Biology</span>
+            <h2 class="section-title">Research <span class="highlight">Software</span></h2>
+            <p class="section-subtitle">Open tools I built and shipped to make phage and microbiology work reproducible &mdash; from lysis-curve analysis to sequence prep. Browser-first, privacy-first, reproducible by default. <a href="builds.html" style="color:var(--gold);text-decoration:underline;">Non-science side builds live here &rarr;</a></p>
         </div>
         <div class="pub-filters" id="toolFilters"></div>
         <div class="card-grid" id="toolsGrid"></div>
@@ -3753,24 +3794,12 @@
 
     <hr class="section-divider">
 
-    <!-- ===== SIDE PROJECTS ===== -->
-    <section class="section fade-in" id="projects">
-        <div class="section-header bare">
-            <span class="section-label">Side Builds</span>
-            <h2 class="section-title">Personal <span class="highlight">Projects</span></h2>
-            <p class="section-subtitle">Things I built outside the lab — usually because someone I care about needed them, or because the problem nagged me until I solved it.</p>
-        </div>
-        <div class="card-grid" id="projectsGrid"></div>
-    </section>
-
-    <hr class="section-divider">
-
     <!-- ===== BLOG / WEEKLY NOTES ===== -->
     <section class="section fade-in" id="blog">
         <div class="section-header bare left">
-            <span class="section-label">Weekly Writing</span>
+            <span class="section-label">Writing</span>
             <h2 class="section-title">Blog &amp; <span class="highlight">Notes</span></h2>
-            <p class="section-subtitle">Weekly posts on phage biology, lab life, tool-building, and whatever's on my mind.</p>
+            <p class="section-subtitle">Notes on phage biology, lab life, and tool-building.</p>
         </div>
         <div class="pub-filters" id="blogFilters"></div>
         <div class="blog-list" id="blogList"></div>
@@ -3789,7 +3818,7 @@
         <div class="concept-card">
             <div class="concept-status">
                 <span class="concept-status-dot"></span>
-                <span class="concept-status-label">In development · Q1 2026</span>
+                <span class="concept-status-label">In active development</span>
             </div>
 
             <div class="concept-grid">
@@ -3836,7 +3865,7 @@
 
                 <div class="concept-viz">
                     <div class="tf-wrap" id="tfWrap">
-                        <canvas class="tf-canvas" id="tfCanvas"></canvas>
+                        <canvas class="tf-canvas" id="tfCanvas" role="img" aria-label="TailFiber phage simulator game canvas"></canvas>
 
                         <!-- HUD overlay -->
                         <div class="tf-hud">
@@ -4100,18 +4129,6 @@
                             </button>
                         </div>
                     </div>
-                    <div class="contact-email-row">
-                        <div class="contact-email-text">
-                            <span class="contact-email-label">Personal</span>
-                            <span class="contact-email-addr">mbaffour890@gmail.com</span>
-                        </div>
-                        <div class="contact-email-actions">
-                            <a href="mailto:mbaffour890@gmail.com" class="contact-email-send" title="Open in mail app">Send email ↗</a>
-                            <button class="contact-email-copy" data-copy="mbaffour890@gmail.com" title="Copy personal email" aria-label="Copy personal email">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-                            </button>
-                        </div>
-                    </div>
                 </div>
                 <span class="copy-feedback" id="copyFeedback">Copied!</span>
             </div>
@@ -4217,7 +4234,9 @@
             journal: "bioRxiv [Preprint]",
             year: 2025,
             doi: "https://doi.org/10.1101/2025.11.12.688109",
-            status: "preprint"
+            status: "preprint",
+            firstAuthor: true,
+            summary: "First-author study identifying how phage N4 controls the timing of host lysis — showing it lyses via a SAR endolysin–holin system."
         },
         /* ── Oral talks ──────────────────────────────────────── */
         {
@@ -4340,26 +4359,6 @@
             preview: "figure"
         },
         {
-            title: "datamask",
-            blurb: "Privacy-first local anonymizer — masks, shuffles, or replaces sensitive columns in CSV/Excel. Your data never leaves the browser.",
-            tech: ["JavaScript", "Privacy", "CSV"],
-            stack: "js",
-            blog: "https://mbaffour.github.io/datamask/blog.html",
-            app:  "https://mbaffour.github.io/datamask/",
-            label: "Data Anonymizer",
-            preview: "mask"
-        },
-        {
-            title: "batchcrop",
-            blurb: "Fast offline-first batch image cropper with 5 crop shapes and live preview. Zero uploads, zero accounts.",
-            tech: ["JavaScript", "Image", "Offline"],
-            stack: "js",
-            blog: "https://mbaffour.github.io/batchcrop/blog.html",
-            app:  "https://mbaffour.github.io/batchcrop/",
-            label: "Batch Image Cropper",
-            preview: "crop"
-        },
-        {
             title: "CellMorphR",
             featured: true,
             blurb: "Python pipeline for quantifying cell morphology from microscopy data — statistics, publication-ready plots, reproducible workflows.",
@@ -4389,16 +4388,6 @@
             app:  "https://github.com/mbaffour/killcurveplot",
             label: "killcurveplot",
             preview: "kill"
-        },
-        {
-            title: "SeqDedupe",
-            blurb: "R Shiny app for removing duplicate sequences from FASTA files. Upload, deduplicate, download. Useful for comparative phage analysis.",
-            tech: ["R Shiny", "FASTA", "Genomics"],
-            stack: "r",
-            blog: "https://github.com/mbaffour/SeqDedupe",
-            app:  "https://github.com/mbaffour/SeqDedupe",
-            label: "FASTA Dedupe",
-            preview: "fasta"
         },
         {
             title: "N4 Lysis Paper Codes",
@@ -5131,9 +5120,11 @@
                     <div class="pub-title">${pub.title}</div>
                     <div class="pub-authors">${auth}</div>
                     <div class="pub-journal">${pub.journal}</div>
+                    ${pub.summary ? `<div class="pub-summary" style="color:var(--ink-2); font-size:0.9rem; margin-top:6px; line-height:1.55;">${pub.summary}</div>` : ''}
                     <div class="pub-meta">
                         <span class="pub-status ${pub.status}">${labelFor(pub.status)}</span>
                         ${pub.doi ? `<span class="pub-doi"><a href="${pub.doi}" target="_blank" rel="noopener">DOI ↗</a></span>` : ''}
+                        ${pub.firstAuthor ? '<span class="pub-status preprint" style="background:var(--green-dim); color:var(--green); border-color:var(--green);">★ First author</span>' : ''}
                         ${pub.latest ? '<span class="pub-status preprint">★ Latest</span>' : ''}
                     </div>
                 </div>
@@ -5215,6 +5206,7 @@
     =============================================================== */
     function renderProjects() {
         const container = document.getElementById('projectsGrid');
+        if (!container) return;
         container.innerHTML = projects.map(p => {
             const thumb = p.screenshots
                 ? `<div class="proj-screens">
@@ -5251,7 +5243,7 @@
         const container = document.getElementById('blogList');
         const filtered = filter === 'all' ? posts : posts.filter(p => p.tags.includes(filter));
         if (filtered.length === 0) {
-            container.innerHTML = `<div class="blog-empty">First post coming soon — <strong>check back weekly.</strong></div>`;
+            container.innerHTML = `<div class="blog-empty">More posts coming soon — <strong>check back.</strong></div>`;
             return;
         }
         container.innerHTML = filtered.map((p, i) => `
@@ -5293,8 +5285,7 @@
 
     renderPublications();
     renderTools();
-    renderProjects();
-    document.getElementById('toolCount').textContent = tools.length + projects.length;
+    document.getElementById('toolCount').textContent = tools.length + '+';
 
     /* Build tool filter buttons with counts */
     (function() {
@@ -5382,7 +5373,7 @@
     /* ==============================================================
        NAV: ACTIVE SECTION HIGHLIGHT
     =============================================================== */
-    const navIds = ['about', 'research', 'playground', 'publications', 'tools', 'projects', 'blog', 'next', 'recognition', 'gallery', 'contact'];
+    const navIds = ['about', 'research', 'playground', 'publications', 'tools', 'blog', 'next', 'recognition', 'gallery', 'contact'];
     /* (CV merged into About — no separate section.) */
     const sectionEls = navIds.map(id => document.getElementById(id)).filter(Boolean);
     const navAnchors = Array.from(document.querySelectorAll('.nav-links a')).filter(a => a.getAttribute('href') && a.getAttribute('href').startsWith('#'));
@@ -6837,15 +6828,14 @@
             { type: 'section', label: 'Research focus',       hint: 'lysis · N4 · phage biology', href: '#research', icon: '🦠' },
             { type: 'section', label: 'Lysis curve playground', hint: 'tune phage parameters live', href: '#playground', icon: '📈' },
             { type: 'section', label: 'Publications',         hint: 'preprints & papers',  href: '#publications', icon: '📖' },
-            { type: 'section', label: 'Scientific tools',     hint: 'open-source software', href: '#tools', icon: '🧰' },
-            { type: 'section', label: 'Personal projects',    hint: 'side builds',         href: '#projects', icon: '⚙️' },
+            { type: 'section', label: 'Research software',     hint: 'open-source tools', href: '#tools', icon: '🧰' },
+            { type: 'link',    label: 'Side builds',          hint: 'non-science web apps', href: 'builds.html', icon: '⚙️', external: false },
             { type: 'section', label: 'Building next',        hint: 'TailFiber · phage game concept', href: '#next', icon: '🧪' },
             { type: 'section', label: 'Recognition & service',hint: 'awards · outreach',   href: '#recognition', icon: '🏆' },
             { type: 'section', label: 'About',                hint: 'who I am',            href: '#about', icon: '🧬' },
             { type: 'section', label: 'CV & resume',          hint: 'download',            href: '#cv', icon: '📄' },
             { type: 'section', label: 'Contact',              hint: 'get in touch',        href: '#contact', icon: '✉' },
             { type: 'link',    label: 'Email — baffour@tamu.edu', hint: 'academic email',  href: 'mailto:baffour@tamu.edu', icon: '✉', external: true },
-            { type: 'link',    label: 'Email — mbaffour890@gmail.com', hint: 'personal email', href: 'mailto:mbaffour890@gmail.com', icon: '✉', external: true },
             { type: 'link',    label: 'GitHub @mbaffour',     hint: 'open source repos',   href: 'https://github.com/mbaffour', icon: '⌥', external: true },
             { type: 'link',    label: 'Google Scholar',       hint: 'citations',           href: 'https://scholar.google.com/citations?user=e5_h_2YAAAAJ&hl=en', icon: '🎓', external: true },
             { type: 'link',    label: 'LinkedIn',             hint: 'profile',             href: 'https://www.linkedin.com/in/mba-101b/', icon: 'in', external: true },
@@ -6854,9 +6844,8 @@
             { type: 'link',    label: 'Download CV (PDF)',    hint: 'résumé',              href: 'cv & resume/Michael_Baffour_Awuah_CV.pdf', icon: '📄', external: false }
         ];
         const toolItems = tools.map(t => ({ type: 'tool', label: t.title, hint: t.tech.join(' · '), href: t.app || t.blog, icon: '🧰', external: true }));
-        const projItems = projects.map(p => ({ type: 'project', label: p.title, hint: p.tech.join(' · '), href: p.app || p.blog, icon: '⚙️', external: true }));
         const pubItems  = publications.map(p => ({ type: 'pub', label: p.title, hint: p.journal + ' · ' + p.year, href: p.doi, icon: '📖', external: true }));
-        const items = [...baseItems, ...pubItems, ...toolItems, ...projItems];
+        const items = [...baseItems, ...pubItems, ...toolItems];
 
         function score(q, item) {
             if (!q) return 0;

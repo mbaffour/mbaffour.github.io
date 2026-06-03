@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Side builds by Michael Baffour Awuah — non-science web apps and tools built outside the lab.">
+    <meta property="og:title" content="Side Builds — Michael Baffour Awuah">
+    <meta property="og:description" content="Web apps and tools built outside the lab — usually because someone I care about needed them.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://mbaffour.github.io/builds.html">
+    <meta property="og:image" content="https://mbaffour.github.io/headshot.jpg">
+    <meta name="theme-color" content="#0a0802">
+    <link rel="canonical" href="https://mbaffour.github.io/builds.html">
+    <title>Side Builds — Michael Baffour Awuah</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><polygon points='16,5 25,10 25,18 16,23 7,18 7,10' fill='%23f4c430' stroke='%23f4c430' stroke-width='1.5'/><line x1='16' y1='23' x2='16' y2='28' stroke='%23f4c430' stroke-width='2' stroke-linecap='round'/><line x1='13' y1='28' x2='19' y2='28' stroke='%23f4c430' stroke-width='2' stroke-linecap='round'/></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0a0802; --bg-card: #1c1709; --bg-card-hover: #241d0c;
+            --border: rgba(244,196,48,0.10); --border-strong: rgba(244,196,48,0.22);
+            --gold: #f4c430; --green: #1a8040; --red: #c41e3a;
+            --ink: #f5edd8; --ink-2: #d8c98c; --ink-3: #a08652;
+            --font-display: 'Fraunces','Georgia',serif;
+            --font-body: 'Inter','Segoe UI',sans-serif;
+            --font-mono: 'JetBrains Mono','Courier New',monospace;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { background: var(--bg); color: var(--ink); font-family: var(--font-body); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+        a { color: inherit; }
+        a:focus-visible, button:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 4px; }
+        .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+        .topbar { border-bottom: 1px solid var(--border); padding: 18px 0; position: sticky; top: 0; background: rgba(10,8,2,0.85); backdrop-filter: blur(10px); z-index: 10; }
+        .topbar .wrap { display: flex; align-items: center; justify-content: space-between; }
+        .back { font-family: var(--font-mono); font-size: 0.85rem; color: var(--ink-2); text-decoration: none; transition: color 0.2s; }
+        .back:hover { color: var(--gold); }
+        .brand { font-family: var(--font-display); font-weight: 600; font-size: 0.95rem; }
+        header.hero { padding: 72px 0 36px; }
+        .eyebrow { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); }
+        h1 { font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3rem); font-weight: 700; margin: 14px 0; }
+        h1 .accent { color: var(--gold); }
+        .lede { color: var(--ink-2); max-width: 640px; font-size: 1.05rem; }
+        .note { margin-top: 18px; font-size: 0.9rem; color: var(--ink-3); border-left: 2px solid var(--border-strong); padding-left: 14px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 22px; padding: 24px 0 72px; }
+        .card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 26px; display: flex; flex-direction: column; transition: transform 0.2s, border-color 0.2s, background 0.2s; }
+        .card:hover { transform: translateY(-4px); border-color: var(--border-strong); background: var(--bg-card-hover); }
+        .card-top { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+        .card h2 { font-family: var(--font-display); font-size: 1.3rem; font-weight: 600; }
+        .date { font-family: var(--font-mono); font-size: 0.72rem; color: var(--ink-3); white-space: nowrap; }
+        .card p { color: var(--ink-2); font-size: 0.94rem; margin: 12px 0 16px; flex: 1; }
+        .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 18px; }
+        .tag { font-family: var(--font-mono); font-size: 0.68rem; color: var(--ink-3); border: 1px solid var(--border); border-radius: 999px; padding: 3px 9px; }
+        .actions { display: flex; gap: 10px; }
+        .btn { font-family: var(--font-mono); font-size: 0.8rem; text-decoration: none; padding: 9px 16px; border-radius: 10px; transition: all 0.2s; }
+        .btn-primary { background: var(--gold); color: #1a1408; font-weight: 500; }
+        .btn-primary:hover { box-shadow: 0 6px 24px rgba(244,196,48,0.3); }
+        .btn-ghost { border: 1px solid var(--border-strong); color: var(--ink-2); }
+        .btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
+        footer { border-top: 1px solid var(--border); padding: 32px 0; text-align: center; color: var(--ink-3); font-size: 0.85rem; }
+        footer a { color: var(--gold); text-decoration: none; }
+    </style>
+</head>
+<body>
+    <div class="topbar">
+        <div class="wrap">
+            <a href="index.html" class="back">&larr; Back to research site</a>
+            <span class="brand">Michael Baffour Awuah</span>
+        </div>
+    </div>
+
+    <div class="wrap">
+        <header class="hero">
+            <span class="eyebrow">Side Builds</span>
+            <h1>Things I build <span class="accent">outside the lab</span></h1>
+            <p class="lede">Web apps I built outside my research — usually because someone I care about needed them, or because the problem nagged me until I solved it. All free, browser-based, and privacy-first.</p>
+            <p class="note">These are separate from my <a href="index.html#tools" style="color:var(--gold);">research software</a>. They live here so the science stays front and center on the main site — but they're a fair sample of how I ship working software end to end.</p>
+        </header>
+
+        <div class="grid" id="buildsGrid"></div>
+    </div>
+
+    <footer>
+        <div class="wrap">
+            &copy; 2026 Michael Baffour Awuah &middot; <a href="index.html">Research site</a> &middot; <a href="https://github.com/mbaffour" target="_blank" rel="noopener">GitHub</a>
+        </div>
+    </footer>
+
+    <script>
+        const builds = [
+            {
+                title: "QR Forge", date: "2026",
+                blurb: "Free open-source QR generator embedding Ghanaian Adinkra symbols and Kente patterns directly into corner squares. 10 content types, print-ready, fully client-side.",
+                tech: ["JavaScript", "PWA", "Cultural"],
+                app: "https://mbaffour.github.io/qr-forge/", blog: "https://mbaffour.github.io/qr-forge/blog.html"
+            },
+            {
+                title: "NCLEX Pro Simulator", date: "2026",
+                blurb: "Watching someone grind through nursing school made me want to help. Adaptive practice questions + AI clinical rationales — free, in the browser.",
+                tech: ["JavaScript", "Adaptive", "AI"],
+                app: "https://mbaffour.github.io/nclex-simulator/", blog: "https://mbaffour.github.io/nclex-simulator/blog_public.html"
+            },
+            {
+                title: "MCAT Prep", date: "2026",
+                blurb: "Full-length MCAT simulator with section breakdowns, time tracking, and AI-generated explanations. Free, browser-based, no account needed.",
+                tech: ["JavaScript", "Adaptive", "AI"],
+                app: "https://mbaffour.github.io/mcat-prep/", blog: "https://mbaffour.github.io/mcat-prep/blog.html"
+            },
+            {
+                title: "Fitness Forge", date: "2025",
+                blurb: "Offline-first fitness PWA: AI-generated 12–16 week programs, 60+ exercise database, local storage. No account, no server, no tracking.",
+                tech: ["PWA", "Offline-First", "Fitness"],
+                app: "https://mbaffour.github.io/fitness-forge/", blog: "https://mbaffour.github.io/fitness-forge/blog.html"
+            },
+            {
+                title: "PennyWise+", date: "2026",
+                blurb: "Private browser-based finance tracker — log income, categorize spending, visualize trends. Runs fully client-side. No account, no server, no tracking.",
+                tech: ["JavaScript", "Finance", "Offline"],
+                app: "https://mbaffour.github.io/pennywise-plus/", blog: "https://mbaffour.github.io/pennywise-plus/blog.html"
+            },
+            {
+                title: "datamask", date: "2026",
+                blurb: "Privacy-first local anonymizer — masks, shuffles, or replaces sensitive columns in CSV/Excel. Your data never leaves the browser.",
+                tech: ["JavaScript", "Privacy", "CSV"],
+                app: "https://mbaffour.github.io/datamask/", blog: "https://mbaffour.github.io/datamask/blog.html"
+            },
+            {
+                title: "batchcrop", date: "2025",
+                blurb: "Fast offline-first batch image cropper with 5 crop shapes and live preview. Zero uploads, zero accounts.",
+                tech: ["JavaScript", "Image", "Offline"],
+                app: "https://mbaffour.github.io/batchcrop/", blog: "https://mbaffour.github.io/batchcrop/blog.html"
+            }
+        ];
+        const esc = s => s.replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+        document.getElementById('buildsGrid').innerHTML = builds.map(b => `
+            <article class="card">
+                <div class="card-top">
+                    <h2>${esc(b.title)}</h2>
+                    <span class="date">${esc(b.date)}</span>
+                </div>
+                <p>${esc(b.blurb)}</p>
+                <div class="tags">${b.tech.map(t => `<span class="tag">${esc(t)}</span>`).join('')}</div>
+                <div class="actions">
+                    <a class="btn btn-primary" href="${b.app}" target="_blank" rel="noopener">Open ↗</a>
+                    ${b.blog ? `<a class="btn btn-ghost" href="${b.blog}" target="_blank" rel="noopener">Read more</a>` : ''}
+                </div>
+            </article>`).join('');
+    </script>
+</body>
+</html>
