@@ -581,11 +581,11 @@
             display: inline-block;
             margin-top: 1rem;
             font-family: var(--font-mono);
-            font-size: 0.78rem;
+            font-size: 0.84rem;
             letter-spacing: 0.08em;
-            color: var(--ink-3);
+            color: var(--ink-2);
             text-decoration: none;
-            border-bottom: 1px dashed var(--border-strong);
+            border-bottom: 1px solid var(--border-strong);
             padding-bottom: 1px;
             transition: color .2s ease, border-color .2s ease;
             animation: fadeUp 1.3s .7s ease forwards;
@@ -3840,6 +3840,29 @@
     <hr class="section-divider">
 
     <!-- ===== OUTPUT (Publications + Talks) ===== -->
+    <style>
+        .pub-title a { color: inherit; text-decoration: none; transition: color .2s ease; }
+        .pub-title a:hover { color: var(--gold); text-decoration: underline; text-underline-offset: 3px; }
+        .pub-links { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+        .pub-link {
+            display: inline-flex; align-items: center; gap: .35rem;
+            font-family: var(--font-mono); font-size: 0.76rem; letter-spacing: .04em;
+            color: var(--ink-2); padding: .45rem .9rem; border: 1px solid var(--border-strong);
+            border-radius: 50px; text-decoration: none; transition: all .18s ease; white-space: nowrap;
+        }
+        .pub-link:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-1px); }
+        .pub-link.primary { background: var(--gold); color: var(--bg); border-color: var(--gold); font-weight: 600; }
+        .pub-link.primary:hover { box-shadow: var(--glow-gold); color: var(--bg); }
+        .pub-thumb {
+            float: right; width: 96px; height: 72px; object-fit: cover; border-radius: 9px;
+            border: 1px solid var(--border-strong); margin: 2px 0 10px 16px;
+        }
+        .pub-thumb-svg { overflow: hidden; }
+        .pub-thumb-svg svg { width: 100%; height: 100%; display: block; }
+        .pub-entry.featured { border-color: var(--border-strong); }
+        .pub-entry.featured.latest { border-color: var(--gold); }
+        @media (max-width: 600px) { .pub-thumb { width: 72px; height: 56px; margin-left: 12px; } }
+    </style>
     <section class="section fade-in" id="publications">
         <div class="section-header bare">
             <span class="section-label">Peer-Reviewed Work · Talks · Posters</span>
@@ -3866,6 +3889,27 @@
     <hr class="section-divider">
 
     <!-- ===== BLOG / WEEKLY NOTES ===== -->
+    <style>
+        /* Whole blog card is now a link */
+        a.blog-card { text-decoration: none; color: inherit; cursor: pointer; }
+        a.blog-card:hover { border-color: var(--gold); background: var(--bg-card-hover); transform: translateY(-2px); }
+        a.blog-card .blog-title { transition: color .2s ease; }
+        a.blog-card:hover .blog-title { color: var(--gold); }
+        .blog-thumb {
+            float: right; width: 108px; height: 78px; object-fit: cover; border-radius: 9px;
+            border: 1px solid var(--border-strong); margin: 0 0 10px 16px;
+        }
+        a.blog-card:hover .blog-read {
+            background: var(--gold); color: var(--bg); border-color: var(--gold);
+        }
+        .blog-read {
+            display: inline-flex; align-items: center; gap: .3rem; margin-top: .55rem;
+            font-family: var(--font-mono); font-size: 0.78rem; color: var(--gold);
+            padding: .4rem .85rem; border: 1px solid var(--border-strong); border-radius: 50px;
+            transition: all .18s ease;
+        }
+        @media (max-width: 600px) { .blog-thumb { width: 84px; height: 60px; margin-left: 12px; } }
+    </style>
     <section class="section fade-in" id="blog">
         <div class="section-header bare left">
             <span class="section-label">Writing</span>
@@ -4296,7 +4340,9 @@
             year: 2026,
             doi: "https://doi.org/10.1128/mra.01222-25",
             status: "published",
-            latest: true
+            latest: true,
+            thumb: "blog/images/serwaa-tem.jpg",
+            thumbAlt: "Transmission electron micrograph of phage Serwaa"
         },
         {
             kind: "paper",
@@ -4307,7 +4353,9 @@
             doi: "https://doi.org/10.1101/2025.11.12.688109",
             status: "preprint",
             firstAuthor: true,
-            summary: "First-author study identifying how phage N4 controls the timing of host lysis — showing it lyses via a SAR endolysin–holin system."
+            code: "https://github.com/mbaffour/N4-Lysis-paper-codes",
+            summary: "First-author study identifying how phage N4 controls the timing of host lysis, showing it lyses via a SAR endolysin–holin system.",
+            thumbSvg: '<svg viewBox="0 0 96 72" width="96" height="72" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect width="96" height="72" fill="#1a1408"/><path d="M6 62 C26 60 30 30 41 30 C49 30 50 66 92 67" fill="none" stroke="#f4c430" stroke-width="2.4" stroke-linecap="round"/><path d="M6 62 C30 58 41 24 60 18 C76 13 86 12 92 11" fill="none" stroke="#c41e3a" stroke-width="2.4" stroke-linecap="round"/></svg>'
         },
         /* ── Oral talks ──────────────────────────────────────── */
         {
@@ -4584,7 +4632,8 @@
             title: "Serwaa: My First Scientific Paper",
             date: "May 30, 2026",
             tags: ["First Publication", "Phage Biology", "Lab Notes"],
-            blurb: "The story behind my first peer-reviewed paper — a phage named after my grandmother, an undergraduate who made it happen, and what it means to see your name in print for the first time.",
+            blurb: "The story behind my first peer-reviewed paper: a phage named after my grandmother, an undergraduate who made it happen, and what it means to see your name in print for the first time.",
+            image: "blog/images/serwaa-tem.jpg",
             url: "https://mbaffour.github.io/blog/serwaa-first-paper.html"
         }
     ];
@@ -5086,20 +5135,37 @@
             const altmetric = pub.kind === 'paper' && doi
                 ? `<div class="altmetric-wrap" title="Click for full attention details"><div class="altmetric-embed" data-badge-type="donut" data-badge-popover="right" data-doi="${doi}" data-hide-no-mentions="false"></div><span class="altmetric-label">attention</span></div>`
                 : '';
+            // Clear, obvious link buttons (replaces the tiny "DOI ↗" text)
+            const readLabel = pub.status === 'preprint' ? 'Read preprint' : 'Read paper';
+            const links = [];
+            if (pub.doi)  links.push(`<a class="pub-link primary" href="${pub.doi}" target="_blank" rel="noopener">${readLabel} ↗</a>`);
+            if (pub.code) links.push(`<a class="pub-link" href="${pub.code}" target="_blank" rel="noopener">Code ↗</a>`);
+            if (pub.pdf)  links.push(`<a class="pub-link" href="${pub.pdf}" target="_blank" rel="noopener">PDF ↗</a>`);
+            const linkRow = links.length ? `<div class="pub-links">${links.join('')}</div>` : '';
+            const titleHref = pub.doi || pub.code || pub.pdf || '';
+            const titleHtml = titleHref
+                ? `<a href="${titleHref}" target="_blank" rel="noopener">${pub.title}</a>`
+                : pub.title;
+            const thumb = pub.thumb
+                ? `<img class="pub-thumb" src="${pub.thumb}" alt="${pub.thumbAlt || ''}" loading="lazy">`
+                : pub.thumbSvg
+                    ? `<div class="pub-thumb pub-thumb-svg" aria-hidden="true">${pub.thumbSvg}</div>`
+                    : '';
             return `
-            <div class="pub-entry ${pub.latest ? 'latest' : ''} ${pub.kind === 'paper' ? 'has-altmetric' : ''}">
+            <div class="pub-entry ${pub.latest ? 'latest' : ''} ${pub.firstAuthor ? 'featured' : ''} ${pub.kind === 'paper' ? 'has-altmetric' : ''}">
                 <div class="pub-year">${pub.year}</div>
                 <div class="pub-body">
-                    <div class="pub-title">${pub.title}</div>
+                    ${thumb}
+                    <div class="pub-title">${titleHtml}</div>
                     <div class="pub-authors">${auth}</div>
                     <div class="pub-journal">${pub.journal}</div>
                     ${pub.summary ? `<div class="pub-summary" style="color:var(--ink-2); font-size:0.9rem; margin-top:6px; line-height:1.55;">${pub.summary}</div>` : ''}
                     <div class="pub-meta">
                         <span class="pub-status ${pub.status}">${labelFor(pub.status)}</span>
-                        ${pub.doi ? `<span class="pub-doi"><a href="${pub.doi}" target="_blank" rel="noopener">DOI ↗</a></span>` : ''}
                         ${pub.firstAuthor ? '<span class="pub-status preprint" style="background:var(--green-dim); color:var(--green); border-color:var(--green);">★ First author</span>' : ''}
                         ${pub.latest ? '<span class="pub-status preprint">★ Latest</span>' : ''}
                     </div>
+                    ${linkRow}
                 </div>
                 ${altmetric}
             </div>`;
@@ -5220,18 +5286,19 @@
             return;
         }
         container.innerHTML = filtered.map((p, i) => `
-            <article class="blog-card ${i === 0 && filter === 'all' ? 'latest' : ''}">
+            <a class="blog-card ${i === 0 && filter === 'all' ? 'latest' : ''}" href="${p.url}" target="_blank" rel="noopener">
                 <div class="blog-date-col">
                     <span class="blog-date">${p.date}</span>
                     ${i === 0 && filter === 'all' ? '<span class="blog-new-badge">New</span>' : ''}
                 </div>
                 <div class="blog-body">
+                    ${p.image ? `<img class="blog-thumb" src="${p.image}" alt="" loading="lazy">` : ''}
                     <div class="blog-tags">${p.tags.map(t => `<span class="blog-tag">${t}</span>`).join('')}</div>
-                    <h3 class="blog-title"><a href="${p.url}" target="_blank" rel="noopener">${p.title}</a></h3>
+                    <h3 class="blog-title">${p.title}</h3>
                     <p class="blog-blurb">${p.blurb}</p>
-                    <a href="${p.url}" class="blog-read" target="_blank" rel="noopener">Read post →</a>
+                    <span class="blog-read">Read post →</span>
                 </div>
-            </article>
+            </a>
         `).join('');
     }
 
