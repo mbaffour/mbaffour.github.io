@@ -5935,65 +5935,83 @@
 
         /* ════════════════════════════════════
            MOUNTAIN RANGE — Fuji as hero peak
+           (distinct concave silhouette + jagged snow cap
+            over two jittered, atmospheric ridge layers)
         ════════════════════════════════════ */
-        function drawMountainRange() {
-            const baseY = h * 0.81;
-            const fujiX = w * 0.21, fujiY = h * 0.33;
+        function fbmRnd(s) { const x = Math.sin(s * 127.1 + 11.3) * 43758.5453; return x - Math.floor(x); }
 
-            /* sky glow */
-            const sg = ctx.createRadialGradient(fujiX, fujiY, 0, fujiX, fujiY, w * 0.34);
-            sg.addColorStop(0,   'rgba(58,68,118,0.10)');
-            sg.addColorStop(0.5, 'rgba(42,52,95,0.05)');
+        function ridgeLayer(seed, crest, amp, segs, col0, col1, baseY) {
+            const pts = [], x0 = -0.05, x1 = 0.57;
+            for (let i = 0; i <= segs; i++) {
+                const t = i / segs;
+                const env = Math.pow(Math.sin(t * Math.PI), 0.7);        // taller in the middle
+                const jag = 0.40 + 0.60 * fbmRnd(seed + i * 1.7);
+                pts.push({ x: w * (x0 + (x1 - x0) * t), y: h * crest - amp * h * env * jag });
+            }
+            const topY = Math.min(...pts.map(p => p.y));
+            const g = ctx.createLinearGradient(0, topY, 0, baseY);
+            g.addColorStop(0, col0); g.addColorStop(0.7, col1); g.addColorStop(1, 'rgba(0,0,0,0)');
+            ctx.save(); ctx.fillStyle = g; ctx.beginPath();
+            mountainSpline(pts);
+            ctx.lineTo(pts[pts.length - 1].x, baseY + 2);
+            ctx.lineTo(pts[0].x, baseY + 2);
+            ctx.closePath(); ctx.fill(); ctx.restore();
+        }
+
+        function drawMountainRange() {
+            const baseY = h * 0.82;
+            const fujiX = w * 0.205, fujiY = h * 0.30;
+
+            /* dawn sky glow behind the peak */
+            const sg = ctx.createRadialGradient(fujiX, fujiY - h * 0.04, 0, fujiX, fujiY, w * 0.42);
+            sg.addColorStop(0,   'rgba(120,112,150,0.11)');
+            sg.addColorStop(0.5, 'rgba(58,64,108,0.05)');
             sg.addColorStop(1,   'rgba(22,30,65,0.0)');
-            ctx.save(); ctx.fillStyle = sg;
-            ctx.fillRect(0, 0, w * 0.57, h * 0.70);
+            ctx.save(); ctx.fillStyle = sg; ctx.fillRect(0, 0, w * 0.58, h * 0.74); ctx.restore();
+
+            /* two jittered ridge layers behind Fuji (far hazy -> mid darker) */
+            ridgeLayer(3.1, 0.71, 0.13, 13, 'rgba(58,68,108,0.20)', 'rgba(38,46,80,0.09)', baseY);
+            ridgeLayer(8.4, 0.75, 0.18, 11, 'rgba(46,54,92,0.32)', 'rgba(30,38,70,0.13)', baseY);
+
+            /* FUJI — distinct concave silhouette */
+            const baseHalf = w * 0.175, sumHalf = w * 0.014;
+            const lbx = fujiX - baseHalf, rbx = fujiX + baseHalf, slx = fujiX - sumHalf, srx = fujiX + sumHalf;
+            const dy = baseY - fujiY;
+            const fg = ctx.createLinearGradient(0, fujiY, 0, baseY);
+            fg.addColorStop(0,   'rgba(66,74,114,0.60)');
+            fg.addColorStop(0.6, 'rgba(44,52,88,0.32)');
+            fg.addColorStop(1,   'rgba(28,34,64,0.0)');
+            ctx.save();
+            ctx.fillStyle = fg;
+            ctx.beginPath();
+            ctx.moveTo(lbx, baseY);
+            ctx.bezierCurveTo(fujiX - baseHalf * 0.52, baseY - dy * 0.30, slx - w * 0.02, fujiY + dy * 0.12, slx, fujiY);
+            ctx.lineTo(srx, fujiY);
+            ctx.bezierCurveTo(srx + w * 0.02, fujiY + dy * 0.12, fujiX + baseHalf * 0.52, baseY - dy * 0.30, rbx, baseY);
+            ctx.closePath(); ctx.fill();
+            /* shaded right flank for volume */
+            ctx.fillStyle = 'rgba(18,24,50,0.16)';
+            ctx.beginPath();
+            ctx.moveTo(fujiX, fujiY); ctx.lineTo(srx, fujiY);
+            ctx.bezierCurveTo(srx + w * 0.02, fujiY + dy * 0.12, fujiX + baseHalf * 0.52, baseY - dy * 0.30, rbx, baseY);
+            ctx.lineTo(fujiX, baseY); ctx.closePath(); ctx.fill();
             ctx.restore();
 
-            /* FAR layer — hazy distant ridge */
-            mountainLayer([
-                {x:w*-0.05,y:baseY},
-                {x:w*0.03,y:h*0.68},{x:w*0.09,y:h*0.72},
-                {x:w*0.14,y:h*0.64},{x:w*0.20,y:h*0.69},
-                {x:w*0.25,y:h*0.61},{x:w*0.31,y:h*0.66},
-                {x:w*0.37,y:h*0.63},{x:w*0.42,y:h*0.70},
-                {x:w*0.48,y:h*0.74},{x:w*0.54,y:baseY},
-            ], baseY, 'rgba(38,46,82,0.16)', 'rgba(28,35,65,0.07)');
-
-            /* MID layer */
-            mountainLayer([
-                {x:w*-0.05,y:baseY},
-                {x:w*0.02,y:h*0.74},{x:w*0.07,y:h*0.70},
-                {x:w*0.11,y:h*0.58},{x:w*0.15,y:h*0.64},
-                {x:w*0.19,y:h*0.56},{x:w*0.23,y:h*0.62},
-                {x:w*0.28,y:h*0.58},{x:w*0.33,y:h*0.65},
-                {x:w*0.38,y:h*0.70},{x:w*0.44,y:h*0.67},
-                {x:w*0.50,y:h*0.75},{x:w*0.55,y:baseY},
-            ], baseY, 'rgba(44,52,90,0.26)', 'rgba(34,42,74,0.12)');
-
-            /* NEAR layer — Fuji dominant */
-            mountainLayer([
-                {x:w*-0.05,y:baseY},
-                {x:w*0.00,y:h*0.78},{x:w*0.04,y:h*0.72},
-                {x:w*0.08,y:h*0.76},{x:w*0.12,y:h*0.68},
-                {x:w*0.15,y:h*0.71},
-                {x:fujiX,y:fujiY},
-                {x:w*0.26,y:h*0.67},{x:w*0.30,y:h*0.73},
-                {x:w*0.34,y:h*0.68},{x:w*0.39,y:h*0.76},
-                {x:w*0.45,y:h*0.79},{x:w*0.53,y:baseY},
-            ], baseY, 'rgba(50,58,96,0.44)', 'rgba(38,46,80,0.18)');
-
-            /* snow cap */
-            const snowBase = fujiY + (baseY - fujiY) * 0.21;
-            const sg2 = ctx.createLinearGradient(fujiX, fujiY, fujiX, snowBase + 12);
-            sg2.addColorStop(0,   'rgba(222,214,200,0.42)');
-            sg2.addColorStop(0.5, 'rgba(222,214,200,0.18)');
-            sg2.addColorStop(1,   'rgba(222,214,200,0.0)');
-            ctx.save(); ctx.fillStyle = sg2;
-            ctx.beginPath();
-            ctx.moveTo(fujiX, fujiY);
-            ctx.bezierCurveTo(fujiX-w*0.04, snowBase+2,  fujiX-w*0.03, snowBase+8,  fujiX-w*0.05, snowBase+11);
-            ctx.quadraticCurveTo(fujiX, snowBase+16, fujiX+w*0.05, snowBase+11);
-            ctx.bezierCurveTo(fujiX+w*0.04, snowBase+8,  fujiX+w*0.03, snowBase+2,  fujiX, fujiY);
+            /* SNOW CAP — hugs the summit, jagged gully snowline */
+            const snowBottom = fujiY + dy * 0.27;
+            const capHalf = baseHalf * 0.30;
+            const sgr = ctx.createLinearGradient(0, fujiY, 0, snowBottom);
+            sgr.addColorStop(0, 'rgba(234,230,224,0.62)');
+            sgr.addColorStop(1, 'rgba(208,214,230,0.06)');
+            ctx.save(); ctx.fillStyle = sgr; ctx.beginPath();
+            ctx.moveTo(slx, fujiY); ctx.lineTo(srx, fujiY);
+            ctx.lineTo(fujiX + capHalf, snowBottom - 4);
+            const N = 7;
+            for (let i = 1; i < N; i++) {
+                const t = i / N, gx = fujiX + capHalf - 2 * capHalf * t;
+                ctx.lineTo(gx, (i % 2 === 0) ? snowBottom - 4 : snowBottom - 13);
+            }
+            ctx.lineTo(fujiX - capHalf, snowBottom - 4);
             ctx.closePath(); ctx.fill(); ctx.restore();
         }
 
@@ -6324,24 +6342,58 @@
         }
 
         function drawAdinkraSymbols() {
-            adinkra('adinkrahene', w*0.67, h*0.32, Math.min(30,w*0.026), 0.14);
-            adinkra('gye_nyame',   w*0.84, h*0.20, Math.min(24,w*0.022), 0.12);
-            adinkra('sankofa',     w*0.93, h*0.44, Math.min(22,w*0.020), 0.13);
+            adinkra('adinkrahene', w*0.67, h*0.32, Math.min(32,w*0.027), 0.19);
+            adinkra('gye_nyame',   w*0.84, h*0.21, Math.min(26,w*0.023), 0.18);
+            adinkra('sankofa',     w*0.93, h*0.45, Math.min(24,w*0.021), 0.18);
         }
 
         /* ════════════════════════════════════
            KENTE STRIP  (top right)
         ════════════════════════════════════ */
         function drawKenteStrip() {
-            const y = h * 0.065, sH = 7;
-            [  'rgba(200,160,30,0.14)',
-               'rgba(40,100,40,0.12)',
-               'rgba(180,30,30,0.12)',
-               'rgba(200,160,30,0.14)',
-            ].forEach((c, i) => {
-                ctx.fillStyle = c;
-                ctx.fillRect(w * 0.55, y + i*(sH+3), w * 0.45, sH);
-            });
+            // Woven Kente band: alternating warp/weft thread blocks (basket weave)
+            const x0 = w * 0.55, y0 = h * 0.045, bandW = w * 0.45;
+            const cell = Math.max(10, Math.min(15, w * 0.011));
+            const rows = 3, cols = Math.ceil(bandW / cell);
+            const pal = ['rgba(212,170,40,A)', 'rgba(40,112,56,A)', 'rgba(190,40,46,A)', 'rgba(232,224,205,A)'];
+            const a = 0.17, th = cell / 3;
+            ctx.save();
+            for (let r = 0; r < rows; r++) {
+                for (let c = 0; c < cols; c++) {
+                    const cx = x0 + c * cell, cy = y0 + r * cell;
+                    if (cx + cell > w + 1) continue;
+                    const horiz = ((r + c) % 2 === 0);
+                    ctx.fillStyle = pal[(c + r * 2) % pal.length].replace('A', a);
+                    for (let k = 0; k < 3; k++) {
+                        if (horiz) ctx.fillRect(cx + 1, cy + k * th + 0.5, cell - 2, th - 1.2);
+                        else        ctx.fillRect(cx + k * th + 0.5, cy + 1, th - 1.2, cell - 2);
+                    }
+                }
+            }
+            ctx.restore();
+        }
+
+        /* ════════════════════════════════════
+           BLACK STAR — Ghanaian identity anchor
+        ════════════════════════════════════ */
+        function fivePointStar(cx, cy, rO, rI) {
+            ctx.beginPath();
+            for (let i = 0; i < 10; i++) {
+                const ang = -Math.PI / 2 + i * Math.PI / 5;
+                const rr = (i % 2 === 0) ? rO : rI;
+                const x = cx + rr * Math.cos(ang), y = cy + rr * Math.sin(ang);
+                i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+            }
+            ctx.closePath();
+        }
+        function drawBlackStar() {
+            const cx = w * 0.885, cy = h * 0.125, rO = Math.min(26, w * 0.022), rI = rO * 0.42;
+            ctx.save();
+            ctx.globalAlpha = 0.20;
+            fivePointStar(cx, cy, rO, rI);
+            ctx.fillStyle = 'rgba(244,196,48,1)';
+            ctx.fill();
+            ctx.restore();
         }
 
         /* ════════════════════════════════════
@@ -6590,6 +6642,7 @@
             drawCoastalCastle();
             drawStadium();
             drawKenteStrip();
+            drawBlackStar();
             drawCoastalWaves();
             drawAdinkraSymbols();
             drawFootballer();
@@ -6598,6 +6651,16 @@
             /* particles — whole canvas */
             updateDrawPetals();
             updateDrawPhages();
+
+            /* readability scrim — keep the central content column calm
+               while the Japan (left) and Ghana (right) scenes stay visible at the margins */
+            const scrim = ctx.createLinearGradient(0, 0, w, 0);
+            scrim.addColorStop(0.00, 'rgba(10,8,2,0)');
+            scrim.addColorStop(0.30, 'rgba(10,8,2,0)');
+            scrim.addColorStop(0.50, 'rgba(10,8,2,0.42)');
+            scrim.addColorStop(0.70, 'rgba(10,8,2,0)');
+            scrim.addColorStop(1.00, 'rgba(10,8,2,0)');
+            ctx.save(); ctx.fillStyle = scrim; ctx.fillRect(0, 0, w, h); ctx.restore();
         }
 
         resize();
