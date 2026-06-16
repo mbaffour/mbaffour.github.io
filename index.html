@@ -5979,8 +5979,8 @@
         }
 
         /* ════════════════════════════════════
-           MOUNTAIN RANGE — Fuji as hero peak
-           (distinct concave silhouette + jagged snow cap
+           MOUNTAIN RANGE — Fuji as erupting volcano
+           (distinct concave silhouette + molten crater & lava flows
             over two jittered, atmospheric ridge layers)
         ════════════════════════════════════ */
         function fbmRnd(s) { const x = Math.sin(s * 127.1 + 11.3) * 43758.5453; return x - Math.floor(x); }
@@ -6042,22 +6042,89 @@
             ctx.lineTo(fujiX, baseY); ctx.closePath(); ctx.fill();
             ctx.restore();
 
-            /* SNOW CAP — hugs the summit, jagged gully snowline */
-            const snowBottom = fujiY + dy * 0.27;
-            const capHalf = baseHalf * 0.30;
-            const sgr = ctx.createLinearGradient(0, fujiY, 0, snowBottom);
-            sgr.addColorStop(0, 'rgba(234,230,224,0.62)');
-            sgr.addColorStop(1, 'rgba(208,214,230,0.06)');
-            ctx.save(); ctx.fillStyle = sgr; ctx.beginPath();
-            ctx.moveTo(slx, fujiY); ctx.lineTo(srx, fujiY);
-            ctx.lineTo(fujiX + capHalf, snowBottom - 4);
-            const N = 7;
-            for (let i = 1; i < N; i++) {
-                const t = i / N, gx = fujiX + capHalf - 2 * capHalf * t;
-                ctx.lineTo(gx, (i % 2 === 0) ? snowBottom - 4 : snowBottom - 13);
+            /* ════ VOLCANO — glowing crater, lava flows down the flanks, erupting embers ════ */
+            const t = jPhase;
+            const pulse = 0.5 + 0.5 * Math.sin(t * 1.6);
+            const lw = Math.max(3, w * 0.006);
+
+            /* hot sky glow / ember haze above the crater */
+            const glowR = baseHalf * (0.58 + 0.08 * pulse);
+            const cg = ctx.createRadialGradient(fujiX, fujiY, 0, fujiX, fujiY - glowR * 0.18, glowR);
+            cg.addColorStop(0,   'rgba(255,150,46,' + (0.30 + 0.10 * pulse).toFixed(3) + ')');
+            cg.addColorStop(0.42,'rgba(220,70,22,' + (0.13 + 0.05 * pulse).toFixed(3) + ')');
+            cg.addColorStop(1,   'rgba(120,22,10,0)');
+            ctx.save();
+            ctx.globalCompositeOperation = 'lighter';
+            ctx.fillStyle = cg;
+            ctx.beginPath(); ctx.arc(fujiX, fujiY - glowR * 0.15, glowR, 0, Math.PI * 2); ctx.fill();
+            ctx.restore();
+
+            /* lava streams spilling from the crater rim down the slopes */
+            function lavaFlow(sx, endXoff, endF, width, seed) {
+                const segs = 14, startY = fujiY + 2, endY = fujiY + dy * endF;
+                ctx.save();
+                ctx.globalCompositeOperation = 'lighter';
+                ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+                ctx.shadowColor = 'rgba(255,120,30,0.9)'; ctx.shadowBlur = 8;
+                ctx.beginPath();
+                for (let i = 0; i <= segs; i++) {
+                    const f = i / segs;
+                    const y = startY + (endY - startY) * f;
+                    const drift = endXoff * f * f;
+                    const wob = Math.sin(f * 7 + t * 2.2 + seed) * (4 + 8 * f) * (1 - f * 0.3);
+                    const x = sx + drift + wob;
+                    if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+                }
+                const lg = ctx.createLinearGradient(0, startY, 0, endY);
+                lg.addColorStop(0,    'rgba(255,238,150,0.85)');
+                lg.addColorStop(0.25, 'rgba(255,150,40,0.80)');
+                lg.addColorStop(0.70, 'rgba(210,40,20,0.50)');
+                lg.addColorStop(1,    'rgba(120,18,12,0)');
+                ctx.strokeStyle = lg; ctx.lineWidth = width; ctx.stroke();
+                ctx.shadowBlur = 0;
+                ctx.lineWidth = width * 0.4;
+                ctx.strokeStyle = 'rgba(255,244,200,' + (0.45 + 0.3 * pulse).toFixed(3) + ')';
+                ctx.stroke();
+                ctx.restore();
             }
-            ctx.lineTo(fujiX - capHalf, snowBottom - 4);
-            ctx.closePath(); ctx.fill(); ctx.restore();
+            lavaFlow(fujiX - sumHalf * 0.6, -baseHalf * 0.50, 0.50, lw,        0.0);
+            lavaFlow(fujiX + sumHalf * 0.2,  baseHalf * 0.62, 0.58, lw * 1.10, 2.0);
+            lavaFlow(fujiX + sumHalf * 0.8,  baseHalf * 0.30, 0.40, lw * 0.70, 4.0);
+
+            /* molten crater pool at the summit */
+            ctx.save();
+            ctx.globalCompositeOperation = 'lighter';
+            const pool = ctx.createRadialGradient(fujiX, fujiY, 0, fujiX, fujiY, sumHalf * 3.0);
+            pool.addColorStop(0,   'rgba(255,240,170,0.92)');
+            pool.addColorStop(0.5, 'rgba(255,120,30,0.70)');
+            pool.addColorStop(1,   'rgba(200,40,15,0)');
+            ctx.fillStyle = pool;
+            ctx.beginPath();
+            ctx.ellipse(fujiX, fujiY, sumHalf * 3.0, sumHalf * 1.5, 0, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.restore();
+
+            /* erupting lava — embers arcing out of the crater */
+            ctx.save();
+            ctx.globalCompositeOperation = 'lighter';
+            const NB = 9;
+            for (let i = 0; i < NB; i++) {
+                const seed = i * 1.618;
+                const life = (t * 0.6 + seed) % 1;
+                const vx   = (fbmRnd(seed) - 0.5) * baseHalf * 0.95;
+                const apex = dy * (0.18 + 0.16 * fbmRnd(seed + 7));
+                const px = fujiX + vx * life;
+                const py = fujiY - apex * 4 * life * (1 - life);
+                const r  = (2 + 3 * fbmRnd(seed + 3)) * (1 - life * 0.5);
+                const a  = (1 - life) * 0.9;
+                const bg = ctx.createRadialGradient(px, py, 0, px, py, r * 2.2);
+                bg.addColorStop(0,   'rgba(255,240,180,' + a.toFixed(3) + ')');
+                bg.addColorStop(0.5, 'rgba(255,130,30,' + (a * 0.7).toFixed(3) + ')');
+                bg.addColorStop(1,   'rgba(200,40,15,0)');
+                ctx.fillStyle = bg;
+                ctx.beginPath(); ctx.arc(px, py, r * 2.2, 0, Math.PI * 2); ctx.fill();
+            }
+            ctx.restore();
         }
 
         /* ════════════════════════════════════
