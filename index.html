@@ -4573,6 +4573,16 @@
             app:  "https://github.com/mbaffour/ReadQraft",
             label: "FASTQ QC",
             preview: "readqraft"
+        },
+        {
+            title: "Gibson Assembly Calculator",
+            blurb: "Browser-based Gibson Assembly setup — enter fragment lengths and concentrations, get exact pipetting volumes at NEB-recommended molar ratios. Export CSV, save reactions. Runs entirely client-side.",
+            tech: ["JavaScript", "Cloning", "Offline"],
+            stack: "js",
+            blog: "https://github.com/mbaffour/gibson-assembly-calculator",
+            app:  "https://mbaffour.github.io/gibson-assembly-calculator/",
+            label: "Gibson Calculator",
+            preview: "gibson"
         }
     ];
 
@@ -5088,6 +5098,26 @@
                 <text x="210" y="90"  fill="#7a8868">Phred Q</text>
                 <text x="210" y="106" fill="#1a8040">≥Q30: ✓</text>
                 <text x="210" y="122" fill="#c41e3a">tail: trim</text>
+            </g>
+        </svg>`,
+        gibson: `<svg viewBox="0 0 320 160" xmlns="http://www.w3.org/2000/svg">
+            <rect width="320" height="160" fill="#0a1208"/>
+            <g fill="none" stroke-width="9" stroke-linecap="round">
+                <path d="M70,60 A45,45 0 0 1 160,55" stroke="#f4c430"/>
+                <path d="M160,55 A45,45 0 0 1 200,118" stroke="#1a8040"/>
+                <path d="M200,118 A45,45 0 0 1 90,118 Q70,95 70,62" stroke="#c41e3a"/>
+            </g>
+            <g fill="#a8c490" font-family="JetBrains Mono" font-size="7">
+                <circle cx="160" cy="55" r="3.5" fill="#f5edd8"/>
+                <circle cx="200" cy="118" r="3.5" fill="#f5edd8"/>
+                <circle cx="74" cy="90" r="3.5" fill="#f5edd8"/>
+            </g>
+            <g font-family="JetBrains Mono" font-size="8.5">
+                <text x="232" y="36" fill="#7a8868">frag</text><text x="285" y="36" fill="#f4c430">µL</text>
+                <text x="232" y="56" fill="#f4c430">F1</text><text x="278" y="56" fill="#a8c490">2.4</text>
+                <text x="232" y="76" fill="#1a8040">F2</text><text x="278" y="76" fill="#a8c490">1.1</text>
+                <text x="232" y="96" fill="#c41e3a">F3</text><text x="278" y="96" fill="#a8c490">3.0</text>
+                <text x="232" y="120" fill="#7a8868">H₂O</text><text x="278" y="120" fill="#a8c490">8.5</text>
             </g>
         </svg>`,
         mcat: `<svg viewBox="0 0 320 160" xmlns="http://www.w3.org/2000/svg">
