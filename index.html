@@ -16,7 +16,7 @@
     <meta name="twitter:description" content="Decoding how bacteriophage N4 controls when it kills its host, with molecular biology, genomics, and genetics.">
     <meta name="twitter:image" content="https://mbaffour.github.io/headshot.jpg">
     <link rel="canonical" href="https://mbaffour.github.io/">
-    <meta name="theme-color" content="#0a0802">
+    <meta name="theme-color" content="#121009">
     <title>Michael Baffour Awuah — Phage Biologist</title>
     <script type="application/ld+json">
     {
@@ -52,22 +52,22 @@
            DESIGN TOKENS
         ============================================================ */
         :root {
-            /* Surfaces */
-            --bg:           #0a0802;
-            --bg-2:         #110d04;
-            --bg-3:         #1a1408;
-            --bg-card:      #1c1709;
-            --bg-card-hover:#241d0c;
-            --border:       rgba(244, 196, 48, 0.10);
-            --border-strong:rgba(244, 196, 48, 0.22);
+            /* Surfaces — warm charcoal, lifted off pure black for more light */
+            --bg:           #121009;
+            --bg-2:         #1a160c;
+            --bg-3:         #241d10;
+            --bg-card:      #221c0e;
+            --bg-card-hover:#2c2412;
+            --border:       rgba(244, 196, 48, 0.13);
+            --border-strong:rgba(244, 196, 48, 0.26);
 
             /* Kente palette (gold / green / red) */
             --gold:    #f4c430;
-            --gold-dim:rgba(244, 196, 48, 0.14);
-            --green:   #1a8040;
-            --green-dim:rgba(26, 128, 64, 0.14);
-            --red:     #c41e3a;
-            --red-dim: rgba(196, 30, 58, 0.14);
+            --gold-dim:rgba(244, 196, 48, 0.18);
+            --green:   #1f9249;
+            --green-dim:rgba(31, 146, 73, 0.18);
+            --red:     #d4324b;
+            --red-dim: rgba(212, 50, 75, 0.17);
 
             /* Type */
             --ink:     #f5edd8;
@@ -143,6 +143,20 @@
             opacity: 0.035;
             mix-blend-mode: overlay;
             background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.96  0 0 0 0 0.85  0 0 0 0 0.52  0 0 0 1 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+        }
+
+        /* Ambient warm light wash — soft Kente-tinted glows that add
+           color and luminosity behind the content without washing it out */
+        body::after {
+            content: '';
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            background:
+                radial-gradient(62% 52% at 16% 10%, rgba(244, 196, 48, 0.07), transparent 70%),
+                radial-gradient(55% 48% at 86% 20%, rgba(31, 146, 73, 0.055), transparent 72%),
+                radial-gradient(75% 60% at 50% 112%, rgba(212, 50, 75, 0.05), transparent 70%);
         }
 
         /* Ambient microbiology layer — viewport-fixed for performance.
@@ -475,9 +489,10 @@
             justify-content: center;
             overflow: hidden;
             background:
-                radial-gradient(ellipse 80% 60% at 50% 35%, rgba(244, 196, 48, 0.08), transparent 70%),
-                radial-gradient(ellipse 60% 50% at 80% 80%, rgba(26, 128, 64, 0.08), transparent 70%),
-                linear-gradient(180deg, #0a0802 0%, #15100c 50%, #0a0802 100%);
+                radial-gradient(ellipse 80% 60% at 50% 35%, rgba(244, 196, 48, 0.11), transparent 70%),
+                radial-gradient(ellipse 60% 50% at 80% 80%, rgba(31, 146, 73, 0.09), transparent 70%),
+                radial-gradient(ellipse 55% 45% at 16% 78%, rgba(212, 50, 75, 0.06), transparent 72%),
+                linear-gradient(180deg, #15120a 0%, #1d1810 50%, #14110a 100%);
         }
         .hero-canvas {
             position: absolute;
@@ -490,7 +505,7 @@
             position: absolute;
             inset: 0;
             background:
-                radial-gradient(ellipse at center, transparent 0%, rgba(10, 8, 2, 0.85) 80%);
+                radial-gradient(ellipse at center, transparent 0%, rgba(18, 16, 9, 0.74) 82%);
             z-index: 2;
         }
         .hero-content {
