@@ -6864,23 +6864,31 @@
             mode:     'inhibited'
         };
 
-        /* ---- Mechanistic infection model (Erlang-staged; superinfection drives LIN) ---- */
+        /* ---- Mechanistic infection model (Erlang-staged; superinfection drives LIN) ----
+           Time axis is real hours (0..HMAX). LAT_SCALE compresses the latent period so a
+           normal phage lyses within ~1 h. Lysis inhibition holds the culture cloudy, then
+           collapses after a few hours (INH_CENTER), so N4 lysis is delayed but completes:
+           with the default preset the drop begins ~3 h and clears by ~6 h. */
         const T = 110, dt = 0.5, NSTAGE = 24, r = 0.025, rInf = 0.020,
-              K = 1.0, ads = 6.0, decay = 0.002, S0 = 0.04, SAMPLES = 200;
+              K = 1.0, ads = 6.0, decay = 0.002, S0 = 0.04, SAMPLES = 200,
+              HMAX = 7, LAT_SCALE = 0.30, INH_CENTER = 0.27, INH_STEEP = 11;
 
         function simulate(latent, burst, moi, cap) {
             let S = S0;
             const E = new Array(NSTAGE).fill(0);
             let p = moi * S0;
             const steps = Math.round(T / dt);
-            const baseRate = NSTAGE / latent;
+            const baseRate = NSTAGE / (latent * LAT_SCALE);
             const raw = [];
             for (let i = 0; i <= steps; i++) {
                 let Etot = 0; for (let k = 0; k < NSTAGE; k++) Etot += E[k];
                 raw.push(S + Etot);
                 const intact = S + Etot;
+                const frac = i / steps;
+                // inhibition holds early, then collapses -> delayed but complete lysis
+                const capEff = cap > 0 ? cap / (1 + Math.exp((frac - INH_CENTER) * INH_STEEP)) : 0;
                 const sigma = ads * p;                       // superinfection signal
-                const lysisRate = baseRate / (1 + cap * sigma);
+                const lysisRate = baseRate / (1 + capEff * sigma);
                 let infect = ads * p * S * dt; if (infect > S) infect = S;
                 const phageOnE = Math.min(p, ads * p * Etot * dt);
                 let lyse = lysisRate * E[NSTAGE - 1] * dt; if (lyse > E[NSTAGE - 1]) lyse = E[NSTAGE - 1];
@@ -6898,8 +6906,12 @@
             }
             const od = new Array(SAMPLES + 1);
             for (let j = 0; j <= SAMPLES; j++) od[j] = raw[Math.round(j / SAMPLES * (raw.length - 1))];
-            let peak = 0; for (const v of od) if (v > peak) peak = v;
-            return { od, peak, final: od[SAMPLES] };
+            let peak = 0, peakIdx = 0;
+            for (let j = 0; j <= SAMPLES; j++) if (od[j] > peak) { peak = od[j]; peakIdx = j; }
+            // first point after the peak where turbidity has collapsed (culture clears)
+            let clearX = null;
+            for (let j = peakIdx; j <= SAMPLES; j++) { if (od[j] < peak * 0.05) { clearX = j / SAMPLES; break; } }
+            return { od, peak, final: od[SAMPLES], lysisX: peakIdx / SAMPLES, clearX };
         }
 
         let simControl, simNormal, simInhib, ODMAX;
@@ -6925,12 +6937,12 @@
         ];
         function outcomeStage() {
             return state.mode === 'inhibited'
-                ? { name: 'Lysis inhibition (N4)', text: 'Extra phage <em>superinfect</em> the already-infected cell, and N4 delays lysis. The cell becomes a long-lived virus factory and the culture stays cloudy, until inhibition finally breaks.' }
+                ? { name: 'Lysis inhibition (N4)', text: 'Extra phage <em>superinfect</em> the already-infected cell, and N4 delays lysis. The cell becomes a long-lived virus factory and the culture stays cloudy for hours — then inhibition finally breaks and the culture clears in a delayed, late crash (here around 3–6 h, versus under an hour for a normal phage).' }
                 : { name: 'Lysis & burst', text: 'The cell ruptures and releases a burst of new phage. Across the flask, turbidity crashes as the population pops.' };
         }
         const stageInfo = i => i < 4 ? STAGES[i] : outcomeStage();
         function stageBounds() {
-            const lx = Math.min(0.9, state.latent / T);
+            const lx = Math.min(0.92, activeSim().lysisX);
             return [0, 0.15 * lx, 0.55 * lx, 0.9 * lx, lx, 1];
         }
         function stageAt(x) {
@@ -6978,8 +6990,13 @@
             pEl.textContent = lvl + ' (MOI ' + moi.toFixed(1) + ')';
             pEl.className = cls;
             const sim = activeSim();
-            document.getElementById('metaOutcome').textContent =
-                sim.final < 0.02 ? 'Culture clears (cells lyse)' : 'Stays cloudy (lysis held)';
+            const mo = document.getElementById('metaOutcome');
+            if (sim.clearX != null) {
+                const hrs = sim.clearX * HMAX;
+                mo.textContent = 'Clears in ~' + (hrs < 1.5 ? hrs.toFixed(1) : Math.round(hrs)) + ' h (cells lyse)';
+            } else {
+                mo.textContent = 'Stays cloudy (lysis held)';
+            }
         }
 
         function resize() {
@@ -7076,13 +7093,16 @@
             // grid (no numeric labels)
             ctx.strokeStyle = 'rgba(244, 196, 48, 0.06)'; ctx.lineWidth = 1;
             for (let i = 1; i < 5; i++) { const y = pad.top + (gh / 5) * i; ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(W - pad.right, y); ctx.stroke(); }
-            for (let i = 1; i < 8; i++) { const x = pad.left + (gw / 8) * i; ctx.beginPath(); ctx.moveTo(x, pad.top); ctx.lineTo(x, H - pad.bottom); ctx.stroke(); }
+            for (let hh = 1; hh < HMAX; hh++) { const x = pad.left + (gw / HMAX) * hh; ctx.beginPath(); ctx.moveTo(x, pad.top); ctx.lineTo(x, H - pad.bottom); ctx.stroke(); }
             // axes
             ctx.strokeStyle = 'rgba(245, 237, 216, 0.25)';
             ctx.beginPath(); ctx.moveTo(pad.left, pad.top); ctx.lineTo(pad.left, H - pad.bottom); ctx.lineTo(W - pad.right, H - pad.bottom); ctx.stroke();
-            // axis labels (qualitative, arrow for time)
+            // x-axis hour ticks + labels
+            ctx.fillStyle = 'rgba(245, 237, 216, 0.42)'; ctx.font = '9px JetBrains Mono, monospace'; ctx.textAlign = 'center';
+            for (let hh = 0; hh <= HMAX; hh++) ctx.fillText(hh + 'h', pad.left + (gw / HMAX) * hh, H - pad.bottom + 14);
+            // axis labels (arrow for time)
             ctx.fillStyle = 'rgba(245, 237, 216, 0.5)'; ctx.font = '11px JetBrains Mono, monospace'; ctx.textAlign = 'center';
-            ctx.fillText('time post-infection →', pad.left + gw / 2, H - 12);
+            ctx.fillText('time post-infection →', pad.left + gw / 2, H - 10);
             ctx.save(); ctx.translate(15, pad.top + gh / 2); ctx.rotate(-Math.PI / 2);
             ctx.fillText('culture turbidity (OD₆₀₀) →', 0, 0); ctx.restore();
 
@@ -7097,7 +7117,7 @@
             strokeCurve(sim, activeColor, 3, true, 0, progress);
 
             // decision marker (vertical) at lysis timing
-            const lx = Math.min(0.9, state.latent / T);
+            const lx = Math.min(0.95, activeSim().lysisX);
             const mx = pad.left + lx * gw;
             ctx.strokeStyle = 'rgba(245,237,216,0.28)'; ctx.setLineDash([3, 4]); ctx.lineWidth = 1;
             ctx.beginPath(); ctx.moveTo(mx, pad.top + 4); ctx.lineTo(mx, H - pad.bottom); ctx.stroke(); ctx.setLineDash([]);
