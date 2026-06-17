@@ -6074,17 +6074,17 @@
             }
             ctx.restore();
 
-            /* ════ ERUPTION — ember glow, lava flows, molten crater, arcing embers ════ */
+            /* ════ ERUPTION — gentle ember glow, soft lava trickles, drifting embers ════ */
             const vx = volc.cx, vy = volc.sumY, vHalf = volc.half, vSum = volc.sumHalf, vdy = volc.dy;
-            const pulse = 0.5 + 0.5 * Math.sin(t * 1.6);
-            const lw = Math.max(3, w * 0.006);
+            const pulse = 0.5 + 0.5 * Math.sin(t * 0.9);
+            const lw = Math.max(2, w * 0.0038);
 
-            /* hot ember glow above the crater */
-            const glowR = vHalf * (0.58 + 0.08 * pulse);
+            /* soft ember glow above the crater */
+            const glowR = vHalf * (0.42 + 0.05 * pulse);
             const cg = ctx.createRadialGradient(vx, vy, 0, vx, vy - glowR * 0.18, glowR);
-            cg.addColorStop(0,   'rgba(255,150,46,' + (0.30 + 0.10 * pulse).toFixed(3) + ')');
-            cg.addColorStop(0.42,'rgba(220,70,22,' + (0.13 + 0.05 * pulse).toFixed(3) + ')');
-            cg.addColorStop(1,   'rgba(120,22,10,0)');
+            cg.addColorStop(0,   'rgba(255,160,60,' + (0.15 + 0.05 * pulse).toFixed(3) + ')');
+            cg.addColorStop(0.42,'rgba(220,80,30,' + (0.07 + 0.03 * pulse).toFixed(3) + ')');
+            cg.addColorStop(1,   'rgba(120,30,14,0)');
             ctx.save(); ctx.globalCompositeOperation = 'lighter'; ctx.fillStyle = cg;
             ctx.beginPath(); ctx.arc(vx, vy - glowR * 0.15, glowR, 0, Math.PI * 2); ctx.fill(); ctx.restore();
 
@@ -6094,52 +6094,51 @@
                 ctx.save();
                 ctx.globalCompositeOperation = 'lighter';
                 ctx.lineCap = 'round'; ctx.lineJoin = 'round';
-                ctx.shadowColor = 'rgba(255,120,30,0.9)'; ctx.shadowBlur = 8;
+                ctx.shadowColor = 'rgba(255,130,40,0.6)'; ctx.shadowBlur = 5;
                 ctx.beginPath();
                 for (let i = 0; i <= segs; i++) {
                     const f = i / segs;
                     const y = startY + (endY - startY) * f;
                     const drift = endXoff * f * f;
-                    const wob = Math.sin(f * 7 + t * 2.2 + seed) * (4 + 8 * f) * (1 - f * 0.3);
+                    const wob = Math.sin(f * 7 + t * 1.6 + seed) * (2 + 5 * f) * (1 - f * 0.3);
                     const x = sx + drift + wob;
                     if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
                 }
                 const lg = ctx.createLinearGradient(0, startY, 0, endY);
-                lg.addColorStop(0,    'rgba(255,238,150,0.85)');
-                lg.addColorStop(0.25, 'rgba(255,150,40,0.80)');
-                lg.addColorStop(0.70, 'rgba(210,40,20,0.50)');
-                lg.addColorStop(1,    'rgba(120,18,12,0)');
+                lg.addColorStop(0,    'rgba(255,224,150,0.55)');
+                lg.addColorStop(0.25, 'rgba(255,150,50,0.48)');
+                lg.addColorStop(0.70, 'rgba(205,55,28,0.28)');
+                lg.addColorStop(1,    'rgba(120,24,14,0)');
                 ctx.strokeStyle = lg; ctx.lineWidth = width; ctx.stroke();
                 ctx.shadowBlur = 0;
                 ctx.lineWidth = width * 0.4;
-                ctx.strokeStyle = 'rgba(255,244,200,' + (0.45 + 0.3 * pulse).toFixed(3) + ')';
+                ctx.strokeStyle = 'rgba(255,238,190,' + (0.22 + 0.15 * pulse).toFixed(3) + ')';
                 ctx.stroke();
                 ctx.restore();
             }
-            lavaFlow(vx - vSum * 0.6, -vHalf * 0.50, 0.62, lw,        0.0);
-            lavaFlow(vx + vSum * 0.2,  vHalf * 0.62, 0.70, lw * 1.10, 2.0);
-            lavaFlow(vx + vSum * 0.8,  vHalf * 0.30, 0.50, lw * 0.70, 4.0);
+            lavaFlow(vx - vSum * 0.5, -vHalf * 0.42, 0.46, lw,       0.0);
+            lavaFlow(vx + vSum * 0.4,  vHalf * 0.50, 0.52, lw * 0.9, 2.0);
 
-            /* molten crater pool at the summit */
+            /* soft molten crater pool at the summit */
             ctx.save(); ctx.globalCompositeOperation = 'lighter';
-            const pool = ctx.createRadialGradient(vx, vy, 0, vx, vy, vSum * 3.0);
-            pool.addColorStop(0,   'rgba(255,240,170,0.92)');
-            pool.addColorStop(0.5, 'rgba(255,120,30,0.70)');
-            pool.addColorStop(1,   'rgba(200,40,15,0)');
+            const pool = ctx.createRadialGradient(vx, vy, 0, vx, vy, vSum * 2.2);
+            pool.addColorStop(0,   'rgba(255,228,160,0.58)');
+            pool.addColorStop(0.5, 'rgba(255,135,45,0.40)');
+            pool.addColorStop(1,   'rgba(200,55,22,0)');
             ctx.fillStyle = pool; ctx.beginPath();
-            ctx.ellipse(vx, vy, vSum * 3.0, vSum * 1.5, 0, 0, Math.PI * 2); ctx.fill(); ctx.restore();
+            ctx.ellipse(vx, vy, vSum * 2.2, vSum * 1.2, 0, 0, Math.PI * 2); ctx.fill(); ctx.restore();
 
-            /* erupting embers arcing out of the crater */
+            /* a few embers drifting up from the crater */
             ctx.save(); ctx.globalCompositeOperation = 'lighter';
-            for (let i = 0; i < 9; i++) {
+            for (let i = 0; i < 5; i++) {
                 const seed = i * 1.618;
-                const life = (t * 0.6 + seed) % 1;
-                const ev   = (fbmRnd(seed) - 0.5) * vHalf * 0.95;
-                const apex = vdy * (0.22 + 0.18 * fbmRnd(seed + 7));
+                const life = (t * 0.5 + seed) % 1;
+                const ev   = (fbmRnd(seed) - 0.5) * vHalf * 0.65;
+                const apex = vdy * (0.13 + 0.11 * fbmRnd(seed + 7));
                 const px = vx + ev * life;
                 const py = vy - apex * 4 * life * (1 - life);
-                const r  = (2 + 3 * fbmRnd(seed + 3)) * (1 - life * 0.5);
-                const a  = (1 - life) * 0.9;
+                const r  = (1.4 + 2 * fbmRnd(seed + 3)) * (1 - life * 0.5);
+                const a  = (1 - life) * 0.5;
                 const bg = ctx.createRadialGradient(px, py, 0, px, py, r * 2.2);
                 bg.addColorStop(0,   'rgba(255,240,180,' + a.toFixed(3) + ')');
                 bg.addColorStop(0.5, 'rgba(255,130,30,' + (a * 0.7).toFixed(3) + ')');
