@@ -16,7 +16,7 @@
     <meta name="twitter:description" content="Decoding how bacteriophage N4 controls when it kills its host, with molecular biology, genomics, and genetics.">
     <meta name="twitter:image" content="https://mbaffour.github.io/headshot.jpg">
     <link rel="canonical" href="https://mbaffour.github.io/">
-    <meta name="theme-color" content="#0a0802">
+    <meta name="theme-color" content="#121009">
     <title>Michael Baffour Awuah — Phage Biologist</title>
     <script type="application/ld+json">
     {
@@ -52,22 +52,22 @@
            DESIGN TOKENS
         ============================================================ */
         :root {
-            /* Surfaces */
-            --bg:           #0a0802;
-            --bg-2:         #110d04;
-            --bg-3:         #1a1408;
-            --bg-card:      #1c1709;
-            --bg-card-hover:#241d0c;
-            --border:       rgba(244, 196, 48, 0.10);
-            --border-strong:rgba(244, 196, 48, 0.22);
+            /* Surfaces — warm charcoal, lifted off pure black for more light */
+            --bg:           #121009;
+            --bg-2:         #1a160c;
+            --bg-3:         #241d10;
+            --bg-card:      #221c0e;
+            --bg-card-hover:#2c2412;
+            --border:       rgba(244, 196, 48, 0.13);
+            --border-strong:rgba(244, 196, 48, 0.26);
 
             /* Kente palette (gold / green / red) */
             --gold:    #f4c430;
-            --gold-dim:rgba(244, 196, 48, 0.14);
-            --green:   #1a8040;
-            --green-dim:rgba(26, 128, 64, 0.14);
-            --red:     #c41e3a;
-            --red-dim: rgba(196, 30, 58, 0.14);
+            --gold-dim:rgba(244, 196, 48, 0.18);
+            --green:   #1f9249;
+            --green-dim:rgba(31, 146, 73, 0.18);
+            --red:     #d4324b;
+            --red-dim: rgba(212, 50, 75, 0.17);
 
             /* Type */
             --ink:     #f5edd8;
@@ -143,6 +143,20 @@
             opacity: 0.035;
             mix-blend-mode: overlay;
             background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.96  0 0 0 0 0.85  0 0 0 0 0.52  0 0 0 1 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+        }
+
+        /* Ambient warm light wash — soft Kente-tinted glows that add
+           color and luminosity behind the content without washing it out */
+        body::after {
+            content: '';
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            background:
+                radial-gradient(62% 52% at 16% 10%, rgba(244, 196, 48, 0.07), transparent 70%),
+                radial-gradient(55% 48% at 86% 20%, rgba(31, 146, 73, 0.055), transparent 72%),
+                radial-gradient(75% 60% at 50% 112%, rgba(212, 50, 75, 0.05), transparent 70%);
         }
 
         /* Ambient microbiology layer — viewport-fixed for performance.
@@ -475,9 +489,10 @@
             justify-content: center;
             overflow: hidden;
             background:
-                radial-gradient(ellipse 80% 60% at 50% 35%, rgba(244, 196, 48, 0.08), transparent 70%),
-                radial-gradient(ellipse 60% 50% at 80% 80%, rgba(26, 128, 64, 0.08), transparent 70%),
-                linear-gradient(180deg, #0a0802 0%, #15100c 50%, #0a0802 100%);
+                radial-gradient(ellipse 80% 60% at 50% 35%, rgba(244, 196, 48, 0.11), transparent 70%),
+                radial-gradient(ellipse 60% 50% at 80% 80%, rgba(31, 146, 73, 0.09), transparent 70%),
+                radial-gradient(ellipse 55% 45% at 16% 78%, rgba(212, 50, 75, 0.06), transparent 72%),
+                linear-gradient(180deg, #15120a 0%, #1d1810 50%, #14110a 100%);
         }
         .hero-canvas {
             position: absolute;
@@ -490,7 +505,7 @@
             position: absolute;
             inset: 0;
             background:
-                radial-gradient(ellipse at center, transparent 0%, rgba(10, 8, 2, 0.85) 80%);
+                radial-gradient(ellipse at center, transparent 0%, rgba(18, 16, 9, 0.74) 82%);
             z-index: 2;
         }
         .hero-content {
@@ -6074,17 +6089,17 @@
             }
             ctx.restore();
 
-            /* ════ ERUPTION — ember glow, lava flows, molten crater, arcing embers ════ */
+            /* ════ ERUPTION — gentle ember glow, soft lava trickles, drifting embers ════ */
             const vx = volc.cx, vy = volc.sumY, vHalf = volc.half, vSum = volc.sumHalf, vdy = volc.dy;
-            const pulse = 0.5 + 0.5 * Math.sin(t * 1.6);
-            const lw = Math.max(3, w * 0.006);
+            const pulse = 0.5 + 0.5 * Math.sin(t * 0.9);
+            const lw = Math.max(2, w * 0.0038);
 
-            /* hot ember glow above the crater */
-            const glowR = vHalf * (0.58 + 0.08 * pulse);
+            /* soft ember glow above the crater */
+            const glowR = vHalf * (0.42 + 0.05 * pulse);
             const cg = ctx.createRadialGradient(vx, vy, 0, vx, vy - glowR * 0.18, glowR);
-            cg.addColorStop(0,   'rgba(255,150,46,' + (0.30 + 0.10 * pulse).toFixed(3) + ')');
-            cg.addColorStop(0.42,'rgba(220,70,22,' + (0.13 + 0.05 * pulse).toFixed(3) + ')');
-            cg.addColorStop(1,   'rgba(120,22,10,0)');
+            cg.addColorStop(0,   'rgba(255,160,60,' + (0.15 + 0.05 * pulse).toFixed(3) + ')');
+            cg.addColorStop(0.42,'rgba(220,80,30,' + (0.07 + 0.03 * pulse).toFixed(3) + ')');
+            cg.addColorStop(1,   'rgba(120,30,14,0)');
             ctx.save(); ctx.globalCompositeOperation = 'lighter'; ctx.fillStyle = cg;
             ctx.beginPath(); ctx.arc(vx, vy - glowR * 0.15, glowR, 0, Math.PI * 2); ctx.fill(); ctx.restore();
 
@@ -6094,52 +6109,51 @@
                 ctx.save();
                 ctx.globalCompositeOperation = 'lighter';
                 ctx.lineCap = 'round'; ctx.lineJoin = 'round';
-                ctx.shadowColor = 'rgba(255,120,30,0.9)'; ctx.shadowBlur = 8;
+                ctx.shadowColor = 'rgba(255,130,40,0.6)'; ctx.shadowBlur = 5;
                 ctx.beginPath();
                 for (let i = 0; i <= segs; i++) {
                     const f = i / segs;
                     const y = startY + (endY - startY) * f;
                     const drift = endXoff * f * f;
-                    const wob = Math.sin(f * 7 + t * 2.2 + seed) * (4 + 8 * f) * (1 - f * 0.3);
+                    const wob = Math.sin(f * 7 + t * 1.6 + seed) * (2 + 5 * f) * (1 - f * 0.3);
                     const x = sx + drift + wob;
                     if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
                 }
                 const lg = ctx.createLinearGradient(0, startY, 0, endY);
-                lg.addColorStop(0,    'rgba(255,238,150,0.85)');
-                lg.addColorStop(0.25, 'rgba(255,150,40,0.80)');
-                lg.addColorStop(0.70, 'rgba(210,40,20,0.50)');
-                lg.addColorStop(1,    'rgba(120,18,12,0)');
+                lg.addColorStop(0,    'rgba(255,224,150,0.55)');
+                lg.addColorStop(0.25, 'rgba(255,150,50,0.48)');
+                lg.addColorStop(0.70, 'rgba(205,55,28,0.28)');
+                lg.addColorStop(1,    'rgba(120,24,14,0)');
                 ctx.strokeStyle = lg; ctx.lineWidth = width; ctx.stroke();
                 ctx.shadowBlur = 0;
                 ctx.lineWidth = width * 0.4;
-                ctx.strokeStyle = 'rgba(255,244,200,' + (0.45 + 0.3 * pulse).toFixed(3) + ')';
+                ctx.strokeStyle = 'rgba(255,238,190,' + (0.22 + 0.15 * pulse).toFixed(3) + ')';
                 ctx.stroke();
                 ctx.restore();
             }
-            lavaFlow(vx - vSum * 0.6, -vHalf * 0.50, 0.62, lw,        0.0);
-            lavaFlow(vx + vSum * 0.2,  vHalf * 0.62, 0.70, lw * 1.10, 2.0);
-            lavaFlow(vx + vSum * 0.8,  vHalf * 0.30, 0.50, lw * 0.70, 4.0);
+            lavaFlow(vx - vSum * 0.5, -vHalf * 0.42, 0.46, lw,       0.0);
+            lavaFlow(vx + vSum * 0.4,  vHalf * 0.50, 0.52, lw * 0.9, 2.0);
 
-            /* molten crater pool at the summit */
+            /* soft molten crater pool at the summit */
             ctx.save(); ctx.globalCompositeOperation = 'lighter';
-            const pool = ctx.createRadialGradient(vx, vy, 0, vx, vy, vSum * 3.0);
-            pool.addColorStop(0,   'rgba(255,240,170,0.92)');
-            pool.addColorStop(0.5, 'rgba(255,120,30,0.70)');
-            pool.addColorStop(1,   'rgba(200,40,15,0)');
+            const pool = ctx.createRadialGradient(vx, vy, 0, vx, vy, vSum * 2.2);
+            pool.addColorStop(0,   'rgba(255,228,160,0.58)');
+            pool.addColorStop(0.5, 'rgba(255,135,45,0.40)');
+            pool.addColorStop(1,   'rgba(200,55,22,0)');
             ctx.fillStyle = pool; ctx.beginPath();
-            ctx.ellipse(vx, vy, vSum * 3.0, vSum * 1.5, 0, 0, Math.PI * 2); ctx.fill(); ctx.restore();
+            ctx.ellipse(vx, vy, vSum * 2.2, vSum * 1.2, 0, 0, Math.PI * 2); ctx.fill(); ctx.restore();
 
-            /* erupting embers arcing out of the crater */
+            /* a few embers drifting up from the crater */
             ctx.save(); ctx.globalCompositeOperation = 'lighter';
-            for (let i = 0; i < 9; i++) {
+            for (let i = 0; i < 5; i++) {
                 const seed = i * 1.618;
-                const life = (t * 0.6 + seed) % 1;
-                const ev   = (fbmRnd(seed) - 0.5) * vHalf * 0.95;
-                const apex = vdy * (0.22 + 0.18 * fbmRnd(seed + 7));
+                const life = (t * 0.5 + seed) % 1;
+                const ev   = (fbmRnd(seed) - 0.5) * vHalf * 0.65;
+                const apex = vdy * (0.13 + 0.11 * fbmRnd(seed + 7));
                 const px = vx + ev * life;
                 const py = vy - apex * 4 * life * (1 - life);
-                const r  = (2 + 3 * fbmRnd(seed + 3)) * (1 - life * 0.5);
-                const a  = (1 - life) * 0.9;
+                const r  = (1.4 + 2 * fbmRnd(seed + 3)) * (1 - life * 0.5);
+                const a  = (1 - life) * 0.5;
                 const bg = ctx.createRadialGradient(px, py, 0, px, py, r * 2.2);
                 bg.addColorStop(0,   'rgba(255,240,180,' + a.toFixed(3) + ')');
                 bg.addColorStop(0.5, 'rgba(255,130,30,' + (a * 0.7).toFixed(3) + ')');
