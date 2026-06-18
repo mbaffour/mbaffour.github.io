@@ -1612,6 +1612,16 @@
             border-color: var(--ink);
         }
 
+        /* Clickable tool cards — the whole card opens the app, while the
+           action buttons (Open / Blog) stay independently clickable above it. */
+        .proj-card--link { cursor: pointer; }
+        .proj-card--link:hover { border-color: var(--gold); transform: translateY(-3px); }
+        .proj-card--link h3 { transition: color .2s ease; }
+        .proj-card--link:hover h3 { color: var(--gold); }
+        .proj-card-stretch { position: absolute; inset: 0; z-index: 1; font-size: 0; line-height: 0; }
+        .proj-card--link .proj-body { position: relative; }
+        .proj-card--link .proj-actions { position: relative; z-index: 2; }
+
         /* News card variant */
         .proj-card.news-card .proj-thumb {
             background: linear-gradient(135deg, var(--bg-2), var(--bg-3));
@@ -5279,7 +5289,8 @@
         const container = document.getElementById('toolsGrid');
         const filtered = filter === 'all' ? tools : tools.filter(t => t.stack === filter);
         container.innerHTML = filtered.map(t => `
-            <div class="proj-card ${t.featured ? 'featured' : ''}" data-stack="${t.stack}">
+            <div class="proj-card ${t.app ? 'proj-card--link' : ''} ${t.featured ? 'featured' : ''}" data-stack="${t.stack}">
+                ${t.app ? `<a class="proj-card-stretch" href="${t.app}" target="_blank" rel="noopener" aria-label="Open ${t.title}"></a>` : ''}
                 <div class="proj-thumb">
                     ${SVG_PREVIEWS[t.preview] || ''}
                     <span class="proj-category-pill science">${t.stack.toUpperCase()}</span>
@@ -7291,7 +7302,11 @@
             { type: 'link',    label: 'Twitter / X',          hint: '@AwuahMB',            href: 'https://twitter.com/AwuahMB', icon: '𝕏', external: true },
             { type: 'link',    label: 'Download CV (PDF)',    hint: 'résumé',              href: 'cv & resume/Michael_Baffour_Awuah_CV.pdf', icon: '📄', external: false }
         ];
-        const toolItems = tools.map(t => ({ type: 'tool', label: t.title, hint: t.tech.join(' · '), href: t.app || t.blog, icon: '🧰', external: true }));
+        const toolItems = tools.flatMap(t => {
+            const out = [{ type: 'tool', label: t.title, hint: t.tech.join(' · '), href: t.app || t.blog, icon: '🧰', external: true }];
+            if (t.blog && t.blog !== t.app) out.push({ type: 'tool', label: t.title + ' — Blog', hint: 'write-up · how it works', href: t.blog, icon: '📝', external: true });
+            return out;
+        });
         const pubItems  = publications.map(p => ({ type: 'pub', label: p.title, hint: p.journal + ' · ' + p.year, href: p.doi, icon: '📖', external: true }));
         const items = [...baseItems, ...pubItems, ...toolItems];
 
