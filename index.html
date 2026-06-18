@@ -6010,7 +6010,8 @@
             }
             const topY = Math.min(...pts.map(p => p.y));
             const g = ctx.createLinearGradient(0, topY, 0, baseY);
-            g.addColorStop(0, col0); g.addColorStop(0.7, col1); g.addColorStop(1, 'rgba(0,0,0,0)');
+            // flat silhouette tone, fading only near the base for depth
+            g.addColorStop(0, col0); g.addColorStop(0.82, col0); g.addColorStop(1, 'rgba(0,0,0,0)');
             ctx.save(); ctx.fillStyle = g; ctx.beginPath();
             mountainSpline(pts);
             ctx.lineTo(pts[pts.length - 1].x, baseY + 2);
@@ -6040,7 +6041,8 @@
                 const lbx = cx - half, rbx = cx + half, slx = cx - sumHalf, srx = cx + sumHalf;
                 const c = 0.52 - 0.28 * sharp, k = 0.12 - 0.09 * sharp;
                 const g = ctx.createLinearGradient(0, sumY, 0, baseY);
-                g.addColorStop(0, col0); g.addColorStop(0.6, col1); g.addColorStop(1, 'rgba(0,0,0,0)');
+                // flat, illustrated silhouette: a single tone that only fades near the base
+                g.addColorStop(0, col0); g.addColorStop(0.84, col0); g.addColorStop(1, 'rgba(0,0,0,0)');
                 ctx.save(); ctx.fillStyle = g; ctx.beginPath();
                 ctx.moveTo(lbx, baseY);
                 ctx.bezierCurveTo(cx - half * c, baseY - dy * 0.30, slx - w * 0.012, sumY + dy * k, slx, sumY);
