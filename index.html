@@ -6057,12 +6057,35 @@
             }
 
             /* the range — varied peaks, back to front (volcano is the hero, not the tallest) */
-            drawPeak(w * 0.025, h * 0.520, w * 0.120, w * 0.012, 'rgba(60,70,110,0.34)', 'rgba(40,48,84,0.16)', 0.55);
-            drawPeak(w * 0.400, h * 0.500, w * 0.130, w * 0.010, 'rgba(58,68,108,0.36)', 'rgba(38,46,82,0.17)', 0.70);
+            const pkA = drawPeak(w * 0.025, h * 0.520, w * 0.120, w * 0.012, 'rgba(60,70,110,0.34)', 'rgba(40,48,84,0.16)', 0.55);
+            const pkB = drawPeak(w * 0.400, h * 0.500, w * 0.130, w * 0.010, 'rgba(58,68,108,0.36)', 'rgba(38,46,82,0.17)', 0.70);
             drawPeak(w * 0.110, h * 0.560, w * 0.100, w * 0.012, 'rgba(64,74,116,0.46)', 'rgba(42,50,88,0.24)', 0.40);
             drawPeak(w * 0.320, h * 0.565, w * 0.115, w * 0.011, 'rgba(66,76,118,0.48)', 'rgba(44,52,90,0.25)', 0.50);
             drawPeak(w * 0.480, h * 0.585, w * 0.090, w * 0.010, 'rgba(62,72,112,0.44)', 'rgba(40,48,84,0.22)', 0.60);
             const volc = drawPeak(w * 0.215, h * 0.470, w * 0.150, w * 0.016, 'rgba(70,78,118,0.62)', 'rgba(46,54,90,0.34)', 0.30);
+
+            /* ─── snow caps on the highest peaks (clean, like Popocatépetl) ─── */
+            function snowCap(pk, drop, alpha) {
+                const { cx, sumY, sumHalf, half, dy } = pk;
+                const slx = cx - sumHalf, srx = cx + sumHalf;
+                const hw = sumHalf + (half - sumHalf) * Math.pow(drop, 0.85);
+                const lx = cx - hw, rx = cx + hw, capBot = sumY + dy * drop;
+                const g = ctx.createLinearGradient(0, sumY, 0, capBot);
+                g.addColorStop(0, 'rgba(234,238,250,' + alpha.toFixed(3) + ')');
+                g.addColorStop(1, 'rgba(192,202,228,' + (alpha * 0.35).toFixed(3) + ')');
+                ctx.save(); ctx.fillStyle = g; ctx.beginPath();
+                ctx.moveTo(slx, sumY); ctx.lineTo(srx, sumY); ctx.lineTo(rx, capBot);
+                const teeth = 6;
+                for (let i = teeth; i >= 0; i--) {                 // jagged snow line
+                    const tt = i / teeth, xx = lx + (rx - lx) * tt;
+                    const yy = capBot - dy * 0.06 * fbmRnd(cx + i * 3.7) - (i % 2 === 0 ? dy * 0.028 : 0);
+                    ctx.lineTo(xx, yy);
+                }
+                ctx.lineTo(slx, sumY); ctx.closePath(); ctx.fill(); ctx.restore();
+            }
+            snowCap(pkA, 0.20, 0.46);
+            snowCap(pkB, 0.18, 0.46);
+            snowCap(volc, 0.15, 0.60);
 
             /* ─── drifting clouds that wreathe & cover parts of the range ─── */
             function cloudPuff(cx, cy, rw, rh, a) {
@@ -6089,76 +6112,60 @@
             }
             ctx.restore();
 
-            /* ════ ERUPTION — gentle ember glow, soft lava trickles, drifting embers ════ */
-            const vx = volc.cx, vy = volc.sumY, vHalf = volc.half, vSum = volc.sumHalf, vdy = volc.dy;
-            const pulse = 0.5 + 0.5 * Math.sin(t * 0.9);
-            const lw = Math.max(2, w * 0.0038);
-
-            /* soft ember glow above the crater */
-            const glowR = vHalf * (0.42 + 0.05 * pulse);
-            const cg = ctx.createRadialGradient(vx, vy, 0, vx, vy - glowR * 0.18, glowR);
-            cg.addColorStop(0,   'rgba(255,160,60,' + (0.15 + 0.05 * pulse).toFixed(3) + ')');
-            cg.addColorStop(0.42,'rgba(220,80,30,' + (0.07 + 0.03 * pulse).toFixed(3) + ')');
-            cg.addColorStop(1,   'rgba(120,30,14,0)');
-            ctx.save(); ctx.globalCompositeOperation = 'lighter'; ctx.fillStyle = cg;
-            ctx.beginPath(); ctx.arc(vx, vy - glowR * 0.15, glowR, 0, Math.PI * 2); ctx.fill(); ctx.restore();
-
-            /* lava streams spilling from the crater down the flanks */
-            function lavaFlow(sx, endXoff, endF, width, seed) {
-                const segs = 14, startY = vy + 2, endY = vy + vdy * endF;
+            /* ─── a lone phage drifting across the range (my signature, like the rider on the reference's trail) ─── */
+            (function () {
+                const prog = (t * 0.02) % 1;
+                const px = w * (-0.03 + 0.62 * prog);
+                const py = h * 0.30 + Math.sin(prog * Math.PI * 3) * h * 0.022;
+                const a = 0.5 * Math.sin(prog * Math.PI);          // fade in/out at the edges
+                if (a <= 0.01) return;
+                const R = Math.max(5, w * 0.011);
                 ctx.save();
-                ctx.globalCompositeOperation = 'lighter';
+                ctx.translate(px, py);
+                ctx.globalAlpha = a;
+                ctx.lineWidth = Math.max(1, R * 0.18);
                 ctx.lineCap = 'round'; ctx.lineJoin = 'round';
-                ctx.shadowColor = 'rgba(255,130,40,0.6)'; ctx.shadowBlur = 5;
-                ctx.beginPath();
-                for (let i = 0; i <= segs; i++) {
-                    const f = i / segs;
-                    const y = startY + (endY - startY) * f;
-                    const drift = endXoff * f * f;
-                    const wob = Math.sin(f * 7 + t * 1.6 + seed) * (2 + 5 * f) * (1 - f * 0.3);
-                    const x = sx + drift + wob;
-                    if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+                ctx.strokeStyle = 'rgba(244,196,48,0.95)';
+                ctx.fillStyle = 'rgba(244,196,48,0.80)';
+                ctx.shadowColor = 'rgba(244,196,48,0.5)'; ctx.shadowBlur = R * 0.8;
+                ctx.beginPath();                                    // icosahedral head
+                for (let k = 0; k < 6; k++) {
+                    const ang = Math.PI / 6 + k * Math.PI / 3;
+                    const hx = Math.cos(ang) * R, hy = -R * 0.35 + Math.sin(ang) * R;
+                    k === 0 ? ctx.moveTo(hx, hy) : ctx.lineTo(hx, hy);
                 }
-                const lg = ctx.createLinearGradient(0, startY, 0, endY);
-                lg.addColorStop(0,    'rgba(255,224,150,0.55)');
-                lg.addColorStop(0.25, 'rgba(255,150,50,0.48)');
-                lg.addColorStop(0.70, 'rgba(205,55,28,0.28)');
-                lg.addColorStop(1,    'rgba(120,24,14,0)');
-                ctx.strokeStyle = lg; ctx.lineWidth = width; ctx.stroke();
+                ctx.closePath(); ctx.fill();
                 ctx.shadowBlur = 0;
-                ctx.lineWidth = width * 0.4;
-                ctx.strokeStyle = 'rgba(255,238,190,' + (0.22 + 0.15 * pulse).toFixed(3) + ')';
+                ctx.beginPath(); ctx.moveTo(0, R * 0.65); ctx.lineTo(0, R * 1.7); ctx.stroke();   // tail
+                ctx.beginPath(); ctx.moveTo(-R * 0.5, R * 1.7); ctx.lineTo(R * 0.5, R * 1.7); ctx.stroke(); // baseplate
+                ctx.beginPath();                                    // legs
+                ctx.moveTo(-R * 0.5, R * 1.7); ctx.lineTo(-R * 0.95, R * 2.35);
+                ctx.moveTo(R * 0.5, R * 1.7);  ctx.lineTo(R * 0.95, R * 2.35);
+                ctx.moveTo(0, R * 1.7); ctx.lineTo(0, R * 2.45);
                 ctx.stroke();
                 ctx.restore();
-            }
-            lavaFlow(vx - vSum * 0.5, -vHalf * 0.42, 0.46, lw,       0.0);
-            lavaFlow(vx + vSum * 0.4,  vHalf * 0.50, 0.52, lw * 0.9, 2.0);
+            })();
 
-            /* soft molten crater pool at the summit */
-            ctx.save(); ctx.globalCompositeOperation = 'lighter';
-            const pool = ctx.createRadialGradient(vx, vy, 0, vx, vy, vSum * 2.2);
-            pool.addColorStop(0,   'rgba(255,228,160,0.58)');
-            pool.addColorStop(0.5, 'rgba(255,135,45,0.40)');
-            pool.addColorStop(1,   'rgba(200,55,22,0)');
-            ctx.fillStyle = pool; ctx.beginPath();
-            ctx.ellipse(vx, vy, vSum * 2.2, vSum * 1.2, 0, 0, Math.PI * 2); ctx.fill(); ctx.restore();
-
-            /* a few embers drifting up from the crater */
-            ctx.save(); ctx.globalCompositeOperation = 'lighter';
-            for (let i = 0; i < 5; i++) {
-                const seed = i * 1.618;
-                const life = (t * 0.5 + seed) % 1;
-                const ev   = (fbmRnd(seed) - 0.5) * vHalf * 0.65;
-                const apex = vdy * (0.13 + 0.11 * fbmRnd(seed + 7));
-                const px = vx + ev * life;
-                const py = vy - apex * 4 * life * (1 - life);
-                const r  = (1.4 + 2 * fbmRnd(seed + 3)) * (1 - life * 0.5);
-                const a  = (1 - life) * 0.5;
-                const bg = ctx.createRadialGradient(px, py, 0, px, py, r * 2.2);
-                bg.addColorStop(0,   'rgba(255,240,180,' + a.toFixed(3) + ')');
-                bg.addColorStop(0.5, 'rgba(255,130,30,' + (a * 0.7).toFixed(3) + ')');
-                bg.addColorStop(1,   'rgba(200,40,15,0)');
-                ctx.fillStyle = bg; ctx.beginPath(); ctx.arc(px, py, r * 2.2, 0, Math.PI * 2); ctx.fill();
+            /* ════ STEAM PLUME — a thin, slow column of smoke drifting from the summit (no fire) ════ */
+            const vx = volc.cx, vy = volc.sumY, vHalf = volc.half, vSum = volc.sumHalf, vdy = volc.dy;
+            const N = 12, windDrift = vHalf * 1.7, riseH = vdy * 1.25;
+            ctx.save();
+            for (let i = 0; i < N; i++) {
+                const seed = i * 2.399;
+                const life = ((t * 0.06) + i / N) % 1;     // slow, staggered rise
+                const ease = life;
+                const y = vy - riseH * ease;
+                const sway = Math.sin(ease * 3 + t * 0.5 + seed) * vHalf * 0.5 * ease;
+                const x = vx + windDrift * ease * ease + sway;
+                const r = vSum * (1.1 + 3.4 * ease);        // disperses as it rises
+                const a = 0.16 * Math.sin(Math.PI * life);  // fade in, then out
+                if (a <= 0.002) continue;
+                const g = ctx.createRadialGradient(x, y, 0, x, y, r);
+                g.addColorStop(0,   'rgba(204,202,200,' + a.toFixed(3) + ')');
+                g.addColorStop(0.6, 'rgba(172,170,172,' + (a * 0.5).toFixed(3) + ')');
+                g.addColorStop(1,   'rgba(150,150,156,0)');
+                ctx.fillStyle = g;
+                ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI * 2); ctx.fill();
             }
             ctx.restore();
         }
