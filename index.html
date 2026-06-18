@@ -3940,15 +3940,15 @@
     <!-- ===== BUILDING NEXT — TAILFIBER CONCEPT ===== -->
     <section class="section fade-in" id="next">
         <div class="section-header">
-            <span class="section-label">In the Lab Notebook</span>
-            <h2 class="section-title">Building <span class="highlight">Next</span></h2>
-            <p class="section-subtitle">An educational mini-game about phage–host interactions. Sketching it now.</p>
+            <span class="section-label">Outreach · Now Playable</span>
+            <h2 class="section-title">Now <span class="highlight">Playable</span></h2>
+            <p class="section-subtitle">An educational mini-game about phage–host interactions — finished, and playable right here.</p>
         </div>
 
         <div class="concept-card">
             <div class="concept-status">
                 <span class="concept-status-dot"></span>
-                <span class="concept-status-label">In active development</span>
+                <span class="concept-status-label">Live · play it now</span>
             </div>
 
             <div class="concept-grid">
@@ -3988,7 +3988,7 @@
                         </div>
                     </div>
                     <div class="concept-actions">
-                        <a href="mailto:baffour@tamu.edu?subject=TailFiber%20early%20access" class="btn btn-primary">📬 Get early-access updates</a>
+                        <a href="mailto:baffour@tamu.edu?subject=TailFiber%20feedback" class="btn btn-primary">📬 Send feedback</a>
                         <a href="https://github.com/mbaffour" target="_blank" rel="noopener" class="btn btn-ghost">⌥ Follow on GitHub</a>
                     </div>
                 </div>
@@ -6022,212 +6022,61 @@
         function drawMountainRange() {
             const baseY = h * 0.82;
             const t = jPhase;
-            const X1 = w * 0.58;                       // the range occupies the left region
+            const X1 = w * 0.62;                        // the range fills the left / back
 
-            /* rolling-hill crest the trail (and the phage) ride along */
-            function rollY(x) {
-                const u = x / X1;
-                return h * 0.690 - h * 0.050 * Math.sin(u * 6.3 + 0.6) - h * 0.028 * Math.sin(u * 12.6 + 1.7);
-            }
-            /* a softer hill sitting just behind the front one */
-            function midY(x) {
-                const u = x / X1;
-                return h * 0.648 - h * 0.040 * Math.sin(u * 4.1 + 1.9) - h * 0.022 * Math.sin(u * 8.7 + 0.4);
-            }
-
-            /* dawn sky glow behind the range */
-            const sgx = w * 0.22, sgy = h * 0.40;
-            const sg = ctx.createRadialGradient(sgx, sgy - h * 0.04, 0, sgx, sgy, w * 0.42);
-            sg.addColorStop(0,   'rgba(120,112,150,0.11)');
-            sg.addColorStop(0.5, 'rgba(58,64,108,0.05)');
+            /* night-sky glow behind the range */
+            const sgx = w * 0.24, sgy = h * 0.40;
+            const sg = ctx.createRadialGradient(sgx, sgy - h * 0.04, 0, sgx, sgy, w * 0.46);
+            sg.addColorStop(0,   'rgba(96,104,150,0.12)');
+            sg.addColorStop(0.5, 'rgba(54,62,108,0.05)');
             sg.addColorStop(1,   'rgba(22,30,65,0.0)');
-            ctx.save(); ctx.fillStyle = sg; ctx.fillRect(0, 0, w * 0.58, h * 0.74); ctx.restore();
+            ctx.save(); ctx.fillStyle = sg; ctx.fillRect(0, 0, X1 + w * 0.08, h * 0.74); ctx.restore();
 
-            /* ─── far range: a low, flat, angular ridge that keeps the mountains set back ─── */
-            function farRidge(crestF, ampF, segs, seed, fill) {
-                ctx.save(); ctx.fillStyle = fill; ctx.beginPath();
-                ctx.moveTo(-w * 0.05, baseY);
-                ctx.lineTo(-w * 0.05, h * crestF);
+            /* ─── distant, layered mountain range (hazy back → softer front) ─── */
+            function rangeLayer(crestF, ampF, segs, seed, fill) {
+                const pts = [];
                 for (let i = 0; i <= segs; i++) {
                     const tt = i / segs;
-                    const x = -w * 0.05 + (X1 + w * 0.08) * tt;
-                    const env = 0.55 + 0.45 * Math.sin(tt * Math.PI);
-                    const y = h * crestF - ampF * h * (0.35 + 0.65 * fbmRnd(seed + i * 1.7)) * env;
-                    ctx.lineTo(x, y);
+                    const env = 0.45 + 0.55 * Math.pow(Math.sin(tt * Math.PI), 0.6);
+                    const jag = 0.45 + 0.55 * fbmRnd(seed + i * 1.7);
+                    pts.push({ x: -w * 0.05 + (X1 + w * 0.10) * tt, y: h * crestF - ampF * h * env * jag });
                 }
-                ctx.lineTo(X1 + w * 0.03, baseY); ctx.closePath(); ctx.fill(); ctx.restore();
-            }
-            farRidge(0.575, 0.090, 15, 4.2, 'rgba(54,62,100,0.26)');
-
-            /* ─── the volcano: the one hero peak, emerging from the flat range ─── */
-            function drawPeak(cx, sumY, half, sumHalf, col0, sharp) {
-                const dy = baseY - sumY;
-                const lbx = cx - half, rbx = cx + half, slx = cx - sumHalf, srx = cx + sumHalf;
-                const c = 0.52 - 0.28 * sharp, k = 0.12 - 0.09 * sharp;
-                const g = ctx.createLinearGradient(0, sumY, 0, baseY);
-                g.addColorStop(0, col0); g.addColorStop(0.84, col0); g.addColorStop(1, 'rgba(0,0,0,0)');
+                const topY = Math.min(...pts.map(p => p.y));
+                const g = ctx.createLinearGradient(0, topY, 0, baseY);
+                g.addColorStop(0, fill); g.addColorStop(0.85, fill); g.addColorStop(1, 'rgba(0,0,0,0)');
                 ctx.save(); ctx.fillStyle = g; ctx.beginPath();
-                ctx.moveTo(lbx, baseY);
-                ctx.bezierCurveTo(cx - half * c, baseY - dy * 0.30, slx - w * 0.012, sumY + dy * k, slx, sumY);
-                ctx.lineTo(srx, sumY);
-                ctx.bezierCurveTo(srx + w * 0.012, sumY + dy * k, cx + half * c, baseY - dy * 0.30, rbx, baseY);
-                ctx.closePath(); ctx.fill();
-                ctx.fillStyle = 'rgba(18,24,50,0.14)';
-                ctx.beginPath();
-                ctx.moveTo(cx, sumY); ctx.lineTo(srx, sumY);
-                ctx.bezierCurveTo(srx + w * 0.012, sumY + dy * k, cx + half * c, baseY - dy * 0.30, rbx, baseY);
-                ctx.lineTo(cx, baseY); ctx.closePath(); ctx.fill();
-                ctx.restore();
-                return { cx, sumY, half, sumHalf, dy };
+                mountainSpline(pts);
+                ctx.lineTo(pts[pts.length - 1].x, baseY + 2);
+                ctx.lineTo(pts[0].x, baseY + 2);
+                ctx.closePath(); ctx.fill(); ctx.restore();
             }
-            const volc = drawPeak(w * 0.215, h * 0.486, w * 0.140, w * 0.015, 'rgba(70,78,118,0.52)', 0.34);
+            rangeLayer(0.50,  0.15, 9,  3.1,  'rgba(60,70,114,0.16)');   // farthest, palest
+            rangeLayer(0.55,  0.18, 11, 7.4,  'rgba(50,60,104,0.22)');
+            rangeLayer(0.605, 0.20, 13, 12.8, 'rgba(42,52,94,0.30)');    // nearest, darkest
 
-            /* a second low ridge in front of the volcano base, for depth */
-            farRidge(0.620, 0.060, 13, 9.7, 'rgba(44,52,86,0.30)');
-
-            /* ─── snow cap on the volcano (clean, like a distant Fuji) ─── */
-            function snowCap(pk, drop, alpha) {
-                const { cx, sumY, sumHalf, half, dy } = pk;
-                const slx = cx - sumHalf, srx = cx + sumHalf;
-                const hw = sumHalf + (half - sumHalf) * Math.pow(drop, 0.85);
-                const lx = cx - hw, rx = cx + hw, capBot = sumY + dy * drop;
-                const g = ctx.createLinearGradient(0, sumY, 0, capBot);
-                g.addColorStop(0, 'rgba(234,238,250,' + alpha.toFixed(3) + ')');
-                g.addColorStop(1, 'rgba(192,202,228,' + (alpha * 0.35).toFixed(3) + ')');
-                ctx.save(); ctx.fillStyle = g; ctx.beginPath();
-                ctx.moveTo(slx, sumY); ctx.lineTo(srx, sumY); ctx.lineTo(rx, capBot);
-                const teeth = 6;
-                for (let i = teeth; i >= 0; i--) {                 // jagged snow line
-                    const tt = i / teeth, xx = lx + (rx - lx) * tt;
-                    const yy = capBot - dy * 0.06 * fbmRnd(cx + i * 3.7) - (i % 2 === 0 ? dy * 0.028 : 0);
-                    ctx.lineTo(xx, yy);
-                }
-                ctx.lineTo(slx, sumY); ctx.closePath(); ctx.fill(); ctx.restore();
-            }
-            snowCap(volc, 0.15, 0.56);
-
-            /* ─── mid rolling hill ─── */
-            (function () {
-                ctx.save(); ctx.fillStyle = 'rgba(40,50,82,0.32)'; ctx.beginPath();
-                ctx.moveTo(0, baseY);
-                for (let x = 0; x <= X1; x += 8) ctx.lineTo(x, midY(x));
-                ctx.lineTo(X1, baseY); ctx.closePath(); ctx.fill(); ctx.restore();
-            })();
-
-            /* ─── drifting clouds that wreathe the range ─── */
+            /* ─── distant drifting clouds ─── */
             function cloudPuff(cx, cy, rw, rh, a) {
                 const blobs = [[0,0,1.0],[-0.55,0.10,0.72],[0.55,0.10,0.74],[-0.95,0.26,0.50],[0.95,0.24,0.52],[0.22,-0.16,0.60],[-0.28,-0.13,0.56]];
                 for (const [dx, dyb, s] of blobs) {
                     const bx = cx + dx * rw, by = cy + dyb * rh, br = rh * s * 1.7;
                     const g = ctx.createRadialGradient(bx, by, 0, bx, by, br);
-                    g.addColorStop(0,   'rgba(208,208,226,' + a.toFixed(3) + ')');
-                    g.addColorStop(0.6, 'rgba(176,180,202,' + (a * 0.55).toFixed(3) + ')');
-                    g.addColorStop(1,   'rgba(176,180,202,0)');
+                    g.addColorStop(0,   'rgba(208,212,230,' + a.toFixed(3) + ')');
+                    g.addColorStop(0.6, 'rgba(178,184,208,' + (a * 0.5).toFixed(3) + ')');
+                    g.addColorStop(1,   'rgba(178,184,208,0)');
                     ctx.fillStyle = g; ctx.beginPath(); ctx.arc(bx, by, br, 0, Math.PI * 2); ctx.fill();
                 }
             }
             const bands = [
-                { x: 0.09, y: 0.500, s: 1.00, a: 0.20, sp: 0.40 },
-                { x: 0.34, y: 0.545, s: 1.25, a: 0.22, sp: 0.30 },
-                { x: 0.26, y: 0.455, s: 0.80, a: 0.15, sp: 0.55 },
-                { x: 0.47, y: 0.525, s: 0.95, a: 0.20, sp: 0.35 }
+                { x: 0.10, y: 0.34, s: 1.1, a: 0.16, sp: 0.020 },
+                { x: 0.40, y: 0.27, s: 1.4, a: 0.17, sp: 0.013 },
+                { x: 0.24, y: 0.46, s: 0.9, a: 0.12, sp: 0.026 },
+                { x: 0.52, y: 0.40, s: 1.0, a: 0.14, sp: 0.017 }
             ];
             ctx.save();
             for (const b of bands) {
-                const sway = Math.sin(t * b.sp * 0.5 + b.x * 9) * w * 0.025;
-                cloudPuff(w * b.x + sway, h * b.y, w * 0.12 * b.s, h * 0.030 * b.s, b.a);
-            }
-            ctx.restore();
-
-            /* ─── front rolling hill (the ground the trail rides on) ─── */
-            (function () {
-                const g = ctx.createLinearGradient(0, h * 0.62, 0, baseY);
-                g.addColorStop(0, 'rgba(34,44,74,0.44)');
-                g.addColorStop(1, 'rgba(28,36,64,0.28)');
-                ctx.save(); ctx.fillStyle = g; ctx.beginPath();
-                ctx.moveTo(0, baseY);
-                for (let x = 0; x <= X1; x += 6) ctx.lineTo(x, rollY(x));
-                ctx.lineTo(X1, baseY); ctx.closePath(); ctx.fill(); ctx.restore();
-            })();
-
-            /* ─── the dashed trail along the front hill ─── */
-            ctx.save();
-            ctx.setLineDash([2, 9]);
-            ctx.lineWidth = Math.max(1.2, w * 0.0016);
-            ctx.lineCap = 'round';
-            ctx.strokeStyle = 'rgba(244,196,48,0.30)';
-            ctx.beginPath(); ctx.moveTo(0, rollY(0));
-            for (let x = 0; x <= X1; x += 6) ctx.lineTo(x, rollY(x));
-            ctx.stroke(); ctx.restore();
-
-            /* ─── a phage riding the trail (my signature, on the reference's path) ─── */
-            (function () {
-                const prog = (t * 0.05) % 1;
-                const rx = X1 * prog;
-                const ry = rollY(rx);
-                let ang = Math.atan((rollY(rx + 2) - rollY(rx - 2)) / 4);
-                ang = Math.max(-0.5, Math.min(0.5, ang));
-                const R = Math.max(5, w * 0.0095);
-                const wheelR = R * 0.42;
-                const spin = rx / wheelR;
-                ctx.save();
-                ctx.translate(rx, ry);
-                ctx.rotate(ang);
-                ctx.translate(0, Math.sin(t * 4 + prog * 30) * R * 0.05);   // gentle bob
-                ctx.globalAlpha = 0.62;
-                ctx.lineWidth = Math.max(1, R * 0.16);
-                ctx.lineCap = 'round'; ctx.lineJoin = 'round';
-                ctx.strokeStyle = 'rgba(244,196,48,0.95)';
-                ctx.fillStyle = 'rgba(244,196,48,0.82)';
-                /* two little wheels that spin as it travels */
-                for (const wx of [-R * 0.85, R * 0.85]) {
-                    ctx.save(); ctx.translate(wx, -wheelR); ctx.rotate(spin);
-                    ctx.beginPath(); ctx.arc(0, 0, wheelR, 0, Math.PI * 2); ctx.stroke();
-                    ctx.beginPath(); ctx.moveTo(-wheelR, 0); ctx.lineTo(wheelR, 0);
-                    ctx.moveTo(0, -wheelR); ctx.lineTo(0, wheelR); ctx.stroke();
-                    ctx.restore();
-                }
-                const yBase = -2 * wheelR;                     // baseplate height
-                ctx.beginPath();                               // struts + baseplate
-                ctx.moveTo(-R * 0.5, yBase); ctx.lineTo(-R * 0.85, -wheelR);
-                ctx.moveTo(R * 0.5, yBase);  ctx.lineTo(R * 0.85, -wheelR);
-                ctx.moveTo(-R * 0.5, yBase); ctx.lineTo(R * 0.5, yBase);
-                ctx.stroke();
-                const yTailTop = yBase - R * 1.0;
-                ctx.beginPath(); ctx.moveTo(0, yBase); ctx.lineTo(0, yTailTop); ctx.stroke();   // tail
-                const yHead = yTailTop - R * 0.72;
-                ctx.shadowColor = 'rgba(244,196,48,0.5)'; ctx.shadowBlur = R * 0.7;
-                ctx.beginPath();                               // icosahedral head
-                for (let k = 0; k < 6; k++) {
-                    const a = Math.PI / 6 + k * Math.PI / 3;
-                    const hx = Math.cos(a) * R, hy = yHead + Math.sin(a) * R;
-                    k === 0 ? ctx.moveTo(hx, hy) : ctx.lineTo(hx, hy);
-                }
-                ctx.closePath(); ctx.fill();
-                ctx.shadowBlur = 0;
-                ctx.restore();
-            })();
-
-            /* ════ STEAM PLUME — a thin, slow column of smoke drifting from the summit (no fire) ════ */
-            const vx = volc.cx, vy = volc.sumY, vHalf = volc.half, vSum = volc.sumHalf, vdy = volc.dy;
-            const N = 12, windDrift = vHalf * 1.7, riseH = vdy * 1.25;
-            ctx.save();
-            for (let i = 0; i < N; i++) {
-                const seed = i * 2.399;
-                const life = ((t * 0.06) + i / N) % 1;     // slow, staggered rise
-                const ease = life;
-                const y = vy - riseH * ease;
-                const sway = Math.sin(ease * 3 + t * 0.5 + seed) * vHalf * 0.5 * ease;
-                const x = vx + windDrift * ease * ease + sway;
-                const r = vSum * (1.1 + 3.4 * ease);        // disperses as it rises
-                const a = 0.16 * Math.sin(Math.PI * life);  // fade in, then out
-                if (a <= 0.002) continue;
-                const g = ctx.createRadialGradient(x, y, 0, x, y, r);
-                g.addColorStop(0,   'rgba(204,202,200,' + a.toFixed(3) + ')');
-                g.addColorStop(0.6, 'rgba(172,170,172,' + (a * 0.5).toFixed(3) + ')');
-                g.addColorStop(1,   'rgba(150,150,156,0)');
-                ctx.fillStyle = g;
-                ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI * 2); ctx.fill();
+                const span = 1.6;
+                const fx = (b.x + t * b.sp * 0.02) % span;       // slow drift, then wrap
+                cloudPuff(w * (fx - 0.20), h * b.y, w * 0.12 * b.s, h * 0.030 * b.s, b.a);
             }
             ctx.restore();
         }
@@ -6291,14 +6140,21 @@
         ════════════════════════════════════ */
         function drawAccraSkyline() {
             const baseY = h * 0.80;
+            const t = jPhase;
             /* warm haze over right half */
             const haze = ctx.createLinearGradient(w * 0.45, 0, w, 0);
             haze.addColorStop(0,    'rgba(0,0,0,0)');
-            haze.addColorStop(0.12, 'rgba(80,52,18,0.05)');
-            haze.addColorStop(1,    'rgba(80,52,18,0.05)');
+            haze.addColorStop(0.12, 'rgba(96,62,22,0.06)');
+            haze.addColorStop(1,    'rgba(96,62,22,0.06)');
             ctx.save(); ctx.fillStyle = haze;
             ctx.fillRect(w * 0.45, 0, w * 0.55, h);
             ctx.restore();
+
+            /* warm ground glow from the lit city */
+            const cityGlow = ctx.createRadialGradient(w * 0.78, baseY, 0, w * 0.78, baseY, w * 0.34);
+            cityGlow.addColorStop(0, 'rgba(234,170,72,0.12)');
+            cityGlow.addColorStop(1, 'rgba(234,170,72,0)');
+            ctx.save(); ctx.fillStyle = cityGlow; ctx.fillRect(w * 0.45, h * 0.40, w * 0.55, h * 0.50); ctx.restore();
 
             /* varied building silhouettes */
             const bldgs = [
@@ -6310,22 +6166,30 @@
                 [0.956,0.026,0.24],
             ];
             const bGrd = ctx.createLinearGradient(0, h * 0.44, 0, baseY);
-            bGrd.addColorStop(0,   'rgba(62,42,18,0.24)');
-            bGrd.addColorStop(0.6, 'rgba(50,34,12,0.14)');
+            bGrd.addColorStop(0,   'rgba(40,28,14,0.40)');
+            bGrd.addColorStop(0.6, 'rgba(30,20,10,0.30)');
             bGrd.addColorStop(1,   'rgba(0,0,0,0)');
             ctx.save();
-            bldgs.forEach(([xr, wr, hr]) => {
+            bldgs.forEach(([xr, wr, hr], bi) => {
                 const bx = w * xr, bw = w * wr, bh = h * hr;
                 const fade = Math.max(0, Math.min(1, (xr - 0.50) / 0.08));
-                ctx.globalAlpha = fade * 0.22;
+                /* dark silhouette so the lit windows read */
+                ctx.globalAlpha = fade * 0.55;
                 ctx.fillStyle = bGrd;
                 ctx.fillRect(bx, baseY - bh, bw, bh + 2);
-                /* tiny window lights */
-                ctx.globalAlpha = fade * 0.09;
-                ctx.fillStyle = 'rgba(255,210,110,1)';
-                for (let wy = baseY - bh + 7; wy < baseY - 6; wy += 11) {
-                    for (let wx = bx + 3; wx < bx + bw - 3; wx += 8) {
-                        if (Math.random() > 0.45) ctx.fillRect(wx, wy, 2, 2);
+                /* lit windows — stable per window (fbm), a few gently twinkle */
+                let ry = 0;
+                for (let wy = baseY - bh + 7; wy < baseY - 6; wy += 11, ry++) {
+                    let rx = 0;
+                    for (let wx = bx + 3; wx < bx + bw - 3; wx += 8, rx++) {
+                        const seed = bi * 31.7 + ry * 7.3 + rx * 2.1;
+                        const on = fbmRnd(seed);
+                        if (on > 0.40) {
+                            const tw = on > 0.92 ? (0.55 + 0.45 * Math.sin(t * 1.3 + seed * 9)) : 1;
+                            ctx.globalAlpha = fade * 0.6 * tw;
+                            ctx.fillStyle = on > 0.78 ? 'rgba(255,228,150,1)' : 'rgba(255,200,116,1)';
+                            ctx.fillRect(wx, wy, 2, 2.4);
+                        }
                     }
                 }
             });
@@ -6333,7 +6197,7 @@
         }
 
         /* ════════════════════════════════════
-           CAPE COAST CASTLE
+           ELMINA CASTLE — whitewashed coastal fort, lit up at night
         ════════════════════════════════════ */
         function drawCoastalCastle() {
             const cx   = w * 0.70;
@@ -6342,18 +6206,18 @@
             const CH   = Math.min(h * 0.15, 116);
             const mW   = CW * 0.048, mH = CH * 0.11, mGap = CW * 0.038;
 
-            /* warm ambient glow */
-            const glow = ctx.createRadialGradient(cx, by - CH * 0.55, 0, cx, by - CH * 0.55, CW * 0.85);
-            glow.addColorStop(0,   'rgba(225,185,115,0.14)');
-            glow.addColorStop(0.6, 'rgba(180,130,70,0.06)');
+            /* warm ambient glow (floodlit walls) */
+            const glow = ctx.createRadialGradient(cx, by - CH * 0.55, 0, cx, by - CH * 0.55, CW * 0.95);
+            glow.addColorStop(0,   'rgba(232,196,128,0.22)');
+            glow.addColorStop(0.6, 'rgba(188,138,76,0.09)');
             glow.addColorStop(1,   'rgba(0,0,0,0)');
             ctx.save(); ctx.globalAlpha = 1; ctx.fillStyle = glow;
             ctx.fillRect(cx - CW * 1.1, by - CH * 1.8, CW * 2.2, CH * 2.0);
             ctx.restore();
 
             ctx.save();
-            ctx.globalAlpha = 0.24;
-            const cc = 'rgba(212,196,158,1)';
+            ctx.globalAlpha = 0.46;
+            const cc = 'rgba(232,224,206,1)';                 // whitewashed Elmina walls
 
             /* ── main curtain wall ── */
             ctx.fillStyle = cc;
@@ -6399,6 +6263,26 @@
             ctx.globalAlpha = 0.85;
             [-0.34, -0.20, -0.06, 0.09, 0.23].forEach(px => {
                 ctx.fillRect(cx + CW*px, by - CH*0.22, CW*0.048, CH*0.09);
+            });
+            ctx.restore();
+
+            /* ── lit windows (warm, floodlit fort) ── */
+            ctx.save();
+            ctx.globalAlpha = 0.85;
+            ctx.fillStyle = 'rgba(255,214,132,1)';
+            /* keep windows (two rows) */
+            for (let r = 0; r < 2; r++) {
+                for (let i = 0; i < 3; i++) {
+                    ctx.fillRect(cx - CW*0.075 + i*CW*0.06, by - CH*(0.70 - r*0.22), CW*0.022, CH*0.05);
+                }
+            }
+            /* curtain-wall windows */
+            [-0.32, -0.18, 0.18, 0.32].forEach(px => {
+                ctx.fillRect(cx + CW*px, by - CH*0.26, CW*0.02, CH*0.05);
+            });
+            /* bastion windows */
+            [-0.46, 0.42].forEach(px => {
+                ctx.fillRect(cx + CW*px, by - CH*0.42, CW*0.02, CH*0.05);
             });
             ctx.restore();
 
@@ -6909,20 +6793,25 @@
             jPhase += 0.022;
             gPhase += 0.025;
 
-            /* soft, blended atmospheric wash — no literal scenery */
-            drawAtmosphere();
+            /* distance: layered mountain range + drifting clouds (left/back) */
+            drawMountainRange();
+
+            /* coast & city: lit Accra skyline + Elmina castle on the water (right) */
+            drawAccraSkyline();
+            drawCoastalCastle();
+            drawCoastalWaves();
 
             /* particles — whole canvas */
             updateDrawPetals();
             updateDrawPhages();
 
             /* readability scrim — keep the central content column calm
-               while the Japan (left) and Ghana (right) scenes stay visible at the margins */
+               while the mountains (left) and the lit Ghana coast (right) stay visible at the margins */
             const scrim = ctx.createLinearGradient(0, 0, w, 0);
             scrim.addColorStop(0.00, 'rgba(10,8,2,0)');
-            scrim.addColorStop(0.32, 'rgba(10,8,2,0)');
-            scrim.addColorStop(0.50, 'rgba(10,8,2,0.16)');
-            scrim.addColorStop(0.68, 'rgba(10,8,2,0)');
+            scrim.addColorStop(0.30, 'rgba(10,8,2,0)');
+            scrim.addColorStop(0.50, 'rgba(10,8,2,0.30)');
+            scrim.addColorStop(0.70, 'rgba(10,8,2,0)');
             scrim.addColorStop(1.00, 'rgba(10,8,2,0)');
             ctx.save(); ctx.fillStyle = scrim; ctx.fillRect(0, 0, w, h); ctx.restore();
         }
@@ -7389,7 +7278,7 @@
             { type: 'section', label: 'Publications',         hint: 'preprints & papers',  href: '#publications', icon: '📖' },
             { type: 'section', label: 'Research software',     hint: 'open-source tools', href: '#tools', icon: '🧰' },
             { type: 'link',    label: 'Side builds',          hint: 'non-science web apps', href: 'builds.html', icon: '⚙️', external: false },
-            { type: 'section', label: 'Building next',        hint: 'TailFiber · phage game concept', href: '#next', icon: '🧪' },
+            { type: 'section', label: 'TailFiber game',        hint: 'TailFiber · playable phage game', href: '#next', icon: '🧪' },
             { type: 'section', label: 'Recognition & service',hint: 'awards · outreach',   href: '#recognition', icon: '🏆' },
             { type: 'section', label: 'About',                hint: 'who I am',            href: '#about', icon: '🧬' },
             { type: 'section', label: 'CV & resume',          hint: 'download',            href: '#cv', icon: '📄' },
