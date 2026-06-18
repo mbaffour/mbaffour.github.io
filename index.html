@@ -6838,6 +6838,66 @@
         }
 
         /* ════════════════════════════════════
+           ATMOSPHERIC WASH
+           A single blended field instead of literal scenery: a cool indigo
+           bloom (heritage: Japan/Saitama) melts into a warm amber bloom
+           (Ghana/Accra), tied together by slow drifting haze. Everything
+           sits low and soft against the dark page.
+        ════════════════════════════════════ */
+        function drawAtmosphere() {
+            const t = jPhase;
+            const breathe = 0.5 + 0.5 * Math.sin(t * 0.05);
+
+            ctx.save();
+            ctx.globalCompositeOperation = 'lighter';
+
+            /* cool indigo bloom drifting through the upper-left */
+            const cx1 = w * (0.26 + 0.03 * Math.sin(t * 0.04));
+            const cy1 = h * (0.36 + 0.03 * Math.cos(t * 0.045));
+            const g1 = ctx.createRadialGradient(cx1, cy1, 0, cx1, cy1, w * 0.62);
+            g1.addColorStop(0,   'rgba(66,92,154,' + (0.12 + 0.035 * breathe).toFixed(3) + ')');
+            g1.addColorStop(0.5, 'rgba(44,62,112,0.052)');
+            g1.addColorStop(1,   'rgba(20,30,60,0)');
+            ctx.fillStyle = g1; ctx.fillRect(0, 0, w, h);
+
+            /* warm amber bloom drifting through the lower-right */
+            const cx2 = w * (0.76 - 0.03 * Math.cos(t * 0.042));
+            const cy2 = h * (0.60 + 0.03 * Math.sin(t * 0.05));
+            const g2 = ctx.createRadialGradient(cx2, cy2, 0, cx2, cy2, w * 0.62);
+            g2.addColorStop(0,   'rgba(156,108,46,' + (0.075 + 0.03 * (1 - breathe)).toFixed(3) + ')');
+            g2.addColorStop(0.5, 'rgba(120,76,30,0.030)');
+            g2.addColorStop(1,   'rgba(60,40,16,0)');
+            ctx.fillStyle = g2; ctx.fillRect(0, 0, w, h);
+
+            /* slow drifting haze that ties the whole field together */
+            const haze = [
+                { x: 0.12, y: 0.30, r: 0.34, fl: 0.42, c: '128,150,200', a: 0.058, sp: 0.020 },
+                { x: 0.40, y: 0.58, r: 0.42, fl: 0.40, c: '150,150,172', a: 0.044, sp: 0.013 },
+                { x: 0.68, y: 0.38, r: 0.36, fl: 0.44, c: '190,156,100', a: 0.045, sp: 0.017 },
+                { x: 0.30, y: 0.74, r: 0.38, fl: 0.40, c: '128,150,200', a: 0.048, sp: 0.011 },
+                { x: 0.86, y: 0.66, r: 0.34, fl: 0.42, c: '190,150,96',  a: 0.040, sp: 0.015 },
+                { x: 0.55, y: 0.20, r: 0.30, fl: 0.46, c: '140,150,180', a: 0.032, sp: 0.022 }
+            ];
+            for (const b of haze) {
+                const span = 1.4;                                   // wrap distance (screen widths)
+                const fx = (b.x + t * b.sp * 0.02) % span;          // drift right, then wrap
+                const cx = w * (fx - 0.2);
+                const cy = h * (b.y + 0.02 * Math.sin(t * 0.06 + b.x * 8));
+                const r = w * b.r;
+                ctx.save();
+                ctx.translate(cx, cy);
+                ctx.scale(1, b.fl);
+                const g = ctx.createRadialGradient(0, 0, 0, 0, 0, r);
+                g.addColorStop(0,    'rgba(' + b.c + ',' + b.a.toFixed(3) + ')');
+                g.addColorStop(0.55, 'rgba(' + b.c + ',' + (b.a * 0.45).toFixed(3) + ')');
+                g.addColorStop(1,    'rgba(' + b.c + ',0)');
+                ctx.fillStyle = g; ctx.beginPath(); ctx.arc(0, 0, r, 0, Math.PI * 2); ctx.fill();
+                ctx.restore();
+            }
+            ctx.restore();
+        }
+
+        /* ════════════════════════════════════
            RENDER LOOP  (20 fps)
         ════════════════════════════════════ */
         function render(t) {
@@ -6849,21 +6909,8 @@
             jPhase += 0.022;
             gPhase += 0.025;
 
-            /* left / Japanese */
-            drawMountainRange();
-            drawTorii();
-            drawJapaneseWaves();
-
-            /* right / Ghanaian */
-            drawAccraSkyline();
-            drawCoastalCastle();
-            drawStadium();
-            drawKenteStrip();
-            drawBlackStar();
-            drawCoastalWaves();
-            drawAdinkraSymbols();
-            drawFootballer();
-            drawPalm();
+            /* soft, blended atmospheric wash — no literal scenery */
+            drawAtmosphere();
 
             /* particles — whole canvas */
             updateDrawPetals();
@@ -6873,9 +6920,9 @@
                while the Japan (left) and Ghana (right) scenes stay visible at the margins */
             const scrim = ctx.createLinearGradient(0, 0, w, 0);
             scrim.addColorStop(0.00, 'rgba(10,8,2,0)');
-            scrim.addColorStop(0.30, 'rgba(10,8,2,0)');
-            scrim.addColorStop(0.50, 'rgba(10,8,2,0.42)');
-            scrim.addColorStop(0.70, 'rgba(10,8,2,0)');
+            scrim.addColorStop(0.32, 'rgba(10,8,2,0)');
+            scrim.addColorStop(0.50, 'rgba(10,8,2,0.16)');
+            scrim.addColorStop(0.68, 'rgba(10,8,2,0)');
             scrim.addColorStop(1.00, 'rgba(10,8,2,0)');
             ctx.save(); ctx.fillStyle = scrim; ctx.fillRect(0, 0, w, h); ctx.restore();
         }
