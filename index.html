@@ -6061,9 +6061,9 @@
                 ctx.lineTo(pts[0].x, baseY + 2);
                 ctx.closePath(); ctx.fill(); ctx.restore();
             }
-            rangeLayer(0.50,  0.15, 9,  3.1,  'rgba(60,70,114,0.16)');   // farthest, palest
-            rangeLayer(0.55,  0.18, 11, 7.4,  'rgba(50,60,104,0.22)');
-            rangeLayer(0.605, 0.20, 13, 12.8, 'rgba(42,52,94,0.30)');    // nearest, darkest
+            rangeLayer(0.58,  0.13, 9,  3.1,  'rgba(60,70,114,0.12)');   // farthest, palest
+            rangeLayer(0.62,  0.15, 11, 7.4,  'rgba(50,60,104,0.16)');
+            rangeLayer(0.66,  0.17, 13, 12.8, 'rgba(42,52,94,0.22)');    // nearest, darkest
 
             /* ─── distant drifting clouds ─── */
             function cloudPuff(cx, cy, rw, rh, a) {
@@ -6162,10 +6162,10 @@
             ctx.restore();
 
             /* warm ground glow from the lit city */
-            const cityGlow = ctx.createRadialGradient(w * 0.78, baseY, 0, w * 0.78, baseY, w * 0.34);
-            cityGlow.addColorStop(0, 'rgba(234,170,72,0.12)');
+            const cityGlow = ctx.createRadialGradient(w * 0.78, baseY, 0, w * 0.78, baseY, w * 0.40);
+            cityGlow.addColorStop(0, 'rgba(234,170,72,0.17)');
             cityGlow.addColorStop(1, 'rgba(234,170,72,0)');
-            ctx.save(); ctx.fillStyle = cityGlow; ctx.fillRect(w * 0.45, h * 0.40, w * 0.55, h * 0.50); ctx.restore();
+            ctx.save(); ctx.fillStyle = cityGlow; ctx.fillRect(w * 0.45, h * 0.30, w * 0.55, h * 0.60); ctx.restore();
 
             /* varied building silhouettes */
             const bldgs = [
@@ -6176,16 +6176,17 @@
                 [0.874,0.025,0.21],[0.901,0.018,0.27],[0.921,0.032,0.18],
                 [0.956,0.026,0.24],
             ];
-            const bGrd = ctx.createLinearGradient(0, h * 0.44, 0, baseY);
-            bGrd.addColorStop(0,   'rgba(40,28,14,0.40)');
-            bGrd.addColorStop(0.6, 'rgba(30,20,10,0.30)');
+            const bGrd = ctx.createLinearGradient(0, h * 0.28, 0, baseY);
+            bGrd.addColorStop(0,   'rgba(40,28,14,0.52)');
+            bGrd.addColorStop(0.6, 'rgba(30,20,10,0.40)');
             bGrd.addColorStop(1,   'rgba(0,0,0,0)');
             ctx.save();
             bldgs.forEach(([xr, wr, hr], bi) => {
-                const bx = w * xr, bw = w * wr, bh = h * hr;
+                /* brought forward: taller + a touch wider */
+                const bx = w * xr, bw = w * wr * 1.15, bh = h * hr * 1.4;
                 const fade = Math.max(0, Math.min(1, (xr - 0.50) / 0.08));
                 /* dark silhouette so the lit windows read */
-                ctx.globalAlpha = fade * 0.55;
+                ctx.globalAlpha = fade * 0.70;
                 ctx.fillStyle = bGrd;
                 ctx.fillRect(bx, baseY - bh, bw, bh + 2);
                 /* lit windows — stable per window (fbm), a few gently twinkle */
@@ -6197,7 +6198,7 @@
                         const on = fbmRnd(seed);
                         if (on > 0.40) {
                             const tw = on > 0.92 ? (0.55 + 0.45 * Math.sin(t * 1.3 + seed * 9)) : 1;
-                            ctx.globalAlpha = fade * 0.6 * tw;
+                            ctx.globalAlpha = fade * 0.72 * tw;
                             ctx.fillStyle = on > 0.78 ? 'rgba(255,228,150,1)' : 'rgba(255,200,116,1)';
                             ctx.fillRect(wx, wy, 2, 2.4);
                         }
@@ -6212,22 +6213,22 @@
         ════════════════════════════════════ */
         function drawCoastalCastle() {
             const cx   = w * 0.70;
-            const by   = h * 0.82;
-            const CW   = Math.min(w * 0.19, 186);
-            const CH   = Math.min(h * 0.15, 116);
+            const by   = h * 0.84;                            // brought forward (lower)
+            const CW   = Math.min(w * 0.25, 250);             // larger
+            const CH   = Math.min(h * 0.205, 176);
             const mW   = CW * 0.048, mH = CH * 0.11, mGap = CW * 0.038;
 
             /* warm ambient glow (floodlit walls) */
             const glow = ctx.createRadialGradient(cx, by - CH * 0.55, 0, cx, by - CH * 0.55, CW * 0.95);
-            glow.addColorStop(0,   'rgba(232,196,128,0.22)');
-            glow.addColorStop(0.6, 'rgba(188,138,76,0.09)');
+            glow.addColorStop(0,   'rgba(232,196,128,0.30)');
+            glow.addColorStop(0.6, 'rgba(188,138,76,0.12)');
             glow.addColorStop(1,   'rgba(0,0,0,0)');
             ctx.save(); ctx.globalAlpha = 1; ctx.fillStyle = glow;
             ctx.fillRect(cx - CW * 1.1, by - CH * 1.8, CW * 2.2, CH * 2.0);
             ctx.restore();
 
             ctx.save();
-            ctx.globalAlpha = 0.46;
+            ctx.globalAlpha = 0.55;
             const cc = 'rgba(232,224,206,1)';                 // whitewashed Elmina walls
 
             /* ── main curtain wall ── */
@@ -6392,20 +6393,21 @@
            COASTAL WAVES — Gulf of Guinea
         ════════════════════════════════════ */
         function drawCoastalWaves() {
+            /* full-width foreground sea — gentle, slow swell across the whole scene */
             const layers = [
-                {ry:0.800,amp: 8,wl:0.20,a:'rgba(14,82,80,0.09)'},
-                {ry:0.834,amp:12,wl:0.24,a:'rgba(18,96,88,0.12)'},
-                {ry:0.864,amp:16,wl:0.28,a:'rgba(22,108,94,0.15)'},
-                {ry:0.894,amp:20,wl:0.32,a:'rgba(28,118,98,0.18)'},
-                {ry:0.922,amp:24,wl:0.36,a:'rgba(34,126,104,0.20)'},
+                {ry:0.800,amp: 7,wl:0.22,a:'rgba(14,82,80,0.12)'},
+                {ry:0.834,amp:10,wl:0.26,a:'rgba(18,96,88,0.15)'},
+                {ry:0.864,amp:14,wl:0.30,a:'rgba(22,108,94,0.18)'},
+                {ry:0.894,amp:18,wl:0.34,a:'rgba(28,118,98,0.21)'},
+                {ry:0.922,amp:22,wl:0.38,a:'rgba(34,126,104,0.24)'},
             ];
             ctx.save();
             layers.forEach((l, i) => {
                 ctx.fillStyle = l.a;
                 ctx.beginPath();
                 const by = h * l.ry;
-                waveLine(w * 0.42, w + 4, by, l.amp, w * l.wl, gPhase + i * 0.50 + Math.PI);
-                ctx.lineTo(w + 4, h + 2); ctx.lineTo(w * 0.42, h + 2);
+                waveLine(-4, w + 4, by, l.amp, w * l.wl, gPhase + i * 0.50 + Math.PI);
+                ctx.lineTo(w + 4, h + 2); ctx.lineTo(-4, h + 2);
                 ctx.closePath(); ctx.fill();
             });
             ctx.restore();
