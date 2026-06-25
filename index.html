@@ -6090,6 +6090,34 @@
                 cloudPuff(w * (fx - 0.20), h * b.y, w * 0.12 * b.s, h * 0.030 * b.s, b.a);
             }
             ctx.restore();
+
+            /* ─── Mount Fuji — distinct hero peak, drawn in front of the haze ─── */
+            const fujiX = w * 0.22, fujiY = h * 0.34;
+            const baseHalf = w * 0.150, sumHalf = w * 0.013, dy = baseY - fujiY;
+            const lbx = fujiX - baseHalf, rbx = fujiX + baseHalf, slx = fujiX - sumHalf, srx = fujiX + sumHalf;
+            const fg = ctx.createLinearGradient(0, fujiY, 0, baseY);
+            fg.addColorStop(0, 'rgba(70,78,118,0.66)');
+            fg.addColorStop(0.6, 'rgba(46,54,92,0.36)');
+            fg.addColorStop(1, 'rgba(28,34,64,0.0)');
+            ctx.save(); ctx.fillStyle = fg; ctx.beginPath();
+            ctx.moveTo(lbx, baseY);
+            ctx.bezierCurveTo(fujiX - baseHalf * 0.52, baseY - dy * 0.30, slx - w * 0.02, fujiY + dy * 0.12, slx, fujiY);
+            ctx.lineTo(srx, fujiY);
+            ctx.bezierCurveTo(srx + w * 0.02, fujiY + dy * 0.12, fujiX + baseHalf * 0.52, baseY - dy * 0.30, rbx, baseY);
+            ctx.closePath(); ctx.fill();
+            ctx.fillStyle = 'rgba(18,24,50,0.16)'; ctx.beginPath();
+            ctx.moveTo(fujiX, fujiY); ctx.lineTo(srx, fujiY);
+            ctx.bezierCurveTo(srx + w * 0.02, fujiY + dy * 0.12, fujiX + baseHalf * 0.52, baseY - dy * 0.30, rbx, baseY);
+            ctx.lineTo(fujiX, baseY); ctx.closePath(); ctx.fill();
+            ctx.restore();
+            const snowBottom = fujiY + dy * 0.27, capHalf = baseHalf * 0.30;
+            const sgr = ctx.createLinearGradient(0, fujiY, 0, snowBottom);
+            sgr.addColorStop(0, 'rgba(236,232,226,0.66)');
+            sgr.addColorStop(1, 'rgba(210,216,232,0.06)');
+            ctx.save(); ctx.fillStyle = sgr; ctx.beginPath();
+            ctx.moveTo(slx, fujiY); ctx.lineTo(srx, fujiY); ctx.lineTo(fujiX + capHalf, snowBottom - 4);
+            for (let i = 1; i < 7; i++) { const tt = i / 7, gx = fujiX + capHalf - 2 * capHalf * tt; ctx.lineTo(gx, (i % 2 === 0) ? snowBottom - 4 : snowBottom - 13); }
+            ctx.lineTo(fujiX - capHalf, snowBottom - 4); ctx.closePath(); ctx.fill(); ctx.restore();
         }
 
         /* ════════════════════════════════════
@@ -6806,15 +6834,24 @@
             jPhase += 0.022;
             gPhase += 0.025;
 
-            /* distance: layered mountain range + drifting clouds (left/back) */
+            /* distance: Mount Fuji + layered range + drifting clouds (left/back) */
             drawMountainRange();
+            drawTorii();                 /* Japan accent (left) */
 
-            /* coast & city: lit Accra skyline + Elmina castle on the water (right) */
+            /* coast & city: lit Accra skyline + Elmina castle + stadium on the water (right) */
             drawAccraSkyline();
             drawCoastalCastle();
-            drawCoastalWaves();
+            drawStadium();
+            drawCoastalWaves();          /* full-width gentle sea */
+            drawPalm();                  /* far right */
 
-            /* particles — whole canvas */
+            /* Ghanaian identity accents */
+            drawKenteStrip();            /* woven Kente band (top) */
+            drawBlackStar();             /* Black Star (top-right) */
+            drawAdinkraSymbols();        /* Gye Nyame · Sankofa · Adinkrahene */
+            drawFootballer();            /* subtle silhouette */
+
+            /* particles — sakura (left) + phages (whole canvas) */
             updateDrawPetals();
             updateDrawPhages();
 
