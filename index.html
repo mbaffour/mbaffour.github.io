@@ -7609,6 +7609,7 @@
     const navAvatar = document.getElementById('navAvatar');
     let lastY = 0;
     const ambientEl = document.getElementById('ambientCanvas');
+    const culturalEl = document.getElementById('culturalBgCanvas');
     function updateScrollUI() {
         const nav = document.getElementById('navbar');
         const y = window.scrollY;
@@ -7620,17 +7621,24 @@
         progress.style.width = pct + '%';
         toTop.classList.toggle('show', y > 600);
         if (navAvatar) navAvatar.classList.toggle('show', y > window.innerHeight * 0.6);
+        const heroH = window.innerHeight;
         // Fade in ambient layer after the hero — keeps hero clean
         if (ambientEl) {
-            const heroH = window.innerHeight;
             const fadeStart = heroH * 0.6;
             const fadeEnd   = heroH * 1.0;
             const t = Math.max(0, Math.min(1, (y - fadeStart) / (fadeEnd - fadeStart)));
             ambientEl.style.opacity = (t * 0.55).toFixed(3);
         }
+        // Fade the cultural scene OUT below the hero so the content reads cleanly.
+        // Full scene behind the hero (first impression), then a faint texture below.
+        if (culturalEl) {
+            const cf = Math.max(0, Math.min(1, (y - heroH * 0.25) / (heroH * 0.70)));
+            culturalEl.style.opacity = (1 - cf * 0.90).toFixed(3);   // 1.0 → 0.10
+        }
         lastY = y;
     }
     window.addEventListener('scroll', updateScrollUI, { passive: true });
+    updateScrollUI();
     toTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
     updateScrollUI();
 
