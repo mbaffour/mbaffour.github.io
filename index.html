@@ -1715,7 +1715,7 @@
         .proj-card--link .proj-body { position: relative; }
         .proj-card--link .proj-actions { position: relative; z-index: 2; }
 
-        /* ---- Side Builds grid ---- */
+        /* ---- Other Tools grid ---- */
         .builds-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -1741,7 +1741,13 @@
             font-family: var(--font-mono); font-size: 0.66rem; color: var(--ink-3);
             border: 1px solid var(--border); border-radius: 50px; padding: 2px 8px;
         }
-        .build-actions { display: flex; gap: 0.6rem; margin-top: 0.25rem; }
+        .build-actions { display: flex; gap: 0.6rem; margin-top: 0.25rem; flex-wrap: wrap; }
+        /* Blog link in other-tools cards: same weight as app link */
+        .build-actions .proj-link.alt {
+            border-color: var(--border-strong);
+            color: var(--ink-2);
+        }
+        .build-actions .proj-link.alt:hover { border-color: var(--gold); color: var(--gold); background: var(--gold-dim); }
         .builds-see-all { text-align: center; margin-top: 2.25rem; }
 
         /* News card variant */
@@ -3563,7 +3569,7 @@
                 <li><a href="#research">Research</a></li>
                 <li><a href="#publications">Publications</a></li>
                 <li><a href="#tools">Software</a></li>
-                <li><a href="#builds">Builds</a></li>
+                <li><a href="#builds">Other Tools</a></li>
                 <li><a href="#recognition">Recognition</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#contact">Contact</a></li>
@@ -4280,9 +4286,9 @@
     <!-- ===== SIDE BUILDS ===== -->
     <section class="section fade-in" id="builds">
         <div class="section-header">
-            <span class="section-label">Side Builds</span>
-            <h2 class="section-title">Things I build <span class="highlight">outside the lab</span></h2>
-            <p class="section-subtitle">Web apps built outside my research, usually because someone I care about needed them, or because a problem nagged me until I solved it. All free, browser-based, and privacy-first.</p>
+            <span class="section-label">Other Tools</span>
+            <h2 class="section-title">Tools I built <span class="highlight">outside the lab</span></h2>
+            <p class="section-subtitle">Web apps built outside my research — all free, browser-based, and privacy-first. Each card links directly to the tool and to a blog post explaining how and why I built it.</p>
         </div>
         <div class="builds-grid">
             <div class="build-card">
@@ -4290,8 +4296,8 @@
                 <p>Free open-source QR generator embedding Ghanaian Adinkra symbols and Kente patterns. 10 content types, print-ready, fully client-side.</p>
                 <div class="build-tags"><span class="build-tag">JavaScript</span><span class="build-tag">PWA</span><span class="build-tag">Cultural</span></div>
                 <div class="build-actions">
-                    <a href="https://mbaffour.github.io/qr-forge/" class="proj-link" target="_blank" rel="noopener">Open ↗</a>
-                    <a href="https://mbaffour.github.io/qr-forge/blog.html" class="proj-link alt" target="_blank" rel="noopener">Blog</a>
+                    <a href="https://mbaffour.github.io/qr-forge/" class="proj-link" target="_blank" rel="noopener">Open app ↗</a>
+                    <a href="https://mbaffour.github.io/qr-forge/blog.html" class="proj-link alt" target="_blank" rel="noopener">Read blog ↗</a>
                 </div>
             </div>
             <div class="build-card">
@@ -4299,8 +4305,8 @@
                 <p>Adaptive practice questions plus AI clinical rationales for nursing students, free, in the browser.</p>
                 <div class="build-tags"><span class="build-tag">JavaScript</span><span class="build-tag">Adaptive</span><span class="build-tag">AI</span></div>
                 <div class="build-actions">
-                    <a href="https://mbaffour.github.io/nclex-simulator/" class="proj-link" target="_blank" rel="noopener">Open ↗</a>
-                    <a href="https://mbaffour.github.io/nclex-simulator/blog_public.html" class="proj-link alt" target="_blank" rel="noopener">Blog</a>
+                    <a href="https://mbaffour.github.io/nclex-simulator/" class="proj-link" target="_blank" rel="noopener">Open app ↗</a>
+                    <a href="https://mbaffour.github.io/nclex-simulator/blog_public.html" class="proj-link alt" target="_blank" rel="noopener">Read blog ↗</a>
                 </div>
             </div>
             <div class="build-card">
@@ -4308,8 +4314,8 @@
                 <p>Full-length MCAT simulator with section breakdowns, time tracking, and AI-generated explanations. Free, browser-based, no account needed.</p>
                 <div class="build-tags"><span class="build-tag">JavaScript</span><span class="build-tag">Adaptive</span><span class="build-tag">AI</span></div>
                 <div class="build-actions">
-                    <a href="https://mbaffour.github.io/mcat-prep/" class="proj-link" target="_blank" rel="noopener">Open ↗</a>
-                    <a href="https://mbaffour.github.io/mcat-prep/blog.html" class="proj-link alt" target="_blank" rel="noopener">Blog</a>
+                    <a href="https://mbaffour.github.io/mcat-prep/" class="proj-link" target="_blank" rel="noopener">Open app ↗</a>
+                    <a href="https://mbaffour.github.io/mcat-prep/blog.html" class="proj-link alt" target="_blank" rel="noopener">Read blog ↗</a>
                 </div>
             </div>
             <div class="build-card">
@@ -4317,8 +4323,8 @@
                 <p>Offline-first fitness PWA: AI-generated 12–16 week programs, 60+ exercise database, local storage. No account, no server, no tracking.</p>
                 <div class="build-tags"><span class="build-tag">PWA</span><span class="build-tag">Offline-First</span><span class="build-tag">Fitness</span></div>
                 <div class="build-actions">
-                    <a href="https://mbaffour.github.io/fitness-forge/" class="proj-link" target="_blank" rel="noopener">Open ↗</a>
-                    <a href="https://mbaffour.github.io/fitness-forge/blog.html" class="proj-link alt" target="_blank" rel="noopener">Blog</a>
+                    <a href="https://mbaffour.github.io/fitness-forge/" class="proj-link" target="_blank" rel="noopener">Open app ↗</a>
+                    <a href="https://mbaffour.github.io/fitness-forge/blog.html" class="proj-link alt" target="_blank" rel="noopener">Read blog ↗</a>
                 </div>
             </div>
             <div class="build-card">
@@ -4326,8 +4332,8 @@
                 <p>Private browser-based finance tracker: log income, categorize spending, visualize trends. Runs fully client-side. No account, no server, no tracking.</p>
                 <div class="build-tags"><span class="build-tag">JavaScript</span><span class="build-tag">Finance</span><span class="build-tag">Offline</span></div>
                 <div class="build-actions">
-                    <a href="https://mbaffour.github.io/pennywise-plus/" class="proj-link" target="_blank" rel="noopener">Open ↗</a>
-                    <a href="https://mbaffour.github.io/pennywise-plus/blog.html" class="proj-link alt" target="_blank" rel="noopener">Blog</a>
+                    <a href="https://mbaffour.github.io/pennywise-plus/" class="proj-link" target="_blank" rel="noopener">Open app ↗</a>
+                    <a href="https://mbaffour.github.io/pennywise-plus/blog.html" class="proj-link alt" target="_blank" rel="noopener">Read blog ↗</a>
                 </div>
             </div>
             <div class="build-card">
@@ -4335,8 +4341,8 @@
                 <p>Privacy-first local anonymizer: mask, shuffle, or replace sensitive columns in CSV/Excel. Your data never leaves the browser.</p>
                 <div class="build-tags"><span class="build-tag">JavaScript</span><span class="build-tag">Privacy</span><span class="build-tag">CSV</span></div>
                 <div class="build-actions">
-                    <a href="https://mbaffour.github.io/datamask/" class="proj-link" target="_blank" rel="noopener">Open ↗</a>
-                    <a href="https://mbaffour.github.io/datamask/blog.html" class="proj-link alt" target="_blank" rel="noopener">Blog</a>
+                    <a href="https://mbaffour.github.io/datamask/" class="proj-link" target="_blank" rel="noopener">Open app ↗</a>
+                    <a href="https://mbaffour.github.io/datamask/blog.html" class="proj-link alt" target="_blank" rel="noopener">Read blog ↗</a>
                 </div>
             </div>
             <div class="build-card">
@@ -4344,13 +4350,13 @@
                 <p>Fast offline-first batch image cropper with 5 crop shapes and live preview. Zero uploads, zero accounts.</p>
                 <div class="build-tags"><span class="build-tag">JavaScript</span><span class="build-tag">Image</span><span class="build-tag">Offline</span></div>
                 <div class="build-actions">
-                    <a href="https://mbaffour.github.io/batchcrop/" class="proj-link" target="_blank" rel="noopener">Open ↗</a>
-                    <a href="https://mbaffour.github.io/batchcrop/blog.html" class="proj-link alt" target="_blank" rel="noopener">Blog</a>
+                    <a href="https://mbaffour.github.io/batchcrop/" class="proj-link" target="_blank" rel="noopener">Open app ↗</a>
+                    <a href="https://mbaffour.github.io/batchcrop/blog.html" class="proj-link alt" target="_blank" rel="noopener">Read blog ↗</a>
                 </div>
             </div>
         </div>
         <div class="builds-see-all">
-            <a href="builds.html" class="proj-link">Full builds page ↗</a>
+            <a href="builds.html" class="proj-link">See all tools ↗</a>
         </div>
     </section>
 
@@ -7565,7 +7571,7 @@
             { type: 'section', label: 'Lysis curve playground', hint: 'tune phage parameters live', href: '#playground', icon: '📈' },
             { type: 'section', label: 'Publications',         hint: 'preprints & papers',  href: '#publications', icon: '📖' },
             { type: 'section', label: 'Research software',     hint: 'open-source tools', href: '#tools', icon: '🧰' },
-            { type: 'section', label: 'Side builds',            hint: 'non-science web apps', href: '#builds', icon: '⚙️' },
+            { type: 'section', label: 'Other tools',             hint: 'apps built outside the lab', href: '#builds', icon: '⚙️' },
             { type: 'section', label: 'TailFiber game',        hint: 'TailFiber · playable phage game', href: '#next', icon: '🧪' },
             { type: 'section', label: 'Recognition & service',hint: 'awards · outreach',   href: '#recognition', icon: '🏆' },
             { type: 'section', label: 'About',                hint: 'who I am',            href: '#about', icon: '🧬' },
