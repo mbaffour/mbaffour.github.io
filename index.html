@@ -6831,39 +6831,25 @@
             lastFrame = t;
 
             ctx.clearRect(0, 0, w, h);
-            jPhase += 0.022;
-            gPhase += 0.025;
+            jPhase += 0.006;
 
-            /* distance: Mount Fuji + layered range + drifting clouds (left/back) */
-            drawMountainRange();
-            drawTorii();                 /* Japan accent (left) */
-
-            /* coast & city: lit Accra skyline + Elmina castle + stadium on the water (right) */
-            drawAccraSkyline();
-            drawCoastalCastle();
-            drawStadium();
-            drawCoastalWaves();          /* full-width gentle sea */
-            drawPalm();                  /* far right */
-
-            /* Ghanaian identity accents */
-            drawKenteStrip();            /* woven Kente band (top) */
-            drawBlackStar();             /* Black Star (top-right) */
-            drawAdinkraSymbols();        /* Gye Nyame · Sankofa · Adinkrahene */
-            drawFootballer();            /* subtle silhouette */
-
-            /* particles — sakura (left) + phages (whole canvas) */
-            updateDrawPetals();
-            updateDrawPhages();
-
-            /* readability scrim — keep the central content column calm
-               while the mountains (left) and the lit Ghana coast (right) stay visible at the margins */
-            const scrim = ctx.createLinearGradient(0, 0, w, 0);
-            scrim.addColorStop(0.00, 'rgba(10,8,2,0)');
-            scrim.addColorStop(0.30, 'rgba(10,8,2,0)');
-            scrim.addColorStop(0.50, 'rgba(10,8,2,0.30)');
-            scrim.addColorStop(0.70, 'rgba(10,8,2,0)');
-            scrim.addColorStop(1.00, 'rgba(10,8,2,0)');
-            ctx.save(); ctx.fillStyle = scrim; ctx.fillRect(0, 0, w, h); ctx.restore();
+            /* Minimal Kente-tinted wash — soft, slowly drifting glows in the
+               Kente palette (gold / green / red). No literal scenery; just
+               colour and texture so the content stays clean and readable. */
+            const glows = [
+                { c: '244,196,48', x: 0.16, y: 0.20, r: 0.60, a: 0.070, sp: 0.55 },  // gold
+                { c: '26,128,64',  x: 0.84, y: 0.80, r: 0.60, a: 0.055, sp: -0.45 }, // green
+                { c: '196,30,58',  x: 0.72, y: 0.18, r: 0.50, a: 0.045, sp: 0.40 },  // red
+                { c: '244,196,48', x: 0.30, y: 0.86, r: 0.50, a: 0.040, sp: -0.30 }  // gold
+            ];
+            for (const o of glows) {
+                const cx = w * (o.x + 0.02 * Math.sin(jPhase * o.sp));
+                const cy = h * (o.y + 0.02 * Math.cos(jPhase * o.sp));
+                const g = ctx.createRadialGradient(cx, cy, 0, cx, cy, w * o.r);
+                g.addColorStop(0, 'rgba(' + o.c + ',' + o.a + ')');
+                g.addColorStop(1, 'rgba(' + o.c + ',0)');
+                ctx.fillStyle = g; ctx.fillRect(0, 0, w, h);
+            }
         }
 
         resize();
@@ -7609,7 +7595,6 @@
     const navAvatar = document.getElementById('navAvatar');
     let lastY = 0;
     const ambientEl = document.getElementById('ambientCanvas');
-    const culturalEl = document.getElementById('culturalBgCanvas');
     function updateScrollUI() {
         const nav = document.getElementById('navbar');
         const y = window.scrollY;
@@ -7628,12 +7613,6 @@
             const fadeEnd   = heroH * 1.0;
             const t = Math.max(0, Math.min(1, (y - fadeStart) / (fadeEnd - fadeStart)));
             ambientEl.style.opacity = (t * 0.55).toFixed(3);
-        }
-        // Fade the cultural scene OUT below the hero so the content reads cleanly.
-        // Full scene behind the hero (first impression), then a faint texture below.
-        if (culturalEl) {
-            const cf = Math.max(0, Math.min(1, (y - heroH * 0.25) / (heroH * 0.70)));
-            culturalEl.style.opacity = (1 - cf * 0.90).toFixed(3);   // 1.0 → 0.10
         }
         lastY = y;
     }
