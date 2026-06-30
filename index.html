@@ -98,6 +98,99 @@
         }
 
         /* ============================================================
+           LIGHT MODE OVERRIDES
+        ============================================================ */
+        html[data-theme="light"] {
+            --bg:            #f7f4ea;
+            --bg-2:          #ede8d4;
+            --bg-3:          #e1dac4;
+            --bg-card:       #ffffff;
+            --bg-card-hover: #fffaed;
+            --border:        rgba(164, 130, 58, 0.18);
+            --border-strong: rgba(164, 130, 58, 0.38);
+
+            --gold:      #9a6e00;
+            --gold-dim:  rgba(154, 110, 0, 0.10);
+            --green:     #0f6a2e;
+            --green-dim: rgba(15, 106, 46, 0.10);
+            --red:       #a01a30;
+            --red-dim:   rgba(160, 26, 48, 0.10);
+
+            --ink:   #1a1408;
+            --ink-2: #3a2c0e;
+            --ink-3: #7a5e2a;
+            --ink-4: #a88040;
+
+            --glow-gold:  0 4px 20px rgba(154, 110, 0, 0.14);
+            --glow-green: 0 4px 20px rgba(15, 106, 46, 0.12);
+
+            --kente: repeating-linear-gradient(90deg,
+                #9a6e00 0 8px,  #e1dac4 8px 13px,
+                #0f6a2e 13px 21px, #e1dac4 21px 26px,
+                #a01a30 26px 34px, #e1dac4 34px 39px,
+                #9a6e00 39px 47px, #e1dac4 47px 52px,
+                #0f6a2e 52px 60px);
+        }
+
+        html[data-theme="light"] .nav {
+            background: rgba(247, 244, 234, 0.92);
+        }
+
+        html[data-theme="light"] body::after {
+            background:
+                radial-gradient(62% 52% at 16% 10%, rgba(154, 110, 0, 0.06), transparent 70%),
+                radial-gradient(55% 48% at 86% 20%, rgba(15, 106, 46, 0.04), transparent 72%),
+                radial-gradient(75% 60% at 50% 112%, rgba(160, 26, 48, 0.04), transparent 70%);
+        }
+
+        html[data-theme="light"] body::before {
+            opacity: 0.018;
+            mix-blend-mode: multiply;
+        }
+
+        html[data-theme="light"] ::selection { background: #9a6e00; color: #fff; }
+
+        html[data-theme="light"] a:hover { color: #6e4e00; }
+
+        html[data-theme="light"] .cursor-glow {
+            background: radial-gradient(420px circle at var(--cx, -999px) var(--cy, -999px),
+                rgba(154, 110, 0, 0.06), transparent 60%);
+        }
+
+        html[data-theme="light"] .to-top:hover { background: #6e4e00; color: #fff; }
+
+        html[data-theme="light"] .nav-cmdk kbd {
+            background: rgba(164, 130, 58, 0.10);
+        }
+
+        /* Theme toggle button */
+        .nav-theme-toggle {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 34px;
+            height: 34px;
+            border-radius: 8px;
+            border: 1px solid var(--border-strong);
+            background: transparent;
+            color: var(--ink-3);
+            cursor: pointer;
+            transition: color .2s ease, border-color .2s ease, background .2s ease;
+            flex-shrink: 0;
+        }
+        .nav-theme-toggle:hover { color: var(--gold); border-color: var(--gold); background: var(--gold-dim); }
+        .nav-theme-toggle .theme-icon-sun  { display: block; }
+        .nav-theme-toggle .theme-icon-moon { display: none; }
+        html[data-theme="light"] .nav-theme-toggle .theme-icon-sun  { display: none; }
+        html[data-theme="light"] .nav-theme-toggle .theme-icon-moon { display: block; }
+
+        /* Smooth theme transitions (applied after page load via JS) */
+        html.theme-ready body,
+        html.theme-ready .nav,
+        html.theme-ready .bg-card,
+        html.theme-ready section { transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease; }
+
+        /* ============================================================
            RESET & BASE
         ============================================================ */
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -1621,6 +1714,35 @@
         .proj-card-stretch { position: absolute; inset: 0; z-index: 1; font-size: 0; line-height: 0; }
         .proj-card--link .proj-body { position: relative; }
         .proj-card--link .proj-actions { position: relative; z-index: 2; }
+
+        /* ---- Side Builds grid ---- */
+        .builds-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.25rem;
+        }
+        .build-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.7rem;
+            transition: transform .2s ease, border-color .2s ease, background .2s ease;
+        }
+        .build-card:hover { transform: translateY(-3px); border-color: var(--border-strong); background: var(--bg-card-hover); }
+        .build-card-top { display: flex; align-items: baseline; justify-content: space-between; gap: 0.75rem; }
+        .build-card h3 { font-family: var(--font-display); font-size: 1.15rem; font-weight: 600; color: var(--ink); }
+        .build-year { font-family: var(--font-mono); font-size: 0.7rem; color: var(--ink-4); white-space: nowrap; }
+        .build-card p { color: var(--ink-2); font-size: 0.9rem; flex: 1; }
+        .build-tags { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+        .build-tag {
+            font-family: var(--font-mono); font-size: 0.66rem; color: var(--ink-3);
+            border: 1px solid var(--border); border-radius: 50px; padding: 2px 8px;
+        }
+        .build-actions { display: flex; gap: 0.6rem; margin-top: 0.25rem; }
+        .builds-see-all { text-align: center; margin-top: 2.25rem; }
 
         /* News card variant */
         .proj-card.news-card .proj-thumb {
@@ -3408,6 +3530,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Anti-FOUC: set theme before first paint -->
+    <script>(function(){var s=localStorage.getItem('theme');var d=window.matchMedia('(prefers-color-scheme: dark)').matches;document.documentElement.setAttribute('data-theme',s||(d?'dark':'light'));})()</script>
     <script type="text/javascript" src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js" async></script>
     <!-- ===== VISITOR ANALYTICS: GoatCounter =====
          SETUP: Sign up free at https://www.goatcounter.com/
@@ -3439,9 +3563,14 @@
                 <li><a href="#research">Research</a></li>
                 <li><a href="#publications">Publications</a></li>
                 <li><a href="#tools">Software</a></li>
+                <li><a href="#builds">Builds</a></li>
                 <li><a href="#recognition">Recognition</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#contact">Contact</a></li>
+                <li><button class="nav-theme-toggle" id="themeToggle" aria-label="Switch to light mode" title="Toggle light / dark mode">
+                    <svg class="theme-icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+                    <svg class="theme-icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                </button></li>
                 <li><button class="nav-cmdk" id="cmdkOpen" aria-label="Open command palette">
                     <span>Search</span> <kbd>⌘K</kbd>
                 </button></li>
@@ -4148,6 +4277,85 @@
 
     <hr class="section-divider">
 
+    <!-- ===== SIDE BUILDS ===== -->
+    <section class="section fade-in" id="builds">
+        <div class="section-header">
+            <span class="section-label">Side Builds</span>
+            <h2 class="section-title">Things I build <span class="highlight">outside the lab</span></h2>
+            <p class="section-subtitle">Web apps built outside my research, usually because someone I care about needed them, or because a problem nagged me until I solved it. All free, browser-based, and privacy-first.</p>
+        </div>
+        <div class="builds-grid">
+            <div class="build-card">
+                <div class="build-card-top"><h3>QR Forge</h3><span class="build-year">2026</span></div>
+                <p>Free open-source QR generator embedding Ghanaian Adinkra symbols and Kente patterns. 10 content types, print-ready, fully client-side.</p>
+                <div class="build-tags"><span class="build-tag">JavaScript</span><span class="build-tag">PWA</span><span class="build-tag">Cultural</span></div>
+                <div class="build-actions">
+                    <a href="https://mbaffour.github.io/qr-forge/" class="proj-link" target="_blank" rel="noopener">Open ↗</a>
+                    <a href="https://mbaffour.github.io/qr-forge/blog.html" class="proj-link alt" target="_blank" rel="noopener">Blog</a>
+                </div>
+            </div>
+            <div class="build-card">
+                <div class="build-card-top"><h3>NCLEX Pro Simulator</h3><span class="build-year">2026</span></div>
+                <p>Adaptive practice questions plus AI clinical rationales for nursing students, free, in the browser.</p>
+                <div class="build-tags"><span class="build-tag">JavaScript</span><span class="build-tag">Adaptive</span><span class="build-tag">AI</span></div>
+                <div class="build-actions">
+                    <a href="https://mbaffour.github.io/nclex-simulator/" class="proj-link" target="_blank" rel="noopener">Open ↗</a>
+                    <a href="https://mbaffour.github.io/nclex-simulator/blog_public.html" class="proj-link alt" target="_blank" rel="noopener">Blog</a>
+                </div>
+            </div>
+            <div class="build-card">
+                <div class="build-card-top"><h3>MCAT Prep</h3><span class="build-year">2026</span></div>
+                <p>Full-length MCAT simulator with section breakdowns, time tracking, and AI-generated explanations. Free, browser-based, no account needed.</p>
+                <div class="build-tags"><span class="build-tag">JavaScript</span><span class="build-tag">Adaptive</span><span class="build-tag">AI</span></div>
+                <div class="build-actions">
+                    <a href="https://mbaffour.github.io/mcat-prep/" class="proj-link" target="_blank" rel="noopener">Open ↗</a>
+                    <a href="https://mbaffour.github.io/mcat-prep/blog.html" class="proj-link alt" target="_blank" rel="noopener">Blog</a>
+                </div>
+            </div>
+            <div class="build-card">
+                <div class="build-card-top"><h3>Fitness Forge</h3><span class="build-year">2025</span></div>
+                <p>Offline-first fitness PWA: AI-generated 12–16 week programs, 60+ exercise database, local storage. No account, no server, no tracking.</p>
+                <div class="build-tags"><span class="build-tag">PWA</span><span class="build-tag">Offline-First</span><span class="build-tag">Fitness</span></div>
+                <div class="build-actions">
+                    <a href="https://mbaffour.github.io/fitness-forge/" class="proj-link" target="_blank" rel="noopener">Open ↗</a>
+                    <a href="https://mbaffour.github.io/fitness-forge/blog.html" class="proj-link alt" target="_blank" rel="noopener">Blog</a>
+                </div>
+            </div>
+            <div class="build-card">
+                <div class="build-card-top"><h3>PennyWise+</h3><span class="build-year">2026</span></div>
+                <p>Private browser-based finance tracker: log income, categorize spending, visualize trends. Runs fully client-side. No account, no server, no tracking.</p>
+                <div class="build-tags"><span class="build-tag">JavaScript</span><span class="build-tag">Finance</span><span class="build-tag">Offline</span></div>
+                <div class="build-actions">
+                    <a href="https://mbaffour.github.io/pennywise-plus/" class="proj-link" target="_blank" rel="noopener">Open ↗</a>
+                    <a href="https://mbaffour.github.io/pennywise-plus/blog.html" class="proj-link alt" target="_blank" rel="noopener">Blog</a>
+                </div>
+            </div>
+            <div class="build-card">
+                <div class="build-card-top"><h3>datamask</h3><span class="build-year">2026</span></div>
+                <p>Privacy-first local anonymizer: mask, shuffle, or replace sensitive columns in CSV/Excel. Your data never leaves the browser.</p>
+                <div class="build-tags"><span class="build-tag">JavaScript</span><span class="build-tag">Privacy</span><span class="build-tag">CSV</span></div>
+                <div class="build-actions">
+                    <a href="https://mbaffour.github.io/datamask/" class="proj-link" target="_blank" rel="noopener">Open ↗</a>
+                    <a href="https://mbaffour.github.io/datamask/blog.html" class="proj-link alt" target="_blank" rel="noopener">Blog</a>
+                </div>
+            </div>
+            <div class="build-card">
+                <div class="build-card-top"><h3>batchcrop</h3><span class="build-year">2025</span></div>
+                <p>Fast offline-first batch image cropper with 5 crop shapes and live preview. Zero uploads, zero accounts.</p>
+                <div class="build-tags"><span class="build-tag">JavaScript</span><span class="build-tag">Image</span><span class="build-tag">Offline</span></div>
+                <div class="build-actions">
+                    <a href="https://mbaffour.github.io/batchcrop/" class="proj-link" target="_blank" rel="noopener">Open ↗</a>
+                    <a href="https://mbaffour.github.io/batchcrop/blog.html" class="proj-link alt" target="_blank" rel="noopener">Blog</a>
+                </div>
+            </div>
+        </div>
+        <div class="builds-see-all">
+            <a href="builds.html" class="proj-link">Full builds page ↗</a>
+        </div>
+    </section>
+
+    <hr class="section-divider">
+
     <!-- ===== RECOGNITION & SERVICE ===== -->
     <section class="section fade-in" id="recognition">
         <div class="section-header bare">
@@ -4379,6 +4587,38 @@
 
     <!-- ===== JAVASCRIPT ===== -->
     <script>
+    /* ==============================================================
+       THEME TOGGLE
+    =============================================================== */
+    (function() {
+        const html = document.documentElement;
+        const btn  = document.getElementById('themeToggle');
+        if (!btn) return;
+
+        function applyTheme(t) {
+            html.setAttribute('data-theme', t);
+            btn.setAttribute('aria-label', t === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+            // Update theme-color meta for mobile browsers
+            var meta = document.querySelector('meta[name="theme-color"]');
+            if (meta) meta.setAttribute('content', t === 'dark' ? '#121009' : '#f7f4ea');
+        }
+
+        // Init from storage (anti-FOUC script already set the attribute, just sync the button label)
+        var current = html.getAttribute('data-theme') || 'dark';
+        applyTheme(current);
+
+        btn.addEventListener('click', function() {
+            var next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+            applyTheme(next);
+            localStorage.setItem('theme', next);
+        });
+
+        // Enable smooth transitions after load (suppressed during initial paint)
+        window.addEventListener('load', function() {
+            html.classList.add('theme-ready');
+        });
+    })();
+
     /* ==============================================================
        DATA — Publications
     =============================================================== */
@@ -5496,7 +5736,7 @@
     /* ==============================================================
        NAV: ACTIVE SECTION HIGHLIGHT
     =============================================================== */
-    const navIds = ['about', 'research', 'playground', 'publications', 'tools', 'blog', 'next', 'recognition', 'gallery', 'contact'];
+    const navIds = ['about', 'research', 'playground', 'publications', 'tools', 'builds', 'blog', 'next', 'recognition', 'gallery', 'contact'];
     /* (CV merged into About — no separate section.) */
     const sectionEls = navIds.map(id => document.getElementById(id)).filter(Boolean);
     const navAnchors = Array.from(document.querySelectorAll('.nav-links a')).filter(a => a.getAttribute('href') && a.getAttribute('href').startsWith('#'));
@@ -7325,7 +7565,7 @@
             { type: 'section', label: 'Lysis curve playground', hint: 'tune phage parameters live', href: '#playground', icon: '📈' },
             { type: 'section', label: 'Publications',         hint: 'preprints & papers',  href: '#publications', icon: '📖' },
             { type: 'section', label: 'Research software',     hint: 'open-source tools', href: '#tools', icon: '🧰' },
-            { type: 'link',    label: 'Side builds',          hint: 'non-science web apps', href: 'builds.html', icon: '⚙️', external: false },
+            { type: 'section', label: 'Side builds',            hint: 'non-science web apps', href: '#builds', icon: '⚙️' },
             { type: 'section', label: 'TailFiber game',        hint: 'TailFiber · playable phage game', href: '#next', icon: '🧪' },
             { type: 'section', label: 'Recognition & service',hint: 'awards · outreach',   href: '#recognition', icon: '🏆' },
             { type: 'section', label: 'About',                hint: 'who I am',            href: '#about', icon: '🧬' },
