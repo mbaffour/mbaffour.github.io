@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LifeXP — Track your life. Level it up.</title>
+<meta name="description" content="LifeXP is a gamified, local-first life tracker: habits, time, quests, and life metrics with XP, levels, and streaks. All data stays on your device.">
+<meta property="og:title" content="LifeXP — Track your life. Level it up.">
+<meta property="og:description" content="A gamified, local-first life tracker. Earn XP, build streaks, and watch your progress climb — with every byte kept private on your own device.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://mbaffour.github.io/lifexp/">
+<meta name="twitter:card" content="summary">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%230f1117'/><polygon points='16,5 25,10.5 25,21.5 16,27 7,21.5 7,10.5' fill='none' stroke='%236366f1' stroke-width='2'/><path d='M12 16.5l3 3 5.5-6' fill='none' stroke='%2310b981' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:        #0f1117;
+    --bg-grid:   #12141c;
+    --panel:     #171a23;
+    --panel-2:   #1e222e;
+    --panel-hi:  #262b3a;
+    --line:      rgba(255,255,255,0.08);
+    --line-2:    rgba(255,255,255,0.14);
+
+    --indigo:    #6366f1;
+    --indigo-lt: #818cf8;
+    --indigo-dk: #4f46e5;
+    --emerald:   #10b981;
+    --emerald-lt:#34d399;
+    --amber:     #f59e0b;
+
+    --ink:       #eef0f6;
+    --ink-2:     #aab1c6;
+    --ink-3:     #6f778f;
+
+    --display:   'Sora', system-ui, sans-serif;
+    --body:      'Plus Jakarta Sans', system-ui, sans-serif;
+    --mono:      'JetBrains Mono', ui-monospace, monospace;
+
+    --wrap:      1080px;
+    --r:         16px;
+    --r-sm:      11px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background:
+      radial-gradient(900px 500px at 82% -8%, rgba(99,102,241,0.18), transparent 60%),
+      radial-gradient(700px 460px at 8% 6%, rgba(16,185,129,0.10), transparent 58%),
+      var(--bg);
+    color: var(--ink);
+    font-family: var(--body);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  a { color: inherit; text-decoration: none; }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--indigo-lt); outline-offset: 3px; border-radius: 6px; }
+  .wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 22px; }
+
+  /* ── NAV ─────────────────────────────────── */
+  nav {
+    position: sticky; top: 0; z-index: 40;
+    background: rgba(15,17,23,0.80);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-in { max-width: var(--wrap); margin: 0 auto; padding: 13px 22px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+  .logo { display: flex; align-items: center; gap: 11px; font-family: var(--display); font-weight: 700; font-size: 1.05rem; letter-spacing: -0.01em; }
+  .logo .mark { width: 32px; height: 32px; flex: none; }
+  .logo .lv { font-family: var(--mono); font-size: 0.64rem; font-weight: 600; color: var(--indigo-lt); border: 1px solid var(--line-2); border-radius: 999px; padding: 2px 8px; letter-spacing: 0.06em; }
+  .nav-cta {
+    font-family: var(--display); font-weight: 600; font-size: 0.9rem;
+    background: var(--indigo); color: #fff;
+    padding: 10px 18px; border-radius: 10px;
+    box-shadow: 0 6px 18px rgba(99,102,241,0.35);
+    transition: transform .16s ease, box-shadow .16s ease, background .16s ease;
+    white-space: nowrap;
+  }
+  .nav-cta:hover { transform: translateY(-2px); background: var(--indigo-dk); box-shadow: 0 10px 26px rgba(99,102,241,0.5); }
+
+  /* ── HERO ─────────────────────────────────── */
+  .hero { padding: 66px 0 34px; }
+  .hero-grid { display: grid; grid-template-columns: 1.08fr 0.92fr; gap: 46px; align-items: center; }
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 9px;
+    font-family: var(--mono); font-size: 0.72rem; font-weight: 500;
+    letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-2);
+    background: var(--panel); border: 1px solid var(--line);
+    padding: 6px 13px; border-radius: 999px; margin-bottom: 22px;
+  }
+  .eyebrow .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--emerald); box-shadow: 0 0 0 3px rgba(16,185,129,0.22); }
+  .hero h1 {
+    font-family: var(--display); font-weight: 800;
+    font-size: clamp(2.5rem, 5.6vw, 3.75rem); line-height: 1.04;
+    letter-spacing: -0.025em; text-wrap: balance; margin-bottom: 20px;
+  }
+  .hero h1 .grad {
+    background: linear-gradient(96deg, var(--indigo-lt), var(--emerald-lt));
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .hero .lede { color: var(--ink-2); font-size: 1.1rem; max-width: 40ch; margin-bottom: 30px; }
+  .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
+  .btn-primary {
+    font-family: var(--display); font-weight: 600; font-size: 1rem;
+    background: var(--indigo); color: #fff;
+    padding: 14px 26px; border-radius: 12px;
+    box-shadow: 0 10px 28px rgba(99,102,241,0.4);
+    transition: transform .16s ease, box-shadow .16s ease, background .16s ease;
+    display: inline-flex; align-items: center; gap: 9px;
+  }
+  .btn-primary:hover { transform: translateY(-2px); background: var(--indigo-dk); box-shadow: 0 14px 34px rgba(99,102,241,0.55); }
+  .btn-ghost {
+    font-family: var(--display); font-weight: 600; font-size: 0.96rem;
+    color: var(--ink); border: 1px solid var(--line-2); border-radius: 12px;
+    padding: 13px 22px; display: inline-flex; align-items: center; gap: 9px;
+    transition: border-color .16s ease, background .16s ease;
+  }
+  .btn-ghost:hover { border-color: var(--indigo-lt); background: var(--panel); }
+  .hero-meta { margin-top: 20px; font-family: var(--mono); font-size: 0.76rem; color: var(--ink-3); letter-spacing: 0.02em; }
+
+  /* ── DASHBOARD CARD (hero visual) ────────── */
+  .dash {
+    background: linear-gradient(180deg, var(--panel-2), var(--panel));
+    border: 1px solid var(--line-2); border-radius: 22px;
+    padding: 22px; box-shadow: 0 30px 70px -30px rgba(0,0,0,0.75), inset 0 1px 0 rgba(255,255,255,0.05);
+  }
+  .dash-top { display: flex; align-items: center; gap: 16px; margin-bottom: 20px; }
+  .badge { position: relative; width: 84px; height: 84px; flex: none; }
+  .badge .lvnum { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+  .badge .lvnum b { font-family: var(--display); font-weight: 800; font-size: 1.7rem; line-height: 1; color: var(--ink); }
+  .badge .lvnum span { font-family: var(--mono); font-size: 0.54rem; letter-spacing: 0.16em; color: var(--indigo-lt); text-transform: uppercase; margin-top: 2px; }
+  .dash-id h3 { font-family: var(--display); font-weight: 700; font-size: 1.12rem; letter-spacing: -0.01em; }
+  .dash-id p { font-family: var(--mono); font-size: 0.72rem; color: var(--ink-3); margin-top: 3px; }
+
+  .xp-row { margin-bottom: 6px; display: flex; justify-content: space-between; align-items: baseline; font-family: var(--mono); font-size: 0.72rem; color: var(--ink-2); }
+  .xp-row .amt { color: var(--emerald-lt); font-weight: 600; font-variant-numeric: tabular-nums; }
+  .xp-track { height: 12px; border-radius: 999px; background: var(--bg-grid); border: 1px solid var(--line); overflow: hidden; position: relative; }
+  .xp-fill {
+    height: 100%; width: 0;
+    background: linear-gradient(90deg, var(--indigo), var(--emerald));
+    border-radius: 999px;
+    box-shadow: 0 0 14px rgba(99,102,241,0.6);
+    transition: width 1.5s cubic-bezier(.22,.85,.3,1);
+  }
+  .xp-track::after {
+    content: ""; position: absolute; inset: 0;
+    background-image: repeating-linear-gradient(90deg, transparent 0, transparent 9%, rgba(255,255,255,0.10) 9%, rgba(255,255,255,0.10) calc(9% + 1px));
+  }
+
+  .stat-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 18px; }
+  .stat { background: var(--panel); border: 1px solid var(--line); border-radius: var(--r-sm); padding: 12px 12px; }
+  .stat .k { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-3); display: flex; align-items: center; gap: 5px; }
+  .stat .v { font-family: var(--display); font-weight: 700; font-size: 1.4rem; margin-top: 5px; font-variant-numeric: tabular-nums; }
+  .stat .v small { font-size: 0.7rem; font-weight: 600; color: var(--ink-3); font-family: var(--body); }
+  .stat.flame .v { color: var(--amber); }
+  .stat.emerald .v { color: var(--emerald-lt); }
+
+  .grid-label { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-3); margin: 20px 0 9px; }
+  .heat { display: grid; grid-template-columns: repeat(15, 1fr); gap: 4px; }
+  .heat span { aspect-ratio: 1; border-radius: 3px; background: var(--bg-grid); border: 1px solid rgba(255,255,255,0.04); }
+  .heat span.l1 { background: rgba(99,102,241,0.28); }
+  .heat span.l2 { background: rgba(99,102,241,0.55); }
+  .heat span.l3 { background: rgba(16,185,129,0.6); }
+  .heat span.l4 { background: var(--emerald); box-shadow: 0 0 8px rgba(16,185,129,0.55); }
+
+  /* ── SECTION SCAFFOLD ────────────────────── */
+  section { padding: 52px 0; }
+  .sec-head { max-width: 620px; margin-bottom: 34px; }
+  .sec-tag { font-family: var(--mono); font-size: 0.72rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--indigo-lt); }
+  .sec-head h2 { font-family: var(--display); font-weight: 700; font-size: clamp(1.7rem, 3.4vw, 2.3rem); letter-spacing: -0.02em; margin: 12px 0 12px; text-wrap: balance; }
+  .sec-head p { color: var(--ink-2); font-size: 1.04rem; }
+
+  /* ── FEATURE / QUEST CARDS ───────────────── */
+  .features { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .qcard {
+    background: var(--panel); border: 1px solid var(--line); border-radius: var(--r);
+    padding: 22px 20px; position: relative; overflow: hidden;
+    transition: transform .2s ease, border-color .2s ease, background .2s ease;
+  }
+  .qcard::before {
+    content: ""; position: absolute; left: 0; top: 0; height: 3px; width: 100%;
+    background: linear-gradient(90deg, var(--indigo), var(--emerald));
+    opacity: 0; transition: opacity .2s ease;
+  }
+  .qcard:hover { transform: translateY(-4px); border-color: var(--line-2); background: var(--panel-2); }
+  .qcard:hover::before { opacity: 1; }
+  .qicon {
+    width: 44px; height: 44px; border-radius: 12px; margin-bottom: 15px;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(99,102,241,0.12); border: 1px solid rgba(99,102,241,0.28);
+    color: var(--indigo-lt);
+  }
+  .qcard:nth-child(2n) .qicon { background: rgba(16,185,129,0.12); border-color: rgba(16,185,129,0.28); color: var(--emerald-lt); }
+  .qicon svg { width: 22px; height: 22px; }
+  .qcard h3 { font-family: var(--display); font-weight: 600; font-size: 1.04rem; letter-spacing: -0.01em; margin-bottom: 7px; }
+  .qcard p { color: var(--ink-2); font-size: 0.9rem; line-height: 1.55; }
+
+  /* ── HOW TO PLAY ─────────────────────────── */
+  .play-wrap { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 46px; align-items: start; }
+  .questlog { display: flex; flex-direction: column; gap: 12px; }
+  .quest {
+    display: grid; grid-template-columns: auto 1fr; gap: 16px; align-items: start;
+    background: var(--panel); border: 1px solid var(--line); border-radius: var(--r);
+    padding: 18px 20px; transition: border-color .2s ease, background .2s ease;
+  }
+  .quest:hover { border-color: var(--line-2); background: var(--panel-2); }
+  .qnum {
+    width: 38px; height: 38px; flex: none; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--mono); font-weight: 600; font-size: 0.9rem;
+    background: var(--bg-grid); border: 1px solid var(--line-2); color: var(--indigo-lt);
+    font-variant-numeric: tabular-nums;
+  }
+  .quest h4 { font-family: var(--display); font-weight: 600; font-size: 1.02rem; margin-bottom: 4px; letter-spacing: -0.01em; }
+  .quest p { color: var(--ink-2); font-size: 0.9rem; }
+  .quest .reward { font-family: var(--mono); font-size: 0.68rem; color: var(--emerald-lt); margin-top: 7px; display: inline-flex; align-items: center; gap: 5px; }
+
+  .privacy {
+    background: linear-gradient(180deg, var(--panel-2), var(--panel));
+    border: 1px solid var(--line-2); border-radius: 20px; padding: 30px 28px;
+    position: sticky; top: 90px;
+  }
+  .privacy .plock {
+    width: 46px; height: 46px; border-radius: 12px; margin-bottom: 16px;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(16,185,129,0.12); border: 1px solid rgba(16,185,129,0.3); color: var(--emerald-lt);
+  }
+  .privacy h3 { font-family: var(--display); font-weight: 700; font-size: 1.3rem; letter-spacing: -0.01em; margin-bottom: 12px; }
+  .privacy p { color: var(--ink-2); font-size: 0.96rem; margin-bottom: 16px; }
+  .plist { list-style: none; display: flex; flex-direction: column; gap: 11px; }
+  .plist li { display: flex; gap: 11px; align-items: flex-start; font-size: 0.92rem; color: var(--ink); }
+  .plist li svg { width: 18px; height: 18px; flex: none; color: var(--emerald-lt); margin-top: 2px; }
+
+  /* ── FINAL CTA ───────────────────────────── */
+  .finale { padding: 56px 0 60px; }
+  .finale-card {
+    position: relative; overflow: hidden;
+    background:
+      radial-gradient(600px 260px at 78% 0%, rgba(99,102,241,0.28), transparent 60%),
+      radial-gradient(500px 260px at 10% 100%, rgba(16,185,129,0.2), transparent 60%),
+      var(--panel);
+    border: 1px solid var(--line-2); border-radius: 24px;
+    padding: 52px 40px; text-align: center;
+  }
+  .finale-badge { display: inline-flex; align-items: center; gap: 8px; font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--emerald-lt); border: 1px solid rgba(16,185,129,0.3); background: rgba(16,185,129,0.08); padding: 6px 13px; border-radius: 999px; margin-bottom: 20px; }
+  .finale-card h2 { font-family: var(--display); font-weight: 800; font-size: clamp(1.9rem, 4vw, 2.6rem); letter-spacing: -0.02em; text-wrap: balance; margin-bottom: 14px; }
+  .finale-card p { color: var(--ink-2); font-size: 1.06rem; max-width: 52ch; margin: 0 auto 28px; }
+  .finale-actions { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; }
+  .tag-row { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 30px; }
+  .tag { font-family: var(--mono); font-size: 0.7rem; color: var(--ink-3); border: 1px solid var(--line); border-radius: 999px; padding: 5px 12px; }
+
+  /* ── FOOTER ──────────────────────────────── */
+  footer { border-top: 1px solid var(--line); padding: 30px 0 40px; }
+  .foot-in { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px; }
+  .foot-in .who { font-family: var(--display); font-weight: 600; font-size: 0.92rem; }
+  .foot-links { display: flex; gap: 20px; flex-wrap: wrap; font-size: 0.88rem; }
+  .foot-links a { color: var(--ink-2); transition: color .16s ease; }
+  .foot-links a:hover { color: var(--indigo-lt); }
+
+  /* ── RESPONSIVE ──────────────────────────── */
+  @media (max-width: 940px) {
+    .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+    .features { grid-template-columns: repeat(2, 1fr); }
+    .play-wrap { grid-template-columns: 1fr; gap: 28px; }
+    .privacy { position: static; }
+  }
+  @media (max-width: 560px) {
+    .hero { padding: 44px 0 26px; }
+    .stat-row { grid-template-columns: 1fr; }
+    .features { grid-template-columns: 1fr; }
+    .heat { grid-template-columns: repeat(12, 1fr); }
+    .finale-card { padding: 40px 22px; }
+    .nav-cta { padding: 9px 14px; font-size: 0.84rem; }
+    .logo .lv { display: none; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .xp-fill { transition: none; }
+    * { scroll-behavior: auto; }
+  }
+</style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-in">
+      <a class="logo" href="https://mbaffour.github.io/lifexp/" aria-label="LifeXP home">
+        <svg class="mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#171a23"/><polygon points="16,5 25,10.5 25,21.5 16,27 7,21.5 7,10.5" fill="none" stroke="#6366f1" stroke-width="2"/><path d="M12 16.5l3 3 5.5-6" fill="none" stroke="#10b981" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        LifeXP <span class="lv">LVL&nbsp;12</span>
+      </a>
+      <a class="nav-cta" href="https://mbaffour.github.io/lifexp/">Open LifeXP</a>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="wrap">
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <span class="eyebrow"><span class="dot"></span> Local-first &middot; PWA &middot; No account</span>
+          <h1>Track your life.<br><span class="grad">Level it up.</span></h1>
+          <p class="lede">A gamified life tracker for habits, time, quests, and personal metrics. Earn XP, build streaks, and watch your progress climb — with every byte kept private on your own device.</p>
+          <div class="hero-actions">
+            <a class="btn-primary" href="https://mbaffour.github.io/lifexp/">
+              Open LifeXP
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+            <a class="btn-ghost" href="https://github.com/mbaffour/lifexp" target="_blank" rel="noopener">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.2.8-.5v-1.7c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.4-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.9 18.3 5.2 18.3 5.2c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.6.8.5A11.5 11.5 0 0 0 23.5 12C23.5 5.7 18.3.5 12 .5z"/></svg>
+              View source
+            </a>
+          </div>
+          <p class="hero-meta">React &middot; TypeScript &middot; Vite &middot; Dexie / IndexedDB &mdash; nothing leaves your device</p>
+        </div>
+
+        <div class="dash" role="img" aria-label="LifeXP dashboard preview showing level 12, an XP progress bar, a 41-day streak, and a habit completion grid">
+          <div class="dash-top">
+            <div class="badge">
+              <svg viewBox="0 0 84 84" aria-hidden="true">
+                <defs>
+                  <linearGradient id="bg1" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0" stop-color="#6366f1"/><stop offset="1" stop-color="#10b981"/>
+                  </linearGradient>
+                </defs>
+                <polygon points="42,6 73,24 73,60 42,78 11,60 11,24" fill="none" stroke="url(#bg1)" stroke-width="3"/>
+                <polygon points="42,15 65,28.5 65,55.5 42,69 19,55.5 19,28.5" fill="rgba(99,102,241,0.10)" stroke="rgba(255,255,255,0.10)" stroke-width="1"/>
+              </svg>
+              <span class="lvnum"><b>12</b><span>Level</span></span>
+            </div>
+            <div class="dash-id">
+              <h3>Your quest board</h3>
+              <p>Explorer &middot; Rank III</p>
+            </div>
+          </div>
+
+          <div class="xp-row"><span>XP to next level</span><span class="amt" id="xpAmt">2,940 / 3,200</span></div>
+          <div class="xp-track"><div class="xp-fill" id="xpFill"></div></div>
+
+          <div class="stat-row">
+            <div class="stat flame">
+              <div class="k">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2s5 4 5 9a5 5 0 0 1-10 0c0-1 .3-2 .8-2.8C8 9.5 9 11 10 11c1 0 1-2 0-4 2 1 2 3 2 3s2-2 0-8z"/></svg>
+                Streak
+              </div>
+              <div class="v">41<small> days</small></div>
+            </div>
+            <div class="stat emerald">
+              <div class="k">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+                Today
+              </div>
+              <div class="v">7<small>/9</small></div>
+            </div>
+            <div class="stat">
+              <div class="k">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+                Focus
+              </div>
+              <div class="v">3.2<small> h</small></div>
+            </div>
+          </div>
+
+          <p class="grid-label">Last 45 days &middot; habit completions</p>
+          <div class="heat" id="heat" aria-hidden="true"></div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section aria-labelledby="feat-h">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="sec-tag">The toolkit</span>
+        <h2 id="feat-h">Everything you track, in one dashboard</h2>
+        <p>Eight connected modes that feed a single XP economy — so the boring work of showing up every day starts to feel like leveling up a character.</p>
+      </div>
+      <div class="features">
+
+        <article class="qcard">
+          <div class="qicon"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2s5 4 5 9a5 5 0 0 1-10 0c0-1 .3-2 .8-2.8C8 9.5 9 11 10 11c1 0 1-2 0-4 2 1 2 3 2 3s2-2 0-8z"/></svg></div>
+          <h3>Habit tracker</h3>
+          <p>Build habits with XP, streaks, and skips, plus pause, archive, filters, search, and completion stats.</p>
+        </article>
+
+        <article class="qcard">
+          <div class="qicon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+          <h3>Time &amp; Focus Mode</h3>
+          <p>Stopwatch, Pomodoro-style sessions, manual entries, tags, and category summaries — plus distraction-free focus.</p>
+        </article>
+
+        <article class="qcard">
+          <div class="qicon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
+          <h3>Planner &amp; quests</h3>
+          <p>Gamified to-do quests with checklist steps, priority-based XP, timetable blocks, and overlap warnings.</p>
+        </article>
+
+        <article class="qcard">
+          <div class="qicon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"/><path d="M7 15l4-5 3 3 5-7"/></svg></div>
+          <h3>Life metrics</h3>
+          <p>Log weight, sleep, mood, water, caffeine, expenses, symptoms — and define your own custom metrics.</p>
+        </article>
+
+        <article class="qcard">
+          <div class="qicon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div>
+          <h3>Analytics</h3>
+          <p>Charts, heatmaps, weekly comparisons, and a calendar view that ties habits, time, and XP together by day.</p>
+        </article>
+
+        <article class="qcard">
+          <div class="qicon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l2.4 5 5.6.8-4 4 1 5.6L12 15l-5 2.4 1-5.6-4-4 5.6-.8z"/></svg></div>
+          <h3>Achievements &amp; levels</h3>
+          <p>Earn coins, unlock achievements, and climb ranks and levels — with gamification settings you can tune.</p>
+        </article>
+
+        <article class="qcard">
+          <div class="qicon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg></div>
+          <h3>Backup &amp; export</h3>
+          <p>Full JSON backup and restore with merge or replace, plus a habit-history CSV export of what you log.</p>
+        </article>
+
+        <article class="qcard">
+          <div class="qicon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="13.5" cy="6.5" r="1.5"/><circle cx="17.5" cy="10.5" r="1.5"/><circle cx="8.5" cy="7.5" r="1.5"/><circle cx="6.5" cy="12.5" r="1.5"/><path d="M12 2a10 10 0 0 0 0 20c1.1 0 2-.9 2-2 0-.5-.2-1-.5-1.3-.3-.4-.5-.8-.5-1.2 0-1.1.9-2 2-2h2.4A4.6 4.6 0 0 0 22 11c0-5-4.5-9-10-9z"/></svg></div>
+          <h3>Themes &amp; install</h3>
+          <p>Light, dark, neon, forest, ocean, sunset, and minimal themes. Installable as a PWA and offline after first load.</p>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="play-h">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="sec-tag">How to play</span>
+        <h2 id="play-h">From open tab to leveling up</h2>
+        <p>No sign-up, no server, no setup. Here's the loop, from your first visit to a running streak.</p>
+      </div>
+      <div class="play-wrap">
+        <div class="privacy">
+          <div class="plock"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></div>
+          <h3>Local-first, and yours</h3>
+          <p>LifeXP has no remote backend and no real login. Every habit, quest, time entry, metric, and setting lives in your browser via IndexedDB.</p>
+          <ul class="plist">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> No account, no sync servers</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Nothing leaves your device</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Backup / restore as JSON or CSV, anytime</li>
+          </ul>
+        </div>
+
+        <ol class="questlog">
+          <li class="quest">
+            <div class="qnum">1</div>
+            <div>
+              <h4>Open it in your browser</h4>
+              <p>Nothing to install, no account to create. A local profile lives entirely in your browser, so you start tracking in seconds.</p>
+            </div>
+          </li>
+          <li class="quest">
+            <div class="qnum">2</div>
+            <div>
+              <h4>Log habits, time, quests &amp; metrics</h4>
+              <p>Check off habits, run a Pomodoro or stopwatch, work through your planner quests, and record the life metrics that matter to you.</p>
+            </div>
+          </li>
+          <li class="quest">
+            <div class="qnum">3</div>
+            <div>
+              <h4>Earn XP and watch it add up</h4>
+              <p>Every action feeds XP, streaks, and coins. Level up, climb ranks, and unlock achievements as consistency compounds.</p>
+              <span class="reward"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.4 5 5.6.8-4 4 1 5.6L12 15l-5 2.4 1-5.6-4-4 5.6-.8z"/></svg> +XP on every completion</span>
+            </div>
+          </li>
+          <li class="quest">
+            <div class="qnum">4</div>
+            <div>
+              <h4>Review your analytics</h4>
+              <p>Dig into charts, heatmaps, and the calendar view to see patterns across days and weeks — then export a report when you want one.</p>
+            </div>
+          </li>
+          <li class="quest">
+            <div class="qnum">5</div>
+            <div>
+              <h4>Back up your data</h4>
+              <p>Since everything is stored locally, use built-in Backup / Restore to export JSON or a habit-history CSV and carry your data between devices.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section class="finale" aria-labelledby="fin-h">
+    <div class="wrap">
+      <div class="finale-card">
+        <span class="finale-badge"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.4 5 5.6.8-4 4 1 5.6L12 15l-5 2.4 1-5.6-4-4 5.6-.8z"/></svg> Ready player one</span>
+        <h2 id="fin-h">Level up your consistency</h2>
+        <p>Give the habit tracker that actually feels rewarding a run. It's free, runs in your browser, and keeps every byte of your data on your own device.</p>
+        <div class="finale-actions">
+          <a class="btn-primary" href="https://mbaffour.github.io/lifexp/">
+            Open LifeXP
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <a class="btn-ghost" href="https://github.com/mbaffour/lifexp" target="_blank" rel="noopener">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.2.8-.5v-1.7c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.4-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.9 18.3 5.2 18.3 5.2c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.6.8.5A11.5 11.5 0 0 0 23.5 12C23.5 5.7 18.3.5 12 .5z"/></svg>
+            Star on GitHub
+          </a>
+        </div>
+        <div class="tag-row">
+          <span class="tag">TypeScript</span>
+          <span class="tag">React</span>
+          <span class="tag">Vite</span>
+          <span class="tag">PWA</span>
+          <span class="tag">Dexie / IndexedDB</span>
+          <span class="tag">Local-first</span>
+          <span class="tag">Gamification</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap foot-in">
+      <div class="who">Michael Baffour Awuah</div>
+      <div class="foot-links">
+        <a href="https://mbaffour.github.io/">Back to portfolio</a>
+        <a href="https://mbaffour.github.io/lifexp/">Open LifeXP</a>
+        <a href="https://github.com/mbaffour/lifexp" target="_blank" rel="noopener">Source on GitHub</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      // Fill the XP bar (2940 / 3200) once mounted, respecting reduced motion.
+      var fill = document.getElementById('xpFill');
+      var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var target = (2940 / 3200 * 100).toFixed(1) + '%';
+      if (fill) {
+        if (reduce) { fill.style.width = target; }
+        else { requestAnimationFrame(function () { setTimeout(function () { fill.style.width = target; }, 180); }); }
+      }
+
+      // Seed the habit-completion heat grid (45 cells) with a plausible pattern.
+      var heat = document.getElementById('heat');
+      if (heat) {
+        var levels = ['', 'l1', 'l2', 'l3', 'l4'];
+        var pattern = [1,2,0,3,4,2,1, 3,4,2,1,0,2,3, 4,3,2,4,1,2,3, 0,2,3,4,2,1,3, 4,4,2,3,1,0,2, 3,4,2,1,3,4,2, 3,4,1];
+        var frag = document.createDocumentFragment();
+        for (var i = 0; i < 45; i++) {
+          var s = document.createElement('span');
+          var lv = pattern[i % pattern.length];
+          if (levels[lv]) s.className = levels[lv];
+          frag.appendChild(s);
+        }
+        heat.appendChild(frag);
+      }
+    })();
+  </script>
+</body>
+</html>

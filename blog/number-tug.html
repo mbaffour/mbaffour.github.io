@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Number Tug — Arithmetic tug-of-war you play on one device</title>
+<meta name="description" content="Number Tug is a same-device arithmetic tug-of-war game. Answer math problems fast to pull the rope your way — solo, two-player on one keyboard, or versus the CPU. Free, in the browser.">
+<meta property="og:title" content="Number Tug — Arithmetic tug-of-war">
+<meta property="og:description" content="Answer math problems fast to pull the rope your way. Solo, 2-player, or vs-CPU. Free, in the browser.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://mbaffour.github.io/number-tug/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%230a0a16'/><line x1='5' y1='16' x2='27' y2='16' stroke='%239aa0c9' stroke-width='2'/><circle cx='9' cy='16' r='5' fill='%23ff2d95'/><circle cx='23' cy='16' r='5' fill='%2322d3ee'/><rect x='14' y='11' width='4' height='10' rx='1' fill='%23ffd93d'/></svg>">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --void:      #0a0a16;
+    --void-2:    #0d0d1e;
+    --panel:     #14142e;
+    --panel-2:   #1b1b3a;
+    --line:      #2a2a52;
+    --line-soft: #21213f;
+
+    --magenta:   #ff2d95;
+    --magenta-d: #c01f6f;
+    --cyan:      #22d3ee;
+    --cyan-d:    #14a3ba;
+    --gold:      #ffd93d;
+
+    --ink:       #eef0ff;
+    --ink-dim:   #9aa0c9;
+    --ink-mute:  #6a6f96;
+
+    --arcade:    'Press Start 2P', system-ui, sans-serif;
+    --sans:      'Space Grotesk', system-ui, sans-serif;
+    --mono:      'Space Mono', 'Courier New', monospace;
+
+    --wrap: 1080px;
+  }
+
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+  body {
+    font-family: var(--sans);
+    background: var(--void);
+    color: var(--ink);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  /* Ambient glows anchored behind content */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(60vw 40vh at 12% 0%, rgba(255,45,149,0.12), transparent 60%),
+      radial-gradient(60vw 40vh at 88% 12%, rgba(34,211,238,0.12), transparent 60%),
+      radial-gradient(50vw 40vh at 50% 100%, rgba(124,58,237,0.10), transparent 65%);
+  }
+  /* CRT scanlines + vignette */
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 900;
+    pointer-events: none;
+    background:
+      repeating-linear-gradient(to bottom, rgba(0,0,0,0.16) 0 1px, transparent 1px 3px),
+      radial-gradient(120% 120% at 50% 50%, transparent 60%, rgba(0,0,0,0.5) 100%);
+    mix-blend-mode: multiply;
+    opacity: 0.55;
+  }
+
+  .wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
+
+  a { color: inherit; text-decoration: none; }
+  a:focus-visible, button:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  .arcade { font-family: var(--arcade); line-height: 1.5; letter-spacing: 0.02em; }
+
+  /* ─── NAV ─────────────────────────────────────────── */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(10,10,22,0.82);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--line-soft);
+  }
+  .nav-inner {
+    max-width: var(--wrap); margin: 0 auto; padding: 0 24px;
+    height: 62px; display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  }
+  .logo { display: flex; align-items: center; gap: 12px; }
+  .logo svg { display: block; flex-shrink: 0; }
+  .logo-word { font-family: var(--arcade); font-size: 0.72rem; color: var(--ink); letter-spacing: 0.01em; }
+  .logo-word b { color: var(--magenta); }
+  .logo-word i { color: var(--cyan); font-style: normal; }
+
+  .btn {
+    display: inline-flex; align-items: center; gap: 9px;
+    font-family: var(--sans); font-weight: 700; font-size: 0.94rem;
+    padding: 11px 20px; border-radius: 10px; border: 0; cursor: pointer;
+    transition: transform .14s ease, box-shadow .14s ease, filter .14s ease;
+  }
+  .btn-play {
+    color: #12001f;
+    background: linear-gradient(180deg, #ff56ab, var(--magenta));
+    box-shadow: 0 0 0 1px rgba(255,45,149,0.5), 0 8px 22px rgba(255,45,149,0.35);
+  }
+  .btn-play:hover { transform: translateY(-2px); box-shadow: 0 0 0 1px rgba(255,45,149,0.7), 0 12px 30px rgba(255,45,149,0.5); filter: saturate(1.1); }
+  .btn-play svg { transition: transform .14s ease; }
+  .btn-play:hover svg { transform: translateX(3px); }
+  .btn-nav { padding: 9px 16px; font-size: 0.86rem; }
+
+  .btn-ghost {
+    color: var(--ink); background: var(--panel);
+    border: 1px solid var(--line);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
+  }
+  .btn-ghost:hover { border-color: var(--cyan); color: var(--cyan); transform: translateY(-2px); }
+
+  /* ─── HERO ────────────────────────────────────────── */
+  .hero { padding: 68px 0 30px; text-align: center; }
+  .badge {
+    display: inline-flex; align-items: center; gap: 9px;
+    font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--ink-dim);
+    border: 1px solid var(--line); border-radius: 999px;
+    padding: 6px 14px 6px 10px; margin-bottom: 26px;
+    background: var(--panel);
+  }
+  .badge .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 10px var(--gold); }
+  .badge b { color: var(--ink); font-weight: 700; }
+
+  .hero h1 {
+    font-family: var(--sans); font-weight: 700;
+    font-size: clamp(2.5rem, 7.5vw, 5rem); line-height: 1.02; letter-spacing: -0.02em;
+    text-wrap: balance; margin-bottom: 22px;
+  }
+  .hero h1 .p1 { color: var(--magenta); text-shadow: 0 0 30px rgba(255,45,149,0.5); }
+  .hero h1 .p2 { color: var(--cyan); text-shadow: 0 0 30px rgba(34,211,238,0.5); }
+
+  .hero .lede {
+    max-width: 620px; margin: 0 auto 32px;
+    color: var(--ink-dim); font-size: clamp(1.02rem, 2.4vw, 1.18rem); text-wrap: pretty;
+  }
+  .hero-cta { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; }
+
+  /* ─── TUG ARENA ───────────────────────────────────── */
+  .arena {
+    margin: 46px auto 0; max-width: 860px;
+    background: linear-gradient(180deg, var(--panel), var(--void-2));
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    padding: 30px clamp(18px, 4vw, 40px) 26px;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.05);
+    position: relative; overflow: hidden;
+  }
+  .arena-head {
+    display: flex; align-items: center; justify-content: space-between;
+    font-family: var(--arcade); font-size: 0.6rem; color: var(--ink-mute);
+    letter-spacing: 0.06em; margin-bottom: 22px;
+  }
+  .arena-head .live { color: var(--gold); }
+
+  .rope-row { display: flex; align-items: center; gap: clamp(10px, 3vw, 26px); }
+
+  .pod {
+    flex-shrink: 0; width: clamp(96px, 22vw, 140px);
+    border-radius: 16px; padding: 16px 12px 14px; text-align: center;
+    position: relative;
+  }
+  .pod-1 { background: radial-gradient(120% 120% at 50% 0%, rgba(255,45,149,0.22), rgba(255,45,149,0.06)); border: 1px solid rgba(255,45,149,0.45); box-shadow: 0 0 30px rgba(255,45,149,0.22); }
+  .pod-2 { background: radial-gradient(120% 120% at 50% 0%, rgba(34,211,238,0.22), rgba(34,211,238,0.06)); border: 1px solid rgba(34,211,238,0.45); box-shadow: 0 0 30px rgba(34,211,238,0.22); }
+  .pod .who { font-family: var(--arcade); font-size: 0.56rem; letter-spacing: 0.04em; }
+  .pod-1 .who { color: var(--magenta); }
+  .pod-2 .who { color: var(--cyan); }
+  .pod .num { font-family: var(--sans); font-weight: 700; font-size: clamp(1.8rem, 6vw, 2.6rem); line-height: 1; margin-top: 10px; font-variant-numeric: tabular-nums; }
+  .pod-1 .num { color: #ffd3e8; } .pod-2 .num { color: #cff6fd; }
+  .pod .op { font-family: var(--mono); font-size: 0.72rem; color: var(--ink-dim); margin-top: 6px; }
+
+  .rope-wrap { flex: 1; min-width: 0; }
+  .rope-track {
+    position: relative; height: 12px; border-radius: 999px;
+    background: linear-gradient(90deg, rgba(255,45,149,0.25), rgba(34,211,238,0.25));
+    border: 1px solid var(--line);
+  }
+  .rope-track .center-line {
+    position: absolute; left: 50%; top: -12px; bottom: -12px; width: 2px;
+    transform: translateX(-50%); background: repeating-linear-gradient(to bottom, var(--gold) 0 4px, transparent 4px 8px);
+    opacity: 0.7;
+  }
+  .marker {
+    position: absolute; top: 50%; left: 42%;
+    width: 26px; height: 26px; border-radius: 50%;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle at 35% 30%, #fff, var(--gold));
+    box-shadow: 0 0 22px var(--gold), 0 0 0 3px rgba(255,217,61,0.28);
+    animation: tug 5.5s ease-in-out infinite;
+  }
+  @keyframes tug {
+    0%, 100% { left: 42%; }
+    22% { left: 66%; }
+    45% { left: 34%; }
+    68% { left: 58%; }
+    85% { left: 46%; }
+  }
+  @media (prefers-reduced-motion: reduce) { .marker { animation: none; } }
+
+  .vs-badge {
+    flex-shrink: 0;
+    font-family: var(--arcade); font-size: 0.7rem; color: var(--void);
+    background: var(--gold); border-radius: 8px; padding: 8px 9px;
+    box-shadow: 0 0 18px rgba(255,217,61,0.5); transform: rotate(-6deg);
+  }
+  .arena-foot {
+    margin-top: 24px; display: flex; flex-wrap: wrap; gap: 8px 16px; justify-content: center;
+    font-family: var(--mono); font-size: 0.74rem; color: var(--ink-mute);
+  }
+  .arena-foot span { display: inline-flex; align-items: center; gap: 6px; }
+  .arena-foot b { color: var(--ink-dim); font-weight: 700; }
+
+  /* ─── SECTION SCAFFOLD ────────────────────────────── */
+  section { padding: 74px 0; position: relative; z-index: 1; }
+  .sec-label {
+    font-family: var(--arcade); font-size: 0.62rem; letter-spacing: 0.06em;
+    color: var(--gold); margin-bottom: 16px; text-transform: uppercase;
+  }
+  .sec-title {
+    font-family: var(--sans); font-weight: 700; font-size: clamp(1.7rem, 4.4vw, 2.6rem);
+    letter-spacing: -0.015em; text-wrap: balance; margin-bottom: 12px;
+  }
+  .sec-intro { color: var(--ink-dim); max-width: 560px; font-size: 1.04rem; }
+  .sec-head { margin-bottom: 40px; }
+
+  /* ─── FEATURES ────────────────────────────────────── */
+  .feature-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 16px; }
+  .card {
+    background: linear-gradient(180deg, var(--panel), var(--void-2));
+    border: 1px solid var(--line-soft); border-radius: 16px;
+    padding: 24px 22px; position: relative; overflow: hidden;
+    transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
+  }
+  .card::before {
+    content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
+    background: var(--accent, var(--magenta)); opacity: 0.85;
+  }
+  .card:hover { transform: translateY(-4px); border-color: var(--line); box-shadow: 0 16px 40px rgba(0,0,0,0.45); }
+  .card .ico {
+    width: 42px; height: 42px; border-radius: 11px; margin-bottom: 15px;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--panel-2); border: 1px solid var(--line);
+    color: var(--accent, var(--magenta));
+  }
+  .card .ico svg { display: block; }
+  .card h3 { font-family: var(--sans); font-weight: 700; font-size: 1.1rem; margin-bottom: 7px; }
+  .card p { color: var(--ink-dim); font-size: 0.95rem; }
+  .card p code {
+    font-family: var(--mono); font-size: 0.86em; color: var(--ink);
+    background: var(--void); border: 1px solid var(--line); border-radius: 5px; padding: 1px 6px;
+  }
+  /* accent rotation */
+  .card.c-mag { --accent: var(--magenta); }
+  .card.c-cy  { --accent: var(--cyan); }
+  .card.c-go  { --accent: var(--gold); }
+
+  /* ─── KEYCAPS ─────────────────────────────────────── */
+  .keys-panel {
+    background: linear-gradient(180deg, var(--panel), var(--void-2));
+    border: 1px solid var(--line); border-radius: 20px;
+    padding: clamp(24px, 4vw, 40px);
+    display: grid; grid-template-columns: 1fr 1fr; gap: clamp(24px, 5vw, 56px);
+  }
+  .key-side .who {
+    font-family: var(--arcade); font-size: 0.62rem; margin-bottom: 4px;
+  }
+  .key-side.s1 .who { color: var(--magenta); }
+  .key-side.s2 .who { color: var(--cyan); }
+  .key-side .desc { font-family: var(--mono); font-size: 0.78rem; color: var(--ink-mute); margin-bottom: 18px; }
+  .keyrow { display: flex; gap: 10px; flex-wrap: wrap; }
+  .kc {
+    font-family: var(--mono); font-weight: 700; font-size: 1.05rem;
+    width: 48px; height: 52px; border-radius: 9px;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--ink);
+    background: linear-gradient(180deg, var(--panel-2), #0f0f24);
+    border: 1px solid var(--line);
+    box-shadow: 0 4px 0 #06060f, inset 0 1px 0 rgba(255,255,255,0.06);
+  }
+  .key-side.s1 .kc { border-color: rgba(255,45,149,0.4); box-shadow: 0 4px 0 #3a0a25, inset 0 1px 0 rgba(255,45,149,0.14); }
+  .key-side.s2 .kc { border-color: rgba(34,211,238,0.4); box-shadow: 0 4px 0 #06333b, inset 0 1px 0 rgba(34,211,238,0.14); }
+
+  /* ─── HOW TO PLAY (numbered match flow) ───────────── */
+  .flow { display: grid; gap: 0; }
+  .step {
+    display: grid; grid-template-columns: auto 1fr; gap: 22px;
+    padding: 26px 0; border-top: 1px solid var(--line-soft);
+  }
+  .step:first-child { border-top: 0; }
+  .step-n {
+    font-family: var(--arcade); font-size: 0.9rem; color: var(--void);
+    width: 46px; height: 46px; border-radius: 12px; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    background: linear-gradient(180deg, #ff56ab, var(--magenta));
+    box-shadow: 0 0 20px rgba(255,45,149,0.4);
+  }
+  .step:nth-child(2) .step-n { background: linear-gradient(180deg, #52e2f5, var(--cyan)); box-shadow: 0 0 20px rgba(34,211,238,0.4); }
+  .step:nth-child(3) .step-n { background: linear-gradient(180deg, #ffe37a, var(--gold)); box-shadow: 0 0 20px rgba(255,217,61,0.4); }
+  .step:nth-child(4) .step-n { background: linear-gradient(180deg, #ff56ab, var(--magenta)); box-shadow: 0 0 20px rgba(255,45,149,0.4); }
+  .step h3 { font-family: var(--sans); font-weight: 700; font-size: 1.18rem; margin-bottom: 5px; }
+  .step p { color: var(--ink-dim); font-size: 0.98rem; }
+  .step p code { font-family: var(--mono); font-size: 0.86em; color: var(--ink); background: var(--void); border: 1px solid var(--line); border-radius: 5px; padding: 1px 6px; }
+
+  /* ─── SCOREBOARD CTA ──────────────────────────────── */
+  .scoreboard {
+    text-align: center;
+    background:
+      radial-gradient(80% 120% at 50% 0%, rgba(255,45,149,0.14), transparent 60%),
+      radial-gradient(80% 120% at 50% 100%, rgba(34,211,238,0.14), transparent 60%),
+      var(--panel);
+    border: 1px solid var(--line); border-radius: 24px;
+    padding: clamp(38px, 6vw, 64px) 28px;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.5), inset 0 0 0 1px rgba(255,255,255,0.03);
+    position: relative; overflow: hidden;
+  }
+  .scoreboard .sb-tag { font-family: var(--arcade); font-size: 0.62rem; color: var(--gold); letter-spacing: 0.08em; margin-bottom: 20px; }
+  .scoreboard h2 { font-family: var(--sans); font-weight: 700; font-size: clamp(1.9rem, 5vw, 3rem); letter-spacing: -0.02em; margin-bottom: 14px; text-wrap: balance; }
+  .scoreboard p { color: var(--ink-dim); max-width: 480px; margin: 0 auto 30px; }
+  .sb-cta { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; }
+  .sb-digits {
+    font-family: var(--arcade); font-size: clamp(1.2rem, 5vw, 2rem); color: var(--gold);
+    letter-spacing: 0.1em; margin-bottom: 22px;
+    text-shadow: 0 0 20px rgba(255,217,61,0.5); font-variant-numeric: tabular-nums;
+  }
+
+  /* ─── FOOTER ──────────────────────────────────────── */
+  footer { border-top: 1px solid var(--line-soft); padding: 40px 0; margin-top: 20px; }
+  .foot-inner { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; }
+  .foot-links { display: flex; flex-wrap: wrap; gap: 22px; font-size: 0.9rem; }
+  .foot-links a { color: var(--ink-dim); transition: color .15s; }
+  .foot-links a:hover { color: var(--cyan); }
+  .foot-note { font-family: var(--mono); font-size: 0.78rem; color: var(--ink-mute); }
+  .foot-note a { color: var(--magenta); }
+
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 24px; }
+  .tag { font-family: var(--mono); font-size: 0.72rem; color: var(--ink-mute); border: 1px solid var(--line-soft); border-radius: 999px; padding: 4px 12px; }
+
+  /* ─── RESPONSIVE ──────────────────────────────────── */
+  @media (max-width: 640px) {
+    .hero { padding: 48px 0 24px; }
+    section { padding: 56px 0; }
+    .keys-panel { grid-template-columns: 1fr; }
+    .vs-badge { display: none; }
+    .pod { width: clamp(84px, 30vw, 120px); }
+    .logo-word { font-size: 0.6rem; }
+    .btn-nav span.full { display: none; }
+    .foot-inner { flex-direction: column; align-items: flex-start; }
+  }
+  @media (max-width: 380px) {
+    .kc { width: 42px; height: 46px; font-size: 0.95rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="logo" href="#top" aria-label="Number Tug home">
+      <svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true">
+        <rect width="34" height="34" rx="8" fill="#14142e" stroke="#2a2a52"/>
+        <line x1="6" y1="17" x2="28" y2="17" stroke="#9aa0c9" stroke-width="2"/>
+        <circle cx="10" cy="17" r="5" fill="#ff2d95"/>
+        <circle cx="24" cy="17" r="5" fill="#22d3ee"/>
+        <rect x="15" y="11.5" width="4" height="11" rx="1.2" fill="#ffd93d"/>
+      </svg>
+      <span class="logo-word"><b>NUMBER</b> <i>TUG</i></span>
+    </a>
+    <a class="btn btn-play btn-nav" href="https://mbaffour.github.io/number-tug/">
+      <span class="full">Play&nbsp;</span>Number Tug
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+  </div>
+</nav>
+
+<a id="top"></a>
+<header class="hero">
+  <div class="wrap">
+    <span class="badge"><span class="dot"></span> Free · in the browser · <b>no install</b></span>
+    <h1>Two thumbs. One rope.<br><span class="p1">Fastest math</span> <span class="p2">wins.</span></h1>
+    <p class="lede">Number Tug is an arithmetic tug-of-war you play on a single device. Answer problems fast and the rope slides your way — solo, two players on one keyboard, or against the CPU.</p>
+    <div class="hero-cta">
+      <a class="btn btn-play" href="https://mbaffour.github.io/number-tug/">
+        Play Number Tug
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <a class="btn btn-ghost" href="https://github.com/mbaffour/number-tug" target="_blank" rel="noopener">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.7-1.6-2.5-.3-5.2-1.3-5.2-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17 5 18 5.3 18 5.3c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5Z"/></svg>
+        View source
+      </a>
+    </div>
+
+    <!-- TUG ARENA -->
+    <div class="arena" role="img" aria-label="A tug-of-war rope with Player 1 in magenta and Player 2 in cyan, a glowing pull-marker sliding along the center line.">
+      <div class="arena-head">
+        <span>ROUND 04 / 10</span>
+        <span class="live">● PULLING</span>
+        <span>HARD · MIXED</span>
+      </div>
+      <div class="rope-row">
+        <div class="pod pod-1">
+          <div class="who">P1</div>
+          <div class="num">48</div>
+          <div class="op">6 × 8</div>
+        </div>
+        <div class="rope-wrap">
+          <div class="rope-track">
+            <span class="center-line"></span>
+            <span class="marker"></span>
+          </div>
+        </div>
+        <div class="vs-badge" aria-hidden="true">VS</div>
+        <div class="rope-wrap">
+          <div class="rope-track">
+            <span class="center-line"></span>
+          </div>
+        </div>
+        <div class="pod pod-2">
+          <div class="who">P2 / CPU</div>
+          <div class="num">72</div>
+          <div class="op">144 ÷ 2</div>
+        </div>
+      </div>
+      <div class="arena-foot">
+        <span><b>+SPEED</b> fast answers pull harder</span>
+        <span><b>×STREAK</b> back-to-back builds bonus</span>
+        <span><b>MISS</b> nudges the rope back</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- FEATURES -->
+<section id="features">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="sec-label">Insert coin</p>
+      <h2 class="sec-title">Everything packed into the cabinet</h2>
+      <p class="sec-intro">Three ways to play, five operations, three difficulties — plus the small stuff that makes a match feel alive.</p>
+    </div>
+    <div class="feature-grid">
+
+      <div class="card c-mag">
+        <div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="7" r="4"/><path d="M4 21v-1a6 6 0 0 1 12 0v1"/></svg></div>
+        <h3>Solo runs</h3>
+        <p>Clear a ten-question run against the rope on your own. Just you, the arithmetic, and a stubborn length of rope.</p>
+      </div>
+
+      <div class="card c-cy">
+        <div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="8" r="3.2"/><circle cx="16" cy="8" r="3.2"/><path d="M2.5 20v-1a5.5 5.5 0 0 1 10-3M11.5 20v-1a5.5 5.5 0 0 1 10-3"/></svg></div>
+        <h3>Two players, one keyboard</h3>
+        <p>Share a single screen. Each player guards their own side and taps or types the answers from their half of the board.</p>
+      </div>
+
+      <div class="card c-go">
+        <div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="7" width="16" height="12" rx="2"/><path d="M9 7V4h6v3M9 12h.01M15 12h.01M8 16h8"/></svg></div>
+        <h3>Versus the CPU</h3>
+        <p>No second human handy? Player 1 answers while the computer works the other end of the rope.</p>
+      </div>
+
+      <div class="card c-mag">
+        <div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"/></svg></div>
+        <h3>Speed &amp; streak bonuses</h3>
+        <p>Fast correct answers pull harder, and back-to-back correct answers build a streak bonus. Hesitation costs you ground.</p>
+      </div>
+
+      <div class="card c-cy">
+        <div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v16M4 8h16M4 16h16"/><path d="m7 4 3 3-3 3M17 14l-3 3 3 3"/></svg></div>
+        <h3>Five operations, three tiers</h3>
+        <p>Add, subtract, multiply, divide, or mixed — across Easy, Medium, and Hard timers and number ranges.</p>
+      </div>
+
+      <div class="card c-go">
+        <div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/></svg></div>
+        <h3>Sound, music &amp; haptics</h3>
+        <p>WebAudio blips for hits, misses and wins, plus vibration on supported phones. Sound and music toggle separately, with a graceful fallback where haptics aren't available.</p>
+      </div>
+
+      <div class="card c-mag">
+        <div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M6 10h.01M10 10h.01M14 10h.01M18 10h.01M6 14h12"/></svg></div>
+        <h3>Split-keyboard controls</h3>
+        <p>Player 1 answers with <code>A S D F</code>, Player 2 with <code>J K L ;</code> — four keys per side for the four multiple-choice answers.</p>
+      </div>
+
+      <div class="card c-cy">
+        <div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 21h8M12 17v4M4 4h16v9a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4V4zM4 8H2M20 8h2"/></svg></div>
+        <h3>Names, avatars &amp; a test</h3>
+        <p>Pick your name and face before the match, then run the sound and haptic test with one button so nothing surprises you mid-game.</p>
+      </div>
+
+      <div class="card c-go">
+        <div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 21h8M6 4h12v4a6 6 0 0 1-12 0V4zM6 6H3a3 3 0 0 0 3 3M18 6h3a3 3 0 0 1-3 3M9 21v-4h6v4"/></svg></div>
+        <h3>High scores &amp; scoreboard</h3>
+        <p>Personal bests and a running scoreboard persist in your browser via localStorage — no account, nothing installed.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CONTROLS / KEYCAPS -->
+<section id="controls">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="sec-label">Player 1 · Player 2</p>
+      <h2 class="sec-title">Split the keyboard, guard your side</h2>
+      <p class="sec-intro">Four answer choices, four keys. Two people can rest their hands at opposite ends of the same board and never reach across.</p>
+    </div>
+    <div class="keys-panel">
+      <div class="key-side s1">
+        <div class="who">PLAYER 1 · LEFT</div>
+        <div class="desc">// also used in Solo &amp; vs-CPU</div>
+        <div class="keyrow">
+          <span class="kc">A</span><span class="kc">S</span><span class="kc">D</span><span class="kc">F</span>
+        </div>
+      </div>
+      <div class="key-side s2">
+        <div class="who">PLAYER 2 · RIGHT</div>
+        <div class="desc">// or let the CPU take this end</div>
+        <div class="keyrow">
+          <span class="kc">J</span><span class="kc">K</span><span class="kc">L</span><span class="kc">;</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW TO PLAY -->
+<section id="how">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="sec-label">Match flow</p>
+      <h2 class="sec-title">How a round plays out</h2>
+      <p class="sec-intro">From setup to victory in four moves — no manual required.</p>
+    </div>
+    <div class="flow">
+      <div class="step">
+        <div class="step-n">1</div>
+        <div>
+          <h3>Set up the match</h3>
+          <p>Pick solo, two players, or vs-CPU. Choose an operation and difficulty, then name your player and pick a face.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-n">2</div>
+        <div>
+          <h3>A problem appears with four choices</h3>
+          <p>An arithmetic problem shows up with four answer buttons. Tap the right one — or press its key, <code>A S D F</code> for P1, <code>J K L ;</code> for P2 — before the timer bites.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-n">3</div>
+        <div>
+          <h3>Right answers pull the rope</h3>
+          <p>Each correct answer tugs the rope toward you. Answer fast and string together a streak to pull even harder; wrong answers and timeouts nudge it back.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-n">4</div>
+        <div>
+          <h3>Yank it over the line</h3>
+          <p>Keep the pressure on until the rope crosses to your side. Your best runs land on the scoreboard — then, of course, demand a rematch.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SCOREBOARD CTA -->
+<section id="play">
+  <div class="wrap">
+    <div class="scoreboard">
+      <p class="sb-tag">▸ Ready player one</p>
+      <div class="sb-digits" aria-hidden="true">P1&nbsp;07&nbsp;—&nbsp;03&nbsp;P2</div>
+      <h2>Grab a friend and a keyboard.</h2>
+      <p>Or race the clock solo. It opens in the browser, it's free, and the loser always wants a rematch.</p>
+      <div class="sb-cta">
+        <a class="btn btn-play" href="https://mbaffour.github.io/number-tug/">
+          Play Number Tug
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a class="btn btn-ghost" href="https://github.com/mbaffour/number-tug" target="_blank" rel="noopener">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.7-1.6-2.5-.3-5.2-1.3-5.2-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17 5 18 5.3 18 5.3c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5Z"/></svg>
+          View source
+        </a>
+      </div>
+      <div class="tags">
+        <span class="tag">React</span>
+        <span class="tag">TypeScript</span>
+        <span class="tag">Vite</span>
+        <span class="tag">WebAudio</span>
+        <span class="tag">Vibration API</span>
+        <span class="tag">localStorage</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-inner">
+    <div class="foot-note">Built by <a href="https://mbaffour.github.io/">Michael Baffour Awuah</a></div>
+    <div class="foot-links">
+      <a href="https://mbaffour.github.io/number-tug/">Play</a>
+      <a href="https://github.com/mbaffour/number-tug" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://mbaffour.github.io/">Back to site</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
