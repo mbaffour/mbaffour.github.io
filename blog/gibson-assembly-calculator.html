@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gibson Assembly Calculator — pipetting volumes, drafted like a blueprint</title>
+<meta name="description" content="A single-page Gibson Assembly calculator. Enter fragment lengths and concentrations; read off exact pipetting volumes at NEB-recommended molar ratios. A faithful browser port of the Barrick Lab spreadsheet math. No install, no server, nothing leaves your machine.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy:        #0e2942;   /* deep blueprint ground */
+    --navy-2:      #0b2138;   /* darker panel */
+    --navy-3:      #12324f;   /* raised panel */
+    --cyan:        #38bdf8;   /* blueprint ink / accent */
+    --cyan-soft:   #7dd3fc;
+    --blue:        #1d4ed8;   /* deep technical blue */
+    --blue-lt:     #2f6fe0;
+    --paper:       #eef3fa;   /* cool blue-white sheet */
+    --paper-2:     #e3ebf6;
+    --ink:         #0b2036;   /* near-black navy for text on paper */
+    --ink-soft:    #33475f;
+    --slate:       #5b7089;   /* cool neutral */
+    --slate-lt:    #8497ac;
+    --line:        #cdd9e9;   /* paper grid/hairline */
+    --line-navy:   rgba(125,211,252,0.16); /* grid on navy */
+    --amber:       #fbbf24;   /* dimension/callout warm pop, used sparingly */
+    --disp:        'Archivo', system-ui, sans-serif;
+    --body:        'IBM Plex Sans', system-ui, sans-serif;
+    --mono:        'Space Mono', ui-monospace, monospace;
+  }
+
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--body);
+    background: var(--paper);
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    * { animation: none !important; transition: none !important; }
+  }
+  a { color: inherit; text-decoration: none; }
+  svg { display: block; }
+
+  /* mono utility label — the "drafting caption" */
+  .mono-label {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--cyan);
+  }
+
+  /* ───────────────── NAV / TITLE BAR ───────────────── */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(10,29,49,0.94);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line-navy);
+  }
+  .nav-inner {
+    max-width: 1160px;
+    margin: 0 auto;
+    height: 60px;
+    padding: 0 22px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    color: #eaf4fd;
+  }
+  .nav-logo .glyph {
+    width: 26px; height: 26px;
+    flex: none;
+  }
+  .nav-logo .name {
+    font-family: var(--disp);
+    font-weight: 700;
+    font-size: 0.94rem;
+    letter-spacing: 0.01em;
+    line-height: 1;
+  }
+  .nav-logo .rev {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.14em;
+    color: var(--slate-lt);
+    margin-top: 3px;
+    display: block;
+  }
+  .nav-links { display: flex; align-items: center; gap: 4px; }
+  .nav-link {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #a9c0d6;
+    padding: 8px 12px;
+    border-radius: 3px;
+    transition: color 0.15s, background 0.15s;
+  }
+  .nav-link:hover { color: #eaf4fd; background: rgba(125,211,252,0.09); }
+  .nav-cta {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--navy);
+    background: var(--cyan);
+    padding: 9px 16px;
+    border-radius: 3px;
+    transition: background 0.15s, box-shadow 0.15s;
+    box-shadow: 0 0 0 1px rgba(56,189,248,0.4);
+  }
+  .nav-cta:hover { background: var(--cyan-soft); box-shadow: 0 4px 16px rgba(56,189,248,0.35); }
+  .nav-hamburger-only { display: none; }
+
+  /* ───────────────── HERO (blueprint sheet) ───────────────── */
+  .hero {
+    position: relative;
+    background: var(--navy);
+    color: #eaf4fd;
+    overflow: hidden;
+    border-bottom: 1px solid var(--line-navy);
+  }
+  /* the engineering grid */
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(var(--line-navy) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line-navy) 1px, transparent 1px),
+      linear-gradient(rgba(125,211,252,0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(125,211,252,0.05) 1px, transparent 1px);
+    background-size: 96px 96px, 96px 96px, 24px 24px, 24px 24px;
+    background-position: -1px -1px, -1px -1px, -1px -1px, -1px -1px;
+    pointer-events: none;
+  }
+  .hero::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 70% 60% at 72% 30%, rgba(29,78,216,0.28), transparent 62%);
+    pointer-events: none;
+  }
+  .hero-inner {
+    position: relative;
+    z-index: 1;
+    max-width: 1160px;
+    margin: 0 auto;
+    padding: 70px 22px 0;
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.05fr 1fr;
+    gap: 48px;
+    align-items: center;
+  }
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    border: 1px solid var(--line-navy);
+    border-radius: 2px;
+    padding: 6px 12px;
+    margin-bottom: 26px;
+    background: rgba(125,211,252,0.05);
+  }
+  .hero-badge .tick { width: 7px; height: 7px; background: var(--cyan); border-radius: 1px; }
+  .hero-badge span { font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--cyan-soft); }
+  .hero h1 {
+    font-family: var(--disp);
+    font-weight: 800;
+    font-size: clamp(2.2rem, 5.2vw, 3.7rem);
+    line-height: 1.04;
+    letter-spacing: -0.015em;
+    text-wrap: balance;
+    color: #f4fafe;
+    margin-bottom: 22px;
+  }
+  .hero h1 .thin { color: var(--cyan); }
+  .hero-sub {
+    font-size: 1.06rem;
+    color: #b6cbe0;
+    max-width: 30rem;
+    line-height: 1.68;
+    margin-bottom: 30px;
+  }
+  .hero-sub code {
+    font-family: var(--mono);
+    font-size: 0.86em;
+    color: var(--cyan-soft);
+    background: rgba(125,211,252,0.08);
+    padding: 1px 5px;
+    border-radius: 2px;
+  }
+  .hero-btns { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 34px; }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 9px;
+    font-family: var(--disp); font-weight: 700; font-size: 0.94rem;
+    background: var(--cyan);
+    color: var(--navy);
+    padding: 14px 24px;
+    border-radius: 3px;
+    box-shadow: 0 6px 22px rgba(56,189,248,0.28);
+    transition: transform 0.12s, box-shadow 0.15s, background 0.15s;
+  }
+  .btn-primary:hover { transform: translateY(-2px); background: var(--cyan-soft); box-shadow: 0 10px 28px rgba(56,189,248,0.4); }
+  .btn-ghost {
+    display: inline-flex; align-items: center; gap: 9px;
+    font-family: var(--disp); font-weight: 600; font-size: 0.9rem;
+    color: #cfe1f2;
+    padding: 13px 20px;
+    border: 1px solid rgba(125,211,252,0.28);
+    border-radius: 3px;
+    transition: border-color 0.15s, color 0.15s, background 0.15s;
+  }
+  .btn-ghost:hover { border-color: var(--cyan); color: #fff; background: rgba(125,211,252,0.06); }
+  .hero-specs {
+    display: flex; flex-wrap: wrap; gap: 0;
+    border-top: 1px solid var(--line-navy);
+    margin-bottom: 0;
+  }
+  .hero-spec {
+    padding: 16px 22px 26px 0;
+    margin-right: 22px;
+    border-right: 1px solid var(--line-navy);
+    padding-right: 22px;
+  }
+  .hero-spec:last-child { border-right: none; }
+  .hero-spec .k { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--slate-lt); display: block; margin-bottom: 5px; }
+  .hero-spec .v { font-family: var(--disp); font-weight: 700; font-size: 0.94rem; color: #dbeafe; }
+
+  /* the schematic drawing panel */
+  .schematic {
+    position: relative;
+    border: 1px solid var(--line-navy);
+    border-radius: 4px;
+    background: rgba(8,23,40,0.55);
+    padding: 18px;
+  }
+  .schematic-cap {
+    display: flex; justify-content: space-between; align-items: baseline;
+    font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--slate-lt);
+    margin-bottom: 12px;
+  }
+  .schematic svg { width: 100%; height: auto; }
+
+  /* ───────────────── TITLE-BLOCK STRIP ───────────────── */
+  .titleblock {
+    background: var(--navy-2);
+    border-bottom: 1px solid var(--line-navy);
+  }
+  .titleblock-inner {
+    max-width: 1160px; margin: 0 auto;
+    display: grid; grid-template-columns: repeat(4, 1fr);
+  }
+  .tb-cell {
+    padding: 22px 24px;
+    border-left: 1px solid var(--line-navy);
+  }
+  .tb-cell:first-child { border-left: none; }
+  .tb-cell .n {
+    font-family: var(--mono); font-weight: 700;
+    font-size: 1.7rem; color: var(--cyan);
+    line-height: 1; letter-spacing: -0.01em;
+    font-variant-numeric: tabular-nums;
+  }
+  .tb-cell .d {
+    font-size: 0.76rem; color: #9db4ca; margin-top: 8px; line-height: 1.45;
+  }
+
+  /* ───────────────── GENERIC SECTION ───────────────── */
+  .section { padding: 92px 22px; }
+  .section-inner { max-width: 1160px; margin: 0 auto; }
+  .sec-head { max-width: 40rem; margin-bottom: 52px; }
+  .sec-head.center { margin-left: auto; margin-right: auto; text-align: center; }
+  .sec-title {
+    font-family: var(--disp); font-weight: 800;
+    font-size: clamp(1.6rem, 3.4vw, 2.4rem);
+    line-height: 1.12; letter-spacing: -0.015em;
+    color: var(--ink); text-wrap: balance;
+    margin: 14px 0 16px;
+  }
+  .sec-lead { font-size: 1.04rem; color: var(--ink-soft); line-height: 1.7; }
+
+  /* faint blueprint grid on paper sections */
+  .gridpaper { position: relative; }
+  .gridpaper::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(29,78,216,0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(29,78,216,0.05) 1px, transparent 1px);
+    background-size: 26px 26px;
+    pointer-events: none;
+  }
+  .gridpaper > * { position: relative; }
+
+  /* ───────────────── FEATURES = PARTS SCHEDULE ───────────────── */
+  .features { background: var(--paper); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .schedule {
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 1px 0 rgba(11,32,54,0.03), 0 18px 40px -30px rgba(11,32,54,0.35);
+  }
+  .schedule-row {
+    display: grid;
+    grid-template-columns: 92px 1fr;
+    border-top: 1px solid var(--line);
+  }
+  .schedule-row:first-child { border-top: none; }
+  .schedule-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .feat {
+    display: grid;
+    grid-template-columns: 74px 1fr;
+    border-top: 1px solid var(--line);
+    border-left: 1px solid var(--line);
+    transition: background 0.14s;
+  }
+  .feat:nth-child(-n+2) { border-top: none; }
+  .feat:nth-child(odd) { border-left: none; }
+  .feat:hover { background: #f7fafe; }
+  .feat-id {
+    display: flex; flex-direction: column; align-items: center; justify-content: flex-start;
+    padding: 24px 0 0;
+    background: linear-gradient(180deg, #f4f8fd, #eef3fa);
+    border-right: 1px solid var(--line);
+  }
+  .feat-id .code {
+    font-family: var(--mono); font-weight: 700; font-size: 0.74rem;
+    color: var(--blue); letter-spacing: 0.02em;
+  }
+  .feat-id .ic { margin-top: 12px; color: var(--slate); }
+  .feat-body { padding: 22px 24px 26px; }
+  .feat-body h3 {
+    font-family: var(--disp); font-weight: 700; font-size: 1rem;
+    color: var(--ink); margin-bottom: 8px; line-height: 1.25;
+  }
+  .feat-body p { font-size: 0.88rem; color: var(--ink-soft); line-height: 1.62; }
+  .feat-body sub, .feat-body sup { font-family: var(--mono); font-size: 0.7em; }
+  .feat-body code {
+    font-family: var(--mono); font-size: 0.82em;
+    background: var(--paper-2); border: 1px solid var(--line);
+    padding: 0 4px; border-radius: 2px; color: var(--blue);
+  }
+
+  /* ───────────────── STORY ───────────────── */
+  .story { background: var(--navy); color: #dbe8f5; border-bottom: 1px solid var(--line-navy); }
+  .story .section-inner { max-width: 1160px; }
+  .story-wrap { display: grid; grid-template-columns: 220px 1fr; gap: 56px; align-items: start; }
+  .story-side { position: sticky; top: 84px; }
+  .story-side .mono-label { display: block; margin-bottom: 16px; }
+  .story-toc a {
+    display: block;
+    font-family: var(--mono); font-size: 0.72rem;
+    color: #8aa5c0; padding: 7px 0 7px 14px;
+    border-left: 2px solid var(--line-navy);
+    transition: color 0.15s, border-color 0.15s;
+    line-height: 1.4;
+  }
+  .story-toc a:hover { color: var(--cyan); border-color: var(--cyan); }
+  .story-side .drawn {
+    margin-top: 26px; border: 1px solid var(--line-navy); border-radius: 4px;
+    padding: 14px; background: rgba(8,23,40,0.5);
+  }
+  .story-side .drawn .cap { font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--slate-lt); margin-bottom: 8px; }
+  .story-body { max-width: 42rem; }
+  .story-body h2 {
+    font-family: var(--disp); font-weight: 700; font-size: 1.5rem;
+    color: #f2f8fe; margin: 2.4em 0 0.7em; letter-spacing: -0.01em;
+    scroll-margin-top: 84px; line-height: 1.2;
+  }
+  .story-body h2:first-of-type { margin-top: 0; }
+  .story-body .dropcap { margin-top: 0; }
+  .story-body p { font-size: 1.02rem; color: #c3d6e9; line-height: 1.82; margin-bottom: 1.25em; }
+  .story-body p.lede { font-size: 1.14rem; color: #dbeafe; }
+  .story-body strong { color: #f2f8fe; font-weight: 600; }
+  .story-body em { color: #a9c8e6; }
+  .story-body a.inline { color: var(--cyan); border-bottom: 1px solid rgba(56,189,248,0.4); }
+  .story-body a.inline:hover { border-color: var(--cyan); }
+  .story-body code {
+    font-family: var(--mono); font-size: 0.85em;
+    background: rgba(125,211,252,0.09); color: var(--cyan-soft);
+    padding: 1px 5px; border-radius: 2px;
+  }
+  .story-body blockquote {
+    border-left: 3px solid var(--cyan);
+    margin: 1.8em 0;
+    padding: 4px 0 4px 22px;
+  }
+  .story-body blockquote p {
+    font-family: var(--disp); font-weight: 600; font-style: normal;
+    font-size: 1.2rem; color: #eaf4fd; line-height: 1.4; margin: 0;
+  }
+  .credit-card {
+    margin-top: 2.4em;
+    border: 1px solid var(--line-navy);
+    border-radius: 5px;
+    background: rgba(29,78,216,0.1);
+    padding: 22px 24px;
+    display: flex; gap: 16px; align-items: flex-start;
+  }
+  .credit-card .ic { color: var(--cyan); flex: none; margin-top: 2px; }
+  .credit-card p { margin: 0; font-size: 0.92rem; color: #bcd2e8; line-height: 1.65; }
+
+  /* ───────────────── HOW-TO = ASSEMBLY SEQUENCE ───────────────── */
+  .how { background: var(--paper); border-bottom: 1px solid var(--line); }
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    overflow: hidden;
+    background: #fff;
+  }
+  .step {
+    padding: 26px 24px 30px;
+    border-left: 1px solid var(--line);
+    border-top: 1px solid var(--line);
+    position: relative;
+  }
+  .step:nth-child(-n+3) { border-top: none; }
+  .step:nth-child(3n+1) { border-left: none; }
+  .step-num {
+    font-family: var(--mono); font-weight: 700; font-size: 0.72rem;
+    color: var(--navy); background: var(--cyan);
+    display: inline-block; padding: 3px 8px; border-radius: 2px;
+    letter-spacing: 0.06em; margin-bottom: 16px;
+  }
+  .step h3 { font-family: var(--disp); font-weight: 700; font-size: 1rem; color: var(--ink); margin-bottom: 8px; }
+  .step p { font-size: 0.87rem; color: var(--ink-soft); line-height: 1.62; }
+  .step code {
+    font-family: var(--mono); font-size: 0.82em;
+    background: var(--paper-2); border: 1px solid var(--line);
+    padding: 0 4px; border-radius: 2px; color: var(--blue);
+  }
+  .step strong { color: var(--ink); font-weight: 600; }
+
+  /* ───────────────── CTA ───────────────── */
+  .cta {
+    position: relative;
+    background: var(--navy);
+    color: #eaf4fd;
+    text-align: center;
+    padding: 100px 22px;
+    overflow: hidden;
+    border-bottom: 1px solid var(--line-navy);
+  }
+  .cta::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(var(--line-navy) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line-navy) 1px, transparent 1px);
+    background-size: 48px 48px;
+    mask-image: radial-gradient(ellipse 60% 70% at 50% 50%, #000 40%, transparent 80%);
+    -webkit-mask-image: radial-gradient(ellipse 60% 70% at 50% 50%, #000 40%, transparent 80%);
+    pointer-events: none;
+  }
+  .cta-inner { position: relative; z-index: 1; max-width: 44rem; margin: 0 auto; }
+  .cta .mono-label { display: block; margin-bottom: 20px; }
+  .cta h2 {
+    font-family: var(--disp); font-weight: 800;
+    font-size: clamp(1.9rem, 4vw, 2.9rem); line-height: 1.08;
+    letter-spacing: -0.015em; color: #f4fafe; text-wrap: balance;
+    margin-bottom: 16px;
+  }
+  .cta p { font-size: 1.04rem; color: #b6cbe0; max-width: 30rem; margin: 0 auto 34px; line-height: 1.65; }
+  .cta-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .cta-note {
+    font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.08em;
+    color: var(--slate-lt); margin-top: 30px;
+  }
+
+  /* ───────────────── FOOTER (drawing title block) ───────────────── */
+  footer { background: var(--navy-2); }
+  .foot-inner { max-width: 1160px; margin: 0 auto; }
+  .foot-block {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr 1fr 1.2fr;
+    border-top: 1px solid var(--line-navy);
+  }
+  .foot-cell {
+    padding: 22px 24px;
+    border-left: 1px solid var(--line-navy);
+  }
+  .foot-cell:first-child { border-left: none; }
+  .foot-cell .k { font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--slate-lt); display: block; margin-bottom: 8px; }
+  .foot-cell .v { font-size: 0.86rem; color: #cadcee; line-height: 1.5; }
+  .foot-cell a { color: var(--cyan-soft); border-bottom: 1px solid rgba(125,211,252,0.3); }
+  .foot-cell a:hover { color: var(--cyan); }
+  .foot-bar {
+    display: flex; justify-content: space-between; align-items: center; gap: 14px;
+    flex-wrap: wrap;
+    padding: 18px 24px;
+    border-top: 1px solid var(--line-navy);
+  }
+  .foot-bar p { font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.04em; color: var(--slate-lt); }
+  .foot-bar a { color: var(--cyan-soft); }
+  .foot-bar a:hover { color: var(--cyan); }
+
+  /* ───────────────── RESPONSIVE ───────────────── */
+  @media (max-width: 940px) {
+    .hero-grid { grid-template-columns: 1fr; gap: 34px; }
+    .schematic { max-width: 520px; }
+    .story-wrap { grid-template-columns: 1fr; gap: 32px; }
+    .story-side { position: static; }
+    .story-toc { display: flex; flex-wrap: wrap; gap: 6px; }
+    .story-toc a { border-left: none; border: 1px solid var(--line-navy); border-radius: 3px; padding: 6px 10px; }
+    .story-side .drawn { display: none; }
+    .titleblock-inner { grid-template-columns: repeat(2, 1fr); }
+    .tb-cell:nth-child(3), .tb-cell:nth-child(4) { border-top: 1px solid var(--line-navy); }
+    .tb-cell:nth-child(3) { border-left: none; }
+    .steps { grid-template-columns: repeat(2, 1fr); }
+    .step:nth-child(3) { border-top: 1px solid var(--line); }
+    .step:nth-child(2n+1) { border-left: none; }
+    .step:nth-child(3n+1) { border-left: 1px solid var(--line); }
+    .step:nth-child(1), .step:nth-child(2) { border-top: none; }
+    .foot-block { grid-template-columns: repeat(2, 1fr); }
+    .foot-cell:nth-child(3), .foot-cell:nth-child(4) { border-top: 1px solid var(--line-navy); }
+    .foot-cell:nth-child(3) { border-left: none; }
+  }
+  @media (max-width: 720px) {
+    .nav-links .nav-link { display: none; }
+    .schedule-grid { grid-template-columns: 1fr; }
+    .feat { border-left: none; }
+    .feat:nth-child(2) { border-top: 1px solid var(--line); }
+  }
+  @media (max-width: 560px) {
+    .section { padding: 64px 18px; }
+    .hero-inner { padding: 48px 18px 0; }
+    .titleblock-inner { grid-template-columns: 1fr 1fr; }
+    .steps { grid-template-columns: 1fr; }
+    .step { border-left: none !important; border-top: 1px solid var(--line); }
+    .step:first-child { border-top: none; }
+    .feat { grid-template-columns: 60px 1fr; }
+    .hero h1 { font-size: 2.05rem; }
+    .foot-block { grid-template-columns: 1fr; }
+    .foot-cell { border-left: none; border-top: 1px solid var(--line-navy); }
+    .foot-cell:first-child { border-top: none; }
+  }
+  :focus-visible { outline: 2px solid var(--cyan); outline-offset: 2px; border-radius: 2px; }
+</style>
+</head>
+<body>
+
+<!-- ─────────── NAV ─────────── -->
+<nav>
+  <div class="nav-inner">
+    <a href="#top" class="nav-logo" aria-label="Gibson Assembly Calculator, home">
+      <svg class="glyph" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+        <rect x="1.5" y="1.5" width="29" height="29" rx="2" stroke="#38bdf8" stroke-width="1.4"/>
+        <line x1="6" y1="12" x2="26" y2="12" stroke="#38bdf8" stroke-width="1.4"/>
+        <line x1="6" y1="20" x2="26" y2="20" stroke="#7dd3fc" stroke-width="1.4" stroke-dasharray="2 2"/>
+        <circle cx="11" cy="12" r="2" fill="#38bdf8"/>
+        <circle cx="21" cy="20" r="2" fill="#7dd3fc"/>
+      </svg>
+      <span>
+        <span class="name">Gibson Assembly Calculator</span>
+        <span class="rev">DWG · CLONING / MOLAR-RATIO</span>
+      </span>
+    </a>
+    <div class="nav-links">
+      <a href="#features" class="nav-link">Schedule</a>
+      <a href="#story" class="nav-link">Story</a>
+      <a href="#how" class="nav-link">Assembly</a>
+      <a href="https://github.com/mbaffour/gibson-assembly-calculator" class="nav-link">GitHub</a>
+      <a href="https://mbaffour.github.io/gibson-assembly-calculator/" class="nav-cta">Open the calculator</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ─────────── HERO ─────────── -->
+<header class="hero" id="top">
+  <div class="hero-inner">
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <div class="hero-badge"><span class="tick"></span><span>Free &amp; open source · MIT · v.rev-1</span></div>
+        <h1>Gibson reactions,<br>drafted like a <span class="thin">blueprint</span>.</h1>
+        <p class="hero-sub">Enter each fragment's length and concentration. Read off the exact microlitres to pipette — vector, inserts, and water — at NEB-recommended molar ratios. A faithful browser port of the Barrick Lab spreadsheet math: no <code>.xlsx</code>, no server, nothing leaves your machine.</p>
+        <div class="hero-btns">
+          <a href="https://mbaffour.github.io/gibson-assembly-calculator/" class="btn-primary">
+            Open the calculator
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h9M8 4l4 4-4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a href="https://github.com/mbaffour/gibson-assembly-calculator" class="btn-ghost">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.385-1.335-1.755-1.335-1.755-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12"/></svg>
+            Source
+          </a>
+        </div>
+        <div class="hero-specs">
+          <div class="hero-spec"><span class="k">Type</span><span class="v">Static single page</span></div>
+          <div class="hero-spec"><span class="k">Data path</span><span class="v">Stays on device</span></div>
+          <div class="hero-spec"><span class="k">Network</span><span class="v">Offline-ready</span></div>
+        </div>
+      </div>
+
+      <!-- SCHEMATIC MOTIF: DNA fragments as engineering parts with dimension marks -->
+      <div class="schematic" aria-hidden="true">
+        <div class="schematic-cap"><span>FIG. 1 — Assembly overlap map</span><span>SCALE N.T.S.</span></div>
+        <svg viewBox="0 0 440 300" role="img">
+          <defs>
+            <pattern id="hatch" width="6" height="6" patternTransform="rotate(45)" patternUnits="userSpaceOnUse">
+              <line x1="0" y1="0" x2="0" y2="6" stroke="#38bdf8" stroke-width="1" opacity="0.55"/>
+            </pattern>
+            <marker id="arr" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
+              <path d="M1 1l3 3-3 3" stroke="#7dd3fc" stroke-width="1" fill="none"/>
+            </marker>
+            <marker id="arrL" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
+              <path d="M7 1l-3 3 3 3" stroke="#7dd3fc" stroke-width="1" fill="none"/>
+            </marker>
+          </defs>
+
+          <!-- VECTOR bar -->
+          <rect x="40" y="60" width="200" height="26" rx="3" fill="none" stroke="#38bdf8" stroke-width="1.6"/>
+          <text x="52" y="77" font-family="Space Mono, monospace" font-size="11" fill="#7dd3fc">VECTOR · l₁ 7000 bp</text>
+          <!-- overlap region on vector right end -->
+          <rect x="212" y="60" width="28" height="26" fill="url(#hatch)" stroke="#38bdf8" stroke-width="1"/>
+
+          <!-- INSERT 1 bar -->
+          <rect x="212" y="118" width="150" height="26" rx="3" fill="none" stroke="#7dd3fc" stroke-width="1.6"/>
+          <text x="224" y="135" font-family="Space Mono, monospace" font-size="11" fill="#7dd3fc">INSERT A · 1500 bp</text>
+          <rect x="212" y="118" width="28" height="26" fill="url(#hatch)" stroke="#38bdf8" stroke-width="1"/>
+          <rect x="334" y="118" width="28" height="26" fill="url(#hatch)" stroke="#38bdf8" stroke-width="1"/>
+
+          <!-- INSERT 2 bar -->
+          <rect x="334" y="176" width="66" height="26" rx="3" fill="none" stroke="#7dd3fc" stroke-width="1.6"/>
+          <text x="344" y="193" font-family="Space Mono, monospace" font-size="10" fill="#7dd3fc">B · 190 bp</text>
+          <rect x="334" y="176" width="28" height="26" fill="url(#hatch)" stroke="#38bdf8" stroke-width="1"/>
+
+          <!-- molar-ratio callouts -->
+          <line x1="140" y1="60" x2="140" y2="40" stroke="#fbbf24" stroke-width="1" stroke-dasharray="3 2"/>
+          <text x="140" y="34" font-family="Space Mono, monospace" font-size="11" fill="#fbbf24" text-anchor="middle">1× vector</text>
+
+          <line x1="287" y1="118" x2="287" y2="102" stroke="#fbbf24" stroke-width="1" stroke-dasharray="3 2"/>
+          
+          <text x="300" y="112" font-family="Space Mono, monospace" font-size="11" fill="#fbbf24">2.5× (&gt;200 bp)</text>
+
+          <line x1="367" y1="176" x2="367" y2="160" stroke="#fbbf24" stroke-width="1" stroke-dasharray="3 2"/>
+          <text x="380" y="154" font-family="Space Mono, monospace" font-size="11" fill="#fbbf24" text-anchor="end">5× (≤200 bp)</text>
+
+          <!-- dimension line under vector -->
+          <line x1="40" y1="234" x2="240" y2="234" stroke="#7dd3fc" stroke-width="1" marker-start="url(#arrL)" marker-end="url(#arr)"/>
+          <line x1="40" y1="228" x2="40" y2="240" stroke="#7dd3fc" stroke-width="1"/>
+          <line x1="240" y1="228" x2="240" y2="240" stroke="#7dd3fc" stroke-width="1"/>
+          <text x="140" y="250" font-family="Space Mono, monospace" font-size="10" fill="#9db4ca" text-anchor="middle">v₁ = (f·l/c)·(m₁/l₁)</text>
+
+          <!-- result callout -->
+          <rect x="40" y="264" width="360" height="26" rx="2" fill="rgba(56,189,248,0.08)" stroke="#38bdf8" stroke-width="1" stroke-dasharray="4 3"/>
+          <text x="52" y="281" font-family="Space Mono, monospace" font-size="11" fill="#7dd3fc">OUTPUT ▸ pipette µL per fragment + H₂O to v_max</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <!-- TITLE-BLOCK STAT STRIP -->
+  <div class="titleblock">
+    <div class="titleblock-inner">
+      <div class="tb-cell"><div class="n">~30s</div><div class="d">to set up a reaction — not a spreadsheet detour</div></div>
+      <div class="tb-cell"><div class="n">3</div><div class="d">molar limits enforced on every vector mass</div></div>
+      <div class="tb-cell"><div class="n">×N</div><div class="d">master-mix scaling for batch reactions</div></div>
+      <div class="tb-cell"><div class="n">0</div><div class="d">dependencies, servers, or accounts</div></div>
+    </div>
+  </div>
+</header>
+
+<!-- ─────────── FEATURES / PARTS SCHEDULE ─────────── -->
+<section class="section features gridpaper" id="features">
+  <div class="section-inner">
+    <div class="sec-head">
+      <span class="mono-label">Sheet 01 — Parts schedule</span>
+      <h2 class="sec-title">Every part the calculator carries, and nothing it doesn't</h2>
+      <p class="sec-lead">The molar-ratio math done correctly on every keystroke, plus the bench conveniences the spreadsheet never had. Each line is a discrete, testable capability.</p>
+    </div>
+
+    <div class="schedule">
+      <div class="schedule-grid">
+
+        <div class="feat">
+          <div class="feat-id"><span class="code">A-01</span><span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg></span></div>
+          <div class="feat-body"><h3>Live recalculation as you type</h3><p>Volumes, masses, and pmol amounts update on every keystroke. There is no "calculate" button to forget — the answer is always current, and a cell gives a small visual cue the moment the reaction becomes solvable.</p></div>
+        </div>
+
+        <div class="feat">
+          <div class="feat-id"><span class="code">A-02</span><span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M7 3c3 3 7 5 7 9s-4 6-7 9M17 3c-3 3-7 5-7 9s4 6 7 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span></div>
+          <div class="feat-body"><h3>NEB fold excesses by default</h3><p>The vector sits at 1&times;; inserts default to 5&times; if &le; 200 bp and 2.5&times; otherwise, exactly as NEBuilder recommends. Every fold excess is overridable per row, and the fold actually used is printed back in its own column.</p></div>
+        </div>
+
+        <div class="feat">
+          <div class="feat-id"><span class="code">A-03</span><span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="4" rx="1" stroke="currentColor" stroke-width="1.5"/><rect x="3" y="15" width="12" height="4" rx="1" stroke="currentColor" stroke-width="1.5"/><circle cx="18" cy="17" r="2" stroke="currentColor" stroke-width="1.5"/></svg></span></div>
+          <div class="feat-body"><h3>Custom molar ratio</h3><p>One optional input applies a custom fold excess to every insert without a per-row override — useful when your protocol calls for a ratio other than the NEB defaults. Leave it blank and the standard defaults stand.</p></div>
+        </div>
+
+        <div class="feat">
+          <div class="feat-id"><span class="code">A-04</span><span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><rect x="2.5" y="2.5" width="19" height="19" rx="3" stroke="currentColor" stroke-width="1.5"/></svg></span></div>
+          <div class="feat-body"><h3>Add and remove fragments freely</h3><p>Start with a vector and one insert; add rows for as many fragments as your assembly needs. The first row is always the reference vector and is protected from deletion, so the math never loses its anchor.</p></div>
+        </div>
+
+        <div class="feat">
+          <div class="feat-id"><span class="code">A-05</span><span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 20V8M10 20V4M16 20v-8M22 20H2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span></div>
+          <div class="feat-body"><h3>Editable v<sub>max</sub></h3><p>The volume available for fragments defaults to 5 µL — leaving room for a 1.33&times; master mix — but you can set it to whatever your protocol uses. The water volume falls out automatically so your total always lands on target.</p></div>
+        </div>
+
+        <div class="feat">
+          <div class="feat-id"><span class="code">A-06</span><span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span></div>
+          <div class="feat-body"><h3>Master mix for N reactions</h3><p>Enter a reaction count and a scaled per-component table appears, so you pipette one batch instead of running the numbers N times. The export gains a matching &times;N column. The single-reaction math is untouched.</p></div>
+        </div>
+
+        <div class="feat">
+          <div class="feat-id"><span class="code">A-07</span><span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="6" y="9" width="12" height="8" rx="1" stroke="currentColor" stroke-width="1.5"/><path d="M7 9V4h10v5M8 21h8v-4H8v4Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg></span></div>
+          <div class="feat-body"><h3>Printable protocol</h3><p>One click opens a clean, self-contained page with your reaction parameters and volumes table — including the &times;N master-mix column when it applies — and hands it to your browser's print or "Save as PDF" dialog for the bench.</p></div>
+        </div>
+
+        <div class="feat">
+          <div class="feat-id"><span class="code">A-08</span><span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M5 3h11l3 3v15H5V3Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M9 12h6M9 16h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span></div>
+          <div class="feat-body"><h3>CSV export &amp; clipboard copy</h3><p>Export the full result table as CSV, or copy it tab-separated straight into a lab notebook or spreadsheet. Roles, labels, lengths, concentrations, fold, volume, mass, and pmol amount all come along — plus the water row.</p></div>
+        </div>
+
+        <div class="feat">
+          <div class="feat-id"><span class="code">A-09</span><span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="16" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M3 9h18M7 4v5" stroke="currentColor" stroke-width="1.5"/></svg></span></div>
+          <div class="feat-body"><h3>Named presets</h3><p>Save a reaction setup under a name and reload it later — stored in your browser via localStorage, so your go-to constructs are one click away. Presets carry the newer parameters too, and older saved presets still load cleanly.</p></div>
+        </div>
+
+        <div class="feat">
+          <div class="feat-id"><span class="code">A-10</span><span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.5"/><path d="M8 12l3 3 5-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+          <div class="feat-body"><h3>One-click worked example</h3><p>Load a three-fragment example — a 7 kb vector and two inserts — to see a full reaction solved end to end. The fastest way to sanity-check the tool against a case you can reason about before trusting it with your own numbers.</p></div>
+        </div>
+
+        <div class="feat">
+          <div class="feat-id"><span class="code">A-11</span><span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 3v18M7 8l-4 4 4 4M17 8l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+          <div class="feat-body"><h3>The three molar limits, shown</h3><p>The vector mass m<sub>1</sub> is the minimum of a volume limit, a molarity limit, and a hard 100 ng cap. The chosen p<sub>max</sub> and resulting m<sub>1</sub> are surfaced in the parameters panel, so you can see which constraint is binding.</p></div>
+        </div>
+
+        <div class="feat">
+          <div class="feat-id"><span class="code">A-12</span><span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="4" y="10" width="16" height="11" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M8 10V7a4 4 0 0 1 8 0v3" stroke="currentColor" stroke-width="1.5"/></svg></span></div>
+          <div class="feat-body"><h3>Runs entirely client-side</h3><p>The whole thing is HTML, CSS, and one small JavaScript file. No backend, no analytics, no network call after the page loads. It's an <code>aria-live</code> results region too, so screen-reader users hear updated volumes as they type.</p></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────── STORY ─────────── -->
+<section class="section story" id="story">
+  <div class="section-inner">
+    <div class="story-wrap">
+      <aside class="story-side">
+        <span class="mono-label">Sheet 02 — Notes</span>
+        <nav class="story-toc" aria-label="Story sections">
+          <a href="#s-ritual">The little ritual</a>
+          <a href="#s-ben">Credit where it's due</a>
+          <a href="#s-port">The faithful port</a>
+          <a href="#s-ai">A note on how</a>
+        </nav>
+        <div class="drawn" aria-hidden="true">
+          <div class="cap">Detail — overlap</div>
+          <svg viewBox="0 0 170 90" width="100%">
+            <rect x="8" y="20" width="90" height="16" rx="2" fill="none" stroke="#38bdf8" stroke-width="1.4"/>
+            <rect x="82" y="20" width="16" height="16" fill="none" stroke="#fbbf24" stroke-width="1.2"/>
+            <rect x="82" y="50" width="80" height="16" rx="2" fill="none" stroke="#7dd3fc" stroke-width="1.4"/>
+            <rect x="82" y="50" width="16" height="16" fill="none" stroke="#fbbf24" stroke-width="1.2"/>
+            <line x1="90" y1="36" x2="90" y2="50" stroke="#fbbf24" stroke-width="1" stroke-dasharray="2 2"/>
+            <text x="8" y="82" font-family="Space Mono, monospace" font-size="8" fill="#8aa5c0">overlap = shared ends</text>
+          </svg>
+        </div>
+      </aside>
+
+      <div class="story-body">
+        <span class="mono-label" style="display:block;margin-bottom:14px">Why this exists</span>
+        <h2 id="s-ritual" style="margin-top:0">Ben's spreadsheet, and a promise I made to myself</h2>
+
+        <p class="lede dropcap">Before every cloning reaction there's a small ritual I never really chose. Open the Gibson spreadsheet. Type in the vector's length and concentration. Type in each insert. Squint at the molar-ratio column, confirm the fold excesses are the ones I meant, and copy the microlitres onto a scrap of paper by the pipette. Dull, quick, and exactly the kind of task where a tired brain makes a quiet mistake.</p>
+
+        <p>For years the spreadsheet I opened was <strong>Ben's Gibson Assembly calculator</strong> from the Barrick Lab's cloning protocol, and I want to be clear: it's excellent. The method it encodes is sound — genuinely the reason my reactions work at all. Ben and that spreadsheet have quietly helped an enormous number of grad students and postdocs get their cloning right, mine included. This whole page is, more than anything, a thank-you note.</p>
+
+        <blockquote><p>The math is not hard. That's exactly why it's dangerous — beneath your attention, but able to quietly ruin an experiment.</p></blockquote>
+
+        <h2 id="s-ben">The problem was never the math</h2>
+
+        <p>The problem was, honestly, me and Excel. I have a small, stubborn wish to never open a spreadsheet again if I can possibly avoid it. A `.xlsx` is a wonderful place to <em>author</em> a formula and a slightly awkward place to <em>use</em> one at the bench — three tabs deep, cursor in the wrong cell — when all you want is one instant answer to "how much of each do I pipette?"</p>
+
+        <p>The formula itself is compact: the volume of the <em>n</em>-th fragment is <code>v_n = (f_n · l_n / c_n) · (m_1 / l_1)</code>, with the vector mass <code>m_1</code> the minimum of three limits — a volume limit, a molarity limit from <code>p_max</code>, and a hard 100 ng cap. Every piece is knowable, and every piece is a place to fat-finger a decimal at six in the evening. The real cost was never the minutes; it was not quite <em>trusting</em> the number — re-checking it, doubting it — instead of it being a solved problem.</p>
+
+        <h2 id="s-port">A faithful port, not a reinvention</h2>
+
+        <p>So I did what I've started doing whenever a small, repeated task keeps costing more than it should: I took the spreadsheet's math and rebuilt it as a browser tool. Underneath, it's a <strong>faithful port of the Barrick Lab spreadsheet</strong> — the same formula, the same three limits, the same conversion constant. I didn't want to improve the method; I wanted to reproduce it exactly and wrap it in something quicker to use. All credit for the method stays with Ben and the Barrick Lab.</p>
+
+        <p>On top of that faithful core I added what I kept wishing the spreadsheet had: a custom molar ratio for protocols that deviate from the NEB defaults, a master-mix multiplier so a plate of N reactions is one number instead of N, a printable protocol you can save as a PDF, CSV export, and named presets for constructs I build over and over. None of it is clever — that's the point. The value is in the sum being instant, correct, and reproducible.</p>
+
+        <h2 id="s-ai">A note on how it was built</h2>
+
+        <p>I'm a scientist who's gotten good at building small tools, not a career software engineer — and I build these with AI assistance, which is the honest reason a bench frustration can turn into a working calculator in an afternoon. The idea, and the decision to port Ben's math faithfully rather than reinvent it, are mine; the AI was the implementation partner. It runs, it's already saved me more time than it took to build, and it turned a recurring source of quiet error into a solved problem.</p>
+
+        <div class="credit-card">
+          <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9.5" stroke="currentColor" stroke-width="1.4"/><path d="M12 8v5M12 16.5v.01" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
+          <p>All credit for the underlying method goes to <strong>Ben and the Barrick Lab</strong>. Read the original cloning protocol at <a class="inline" href="https://barricklab.org/twiki/bin/view/Lab/ProtocolsGibsonCloning" target="_blank" rel="noopener">barricklab.org</a>. This tool is a homage — the math is theirs; only the spreadsheet is gone.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────── HOW-TO / ASSEMBLY SEQUENCE ─────────── -->
+<section class="section how gridpaper" id="how">
+  <div class="section-inner">
+    <div class="sec-head">
+      <span class="mono-label">Sheet 03 — Assembly sequence</span>
+      <h2 class="sec-title">Open it and set up a reaction in six steps</h2>
+      <p class="sec-lead">The interface should be self-explanatory. If it isn't, that's a bug — <a href="https://github.com/mbaffour/gibson-assembly-calculator/issues/new" style="color:var(--blue);border-bottom:1px solid rgba(29,78,216,0.35)">tell me on GitHub</a>.</p>
+    </div>
+
+    <div class="steps">
+      <div class="step">
+        <span class="step-num">STEP 01</span>
+        <h3>Open it in your browser</h3>
+        <p>Click through. No download, no account, no sign-up. It's a static page and works entirely offline once loaded — nothing you type ever leaves the tab.</p>
+      </div>
+      <div class="step">
+        <span class="step-num">STEP 02</span>
+        <h3>Enter your vector first</h3>
+        <p>The first row is the reference vector. Type its length in <code>bp</code> and concentration in <code>ng/µL</code>. No true vector? Use the largest fragment as row one.</p>
+      </div>
+      <div class="step">
+        <span class="step-num">STEP 03</span>
+        <h3>Add your inserts</h3>
+        <p>Click <strong>Add a fragment</strong> for each insert and fill in length and concentration. Fold excesses default to the NEB recommendation; override any per row.</p>
+      </div>
+      <div class="step">
+        <span class="step-num">STEP 04</span>
+        <h3>Tune the parameters</h3>
+        <p>Adjust <code>v_max</code> if your protocol differs, set a custom molar ratio if you need one, and enter a reaction count to see the scaled master-mix table.</p>
+      </div>
+      <div class="step">
+        <span class="step-num">STEP 05</span>
+        <h3>Read off the volumes</h3>
+        <p>The µL to pipette for each fragment — and for water — appear live as you type. The vector mass and binding molar limit are shown in the parameters panel.</p>
+      </div>
+      <div class="step">
+        <span class="step-num">STEP 06</span>
+        <h3>Export, print, or save</h3>
+        <p>Copy the table to your clipboard, export a CSV, print a formatted protocol, or save the whole setup as a named preset in your browser for next time.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────── CTA ─────────── -->
+<section class="cta">
+  <div class="cta-inner">
+    <span class="mono-label">Ready to run</span>
+    <h2>Set up your next reaction in thirty seconds.</h2>
+    <p>Free, open-source, and it runs entirely in your browser. Nothing to install, nothing to open in Excel.</p>
+    <div class="cta-btns">
+      <a href="https://mbaffour.github.io/gibson-assembly-calculator/" class="btn-primary">
+        Open the calculator
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h9M8 4l4 4-4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a href="https://github.com/mbaffour/gibson-assembly-calculator" class="btn-ghost">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.385-1.335-1.755-1.335-1.755-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12"/></svg>
+        View source on GitHub
+      </a>
+    </div>
+    <p class="cta-note">STATIC · CLIENT-SIDE · MIT LICENSED · DATA STAYS ON YOUR MACHINE</p>
+  </div>
+</section>
+
+<!-- ─────────── FOOTER / TITLE BLOCK ─────────── -->
+<footer>
+  <div class="foot-inner">
+    <div class="foot-block">
+      <div class="foot-cell">
+        <span class="k">Drawing</span>
+        <span class="v">Gibson Assembly Calculator<br>A single-page molar-ratio tool for molecular cloning.</span>
+      </div>
+      <div class="foot-cell">
+        <span class="k">Method credit</span>
+        <span class="v">Ported from Ben's calculator, <a href="https://barricklab.org/twiki/bin/view/Lab/ProtocolsGibsonCloning" target="_blank" rel="noopener">Barrick Lab</a>.</span>
+      </div>
+      <div class="foot-cell">
+        <span class="k">Repository</span>
+        <span class="v"><a href="https://github.com/mbaffour/gibson-assembly-calculator" target="_blank" rel="noopener">github.com/mbaffour/<br>gibson-assembly-calculator</a></span>
+      </div>
+      <div class="foot-cell">
+        <span class="k">Drawn by</span>
+        <span class="v">Michael Baffour Awuah<br>PhD candidate · phage biology · <a href="https://mbaffour.github.io/">back to site</a></span>
+      </div>
+    </div>
+    <div class="foot-bar">
+      <p>© 2026 MICHAEL BAFFOUR AWUAH · MIT LICENSE · REV-1</p>
+      <p>BUILT WITH SCIENCE, GRATITUDE &amp; AI · <a href="https://mbaffour.github.io/gibson-assembly-calculator/">OPEN THE CALCULATOR →</a></p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // tiny smooth-scroll enhancement with reduced-motion respect
+  (function () {
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+      a.addEventListener('click', function (e) {
+        var id = a.getAttribute('href');
+        if (id.length < 2) return;
+        var el = document.querySelector(id);
+        if (!el) return;
+        e.preventDefault();
+        el.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+        history.replaceState(null, '', id);
+      });
+    });
+  })();
+</script>
+
+</body>
+</html>
