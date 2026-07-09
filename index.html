@@ -1750,6 +1750,89 @@
         .build-actions .proj-link.alt:hover { border-color: var(--gold); color: var(--gold); background: var(--gold-dim); }
         .builds-see-all { text-align: center; margin-top: 2.25rem; }
 
+        /* ---- Zenodo citation (FigureLab / any citable tool) ---- */
+        .proj-doi-badge {
+            display: inline-block;
+            font-family: var(--font-mono);
+            font-size: 0.6rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            background: var(--gold);
+            color: #1a1408;
+            padding: 1px 5px;
+            border-radius: 4px;
+            vertical-align: middle;
+            margin-left: 6px;
+            line-height: 1.5;
+        }
+        .proj-citable-note {
+            display: block;
+            margin-top: 6px;
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            color: var(--gold);
+            opacity: 0.85;
+        }
+        .proj-cite-btn {
+            border: 1px solid var(--border-strong);
+            background: transparent;
+            color: var(--ink-2);
+            cursor: pointer;
+        }
+        .proj-cite-btn:hover { border-color: var(--gold); color: var(--gold); background: var(--gold-dim); }
+        .proj-citation-block {
+            display: none;
+            margin-top: 1rem;
+            border: 1px solid var(--border-strong);
+            border-radius: var(--radius-sm);
+            overflow: hidden;
+            position: relative;
+            z-index: 2;
+        }
+        .proj-citation-block.open { display: block; }
+        .proj-citation-tabs {
+            display: flex;
+            border-bottom: 1px solid var(--border);
+            background: var(--bg-2);
+        }
+        .cite-tab {
+            flex: 1;
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            padding: 0.5rem 0.75rem;
+            background: transparent;
+            border: 0;
+            border-right: 1px solid var(--border);
+            color: var(--ink-3);
+            cursor: pointer;
+            transition: color .15s, background .15s;
+        }
+        .cite-tab:last-child { border-right: 0; }
+        .cite-tab:hover { color: var(--ink); background: var(--bg-3); }
+        .cite-tab.active { color: var(--gold); background: var(--bg-card); font-weight: 600; }
+        .cite-panel { padding: 0.85rem 1rem; background: var(--bg-card); position: relative; }
+        .cite-text {
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            color: var(--ink-2);
+            white-space: pre-wrap;
+            word-break: break-all;
+            line-height: 1.6;
+            margin: 0 0 0.6rem;
+        }
+        .cite-copy {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            padding: 4px 10px;
+            border: 1px solid var(--border-strong);
+            border-radius: 6px;
+            background: transparent;
+            color: var(--ink-3);
+            cursor: pointer;
+            transition: all .15s;
+        }
+        .cite-copy:hover { border-color: var(--gold); color: var(--gold); background: var(--gold-dim); }
+
         /* News card variant */
         .proj-card.news-card .proj-thumb {
             background: linear-gradient(135deg, var(--bg-2), var(--bg-3));
@@ -4773,7 +4856,12 @@
             blog: "https://mbaffour.github.io/FigureLab/",
             app:  "https://mbaffour.github.io/FigureLab/figure_lab.html",
             label: "Figure Assembly",
-            preview: "figure"
+            preview: "figure",
+            doi: "10.5281/zenodo.21269456",
+            citation: {
+                plain: "Awuah, M. B. (2026). FigureLab: a browser-based tool for assembling publication-quality scientific figures (Version 3.5) [Computer software]. Zenodo. https://doi.org/10.5281/zenodo.21269456",
+                bibtex: "@software{awuah_figurelab_2026,\n  author    = {Awuah, Michael Baffour},\n  title     = {{FigureLab}: a browser-based tool for assembling publication-quality scientific figures},\n  year      = {2026},\n  version   = {3.5},\n  publisher = {Zenodo},\n  doi       = {10.5281/zenodo.21269456},\n  url       = {https://doi.org/10.5281/zenodo.21269456}\n}"
+            }
         },
         {
             title: "CellMorphR",
@@ -5563,18 +5651,69 @@
                     <span class="proj-thumb-label">${t.label}</span>
                 </div>
                 <div class="proj-body">
-                    <h3>${t.featured ? '<span class="proj-featured-star" title="Featured">★</span> ' : ''}${t.title}</h3>
-                    <p>${t.blurb}</p>
+                    <h3>${t.featured ? '<span class="proj-featured-star" title="Featured">★</span> ' : ''}${t.title}${t.doi ? ' <span class="proj-doi-badge" title="Archived on Zenodo — citable with a persistent DOI">DOI</span>' : ''}</h3>
+                    <p>${t.blurb}${t.doi ? ' <span class="proj-citable-note">Archived on Zenodo — citable with a persistent DOI.</span>' : ''}</p>
                     <div class="proj-tags">
                         ${t.tech.map(x => `<span class="research-tag">${x}</span>`).join('')}
                     </div>
                     <div class="proj-actions">
                         ${t.app  ? `<a href="${t.app}"  class="proj-link" target="_blank" rel="noopener">Open ↗</a>` : ''}
                         ${t.blog && t.blog !== t.app ? `<a href="${t.blog}" class="proj-link alt" target="_blank" rel="noopener">Blog</a>` : ''}
+                        ${t.doi ? `<a href="https://doi.org/${t.doi}" class="proj-link alt" target="_blank" rel="noopener">Zenodo ↗</a>` : ''}
+                        ${t.doi ? `<button class="proj-link proj-cite-btn" data-tool="${t.title}" type="button">Cite</button>` : ''}
                     </div>
+                    ${t.citation ? `
+                    <div class="proj-citation-block" id="cite-${t.title.replace(/\s+/g,'-').toLowerCase()}" aria-hidden="true">
+                        <div class="proj-citation-tabs">
+                            <button class="cite-tab active" data-tab="plain">Plain text</button>
+                            <button class="cite-tab" data-tab="bibtex">BibTeX</button>
+                        </div>
+                        <div class="cite-panel" data-panel="plain">
+                            <pre class="cite-text">${t.citation.plain}</pre>
+                            <button class="cite-copy" data-copy="${encodeURIComponent(t.citation.plain)}">Copy</button>
+                        </div>
+                        <div class="cite-panel" data-panel="bibtex" hidden>
+                            <pre class="cite-text">${t.citation.bibtex}</pre>
+                            <button class="cite-copy" data-copy="${encodeURIComponent(t.citation.bibtex)}">Copy</button>
+                        </div>
+                    </div>` : ''}
                 </div>
             </div>
         `).join('');
+
+        // Wire cite-block toggle + tabs + copy
+        container.querySelectorAll('.proj-cite-btn').forEach(btn => {
+            btn.addEventListener('click', e => {
+                e.preventDefault(); e.stopPropagation();
+                const id = 'cite-' + btn.dataset.tool.replace(/\s+/g,'-').toLowerCase();
+                const block = document.getElementById(id);
+                if (!block) return;
+                const open = block.classList.toggle('open');
+                block.setAttribute('aria-hidden', String(!open));
+                btn.textContent = open ? 'Hide citation' : 'Cite';
+            });
+        });
+        container.querySelectorAll('.cite-tab').forEach(tab => {
+            tab.addEventListener('click', e => {
+                e.preventDefault(); e.stopPropagation();
+                const block = tab.closest('.proj-citation-block');
+                block.querySelectorAll('.cite-tab').forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                const which = tab.dataset.tab;
+                block.querySelectorAll('.cite-panel').forEach(p => { p.hidden = p.dataset.panel !== which; });
+            });
+        });
+        container.querySelectorAll('.cite-copy').forEach(btn => {
+            btn.addEventListener('click', e => {
+                e.preventDefault(); e.stopPropagation();
+                const text = decodeURIComponent(btn.dataset.copy);
+                navigator.clipboard.writeText(text).then(() => {
+                    const orig = btn.textContent;
+                    btn.textContent = 'Copied!';
+                    setTimeout(() => { btn.textContent = orig; }, 1800);
+                });
+            });
+        });
     }
 
     /* ==============================================================
