@@ -7518,22 +7518,80 @@
                 ctx.closePath();
             }
         }
+        // Comic "pow" starburst, drawn behind the cell at the moment of rupture
+        function drawBurstStar(cx, cy, r) {
+            const spikes = 8;
+            ctx.beginPath();
+            for (let i = 0; i < spikes * 2; i++) {
+                const ang = (Math.PI / spikes) * i - Math.PI / 2;
+                const rr = i % 2 === 0 ? r : r * 0.5;
+                const px = cx + Math.cos(ang) * rr, py = cy + Math.sin(ang) * rr;
+                i === 0 ? ctx.moveTo(px, py) : ctx.lineTo(px, py);
+            }
+            ctx.closePath();
+            ctx.fillStyle = 'rgba(244,196,48,0.22)';
+            ctx.fill();
+        }
+        // One jagged half of the cracked cell, offset outward from center
+        function drawCellHalf(cx, cy, R, side, offX, offY, fillColor) {
+            const s = R / 26;
+            const zig = [[4, 18], [-4, 10], [4, 2], [-4, -6], [4, -14], [-4, -22]];
+            ctx.save();
+            ctx.translate(cx + offX, cy + offY);
+            ctx.beginPath();
+            ctx.moveTo(0, -26 * s);
+            ctx.arc(0, 0, 26 * s, -Math.PI / 2, Math.PI / 2, side === 'left');
+            for (const [zx, zy] of zig) ctx.lineTo((side === 'left' ? zx : -zx) * s, zy * s);
+            ctx.closePath();
+            ctx.fillStyle = fillColor;
+            ctx.fill();
+            ctx.lineWidth = 1.8;
+            ctx.strokeStyle = '#0a1f0f';
+            ctx.stroke();
+            ctx.restore();
+        }
+        // The round, wall-less cell splitting in two — this is what endolysin + spanins
+        // actually do at rupture (the shape holins alone never touch).
+        function drawCrackedCell(cx, cy, R) {
+            const s = R / 26;
+            drawCellHalf(cx, cy, R, 'left', -5 * s, -3 * s, '#166b34');
+            drawCellHalf(cx, cy, R, 'right', 5 * s, 3 * s, '#2bb35f');
+        }
+        function drawBurstDroplets(cx, cy, R) {
+            const s = R / 26;
+            ctx.fillStyle = 'rgba(26,128,64,0.85)';
+            [[0, 32, 3.4], [10, 36, 2.2], [-12, 34, 1.9]].forEach(([dx, dy, r]) => {
+                ctx.beginPath(); ctx.arc(cx + dx * s, cy + dy * s, r * s, 0, Math.PI * 2); ctx.fill();
+            });
+        }
         // micro cell-state scene in the top-left of the plot
         function drawCellScene(stage) {
             const bx = pad.left + 14, by = pad.top + 12, R = 22, cx = bx + R, cy = by + R;
             ctx.save();
-            // cell body — round only once endolysin has actually acted (the burst frame)
-            cellBodyPath(cx, cy, R, stage === 4 && state.mode === 'normal');
-            ctx.fillStyle = stage === 4 && state.mode === 'normal' ? 'rgba(196,30,58,0.10)' : 'rgba(26,128,64,0.12)';
-            ctx.fill();
-            ctx.lineWidth = 1.6;
-            ctx.strokeStyle = stage === 4 && state.mode === 'normal' ? 'rgba(196,30,58,0.7)' : 'rgba(245,237,216,0.55)';
-            if (stage === 3 || (stage === 4 && state.mode === 'normal')) ctx.setLineDash([3, 3]);
-            ctx.stroke(); ctx.setLineDash([]);
+            const isBurst = stage === 4 && state.mode === 'normal';
+            if (isBurst) drawBurstStar(cx, cy, R * 1.9);
+            // cell body — round only once endolysin has actually acted (the burst frame),
+            // drawn as two cracked halves rather than a plain circle
+            if (isBurst) {
+                drawCrackedCell(cx, cy, R);
+            } else {
+                cellBodyPath(cx, cy, R, false);
+                ctx.fillStyle = 'rgba(26,128,64,0.12)';
+                ctx.fill();
+                ctx.lineWidth = 1.6;
+                ctx.strokeStyle = 'rgba(245,237,216,0.55)';
+                if (stage === 3) ctx.setLineDash([3, 3]);
+                ctx.stroke(); ctx.setLineDash([]);
+            }
             const gold = '#f4c430';
-            if (stage === 0) {                       // phage docking
-                ctx.strokeStyle = gold; ctx.lineWidth = 1.6;
-                ctx.beginPath(); ctx.moveTo(cx, cy - R - 12); ctx.lineTo(cx, cy - R + 1); ctx.stroke();
+            if (stage === 0) {                       // phage docking — N4 is a podovirus: short stubby tail, no baseplate
+                ctx.strokeStyle = gold; ctx.lineWidth = 1.8;
+                ctx.beginPath(); ctx.moveTo(cx, cy - R - 11); ctx.lineTo(cx, cy - R - 3); ctx.stroke();
+                ctx.lineWidth = 1.2;
+                ctx.beginPath();
+                ctx.moveTo(cx - 1.5, cy - R - 6); ctx.lineTo(cx - 4, cy - R - 2);
+                ctx.moveTo(cx + 1.5, cy - R - 6); ctx.lineTo(cx + 4, cy - R - 2);
+                ctx.stroke();
                 hex(cx, cy - R - 16, 5); ctx.fillStyle = gold; ctx.fill();
             } else if (stage === 1) {                // DNA squiggle
                 ctx.strokeStyle = gold; ctx.lineWidth = 1.6; ctx.beginPath();
@@ -7543,9 +7601,13 @@
                 ctx.fillStyle = gold;
                 const n = stage === 2 ? 4 : 8;
                 for (let i = 0; i < n; i++) { const ang = i / n * Math.PI * 2; const rr = stage === 2 ? 7 : 11; hex(cx + Math.cos(ang) * rr, cy + Math.sin(ang) * rr, 3.2); ctx.fill(); }
-            } else if (stage === 4 && state.mode === 'normal') {  // burst
+            } else if (isBurst) {  // burst: phages spraying out on speed lines, membrane droplets
+                const n = 9;
+                ctx.strokeStyle = gold; ctx.lineWidth = 1.4; ctx.lineCap = 'round';
+                for (let i = 0; i < n; i++) { const ang = i / n * Math.PI * 2; const rr = R + 10; ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(cx + Math.cos(ang) * rr, cy + Math.sin(ang) * rr); ctx.stroke(); }
                 ctx.fillStyle = gold;
-                for (let i = 0; i < 9; i++) { const ang = i / 9 * Math.PI * 2; const rr = R + 10; hex(cx + Math.cos(ang) * rr, cy + Math.sin(ang) * rr, 3); ctx.fill(); }
+                for (let i = 0; i < n; i++) { const ang = i / n * Math.PI * 2; const rr = R + 10; hex(cx + Math.cos(ang) * rr, cy + Math.sin(ang) * rr, 3); ctx.fill(); }
+                drawBurstDroplets(cx, cy, R);
             } else if (stage === 4) {                 // N4 held: stuffed + superinfecting phages
                 ctx.fillStyle = gold;
                 for (let i = 0; i < 9; i++) { const ang = i / 9 * Math.PI * 2; hex(cx + Math.cos(ang) * 11, cy + Math.sin(ang) * 11, 3.2); ctx.fill(); }
@@ -8641,16 +8703,28 @@
             ctx.shadowBlur = player.invuln > 0 ? 0 : 8;
             ctx.stroke();
             ctx.shadowBlur = 0;
-            ctx.beginPath();
-            ctx.moveTo(0, s * 0.7); ctx.lineTo(0, s * 1.6);
-            ctx.lineWidth = 1.5; ctx.stroke();
-            ctx.beginPath();
-            ctx.moveTo(-s * 0.4, s * 1.5); ctx.lineTo(s * 0.4, s * 1.5);
-            ctx.stroke();
-            ctx.beginPath();
-            ctx.moveTo(0, s * 1.6); ctx.lineTo(-s * 0.8, s * 2.2);
-            ctx.moveTo(0, s * 1.6); ctx.lineTo(s * 0.8, s * 2.2);
-            ctx.lineWidth = 1.4; ctx.stroke();
+            if (chosenPhage === 'n4') {
+                // N4 is a podovirus: short, stubby non-contractile tail, no baseplate
+                // or long tail fibers — just a stub with a couple of short fiber tips.
+                ctx.beginPath();
+                ctx.moveTo(0, s * 0.7); ctx.lineTo(0, s * 0.95);
+                ctx.lineWidth = 2.2; ctx.stroke();
+                ctx.beginPath();
+                ctx.moveTo(-s * 0.12, s * 0.88); ctx.lineTo(-s * 0.32, s * 1.02);
+                ctx.moveTo(s * 0.12, s * 0.88); ctx.lineTo(s * 0.32, s * 1.02);
+                ctx.lineWidth = 1.3; ctx.stroke();
+            } else {
+                ctx.beginPath();
+                ctx.moveTo(0, s * 0.7); ctx.lineTo(0, s * 1.6);
+                ctx.lineWidth = 1.5; ctx.stroke();
+                ctx.beginPath();
+                ctx.moveTo(-s * 0.4, s * 1.5); ctx.lineTo(s * 0.4, s * 1.5);
+                ctx.stroke();
+                ctx.beginPath();
+                ctx.moveTo(0, s * 1.6); ctx.lineTo(-s * 0.8, s * 2.2);
+                ctx.moveTo(0, s * 1.6); ctx.lineTo(s * 0.8, s * 2.2);
+                ctx.lineWidth = 1.4; ctx.stroke();
+            }
             if (player.invuln > 0 && Math.floor(player.invuln * 20) % 2 === 0) {
                 ctx.globalAlpha = 0.3;
                 ctx.fillStyle = '#fff';
