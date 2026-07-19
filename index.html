@@ -9074,10 +9074,7 @@
         const GC_CODE = 'mbaffour'; // !! REPLACE WITH YOUR GOATCOUNTER SITE CODE !!
         fetch(`https://${GC_CODE}.goatcounter.com/counter//.json`, { mode: 'cors' })
             .then(r => r.ok ? r.json() : Promise.reject())
-            .then(data => {
-                if (data && data.count) { el.textContent = data.count; }
-                else { const tile = el.closest('.hero-stat'); if (tile) tile.style.display = 'none'; }
-            })
+            .then(data => { if (data && data.count) el.textContent = data.count; })
             .catch(() => { const tile = el.closest('.hero-stat'); if (tile) tile.style.display = 'none'; });
     })();
     </script>
