@@ -73,7 +73,7 @@
             --ink:     #f5edd8;
             --ink-2:   #d8c98c;
             --ink-3:   #a08652;
-            --ink-4:   #7a6238;
+            --ink-4:   #ad8e52;
 
             /* Effects */
             --glow-gold:  0 6px 32px rgba(244, 196, 48, 0.35);
@@ -119,7 +119,7 @@
             --ink:   #1a1408;
             --ink-2: #3a2c0e;
             --ink-3: #7a5e2a;
-            --ink-4: #a88040;
+            --ink-4: #856529;
 
             --glow-gold:  0 4px 20px rgba(154, 110, 0, 0.14);
             --glow-green: 0 4px 20px rgba(15, 106, 46, 0.12);
@@ -2792,6 +2792,7 @@
         .gallery-item.tall    { grid-column: span 2; grid-row: span 2; }
         .gallery-item.wide    { grid-column: span 3; grid-row: span 1; }
         .gallery-item.square  { grid-column: span 2; grid-row: span 1; }
+        .gallery-empty { color: var(--ink-3); font-size: 0.9rem; padding: 24px 0; grid-column: 1/-1; }
 
         /* Lightbox */
         .lightbox {
@@ -3260,6 +3261,13 @@
             .contact-email-addr { font-size: 0.92rem; }
         }
 
+        .hero-open-to {
+            display: flex;
+            align-items: center;
+            gap: 0.65rem;
+            flex-wrap: wrap;
+            margin: 1.1rem 0 0;
+        }
         .contact-open-to {
             position: relative;
             z-index: 1;
@@ -3685,7 +3693,19 @@
                 <a href="#research" class="btn btn-primary">🔬 Read the science</a>
                 <a href="#publications" class="btn btn-secondary">📖 Publications</a>
             </div>
-            <a href="cv & resume/Michael_Baffour_Awuah_CV.pdf" class="hero-cv-link" download>↓ Download CV</a>
+            <a href="cv-resume/Michael_Baffour_Awuah_CV.pdf" class="hero-cv-link" download>↓ Download CV</a>
+
+            <div class="hero-open-to" aria-label="Open to opportunities">
+                <span class="open-pulse"></span>
+                <span class="open-label">Open to:</span>
+                <span class="open-tags">
+                    <span>Biotech R&amp;D</span>
+                    <span>AI for science</span>
+                    <span>Translational research</span>
+                    <span>Scientific software</span>
+                    <span>Collaborations</span>
+                </span>
+            </div>
 
             <div class="hero-stats">
                 <div class="hero-stat">
@@ -3777,9 +3797,9 @@
                 <p>Alongside the wet lab, I build open-source tools — increasingly with AI in the loop, which lets me go from a lab annoyance to a shipped, working tool in days rather than months. Not because they'll go on my CV, but because writing the same <code>ggplot2</code> boilerplate twelve times will make anyone snap. Every tool here was built to solve a real problem I or someone next to me hit. Most are browser-based, privacy-first, and zero-install.</p>
                 <p>As I approach the completion of my doctoral studies, I'm interested in roles where wet-lab phage biology, computational genomics, and tool-building all matter — biotech R&amp;D, AI-for-science startups, translational research labs, or scientific software teams.</p>
                 <div class="about-cv-actions">
-                    <a href="cv & resume/Michael_Baffour_Awuah_CV.html" class="btn btn-primary" target="_blank" rel="noopener">📄 View HTML CV</a>
-                    <a href="cv & resume/Michael_Baffour_Awuah_CV.pdf" class="btn btn-secondary" download>⬇ CV (PDF)</a>
-                    <a href="cv & resume/Michael B Awuah.pdf" class="btn btn-ghost" download>⬇ Résumé (PDF)</a>
+                    <a href="cv-resume/Michael_Baffour_Awuah_CV.html" class="btn btn-primary" target="_blank" rel="noopener">📄 View HTML CV</a>
+                    <a href="cv-resume/Michael_Baffour_Awuah_CV.pdf" class="btn btn-secondary" download>⬇ CV (PDF)</a>
+                    <a href="cv-resume/Michael-Baffour-Awuah-Resume.pdf" class="btn btn-ghost" download>⬇ Résumé (PDF)</a>
                 </div>
             </div>
         </div>
@@ -4697,7 +4717,8 @@
             <a href="https://scholar.google.com/citations?user=e5_h_2YAAAAJ&hl=en" target="_blank" rel="noopener">Google&nbsp;Scholar</a>
             <a href="https://orcid.org/0009-0007-9036-413X" target="_blank" rel="noopener">ORCID&nbsp;0009-0007-9036-413X</a>
             <a href="https://github.com/mbaffour" target="_blank" rel="noopener">GitHub</a>
-            <a href="cv & resume/Michael_Baffour_Awuah_CV.pdf" download>CV&nbsp;(PDF)</a>
+            <a href="cv-resume/Michael_Baffour_Awuah_CV.pdf" download>CV&nbsp;(PDF)</a>
+            <a href="cv-resume/Michael-Baffour-Awuah-Resume.pdf" download>Résumé&nbsp;(PDF)</a>
         </div>
         <p>&copy; 2026 Michael Baffour Awuah · All rights reserved.</p>
         <p>Built with passion for science &amp; discovery.</p>
@@ -5175,6 +5196,10 @@
         const grid = document.getElementById('galleryGrid');
         if (!grid) return;
         const items = filter === 'all' ? gallery : gallery.filter(g => catFor(g) === filter);
+        if (items.length === 0) {
+            grid.innerHTML = '<p class="gallery-empty">No photos match this filter.</p>';
+            return;
+        }
         grid.innerHTML = items.map(g => {
             const idx = gallery.indexOf(g);
             return `
@@ -5776,7 +5801,7 @@
                     ${i === 0 && filter === 'all' ? '<span class="blog-new-badge">New</span>' : ''}
                 </div>
                 <div class="blog-body">
-                    ${p.image ? `<img class="blog-thumb" src="${p.image}" alt="" loading="lazy">` : ''}
+                    ${p.image ? `<img class="blog-thumb" src="${p.image}" alt="${esc(p.title)}" loading="lazy">` : ''}
                     <div class="blog-tags">${p.tags.map(t => `<span class="blog-tag">${t}</span>`).join('')}</div>
                     <h3 class="blog-title">${p.title}</h3>
                     <p class="blog-blurb">${p.blurb}</p>
@@ -7819,7 +7844,8 @@
             { type: 'link',    label: 'LinkedIn',             hint: 'profile',             href: 'https://www.linkedin.com/in/mba-101b/', icon: 'in', external: true },
             { type: 'link',    label: 'ORCID',                hint: '0009-0007-9036-413X', href: 'https://orcid.org/0009-0007-9036-413X', icon: '🆔', external: true },
             { type: 'link',    label: 'Twitter / X',          hint: '@AwuahMB',            href: 'https://twitter.com/AwuahMB', icon: '𝕏', external: true },
-            { type: 'link',    label: 'Download CV (PDF)',    hint: 'résumé',              href: 'cv & resume/Michael_Baffour_Awuah_CV.pdf', icon: '📄', external: false }
+            { type: 'link',    label: 'Download CV (PDF)',        hint: 'academic CV',         href: 'cv-resume/Michael_Baffour_Awuah_CV.pdf', icon: '📄', external: false },
+            { type: 'link',    label: 'Download Résumé (PDF)',    hint: 'industry résumé',     href: 'cv-resume/Michael-Baffour-Awuah-Resume.pdf', icon: '📄', external: false }
         ];
         const toolItems = tools.flatMap(t => {
             const out = [{ type: 'tool', label: t.title, hint: t.tech.join(' · '), href: t.app || t.blog, icon: '🧰', external: true }];
@@ -9049,7 +9075,7 @@
         fetch(`https://${GC_CODE}.goatcounter.com/counter//.json`, { mode: 'cors' })
             .then(r => r.ok ? r.json() : Promise.reject())
             .then(data => { if (data && data.count) el.textContent = data.count; })
-            .catch(() => { /* silently keep the em-dash placeholder */ });
+            .catch(() => { const tile = el.closest('.hero-stat'); if (tile) tile.style.display = 'none'; });
     })();
     </script>
 </body>
