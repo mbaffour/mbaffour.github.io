@@ -60,6 +60,7 @@
             async src="https://gc.zgo.at/count.js"></script>
 </head>
 <body>
+    <a href="#main" class="skip-link">Skip to main content</a>
     <!-- ===== CULTURAL BACKGROUND CANVAS ===== -->
     <canvas class="cultural-bg-canvas" id="culturalBgCanvas" aria-hidden="true"></canvas>
     <div class="cursor-glow" id="cursorGlow"></div>
@@ -76,7 +77,7 @@
                 <span class="nav-name-full">Michael Baffour Awuah</span>
                 <span class="nav-name-short">Michael B. Awuah</span>
             </a>
-            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">☰</button>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navLinks">☰</button>
             <ul class="nav-links" id="navLinks">
                 <li><a href="#research">Research</a></li>
                 <li><a href="#publications">Publications</a></li>
@@ -96,6 +97,7 @@
         </div>
     </nav>
 
+    <main id="main">
     <!-- ===== HERO ===== -->
     <section class="hero" id="hero">
         <canvas class="hero-canvas" id="heroCanvas" aria-hidden="true"></canvas>
@@ -146,6 +148,7 @@
     </section>
 
     <!-- ===== AT-A-GLANCE TILES ===== -->
+    <h2 class="sr-only">At a glance</h2>
     <div class="glance fade-in">
         <a href="#research" class="glance-tile" style="--accent: var(--gold);">
             <span class="icon">🦠</span>
@@ -421,7 +424,7 @@
                     <div class="playground-canvas-wrap">
                         <canvas class="playground-canvas" id="lysisCanvas" role="img" aria-label="Interactive plot of a bacterial growth and lysis curve that updates as phage infection parameters are adjusted"></canvas>
                     </div>
-                    <div class="pg-stepper" id="pgStepper" role="tablist" aria-label="Infection stages"></div>
+                    <div class="pg-stepper" id="pgStepper" role="group" aria-label="Infection stages"></div>
                     <div class="pg-narration" id="pgNarration">
                         <div class="pg-narration-head">
                             <span class="pg-stage-badge" id="pgStageNum">1</span>
@@ -446,32 +449,32 @@
                             <span>Lysis timing</span>
                             <span class="val" id="valLatent">Mid</span>
                         </div>
-                        <input type="range" id="ctrlLatent" min="15" max="80" value="35" step="1">
-                        <div class="ctrl-hint">How soon holins trigger lysis (early vs late).</div>
+                        <input type="range" id="ctrlLatent" aria-label="Lysis timing" aria-describedby="ctrlLatentHint" min="15" max="80" value="35" step="1">
+                        <div class="ctrl-hint" id="ctrlLatentHint">How soon holins trigger lysis (early vs late).</div>
                     </div>
                     <div class="ctrl">
                         <div class="ctrl-label">
                             <span>N4 inhibition response</span>
                             <span class="val" id="valInhibit">70%</span>
                         </div>
-                        <input type="range" id="ctrlInhibit" min="0" max="100" value="70" step="1">
-                        <div class="ctrl-hint">How strongly superinfection delays lysis. 0% behaves like a normal phage.</div>
+                        <input type="range" id="ctrlInhibit" aria-label="N4 inhibition response" aria-describedby="ctrlInhibitHint" min="0" max="100" value="70" step="1">
+                        <div class="ctrl-hint" id="ctrlInhibitHint">How strongly superinfection delays lysis. 0% behaves like a normal phage.</div>
                     </div>
                     <div class="ctrl">
                         <div class="ctrl-label">
                             <span>Burst size</span>
                             <span class="val" id="valBurst">1500</span>
                         </div>
-                        <input type="range" id="ctrlBurst" min="50" max="3000" value="1500" step="50">
-                        <div class="ctrl-hint">Phage released per cell. More phage means more superinfection.</div>
+                        <input type="range" id="ctrlBurst" aria-label="Burst size" aria-describedby="ctrlBurstHint" min="50" max="3000" value="1500" step="50">
+                        <div class="ctrl-hint" id="ctrlBurstHint">Phage released per cell. More phage means more superinfection.</div>
                     </div>
                     <div class="ctrl">
                         <div class="ctrl-label">
                             <span>MOI</span>
                             <span class="val" id="valMOI">5</span>
                         </div>
-                        <input type="range" id="ctrlMOI" min="0.1" max="20" value="5" step="0.1">
-                        <div class="ctrl-hint">Phages per cell at the start. High MOI drives lysis inhibition.</div>
+                        <input type="range" id="ctrlMOI" aria-label="MOI (phages per cell at start)" aria-describedby="ctrlMOIHint" min="0.1" max="20" value="5" step="0.1">
+                        <div class="ctrl-hint" id="ctrlMOIHint">Phages per cell at the start. High MOI drives lysis inhibition.</div>
                     </div>
                     <div class="ctrl-row">
                         <button class="toggle-btn" id="presetNormal">Normal phage</button>
@@ -782,7 +785,7 @@
                         </div>
                     </div>
                 </div>
-                <span class="copy-feedback" id="copyFeedback">Copied!</span>
+                <span class="copy-feedback" id="copyFeedback" role="status" aria-live="polite">Copied!</span>
             </div>
 
             <!-- Open to status -->
@@ -833,11 +836,12 @@
             </p>
         </div>
     </section>
+    </main>
 
     <!-- ===== COMMAND PALETTE ===== -->
     <div class="cmdk-overlay" id="cmdkOverlay" role="dialog" aria-modal="true" aria-label="Command palette">
         <div class="cmdk" id="cmdk">
-            <input class="cmdk-input" id="cmdkInput" type="text" placeholder="Jump to a section, tool, or paper..." autocomplete="off">
+            <input class="cmdk-input" id="cmdkInput" type="text" aria-label="Search sections, tools and publications" placeholder="Jump to a section, tool, or paper..." autocomplete="off">
             <div class="cmdk-results" id="cmdkResults"></div>
             <div class="cmdk-foot">
                 <span><kbd>↑↓</kbd> navigate · <kbd>↵</kbd> open · <kbd>esc</kbd> close</span>

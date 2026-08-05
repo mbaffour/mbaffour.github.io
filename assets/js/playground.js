@@ -131,7 +131,7 @@ document.querySelectorAll('.lifecycle-stage').forEach((g, i) => {
     const shortLabels = ['Adsorption', 'Eclipse', 'Assembly', 'Decision', 'Outcome'];
     function buildStepper() {
         stepper.innerHTML = shortLabels.map((l, i) =>
-            `<div class="pg-step" data-step="${i}" role="tab"><span class="pg-step-num">${i + 1}</span><span class="pg-step-label">${i === 4 ? (state.mode === 'inhibited' ? 'Inhibition' : 'Burst') : l}</span></div>`
+            `<button type="button" class="pg-step" data-step="${i}"><span class="pg-step-num">${i + 1}</span><span class="pg-step-label">${i === 4 ? (state.mode === 'inhibited' ? 'Inhibition' : 'Burst') : l}</span></button>`
         ).join('');
         stepper.querySelectorAll('.pg-step').forEach(el => {
             el.addEventListener('click', () => {
@@ -151,6 +151,8 @@ document.querySelectorAll('.lifecycle-stage').forEach((g, i) => {
             const s = +el.dataset.step;
             el.classList.toggle('active', s === i);
             el.classList.toggle('done', s < i);
+            if (s === i) el.setAttribute('aria-current', 'step');
+            else el.removeAttribute('aria-current');
         });
     }
 

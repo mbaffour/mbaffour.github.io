@@ -374,8 +374,15 @@
       .kv .v { font-size: 1.4rem; }
     }
   </style>
+<style>
+.skip-link{position:absolute;left:1rem;top:-3rem;z-index:2000;padding:.7rem 1.15rem;background:#f4c430;color:#121009;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.82rem;font-weight:700;border-radius:0 0 10px 10px;text-decoration:none;transition:top .18s ease}
+.skip-link:focus{top:0}
+@media (prefers-reduced-motion: reduce){*,*::before,*::after{animation-duration:.01ms !important;transition-duration:.01ms !important}html{scroll-behavior:auto}}
+</style>
 </head>
 <body>
+<a href="#main" class="skip-link">Skip to main content</a>
+<main id="main">
 
 <!-- ── NAV ─────────────────────────────────────────── -->
 <nav>
@@ -748,5 +755,6 @@
   })();
 </script>
 
+</main>
 </body>
 </html>

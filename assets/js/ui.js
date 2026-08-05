@@ -158,13 +158,20 @@
         });
     }
 
+    let lastFocus = null;
     function open() {
+        lastFocus = document.activeElement;
         overlay.classList.add('open');
         input.value = '';
         render('');
         setTimeout(() => input.focus(), 30);
     }
-    function close() { overlay.classList.remove('open'); }
+    function close() {
+        overlay.classList.remove('open');
+        /* Send focus back where it came from, rather than dropping it on <body>. */
+        if (lastFocus && lastFocus.focus) lastFocus.focus();
+        lastFocus = null;
+    }
 
     opener && opener.addEventListener('click', open);
     overlay.addEventListener('click', (e) => { if (e.target === overlay) close(); });
@@ -178,6 +185,11 @@
             if (el) el.click();
         } else if (e.key === 'Escape') {
             close();
+        } else if (e.key === 'Tab') {
+            /* The palette is a modal dialog; keep Tab inside it. */
+            e.preventDefault();
+            const el = list[active];
+            if (el) el.focus ? el.focus() : input.focus();
         }
     });
     document.addEventListener('keydown', (e) => {

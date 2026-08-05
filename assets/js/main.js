@@ -470,8 +470,10 @@ function renderGallery(filter = 'all') {
     grid.innerHTML = items.map(g => {
         const idx = gallery.indexOf(g);
         return `
-        <div class="gallery-item ${g.layout || 'square'}" data-idx="${idx}">
-            <img src="${g.src}" alt="${plainText(g.caption)}" loading="lazy">
+        <div class="gallery-item ${g.layout || 'square'}" data-idx="${idx}"
+             role="button" tabindex="0" aria-label="View larger: ${plainText(g.alt || g.caption)}">
+            <img src="${g.src}" alt="${plainText(g.alt || g.caption)}"
+                 width="${g.w || ''}" height="${g.h || ''}" loading="lazy" decoding="async">
             <div class="gallery-overlay">
                 <span class="gallery-tag">${g.tag}</span>
                 <div class="gallery-caption">${g.caption}</div>
@@ -512,25 +514,52 @@ wireFilter('galleryFilters', renderGallery);
     const cap = document.getElementById('lightboxCap');
     const close = document.getElementById('lightboxClose');
     if (!box) return;
+    let lastFocus = null;
+
     function open(i) {
         const g = gallery[i];
         if (!g) return;
+        lastFocus = document.activeElement;
         img.src = g.src;
-        const _tmp = document.createElement('span');
-        _tmp.innerHTML = g.caption;
-        img.alt = _tmp.textContent;
+        img.alt = plainText(g.alt || g.caption);
         cap.innerHTML = `${g.caption}${g.sub ? '<small>' + g.sub + '</small>' : ''}`;
         box.classList.add('open');
+        close.focus();
     }
-    function shut() { box.classList.remove('open'); img.src = ''; }
-    document.getElementById('galleryGrid').addEventListener('click', (e) => {
+    function shut() {
+        box.classList.remove('open');
+        img.src = '';
+        if (lastFocus && lastFocus.focus) lastFocus.focus();
+        lastFocus = null;
+    }
+
+    const grid = document.getElementById('galleryGrid');
+    grid.addEventListener('click', (e) => {
         const item = e.target.closest('.gallery-item');
         if (item) open(parseInt(item.dataset.idx, 10));
     });
+    /* The tiles are divs, so they need their own Enter/Space handling. */
+    grid.addEventListener('keydown', (e) => {
+        if (e.key !== 'Enter' && e.key !== ' ') return;
+        const item = e.target.closest('.gallery-item');
+        if (!item) return;
+        e.preventDefault();
+        open(parseInt(item.dataset.idx, 10));
+    });
+
     close.addEventListener('click', shut);
     box.addEventListener('click', (e) => { if (e.target === box) shut(); });
     document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && box.classList.contains('open')) shut();
+        if (!box.classList.contains('open')) return;
+        if (e.key === 'Escape') { shut(); return; }
+        /* Keep Tab inside the dialog while it is open. */
+        if (e.key === 'Tab') {
+            const focusable = box.querySelectorAll('a[href], button, [tabindex]:not([tabindex="-1"])');
+            if (!focusable.length) return;
+            const first = focusable[0], last = focusable[focusable.length - 1];
+            if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+            else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+        }
     });
 })();
 
@@ -1068,7 +1097,7 @@ function renderPosts(filter = 'all') {
                 ${i === 0 && filter === 'all' ? '<span class="blog-new-badge">New</span>' : ''}
             </div>
             <div class="blog-body">
-                ${p.image ? `<img class="blog-thumb" src="${p.image}" alt="" loading="lazy">` : ''}
+                ${p.image ? `<img class="blog-thumb" src="${p.image}" alt="${esc(p.imageAlt || p.title)}" width="108" height="78" loading="lazy" decoding="async">` : ''}
                 <div class="blog-tags">${p.tags.map(t => `<span class="blog-tag">${t}</span>`).join('')}</div>
                 <h3 class="blog-title">${p.title}</h3>
                 <p class="blog-blurb">${p.blurb}</p>
@@ -1203,9 +1232,24 @@ document.querySelectorAll('.fade-in').forEach(el => fadeObserver.observe(el));
 =============================================================== */
 const navToggle = document.getElementById('navToggle');
 const navLinks = document.getElementById('navLinks');
-navToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
+function setNav(open) {
+    navLinks.classList.toggle('open', open);
+    navToggle.setAttribute('aria-expanded', String(open));
+}
+navToggle.addEventListener('click', () => setNav(!navLinks.classList.contains('open')));
 document.querySelectorAll('.nav-links a').forEach(a => {
-    a.addEventListener('click', () => navLinks.classList.remove('open'));
+    a.addEventListener('click', () => setNav(false));
+});
+/* Escape and clicking away should close the mobile menu, not just tapping a link. */
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && navLinks.classList.contains('open')) {
+        setNav(false);
+        navToggle.focus();
+    }
+});
+document.addEventListener('click', (e) => {
+    if (!navLinks.classList.contains('open')) return;
+    if (!navLinks.contains(e.target) && !navToggle.contains(e.target)) setNav(false);
 });
 
 /* ==============================================================
