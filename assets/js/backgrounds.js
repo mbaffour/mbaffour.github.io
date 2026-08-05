@@ -69,7 +69,7 @@
             }
             ctx.restore();
         }
-        // Bacteriophage (icosahedral capsid + tail + fibers)
+        // Bacteriophage, drawn as a podovirus (icosahedral capsid, short tail, fibres)
         drawPhage() {
             const s = this.size;
             ctx.beginPath();
@@ -82,21 +82,22 @@
             ctx.closePath();
             ctx.fill();
             ctx.stroke();
+            // N4 is a podovirus: a short, stubby, non-contractile tail and no
+            // baseplate. The tail is a fraction of the capsid, not its equal.
+            const lw = ctx.lineWidth;
+            ctx.lineWidth = lw * 2.4;
             ctx.beginPath();
             ctx.moveTo(0, s * 0.5);
-            ctx.lineTo(0, s * 1.3);
+            ctx.lineTo(0, s * 0.72);
             ctx.stroke();
-            const fy = s * 1.3;
+            ctx.lineWidth = lw;
+            const fy = s * 0.72;
             for (let i = -1; i <= 1; i += 2) {
                 ctx.beginPath();
                 ctx.moveTo(0, fy);
-                ctx.quadraticCurveTo(i * s * 0.3, fy + s * 0.15, i * s * 0.5, fy + s * 0.4);
+                ctx.quadraticCurveTo(i * s * 0.16, fy + s * 0.12, i * s * 0.26, fy + s * 0.26);
                 ctx.stroke();
             }
-            ctx.beginPath();
-            ctx.moveTo(-s * 0.2, s * 1.25);
-            ctx.lineTo(s * 0.2, s * 1.25);
-            ctx.stroke();
         }
         // Rod-shaped bacterium (E. coli-like)
         drawRod() {
