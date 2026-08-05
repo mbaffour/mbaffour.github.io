@@ -143,12 +143,13 @@
             </a>
             <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navLinks">☰</button>
             <ul class="nav-links" id="navLinks">
+                <li><a href="#about">About</a></li>
                 <li><a href="#research">Research</a></li>
                 <li><a href="#publications">Publications</a></li>
                 <li><a href="#tools">Software</a></li>
-                <li><a href="#builds">Other Tools</a></li>
+                <li><a href="#blog">Blog</a></li>
+                <li><a href="#teaching">Teaching</a></li>
                 <li><a href="#recognition">Recognition</a></li>
-                <li><a href="#about">About</a></li>
                 <li><a href="#contact">Contact</a></li>
                 <li><button class="nav-theme-toggle" id="themeToggle" aria-label="Switch to light mode" title="Toggle light / dark mode">
                     <svg class="theme-icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
@@ -182,6 +183,13 @@
             </div>
             <a href="cv-resume/Michael_Baffour_Awuah_CV.pdf" class="hero-cv-link" download>↓ Download CV</a>
 
+            <p class="hero-availability">
+                <span class="open-pulse" aria-hidden="true"></span>
+                Finishing my PhD and open to <strong>biotech R&amp;D</strong>, <strong>AI for science</strong>,
+                <strong>translational research</strong> and <strong>scientific software</strong> roles —
+                <a href="#contact">get in touch</a>.
+            </p>
+
             <div class="hero-stats">
                 <div class="hero-stat">
                     <div class="hero-stat-value">4th</div>
@@ -211,6 +219,40 @@
         </div>
     </section>
 
+
+    <!-- ===== NEWS ===== -->
+    <section class="news-strip fade-in" id="news" aria-labelledby="newsHeading">
+        <h2 class="news-heading" id="newsHeading">Recent news</h2>
+        <ol class="news-items">
+            <li>
+                <time datetime="2026">2026</time>
+                <span>The <em>Serwaa</em> genome announcement is out in <em>Microbiology Resource Announcements</em>.
+                    <a href="https://doi.org/10.1128/mra.01222-25" target="_blank" rel="noopener">doi:10.1128/mra.01222-25</a></span>
+            </li>
+            <li>
+                <time datetime="2025-11-12">Nov 2025</time>
+                <span>Preprint posted: <em>Phage N4 uses a SAR endolysin–holin system for host cell lysis</em>.
+                    <a href="https://doi.org/10.1101/2025.11.12.688109" target="_blank" rel="noopener">doi:10.1101/2025.11.12.688109</a></span>
+            </li>
+            <li>
+                <time datetime="2025">2025</time>
+                <span>Awarded the Thomas L. Patterson Graduate Student Fellowship for the discovery of a novel lysis regulator in phage N4.</span>
+            </li>
+            <li>
+                <time datetime="2025-01">Jan 2025</time>
+                <span>Judged the Texas Junior Science &amp; Humanities Symposium.</span>
+            </li>
+            <li>
+                <time datetime="2024-04">Apr 2024</time>
+                <span>Judged the SACNAS Diversity in Science Symposium.</span>
+            </li>
+            <li>
+                <time datetime="2024">2024</time>
+                <span>Talks on N4 lysis inhibition at the Bio &amp; Chem Sciences Symposium and the Texas ASM Branch Meeting.</span>
+            </li>
+        </ol>
+    </section>
+
     <!-- ===== AT-A-GLANCE TILES ===== -->
     <h2 class="sr-only">At a glance</h2>
     <div class="glance fade-in">
@@ -227,7 +269,7 @@
         <a href="#tools" class="glance-tile" style="--accent: var(--gold);">
             <span class="icon">🧰</span>
             <h3>Open Tools</h3>
-            <p>16+ shipped tools for lab &amp; bioinformatics.</p>
+            <p><span id="glanceToolCount">16+</span> shipped tools for lab &amp; bioinformatics.</p>
         </a>
         <a href="#recognition" class="glance-tile" style="--accent: var(--red);">
             <span class="icon">🏆</span>
@@ -255,7 +297,7 @@
                 <div class="about-stats">
                     <span class="stat-pill"><strong>4th Year</strong> PhD Candidate</span>
                     <span class="stat-pill"><strong>3</strong> Phages Isolated</span>
-                    <span class="stat-pill"><strong>16+</strong> Open Tools</span>
+                    <span class="stat-pill"><strong id="aboutToolCount">16+</strong> Open Tools</span>
                     <span class="stat-pill"><strong>N4</strong> Lysis Specialist</span>
                 </div>
             </div>
@@ -267,6 +309,58 @@
                 <div class="about-cv-actions">
                     <a href="cv-resume/Michael_Baffour_Awuah_CV.html" class="btn btn-primary" target="_blank" rel="noopener">📄 View HTML CV</a>
                     <a href="cv-resume/Michael_Baffour_Awuah_CV.pdf" class="btn btn-secondary" download>⬇ CV (PDF)</a>
+                </div>
+
+                <h3 class="teach-heading" style="margin-top:32px">Education</h3>
+                <ul class="edu-list">
+                    <li>
+                        <span class="edu-degree">Ph.D., Biology (Microbiology)</span>
+                        <span class="edu-meta">Aug 2022 – Present · Texas A&amp;M University, College Station, TX</span>
+                        <span class="edu-detail">Dissertation: <em>Delaying the Inevitable — Lysis Inhibition in Bacteriophage N4</em>. Advisor: Dr.&nbsp;Jolene Ramsey.</span>
+                    </li>
+                    <li>
+                        <span class="edu-degree">B.Sc., Biochemistry (Second Class Upper Division)</span>
+                        <span class="edu-meta">Aug 2016 – Jun 2020 · University of Cape Coast, Ghana</span>
+                        <span class="edu-detail">Dissertation on the physicochemical, functional and nutritional analysis of juice blends from underutilised tropical fruits. Advisor: Dr.&nbsp;Jerry Ampofo-Asiama.</span>
+                    </li>
+                </ul>
+
+                <h3 class="teach-heading" style="margin-top:28px">Technical skills</h3>
+                <div class="skills-groups">
+                    <div class="skill-group">
+                        <h4>Molecular virology</h4>
+                        <div class="skill-chips">
+                            <span>Phage isolation &amp; characterization</span><span>Phage genomics</span>
+                            <span>CRISPR engineering</span><span>Lysis mechanism elucidation</span>
+                            <span>Phage–host interactions</span><span>High-titer production</span>
+                        </div>
+                    </div>
+                    <div class="skill-group">
+                        <h4>Molecular biology</h4>
+                        <div class="skill-chips">
+                            <span>PCR / qPCR</span><span>Molecular cloning</span><span>DNA/RNA extraction</span>
+                            <span>Gel electrophoresis</span><span>Genome assembly</span>
+                            <span>Restriction digestion</span><span>TEM</span><span>SDS-PAGE</span>
+                            <span>Western blotting</span>
+                        </div>
+                    </div>
+                    <div class="skill-group">
+                        <h4>Protein &amp; microbiology</h4>
+                        <div class="skill-chips">
+                            <span>BCA / Bradford assays</span><span>LPS quantification</span>
+                            <span>OM protein characterization</span><span>GFP/mCherry reporters</span>
+                            <span>BSL2 culture</span><span>AST / MIC determination</span>
+                        </div>
+                    </div>
+                    <div class="skill-group">
+                        <h4>Genomics &amp; computation</h4>
+                        <div class="skill-chips">
+                            <span>NGS / RNA-seq</span><span>Comparative genomics</span><span>Phylogenetics</span>
+                            <span>Differential expression</span><span>Functional annotation</span>
+                            <span>R</span><span>R Shiny</span><span>Python</span><span>SnapGene</span>
+                            <span>Pipeline development</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -552,15 +646,27 @@
 
     <hr class="section-divider">
 
-    <!-- ===== OUTPUT (Publications + Talks) ===== -->
+    <!-- ===== PUBLICATIONS ===== -->
     <section class="section fade-in" id="publications">
         <div class="section-header bare">
-            <span class="section-label">Peer-Reviewed Work · Talks · Posters</span>
-            <h2 class="section-title">Scientific <span class="highlight">Output</span></h2>
-            <p class="section-subtitle">Peer-reviewed work, a first-author preprint on N4 lysis, and selected talks. More in the pipeline.</p>
+            <span class="section-label">Papers &amp; Preprints</span>
+            <h2 class="section-title"><span class="highlight">Publications</span></h2>
+            <p class="section-subtitle">A journal article and a first-author preprint on N4 lysis. Talks and posters are listed separately below.</p>
         </div>
-        <div class="pub-filters" id="pubFilters"></div>
         <div class="pub-list" id="pubList"></div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- ===== TALKS & POSTERS ===== -->
+    <section class="section fade-in" id="talks">
+        <div class="section-header bare">
+            <span class="section-label">Conferences &amp; Symposia</span>
+            <h2 class="section-title">Talks &amp; <span class="highlight">Posters</span></h2>
+            <p class="section-subtitle">Oral presentations and posters on phage N4 lysis inhibition and phage discovery.</p>
+        </div>
+        <div class="pub-filters" id="talkFilters"></div>
+        <div class="pub-list" id="talkList"></div>
     </section>
 
     <hr class="section-divider">
@@ -571,6 +677,15 @@
             <span class="section-label">Open Source &middot; Reproducible Phage Biology</span>
             <h2 class="section-title">Research <span class="highlight">Software</span></h2>
             <p class="section-subtitle">Small tools I build to automate my own research, then share because other labs hit the same walls. From lysis-curve analysis to sequence prep. Browser-first, privacy-first, reproducible by default. <a href="builds.html" style="color:var(--gold);text-decoration:underline;">Non-science side builds live here &rarr;</a></p>
+        </div>
+        <div class="doi-banner">
+            <span class="doi-banner-badge">DOI</span>
+            <p>
+                <strong>FigureLab is archived on Zenodo with a persistent DOI</strong> — so it can be cited
+                in a methods section like any other piece of research output.
+                <a href="https://doi.org/10.5281/zenodo.21269456" target="_blank" rel="noopener">10.5281/zenodo.21269456&nbsp;↗</a>
+                Every card below has a <em>Cite</em> button with ready-made plain-text and BibTeX entries.
+            </p>
         </div>
         <div class="pub-filters" id="toolFilters"></div>
         <div class="card-grid" id="toolsGrid"></div>
@@ -591,7 +706,7 @@
 
     <hr class="section-divider">
 
-    <!-- ===== BUILDING NEXT — TAILFIBER CONCEPT ===== -->
+    <!-- ===== TAILFIBER — playable outreach game ===== -->
     <section class="section fade-in" id="next">
         <div class="section-header">
             <span class="section-label">Outreach · Now Playable</span>
@@ -710,6 +825,60 @@
         <div class="builds-grid" id="buildsGrid"></div>
         <div class="builds-see-all">
             <a href="builds.html" class="proj-link">See all tools ↗</a>
+        </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- ===== TEACHING & MENTORING ===== -->
+    <section class="section fade-in" id="teaching">
+        <div class="section-header">
+            <span class="section-label">Teaching · Mentoring</span>
+            <h2 class="section-title">Teaching &amp; <span class="highlight">Mentoring</span></h2>
+            <p class="section-subtitle">Nine courses taught across two universities, and ten undergraduate researchers trained at the bench.</p>
+        </div>
+
+        <div class="teach-grid">
+            <div class="teach-block">
+                <h3 class="teach-heading">Courses taught</h3>
+                <div class="teach-table-wrap">
+                    <table class="teach-table">
+                        <caption class="sr-only">Courses taught, with enrolment, term and institution</caption>
+                        <thead>
+                            <tr><th scope="col">Course</th><th scope="col">Students</th><th scope="col">Term</th><th scope="col">Institution</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>BIOL 111 — Intro Biology I</td><td>48</td><td>Fall 2022</td><td>Texas A&amp;M</td></tr>
+                            <tr><td>BIOL 112 — Intro Biology II</td><td>48</td><td>Spring 2023</td><td>Texas A&amp;M</td></tr>
+                            <tr><td>Enzyme Action &amp; Catalysis</td><td>169</td><td>Fall 2021</td><td>U. Cape Coast</td></tr>
+                            <tr><td>Biochemical Techniques (Mini Project)</td><td>5</td><td>Fall 2021</td><td>U. Cape Coast</td></tr>
+                            <tr><td>General Biochemistry Practical</td><td>209</td><td>Fall 2020</td><td>U. Cape Coast</td></tr>
+                            <tr><td>Biological Oxidation &amp; Bioenergetics</td><td>169</td><td>Fall 2020</td><td>U. Cape Coast</td></tr>
+                            <tr><td>Biochemical Techniques I</td><td>150</td><td>Fall 2020</td><td>U. Cape Coast</td></tr>
+                            <tr><td>Diversity of Living Organisms</td><td>Class of 2023</td><td>Fall 2020</td><td>U. Cape Coast</td></tr>
+                            <tr><td>Biostatistics</td><td>Class of 2022</td><td>Fall 2020</td><td>U. Cape Coast</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p class="teach-note">Microteaching mentor for incoming teaching assistants, Department of Biology, Texas A&amp;M (2023 &amp; 2024).</p>
+            </div>
+
+            <div class="teach-block">
+                <h3 class="teach-heading">Undergraduate researchers mentored</h3>
+                <ul class="mentee-list">
+                    <li><span class="mentee-name">Annie Koh</span><span class="mentee-proj">Characterization of three <em>E. coli</em> 4s phages</span><span class="mentee-where">Texas A&amp;M</span></li>
+                    <li><span class="mentee-name">Philip Lotaire</span><span class="mentee-proj">N4 lysis inhibition, host specificity &amp; receptor discovery</span><span class="mentee-where">Texas A&amp;M</span></li>
+                    <li><span class="mentee-name">Matthew Fan</span><span class="mentee-proj">Mechanism of action of bacteriocins</span><span class="mentee-where">Texas A&amp;M</span></li>
+                    <li><span class="mentee-name">Teja Vemulapalli</span><span class="mentee-proj">Bacteriophage N4 lysis inhibition</span><span class="mentee-where">Texas A&amp;M</span></li>
+                    <li><span class="mentee-name">Bridget Ahema Agyemang</span><span class="mentee-proj">Phytochemical evaluation of <em>Garcinia kola</em></span><span class="mentee-where">U. Cape Coast</span></li>
+                    <li><span class="mentee-name">Bertha Klenam Hamenu</span><span class="mentee-proj">Phytochemical evaluation of <em>Garcinia kola</em></span><span class="mentee-where">U. Cape Coast</span></li>
+                    <li><span class="mentee-name">Ekow Etwire</span><span class="mentee-proj">Phytochemical evaluation of <em>Garcinia kola</em></span><span class="mentee-where">U. Cape Coast</span></li>
+                    <li><span class="mentee-name">Samuel Ofosu</span><span class="mentee-proj">Phytochemical evaluation of <em>Garcinia kola</em></span><span class="mentee-where">U. Cape Coast</span></li>
+                    <li><span class="mentee-name">Emmanuel Luri</span><span class="mentee-proj">Phytochemical evaluation of <em>Garcinia kola</em></span><span class="mentee-where">U. Cape Coast</span></li>
+                    <li><span class="mentee-name">Christian Okine</span><span class="mentee-proj">Phytochemical evaluation of <em>Garcinia kola</em></span><span class="mentee-where">U. Cape Coast</span></li>
+                </ul>
+                <p class="teach-note">Judge, Texas Junior Science &amp; Humanities Symposium (Jan 2025) &middot; Judge, SACNAS Diversity in Science Symposium (Apr 2024).</p>
+            </div>
         </div>
     </section>
 
@@ -921,6 +1090,7 @@
             <a href="https://orcid.org/0009-0007-9036-413X" target="_blank" rel="noopener">ORCID&nbsp;0009-0007-9036-413X</a>
             <a href="https://github.com/mbaffour" target="_blank" rel="noopener">GitHub</a>
             <a href="cv-resume/Michael_Baffour_Awuah_CV.pdf" download>CV&nbsp;(PDF)</a>
+            <a href="feed.xml">RSS</a>
         </div>
         <p>&copy; 2026 Michael Baffour Awuah · All rights reserved.</p>
         <p>Built with passion for science &amp; discovery.</p>

@@ -332,12 +332,85 @@ const tools = [
 =============================================================== */
 const posts = [
     {
+        title: "Plaque Toolkit — plate photo to defensible numbers",
+        date: "June 20, 2026",
+        iso: "2026-06-20",
+        tags: ["Research Software", "Phage Biology"],
+        blurb: "Measures bacteriophage plaques straight from a Petri-dish photo — size, turbidity, count and titer — so wild-type and mutant phages compare on the same footing.",
+        url: "blog/plaque-toolkit.html"
+    },
+    {
         title: "Serwaa: My First Scientific Paper",
         date: "May 30, 2026",
-        tags: ["First Publication", "Phage Biology", "Lab Notes"],
-        blurb: "The story behind my first peer-reviewed paper: a phage named after my grandmother, an undergraduate who made it happen, and what it means to see your name in print for the first time.",
+        iso: "2026-05-30",
+        tags: ["Lab Notes", "Phage Biology"],
+        blurb: "The story behind my first peer-reviewed publication — a phage named after my grandmother, the undergraduate who made it happen, and seeing my name in print.",
         image: "blog/images/serwaa-tem-thumb.webp",
-        url: "https://mbaffour.github.io/blog/serwaa-first-paper.html"
+        url: "blog/serwaa-first-paper.html"
+    },
+    {
+        title: "LifeXP — Track your life. Level it up.",
+        date: "May 14, 2026",
+        iso: "2026-05-14",
+        tags: ["Side Builds"],
+        blurb: "A gamified, local-first life tracker: habits, time, quests and life metrics with XP, levels and streaks. All data stays on your device.",
+        url: "blog/lifexp.html"
+    },
+    {
+        title: "Number Tug — arithmetic tug-of-war on one device",
+        date: "May 2, 2026",
+        iso: "2026-05-02",
+        tags: ["Side Builds"],
+        blurb: "A same-device arithmetic tug-of-war. Answer fast to pull the rope your way — solo, two-player on one keyboard, or against the computer. Free, in the browser.",
+        url: "blog/number-tug.html"
+    },
+    {
+        title: "HMM Discovery App — the pipeline, no terminal needed",
+        date: "April 8, 2026",
+        iso: "2026-04-08",
+        tags: ["Research Software", "Bioinformatics"],
+        blurb: "A no-code web app running the whole profile-HMM discovery pipeline — alignment, HMM build, database search, classification and phylogeny — in your browser.",
+        url: "blog/hmm-discovery-app.html"
+    },
+    {
+        title: "CellMorphR — single-cell morphometry, done honestly",
+        date: "March 18, 2026",
+        iso: "2026-03-18",
+        tags: ["Research Software", "Statistics"],
+        blurb: "Quantifies single-cell morphology over time and keeps the statistics honest: per-replicate summaries first, then models at the level the design supports.",
+        url: "blog/cellmorphr.html"
+    },
+    {
+        title: "HMM Homologue Finder — one reproducible command",
+        date: "March 2, 2026",
+        iso: "2026-03-02",
+        tags: ["Research Software", "Bioinformatics"],
+        blurb: "A reproducible HMM-based homologue-discovery CLI: six-frame search, ORF validation, iterate-to-convergence, regression tests and a locked environment.",
+        url: "blog/hmm-homologue-finder.html"
+    },
+    {
+        title: "CFU Plot Studio — reproducible colony-count figures",
+        date: "February 11, 2026",
+        iso: "2026-02-11",
+        tags: ["Research Software", "Statistics"],
+        blurb: "An R/Shiny app turning replicate-level CFU data into publication-ready bar plots with log10 statistics, significance annotations, and a reproducible export.",
+        url: "blog/cfu-plot-studio.html"
+    },
+    {
+        title: "Genomics Kitchen — the prep station for sequence work",
+        date: "January 22, 2026",
+        iso: "2026-01-22",
+        tags: ["Research Software", "Bioinformatics"],
+        blurb: "Five browser-based sequence-prep tools: dedup, QC, comparison, ORF finding and HMM-ready protein cleanup. No installs, no server, no data leaving your machine.",
+        url: "blog/genomics-kitchen.html"
+    },
+    {
+        title: "Gibson Assembly Calculator — exact pipetting volumes",
+        date: "November 30, 2025",
+        iso: "2025-11-30",
+        tags: ["Research Software", "Bench"],
+        blurb: "Enter fragment lengths and concentrations, read off exact pipetting volumes at NEB-recommended molar ratios. A single page, no account, no spreadsheet.",
+        url: "blog/gibson-assembly-calculator.html"
     }
 ];
 
@@ -905,12 +978,10 @@ const SVG_PREVIEWS = {
 /* ==============================================================
    RENDER — Publications
 =============================================================== */
-let postersExpanded = false;
 
 function renderPublications(filter = 'all') {
     const container = document.getElementById('pubList');
     const labelFor = s => ({
-        'in-review': 'In Review',
         'preprint':  'Preprint',
         'published': 'Published',
         'talk':      'Talk',
@@ -959,6 +1030,8 @@ function renderPublications(filter = 'all') {
         </div>`;
     };
 
+    window.__renderPubEntry = renderEntry;
+
     const renderGroup = (label, items) => {
         if (items.length === 0) return '';
         return `<div class="pub-group">
@@ -970,34 +1043,29 @@ function renderPublications(filter = 'all') {
         </div>`;
     };
 
-    if (filter === 'all') {
-        const papers  = publications.filter(p => p.kind === 'paper');
-        const talks   = publications.filter(p => p.kind === 'talk');
-        const posters = publications.filter(p => p.kind === 'poster');
-        let html = '';
-        html += renderGroup('Papers & Preprints', papers);
-        html += renderGroup('Oral Presentations', talks);
-        if (postersExpanded) {
-            html += renderGroup('Posters', posters);
-        } else if (posters.length > 0) {
-            html += `<button class="pub-toggle" id="pubToggle">Show ${posters.length} posters →</button>`;
-        }
-        container.innerHTML = html;
-    } else {
-        const filtered = publications.filter(p => p.kind === filter || p.status === filter);
-        if (filtered.length === 0) {
-            container.innerHTML = '<div class="pub-empty">Nothing in this category yet — stay tuned.</div>';
-            return;
-        }
-        container.innerHTML = filtered.map(renderEntry).join('');
-    }
+    /* Papers only. Talks and posters live in their own section, the way every
+       comparable academic site separates them. */
+    const papers = publications.filter(p => p.kind === 'paper');
+    container.innerHTML = renderGroup('Papers & Preprints', papers);
 
-    const toggle = document.getElementById('pubToggle');
-    if (toggle) toggle.addEventListener('click', () => {
-        postersExpanded = !postersExpanded;
-        renderPublications('all');
-    });
     if (window._altmetric_embed_init) window._altmetric_embed_init();
+}
+
+/* ==============================================================
+   RENDER — Talks & posters
+=============================================================== */
+function renderTalks(filter = 'all') {
+    const container = document.getElementById('talkList');
+    if (!container) return;
+    const items = publications.filter(p => p.kind === 'talk' || p.kind === 'poster');
+    const shown = filter === 'all' ? items : items.filter(p => p.kind === filter);
+    if (shown.length === 0) {
+        container.innerHTML = '<div class="pub-empty">Nothing under that filter.</div>';
+        return;
+    }
+    container.innerHTML = window.__renderPubEntry
+        ? shown.map(window.__renderPubEntry).join('')
+        : '';
 }
 
 /* ==============================================================
@@ -1087,20 +1155,21 @@ function renderPosts(filter = 'all') {
     const container = document.getElementById('blogList');
     const filtered = filter === 'all' ? posts : posts.filter(p => p.tags.includes(filter));
     if (filtered.length === 0) {
-        container.innerHTML = `<div class="blog-empty">More posts coming soon — <strong>check back.</strong></div>`;
+        container.innerHTML = `<div class="blog-empty">No posts under that tag yet.</div>`;
         return;
     }
+    /* Posts live on this site, so they open in the same tab. */
     container.innerHTML = filtered.map((p, i) => `
-        <a class="blog-card ${i === 0 && filter === 'all' ? 'latest' : ''}" href="${p.url}" target="_blank" rel="noopener">
+        <a class="blog-card ${i === 0 && filter === 'all' ? 'latest' : ''}" href="${p.url}">
             <div class="blog-date-col">
-                <span class="blog-date">${p.date}</span>
-                ${i === 0 && filter === 'all' ? '<span class="blog-new-badge">New</span>' : ''}
+                <time class="blog-date" datetime="${p.iso}">${p.date}</time>
+                ${i === 0 && filter === 'all' ? '<span class="blog-new-badge">Latest</span>' : ''}
             </div>
             <div class="blog-body">
                 ${p.image ? `<img class="blog-thumb" src="${p.image}" alt="${esc(p.imageAlt || p.title)}" width="108" height="78" loading="lazy" decoding="async">` : ''}
-                <div class="blog-tags">${p.tags.map(t => `<span class="blog-tag">${t}</span>`).join('')}</div>
-                <h3 class="blog-title">${p.title}</h3>
-                <p class="blog-blurb">${p.blurb}</p>
+                <div class="blog-tags">${p.tags.map(t => `<span class="blog-tag">${esc(t)}</span>`).join('')}</div>
+                <h3 class="blog-title">${esc(p.title)}</h3>
+                <p class="blog-blurb">${esc(p.blurb)}</p>
                 <span class="blog-read">Read post →</span>
             </div>
         </a>
@@ -1131,15 +1200,16 @@ function renderBuilds() {
 /* ==============================================================
    INITIAL RENDER + FILTERS
 =============================================================== */
-/* Build pub/talks/posters filter buttons with counts */
+/* Build talk/poster filter buttons with counts */
 (function() {
-    const root = document.getElementById('pubFilters');
-    const c = { paper: 0, talk: 0, poster: 0 };
-    publications.forEach(p => { c[p.kind] = (c[p.kind] || 0) + 1; });
+    const root = document.getElementById('talkFilters');
+    if (!root) return;
+    const items = publications.filter(p => p.kind === 'talk' || p.kind === 'poster');
+    const c = { talk: 0, poster: 0 };
+    items.forEach(p => { c[p.kind] = (c[p.kind] || 0) + 1; });
     const map = [
-        ['all',    'All',     publications.length],
-        ['paper',  'Papers',  c.paper || 0],
-        ['talk',   'Talks',   c.talk  || 0],
+        ['all',    'All',     items.length],
+        ['talk',   'Talks',   c.talk   || 0],
         ['poster', 'Posters', c.poster || 0]
     ];
     root.innerHTML = map.map(([k, label, n], i) => `
@@ -1150,8 +1220,15 @@ function renderBuilds() {
 })();
 
 renderPublications();
+renderTalks();
+wireFilter('talkFilters', renderTalks);
 renderTools();
-document.getElementById('toolCount').textContent = tools.length + '+';
+/* One source of truth for the tool count; it used to be a literal in three
+   places that drifted apart from the computed hero stat. */
+['toolCount', 'glanceToolCount', 'aboutToolCount'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.textContent = tools.length + '+';
+});
 
 /* Build tool filter buttons with counts */
 (function() {
@@ -1199,7 +1276,6 @@ function wireFilter(filtersId, renderFn) {
         renderFn(e.target.dataset.filter);
     });
 }
-wireFilter('pubFilters', renderPublications);
 wireFilter('toolFilters', renderTools);
 
 /* ==============================================================

@@ -294,6 +294,214 @@
             transform: translate(-50%, -50%);
         }
 
+
+        /* ============================================================
+           TEACHING & MENTORING
+        ============================================================ */
+        .teach-grid {
+            display: grid;
+            grid-template-columns: 1.15fr 1fr;
+            gap: 26px;
+            align-items: start;
+        }
+        .teach-block {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 24px 26px 22px;
+        }
+        .teach-heading {
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin: 0 0 16px;
+        }
+        .teach-table-wrap { overflow-x: auto; }
+        .teach-table { width: 100%; border-collapse: collapse; font-size: 0.86rem; }
+        .teach-table th {
+            text-align: left;
+            font-family: var(--font-mono);
+            font-size: 0.66rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--ink-3);
+            font-weight: 600;
+            padding: 0 12px 9px 0;
+            border-bottom: 1px solid var(--border-strong);
+            white-space: nowrap;
+        }
+        .teach-table td {
+            padding: 9px 12px 9px 0;
+            border-bottom: 1px solid var(--border);
+            color: var(--ink-2);
+            vertical-align: top;
+        }
+        .teach-table tbody tr:last-child td { border-bottom: none; }
+        .teach-table td:nth-child(2) { font-family: var(--font-mono); color: var(--gold); white-space: nowrap; }
+        .teach-table td:nth-child(3),
+        .teach-table td:nth-child(4) { color: var(--ink-3); white-space: nowrap; font-size: 0.8rem; }
+
+        .mentee-list { list-style: none; margin: 0; padding: 0; }
+        .mentee-list li {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 2px 12px;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border);
+        }
+        .mentee-list li:last-child { border-bottom: none; }
+        .mentee-name { font-weight: 600; color: var(--ink); font-size: 0.9rem; }
+        .mentee-where {
+            font-family: var(--font-mono); font-size: 0.66rem; color: var(--ink-3);
+            align-self: center; white-space: nowrap;
+        }
+        .mentee-proj { grid-column: 1 / -1; font-size: 0.82rem; color: var(--ink-3); line-height: 1.45; }
+        .teach-note {
+            margin: 16px 0 0;
+            font-size: 0.8rem;
+            color: var(--ink-3);
+            line-height: 1.6;
+            padding-top: 14px;
+            border-top: 1px solid var(--border);
+        }
+
+        /* ============================================================
+           EDUCATION & SKILLS (in About)
+        ============================================================ */
+        .edu-list { list-style: none; margin: 0 0 4px; padding: 0; }
+        .edu-list li { padding: 12px 0; border-bottom: 1px solid var(--border); }
+        .edu-list li:last-child { border-bottom: none; }
+        .edu-degree { font-weight: 600; color: var(--ink); font-size: 0.94rem; }
+        .edu-meta {
+            display: block; font-family: var(--font-mono); font-size: 0.7rem;
+            color: var(--gold); margin: 3px 0 5px; letter-spacing: .03em;
+        }
+        .edu-detail { display: block; font-size: 0.83rem; color: var(--ink-3); line-height: 1.55; }
+        .skills-groups { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 18px; }
+        .skill-group h4 {
+            font-family: var(--font-mono); font-size: 0.66rem; letter-spacing: .1em;
+            text-transform: uppercase; color: var(--ink-3); margin: 0 0 9px; font-weight: 600;
+        }
+        .skill-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+        .skill-chips span {
+            font-family: var(--font-mono); font-size: 0.7rem; color: var(--ink-2);
+            background: var(--bg-2); border: 1px solid var(--border);
+            border-radius: 50px; padding: 4px 10px; line-height: 1.5;
+        }
+
+        @media (max-width: 920px) {
+            .teach-grid { grid-template-columns: 1fr; }
+        }
+
+
+        /* ============================================================
+           NEWS STRIP
+        ============================================================ */
+        .news-strip {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 34px 24px 6px;
+        }
+        .news-heading {
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin: 0 0 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .news-heading::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border-strong);
+        }
+        .news-items { list-style: none; margin: 0; padding: 0; }
+        .news-items li {
+            display: grid;
+            grid-template-columns: 92px 1fr;
+            gap: 14px;
+            padding: 9px 0;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.88rem;
+            line-height: 1.6;
+            color: var(--ink-2);
+        }
+        .news-items li:last-child { border-bottom: none; }
+        .news-items time {
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            color: var(--ink-3);
+            padding-top: 3px;
+            white-space: nowrap;
+        }
+        .news-items a { color: var(--gold); text-decoration: none; border-bottom: 1px solid var(--gold-dim); }
+        .news-items a:hover { border-bottom-color: var(--gold); }
+        @media (max-width: 600px) {
+            .news-items li { grid-template-columns: 1fr; gap: 2px; }
+            .news-items time { padding-top: 0; }
+        }
+
+
+        /* Block, not flex: flex would turn every inline <strong> into an item
+           and space them apart with the gap. */
+        .hero-availability {
+            margin: 22px auto 0;
+            font-size: 0.9rem;
+            line-height: 1.75;
+            color: var(--ink-2);
+            max-width: 640px;
+        }
+        .hero-availability strong { color: var(--ink); font-weight: 600; }
+        .hero-availability a { color: var(--gold); text-decoration: underline; text-underline-offset: 3px; }
+        .hero-availability .open-pulse {
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: 7px;
+            position: relative;
+            top: -1px;
+        }
+
+
+        /* Pulls the Zenodo DOI up to where a 20-second visitor will see it. */
+        .doi-banner {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            max-width: 900px;
+            margin: 0 auto 26px;
+            padding: 16px 20px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-strong);
+            border-left: 3px solid var(--gold);
+            border-radius: var(--radius-sm);
+        }
+        .doi-banner-badge {
+            flex: none;
+            font-family: var(--font-mono);
+            font-size: 0.64rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            color: #121009;
+            background: var(--gold);
+            border-radius: 4px;
+            padding: 4px 8px;
+            margin-top: 2px;
+        }
+        .doi-banner p { margin: 0; font-size: 0.87rem; line-height: 1.65; color: var(--ink-2); }
+        .doi-banner strong { color: var(--ink); }
+        .doi-banner a {
+            font-family: var(--font-mono); font-size: 0.8rem; color: var(--gold);
+            text-decoration: none; border-bottom: 1px solid var(--gold-dim); white-space: nowrap;
+        }
+        .doi-banner a:hover { border-bottom-color: var(--gold); }
+        @media (max-width: 600px) { .doi-banner { flex-direction: column; gap: 10px; } }
+
         /* Scroll progress bar */
         .scroll-progress {
             position: fixed;
