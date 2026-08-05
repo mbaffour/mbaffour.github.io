@@ -502,6 +502,15 @@
         .doi-banner a:hover { border-bottom-color: var(--gold); }
         @media (max-width: 600px) { .doi-banner { flex-direction: column; gap: 10px; } }
 
+
+        .pub-ids {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            color: var(--ink-3);
+            letter-spacing: .02em;
+            margin-top: 3px;
+        }
+
         /* Scroll progress bar */
         .scroll-progress {
             position: fixed;

@@ -49,6 +49,7 @@ const publications = [
         title: "Complete genome sequence of <i>Escherichia</i> Siphophage Serwaa",
         authors: "Debrah MA, Awuah MB, Koh A, Ramsey J",
         journal: "Microbiology Resource Announcements",
+        ids: "e01222-25",
         year: 2026,
         doi: "https://doi.org/10.1128/mra.01222-25",
         status: "published",
@@ -61,6 +62,7 @@ const publications = [
         title: "Phage N4 uses a SAR endolysin-holin system for host cell lysis",
         authors: "Awuah MB, Martin C, Chamblee JS, Tomaszewski AJ, Sullivan TE, Emilia Q, Tran S, Snowden JH, Niemiec KA, Zhu J, Ramsey J",
         journal: "bioRxiv [Preprint]",
+        ids: "2025.11.12.688109 · PMID 41292803 · PMCID PMC12642591",
         year: 2025,
         doi: "https://doi.org/10.1101/2025.11.12.688109",
         status: "preprint",
@@ -1018,6 +1020,7 @@ function renderPublications(filter = 'all') {
                 <div class="pub-title">${titleHtml}</div>
                 ${pub.authors ? `<div class="pub-authors">${auth}</div>` : ''}
                 <div class="pub-journal">${pub.journal}</div>
+                ${pub.ids ? `<div class="pub-ids">${esc(pub.ids)}</div>` : ''}
                 ${pub.summary ? `<div class="pub-summary" style="color:var(--ink-2); font-size:0.9rem; margin-top:6px; line-height:1.55;">${pub.summary}</div>` : ''}
                 <div class="pub-meta">
                     <span class="pub-status ${pub.status}">${labelFor(pub.status)}</span>
