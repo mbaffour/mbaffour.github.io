@@ -41,10 +41,10 @@
             --glow-green: 0 6px 32px rgba(26, 128, 64, 0.32);
             --kente: repeating-linear-gradient(90deg,
                 #f4c430 0 8px, #0a0802 8px 13px,
-                #1a8040 13px 21px, #0a0802 21px 26px,
-                #c41e3a 26px 34px, #0a0802 34px 39px,
+                #1f9249 13px 21px, #0a0802 21px 26px,
+                #d4324b 26px 34px, #0a0802 34px 39px,
                 #f4c430 39px 47px, #0a0802 47px 52px,
-                #1a8040 52px 60px);
+                #1f9249 52px 60px);
 
             /* Fonts */
             --font-display: 'Fraunces', 'Georgia', 'Times New Roman', serif;
@@ -225,7 +225,7 @@
         .ambient-canvas {
             position: fixed;
             top: 0; left: 0;
-            width: 100vw;
+            width: 100%;
             height: 100vh;
             pointer-events: none;
             z-index: 0;
@@ -242,7 +242,7 @@
         .cultural-bg-canvas {
             position: fixed;
             top: 0; left: 0;
-            width: 100vw; height: 100vh;
+            width: 100%; height: 100vh;
             pointer-events: none;
             z-index: 0;
             /* sits at same level as ambient canvas; cultural canvas is earlier
@@ -1944,8 +1944,8 @@
         .tf-wrap.tf-fullscreen {
             position: fixed !important;
             inset: 0 !important;
-            width: 100vw !important;
-            height: 100vh !important;
+            width: 100% !important;
+            height: 100dvh !important;
             max-width: none !important;
             aspect-ratio: auto !important;
             border-radius: 0;

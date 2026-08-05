@@ -334,7 +334,7 @@ document.querySelectorAll('.lifecycle-stage').forEach((g, i) => {
         } else if (stage === 4) {                 // N4 held: stuffed + superinfecting phages
             ctx.fillStyle = gold;
             for (let i = 0; i < 9; i++) { const ang = i / 9 * Math.PI * 2; hex(cx + Math.cos(ang) * 11, cy + Math.sin(ang) * 11, 3.2); ctx.fill(); }
-            ctx.strokeStyle = '#c41e3a'; ctx.lineWidth = 1.6;
+            ctx.strokeStyle = '#d4324b'; ctx.lineWidth = 1.6;
             [[-1, -1], [1, -1]].forEach(([sx, sy]) => { ctx.beginPath(); ctx.moveTo(cx + sx * (R + 14), cy + sy * (R + 10)); ctx.lineTo(cx + sx * (R + 2), cy + sy * (R - 2)); ctx.stroke(); });
         }
         ctx.restore();
@@ -370,7 +370,7 @@ document.querySelectorAll('.lifecycle-stage').forEach((g, i) => {
         strokeCurve(simInhib, inhActive ? 'rgba(196,30,58,0.30)' : 'rgba(196,30,58,0.28)', 2, false, 0, 1);
         // active curve, revealed up to playhead, glowing
         const sim = activeSim();
-        const activeColor = inhActive ? '#c41e3a' : '#f4c430';
+        const activeColor = inhActive ? '#d4324b' : '#f4c430';
         strokeCurve(sim, activeColor, 3, true, 0, progress);
 
         // decision marker (vertical) at lysis timing

@@ -53,7 +53,7 @@ const publications = [
         doi: "https://doi.org/10.1128/mra.01222-25",
         status: "published",
         latest: true,
-        thumb: "blog/images/serwaa-tem.jpg",
+        thumb: "blog/images/serwaa-tem-thumb.webp",
         thumbAlt: "Transmission electron micrograph of phage Serwaa"
     },
     {
@@ -67,7 +67,7 @@ const publications = [
         firstAuthor: true,
         code: "https://github.com/mbaffour/N4-Lysis-paper-codes",
         summary: "First-author study identifying how phage N4 controls the timing of host lysis, showing it lyses via a SAR endolysin–holin system.",
-        thumbSvg: '<svg viewBox="0 0 96 72" width="96" height="72" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect width="96" height="72" fill="#1a1408"/><path d="M6 62 C26 60 30 30 41 30 C49 30 50 66 92 67" fill="none" stroke="#f4c430" stroke-width="2.4" stroke-linecap="round"/><path d="M6 62 C30 58 41 24 60 18 C76 13 86 12 92 11" fill="none" stroke="#c41e3a" stroke-width="2.4" stroke-linecap="round"/></svg>'
+        thumbSvg: '<svg viewBox="0 0 96 72" width="96" height="72" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect width="96" height="72" fill="#1a1408"/><path d="M6 62 C26 60 30 30 41 30 C49 30 50 66 92 67" fill="none" stroke="#f4c430" stroke-width="2.4" stroke-linecap="round"/><path d="M6 62 C30 58 41 24 60 18 C76 13 86 12 92 11" fill="none" stroke="#d4324b" stroke-width="2.4" stroke-linecap="round"/></svg>'
     },
     /* ── Oral talks ──────────────────────────────────────── */
     {
@@ -336,7 +336,7 @@ const posts = [
         date: "May 30, 2026",
         tags: ["First Publication", "Phage Biology", "Lab Notes"],
         blurb: "The story behind my first peer-reviewed paper: a phage named after my grandmother, an undergraduate who made it happen, and what it means to see your name in print for the first time.",
-        image: "blog/images/serwaa-tem.jpg",
+        image: "blog/images/serwaa-tem-thumb.webp",
         url: "https://mbaffour.github.io/blog/serwaa-first-paper.html"
     }
 ];
@@ -348,98 +348,98 @@ const posts = [
 =============================================================== */
 const gallery = [
     {
-        src: "gallery/gallery-tem.jpg",
+        src: "gallery/gallery-tem.webp", w: 900, h: 1200,
         tag: "Imaging",
         caption: "TEMs of phages I isolated, at the TAMU Microscopy Core.",
         sub: "Transmission electron microscopy",
         layout: "feature"
     },
     {
-        src: "gallery/gallery-talk.jpg",
+        src: "gallery/gallery-talk.webp", w: 900, h: 1200,
         tag: "Talks",
         caption: "Giving a Data Blitz at the TAMU Biology Student &amp; Postdoc Research Conference.",
         sub: "Data Blitz · TAMU",
         layout: "tall"
     },
     {
-        src: "gallery/gallery-phage-hunt.jpg",
+        src: "gallery/gallery-phage-hunt.webp", w: 844, h: 1125,
         tag: "Discovery",
         caption: "Fishing for phage samples in front of Fort Hood, Texas.",
         sub: "Environmental phage hunting",
         layout: "tall"
     },
     {
-        src: "gallery/gallery-prolific-predators.jpg",
+        src: "gallery/gallery-prolific-predators.webp", w: 900, h: 507,
         tag: "Talks",
         caption: "Giving a talk at the Bio &amp; Chem Sciences Symposium: TEMs of phages and flasks of lysed <em>E. coli</em>.",
         sub: "College Station, TX",
         layout: "wide"
     },
     {
-        src: "gallery/gallery-patterson-ceremony.jpg",
+        src: "gallery/gallery-patterson-ceremony.webp", w: 900, h: 797,
         tag: "Award",
         caption: "Patterson Award Ceremony.",
         sub: "Center for Phage Technology · 2025",
         layout: "square"
     },
     {
-        src: "gallery/gallery-patterson-group.jpg",
+        src: "gallery/gallery-patterson-group.webp", w: 900, h: 675,
         tag: "Award",
         caption: "Patterson Award Ceremony, celebrating with the lab.",
         sub: "August 2025",
         layout: "wide"
     },
     {
-        src: "gallery/gallery-phage-princess.jpg",
+        src: "gallery/gallery-phage-princess.webp", w: 900, h: 675,
         tag: "Outreach",
         caption: "Darwin Day Outreach with the Ramsey Lab.",
         sub: "Phage Princess &amp; Phage Pirate",
         layout: "tall"
     },
     {
-        src: "gallery/gallery-cpt-group.jpg",
+        src: "gallery/gallery-cpt-group.webp", w: 900, h: 675,
         tag: "Lab",
         caption: "Ramsey Lab — Summer 2023.",
         sub: "Lab portrait",
         layout: "wide"
     },
     {
-        src: "gallery/gallery-whiteboard.jpg",
+        src: "gallery/gallery-whiteboard.webp", w: 900, h: 675,
         tag: "Brainwork",
         caption: "Brainstorming the N4 infection cycle &amp; how to block superinfection.",
         sub: "Ramsey Lab whiteboard",
         layout: "square"
     },
     {
-        src: "gallery/gallery-flasks.jpg",
+        src: "gallery/gallery-flasks.webp", w: 900, h: 1200,
         tag: "Bench",
         caption: "Killing bacteria. Dem dead. ☠️",
         sub: "Phage attack in progress",
         layout: "square"
     },
     {
-        src: "gallery/gallery-bench.jpg",
+        src: "gallery/gallery-bench.webp", w: 900, h: 1200,
         tag: "Bench",
         caption: "At my bench in the Ramsey Lab.",
         sub: "A regular Tuesday",
         layout: "square"
     },
     {
-        src: "gallery/gallery-whiteboard-ny.jpg",
+        src: "gallery/gallery-whiteboard-ny.webp", w: 900, h: 675,
         tag: "Brainwork",
         caption: "Amber suppressor logic: <em>tRNA · gp65am · LE392</em>.",
         sub: "Whiteboard scratchpad",
         layout: "wide"
     },
     {
-        src: "gallery/gallery-poster-review.jpg",
+        src: "gallery/gallery-poster-review.webp", w: 900, h: 1200,
         tag: "Posters",
         caption: "Walking through the N4 lysis model at the poster session.",
         sub: "Poster session",
         layout: "tall"
     },
     {
-        src: "gallery/gallery-phage-prep.jpg",
+        src: "gallery/gallery-phage-prep.webp", w: 900, h: 1200,
         tag: "Bench",
         caption: "Watching bands of phage after ultracentrifugation, prepping for dialysis.",
         sub: "How the nice TEMs happen",
@@ -570,32 +570,32 @@ wireFilter('galleryFilters', renderGallery);
 const SVG_PREVIEWS = {
     lysis: `<svg viewBox="0 0 320 160" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
         <defs><linearGradient id="lg1" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="#1a8040" stop-opacity="0.25"/><stop offset="100%" stop-color="#1a8040" stop-opacity="0"/>
+            <stop offset="0%" stop-color="#1f9249" stop-opacity="0.25"/><stop offset="100%" stop-color="#1f9249" stop-opacity="0"/>
         </linearGradient></defs>
         <rect width="320" height="160" fill="#0d130a"/>
-        <g stroke="#1a8040" stroke-opacity="0.15" stroke-width="1">
+        <g stroke="#1f9249" stroke-opacity="0.15" stroke-width="1">
             <line x1="40" y1="30" x2="300" y2="30"/><line x1="40" y1="70" x2="300" y2="70"/>
             <line x1="40" y1="110" x2="300" y2="110"/>
         </g>
         <path d="M40,120 C90,118 130,90 165,55 C190,30 215,22 240,30 C260,38 280,90 300,135" fill="none" stroke="#f4c430" stroke-width="2.5" stroke-linecap="round"/>
-        <path d="M40,120 C90,118 130,95 175,68 C210,48 245,45 290,135" fill="none" stroke="#c41e3a" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="4 3"/>
+        <path d="M40,120 C90,118 130,95 175,68 C210,48 245,45 290,135" fill="none" stroke="#d4324b" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="4 3"/>
         <path d="M40,120 C90,118 130,90 165,55 C190,30 215,22 240,30 C260,38 280,90 300,135 L300,160 L40,160 Z" fill="url(#lg1)"/>
     </svg>`,
     plate: `<svg viewBox="0 0 320 160" xmlns="http://www.w3.org/2000/svg">
         <rect width="320" height="160" fill="#0a1018"/>
-        <g>${(()=>{let s='';for(let r=0;r<6;r++){for(let c=0;c<12;c++){const cx=30+c*22, cy=18+r*22;const fill=(r+c)%5===0?'#f4c430':(r+c)%3===0?'#1a8040':'#152035';s+=`<circle cx="${cx}" cy="${cy}" r="7" fill="${fill}" opacity="0.85" stroke="#0a1018" stroke-width="1"/>`;}}return s;})()}</g>
+        <g>${(()=>{let s='';for(let r=0;r<6;r++){for(let c=0;c<12;c++){const cx=30+c*22, cy=18+r*22;const fill=(r+c)%5===0?'#f4c430':(r+c)%3===0?'#1f9249':'#152035';s+=`<circle cx="${cx}" cy="${cy}" r="7" fill="${fill}" opacity="0.85" stroke="#0a1018" stroke-width="1"/>`;}}return s;})()}</g>
     </svg>`,
     figure: `<svg viewBox="0 0 320 160" xmlns="http://www.w3.org/2000/svg">
         <rect width="320" height="160" fill="#15101a"/>
         <rect x="14" y="14" width="92" height="62" fill="#2a1f3a" stroke="#f4c430" stroke-width="1.5"/>
-        <rect x="116" y="14" width="92" height="62" fill="#1f2a35" stroke="#1a8040" stroke-width="1.5"/>
-        <rect x="218" y="14" width="88" height="62" fill="#352323" stroke="#c41e3a" stroke-width="1.5"/>
-        <rect x="14" y="86" width="142" height="62" fill="#1f2a35" stroke="#1a8040" stroke-width="1.5"/>
+        <rect x="116" y="14" width="92" height="62" fill="#1f2a35" stroke="#1f9249" stroke-width="1.5"/>
+        <rect x="218" y="14" width="88" height="62" fill="#352323" stroke="#d4324b" stroke-width="1.5"/>
+        <rect x="14" y="86" width="142" height="62" fill="#1f2a35" stroke="#1f9249" stroke-width="1.5"/>
         <rect x="166" y="86" width="140" height="62" fill="#2a1f3a" stroke="#f4c430" stroke-width="1.5"/>
         <text x="20" y="32" font-family="JetBrains Mono" font-size="8" fill="#f4c430">A</text>
-        <text x="122" y="32" font-family="JetBrains Mono" font-size="8" fill="#1a8040">B</text>
-        <text x="224" y="32" font-family="JetBrains Mono" font-size="8" fill="#c41e3a">C</text>
-        <text x="20" y="104" font-family="JetBrains Mono" font-size="8" fill="#1a8040">D</text>
+        <text x="122" y="32" font-family="JetBrains Mono" font-size="8" fill="#1f9249">B</text>
+        <text x="224" y="32" font-family="JetBrains Mono" font-size="8" fill="#d4324b">C</text>
+        <text x="20" y="104" font-family="JetBrains Mono" font-size="8" fill="#1f9249">D</text>
         <text x="172" y="104" font-family="JetBrains Mono" font-size="8" fill="#f4c430">E</text>
     </svg>`,
     mask: `<svg viewBox="0 0 320 160" xmlns="http://www.w3.org/2000/svg">
@@ -607,7 +607,7 @@ const SVG_PREVIEWS = {
             <text x="22" y="68" fill="#7a8868">Bob ✱✱✱,    ✱✱✱@✱✱✱,  ✱✱✱-✱✱-✱✱✱✱,  ✱✱/✱✱/✱✱</text>
             <text x="22" y="86" fill="#7a8868">Carol ✱✱✱,  ✱✱✱@✱✱✱,  ✱✱✱-✱✱-✱✱✱✱,  ✱✱/✱✱/✱✱</text>
             <text x="22" y="104" fill="#7a8868">Dan ✱✱✱,    ✱✱✱@✱✱✱,  ✱✱✱-✱✱-✱✱✱✱,  ✱✱/✱✱/✱✱</text>
-            <text x="22" y="138" fill="#1a8040" font-size="14">🔒 anonymized · 0 uploads</text>
+            <text x="22" y="138" fill="#1f9249" font-size="14">🔒 anonymized · 0 uploads</text>
         </g>
     </svg>`,
     crop: `<svg viewBox="0 0 320 160" xmlns="http://www.w3.org/2000/svg">
@@ -616,14 +616,14 @@ const SVG_PREVIEWS = {
             <rect x="20" y="20" width="80" height="60" fill="#3a2418" stroke="#f4c430" stroke-width="1.5"/>
             <rect x="110" y="20" width="80" height="60" fill="#3a2418" stroke="#f4c430" stroke-width="1.5" stroke-dasharray="3 3"/>
             <rect x="200" y="20" width="80" height="60" fill="#3a2418" stroke="#f4c430" stroke-width="1.5"/>
-            <circle cx="60" cy="120" r="22" fill="#3a2418" stroke="#1a8040" stroke-width="1.5"/>
-            <polygon points="150,98 192,98 192,140 150,140" fill="#3a2418" stroke="#c41e3a" stroke-width="1.5"/>
+            <circle cx="60" cy="120" r="22" fill="#3a2418" stroke="#1f9249" stroke-width="1.5"/>
+            <polygon points="150,98 192,98 192,140 150,140" fill="#3a2418" stroke="#d4324b" stroke-width="1.5"/>
             <polygon points="240,98 282,98 282,140 240,140" fill="#3a2418" stroke="#f4c430" stroke-width="1.5"/>
         </g>
     </svg>`,
     plaque: `<svg viewBox="0 0 320 160" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
         <rect width="320" height="160" fill="#0d1409"/>
-        <circle cx="158" cy="78" r="82" fill="rgba(26,128,64,0.16)" stroke="#1a8040" stroke-width="2"/>
+        <circle cx="158" cy="78" r="82" fill="rgba(26,128,64,0.16)" stroke="#1f9249" stroke-width="2"/>
         <g fill="#0d1409" stroke="#f4c430" stroke-width="1.3" stroke-opacity="0.85">
             <circle cx="126" cy="52" r="12"/><circle cx="188" cy="60" r="8"/>
             <circle cx="150" cy="96" r="15"/><circle cx="204" cy="98" r="9"/>
@@ -635,14 +635,14 @@ const SVG_PREVIEWS = {
     </svg>`,
     hmm: `<svg viewBox="0 0 320 160" xmlns="http://www.w3.org/2000/svg">
         <rect width="320" height="160" fill="#0a1210"/>
-        <g font-family="JetBrains Mono" font-size="13" font-weight="600">${(()=>{const rows=['MKVLTAEG','MKILSAEG','MRVLTADG','MKVLTPEG'];const cons=[1,1,0,1,1,0,1,1];const cw=34,x0=22,y0=28;let s='';for(let r=0;r<rows.length;r++){for(let c=0;c<rows[r].length;c++){const col=cons[c]?'#f4c430':'#5f7d6a';s+=`<text x="${x0+c*cw}" y="${y0+r*19}" fill="${col}">${rows[r][c]}</text>`;}}for(let c=0;c<cons.length;c++){const h=cons[c]?24:9;s+=`<rect x="${x0+c*cw-2}" y="${138-h}" width="18" height="${h}" fill="${cons[c]?'#1a8040':'#254036'}"/>`;}return s;})()}</g>
+        <g font-family="JetBrains Mono" font-size="13" font-weight="600">${(()=>{const rows=['MKVLTAEG','MKILSAEG','MRVLTADG','MKVLTPEG'];const cons=[1,1,0,1,1,0,1,1];const cw=34,x0=22,y0=28;let s='';for(let r=0;r<rows.length;r++){for(let c=0;c<rows[r].length;c++){const col=cons[c]?'#f4c430':'#5f7d6a';s+=`<text x="${x0+c*cw}" y="${y0+r*19}" fill="${col}">${rows[r][c]}</text>`;}}for(let c=0;c<cons.length;c++){const h=cons[c]?24:9;s+=`<rect x="${x0+c*cw-2}" y="${138-h}" width="18" height="${h}" fill="${cons[c]?'#1f9249':'#254036'}"/>`;}return s;})()}</g>
     </svg>`,
     tug: `<svg viewBox="0 0 320 160" xmlns="http://www.w3.org/2000/svg">
         <rect width="320" height="160" fill="#0e0b14"/>
         <line x1="24" y1="82" x2="296" y2="82" stroke="#5a4a2a" stroke-width="4" stroke-linecap="round"/>
         <circle cx="132" cy="82" r="9" fill="#f4c430"/>
-        <rect x="34" y="56" width="66" height="52" rx="9" fill="rgba(26,128,64,0.22)" stroke="#1a8040" stroke-width="2"/>
-        <rect x="220" y="56" width="66" height="52" rx="9" fill="rgba(212,50,75,0.20)" stroke="#c41e3a" stroke-width="2"/>
+        <rect x="34" y="56" width="66" height="52" rx="9" fill="rgba(26,128,64,0.22)" stroke="#1f9249" stroke-width="2"/>
+        <rect x="220" y="56" width="66" height="52" rx="9" fill="rgba(212,50,75,0.20)" stroke="#d4324b" stroke-width="2"/>
         <text x="46" y="89" font-family="JetBrains Mono" font-size="19" fill="#3ec17a">7+5</text>
         <text x="232" y="89" font-family="JetBrains Mono" font-size="19" fill="#e0637a">9×3</text>
         <text x="150" y="42" font-family="Fraunces, serif" font-size="17" fill="#f4c430">= 12</text>
@@ -653,7 +653,7 @@ const SVG_PREVIEWS = {
         <circle cx="62" cy="74" r="34" fill="none" stroke="#f4c430" stroke-width="9" stroke-linecap="round" stroke-dasharray="150 214" transform="rotate(-90 62 74)"/>
         <text x="62" y="72" text-anchor="middle" font-family="Fraunces, serif" font-size="22" fill="#f5edd8">7</text>
         <text x="62" y="88" text-anchor="middle" font-family="JetBrains Mono" font-size="7" fill="#a08652">LEVEL</text>
-        <g>${(()=>{let s='';for(let r=0;r<3;r++){for(let c=0;c<10;c++){const on=(r*10+c)%3!==0;s+=`<rect x="${120+c*18}" y="${34+r*18}" width="13" height="13" rx="3" fill="${on?'#1a8040':'#1a2620'}"/>`;}}return s;})()}</g>
+        <g>${(()=>{let s='';for(let r=0;r<3;r++){for(let c=0;c<10;c++){const on=(r*10+c)%3!==0;s+=`<rect x="${120+c*18}" y="${34+r*18}" width="13" height="13" rx="3" fill="${on?'#1f9249':'#1a2620'}"/>`;}}return s;})()}</g>
         <rect x="120" y="120" width="182" height="10" rx="5" fill="#1a2620"/>
         <rect x="120" y="120" width="128" height="10" rx="5" fill="#f4c430"/>
     </svg>`,
@@ -665,15 +665,15 @@ const SVG_PREVIEWS = {
             <ellipse cx="245" cy="80" rx="30" ry="18" fill="rgba(244,196,48,0.18)" stroke="#f4c430" stroke-width="1.5"/>
             <ellipse cx="100" cy="120" rx="28" ry="20" fill="rgba(244,196,48,0.18)" stroke="#f4c430" stroke-width="1.5"/>
             <ellipse cx="200" cy="125" rx="32" ry="15" fill="rgba(244,196,48,0.18)" stroke="#f4c430" stroke-width="1.5"/>
-            <line x1="115" y1="60" x2="155" y2="55" stroke="#1a8040" stroke-width="1" stroke-dasharray="2 2"/>
-            <text x="120" y="50" font-family="JetBrains Mono" font-size="7" fill="#1a8040">42μm</text>
+            <line x1="115" y1="60" x2="155" y2="55" stroke="#1f9249" stroke-width="1" stroke-dasharray="2 2"/>
+            <text x="120" y="50" font-family="JetBrains Mono" font-size="7" fill="#1f9249">42μm</text>
         </g>
     </svg>`,
     alphafold: `<svg viewBox="0 0 320 160" xmlns="http://www.w3.org/2000/svg">
         <rect width="320" height="160" fill="#0e1608"/>
         <path d="M30,80 Q60,30 90,80 T150,80 T210,80 T270,80 T300,80" fill="none" stroke="#f4c430" stroke-width="3" stroke-linecap="round"/>
-        <path d="M40,100 Q70,50 100,100 T160,100 T220,100 T280,100" fill="none" stroke="#1a8040" stroke-width="3" stroke-linecap="round" opacity="0.8"/>
-        <path d="M30,120 Q60,70 90,120 T150,120 T210,120 T270,120 T300,120" fill="none" stroke="#c41e3a" stroke-width="3" stroke-linecap="round" opacity="0.7"/>
+        <path d="M40,100 Q70,50 100,100 T160,100 T220,100 T280,100" fill="none" stroke="#1f9249" stroke-width="3" stroke-linecap="round" opacity="0.8"/>
+        <path d="M30,120 Q60,70 90,120 T150,120 T210,120 T270,120 T300,120" fill="none" stroke="#d4324b" stroke-width="3" stroke-linecap="round" opacity="0.7"/>
         <g font-family="JetBrains Mono" font-size="9" fill="#7a8862">
             <text x="20" y="20">chain A:</text><text x="80" y="20" fill="#f4c430">2:1:3</text>
             <text x="160" y="20" fill="#7a8862">→ stoichiometry</text>
@@ -682,7 +682,7 @@ const SVG_PREVIEWS = {
     kill: `<svg viewBox="0 0 320 160" xmlns="http://www.w3.org/2000/svg">
         <rect width="320" height="160" fill="#160b07"/>
         <g stroke="rgba(244,196,48,0.1)" stroke-width="1"><line x1="40" y1="40" x2="300" y2="40"/><line x1="40" y1="80" x2="300" y2="80"/><line x1="40" y1="120" x2="300" y2="120"/></g>
-        <path d="M40,40 C80,42 120,50 160,90 C200,130 240,140 300,142" fill="none" stroke="#c41e3a" stroke-width="2.5"/>
+        <path d="M40,40 C80,42 120,50 160,90 C200,130 240,140 300,142" fill="none" stroke="#d4324b" stroke-width="2.5"/>
         <path d="M40,50 C80,52 120,65 160,105 C200,135 240,142 300,144" fill="none" stroke="#f4c430" stroke-width="2.5"/>
         <text x="270" y="35" font-family="JetBrains Mono" font-size="9" fill="#7a8868">OD₆₀₀</text>
     </svg>`,
@@ -695,7 +695,7 @@ const SVG_PREVIEWS = {
             <text x="16" y="70" fill="#a8c490">GCTAGCTAGCTAGCTACGTAC</text>
             <text x="16" y="90" fill="#7a6238" text-decoration="line-through">&gt;phage_001_dup</text>
             <text x="16" y="104" fill="#7a6238" text-decoration="line-through">ATCGATCGTAGCTAGCTAGCT</text>
-            <text x="16" y="130" fill="#1a8040" font-size="12">✓ Deduplicated</text>
+            <text x="16" y="130" fill="#1f9249" font-size="12">✓ Deduplicated</text>
             <text x="160" y="130" fill="#7a8868">3 → 2</text>
         </g>
     </svg>`,
@@ -707,10 +707,10 @@ const SVG_PREVIEWS = {
             <line x1="50" y1="55" x2="140" y2="55" stroke="rgba(245,237,216,0.4)"/>
             <line x1="50" y1="65" x2="135" y2="65" stroke="rgba(245,237,216,0.3)"/>
             <line x1="50" y1="75" x2="148" y2="75" stroke="rgba(245,237,216,0.3)"/>
-            <rect x="50" y="90" width="100" height="40" fill="rgba(26,128,64,0.15)" stroke="#1a8040"/>
-            <text x="58" y="110" font-family="JetBrains Mono" font-size="8" fill="#1a8040">Fig 1.</text>
-            <rect x="180" y="40" width="120" height="100" fill="#0d1e1e" stroke="#1a8040" stroke-width="1.5"/>
-            <text x="195" y="60" font-family="JetBrains Mono" font-size="9" fill="#1a8040">code/</text>
+            <rect x="50" y="90" width="100" height="40" fill="rgba(26,128,64,0.15)" stroke="#1f9249"/>
+            <text x="58" y="110" font-family="JetBrains Mono" font-size="8" fill="#1f9249">Fig 1.</text>
+            <rect x="180" y="40" width="120" height="100" fill="#0d1e1e" stroke="#1f9249" stroke-width="1.5"/>
+            <text x="195" y="60" font-family="JetBrains Mono" font-size="9" fill="#1f9249">code/</text>
             <text x="195" y="78" font-family="JetBrains Mono" font-size="9" fill="#a8c4a0">  lysis.R</text>
             <text x="195" y="94" font-family="JetBrains Mono" font-size="9" fill="#a8c4a0">  fasta.R</text>
             <text x="195" y="110" font-family="JetBrains Mono" font-size="9" fill="#a8c4a0">  shiny.R</text>
@@ -723,17 +723,17 @@ const SVG_PREVIEWS = {
             <rect x="0" y="0" width="100" height="100" fill="#f4c430"/>
             <g fill="#0a0802">${(()=>{let s='';const m=[[1,1,1,1,1,1,1,0,1,0,1,0,1,1,1,1,1,1,1],[1,0,0,0,0,0,1,0,1,1,0,0,1,0,0,0,0,0,1],[1,0,1,1,1,0,1,0,0,1,1,0,1,0,1,1,1,0,1],[1,0,1,1,1,0,1,1,0,1,0,1,1,0,1,1,1,0,1],[1,0,1,1,1,0,1,0,1,0,1,1,1,0,1,1,1,0,1],[1,0,0,0,0,0,1,1,1,0,0,1,1,0,0,0,0,0,1],[1,1,1,1,1,1,1,0,1,0,1,0,1,1,1,1,1,1,1],[0,0,0,0,0,0,0,0,1,1,0,1,0,0,0,0,0,0,0],[1,1,0,1,1,1,1,1,0,0,1,1,0,1,1,0,1,0,1],[0,0,1,0,1,0,0,1,1,1,1,0,1,0,1,1,0,1,0],[1,1,0,1,0,1,1,0,1,0,1,1,0,1,0,0,1,1,1],[0,1,1,0,1,0,0,1,1,1,0,0,1,0,1,1,0,0,0],[1,0,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,1,1],[0,0,0,0,0,0,0,1,1,0,1,0,1,0,0,0,0,0,1],[1,1,1,1,1,1,1,0,0,1,0,1,1,0,1,0,1,0,1],[1,0,0,0,0,0,1,1,0,0,1,0,0,1,1,1,1,0,1],[1,0,1,1,1,0,1,0,1,1,1,0,1,1,0,0,1,1,1],[1,0,1,1,1,0,1,1,0,0,0,1,1,0,1,0,1,1,0],[1,0,0,0,0,0,1,0,1,1,0,0,1,1,1,1,1,1,1]];for(let r=0;r<m.length;r++)for(let c=0;c<m[r].length;c++)if(m[r][c])s+=`<rect x="${c*5}" y="${r*5}" width="5" height="5"/>`;return s;})()}</g>
             <!-- Adinkra inside corner -->
-            <g transform="translate(0,0)"><rect width="35" height="35" fill="#1a8040"/><circle cx="17.5" cy="17.5" r="10" fill="none" stroke="#f4c430" stroke-width="2"/><circle cx="17.5" cy="17.5" r="3" fill="#f4c430"/></g>
+            <g transform="translate(0,0)"><rect width="35" height="35" fill="#1f9249"/><circle cx="17.5" cy="17.5" r="10" fill="none" stroke="#f4c430" stroke-width="2"/><circle cx="17.5" cy="17.5" r="3" fill="#f4c430"/></g>
         </g>
     </svg>`,
     nclex: `<svg viewBox="0 0 320 160" xmlns="http://www.w3.org/2000/svg">
         <rect width="320" height="160" fill="#0a1525"/>
-        <rect x="20" y="20" width="280" height="120" fill="#162236" stroke="#1a8040" stroke-width="1.5" rx="6"/>
+        <rect x="20" y="20" width="280" height="120" fill="#162236" stroke="#1f9249" stroke-width="1.5" rx="6"/>
         <text x="32" y="40" font-family="JetBrains Mono" font-size="9" fill="#f4c430">Q. 47 / 75 · pharmacology</text>
         <text x="32" y="58" font-family="Inter" font-size="9" fill="#d8dceb">A patient on warfarin presents</text>
         <text x="32" y="70" font-family="Inter" font-size="9" fill="#d8dceb">with INR 4.8. Best action?</text>
         <g font-family="JetBrains Mono" font-size="9">
-            <rect x="32" y="84" width="256" height="14" fill="rgba(26,128,64,0.15)" stroke="#1a8040"/><text x="38" y="94" fill="#1a8040">✓ Hold warfarin · vit K · monitor</text>
+            <rect x="32" y="84" width="256" height="14" fill="rgba(26,128,64,0.15)" stroke="#1f9249"/><text x="38" y="94" fill="#1f9249">✓ Hold warfarin · vit K · monitor</text>
             <rect x="32" y="102" width="256" height="12" fill="rgba(196,30,58,0.08)"/><text x="38" y="111" fill="#7a6238">  Increase warfarin dose</text>
             <rect x="32" y="118" width="256" height="12" fill="rgba(196,30,58,0.08)"/><text x="38" y="127" fill="#7a6238">  Discontinue all meds</text>
         </g>
@@ -746,7 +746,7 @@ const SVG_PREVIEWS = {
             <text x="20" y="66">ohp           3×8  @ 95  lb  ✓</text>
             <text x="20" y="82">incline db    3×10 @ 50  lb  ✓</text>
             <text x="20" y="98">tricep dip    3×12         ✓</text>
-            <text x="20" y="125" fill="#1a8040" font-size="11">📈 +5lb bench (vs wk 5)</text>
+            <text x="20" y="125" fill="#1f9249" font-size="11">📈 +5lb bench (vs wk 5)</text>
         </g>
         <path d="M20,140 L60,135 L100,128 L140,122 L180,115 L220,108 L260,98 L300,90" fill="none" stroke="#f4c430" stroke-width="2"/>
     </svg>`,
@@ -759,10 +759,10 @@ const SVG_PREVIEWS = {
         <line x1="46" y1="14" x2="46" y2="133" stroke="#f4c430" stroke-width="1.5"/>
         <line x1="46" y1="133" x2="304" y2="133" stroke="#f4c430" stroke-width="1.5"/>
         <rect x="60"  y="58"  width="28" height="75" fill="#f4c430" opacity="0.75"/>
-        <rect x="104" y="36"  width="28" height="97" fill="#1a8040" opacity="0.8"/>
+        <rect x="104" y="36"  width="28" height="97" fill="#1f9249" opacity="0.8"/>
         <rect x="148" y="72"  width="28" height="61" fill="#f4c430" opacity="0.6"/>
-        <rect x="192" y="44"  width="28" height="89" fill="#c41e3a" opacity="0.7"/>
-        <rect x="236" y="26"  width="28" height="107" fill="#1a8040" opacity="0.8"/>
+        <rect x="192" y="44"  width="28" height="89" fill="#d4324b" opacity="0.7"/>
+        <rect x="236" y="26"  width="28" height="107" fill="#1f9249" opacity="0.8"/>
         <rect x="268" y="52"  width="28" height="81" fill="#f4c430" opacity="0.65"/>
         <g stroke="white" stroke-width="1.5">
             <line x1="74" y1="48" x2="74" y2="68"/><line x1="69" y1="48" x2="79" y2="48"/><line x1="69" y1="68" x2="79" y2="68"/>
@@ -773,21 +773,21 @@ const SVG_PREVIEWS = {
     genomicskitchen: `<svg viewBox="0 0 320 160" xmlns="http://www.w3.org/2000/svg">
         <rect width="320" height="160" fill="#080e18"/>
         <g font-family="JetBrains Mono" font-size="9">
-            <rect x="14" y="18" width="72" height="34" fill="#102030" stroke="#1a8040" stroke-width="1" rx="2"/>
-            <text x="20" y="30" fill="#1a8040">INPUT</text>
+            <rect x="14" y="18" width="72" height="34" fill="#102030" stroke="#1f9249" stroke-width="1" rx="2"/>
+            <text x="20" y="30" fill="#1f9249">INPUT</text>
             <text x="20" y="44" fill="#6a9490">ATCGATCG…</text>
             <text x="96" y="38" fill="#f4c430" font-size="13">→</text>
             <rect x="114" y="18" width="72" height="34" fill="#1a1208" stroke="#f4c430" stroke-width="1" rx="2"/>
             <text x="120" y="30" fill="#f4c430">TRIM</text>
             <text x="120" y="44" fill="#a8903a">ATCGAT…</text>
             <text x="196" y="38" fill="#f4c430" font-size="13">→</text>
-            <rect x="214" y="18" width="92" height="34" fill="#081408" stroke="#1a8040" stroke-width="1" rx="2"/>
-            <text x="220" y="30" fill="#1a8040">CLEAN</text>
+            <rect x="214" y="18" width="92" height="34" fill="#081408" stroke="#1f9249" stroke-width="1" rx="2"/>
+            <text x="220" y="30" fill="#1f9249">CLEAN</text>
             <text x="220" y="44" fill="#a8c490">ATCGAT</text>
-            <rect x="14"  y="72" width="58" height="20" fill="#182028" stroke="#1a8040" rx="3"/><text x="22" y="85" fill="#1a8040">FILTER</text>
+            <rect x="14"  y="72" width="58" height="20" fill="#182028" stroke="#1f9249" rx="3"/><text x="22" y="85" fill="#1f9249">FILTER</text>
             <rect x="80"  y="72" width="60" height="20" fill="#182028" stroke="#f4c430" rx="3"/><text x="88" y="85" fill="#f4c430">FORMAT</text>
-            <rect x="148" y="72" width="60" height="20" fill="#182028" stroke="#c41e3a" rx="3"/><text x="156" y="85" fill="#c41e3a">DEDUPE</text>
-            <rect x="216" y="72" width="88" height="20" fill="#182028" stroke="#1a8040" rx="3"/><text x="224" y="85" fill="#1a8040">ANNOTATE</text>
+            <rect x="148" y="72" width="60" height="20" fill="#182028" stroke="#d4324b" rx="3"/><text x="156" y="85" fill="#d4324b">DEDUPE</text>
+            <rect x="216" y="72" width="88" height="20" fill="#182028" stroke="#1f9249" rx="3"/><text x="224" y="85" fill="#1f9249">ANNOTATE</text>
         </g>
         <text x="16" y="140" font-family="JetBrains Mono" font-size="8" fill="#7a8868">browser-based · no install · reproducible</text>
     </svg>`,
@@ -811,7 +811,7 @@ const SVG_PREVIEWS = {
             <text x="183" y="46" fill="#a8c490">ATCGATCGTAGCT</text>
             <text x="183" y="64" fill="#f4c430">&gt;seq_002</text>
             <text x="183" y="76" fill="#a8c490">GCTAGCTAGCTAGC</text>
-            <text x="183" y="120" fill="#1a8040" font-size="10">✓ 4 → 2 unique</text>
+            <text x="183" y="120" fill="#1f9249" font-size="10">✓ 4 → 2 unique</text>
         </g>
     </svg>`,
     readqraft: `<svg viewBox="0 0 320 160" xmlns="http://www.w3.org/2000/svg">
@@ -820,11 +820,11 @@ const SVG_PREVIEWS = {
             <text x="14" y="18" fill="#f4c430">@read_001</text>
             <text x="14" y="30" fill="#a8c490">ATCGATCGTAGCTAGCTTACGATCG</text>
             <text x="14" y="42" fill="#6a7868">+</text>
-            <text x="14" y="54" fill="#c41e3a">IIIIIHHHGGGFFEEDDCCBBAA@@</text>
+            <text x="14" y="54" fill="#d4324b">IIIIIHHHGGGFFEEDDCCBBAA@@</text>
         </g>
         <line x1="14"  y1="135" x2="305" y2="135" stroke="#f4c430" stroke-width="1"/>
         <line x1="14"  y1="66"  x2="14"  y2="135" stroke="#f4c430" stroke-width="1"/>
-        <g fill="#1a8040">
+        <g fill="#1f9249">
             <rect x="18" y="82" width="10" height="53"/><rect x="31" y="78" width="10" height="57"/>
             <rect x="44" y="80" width="10" height="55"/><rect x="57" y="77" width="10" height="58"/>
             <rect x="70" y="83" width="10" height="52"/><rect x="83" y="86" width="10" height="49"/>
@@ -833,22 +833,22 @@ const SVG_PREVIEWS = {
             <rect x="96"  y="93" width="10" height="42"/><rect x="109" y="97" width="10" height="38"/>
             <rect x="122" y="101" width="10" height="34"/><rect x="135" y="104" width="10" height="31"/>
         </g>
-        <g fill="#c41e3a">
+        <g fill="#d4324b">
             <rect x="148" y="110" width="10" height="25"/><rect x="161" y="114" width="10" height="21"/>
             <rect x="174" y="118" width="10" height="17"/><rect x="187" y="122" width="10" height="13"/>
         </g>
         <g font-family="JetBrains Mono" font-size="8.5">
             <text x="210" y="90"  fill="#7a8868">Phred Q</text>
-            <text x="210" y="106" fill="#1a8040">≥Q30: ✓</text>
-            <text x="210" y="122" fill="#c41e3a">tail: trim</text>
+            <text x="210" y="106" fill="#1f9249">≥Q30: ✓</text>
+            <text x="210" y="122" fill="#d4324b">tail: trim</text>
         </g>
     </svg>`,
     gibson: `<svg viewBox="0 0 320 160" xmlns="http://www.w3.org/2000/svg">
         <rect width="320" height="160" fill="#0a1208"/>
         <g fill="none" stroke-width="9" stroke-linecap="round">
             <path d="M70,60 A45,45 0 0 1 160,55" stroke="#f4c430"/>
-            <path d="M160,55 A45,45 0 0 1 200,118" stroke="#1a8040"/>
-            <path d="M200,118 A45,45 0 0 1 90,118 Q70,95 70,62" stroke="#c41e3a"/>
+            <path d="M160,55 A45,45 0 0 1 200,118" stroke="#1f9249"/>
+            <path d="M200,118 A45,45 0 0 1 90,118 Q70,95 70,62" stroke="#d4324b"/>
         </g>
         <g fill="#a8c490" font-family="JetBrains Mono" font-size="7">
             <circle cx="160" cy="55" r="3.5" fill="#f5edd8"/>
@@ -858,20 +858,20 @@ const SVG_PREVIEWS = {
         <g font-family="JetBrains Mono" font-size="8.5">
             <text x="232" y="36" fill="#7a8868">frag</text><text x="285" y="36" fill="#f4c430">µL</text>
             <text x="232" y="56" fill="#f4c430">F1</text><text x="278" y="56" fill="#a8c490">2.4</text>
-            <text x="232" y="76" fill="#1a8040">F2</text><text x="278" y="76" fill="#a8c490">1.1</text>
-            <text x="232" y="96" fill="#c41e3a">F3</text><text x="278" y="96" fill="#a8c490">3.0</text>
+            <text x="232" y="76" fill="#1f9249">F2</text><text x="278" y="76" fill="#a8c490">1.1</text>
+            <text x="232" y="96" fill="#d4324b">F3</text><text x="278" y="96" fill="#a8c490">3.0</text>
             <text x="232" y="120" fill="#7a8868">H₂O</text><text x="278" y="120" fill="#a8c490">8.5</text>
         </g>
     </svg>`,
     mcat: `<svg viewBox="0 0 320 160" xmlns="http://www.w3.org/2000/svg">
         <rect width="320" height="160" fill="#080a18"/>
-        <rect x="14" y="10" width="292" height="140" fill="#101628" stroke="#1a8040" stroke-width="1.5" rx="5"/>
+        <rect x="14" y="10" width="292" height="140" fill="#101628" stroke="#1f9249" stroke-width="1.5" rx="5"/>
         <text x="26" y="28" font-family="JetBrains Mono" font-size="8.5" fill="#f4c430">Q.12 / 59 · biochemistry · 04:32</text>
         <text x="26" y="44" font-family="Inter" font-size="9" fill="#d8dceb">A catalytic triad in serine proteases</text>
         <text x="26" y="56" font-family="Inter" font-size="9" fill="#d8dceb">includes His, Asp, and which residue?</text>
         <g font-family="JetBrains Mono" font-size="9">
-            <rect x="26" y="65" width="264" height="14" fill="rgba(26,128,64,0.15)" stroke="#1a8040"/>
-            <text x="32" y="75" fill="#1a8040">✓  Serine</text>
+            <rect x="26" y="65" width="264" height="14" fill="rgba(26,128,64,0.15)" stroke="#1f9249"/>
+            <text x="32" y="75" fill="#1f9249">✓  Serine</text>
             <rect x="26" y="82" width="264" height="13" fill="rgba(196,30,58,0.08)"/>
             <text x="32" y="92" fill="#7a6238">   Threonine</text>
             <rect x="26" y="98" width="264" height="13" fill="rgba(196,30,58,0.08)"/>
@@ -885,18 +885,18 @@ const SVG_PREVIEWS = {
         <rect width="320" height="160" fill="#080a12"/>
         <g font-family="JetBrains Mono">
             <text x="16" y="20" font-size="11" fill="#f4c430">PennyWise+</text>
-            <text x="200" y="20" font-size="9" fill="#1a8040">May 2026</text>
-            <text x="16" y="42" font-size="9" fill="#d8dceb">Rent        </text><text x="120" y="42" font-size="9" fill="#c41e3a">-$1,200</text>
-            <rect x="198" y="34" width="104" height="10" fill="#2a1015"/><rect x="198" y="34" width="80" height="10" fill="#c41e3a" opacity="0.7"/>
-            <text x="16" y="58" font-size="9" fill="#d8dceb">Groceries   </text><text x="120" y="58" font-size="9" fill="#c41e3a">-$340</text>
+            <text x="200" y="20" font-size="9" fill="#1f9249">May 2026</text>
+            <text x="16" y="42" font-size="9" fill="#d8dceb">Rent        </text><text x="120" y="42" font-size="9" fill="#d4324b">-$1,200</text>
+            <rect x="198" y="34" width="104" height="10" fill="#2a1015"/><rect x="198" y="34" width="80" height="10" fill="#d4324b" opacity="0.7"/>
+            <text x="16" y="58" font-size="9" fill="#d8dceb">Groceries   </text><text x="120" y="58" font-size="9" fill="#d4324b">-$340</text>
             <rect x="198" y="50" width="104" height="10" fill="#2a1015"/><rect x="198" y="50" width="30" height="10" fill="#f4c430" opacity="0.7"/>
-            <text x="16" y="74" font-size="9" fill="#d8dceb">Savings     </text><text x="120" y="74" font-size="9" fill="#1a8040">+$500</text>
-            <rect x="198" y="66" width="104" height="10" fill="#0a1508"/><rect x="198" y="66" width="42" height="10" fill="#1a8040" opacity="0.7"/>
-            <text x="16" y="90" font-size="9" fill="#d8dceb">Transport   </text><text x="120" y="90" font-size="9" fill="#c41e3a">-$95</text>
+            <text x="16" y="74" font-size="9" fill="#d8dceb">Savings     </text><text x="120" y="74" font-size="9" fill="#1f9249">+$500</text>
+            <rect x="198" y="66" width="104" height="10" fill="#0a1508"/><rect x="198" y="66" width="42" height="10" fill="#1f9249" opacity="0.7"/>
+            <text x="16" y="90" font-size="9" fill="#d8dceb">Transport   </text><text x="120" y="90" font-size="9" fill="#d4324b">-$95</text>
             <rect x="198" y="82" width="104" height="10" fill="#2a1015"/><rect x="198" y="82" width="8" height="10" fill="#f4c430" opacity="0.7"/>
             <line x1="16" y1="106" x2="302" y2="106" stroke="rgba(244,196,48,0.2)" stroke-width="1"/>
             <text x="16" y="122" font-size="9" fill="#7a8868">Balance</text>
-            <text x="100" y="122" font-size="12" fill="#1a8040">$2,847.50</text>
+            <text x="100" y="122" font-size="12" fill="#1f9249">$2,847.50</text>
             <text x="16" y="148" font-size="8" fill="#7a8868">client-side · 0 uploads · no account</text>
         </g>
     </svg>`
@@ -935,7 +935,7 @@ function renderPublications(filter = 'all') {
             ? `<a href="${titleHref}" target="_blank" rel="noopener">${pub.title}</a>`
             : pub.title;
         const thumb = pub.thumb
-            ? `<img class="pub-thumb" src="${pub.thumb}" alt="${pub.thumbAlt || ''}" loading="lazy">`
+            ? `<img class="pub-thumb" src="${pub.thumb}" alt="${esc(pub.thumbAlt || pub.title)}" width="96" height="72" loading="lazy" decoding="async">`
             : pub.thumbSvg
                 ? `<div class="pub-thumb pub-thumb-svg" aria-hidden="true">${pub.thumbSvg}</div>`
                 : '';
