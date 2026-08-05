@@ -208,6 +208,26 @@ making consistent in one direction or the other.
 
 ---
 
+## 17. Gaps I could not fill without inventing facts
+
+These aren't contradictions — they're blanks. I left them blank rather than guess.
+
+- **No expected graduation or defense date anywhere on the site.** The new availability
+  line in the hero says "Finishing my PhD and open to…" using your own words from About and
+  your "Open to" chips. A date would make it far more useful to a hiring manager — they
+  need to know *when*. Tell me the date and I'll add it.
+- **Posters have no author lists.** The seven poster entries in `publications[]`
+  (`assets/js/main.js`) carry a title, venue and year but no `authors` field, unlike the
+  talks and papers. They now render in the new Talks & Posters section, so the omission is
+  more visible than it was.
+- **The Serwaa citation is missing its article number, volume and PMID.** Your blog knows
+  the article number (`e01222-25`, `blog/serwaa-first-paper.html:421`); the citation on the
+  homepage doesn't carry it.
+- **Time-sensitive mentee outcomes have no as-of date** — "one is applying to medical
+  school" will quietly go stale.
+
+---
+
 ## Summary of what needs your decision
 
 | # | Question only you can answer |
