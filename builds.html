@@ -8,7 +8,7 @@
     <meta property="og:description" content="Web apps and tools built outside the lab, usually because someone I care about needed them.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://mbaffour.github.io/builds.html">
-    <meta property="og:image" content="https://mbaffour.github.io/headshot.jpg">
+    <meta property="og:image" content="https://mbaffour.github.io/headshot.webp">
     <meta name="theme-color" content="#0a0802">
     <link rel="canonical" href="https://mbaffour.github.io/builds.html">
     <title>Other Tools · Michael Baffour Awuah</title>
@@ -20,7 +20,7 @@
         :root {
             --bg: #0a0802; --bg-card: #1c1709; --bg-card-hover: #241d0c;
             --border: rgba(244,196,48,0.10); --border-strong: rgba(244,196,48,0.22);
-            --gold: #f4c430; --green: #1a8040; --red: #c41e3a;
+            --gold: #f4c430; --green: #1f9249; --red: #d4324b;
             --ink: #f5edd8; --ink-2: #d8c98c; --ink-3: #a08652;
             --font-display: 'Fraunces','Georgia',serif;
             --font-body: 'Inter','Segoe UI',sans-serif;
@@ -74,8 +74,19 @@
         html[data-theme="light"] .theme-toggle .ti-moon { display:block; }
     </style>
     <script>(function(){var s=localStorage.getItem('theme');var d=window.matchMedia('(prefers-color-scheme: dark)').matches;document.documentElement.setAttribute('data-theme',s||(d?'dark':'light'));})()</script>
+<style>
+.skip-link{position:absolute;left:1rem;top:-3rem;z-index:2000;padding:.7rem 1.15rem;background:#f4c430;color:#121009;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.82rem;font-weight:700;border-radius:0 0 10px 10px;text-decoration:none;transition:top .18s ease}
+.skip-link:focus{top:0}
+@media (prefers-reduced-motion: reduce){*,*::before,*::after{animation-duration:.01ms !important;transition-duration:.01ms !important}html{scroll-behavior:auto}}
+</style>
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Other Tools — Michael Baffour Awuah">
+    <meta name="twitter:description" content="Free, browser-based, privacy-first web apps built outside the lab.">
+    <meta name="twitter:image" content="https://mbaffour.github.io/assets/og-card.jpg">
 </head>
 <body>
+<a href="#main" class="skip-link">Skip to main content</a>
+<main id="main">
     <div class="topbar">
         <div class="wrap">
             <a href="index.html" class="back">&larr; Back to research site</a>
@@ -104,63 +115,8 @@
         </div>
     </footer>
 
+    <script src="assets/js/builds-data.js"></script>
     <script>
-        const builds = [
-            {
-                title: "QR Forge", date: "2026",
-                blurb: "Free open-source QR generator embedding Ghanaian Adinkra symbols and Kente patterns directly into corner squares. 10 content types, print-ready, fully client-side.",
-                tech: ["JavaScript", "PWA", "Cultural"],
-                app: "https://mbaffour.github.io/qr-forge/", blog: "https://mbaffour.github.io/qr-forge/blog.html"
-            },
-            {
-                title: "NCLEX Pro Simulator", date: "2026",
-                blurb: "Watching someone grind through nursing school made me want to help. Adaptive practice questions plus AI clinical rationales, free, in the browser.",
-                tech: ["JavaScript", "Adaptive", "AI"],
-                app: "https://mbaffour.github.io/nclex-simulator/", blog: "https://mbaffour.github.io/nclex-simulator/blog_public.html"
-            },
-            {
-                title: "MCAT Prep", date: "2026",
-                blurb: "Full-length MCAT simulator with section breakdowns, time tracking, and AI-generated explanations. Free, browser-based, no account needed.",
-                tech: ["JavaScript", "Adaptive", "AI"],
-                app: "https://mbaffour.github.io/mcat-prep/", blog: "https://mbaffour.github.io/mcat-prep/blog.html"
-            },
-            {
-                title: "Fitness Forge", date: "2025",
-                blurb: "Offline-first fitness PWA: AI-generated 12–16 week programs, 60+ exercise database, local storage. No account, no server, no tracking.",
-                tech: ["PWA", "Offline-First", "Fitness"],
-                app: "https://mbaffour.github.io/fitness-forge/", blog: "https://mbaffour.github.io/fitness-forge/blog.html"
-            },
-            {
-                title: "PennyWise+", date: "2026",
-                blurb: "Private browser-based finance tracker: log income, categorize spending, visualize trends. Runs fully client-side. No account, no server, no tracking.",
-                tech: ["JavaScript", "Finance", "Offline"],
-                app: "https://mbaffour.github.io/pennywise-plus/", blog: "https://mbaffour.github.io/pennywise-plus/blog.html"
-            },
-            {
-                title: "datamask", date: "2026",
-                blurb: "Privacy-first local anonymizer that masks, shuffles, or replaces sensitive columns in CSV/Excel. Your data never leaves the browser.",
-                tech: ["JavaScript", "Privacy", "CSV"],
-                app: "https://mbaffour.github.io/datamask/", blog: "https://mbaffour.github.io/datamask/blog.html"
-            },
-            {
-                title: "batchcrop", date: "2025",
-                blurb: "Fast offline-first batch image cropper with 5 crop shapes and live preview. Zero uploads, zero accounts.",
-                tech: ["JavaScript", "Image", "Offline"],
-                app: "https://mbaffour.github.io/batchcrop/", blog: "https://mbaffour.github.io/batchcrop/blog.html"
-            },
-            {
-                title: "LifeXP", date: "2026",
-                blurb: "A gamified life tracker — habits, time tracking, planning, and analytics with XP, levels, and achievements. Local-first PWA in React + TypeScript; all your data stays on your device.",
-                tech: ["TypeScript", "React", "PWA"],
-                app: "https://mbaffour.github.io/lifexp/", blog: "https://mbaffour.github.io/blog/lifexp.html"
-            },
-            {
-                title: "Number Tug", date: "2026",
-                blurb: "A same-device arithmetic tug-of-war — solo, two-player, or versus the computer, with timed rounds, sound, and haptics. A tiny, polished TypeScript game for quick mental-math practice.",
-                tech: ["TypeScript", "React", "Game"],
-                app: "https://mbaffour.github.io/number-tug/", blog: "https://mbaffour.github.io/blog/number-tug.html"
-            }
-        ];
         const esc = s => s.replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
         document.getElementById('buildsGrid').innerHTML = builds.map(b => `
             <article class="card">
@@ -188,5 +144,6 @@
         });
     })();
     </script>
+</main>
 </body>
 </html>

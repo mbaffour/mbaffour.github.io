@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Michael Baffour Awuah — Blog &amp; Notes</title>
+    <link>https://mbaffour.github.io/#blog</link>
+    <atom:link href="https://mbaffour.github.io/feed.xml" rel="self" type="application/rss+xml"/>
+    <description>Notes on phage biology, lab life, and building research software.</description>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 20 Jun 2026 09:00:00 +0000</lastBuildDate>
+    <managingEditor>baffour@tamu.edu (Michael Baffour Awuah)</managingEditor>
+    <item>
+      <title>Plaque Toolkit — plate photo to defensible numbers</title>
+      <link>https://mbaffour.github.io/blog/plaque-toolkit.html</link>
+      <guid isPermaLink="true">https://mbaffour.github.io/blog/plaque-toolkit.html</guid>
+      <pubDate>Sat, 20 Jun 2026 09:00:00 +0000</pubDate>
+      <category>Research software</category>
+      <description>Measures bacteriophage plaques straight from a Petri-dish photo — size, turbidity, count and titer — so wild-type and mutant phages compare on the same footing.</description>
+    </item>
+    <item>
+      <title>Serwaa: My First Scientific Paper</title>
+      <link>https://mbaffour.github.io/blog/serwaa-first-paper.html</link>
+      <guid isPermaLink="true">https://mbaffour.github.io/blog/serwaa-first-paper.html</guid>
+      <pubDate>Sat, 30 May 2026 09:00:00 +0000</pubDate>
+      <category>Notes</category>
+      <description>The story behind my first peer-reviewed publication — a phage named after my grandmother, the undergraduate who made it happen, and seeing my name in print.</description>
+    </item>
+    <item>
+      <title>LifeXP — Track your life. Level it up.</title>
+      <link>https://mbaffour.github.io/blog/lifexp.html</link>
+      <guid isPermaLink="true">https://mbaffour.github.io/blog/lifexp.html</guid>
+      <pubDate>Thu, 14 May 2026 09:00:00 +0000</pubDate>
+      <category>Side build</category>
+      <description>A gamified, local-first life tracker: habits, time, quests and life metrics with XP, levels and streaks. All data stays on your device.</description>
+    </item>
+    <item>
+      <title>Number Tug — arithmetic tug-of-war on one device</title>
+      <link>https://mbaffour.github.io/blog/number-tug.html</link>
+      <guid isPermaLink="true">https://mbaffour.github.io/blog/number-tug.html</guid>
+      <pubDate>Sat, 02 May 2026 09:00:00 +0000</pubDate>
+      <category>Side build</category>
+      <description>A same-device arithmetic tug-of-war. Answer fast to pull the rope your way — solo, two-player on one keyboard, or against the computer. Free, in the browser.</description>
+    </item>
+    <item>
+      <title>HMM Discovery App — the pipeline, no terminal needed</title>
+      <link>https://mbaffour.github.io/blog/hmm-discovery-app.html</link>
+      <guid isPermaLink="true">https://mbaffour.github.io/blog/hmm-discovery-app.html</guid>
+      <pubDate>Wed, 08 Apr 2026 09:00:00 +0000</pubDate>
+      <category>Research software</category>
+      <description>A no-code web app running the whole profile-HMM discovery pipeline — alignment, HMM build, database search, classification and phylogeny — in your browser.</description>
+    </item>
+    <item>
+      <title>CellMorphR — single-cell morphometry, done honestly</title>
+      <link>https://mbaffour.github.io/blog/cellmorphr.html</link>
+      <guid isPermaLink="true">https://mbaffour.github.io/blog/cellmorphr.html</guid>
+      <pubDate>Wed, 18 Mar 2026 09:00:00 +0000</pubDate>
+      <category>Research software</category>
+      <description>Quantifies single-cell morphology over time and keeps the statistics honest: per-replicate summaries first, then models at the level the design supports.</description>
+    </item>
+    <item>
+      <title>HMM Homologue Finder — one reproducible command</title>
+      <link>https://mbaffour.github.io/blog/hmm-homologue-finder.html</link>
+      <guid isPermaLink="true">https://mbaffour.github.io/blog/hmm-homologue-finder.html</guid>
+      <pubDate>Mon, 02 Mar 2026 09:00:00 +0000</pubDate>
+      <category>Research software</category>
+      <description>A reproducible HMM-based homologue-discovery CLI: six-frame search, ORF validation, iterate-to-convergence, regression tests and a locked environment.</description>
+    </item>
+    <item>
+      <title>CFU Plot Studio — reproducible colony-count figures</title>
+      <link>https://mbaffour.github.io/blog/cfu-plot-studio.html</link>
+      <guid isPermaLink="true">https://mbaffour.github.io/blog/cfu-plot-studio.html</guid>
+      <pubDate>Wed, 11 Feb 2026 09:00:00 +0000</pubDate>
+      <category>Research software</category>
+      <description>An R/Shiny app turning replicate-level CFU data into publication-ready bar plots with log10 statistics, significance annotations, and a reproducible export.</description>
+    </item>
+    <item>
+      <title>Genomics Kitchen — the prep station for sequence work</title>
+      <link>https://mbaffour.github.io/blog/genomics-kitchen.html</link>
+      <guid isPermaLink="true">https://mbaffour.github.io/blog/genomics-kitchen.html</guid>
+      <pubDate>Thu, 22 Jan 2026 09:00:00 +0000</pubDate>
+      <category>Research software</category>
+      <description>Five browser-based sequence-prep tools: dedup, QC, comparison, ORF finding and HMM-ready protein cleanup. No installs, no server, no data leaving your machine.</description>
+    </item>
+    <item>
+      <title>Gibson Assembly Calculator — exact pipetting volumes</title>
+      <link>https://mbaffour.github.io/blog/gibson-assembly-calculator.html</link>
+      <guid isPermaLink="true">https://mbaffour.github.io/blog/gibson-assembly-calculator.html</guid>
+      <pubDate>Sun, 30 Nov 2025 09:00:00 +0000</pubDate>
+      <category>Research software</category>
+      <description>Enter fragment lengths and concentrations, read off exact pipetting volumes at NEB-recommended molar ratios. A single page, no account, no spreadsheet.</description>
+    </item>
+  </channel>
+</rss>
