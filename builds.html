@@ -9,7 +9,8 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://mbaffour.github.io/builds.html">
     <meta property="og:image" content="https://mbaffour.github.io/headshot.webp">
-    <meta name="theme-color" content="#0a0802">
+    <meta name="theme-color" content="#f7f4ea" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#0a0802" media="(prefers-color-scheme: dark)">
     <link rel="canonical" href="https://mbaffour.github.io/builds.html">
     <title>Other Tools · Michael Baffour Awuah</title>
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><polygon points='16,5 25,10 25,18 16,23 7,18 7,10' fill='%23f4c430' stroke='%23f4c430' stroke-width='1.5'/><line x1='16' y1='23' x2='16' y2='28' stroke='%23f4c430' stroke-width='2' stroke-linecap='round'/><line x1='13' y1='28' x2='19' y2='28' stroke='%23f4c430' stroke-width='2' stroke-linecap='round'/></svg>">
@@ -33,6 +34,22 @@
             --ink: #1a1408; --ink-2: #3a2c0e; --ink-3: #7a5e2a;
         }
         html[data-theme="light"] .topbar { background: rgba(247,244,234,0.92); }
+
+        /* Light without JavaScript: the rules above need data-theme, which only
+           the inline script sets, so a blocked script left a light-mode visitor
+           on the dark defaults. :not([data-theme]) keeps an explicit choice
+           winning. Values track the block above. */
+        @media (prefers-color-scheme: light) {
+            html:not([data-theme]) {
+                --bg: #f7f4ea; --bg-card: #ffffff; --bg-card-hover: #fffaed;
+                --border: rgba(164,130,58,0.18); --border-strong: rgba(164,130,58,0.38);
+                --gold: #9a6e00; --green: #0f6a2e; --red: #a01a30;
+                --ink: #1a1408; --ink-2: #3a2c0e; --ink-3: #7a5e2a;
+            }
+            html:not([data-theme]) .topbar { background: rgba(247,244,234,0.92); }
+            html:not([data-theme]) .theme-toggle .ti-sun  { display:none; }
+            html:not([data-theme]) .theme-toggle .ti-moon { display:block; }
+        }
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { background: var(--bg); color: var(--ink); font-family: var(--font-body); line-height: 1.6; -webkit-font-smoothing: antialiased; }
         a { color: inherit; }
@@ -73,7 +90,12 @@
         html[data-theme="light"] .theme-toggle .ti-sun  { display:none; }
         html[data-theme="light"] .theme-toggle .ti-moon { display:block; }
     </style>
-    <script>(function(){var s=localStorage.getItem('theme');var d=window.matchMedia('(prefers-color-scheme: dark)').matches;document.documentElement.setAttribute('data-theme',s||(d?'dark':'light'));})()</script>
+    <!-- Reading localStorage throws when storage is blocked; without the catch
+         the attribute is never set and the dark default wins regardless of the
+         visitor's preference. -->
+    <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
+    if(t!=='dark'&&t!=='light'){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}
+    document.documentElement.setAttribute('data-theme',t)})()</script>
 <style>
 .skip-link{position:absolute;left:1rem;top:-3rem;z-index:2000;padding:.7rem 1.15rem;background:#f4c430;color:#121009;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.82rem;font-weight:700;border-radius:0 0 10px 10px;text-decoration:none;transition:top .18s ease}
 .skip-link:focus{top:0}

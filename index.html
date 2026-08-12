@@ -19,7 +19,8 @@
     <meta name="twitter:description" content="Decoding how bacteriophage N4 decides whether to give up its host cell, with molecular biology, genomics, and genetics.">
     <meta name="twitter:image" content="https://mbaffour.github.io/assets/og-card.jpg">
     <link rel="canonical" href="https://mbaffour.github.io/">
-    <meta name="theme-color" content="#121009">
+    <meta name="theme-color" content="#f7f4ea" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#121009" media="(prefers-color-scheme: dark)">
     <title>Michael Baffour Awuah — Phage Biologist</title>
     <script type="application/ld+json">
     {
@@ -56,7 +57,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/site.css">
     <!-- Anti-FOUC: set theme before first paint -->
-    <script>(function(){var s=localStorage.getItem('theme');var d=window.matchMedia('(prefers-color-scheme: dark)').matches;document.documentElement.setAttribute('data-theme',s||(d?'dark':'light'));})()</script>
+    <!-- Sets the theme before first paint. Reading localStorage THROWS when
+         storage is blocked (private mode, third-party-cookie policies); without
+         the catch the attribute was never set, :root's dark palette won, and a
+         light-mode visitor got a dark site permanently. -->
+    <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
+    if(t!=='dark'&&t!=='light'){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}
+    document.documentElement.setAttribute('data-theme',t)})()</script>
     <script type="text/javascript" src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js" async></script>
     <!-- Privacy-friendly analytics: no cookies, no personal data. -->
     <script data-goatcounter="https://mbaffour.goatcounter.com/count"
@@ -305,7 +312,7 @@
                 <p>Howdy! I'm a PhD candidate in Microbiology at Texas A&amp;M University, working in the Ramsey Lab and affiliated with the Center for Phage Technology. My work lives at the intersection of virology, molecular biology, and computational genomics — plus a stubborn habit of building software to make all of it faster.</p>
                 <p>My primary project decodes <em>lysis inhibition</em> in bacteriophage N4 — the phenomenon where the phage strategically delays host cell lysis to transform each infected bacterium into a high-output viral factory (up to ~3,000 viral particles per cell within 3–6 hours). By reverse-engineering these decision-making systems, I aim to power high-titer phage production for therapy and programmable microbial biofactories.</p>
                 <p>Alongside the wet lab, I build open-source tools — increasingly with AI in the loop, which lets me go from a lab annoyance to a shipped, working tool in days rather than months. Not because they'll go on my CV, but because writing the same <code>ggplot2</code> boilerplate twelve times will make anyone snap. Every tool here was built to solve a real problem I or someone next to me hit. Most are browser-based, privacy-first, and zero-install.</p>
-                <p>As I approach the completion of my doctoral studies, I'm interested in roles where wet-lab phage biology, computational genomics, and tool-building all matter — biotech R&amp;D, AI-for-science startups, translational research labs, or scientific software teams.</p>
+                <p>As I approach the completion of my doctoral studies (defending 2027), I'm looking for the hardest, most interesting problem someone will let me work on. That means <strong>postdoctoral positions</strong> where the biology is genuinely unsettled — phage–host decision-making and the mechanisms nobody has a clean model for — and equally <strong>biotech R&amp;D, AI-for-science startups, translational research labs, or scientific software teams</strong>. I care about the difficulty of the question more than the sector it sits in.</p>
                 <p>Outside the lab I play soccer most weeks, grew up on the Black Stars, and
                    built <a href="#pitch-section">a starting XI out of the skills this PhD runs on</a>
                    because the metaphor was sitting right there.</p>

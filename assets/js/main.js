@@ -18,19 +18,36 @@ const esc = s => String(s).replace(/[&<>"']/g, c => ({
     function applyTheme(t) {
         html.setAttribute('data-theme', t);
         btn.setAttribute('aria-label', t === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
-        // Update theme-color meta for mobile browsers
-        var meta = document.querySelector('meta[name="theme-color"]');
-        if (meta) meta.setAttribute('content', t === 'dark' ? '#121009' : '#f7f4ea');
+        // Update theme-color meta for mobile browsers. The page ships a pair of
+        // media-scoped metas so the browser chrome is right before this runs;
+        // once a theme is explicit those would fight it, so drop them and keep
+        // one meta under our control.
+        var paired = document.querySelectorAll('meta[name="theme-color"][media]');
+        for (var i = 0; i < paired.length; i++) paired[i].parentNode.removeChild(paired[i]);
+        var meta = document.querySelector('meta[name="theme-color"]:not([media])');
+        if (!meta) {
+            meta = document.createElement('meta');
+            meta.setAttribute('name', 'theme-color');
+            document.head.appendChild(meta);
+        }
+        meta.setAttribute('content', t === 'dark' ? '#121009' : '#f7f4ea');
     }
 
-    // Init from storage (anti-FOUC script already set the attribute, just sync the button label)
-    var current = html.getAttribute('data-theme') || 'dark';
+    // Init from whatever the anti-FOUC script decided. Defaulting to 'dark' when
+    // the attribute is missing would override a light-mode visitor's preference
+    // in exactly the case where that script failed — ask the OS instead.
+    var current = html.getAttribute('data-theme');
+    if (current !== 'dark' && current !== 'light') {
+        current = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+            ? 'dark' : 'light';
+    }
     applyTheme(current);
 
     btn.addEventListener('click', function() {
         var next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
         applyTheme(next);
-        localStorage.setItem('theme', next);
+        // Blocked storage must not stop the toggle from working for this visit.
+        try { localStorage.setItem('theme', next); } catch (e) {}
     });
 
     // Enable smooth transitions after load (suppressed during initial paint)

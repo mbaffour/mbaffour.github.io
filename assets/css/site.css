@@ -97,6 +97,54 @@
                 #0f6a2e 52px 60px);
         }
 
+        /* ---- Light by default when the OS asks for it -------------------
+           The tokens above only apply once something sets data-theme, and the
+           only thing that does is an inline script. If that script is blocked,
+           throws, or never runs, :root's dark palette wins and a light-mode
+           visitor gets a dark site — permanently, not just for a frame.
+
+           This block covers that: it matches only while data-theme is ABSENT,
+           so an explicit choice by the user still beats it, and it needs no
+           JavaScript at all.
+
+           Values MUST track html[data-theme="light"] above, which stays the
+           source of truth. Nothing else may be added here. ------------------- */
+        @media (prefers-color-scheme: light) {
+            html:not([data-theme]) {
+                --bg:            #f7f4ea;
+                --bg-2:          #ede8d4;
+                --bg-3:          #e1dac4;
+                --bg-card:       #ffffff;
+                --bg-card-hover: #fffaed;
+                --border:        rgba(164, 130, 58, 0.18);
+                --border-strong: rgba(164, 130, 58, 0.38);
+
+                --gold:      #7d5800;
+                --gold-dim:  rgba(154, 110, 0, 0.10);
+                --green:     #0f6a2e;
+                --green-text: #0f6a2e;
+                --green-dim: rgba(15, 106, 46, 0.10);
+                --red:       #a01a30;
+                --red-text:  #a01a30;
+                --red-dim:   rgba(160, 26, 48, 0.10);
+
+                --ink:   #1a1408;
+                --ink-2: #3a2c0e;
+                --ink-3: #71571f;
+                --ink-4: #6f5420;
+
+                --glow-gold:  0 4px 20px rgba(154, 110, 0, 0.14);
+                --glow-green: 0 4px 20px rgba(15, 106, 46, 0.12);
+
+                --kente: repeating-linear-gradient(90deg,
+                    #9a6e00 0 8px,  #e1dac4 8px 13px,
+                    #0f6a2e 13px 21px, #e1dac4 21px 26px,
+                    #a01a30 26px 34px, #e1dac4 34px 39px,
+                    #9a6e00 39px 47px, #e1dac4 47px 52px,
+                    #0f6a2e 52px 60px);
+            }
+        }
+
         html[data-theme="light"] .nav {
             background: rgba(247, 244, 234, 0.92);
         }
