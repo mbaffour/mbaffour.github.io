@@ -737,8 +737,13 @@
     }
 
     function render() {
-        const sx = shakeT > 0 ? (Math.random() - 0.5) * shakeT * 14 : 0;
-        const sy = shakeT > 0 ? (Math.random() - 0.5) * shakeT * 14 : 0;
+        // Screen shake is the one motion here that a reduced-motion visitor
+        // cannot avoid by not playing — it fires on every hit. reduceMotion was
+        // computed at the top of the file and then never used; this is what it
+        // was for. Both axes, or the frame still jitters vertically.
+        const shake = reduceMotion ? 0 : shakeT;
+        const sx = shake > 0 ? (Math.random() - 0.5) * shake * 14 : 0;
+        const sy = shake > 0 ? (Math.random() - 0.5) * shake * 14 : 0;
         ctx.setTransform(dpr, 0, 0, dpr, sx * dpr, sy * dpr);
         ctx.clearRect(0, 0, W, H);
         drawGrid();
