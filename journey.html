@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="How Michael Baffour Awuah got from a biochemistry degree in Cape Coast, Ghana to studying how bacteriophage N4 decides when to kill its host — told one step at a time.">
+    <meta name="author" content="Michael Baffour Awuah">
+    <meta property="og:title" content="The Journey · Michael Baffour Awuah">
+    <meta property="og:description" content="Cape Coast to College Station: the path from a biochemistry degree in Ghana to a dissertation on lysis inhibition in phage N4.">
+    <meta property="og:type" content="profile">
+    <meta property="og:site_name" content="Michael Baffour Awuah">
+    <meta property="og:url" content="https://mbaffour.github.io/journey.html">
+    <meta property="og:image" content="https://mbaffour.github.io/assets/og-card.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Michael Baffour Awuah — phage biologist, Texas A&amp;M Ramsey Lab">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="The Journey — Michael Baffour Awuah">
+    <meta name="twitter:description" content="Cape Coast to College Station: the path to a dissertation on lysis inhibition in phage N4.">
+    <meta name="twitter:image" content="https://mbaffour.github.io/assets/og-card.jpg">
+    <meta name="theme-color" content="#f7f4ea" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#0a0802" media="(prefers-color-scheme: dark)">
+    <link rel="canonical" href="https://mbaffour.github.io/journey.html">
+    <link rel="alternate" type="application/rss+xml" title="Michael Baffour Awuah — Blog &amp; Notes" href="https://mbaffour.github.io/feed.xml">
+    <title>The Journey · Michael Baffour Awuah</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><polygon points='16,5 25,10 25,18 16,23 7,18 7,10' fill='%23f4c430' stroke='%23f4c430' stroke-width='1.5'/><line x1='16' y1='23' x2='16' y2='28' stroke='%23f4c430' stroke-width='2' stroke-linecap='round'/><line x1='13' y1='28' x2='19' y2='28' stroke='%23f4c430' stroke-width='2' stroke-linecap='round'/></svg>">
+    <link rel="preload" href="assets/fonts/fraunces-var-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="assets/fonts/inter-var-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="assets/fonts/fonts.css">
+    <!-- Reading localStorage throws when storage is blocked; without the catch
+         the attribute is never set and the dark default wins regardless of the
+         visitor's preference. -->
+    <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
+    if(t!=='dark'&&t!=='light'){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}
+    document.documentElement.setAttribute('data-theme',t)})()</script>
+    <style>
+        :root {
+            --bg: #0a0802; --bg-card: #1c1709; --bg-card-hover: #241d0c;
+            --border: rgba(244,196,48,0.10); --border-strong: rgba(244,196,48,0.22);
+            --gold: #f4c430; --green: #1f9249; --red: #d4324b;
+            --green-text: #3fbf6e; --red-text: #f4697f;
+            --ink: #f5edd8; --ink-2: #d8c98c; --ink-3: #a08652;
+            --font-display: 'Fraunces','Georgia',serif;
+            --font-body: 'Inter','Segoe UI',sans-serif;
+            --font-mono: 'JetBrains Mono','Courier New',monospace;
+            --rail-w: 128px;
+        }
+        html[data-theme="light"] {
+            --bg: #f7f4ea; --bg-card: #ffffff; --bg-card-hover: #fffaed;
+            --border: rgba(164,130,58,0.18); --border-strong: rgba(164,130,58,0.38);
+            /* #9a6e00 gave 4.01:1 for the button label below — under AA. */
+            --gold: #7d5800; --green: #0f6a2e; --red: #a01a30;
+            --green-text: #0f6a2e; --red-text: #a01a30;
+            --ink: #1a1408; --ink-2: #3a2c0e; --ink-3: #7a5e2a;
+        }
+        html[data-theme="light"] .topbar { background: rgba(247,244,234,0.92); }
+        html[data-theme="light"] .theme-toggle .ti-sun  { display:none; }
+        html[data-theme="light"] .theme-toggle .ti-moon { display:block; }
+
+        /* Light without JavaScript. The rules above need data-theme, which only
+           the inline script sets; if it is blocked the dark defaults win and a
+           light-mode visitor gets a dark page. Matching :not([data-theme]) means
+           an explicit choice still overrides this. Values track the block above. */
+        @media (prefers-color-scheme: light) {
+            html:not([data-theme]) {
+                --bg: #f7f4ea; --bg-card: #ffffff; --bg-card-hover: #fffaed;
+                --border: rgba(164,130,58,0.18); --border-strong: rgba(164,130,58,0.38);
+                --gold: #7d5800; --green: #0f6a2e; --red: #a01a30;
+                --green-text: #0f6a2e; --red-text: #a01a30;
+                --ink: #1a1408; --ink-2: #3a2c0e; --ink-3: #7a5e2a;
+            }
+            html:not([data-theme]) .topbar { background: rgba(247,244,234,0.92); }
+            html:not([data-theme]) .theme-toggle .ti-sun  { display:none; }
+            html:not([data-theme]) .theme-toggle .ti-moon { display:block; }
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body { background: var(--bg); color: var(--ink); font-family: var(--font-body);
+               line-height: 1.65; -webkit-font-smoothing: antialiased; }
+        a { color: inherit; }
+        a:focus-visible, button:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 4px; }
+        .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+
+        .skip-link { position:absolute; left:1rem; top:-3rem; z-index:2000; padding:.7rem 1.15rem;
+                     background:#f4c430; color:#121009; font-family:var(--font-mono); font-size:.82rem;
+                     font-weight:700; border-radius:0 0 10px 10px; text-decoration:none; transition:top .18s ease; }
+        .skip-link:focus { top:0; }
+
+        .topbar { border-bottom: 1px solid var(--border); padding: 18px 0; position: sticky; top: 0;
+                  background: rgba(10,8,2,0.85); backdrop-filter: blur(10px); z-index: 20; }
+        .topbar .wrap { display:flex; align-items:center; justify-content:space-between; gap:1rem; }
+        .back { font-family: var(--font-mono); font-size: .85rem; color: var(--ink-2); text-decoration:none; transition:color .2s; }
+        .back:hover { color: var(--gold); }
+        .brand { font-family: var(--font-display); font-weight:600; font-size:.95rem; }
+        .theme-toggle { display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;
+                        border-radius:7px;border:1px solid var(--border-strong);background:transparent;
+                        color:var(--ink-3);cursor:pointer;transition:all .2s; }
+        .theme-toggle:hover { color:var(--gold); border-color:var(--gold); }
+        .theme-toggle .ti-sun { display:block; } .theme-toggle .ti-moon { display:none; }
+
+        /* progress bar across the top, with a ball running along it as you read */
+        .progress { position: fixed; top: 0; left: 0; height: 3px; width: 0;
+                    background: linear-gradient(90deg, var(--green), var(--gold), var(--red));
+                    z-index: 30; transition: width .1s linear; }
+        .ball { position: fixed; top: 1px; left: 0; width: 16px; height: 16px;
+                margin: -8px 0 0 -8px; z-index: 31; pointer-events: none;
+                will-change: transform; }
+        .ball .hide { fill: var(--ink); }
+        .ball .panel { fill: var(--bg); }
+
+        /* football term above each chapter number */
+        .kick { font-family: var(--font-mono); font-size: .62rem; letter-spacing: .14em;
+                text-transform: uppercase; color: var(--green-text); display: block;
+                margin-bottom: 9px; }
+
+        /* ---- hero ---- */
+        header.intro { padding: 96px 0 48px; position: relative; }
+        .eyebrow { font-family: var(--font-mono); font-size:.72rem; letter-spacing:.18em;
+                   text-transform:uppercase; color: var(--gold); }
+        h1 { font-family: var(--font-display); font-size: clamp(2.1rem, 6vw, 3.6rem);
+             font-weight:700; margin:16px 0; line-height:1.1; }
+        h1 .accent { color: var(--gold); }
+        .lede { color: var(--ink-2); max-width: 620px; font-size: 1.08rem; }
+        .kente-rule { height:4px; width:120px; margin:28px 0 0;
+                      background: repeating-linear-gradient(90deg,
+                        var(--green) 0 14px, var(--gold) 14px 28px, var(--red) 28px 42px);
+                      border-radius:2px; }
+        .scroll-cue { margin-top:40px; font-family:var(--font-mono); font-size:.78rem;
+                      color:var(--ink-3); display:flex; align-items:center; gap:10px; }
+        .scroll-cue span[aria-hidden] { animation: nudge 1.8s ease-in-out infinite; }
+        @keyframes nudge { 0%,100%{transform:translateY(0)} 50%{transform:translateY(4px)} }
+
+        /* ---- chapter layout ---- */
+        .chapters { padding: 32px 0 0; }
+        .chapter { display: grid; grid-template-columns: var(--rail-w) 1fr; gap: 32px;
+                   padding: 44px 0; border-top: 1px solid var(--border); }
+        .chapter:first-child { border-top: none; }
+        .rail { position: relative; }
+        .rail-inner { position: sticky; top: 108px; }
+        .year { font-family: var(--font-mono); font-size:.8rem; color: var(--gold);
+                letter-spacing:.06em; display:block; }
+        .place { font-family: var(--font-mono); font-size:.7rem; color: var(--ink-3);
+                 margin-top:6px; display:block; line-height:1.4; }
+        .num { font-family: var(--font-display); font-size: 2.6rem; font-weight:700;
+               color: var(--border-strong); line-height:1; margin-bottom:10px; display:block; }
+
+        .chapter-body h2 { font-family: var(--font-display); font-size: clamp(1.4rem, 3vw, 1.9rem);
+                           font-weight:600; margin-bottom:14px; }
+        .chapter-body p { color: var(--ink-2); margin-bottom: 14px; max-width: 62ch; }
+        .chapter-body p:last-child { margin-bottom: 0; }
+        .chapter-body em { color: var(--ink); font-style: italic; }
+        .chapter-body strong { color: var(--ink); font-weight: 600; }
+        .chapter-body a { color: var(--gold); text-decoration: underline; text-underline-offset: 3px; }
+
+        .facts { display:flex; flex-wrap:wrap; gap:8px; margin:18px 0 0; padding:0; list-style:none; }
+        .facts li { font-family: var(--font-mono); font-size:.7rem; color: var(--ink-3);
+                    border:1px solid var(--border); border-radius:999px; padding:4px 11px; }
+        .pull { border-left: 3px solid var(--gold); padding: 4px 0 4px 18px; margin: 20px 0;
+                font-family: var(--font-display); font-size: 1.08rem; font-style: italic;
+                color: var(--ink); max-width: 54ch; }
+        figure.shot { margin: 22px 0 0; max-width: 460px; }
+        figure.shot img { width:100%; height:auto; border-radius:12px; border:1px solid var(--border); display:block; }
+        figure.shot figcaption { font-size:.8rem; color: var(--ink-3); margin-top:8px; font-family: var(--font-mono); }
+
+        /* ---- reveal on scroll (only when JS is on) ---- */
+        html.js-reveal .chapter-body, html.js-reveal .rail-inner {
+            opacity: 0; transform: translateY(18px);
+            transition: opacity .6s ease, transform .6s ease;
+        }
+        html.js-reveal .chapter.in .chapter-body,
+        html.js-reveal .chapter.in .rail-inner { opacity: 1; transform: none; }
+        html.js-reveal .chapter.in .chapter-body { transition-delay: .08s; }
+
+        /* ---- stats ---- */
+        .tally { padding: 56px 0 24px; border-top: 1px solid var(--border); margin-top: 20px; }
+        .tally h2 { font-family: var(--font-display); font-size: clamp(1.5rem,3vw,2rem); margin-bottom: 6px; }
+        .tally .sub { color: var(--ink-3); font-size:.92rem; margin-bottom: 28px; }
+        .tally-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(150px,1fr)); gap:16px; }
+        .tally-card { background: var(--bg-card); border:1px solid var(--border); border-radius:14px;
+                      padding:22px 20px; transition: border-color .2s, background .2s; }
+        .tally-card:hover { border-color: var(--border-strong); background: var(--bg-card-hover); }
+        .tally-n { font-family: var(--font-display); font-size:2.1rem; font-weight:700; color: var(--gold); line-height:1; }
+        .tally-l { font-size:.86rem; color: var(--ink-2); margin-top:8px; }
+
+        .outro { padding: 44px 0 88px; }
+        .outro p { color: var(--ink-2); max-width: 62ch; margin-bottom: 18px; }
+        .cta-row { display:flex; flex-wrap:wrap; gap:12px; margin-top:8px; }
+        .btn { font-family: var(--font-mono); font-size:.82rem; text-decoration:none;
+               padding:11px 18px; border-radius:10px; transition:all .2s; display:inline-block; }
+        /* var(--bg) rather than a fixed ink, so the label flips with the theme
+           and clears AA on gold in both (5.84:1 light, ~16:1 dark). */
+        .btn-primary { background: var(--gold); color: var(--bg); font-weight:500; }
+        .btn-primary:hover { box-shadow: 0 6px 24px rgba(244,196,48,.3); }
+        .btn-ghost { border:1px solid var(--border-strong); color: var(--ink-2); }
+        .btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
+
+        footer { border-top:1px solid var(--border); padding:32px 0; text-align:center;
+                 color: var(--ink-3); font-size:.85rem; }
+        footer a { color: var(--gold); text-decoration:none; }
+
+        @media (max-width: 720px) {
+            :root { --rail-w: 100%; }
+            .chapter { grid-template-columns: 1fr; gap: 12px; padding: 34px 0; }
+            .rail-inner { position: static; display:flex; align-items:baseline; gap:12px; }
+            .num { font-size: 1.6rem; margin-bottom:0; }
+            .place { margin-top:0; }
+            header.intro { padding: 64px 0 32px; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { animation-duration:.01ms !important; transition-duration:.01ms !important; }
+            html { scroll-behavior: auto; }
+            html.js-reveal .chapter-body, html.js-reveal .rail-inner { opacity:1; transform:none; }
+        }
+        @media print {
+            .topbar, .progress, .scroll-cue, .theme-toggle { display:none; }
+            body { background:#fff; color:#000; }
+            .chapter { break-inside: avoid; }
+        }
+    </style>
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to main content</a>
+<div class="progress" id="progress" aria-hidden="true"></div>
+<svg class="ball" id="ball" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+    <circle class="hide" cx="16" cy="16" r="15"/>
+    <!-- the classic truncated-icosahedron patches, simplified to read at 16px -->
+    <polygon class="panel" points="16,7 21,10.6 19.1,16.5 12.9,16.5 11,10.6"/>
+    <polygon class="panel" points="4.2,12.5 8.6,15.8 6.9,21.4 2.2,21.2"/>
+    <polygon class="panel" points="27.8,12.5 29.8,21.2 25.1,21.4 23.4,15.8"/>
+    <polygon class="panel" points="16,29.4 10.6,25.9 12.4,20.4 19.6,20.4 21.4,25.9"/>
+</svg>
+
+<div class="topbar">
+    <div class="wrap">
+        <a href="index.html" class="back">&larr; Back to research site</a>
+        <span class="brand">Michael Baffour Awuah</span>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark mode" title="Toggle light/dark mode">
+            <svg class="ti-sun" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+            <svg class="ti-moon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+    </div>
+</div>
+
+<main id="main">
+<header class="intro">
+    <div class="wrap">
+        <span class="eyebrow">The long way round</span>
+        <h1>From Cape Coast to a <span class="accent">phage that won't let go</span></h1>
+        <p class="lede">A biochemistry degree in Ghana, seven courses taught before I was anyone's
+           student again, and a virus that turns one bacterium into three thousand of itself.
+           Here's how those connect.</p>
+        <div class="kente-rule" aria-hidden="true"></div>
+        <p class="scroll-cue"><span aria-hidden="true">↓</span> Scroll, or <a href="cv-resume/Michael_Baffour_Awuah_CV.html" style="color:var(--gold)">skip to the formal CV</a></p>
+    </div>
+</header>
+
+<div class="wrap">
+<div class="chapters">
+
+    <section class="chapter" aria-labelledby="ch1">
+        <div class="rail"><div class="rail-inner">
+            <span class="kick">First touch</span>
+            <span class="num" aria-hidden="true">01</span>
+            <span class="year">2016 – 2020</span>
+            <span class="place">University of Cape Coast<br>Ghana</span>
+        </div></div>
+        <div class="chapter-body">
+            <h2 id="ch1">Biochemistry, and a question about fruit</h2>
+            <p>I read Biochemistry at the University of Cape Coast and graduated with a
+               Second Class Upper. My undergraduate dissertation, with Dr.&nbsp;Jerry Ampofo-Asiama,
+               was a physicochemical, functional and nutritional analysis of juice blends made
+               from underutilised tropical fruits — the kind that grow well in Ghana and end up
+               composted because nobody has characterised them.</p>
+            <p>It was not phage biology. But it was the first time I had a question nobody had
+               written the answer to, and had to build the assay that would settle it. That
+               turned out to be the transferable part.</p>
+            <ul class="facts">
+                <li>B.Sc. Biochemistry</li><li>Second Class Upper</li><li>First independent project</li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="chapter" aria-labelledby="ch2">
+        <div class="rail"><div class="rail-inner">
+            <span class="kick">Build-up play</span>
+            <span class="num" aria-hidden="true">02</span>
+            <span class="year">2020 – 2021</span>
+            <span class="place">University of Cape Coast<br>Teaching</span>
+        </div></div>
+        <div class="chapter-body">
+            <h2 id="ch2">Seven courses, and what teaching does to you</h2>
+            <p>Before I was anyone's graduate student, I taught. Seven courses across two
+               years at Cape Coast — Biological Oxidation &amp; Bioenergetics, Biochemical
+               Techniques, Enzyme Action &amp; Catalysis, General Biochemistry Practical,
+               Biostatistics, Diversity of Living Organisms — to more than seven hundred
+               enrolled students. One practical alone had 209.</p>
+            <p>I also supervised six undergraduates on the phytochemistry of
+               <em>Garcinia kola</em>. Standing in front of 200 people who will ask the one
+               question you glossed over is the fastest way to find out which parts of your
+               understanding are real. Most of how I explain my own work now was built there.</p>
+            <ul class="facts">
+                <li>7 courses</li><li>700+ students</li><li>6 undergraduates supervised</li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="chapter" aria-labelledby="ch3">
+        <div class="rail"><div class="rail-inner">
+            <span class="kick">The transfer</span>
+            <span class="num" aria-hidden="true">03</span>
+            <span class="year">Aug 2022</span>
+            <span class="place">Texas A&amp;M University<br>College Station, TX</span>
+        </div></div>
+        <div class="chapter-body">
+            <h2 id="ch3">Ramsey Lab, and the Center for Phage Technology</h2>
+            <p>I moved to College Station to start a Ph.D. in Biology (Microbiology) with
+               Dr.&nbsp;Jolene Ramsey, affiliated with the Center for Phage Technology. Two
+               semesters in I was back in front of a class, teaching Intro Biology I and II —
+               different country, same job, and this time in a second language of instruction
+               I had to learn the local idiom for.</p>
+            <p>The lab works on how phages decide to lyse. That decision is where I have
+               spent the last four years.</p>
+            <ul class="facts">
+                <li>Ph.D. in progress</li><li>Advisor: Dr. Jolene Ramsey</li><li>Center for Phage Technology</li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="chapter" aria-labelledby="ch4">
+        <div class="rail"><div class="rail-inner">
+            <span class="kick">Holding it up</span>
+            <span class="num" aria-hidden="true">04</span>
+            <span class="year">The thesis</span>
+            <span class="place">Bacteriophage N4<br>Lysis inhibition</span>
+        </div></div>
+        <div class="chapter-body">
+            <h2 id="ch4">Delaying the inevitable</h2>
+            <p>Most phages infect, replicate, and burst the cell on a schedule. Phage N4 can
+               decline to. Under the right conditions it holds the cell together and keeps
+               building — turning a single bacterium into a factory that puts out on the
+               order of <strong>3,000 particles</strong> over three to six hours instead of
+               bursting early with a fraction of that.</p>
+            <div class="pull">If you can find the switch that holds lysis off, you can ask it
+               to stay off — and a high-titer phage prep stops being a matter of luck.</div>
+            <p>My dissertation, <em>Delaying the Inevitable — Lysis Inhibition in Bacteriophage
+               N4</em>, is an attempt to find that switch and describe how it is thrown. The
+               applications I care about are phage therapy manufacture, where titer is the
+               bottleneck, and programmable microbial biofactories.</p>
+            <ul class="facts">
+                <li>~3,000 particles/cell</li><li>3–6 h window</li><li>Lysis timing</li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="chapter" aria-labelledby="ch5">
+        <div class="rail"><div class="rail-inner">
+            <span class="kick">First goal</span>
+            <span class="num" aria-hidden="true">05</span>
+            <span class="year">2025</span>
+            <span class="place">First paper<br>Serwaa</span>
+        </div></div>
+        <div class="chapter-body">
+            <h2 id="ch5">A phage named after my grandmother</h2>
+            <p>The first paper with my name on it is a genome announcement for a phage we
+               isolated and called <em>Serwaa</em>, after my grandmother. Annie Koh, an
+               undergraduate I mentored, did the work that made it a paper.</p>
+            <p>Naming an organism is one of the few things in science you get to do purely
+               because it means something to you. I do not expect the name to matter to anyone
+               reading the genome. It matters to me.</p>
+            <ul class="facts">
+                <li><a href="https://doi.org/10.1128/mra.01222-25" rel="noopener">doi:10.1128/mra.01222-25</a></li>
+                <li>3 phages isolated to date</li>
+            </ul>
+            <figure class="shot">
+                <img src="blog/images/serwaa-tem.webp" alt="Transmission electron micrograph of phage Serwaa" loading="lazy" width="1100" height="1467">
+                <figcaption>Serwaa under TEM.</figcaption>
+            </figure>
+        </div>
+    </section>
+
+    <section class="chapter" aria-labelledby="ch6">
+        <div class="rail"><div class="rail-inner">
+            <span class="kick">The finish</span>
+            <span class="num" aria-hidden="true">06</span>
+            <span class="year">Nov 2025</span>
+            <span class="place">First-author preprint<br>bioRxiv</span>
+        </div></div>
+        <div class="chapter-body">
+            <h2 id="ch6">How N4 actually opens the cell</h2>
+            <p>The first-author preprint describes the lysis machinery itself: N4 uses a
+               <strong>SAR endolysin–holin system</strong> to take the host cell apart. Knowing
+               the mechanism is what makes the inhibition question answerable — you cannot
+               explain how something is delayed until you know what is being delayed.</p>
+            <ul class="facts">
+                <li><a href="https://doi.org/10.1101/2025.11.12.688109" rel="noopener">doi:10.1101/2025.11.12.688109</a></li>
+                <li>First author</li><li>Preprint</li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="chapter" aria-labelledby="ch7">
+        <div class="rail"><div class="rail-inner">
+            <span class="kick">Off the ball</span>
+            <span class="num" aria-hidden="true">07</span>
+            <span class="year">Ongoing</span>
+            <span class="place">Open-source<br>research software</span>
+        </div></div>
+        <div class="chapter-body">
+            <h2 id="ch7">The tools were self-defence first</h2>
+            <p>Sixteen-odd open tools have come out of this PhD, and none of them started as a
+               project. They started as the twelfth time I wrote the same <code>ggplot2</code>
+               boilerplate, or the third evening lost to a dilution I could have solved on
+               paper if I trusted my arithmetic at 9pm.</p>
+            <p>They are browser-first and privacy-first — your data never leaves your machine —
+               and the ones worth citing carry Zenodo DOIs. Building them is also how I learned
+               to work with AI in the loop, which is the difference between a lab annoyance
+               becoming a shipped tool in days rather than never.</p>
+            <ul class="facts">
+                <li>16+ tools</li><li>DOI-indexed</li><li>Runs in the browser</li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="chapter" aria-labelledby="ch8">
+        <div class="rail"><div class="rail-inner">
+            <span class="kick">Silverware</span>
+            <span class="num" aria-hidden="true">08</span>
+            <span class="year">Aug 2025</span>
+            <span class="place">Texas A&amp;M<br>Recognition</span>
+        </div></div>
+        <div class="chapter-body">
+            <h2 id="ch8">The Patterson Fellowship</h2>
+            <p>In August 2025 I received the Thomas L. Patterson Graduate Student Fellowship.
+               Alongside it: judging the Texas Junior Science &amp; Humanities Symposium and the
+               SACNAS Diversity in Science Symposium, mentoring incoming teaching assistants,
+               and doing Darwin Day outreach with a cardboard phage that has held up better
+               than expected.</p>
+            <ul class="facts">
+                <li>Patterson Fellowship</li><li>Texas JSHS judge</li><li>SACNAS judge</li>
+            </ul>
+            <figure class="shot">
+                <img src="patterson-card.webp" alt="Michael Baffour Awuah receiving the Thomas L. Patterson Graduate Student Fellowship" loading="lazy" width="700" height="620">
+                <figcaption>Patterson Fellowship, August 2025.</figcaption>
+            </figure>
+        </div>
+    </section>
+
+    <section class="chapter" aria-labelledby="ch9">
+        <div class="rail"><div class="rail-inner">
+            <span class="kick">Second half</span>
+            <span class="num" aria-hidden="true">09</span>
+            <span class="year">2027</span>
+            <span class="place">Next</span>
+        </div></div>
+        <div class="chapter-body">
+            <h2 id="ch9">What I'm looking for next</h2>
+            <p>I defend in 2027, and I want the hardest problem someone will let me near.
+               I'm looking at <strong>postdoctoral positions</strong> where the question is
+               genuinely open — phage–host decision-making, the biology nobody has a clean
+               model for yet — and equally at <strong>biotech R&amp;D, AI-for-science teams,
+               translational research, and scientific software</strong> built by people who
+               have run the experiment themselves.</p>
+            <p>What I'm optimising for is the difficulty and the interest of the problem, not
+               the sector. A postdoc that lets me chase a real mechanism and a company solving
+               something nobody has solved are the same job to me.</p>
+            <p>The through-line from the fruit juice project to N4 is the same thing every time:
+               find the question nobody has settled, build the thing that settles it, then give
+               the thing away so the next person starts further along.</p>
+        </div>
+    </section>
+
+</div><!-- /chapters -->
+
+<section class="tally" aria-labelledby="tally-h">
+    <h2 id="tally-h">Where that leaves things</h2>
+    <p class="sub">As of August 2026.</p>
+    <div class="tally-grid">
+        <div class="tally-card"><div class="tally-n">3</div><div class="tally-l">Novel phages isolated</div></div>
+        <div class="tally-card"><div class="tally-n">16+</div><div class="tally-l">Open research tools</div></div>
+        <div class="tally-card"><div class="tally-n">9</div><div class="tally-l">Courses taught, 2 universities</div></div>
+        <div class="tally-card"><div class="tally-n">10</div><div class="tally-l">Undergraduates mentored</div></div>
+        <div class="tally-card"><div class="tally-n">2</div><div class="tally-l">Countries</div></div>
+        <div class="tally-card"><div class="tally-n">1</div><div class="tally-l">Grandmother, immortalised</div></div>
+    </div>
+</section>
+
+<section class="outro">
+    <p>That's the narrative version. The formal record — publications, talks, teaching
+       tables, awards — lives in the CV.</p>
+    <div class="cta-row">
+        <a class="btn btn-primary" href="cv-resume/Michael_Baffour_Awuah_CV.html">Full CV (HTML)</a>
+        <a class="btn btn-ghost" href="cv-resume/Michael_Baffour_Awuah_CV.pdf" download>CV (PDF)</a>
+        <a class="btn btn-ghost" href="index.html#contact">Get in touch</a>
+    </div>
+</section>
+</div><!-- /wrap -->
+</main>
+
+<footer>
+    <div class="wrap">
+        <a href="index.html">mbaffour.github.io</a> · Michael Baffour Awuah
+    </div>
+</footer>
+
+<script>
+(function () {
+    "use strict";
+    var root = document.documentElement;
+
+    /* Theme toggle, same contract as the rest of the site. */
+    var tt = document.getElementById('themeToggle');
+    if (tt) tt.addEventListener('click', function () {
+        var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        root.setAttribute('data-theme', next);
+        try { localStorage.setItem('theme', next); } catch (e) {}
+    });
+
+    /* Reveal-on-scroll is opt-in: the class is added only once JS runs, so with
+       JS off (or if this script throws before this point) every chapter is
+       simply visible.
+
+       Hiding content until an observer un-hides it is a bet, and the failure
+       mode is a blank page. Three guards, because this page is someone's CV:
+         1. anything already on screen is revealed synchronously, so the top of
+            the page is never hidden even for a frame;
+         2. a timer un-hides everything regardless, which covers the case where
+            the document is never composited (background tab, prerender, a
+            hidden iframe) and IntersectionObserver therefore never fires;
+         3. reduced-motion skips the whole mechanism. */
+    var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var chapters = Array.prototype.slice.call(document.querySelectorAll('.chapter'));
+
+    function revealAll() {
+        chapters.forEach(function (c) { c.classList.add('in'); });
+    }
+
+    if (!reduce && 'IntersectionObserver' in window) {
+        root.classList.add('js-reveal');
+
+        chapters.forEach(function (c) {
+            if (c.getBoundingClientRect().top < window.innerHeight) c.classList.add('in');
+        });
+
+        var io = new IntersectionObserver(function (entries) {
+            entries.forEach(function (e) {
+                if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+            });
+        }, { rootMargin: '0px 0px -12% 0px', threshold: 0.08 });
+        chapters.forEach(function (c) { io.observe(c); });
+
+        setTimeout(revealAll, 2500);
+    }
+
+    /* Reading progress, with a ball rolling along it. rAF-throttled so a fast
+       scroll doesn't thrash layout. The ball's spin is derived from distance
+       travelled, not from a timer, so it rolls rather than spins on the spot —
+       one turn per circumference, which is what makes it read as rolling. */
+    var bar = document.getElementById('progress');
+    var ball = document.getElementById('ball');
+    var ticking = false;
+
+    function draw() {
+        var h = document.documentElement.scrollHeight - window.innerHeight;
+        var frac = h > 0 ? Math.min(Math.max(window.scrollY / h, 0), 1) : 0;
+        if (bar) bar.style.width = (frac * 100) + '%';
+        if (ball) {
+            var x = frac * window.innerWidth;
+            // circumference of the 16px ball ≈ 50.3px
+            var spin = reduce ? 0 : (x / 50.3) * 360;
+            ball.style.transform = 'translateX(' + x + 'px) rotate(' + spin + 'deg)';
+        }
+        ticking = false;
+    }
+    addEventListener('scroll', function () {
+        if (!ticking) { ticking = true; requestAnimationFrame(draw); }
+    }, { passive: true });
+    addEventListener('resize', draw, { passive: true });
+    draw();
+})();
+</script>
+</body>
+</html>

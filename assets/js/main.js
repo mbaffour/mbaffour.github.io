@@ -18,19 +18,36 @@ const esc = s => String(s).replace(/[&<>"']/g, c => ({
     function applyTheme(t) {
         html.setAttribute('data-theme', t);
         btn.setAttribute('aria-label', t === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
-        // Update theme-color meta for mobile browsers
-        var meta = document.querySelector('meta[name="theme-color"]');
-        if (meta) meta.setAttribute('content', t === 'dark' ? '#121009' : '#f7f4ea');
+        // Update theme-color meta for mobile browsers. The page ships a pair of
+        // media-scoped metas so the browser chrome is right before this runs;
+        // once a theme is explicit those would fight it, so drop them and keep
+        // one meta under our control.
+        var paired = document.querySelectorAll('meta[name="theme-color"][media]');
+        for (var i = 0; i < paired.length; i++) paired[i].parentNode.removeChild(paired[i]);
+        var meta = document.querySelector('meta[name="theme-color"]:not([media])');
+        if (!meta) {
+            meta = document.createElement('meta');
+            meta.setAttribute('name', 'theme-color');
+            document.head.appendChild(meta);
+        }
+        meta.setAttribute('content', t === 'dark' ? '#121009' : '#f7f4ea');
     }
 
-    // Init from storage (anti-FOUC script already set the attribute, just sync the button label)
-    var current = html.getAttribute('data-theme') || 'dark';
+    // Init from whatever the anti-FOUC script decided. Defaulting to 'dark' when
+    // the attribute is missing would override a light-mode visitor's preference
+    // in exactly the case where that script failed — ask the OS instead.
+    var current = html.getAttribute('data-theme');
+    if (current !== 'dark' && current !== 'light') {
+        current = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+            ? 'dark' : 'light';
+    }
     applyTheme(current);
 
     btn.addEventListener('click', function() {
         var next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
         applyTheme(next);
-        localStorage.setItem('theme', next);
+        // Blocked storage must not stop the toggle from working for this visit.
+        try { localStorage.setItem('theme', next); } catch (e) {}
     });
 
     // Enable smooth transitions after load (suppressed during initial paint)
@@ -49,11 +66,23 @@ const publications = [
         title: "Complete genome sequence of <i>Escherichia</i> Siphophage Serwaa",
         authors: "Debrah MA, Awuah MB, Koh A, Ramsey J",
         journal: "Microbiology Resource Announcements",
-        ids: "e01222-25",
+        ids: "e01222-25 · PMID 42214348 · PMCID PMC13348217",
         year: 2026,
         doi: "https://doi.org/10.1128/mra.01222-25",
         status: "published",
         latest: true,
+        // The accessions ARE the deliverable of a genome announcement — the
+        // first thing another phage lab checks, and previously nowhere on the site.
+        data: [
+            { label: "GenBank",    id: "PX021331",     url: "https://www.ncbi.nlm.nih.gov/nuccore/PX021331" },
+            { label: "BioProject", id: "PRJNA222858",  url: "https://www.ncbi.nlm.nih.gov/bioproject/PRJNA222858" },
+            { label: "SRA",        id: "SRR34773693",  url: "https://www.ncbi.nlm.nih.gov/sra/SRR34773693" },
+            { label: "BioSample",  id: "SAMN50231104", url: "https://www.ncbi.nlm.nih.gov/biosample/SAMN50231104" }
+        ],
+        citation: {
+            plain: "Debrah MA, Awuah MB, Koh A, Ramsey J. Complete genome sequence of Escherichia siphophage Serwaa. Microbiol Resour Announc. 2026;15(7):e01222-25. doi:10.1128/mra.01222-25",
+            bibtex: "@article{debrah2026serwaa,\n  title   = {Complete genome sequence of {Escherichia} siphophage {Serwaa}},\n  author  = {Debrah, Michael A. and Awuah, Michael Baffour and Koh, Annie and Ramsey, Jolene},\n  journal = {Microbiology Resource Announcements},\n  volume  = {15},\n  number  = {7},\n  pages   = {e01222-25},\n  year    = {2026},\n  doi     = {10.1128/mra.01222-25}\n}"
+        },
         thumb: "blog/images/serwaa-tem-thumb.webp",
         thumbAlt: "Transmission electron micrograph of phage Serwaa"
     },
@@ -68,8 +97,26 @@ const publications = [
         status: "preprint",
         firstAuthor: true,
         code: "https://github.com/mbaffour/N4-Lysis-paper-codes",
-        summary: "First-author study identifying how phage N4 controls the timing of host lysis, showing it lyses via a SAR endolysin–holin system.",
+        summary: "First-author study of how phage N4 takes its host cell apart, showing it lyses via a SAR endolysin–holin system and mapping genomic regions — inside and outside the lysis cassette — involved in lysis inhibition.",
+        citation: {
+            plain: "Awuah MB, Martin C, Chamblee JS, Tomaszewski AJ, Sullivan TE, Emilia Q, Tran S, Snowden JH, Niemiec KA, Zhu J, Ramsey J. Phage N4 uses a SAR endolysin-holin system for host cell lysis. bioRxiv. 2025. doi:10.1101/2025.11.12.688109",
+            bibtex: "@article{awuah2025n4lysis,\n  title   = {Phage {N4} uses a {SAR} endolysin-holin system for host cell lysis},\n  author  = {Awuah, Michael Baffour and Martin, C. and Chamblee, Joel S. and Tomaszewski, A. J. and Sullivan, T. E. and Emilia, Q. and Tran, S. and Snowden, J. H. and Niemiec, K. A. and Zhu, J. and Ramsey, Jolene},\n  journal = {bioRxiv},\n  year    = {2025},\n  doi     = {10.1101/2025.11.12.688109},\n  note    = {Preprint}\n}"
+        },
         thumbSvg: '<svg viewBox="0 0 96 72" width="96" height="72" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect width="96" height="72" fill="#1a1408"/><path d="M6 62 C26 60 30 30 41 30 C49 30 50 66 92 67" fill="none" stroke="#f4c430" stroke-width="2.4" stroke-linecap="round"/><path d="M6 62 C30 58 41 24 60 18 C76 13 86 12 92 11" fill="none" stroke="#d4324b" stroke-width="2.4" stroke-linecap="round"/></svg>'
+    },
+    {
+        /* The thesis result the Patterson Fellowship was awarded for. Listing it
+           as in-preparation is the honest place for it: it is real work with a
+           public award citation and two conference presentations behind it, but
+           it is not what the preprint reports, and the two were being conflated. */
+        kind: "paper",
+        title: "A novel regulator of lysis timing in bacteriophage N4",
+        authors: "Awuah MB, Ramsey J",
+        journal: "Manuscript in preparation",
+        year: 2026,
+        status: "inprep",
+        firstAuthor: true,
+        summary: "Identification and characterisation of a novel regulator of the lysis-timing decision in phage N4 — the work recognised by the Thomas L. Patterson Graduate Student Fellowship (2025) and presented at BIOGSA and the Texas ASM Branch Meeting (2024)."
     },
     /* ── Oral talks ──────────────────────────────────────── */
     {
@@ -187,7 +234,16 @@ const tools = [
         citation: {
             plain: "Awuah, M. B. (2026). FigureLab: a browser-based tool for assembling publication-quality scientific figures (Version 3.5) [Computer software]. Zenodo. https://doi.org/10.5281/zenodo.21269456",
             bibtex: "@software{awuah_figurelab_2026,\n  author    = {Awuah, Michael Baffour},\n  title     = {{FigureLab}: a browser-based tool for assembling publication-quality scientific figures},\n  year      = {2026},\n  version   = {3.5},\n  publisher = {Zenodo},\n  doi       = {10.5281/zenodo.21269456},\n  url       = {https://doi.org/10.5281/zenodo.21269456}\n}"
-        }
+        },
+        /* Independent use of the tool in someone else's published paper. This is
+           the only evidence on the site that the software is used by people who
+           did not build it, which is the thing a hiring committee actually wants
+           from "I build open tools". */
+        usedIn: [{
+            quote: "use of the FigureLab web-based application developed by Michael Baffour Awuah",
+            citation: "Hoxha EM, Brown GD, Niemiec KA, Ramsey J. The complete genome sequence of Caulobacter phages Senya and Shash. Microbiol Resour Announc. 2026;15(8):e00457-26.",
+            doi: "https://doi.org/10.1128/mra.00457-26"
+        }]
     },
     {
         title: "CellMorphR",
@@ -986,6 +1042,7 @@ function renderPublications(filter = 'all') {
     const labelFor = s => ({
         'preprint':  'Preprint',
         'published': 'Published',
+        'inprep':    'In preparation',
         'talk':      'Talk',
         'poster':    'Poster'
     })[s] || (s[0].toUpperCase() + s.slice(1));
@@ -1002,7 +1059,40 @@ function renderPublications(filter = 'all') {
         if (pub.doi)  links.push(`<a class="pub-link primary" href="${pub.doi}" target="_blank" rel="noopener">${readLabel} ↗</a>`);
         if (pub.code) links.push(`<a class="pub-link" href="${pub.code}" target="_blank" rel="noopener">Code ↗</a>`);
         if (pub.pdf)  links.push(`<a class="pub-link" href="${pub.pdf}" target="_blank" rel="noopener">PDF ↗</a>`);
+        // Papers get the same Cite affordance the software already had — it was
+        // odd that a tool could be cited in one click and the actual papers
+        // had to be retyped by hand.
+        const citeId = 'pubcite-' + (doi || String(pub.year)).replace(/[^A-Za-z0-9]+/g, '-').toLowerCase();
+        if (pub.citation) {
+            links.push(`<button class="pub-link pub-cite-btn" type="button"
+                aria-expanded="false" aria-controls="${citeId}">Cite</button>`);
+        }
         const linkRow = links.length ? `<div class="pub-links">${links.join('')}</div>` : '';
+
+        // Sequence accessions are the deliverable of a genome announcement.
+        const dataRow = (pub.data && pub.data.length)
+            ? `<div class="pub-data"><span class="pub-data-label">Data</span>${pub.data.map(d =>
+                `<a class="pub-acc" href="${d.url}" target="_blank" rel="noopener"
+                    title="${esc(d.label)} accession">${esc(d.label)} <code>${esc(d.id)}</code></a>`
+              ).join('')}</div>`
+            : '';
+
+        const citeBlock = pub.citation
+            ? `<div class="pub-citation-block" id="${citeId}" hidden>
+                 <div class="cite-tabs">
+                   <button class="cite-tab active" type="button" data-tab="plain">Plain text</button>
+                   <button class="cite-tab" type="button" data-tab="bibtex">BibTeX</button>
+                 </div>
+                 <div class="cite-panel" data-panel="plain">
+                   <pre class="cite-text">${esc(pub.citation.plain)}</pre>
+                   <button class="cite-copy" type="button" data-copy="${encodeURIComponent(pub.citation.plain)}">Copy</button>
+                 </div>
+                 <div class="cite-panel" data-panel="bibtex" hidden>
+                   <pre class="cite-text">${esc(pub.citation.bibtex)}</pre>
+                   <button class="cite-copy" type="button" data-copy="${encodeURIComponent(pub.citation.bibtex)}">Copy</button>
+                 </div>
+               </div>`
+            : '';
         const titleHref = pub.doi || pub.code || pub.pdf || '';
         const titleHtml = titleHref
             ? `<a href="${titleHref}" target="_blank" rel="noopener">${pub.title}</a>`
@@ -1021,13 +1111,15 @@ function renderPublications(filter = 'all') {
                 ${pub.authors ? `<div class="pub-authors">${auth}</div>` : ''}
                 <div class="pub-journal">${pub.journal}</div>
                 ${pub.ids ? `<div class="pub-ids">${esc(pub.ids)}</div>` : ''}
+                ${dataRow}
                 ${pub.summary ? `<div class="pub-summary" style="color:var(--ink-2); font-size:0.9rem; margin-top:6px; line-height:1.55;">${pub.summary}</div>` : ''}
                 <div class="pub-meta">
                     <span class="pub-status ${pub.status}">${labelFor(pub.status)}</span>
-                    ${pub.firstAuthor ? '<span class="pub-status preprint" style="background:var(--green-dim); color:var(--green); border-color:var(--green);">★ First author</span>' : ''}
+                    ${pub.firstAuthor ? '<span class="pub-status first-author">★ First author</span>' : ''}
                     ${pub.latest ? '<span class="pub-status preprint">★ Latest</span>' : ''}
                 </div>
                 ${linkRow}
+                ${citeBlock}
             </div>
             ${altmetric}
         </div>`;
@@ -1053,6 +1145,67 @@ function renderPublications(filter = 'all') {
 
     if (window._altmetric_embed_init) window._altmetric_embed_init();
 }
+
+/* Citation UI for papers. Delegated from document rather than bound per render:
+   renderPublications() replaces innerHTML whenever a filter changes, which would
+   throw away directly-bound listeners. */
+(function wirePublicationCitations() {
+    document.addEventListener('click', function (e) {
+        const toggle = e.target.closest('.pub-cite-btn');
+        if (toggle) {
+            e.preventDefault();
+            const block = document.getElementById(toggle.getAttribute('aria-controls'));
+            if (!block) return;
+            const open = block.hidden;
+            block.hidden = !open;
+            toggle.setAttribute('aria-expanded', String(open));
+            toggle.textContent = open ? 'Hide citation' : 'Cite';
+            return;
+        }
+
+        const tab = e.target.closest('.pub-citation-block .cite-tab');
+        if (tab) {
+            e.preventDefault();
+            const block = tab.closest('.pub-citation-block');
+            block.querySelectorAll('.cite-tab').forEach(t => {
+                t.classList.toggle('active', t === tab);
+            });
+            block.querySelectorAll('.cite-panel').forEach(p => {
+                p.hidden = p.dataset.panel !== tab.dataset.tab;
+            });
+            return;
+        }
+
+        const copy = e.target.closest('.pub-citation-block .cite-copy');
+        if (copy) {
+            e.preventDefault();
+            const text = decodeURIComponent(copy.dataset.copy);
+            const done = () => {
+                const orig = copy.textContent;
+                copy.textContent = 'Copied!';
+                setTimeout(() => { copy.textContent = orig; }, 1800);
+            };
+            // clipboard API needs a secure context; fall back so the button is
+            // never simply dead on http:// or an older browser.
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(text).then(done).catch(() => legacyCopy(text, done));
+            } else {
+                legacyCopy(text, done);
+            }
+        }
+    });
+
+    function legacyCopy(text, done) {
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        ta.setAttribute('readonly', '');
+        ta.style.cssText = 'position:fixed;top:-1000px;opacity:0';
+        document.body.appendChild(ta);
+        ta.select();
+        try { document.execCommand('copy'); done(); } catch (err) { /* nothing to offer */ }
+        ta.remove();
+    }
+})();
 
 /* ==============================================================
    RENDER — Talks & posters
@@ -1097,6 +1250,15 @@ function renderTools(filter = 'all') {
                     ${t.doi ? `<a href="https://doi.org/${t.doi}" class="proj-link alt" target="_blank" rel="noopener">Zenodo ↗</a>` : ''}
                     ${t.doi ? `<button class="proj-link proj-cite-btn" data-tool="${t.title}" type="button">Cite</button>` : ''}
                 </div>
+                ${t.usedIn && t.usedIn.length ? `
+                <div class="proj-usedin">
+                    <span class="usedin-badge">Used in published research</span>
+                    ${t.usedIn.map(u => `
+                    <blockquote class="usedin-quote">&ldquo;${u.quote}&rdquo;</blockquote>
+                    <cite class="usedin-cite">${u.citation}
+                        <a href="${u.doi}" target="_blank" rel="noopener">doi&nbsp;↗</a>
+                    </cite>`).join('')}
+                </div>` : ''}
                 ${t.citation ? `
                 <div class="proj-citation-block" id="cite-${t.title.replace(/\s+/g,'-').toLowerCase()}" aria-hidden="true">
                     <div class="proj-citation-tabs">
@@ -1334,8 +1496,13 @@ document.addEventListener('click', (e) => {
 /* ==============================================================
    NAV: ACTIVE SECTION HIGHLIGHT
 =============================================================== */
-const navIds = ['about', 'research', 'playground', 'publications', 'tools', 'builds', 'blog', 'next', 'recognition', 'gallery', 'contact'];
-/* (CV merged into About — no separate section.) */
+/* Derived from the nav itself rather than hand-listed. The literal had drifted
+   both ways: five spied sections had no nav anchor, so the highlight went blank
+   while the reader scrolled them, and nav links that were never spied kept a
+   stale highlight. Reading the DOM means adding a section to the nav is enough. */
+const navIds = Array.from(document.querySelectorAll('.nav-links a[href^="#"]'))
+    .map(a => a.getAttribute('href').slice(1))
+    .filter(id => id && document.getElementById(id));
 const sectionEls = navIds.map(id => document.getElementById(id)).filter(Boolean);
 const navAnchors = Array.from(document.querySelectorAll('.nav-links a')).filter(a => a.getAttribute('href') && a.getAttribute('href').startsWith('#'));
 

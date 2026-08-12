@@ -5,25 +5,82 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Michael Baffour Awuah – CV</title>
 <meta name="description" content="Curriculum vitae of Michael Baffour Awuah — PhD candidate in microbiology at Texas A&amp;M, studying bacteriophage N4 lysis timing.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:wght@600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="preload" href="../assets/fonts/fraunces-var-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="../assets/fonts/inter-var-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="../assets/fonts/fonts.css">
+<meta name="theme-color" content="#f7f9fc" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0f1b2d" media="(prefers-color-scheme: dark)">
+<!-- Sets the theme before first paint. localStorage throws when storage is
+     blocked, which would otherwise leave the attribute unset. -->
+<script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
+if(t!=='dark'&&t!=='light'){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}
+document.documentElement.setAttribute('data-theme',t)})()</script>
 <style>
 :root {
   --navy: #0f1b2d;
   --deep: #162236;
-  --accent: #4a9eff;
-  --accent-glow: #4a9eff33;
+  /* Lightened from #4a9eff / #8899aa / #5a6a7a, which measured 3.8:1, 4.5:1
+     and 2.6:1 against the card surfaces — the dates, locations and talk types
+     they colour are 11-12px, so they need the full 4.5:1. */
+  --accent: #79baff;
+  --accent-glow: #79baff33;
   --accent2: #00d4aa;
   --accent2-glow: #00d4aa22;
   --text: #e0e6ed;
-  --text-secondary: #8899aa;
-  --text-muted: #5a6a7a;
+  --text-secondary: #95a6b8;
+  --text-muted: #8b9bad;
   --surface: #1a2a40;
   --surface-hover: #1f3050;
   --border: #2a3a50;
   --white: #ffffff;
   --warm: #ffd166;
+  --nav-bg: rgba(15, 27, 45, 0.85);
+}
+
+/* ---- Light theme ----------------------------------------------------
+   This is the page a recruiter is most likely to open, and it was dark-only:
+   a visitor browsing in light mode landed on a dark document with no way out.
+   The CV keeps its own navy-and-blue identity rather than adopting the site's
+   gold — it is a deliberately formal document — but the values are darkened
+   to clear AA on paper. --white is used as a TEXT colour here (7 times), so
+   in light mode it has to become ink, not stay white. */
+:root[data-theme="light"] {
+  --navy: #f7f9fc;
+  --deep: #eef2f8;
+  --accent: #1359a8;          /* #4a9eff is 2.3:1 on paper */
+  --accent-glow: #1359a81f;
+  --accent2: #04705d;         /* #00d4aa is 1.7:1 on paper */
+  --accent2-glow: #04705d1a;
+  --text: #14202e;
+  --text-secondary: #46586b;
+  --text-muted: #5d6e80;
+  --surface: #ffffff;
+  --surface-hover: #f1f5fb;
+  --border: #d3dce7;
+  --white: #14202e;           /* reads as "text on the accent fill" */
+  --warm: #8a5c00;
+  --nav-bg: rgba(247, 249, 252, 0.9);
+}
+/* Same values when the OS asks for light and no explicit choice was stored,
+   so the page is right even if the inline script never runs. */
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme]) {
+    --navy: #f7f9fc;
+    --deep: #eef2f8;
+    --accent: #1359a8;
+    --accent-glow: #1359a81f;
+    --accent2: #04705d;
+    --accent2-glow: #04705d1a;
+    --text: #14202e;
+    --text-secondary: #46586b;
+    --text-muted: #5d6e80;
+    --surface: #ffffff;
+    --surface-hover: #f1f5fb;
+    --border: #d3dce7;
+    --white: #14202e;
+    --warm: #8a5c00;
+    --nav-bg: rgba(247, 249, 252, 0.9);
+  }
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -35,7 +92,7 @@ html {
 }
 
 body {
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Inter', 'Segoe UI', sans-serif;
   background: var(--navy);
   color: var(--text);
   line-height: 1.65;
@@ -63,7 +120,9 @@ nav {
   position: sticky; top: 0; z-index: 100;
   backdrop-filter: blur(20px) saturate(1.5);
   -webkit-backdrop-filter: blur(20px) saturate(1.5);
-  background: rgba(15, 27, 45, 0.85);
+  /* Themed. A hard-coded rgba(15,27,45,.85) kept the bar dark navy in light
+     mode while the links flipped to dark ink — 1.5:1, the whole nav unreadable. */
+  background: var(--nav-bg);
   border-bottom: 1px solid var(--border);
   padding: 12px 0;
   transition: box-shadow 0.3s;
@@ -75,7 +134,7 @@ nav.scrolled { box-shadow: 0 4px 30px rgba(0,0,0,0.3); }
   gap: 16px; flex-wrap: wrap;
 }
 .nav-name {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Fraunces', 'Georgia', serif;
   font-weight: 700; font-size: 1.1rem; color: var(--white);
   white-space: nowrap;
 }
@@ -96,7 +155,7 @@ nav.scrolled { box-shadow: 0 4px 30px rgba(0,0,0,0.3); }
   text-align: center;
 }
 .hero h1 {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Fraunces', 'Georgia', serif;
   font-size: clamp(2.2rem, 5vw, 3.2rem);
   font-weight: 800;
   color: var(--white);
@@ -146,7 +205,7 @@ nav.scrolled { box-shadow: 0 4px 30px rgba(0,0,0,0.3); }
 section { padding: 40px 0 16px; }
 
 .section-title {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Fraunces', 'Georgia', serif;
   font-size: 1.6rem; font-weight: 700;
   color: var(--white);
   margin-bottom: 4px;
@@ -463,6 +522,19 @@ footer a { color: var(--accent); text-decoration: none; }
 }
 </style>
 <style>
+.cv-theme-toggle{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;
+  border-radius:7px;border:1px solid var(--border);background:transparent;color:var(--text-secondary);
+  cursor:pointer;transition:color .2s,border-color .2s;flex:none}
+.cv-theme-toggle:hover{color:var(--accent);border-color:var(--accent)}
+.cv-theme-toggle:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.cv-theme-toggle .ti-sun{display:block}.cv-theme-toggle .ti-moon{display:none}
+:root[data-theme="light"] .cv-theme-toggle .ti-sun{display:none}
+:root[data-theme="light"] .cv-theme-toggle .ti-moon{display:block}
+@media (prefers-color-scheme: light){
+  :root:not([data-theme]) .cv-theme-toggle .ti-sun{display:none}
+  :root:not([data-theme]) .cv-theme-toggle .ti-moon{display:block}
+}
+@media print{.cv-theme-toggle{display:none}}
 .skip-link{position:absolute;left:1rem;top:-3rem;z-index:2000;padding:.7rem 1.15rem;background:#f4c430;color:#121009;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.82rem;font-weight:700;border-radius:0 0 10px 10px;text-decoration:none;transition:top .18s ease}
 .skip-link:focus{top:0}
 @media (prefers-reduced-motion: reduce){*,*::before,*::after{animation-duration:.01ms !important;transition-duration:.01ms !important}html{scroll-behavior:auto}}
@@ -488,7 +560,7 @@ footer a { color: var(--accent); text-decoration: none; }
 <body>
 <a href="#main" class="skip-link">Skip to main content</a>
 <main id="main">
-<p style="max-width:900px;margin:0 auto;padding:16px 22px 0;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.78rem;line-height:2;"><a href="../index.html" style="color:#7cc0ff;text-decoration:none;">&larr; Back to portfolio</a><span style="opacity:.4"> · </span><a href="Michael_Baffour_Awuah_CV.pdf" download style="color:#7cc0ff;text-decoration:none;">Download PDF</a><span style="opacity:.4"> · </span><a href="https://orcid.org/0009-0007-9036-413X" target="_blank" rel="noopener" style="color:#7cc0ff;text-decoration:none;">ORCID</a><span style="opacity:.4"> · </span><a href="https://scholar.google.com/citations?user=e5_h_2YAAAAJ&amp;hl=en" target="_blank" rel="noopener" style="color:#7cc0ff;text-decoration:none;">Google Scholar</a></p>
+<p style="max-width:900px;margin:0 auto;padding:16px 22px 0;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.78rem;line-height:2;"><a href="../index.html" style="color:var(--accent);text-decoration:underline;">&larr; Back to portfolio</a><span style="opacity:.4"> · </span><a href="Michael_Baffour_Awuah_CV.pdf" download style="color:var(--accent);text-decoration:underline;">Download PDF</a><span style="opacity:.4"> · </span><a href="https://orcid.org/0009-0007-9036-413X" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:underline;">ORCID</a><span style="opacity:.4"> · </span><a href="https://scholar.google.com/citations?user=e5_h_2YAAAAJ&amp;hl=en" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:underline;">Google Scholar</a></p>
 
 <div class="bg-grid"></div>
 
@@ -506,6 +578,16 @@ footer a { color: var(--accent); text-decoration: none; }
       <a href="#mentorship">Mentorship</a>
       <a href="#skills">Skills</a>
     </div>
+    <button id="cvThemeToggle" class="cv-theme-toggle" type="button" aria-label="Switch theme">
+      <svg class="ti-sun" width="15" height="15" viewBox="0 0 24 24" fill="none"
+           stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+        <circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>
+      </svg>
+      <svg class="ti-moon" width="15" height="15" viewBox="0 0 24 24" fill="none"
+           stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+        <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/>
+      </svg>
+    </button>
   </div>
 </nav>
 
@@ -995,6 +1077,7 @@ footer a { color: var(--accent); text-decoration: none; }
 
 </div>
 
+</main>
 <footer>
   <div class="footer-animation">
     <!-- Bacteria SVG -->
@@ -1089,6 +1172,28 @@ cards.forEach(c => {
   cardObs.observe(c);
 });
 </script>
-</main>
+
+<script>
+/* Theme toggle. The anti-FOUC script in <head> has already set data-theme;
+   this only handles the click and remembers the choice. */
+(function () {
+  var btn = document.getElementById('cvThemeToggle');
+  if (!btn) return;
+  var root = document.documentElement;
+  function label() {
+    var dark = root.getAttribute('data-theme') === 'dark';
+    btn.setAttribute('aria-label', dark ? 'Switch to light mode' : 'Switch to dark mode');
+  }
+  label();
+  btn.addEventListener('click', function () {
+    var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    label();
+    // Blocked storage must not stop the toggle working for this visit.
+    try { localStorage.setItem('theme', next); } catch (e) {}
+  });
+})();
+</script>
+
 </body>
 </html>

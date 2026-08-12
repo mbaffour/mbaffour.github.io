@@ -5,9 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Number Tug — arithmetic tug-of-war on one device</title>
 <meta name="description" content="A same-device arithmetic tug-of-war. Answer fast to pull the rope your way — solo, two-player on one keyboard, or against the computer. Free, in the browser.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="preload" href="../assets/fonts/fraunces-var-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="../assets/fonts/inter-var-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="../assets/fonts/fonts.css">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%230a0a16'/><line x1='5' y1='16' x2='27' y2='16' stroke='%239aa0c9' stroke-width='2'/><circle cx='9' cy='16' r='5' fill='%23ff2d95'/><circle cx='23' cy='16' r='5' fill='%2322d3ee'/><rect x='14' y='11' width='4' height='10' rx='1' fill='%23ffd93d'/></svg>">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -375,8 +375,11 @@
 </style>
 
     <link rel="canonical" href="https://mbaffour.github.io/blog/number-tug.html">
+
+    <link rel="alternate" type="application/rss+xml" title="Michael Baffour Awuah — Blog &amp; Notes" href="https://mbaffour.github.io/feed.xml">
     <meta name="author" content="Michael Baffour Awuah">
-    <meta name="theme-color" content="#121009">
+    <meta name="theme-color" content="#f7f4ea" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#121009" media="(prefers-color-scheme: dark)">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="Michael Baffour Awuah">
     <meta property="og:title" content="Number Tug — arithmetic tug-of-war on one device">
@@ -666,6 +669,7 @@
   </div>
 </section>
 
+</main>
 <footer>
   <div class="wrap foot-inner">
     <div class="foot-note">Built by <a href="https://mbaffour.github.io/">Michael Baffour Awuah</a></div>
@@ -677,6 +681,6 @@
   </div>
 </footer>
 
-</main>
+
 </body>
 </html>

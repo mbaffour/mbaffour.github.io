@@ -404,6 +404,11 @@ document.querySelectorAll('.lifecycle-stage').forEach((g, i) => {
     }
     function play() {
         stop();
+        // reduceMotion was computed at the top of the file and never used. Jump
+        // to the finished curve rather than animating it over 6.5 s: the point
+        // of the control is to SEE the outcome, and scrub(1) already draws
+        // exactly that end state.
+        if (reduceMotion) { scrub(1); return; }   // stop() above already reset the button
         playBtn.classList.add('playing');
         playBtn.textContent = '⏸ Replay';
         const dur = 6500; const t0 = performance.now();

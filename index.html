@@ -1,5 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<!-- .no-js is stripped by the inline script below before first paint. Sections
+     use .fade-in { opacity: 0 } and are only revealed by an IntersectionObserver,
+     so without this the whole page reads as empty when JS is unavailable. -->
+<html lang="en" class="no-js">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,6 +12,7 @@
     <meta property="og:title" content="Michael Baffour Awuah — Phage Biologist">
     <meta property="og:description" content="Decoding how bacteriophage N4 decides whether to give up its host cell, with molecular biology, genomics, and genetics.">
     <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Michael Baffour Awuah">
     <meta property="og:url" content="https://mbaffour.github.io/">
     <meta property="og:image" content="https://mbaffour.github.io/assets/og-card.jpg">
     <meta property="og:image:width" content="1200">
@@ -19,7 +23,9 @@
     <meta name="twitter:description" content="Decoding how bacteriophage N4 decides whether to give up its host cell, with molecular biology, genomics, and genetics.">
     <meta name="twitter:image" content="https://mbaffour.github.io/assets/og-card.jpg">
     <link rel="canonical" href="https://mbaffour.github.io/">
-    <meta name="theme-color" content="#121009">
+    <link rel="alternate" type="application/rss+xml" title="Michael Baffour Awuah — Blog &amp; Notes" href="https://mbaffour.github.io/feed.xml">
+    <meta name="theme-color" content="#f7f4ea" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#121009" media="(prefers-color-scheme: dark)">
     <title>Michael Baffour Awuah — Phage Biologist</title>
     <script type="application/ld+json">
     {
@@ -51,12 +57,19 @@
     </script>
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><polygon points='16,5 25,10 25,18 16,23 7,18 7,10' fill='%23f4c430' stroke='%23f4c430' stroke-width='1.5'/><line x1='16' y1='23' x2='16' y2='28' stroke='%23f4c430' stroke-width='2' stroke-linecap='round'/><line x1='13' y1='28' x2='19' y2='28' stroke='%23f4c430' stroke-width='2' stroke-linecap='round'/></svg>">
     <!-- Fonts first: the browser can start fetching them while the stylesheet loads. -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="preload" href="assets/fonts/fraunces-var-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="assets/fonts/inter-var-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="assets/fonts/fonts.css">
     <link rel="stylesheet" href="assets/css/site.css">
     <!-- Anti-FOUC: set theme before first paint -->
-    <script>(function(){var s=localStorage.getItem('theme');var d=window.matchMedia('(prefers-color-scheme: dark)').matches;document.documentElement.setAttribute('data-theme',s||(d?'dark':'light'));})()</script>
+    <!-- Sets the theme before first paint. Reading localStorage THROWS when
+         storage is blocked (private mode, third-party-cookie policies); without
+         the catch the attribute was never set, :root's dark palette won, and a
+         light-mode visitor got a dark site permanently. -->
+    <script>(function(){var r=document.documentElement;r.classList.remove('no-js');
+    var t=null;try{t=localStorage.getItem('theme')}catch(e){}
+    if(t!=='dark'&&t!=='light'){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}
+    r.setAttribute('data-theme',t)})()</script>
     <script type="text/javascript" src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js" async></script>
     <!-- Privacy-friendly analytics: no cookies, no personal data. -->
     <script data-goatcounter="https://mbaffour.goatcounter.com/count"
@@ -72,7 +85,7 @@
                   "author": [
                         {
                               "@type": "Person",
-                              "name": "Michael A Debrah"
+                              "name": "Michael Acheampong Debrah"
                         },
                         {
                               "@type": "Person",
@@ -88,7 +101,10 @@
                               "name": "Jolene Ramsey"
                         }
                   ],
-                  "datePublished": "2026",
+                  "datePublished": "2026-05-29",
+                  "volumeNumber": "15",
+                  "issueNumber": "7",
+                  "pagination": "e0122225",
                   "isPartOf": {
                         "@type": "Periodical",
                         "name": "Microbiology Resource Announcements"
@@ -105,12 +121,22 @@
                               "name": "Michael Baffour Awuah",
                               "url": "https://orcid.org/0009-0007-9036-413X"
                         },
+                        { "@type": "Person", "name": "Cody Martin" },
+                        { "@type": "Person", "name": "Jake S Chamblee" },
+                        { "@type": "Person", "name": "Adam J Tomaszewski" },
+                        { "@type": "Person", "name": "Teresa E Sullivan" },
+                        { "@type": "Person", "name": "Qori Emilia" },
+                        { "@type": "Person", "name": "Steven Tran" },
+                        { "@type": "Person", "name": "Jason H Snowden" },
+                        { "@type": "Person", "name": "Kaylyn A Niemiec" },
+                        { "@type": "Person", "name": "Jiatong Zhu" },
                         {
                               "@type": "Person",
                               "name": "Jolene Ramsey"
                         }
                   ],
                   "datePublished": "2025-11-12",
+                  "dateModified": "2026-05-10",
                   "isPartOf": {
                         "@type": "Periodical",
                         "name": "bioRxiv"
@@ -149,7 +175,7 @@
                 <li><a href="#tools">Software</a></li>
                 <li><a href="#blog">Blog</a></li>
                 <li><a href="#teaching">Teaching</a></li>
-                <li><a href="#recognition">Recognition</a></li>
+                <li><a href="#pitch-section">Off the pitch</a></li>
                 <li><a href="#contact">Contact</a></li>
                 <li><button class="nav-theme-toggle" id="themeToggle" aria-label="Switch to light mode" title="Toggle light / dark mode">
                     <svg class="theme-icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
@@ -175,7 +201,7 @@
             <h1 class="hero-name"><span class="ink">Michael</span> <span class="gold">Baffour Awuah</span></h1>
             <p class="hero-headline">Experimental phage biologist <span class="accent">closing the loop from experiment to computation to the next experiment.</span></p>
             <p class="hero-statement">
-                I study how bacteriophage&nbsp;N4 decides <em>whether to give up the cell</em> or hold it as a virus factory, and I identified the regulator behind that decision. I take the mechanism apart with molecular biology, genomics, and genetics.
+                I study how bacteriophage&nbsp;N4 decides <em>whether to give up the cell</em> or hold it as a virus factory. My thesis work identified a novel regulator of that decision, and my first-author preprint shows how N4 takes the cell apart when it finally does. I work on the mechanism with molecular biology, genomics, and genetics.
             </p>
             <div class="hero-buttons">
                 <a href="#research" class="btn btn-primary">🔬 Read the science</a>
@@ -185,9 +211,10 @@
 
             <p class="hero-availability">
                 <span class="open-pulse" aria-hidden="true"></span>
-                Graduating 2027 and open to <strong>biotech R&amp;D</strong>, <strong>AI for science</strong>,
-                <strong>translational research</strong> and <strong>scientific software</strong> roles —
-                <a href="#contact">get in touch</a>.
+                Graduating 2027 and open to <strong>postdoctoral positions</strong>,
+                <strong>biotech R&amp;D</strong>, <strong>AI for science</strong>,
+                <strong>translational research</strong> and <strong>scientific software</strong> —
+                wherever the problem is hardest. <a href="#contact">Get in touch</a>.
             </p>
 
             <div class="hero-stats">
@@ -225,7 +252,7 @@
         <h2 class="news-heading" id="newsHeading">Recent news</h2>
         <ol class="news-items">
             <li>
-                <time datetime="2026">2026</time>
+                <time datetime="2026-05-29">May 2026</time>
                 <span>The <em>Serwaa</em> genome announcement is out in <em>Microbiology Resource Announcements</em>.
                     <a href="https://doi.org/10.1128/mra.01222-25" target="_blank" rel="noopener">doi:10.1128/mra.01222-25</a></span>
             </li>
@@ -305,9 +332,13 @@
                 <p>Howdy! I'm a PhD candidate in Microbiology at Texas A&amp;M University, working in the Ramsey Lab and affiliated with the Center for Phage Technology. My work lives at the intersection of virology, molecular biology, and computational genomics — plus a stubborn habit of building software to make all of it faster.</p>
                 <p>My primary project decodes <em>lysis inhibition</em> in bacteriophage N4 — the phenomenon where the phage strategically delays host cell lysis to transform each infected bacterium into a high-output viral factory (up to ~3,000 viral particles per cell within 3–6 hours). By reverse-engineering these decision-making systems, I aim to power high-titer phage production for therapy and programmable microbial biofactories.</p>
                 <p>Alongside the wet lab, I build open-source tools — increasingly with AI in the loop, which lets me go from a lab annoyance to a shipped, working tool in days rather than months. Not because they'll go on my CV, but because writing the same <code>ggplot2</code> boilerplate twelve times will make anyone snap. Every tool here was built to solve a real problem I or someone next to me hit. Most are browser-based, privacy-first, and zero-install.</p>
-                <p>As I approach the completion of my doctoral studies, I'm interested in roles where wet-lab phage biology, computational genomics, and tool-building all matter — biotech R&amp;D, AI-for-science startups, translational research labs, or scientific software teams.</p>
+                <p>As I approach the completion of my doctoral studies (defending 2027), I'm looking for the hardest, most interesting problem someone will let me work on. That means <strong>postdoctoral positions</strong> where the biology is genuinely unsettled — phage–host decision-making and the mechanisms nobody has a clean model for — and equally <strong>biotech R&amp;D, AI-for-science startups, translational research labs, or scientific software teams</strong>. I care about the difficulty of the question more than the sector it sits in.</p>
+                <p>Outside the lab I play soccer most weeks, grew up on the Black Stars, and
+                   built <a href="#pitch-section">a starting XI out of the skills this PhD runs on</a>
+                   because the metaphor was sitting right there.</p>
                 <div class="about-cv-actions">
-                    <a href="cv-resume/Michael_Baffour_Awuah_CV.html" class="btn btn-primary" target="_blank" rel="noopener">📄 View HTML CV</a>
+                    <a href="journey.html" class="btn btn-primary">🧭 The journey</a>
+                    <a href="cv-resume/Michael_Baffour_Awuah_CV.html" class="btn btn-secondary" target="_blank" rel="noopener">📄 HTML CV</a>
                     <a href="cv-resume/Michael_Baffour_Awuah_CV.pdf" class="btn btn-secondary" download>⬇ CV (PDF)</a>
                 </div>
 
@@ -378,8 +409,8 @@
 
         <div class="research-lead" style="background:linear-gradient(135deg, rgba(244,196,48,0.07), rgba(26,128,64,0.04)); border:1px solid var(--border-strong); border-radius:18px; padding:28px 30px; margin:0 0 36px; max-width:880px;">
             <p style="font-family:var(--font-mono); font-size:0.72rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--gold); margin:0 0 10px;">The headline finding</p>
-            <p style="font-size:1.08rem; color:var(--ink); margin:0 0 14px; line-height:1.65;">Bacteriophage&nbsp;N4 deliberately delays lysing its host, turning each infected cell into a high-output virus factory that yields up to <strong>~3,000 particles in 3–6&nbsp;hours</strong>. My first-author work identifies how N4 controls this lysis-timing decision and shows it lyses through a <strong>SAR endolysin–holin system</strong>. The question isn't <em>when</em> a phage kills; it's <em>whether to give up the cell</em> — and N4 keeps choosing to hold on.</p>
-            <p style="font-size:0.96rem; color:var(--ink-2); margin:0; line-height:1.6;"><span style="color:var(--green); font-weight:600;">Where I'm taking it →</span> Reverse-engineering this timing switch into a control knob for high-titer phage production and programmable microbial biofactories, while shipping the open analysis tools that make those experiments reproducible for the whole field.</p>
+            <p style="font-size:1.08rem; color:var(--ink); margin:0 0 14px; line-height:1.65;">Bacteriophage&nbsp;N4 deliberately delays lysing its host, turning each infected cell into a high-output virus factory that yields up to <strong>~3,000 particles in 3–6&nbsp;hours</strong>. My first-author preprint shows N4 lyses through a <strong>SAR endolysin–holin system</strong> and maps genomic regions — inside and outside the lysis cassette — involved in holding lysis off. Separately, my thesis work identified a novel regulator of that decision; that manuscript is in preparation. The question isn't <em>when</em> a phage kills; it's <em>whether to give up the cell</em> — and N4 keeps choosing to hold on.</p>
+            <p style="font-size:0.96rem; color:var(--ink-2); margin:0; line-height:1.6;"><span style="color:var(--green-text); font-weight:600;">Where I'm taking it →</span> Reverse-engineering this timing switch into a control knob for high-titer phage production and programmable microbial biofactories, while shipping the open analysis tools that make those experiments reproducible for the whole field.</p>
         </div>
 
         <div class="research-grid">
@@ -409,7 +440,7 @@
                     <span class="research-tag">Host–Pathogen</span>
                 </div>
                 <span class="research-more"><span class="chev">›</span> what this means</span>
-                <div class="research-detail"><p>This is my thesis. I found the regulator behind N4's lysis-timing decision and showed the phage lyses through a <em>SAR endolysin–holin</em> system, reframing the question from <em>when</em> a phage kills to <em>whether it gives up the cell</em>.</p></div>
+                <div class="research-detail"><p>This is my thesis. The published half: N4 lyses through a <em>SAR endolysin–holin</em> system, with genomic regions in and beyond the lysis cassette involved in delaying it (<a href="https://doi.org/10.1101/2025.11.12.688109" target="_blank" rel="noopener">preprint</a>). The half still in preparation: a novel regulator of that timing decision — the work the Patterson Fellowship recognised. Together they reframe the question from <em>when</em> a phage kills to <em>whether it gives up the cell</em>.</p></div>
             </div>
             <div class="research-card" tabindex="0" role="button" aria-expanded="false">
                 <span class="research-icon">🧬</span>
@@ -763,7 +794,11 @@
                 </div>
 
                 <div class="concept-viz">
-                    <div class="tf-wrap" id="tfWrap">
+                    <!-- tabindex so the game can hold focus: its key handlers are
+                         gated on that, and without it wrap.focus() was a no-op and
+                         the game could never legitimately claim the arrow keys. -->
+                    <div class="tf-wrap" id="tfWrap" tabindex="0"
+                         aria-label="TailFiber game. Click or press Enter to play; arrow keys or WASD to move.">
                         <canvas class="tf-canvas" id="tfCanvas" role="img" aria-label="TailFiber phage simulator game canvas"></canvas>
 
                         <!-- HUD overlay -->
@@ -955,6 +990,75 @@
 
     <hr class="section-divider">
 
+    <!-- ===== OFF THE PITCH ===== -->
+    <section class="section fade-in" id="pitch-section">
+        <div class="section-header">
+            <span class="section-label">Off the Clock</span>
+            <h2 class="section-title">Off the <span class="highlight">Pitch</span></h2>
+            <p class="section-subtitle">I play soccer. Badly, enthusiastically, and most weeks — which turns out to be the same way I do science.</p>
+        </div>
+
+        <div class="pitch-grid">
+            <div class="pitch-prose">
+                <p>I grew up on Ghanaian football, which means I grew up on hope with a very
+                   specific shape to it. The <strong>Black Stars</strong> teach you early that
+                   talent is not the same as a result, that the run someone makes off the ball
+                   is usually what created the goal, and that you can play beautifully and
+                   still lose on penalties. Reasonable preparation for a PhD.</p>
+                <p>These days it's pickup games in College Station — a squad that speaks about
+                   six languages and agrees on nothing except that the last goal was offside.
+                   It is the only part of my week with no reviewers.</p>
+                <p>The habits transfer more than I expected. You play the pass that's on, not
+                   the one you rehearsed. You spend most of the match without the ball, which
+                   is exactly like waiting on an overnight culture. And the players worth
+                   having around are the ones who track back when the experiment fails, not
+                   the ones who only turn up for the result.</p>
+                <p class="pitch-flag"><span aria-hidden="true">🇬🇭</span> The gold, green and red
+                   on this site is the Ghanaian flag, not a coincidence.</p>
+            </div>
+
+            <!-- Interactive: the eleven things I lean on, as a starting XI. -->
+            <div class="pitch-widget" id="pitchWidget">
+                <h3 class="pitch-h3">My starting XI</h3>
+                <p class="pitch-hint">Every skill this PhD runs on, in a 4&#8209;3&#8209;3. Pick a shirt.</p>
+
+                <svg class="pitch-svg" viewBox="0 0 100 100" role="group"
+                     aria-label="A soccer pitch showing eleven skills arranged in a 4-3-3 formation. Each shirt is a button.">
+                    <rect class="pitch-turf" x="0" y="0" width="100" height="100" rx="2"/>
+                    <g class="pitch-lines" aria-hidden="true" fill="none">
+                        <rect x="3" y="3" width="94" height="94" rx="1"/>
+                        <line x1="3" y1="50" x2="97" y2="50"/>
+                        <circle cx="50" cy="50" r="11"/>
+                        <circle cx="50" cy="50" r="0.9" class="spot"/>
+                        <rect x="28" y="3" width="44" height="15"/>
+                        <rect x="40" y="3" width="20" height="6"/>
+                        <rect x="28" y="82" width="44" height="15"/>
+                        <rect x="40" y="91" width="20" height="6"/>
+                    </g>
+                </svg>
+
+                <div class="pitch-detail" role="status" aria-live="polite"></div>
+
+                <!-- No-JS view: the same eleven, as text. -->
+                <ul class="pitch-fallback">
+                    <li><strong>GK</strong> Controls &amp; replicates</li>
+                    <li><strong>RB</strong> Molecular cloning</li>
+                    <li><strong>CB</strong> Phage isolation</li>
+                    <li><strong>CB</strong> Genome assembly &amp; annotation</li>
+                    <li><strong>LB</strong> CRISPR engineering</li>
+                    <li><strong>CM</strong> Experimental design</li>
+                    <li><strong>CM</strong> RNA-seq &amp; DESeq2</li>
+                    <li><strong>CM</strong> R &amp; Python pipelines</li>
+                    <li><strong>RW</strong> Tool building</li>
+                    <li><strong>ST</strong> Lysis inhibition in N4</li>
+                    <li><strong>LW</strong> Teaching &amp; mentoring</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <hr class="section-divider">
+
     <!-- ===== LIFE IN THE LAB GALLERY ===== -->
     <section class="section fade-in" id="gallery">
         <div class="section-header">
@@ -1026,6 +1130,7 @@
                 <span class="open-pulse"></span>
                 <span class="open-label">Open to:</span>
                 <span class="open-tags">
+                    <span>Postdoctoral positions</span>
                     <span>Biotech R&amp;D</span>
                     <span>AI for science</span>
                     <span>Translational research</span>
@@ -1103,7 +1208,7 @@
             ·
             <span style="color:var(--ink)">C</span><span style="color:var(--red-text)">G</span><span style="color:var(--green-text)">A</span><span style="color:var(--gold)">T</span>
         </div>
-        <p class="footer-credit">Press <kbd style="font-family:var(--font-mono);background:rgba(0,0,0,0.4);border:1px solid var(--border);border-radius:3px;padding:1px 5px;">⌘K</kbd> anywhere to search.</p>
+        <p class="footer-credit">Press <kbd>⌘K</kbd> anywhere to search.</p>
     </footer>
 
     <!-- ===== JAVASCRIPT ===== -->
@@ -1113,5 +1218,6 @@
     <script defer src="assets/js/playground.js"></script>
     <script defer src="assets/js/ui.js"></script>
     <script defer src="assets/js/tailfiber.js"></script>
+    <script defer src="assets/js/pitch.js"></script>
 </body>
 </html>
