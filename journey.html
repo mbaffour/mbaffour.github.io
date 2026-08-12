@@ -114,6 +114,44 @@
                 text-transform: uppercase; color: var(--green-text); display: block;
                 margin-bottom: 9px; }
 
+        /* ── Chapter scenes ──────────────────────────────────────────────
+           A landscape or cultural motif per chapter, drawn as inline SVG so it
+           themes with the page and costs no image request. The art is
+           decorative (aria-hidden); the caption beneath is real content, and is
+           the part that does the teaching. */
+        .scene { margin: 24px 0 20px; border: 1px solid var(--border);
+                 border-radius: 14px; overflow: hidden; background: var(--bg-card); }
+        .scene svg { display: block; width: 100%; height: auto; }
+        .scene figcaption { padding: 11px 15px 13px; border-top: 1px solid var(--border);
+                            font-size: .82rem; line-height: 1.58; color: var(--ink-2); }
+        .scene figcaption b { color: var(--gold); font-weight: 600; }
+        .sym { font-family: var(--font-mono); font-size: .72rem; letter-spacing: .04em;
+               color: var(--green-text); text-transform: uppercase; }
+
+        .sea   { fill: var(--green); opacity: .26; }
+        .sand  { fill: var(--gold);  opacity: .20; }
+        .land  { fill: var(--green); opacity: .22; }
+        .hill  { fill: var(--green); opacity: .14; }
+        .sun   { fill: var(--gold);  opacity: .85; }
+        .ink-shape   { fill: var(--ink);  opacity: .80; }
+        .gold-shape  { fill: var(--gold); }
+        .red-shape   { fill: var(--red); }
+        .green-shape { fill: var(--green); }
+        .stroke-ink  { fill: none; stroke: var(--ink);  stroke-width: 2;
+                       stroke-linecap: round; stroke-linejoin: round; opacity: .7; }
+        .stroke-gold { fill: none; stroke: var(--gold); stroke-width: 2.2;
+                       stroke-linecap: round; stroke-linejoin: round; }
+        .stroke-green{ fill: none; stroke: var(--green-text); stroke-width: 2;
+                       stroke-linecap: round; stroke-linejoin: round; }
+
+        /* The sun breathes very slightly, so a static scene still feels alive
+           without anything travelling across the reader's eye. */
+        @keyframes scene-drift { 0%,100% { transform: translateY(0); }
+                                 50%     { transform: translateY(-3px); } }
+        .drift { animation: scene-drift 9s ease-in-out infinite; transform-origin: center; }
+        @media (prefers-reduced-motion: reduce) { .drift { animation: none; } }
+        @media print { .scene { break-inside: avoid; } }
+
         /* ---- hero ---- */
         header.intro { padding: 96px 0 48px; position: relative; }
         .eyebrow { font-family: var(--font-mono); font-size:.72rem; letter-spacing:.18em;
@@ -267,6 +305,59 @@
         </div></div>
         <div class="chapter-body">
             <h2 id="ch1">Biochemistry, and a question about fruit</h2>
+
+            <figure class="scene">
+              <svg viewBox="0 0 800 250" role="img" aria-hidden="true" focusable="false">
+                <!-- Gulf of Guinea: sun over the water, canoes drawn up on the sand -->
+                <circle class="sun drift" cx="640" cy="70" r="30"/>
+                <path class="sea" d="M0 128 H800 V182 H0 Z"/>
+                <path class="stroke-green" d="M40 144 q28 -7 56 0 t56 0 M180 158 q28 -7 56 0 t56 0
+                                              M420 146 q28 -7 56 0 t56 0 M600 160 q28 -7 56 0 t56 0" opacity=".5"/>
+                <path class="sand" d="M0 182 H800 V250 H0 Z"/>
+                <!-- fishing canoe, the kind still launched off these beaches -->
+                <path class="ink-shape" d="M250 214 q60 26 150 0 l-14 12 q-62 16 -122 0 Z"/>
+                <path class="stroke-ink" d="M325 214 V168 M325 176 l40 14 -40 14"/>
+                <!-- palms -->
+                <g class="stroke-ink">
+                  <path d="M96 250 q6 -46 2 -74"/>
+                  <path d="M98 176 q-30 -18 -50 -6 M98 176 q-16 -30 -44 -32 M98 176 q26 -22 52 -10 M98 176 q10 -32 40 -30"/>
+                  <path d="M712 250 q-6 -40 -2 -64"/>
+                  <path d="M710 186 q-26 -16 -44 -5 M710 186 q-14 -26 -38 -27 M710 186 q23 -19 46 -9"/>
+                </g>
+                <!-- sankofa, as a watermark -->
+                <g transform="translate(60,52) scale(0.85)" opacity=".5">
+                  <path class="stroke-gold" d="M-14 6 a12 12 0 0 1 24 0 a12 12 0 0 1 -24 0 M-2 -6 q10 -20 26 -8
+                                               q14 12 -2 22 M22 12 l4 -10 8 6"/>
+                </g>
+              
+                <!-- Cape Coast Castle on the headland: whitewashed walls above the sea -->
+                <g transform="translate(508,88)">
+                  <path class="ink-shape" opacity=".14" d="M-24 40 h150 v-8 h-150 Z"/>
+                  <g class="stroke-ink">
+                    <path d="M0 32 V6 h22 V32 M11 6 V-6 M4 -6 h14"/>
+                    <path d="M34 32 V14 h58 V32 M44 14 v-8 h10 v8 M78 14 v-8 h10 v8"/>
+                    <path d="M104 32 V6 h22 V32 M115 6 V-6 M108 -6 h14"/>
+                  </g>
+                </g>
+                <!-- gull over the water -->
+                <path class="stroke-ink" d="M420 84 q8 -8 16 0 q8 -8 16 0" opacity=".6"/>
+                <path class="stroke-ink" d="M472 100 q6 -6 12 0 q6 -6 12 0" opacity=".45"/>
+                <!-- net floats along the beach -->
+                <g class="gold-shape" opacity=".8">
+                  <circle cx="180" cy="236" r="4"/><circle cx="196" cy="240" r="4"/>
+                  <circle cx="212" cy="236" r="4"/><circle cx="228" cy="241" r="4"/>
+                </g>
+              </svg>
+              <figcaption>
+                <b>Cape Coast, Ghana.</b> Fishing canoes still launch off these beaches under
+                Cape Coast Castle, the whitewashed fort on the headland — a UNESCO site and one
+                of the heaviest places on the Atlantic coast, where the dungeons and the
+                “Door of No Return” are kept as memorial. The university sits on the hills
+                above the same sea. <span class="sym">Sankofa</span>, drawn at the left, is the
+                Akan bird looking backward: <em>“go back and fetch it”</em> — the past is not
+                left behind, it is carried.
+              </figcaption>
+            </figure>
             <p>I read Biochemistry at the University of Cape Coast and graduated with a
                Second Class Upper. My undergraduate dissertation, with Dr.&nbsp;Jerry Ampofo-Asiama,
                was a physicochemical, functional and nutritional analysis of juice blends made
@@ -290,6 +381,57 @@
         </div></div>
         <div class="chapter-body">
             <h2 id="ch2">Seven courses, and what teaching does to you</h2>
+
+            <figure class="scene">
+              <svg viewBox="0 0 800 250" role="img" aria-hidden="true" focusable="false">
+                <path class="hill" d="M0 250 V150 q200 -40 400 -10 t400 -20 V250 Z"/>
+                <!-- a board, and the rows in front of it -->
+                <rect class="ink-shape" x="250" y="42" width="300" height="118" rx="6" opacity=".16"/>
+                <rect x="250" y="42" width="300" height="118" rx="6" class="stroke-ink"/>
+                <path class="stroke-gold" d="M282 84 h120 M282 106 h180 M282 128 h96"/>
+                <g class="stroke-ink">
+                  <path d="M180 210 h120 M195 210 v22 M285 210 v22"/>
+                  <path d="M340 210 h120 M355 210 v22 M445 210 v22"/>
+                  <path d="M500 210 h120 M515 210 v22 M605 210 v22"/>
+                </g>
+                <g class="ink-shape">
+                  <circle cx="212" cy="192" r="9"/><circle cx="268" cy="192" r="9"/>
+                  <circle cx="372" cy="192" r="9"/><circle cx="428" cy="192" r="9"/>
+                  <circle cx="532" cy="192" r="9"/><circle cx="588" cy="192" r="9"/>
+                </g>
+                <!-- adinkrahene: concentric rings -->
+                <g transform="translate(96,86)" opacity=".55">
+                  <circle class="stroke-gold" r="30"/><circle class="stroke-gold" r="20"/>
+                  <circle class="stroke-gold" r="10"/>
+                </g>
+              
+                <!-- talking drum, squeezed under the arm to bend its pitch -->
+                <g transform="translate(680,150)">
+                  <path class="stroke-gold" d="M-20 -34 q20 12 40 0 M-20 34 q20 -12 40 0"/>
+                  <path class="stroke-gold" d="M-20 -34 q-10 34 0 68 M20 -34 q10 34 0 68"/>
+                  <path class="stroke-ink" d="M-18 -30 L14 28 M-14 -33 L18 24 M-19 -22 L10 31 M18 -30 L-14 28 M14 -33 L-18 24" opacity=".55"/>
+                  <path class="stroke-gold" d="M30 -44 q14 8 10 22" />
+                </g>
+                <!-- cocoa pods: the crop the region runs on -->
+                <g transform="translate(52,196)">
+                  <path class="gold-shape" opacity=".85" d="M0 0 q14 -6 20 8 q8 18 -4 30 q-14 6 -20 -8 q-8 -18 4 -30 Z"/>
+                  <path class="stroke-ink" d="M8 4 q6 12 0 26" opacity=".5"/>
+                  <path class="gold-shape" opacity=".6" transform="translate(30,10) rotate(24)"
+                        d="M0 0 q11 -5 16 6 q6 14 -3 24 q-11 5 -16 -6 q-6 -14 3 -24 Z"/>
+                </g>
+              </svg>
+              <figcaption>
+                <b>Teaching, back at Cape Coast.</b> Seven undergraduate courses — where you
+                find out how much of a thing you actually understand. The <b>talking drum</b> at
+                the right is squeezed under the arm while struck, bending its pitch to mimic
+                speech; for centuries it carried messages between towns, which makes it a fair
+                emblem for lecturing. The pods are <b>cocoa</b>, the crop the region runs on —
+                Ghana is the world's second-largest producer.
+                <span class="sym">Adinkrahene</span>, the three rings, is the chief of the
+                Adinkra symbols: leadership by example.
+              </figcaption>
+            </figure>
+
             <p>Before I was anyone's graduate student, I taught. Seven courses across two
                years at Cape Coast — Biological Oxidation &amp; Bioenergetics, Biochemical
                Techniques, Enzyme Action &amp; Catalysis, General Biochemistry Practical,
@@ -314,6 +456,44 @@
         </div></div>
         <div class="chapter-body">
             <h2 id="ch3">Ramsey Lab, and the Center for Phage Technology</h2>
+
+            <figure class="scene">
+              <svg viewBox="0 0 800 250" role="img" aria-hidden="true" focusable="false">
+                <circle class="sun drift" cx="150" cy="66" r="26"/>
+                <!-- post oak savannah: low rolling ground, scattered oaks, big sky -->
+                <path class="hill" d="M0 250 V176 q120 -26 240 -6 t240 -14 q120 -12 320 8 V250 Z"/>
+                <path class="land" d="M0 250 V208 q200 -20 400 -4 t400 -12 V250 Z"/>
+                <g class="stroke-ink">
+                  <path d="M120 214 v-34 M120 190 q-22 -14 -34 -2 M120 190 q20 -16 34 -4"/>
+                  <path d="M640 218 v-30 M640 196 q-20 -13 -31 -2 M640 196 q18 -14 31 -3"/>
+                </g>
+                <!-- water tower, the landmark of a small Texas town -->
+                <g class="stroke-ink" transform="translate(430,0)">
+                  <path d="M-26 132 h52 l-8 -22 h-36 Z"/>
+                  <path d="M-18 132 v62 M18 132 v62 M-18 162 h36 M-14 194 h28"/>
+                </g>
+                <!-- bluebonnets -->
+                <g class="gold-shape" opacity=".9">
+                  <circle cx="228" cy="232" r="3"/><circle cx="236" cy="226" r="3"/>
+                  <circle cx="244" cy="233" r="3"/><circle cx="700" cy="236" r="3"/>
+                  <circle cx="710" cy="230" r="3"/><circle cx="718" cy="237" r="3"/>
+                </g>
+              
+                <!-- longhorn: the horn line is the whole silhouette -->
+                <g transform="translate(240,196)">
+                  <path class="stroke-ink" d="M-52 -14 q-16 -12 -28 -6 q14 -2 20 6 M52 -14 q16 -12 28 -6 q-14 -2 -20 6"/>
+                  <path class="ink-shape" d="M-52 -14 q0 -10 12 -10 h80 q12 0 12 10 q0 8 -10 10 l-6 26 h-10 l-4 -24 h-44 l-4 24 h-10 l-6 -26 q-10 -2 -10 -10 Z" opacity=".7"/>
+                </g>
+              </svg>
+              <figcaption>
+                <b>The Brazos Valley, Texas.</b> College Station sits in post oak savannah — open
+                grassland with oaks scattered through it, bluebonnets in spring, and a great
+                deal of sky. The <b>longhorn</b> descends from the first cattle brought to the
+                Americas, shaped by centuries of open range; the water tower is how most small
+                Texas towns are navigated. About 7,500&nbsp;km from the Gulf of Guinea.
+              </figcaption>
+            </figure>
+
             <p>I moved to College Station to start a Ph.D. in Biology (Microbiology) with
                Dr.&nbsp;Jolene Ramsey, affiliated with the Center for Phage Technology. Two
                semesters in I was back in front of a class, teaching Intro Biology I and II —
@@ -336,6 +516,41 @@
         </div></div>
         <div class="chapter-body">
             <h2 id="ch4">Delaying the inevitable</h2>
+
+            <figure class="scene">
+              <svg viewBox="0 0 800 250" role="img" aria-hidden="true" focusable="false">
+                <!-- one bacterium, drawn large; phages adsorbed outside -->
+                <ellipse class="stroke-gold" cx="400" cy="130" rx="170" ry="72"/>
+                <ellipse class="stroke-gold" cx="400" cy="130" rx="158" ry="62" opacity=".35"/>
+                <!-- new virions assembling inside -->
+                <g class="stroke-ink" opacity=".85">
+                  <path d="M340 110 l10 -6 10 6 v12 l-10 6 -10 -6 Z M350 128 v10"/>
+                  <path d="M395 96  l10 -6 10 6 v12 l-10 6 -10 -6 Z M405 114 v10"/>
+                  <path d="M448 118 l10 -6 10 6 v12 l-10 6 -10 -6 Z M458 136 v10"/>
+                  <path d="M368 148 l10 -6 10 6 v12 l-10 6 -10 -6 Z M378 166 v8"/>
+                  <path d="M425 152 l10 -6 10 6 v12 l-10 6 -10 -6 Z M435 170 v8"/>
+                </g>
+                <!-- superinfecting phages outside: the LIN signal -->
+                <g class="stroke-green">
+                  <path d="M180 60 l8 -5 8 5 v10 l-8 5 -8 -5 Z M188 75 v12 M180 87 h16"/>
+                  <path d="M600 52 l8 -5 8 5 v10 l-8 5 -8 -5 Z M608 67 v12 M600 79 h16"/>
+                  <path d="M640 190 l8 -5 8 5 v10 l-8 5 -8 -5 Z M648 205 v12 M640 217 h16"/>
+                  <path d="M150 180 l8 -5 8 5 v10 l-8 5 -8 -5 Z M158 195 v12 M150 207 h16"/>
+                </g>
+                <!-- a clock face, because the phenotype is TIMING -->
+                <g transform="translate(400,130)">
+                  <circle class="stroke-ink" r="24" opacity=".9"/>
+                  <path class="stroke-gold" d="M0 0 V-15 M0 0 L10 6"/>
+                </g>
+              </svg>
+              <figcaption>
+                <b>Lysis inhibition, in one picture.</b> The infected cell is ready to burst —
+                virions are assembled — but phages landing on the outside signal that hosts are
+                scarce. So the phage holds the door shut and keeps building. The phenotype is a
+                timing decision: <em>when</em> to lyse, not whether.
+              </figcaption>
+            </figure>
+
             <p>Most phages infect, replicate, and burst the cell on a schedule. Phage N4 can
                decline to. Under the right conditions it holds the cell together and keeps
                building — turning a single bacterium into a factory that puts out on the
@@ -362,6 +577,38 @@
         </div></div>
         <div class="chapter-body">
             <h2 id="ch5">A phage named after my grandmother</h2>
+
+            <figure class="scene">
+              <svg viewBox="0 0 800 250" role="img" aria-hidden="true" focusable="false">
+                <!-- kente: warp and weft in the flag's three colours -->
+                <g opacity=".75">
+                  <rect class="gold-shape" x="0"   y="0" width="800" height="26"/>
+                  <rect class="green-shape" x="0" y="26" width="800" height="10" fill="var(--green)"/>
+                  <rect class="red-shape"  x="0"  y="36" width="800" height="16"/>
+                </g>
+                <g opacity=".5">
+                  <rect class="gold-shape" x="0"   y="198" width="800" height="16"/>
+                  <rect class="red-shape"  x="0"   y="214" width="800" height="10"/>
+                  <rect x="0" y="224" width="800" height="26" fill="var(--green)"/>
+                </g>
+                <!-- the phage itself, named for a grandmother -->
+                <g transform="translate(400,126)">
+                  <path class="stroke-gold" d="M0 -46 L34 -27 V11 L0 30 L-34 11 V-27 Z"/>
+                  <path class="stroke-gold" d="M0 30 V62"/>
+                  <path class="stroke-gold" d="M-20 62 h40 M-20 62 l-14 20 M20 62 l14 20 M-6 62 l-4 24 M6 62 l4 24"/>
+                </g>
+                <text x="400" y="176" text-anchor="middle" class="sym"
+                      style="fill:var(--gold);font-size:15px;letter-spacing:.22em">SERWAA</text>
+              </svg>
+              <figcaption>
+                <b>Kente, and a name.</b> Kente is woven in strips on a narrow loom and sewn
+                edge to edge, which is why the pattern runs in bands. The colours carry meaning
+                in Akan usage — gold for royalty and worth, green for growth and harvest, red
+                for what was struggled for. Naming a phage <em>Serwaa</em>, after his
+                grandmother, puts a family name into GenBank permanently.
+              </figcaption>
+            </figure>
+
             <p>The first paper with my name on it is a genome announcement for a phage we
                isolated and called <em>Serwaa</em>, after my grandmother. Annie Koh, an
                undergraduate I mentored, did the work that made it a paper.</p>
@@ -388,6 +635,42 @@
         </div></div>
         <div class="chapter-body">
             <h2 id="ch6">How N4 actually opens the cell</h2>
+
+            <figure class="scene">
+              <svg viewBox="0 0 800 250" role="img" aria-hidden="true" focusable="false">
+                <!-- membrane as a lipid bilayer band -->
+                <g class="stroke-ink" opacity=".55">
+                  <path d="M40 100 H760 M40 150 H760"/>
+                </g>
+                <g class="stroke-ink" opacity=".35">
+                  <path d="M60 100 v14 M90 100 v14 M120 100 v14 M150 100 v14 M180 100 v14 M210 100 v14
+                           M240 100 v14 M270 100 v14 M300 100 v14 M500 100 v14 M530 100 v14 M560 100 v14
+                           M590 100 v14 M620 100 v14 M650 100 v14 M680 100 v14 M710 100 v14 M740 100 v14"/>
+                  <path d="M60 150 v-14 M90 150 v-14 M120 150 v-14 M150 150 v-14 M180 150 v-14 M210 150 v-14
+                           M240 150 v-14 M270 150 v-14 M300 150 v-14 M500 150 v-14 M530 150 v-14 M560 150 v-14
+                           M590 150 v-14 M620 150 v-14 M650 150 v-14 M680 150 v-14 M710 150 v-14 M740 150 v-14"/>
+                </g>
+                <!-- the hole the holin opens -->
+                <path class="stroke-gold" d="M330 100 q-14 25 0 50 M470 100 q14 25 0 50"/>
+                <!-- endolysins released through it -->
+                <g class="gold-shape" opacity=".9">
+                  <circle cx="400" cy="125" r="7"/>
+                  <circle cx="380" cy="70" r="6"/>
+                  <circle cx="424" cy="52" r="6"/>
+                  <circle cx="404" cy="28" r="5"/>
+                </g>
+                <path class="stroke-gold" d="M400 112 q-16 -28 -20 -36 M400 112 q18 -40 22 -54" opacity=".45"/>
+                <text x="400" y="196" text-anchor="middle" class="sym"
+                      style="fill:var(--green-text);font-size:13px;letter-spacing:.14em">HOLIN OPENS · ENDOLYSIN CUTS</text>
+              </svg>
+              <figcaption>
+                <b>The lysis machinery.</b> N4 opens its host with a two-part system: a
+                <b>holin</b> punches holes in the inner membrane, and a <b>SAR endolysin</b>
+                escapes through them to cut the cell wall. This is the machinery whose timing
+                the regulator controls — the subject of the first-author preprint.
+              </figcaption>
+            </figure>
+
             <p>The first-author preprint describes the lysis machinery itself: N4 uses a
                <strong>SAR endolysin–holin system</strong> to take the host cell apart. Knowing
                the mechanism is what makes the inhibition question answerable — you cannot
@@ -408,6 +691,35 @@
         </div></div>
         <div class="chapter-body">
             <h2 id="ch7">The tools were self-defence first</h2>
+
+            <figure class="scene">
+              <svg viewBox="0 0 800 250" role="img" aria-hidden="true" focusable="false">
+                <!-- a terminal window -->
+                <rect class="stroke-ink" x="70" y="46" width="300" height="160" rx="8"/>
+                <path class="stroke-ink" d="M70 74 H370" opacity=".45"/>
+                <circle class="red-shape"  cx="92"  cy="60" r="5"/>
+                <circle class="gold-shape" cx="112" cy="60" r="5"/>
+                <circle cx="132" cy="60" r="5" fill="var(--green)"/>
+                <g class="stroke-gold" opacity=".8">
+                  <path d="M92 100 h80 M92 122 h140 M92 144 h100 M92 166 h60"/>
+                </g>
+                <!-- a lysis curve on axes: rises, then the crash -->
+                <g transform="translate(430,0)">
+                  <path class="stroke-ink" d="M40 60 V190 H310"/>
+                  <path class="stroke-gold" d="M50 176 q60 -10 100 -46 q30 -26 44 -28 q20 0 26 60 q6 24 70 26"/>
+                  <circle class="gold-shape" cx="194" cy="102" r="5"/>
+                </g>
+                <text x="595" y="228" text-anchor="middle" class="sym"
+                      style="fill:var(--green-text);font-size:12px;letter-spacing:.12em">OD FALLS = CELLS BURST</text>
+              </svg>
+              <figcaption>
+                <b>Why the tools exist.</b> A lysis experiment produces the curve on the right:
+                turbidity climbs while cells grow, then crashes when they burst. Drawing that
+                figure a dozen times a week is exactly the kind of chore worth automating once —
+                which is how most of the software on this site started.
+              </figcaption>
+            </figure>
+
             <p>Sixteen-odd open tools have come out of this PhD, and none of them started as a
                project. They started as the twelfth time I wrote the same <code>ggplot2</code>
                boilerplate, or the third evening lost to a dilution I could have solved on
@@ -431,6 +743,42 @@
         </div></div>
         <div class="chapter-body">
             <h2 id="ch8">The Patterson Fellowship</h2>
+
+            <figure class="scene">
+              <svg viewBox="0 0 800 250" role="img" aria-hidden="true" focusable="false">
+                <path class="land" d="M0 250 V206 q200 -18 400 -2 t400 -10 V250 Z"/>
+                <!-- the black star of the Ghana flag, on its band of colour -->
+                <g opacity=".85">
+                  <rect class="red-shape" x="250" y="52" width="300" height="34"/>
+                  <rect class="gold-shape" x="250" y="86" width="300" height="34"/>
+                  <rect x="250" y="120" width="300" height="34" fill="var(--green)"/>
+                </g>
+                <path class="ink-shape" transform="translate(400,103) scale(1.15)"
+                      d="M0 -30 L7 -9 H29 L11 4 L18 26 L0 13 L-18 26 L-11 4 L-29 -9 H-7 Z"/>
+                <g class="stroke-gold" opacity=".8">
+                  <path d="M300 200 q-40 -34 -34 -74 M500 200 q40 -34 34 -74"/>
+                </g>
+              
+                <!-- fontomfrom pair: the tall royal drums that drive adowa and kete -->
+                <g transform="translate(120,158)">
+                  <path class="stroke-gold" d="M-16 -44 h32 M-16 -44 q-8 44 -4 78 M16 -44 q8 44 4 78 M-20 34 h40"/>
+                  <path class="stroke-ink" d="M-14 -38 L10 26 M14 -38 L-10 26 M0 -40 V30" opacity=".5"/>
+                </g>
+                <g transform="translate(176,170)">
+                  <path class="stroke-gold" d="M-12 -32 h24 M-12 -32 q-6 32 -3 58 M12 -32 q6 32 3 58 M-15 26 h30"/>
+                  <path class="stroke-ink" d="M-10 -27 L8 20 M10 -27 L-8 20" opacity=".5"/>
+                </g>
+              </svg>
+              <figcaption>
+                <b>The Black Star, and the drums.</b> The star at the centre of Ghana's flag is
+                the emblem of African emancipation, taken from Marcus Garvey's Black Star Line;
+                the national team is named for it. The tall pair at the left are
+                <b>fontomfrom</b> — royal drums whose ensemble drives <em>adowa</em> and
+                <em>kete</em>, the dances of Ashanti and coastal ceremony. The Patterson
+                citation reads <em>“for the discovery of a novel lysis regulator in phage N4.”</em>
+              </figcaption>
+            </figure>
+
             <p>In August 2025 I received the Thomas L. Patterson Graduate Student Fellowship.
                Alongside it: judging the Texas Junior Science &amp; Humanities Symposium and the
                SACNAS Diversity in Science Symposium, mentoring incoming teaching assistants,
@@ -455,6 +803,34 @@
         </div></div>
         <div class="chapter-body">
             <h2 id="ch9">What I'm looking for next</h2>
+
+            <figure class="scene">
+              <svg viewBox="0 0 800 250" role="img" aria-hidden="true" focusable="false">
+                <circle class="sun drift" cx="400" cy="118" r="34"/>
+                <path class="hill" d="M0 250 V182 q160 -34 320 -8 t320 -20 q90 -8 160 6 V250 Z"/>
+                <path class="land" d="M0 250 V214 q200 -16 400 -2 t400 -10 V250 Z"/>
+                <!-- a road running to the horizon -->
+                <path class="ink-shape" opacity=".28" d="M356 250 L390 146 h20 L444 250 Z"/>
+                <g class="stroke-gold" opacity=".85">
+                  <path d="M400 238 v-16 M400 210 v-13 M400 186 v-10 M400 168 v-8 M400 154 v-6"/>
+                </g>
+              
+                <!-- baobab: the upside-down tree, planted where roads meet -->
+                <g transform="translate(640,0)" class="stroke-ink">
+                  <path d="M0 214 q-4 -30 -2 -44 q-14 -4 -18 -18 M-2 170 q-16 2 -24 -8 M-2 170 q2 -16 -6 -26 M-2 170 q14 -2 20 -14 M-2 170 q18 6 28 -2"/>
+                  <path d="M8 214 q4 -30 2 -44" opacity=".5"/>
+                </g>
+              </svg>
+              <figcaption>
+                <b>Still open.</b> Cape Coast to College Station is roughly 7,500&nbsp;km and nine
+                years. The tree on the horizon is a <b>baobab</b> — the “upside-down tree” of
+                the savannah, which lives for centuries and marks meeting places and crossroads
+                across West Africa. The road out of this chapter has not been picked yet —
+                postdoc, biotech R&amp;D, AI-for-science, or scientific software — and the
+                criterion is the difficulty of the question, not the sector it sits in.
+              </figcaption>
+            </figure>
+
             <p>I defend in 2027, and I want the hardest problem someone will let me near.
                I'm looking at <strong>postdoctoral positions</strong> where the question is
                genuinely open — phage–host decision-making, the biology nobody has a clean
@@ -581,3 +957,4 @@
 </script>
 </body>
 </html>
+
