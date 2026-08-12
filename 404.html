@@ -5,12 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Page not found — Michael Baffour Awuah</title>
     <meta name="robots" content="noindex">
+    <meta name="theme-color" content="#f7f4ea" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#121009" media="(prefers-color-scheme: dark)">
+    <link rel="stylesheet" href="assets/fonts/fonts.css">
+    <!-- Same guard as every other page: reading localStorage throws when
+         storage is blocked, which would leave the theme unset. -->
+    <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
+    if(t!=='dark'&&t!=='light'){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}
+    document.documentElement.setAttribute('data-theme',t)})()</script>
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><polygon points='16,5 25,10 25,18 16,23 7,18 7,10' fill='%23f4c430' stroke='%23f4c430' stroke-width='1.5'/><line x1='16' y1='23' x2='16' y2='28' stroke='%23f4c430' stroke-width='2' stroke-linecap='round'/><line x1='13' y1='28' x2='19' y2='28' stroke='%23f4c430' stroke-width='2' stroke-linecap='round'/></svg>">
     <style>
-        :root { --bg:#121009; --gold:#f4c430; --green:#1f9249; --ink:#f5edd8; --ink-3:#a08652; }
+        :root { --bg:#121009; --bg-2:#1a160c; --gold:#f4c430; --green:#1f9249; --ink:#f5edd8; --ink-3:#a08652; }
+        /* This page was dark-only, so a light-mode visitor who mistyped a URL
+           was dropped into a dark page with no way back to the site's theme. */
+        html[data-theme="light"] { --bg:#f7f4ea; --bg-2:#ede8d4; --gold:#7d5800;
+                                   --green:#0f6a2e; --ink:#1a1408; --ink-3:#6f5420; }
+        @media (prefers-color-scheme: light) {
+            html:not([data-theme]) { --bg:#f7f4ea; --bg-2:#ede8d4; --gold:#7d5800;
+                                     --green:#0f6a2e; --ink:#1a1408; --ink-3:#6f5420; }
+        }
         * { margin:0; padding:0; box-sizing:border-box; }
         body {
-            background: radial-gradient(circle at 50% 30%, #1a160c 0%, #121009 70%);
+            background: radial-gradient(circle at 50% 30%, var(--bg-2) 0%, var(--bg) 70%);
             color: var(--ink);
             font-family: 'Inter','Segoe UI',system-ui,sans-serif;
             min-height: 100vh;
@@ -28,7 +44,8 @@
         p { color: var(--ink-3); line-height: 1.6; margin-bottom: 28px; }
         a.home {
             display: inline-block; text-decoration: none;
-            background: var(--gold); color: #121009; font-weight: 600;
+            /* var(--bg), not a fixed ink: --gold is dark in light mode. */
+            background: var(--gold); color: var(--bg); font-weight: 600;
             padding: 12px 26px; border-radius: 10px; transition: transform .15s ease, box-shadow .15s ease;
         }
         a.home:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(244,196,48,0.35); }
