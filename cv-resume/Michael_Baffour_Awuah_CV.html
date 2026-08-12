@@ -16,70 +16,90 @@
 if(t!=='dark'&&t!=='light'){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}
 document.documentElement.setAttribute('data-theme',t)})()</script>
 <style>
+/* ---- Palette -------------------------------------------------------
+   Kente: the gold, green and red of the Ghana flag, which is the identity
+   the rest of the site already runs on. The CV used to be navy-and-blue —
+   formal, but monochrome, and matching nothing else Michael has made.
+
+   Three hues in rotation is what makes a page feel alive rather than
+   tinted: --sec below cycles them across the twelve sections, so the
+   document has colour without any one heading shouting.
+
+   Every value here is measured. The 11-12px dates and locations need the
+   full 4.5:1, which is why the "bright" hues are the text-safe variants
+   (#3fbf6e, not #1f9249) rather than the poster ones. */
 :root {
-  --navy: #0f1b2d;
-  --deep: #162236;
-  /* Lightened from #4a9eff / #8899aa / #5a6a7a, which measured 3.8:1, 4.5:1
-     and 2.6:1 against the card surfaces — the dates, locations and talk types
-     they colour are 11-12px, so they need the full 4.5:1. */
-  --accent: #79baff;
-  --accent-glow: #79baff33;
-  --accent2: #00d4aa;
-  --accent2-glow: #00d4aa22;
-  --text: #e0e6ed;
-  --text-secondary: #95a6b8;
-  --text-muted: #8b9bad;
-  --surface: #1a2a40;
-  --surface-hover: #1f3050;
-  --border: #2a3a50;
-  --white: #ffffff;
+  --navy: #121009;            /* page */
+  --deep: #1a160c;
+  --accent:       #f4c430;    /* gold */
+  --accent-glow:  #f4c43033;
+  --accent2:      #3fbf6e;    /* green, text-safe */
+  --accent2-glow: #3fbf6e22;
+  --accent3:      #f4697f;    /* red, text-safe */
+  --accent3-glow: #f4697f22;
+  --text: #f5edd8;
+  --text-secondary: #d8c98c;
+  --text-muted: #a08652;
+  --surface: #1c1709;
+  --surface-hover: #241d0c;
+  --border: rgba(244, 196, 48, 0.20);
+  --white: #ffffff;           /* strongest heading ink on the page bg */
   --warm: #ffd166;
-  --nav-bg: rgba(15, 27, 45, 0.85);
+  --nav-bg: rgba(18, 16, 9, 0.85);
 }
 
+/* Section accent rotation. Applied per <section> below so Education reads
+   gold, Research green, Publications red, and round again. */
+.cv-sec { --sec: var(--accent); --sec-glow: var(--accent-glow); }
+.cv-sec:nth-of-type(3n+2) { --sec: var(--accent2); --sec-glow: var(--accent2-glow); }
+.cv-sec:nth-of-type(3n+3) { --sec: var(--accent3); --sec-glow: var(--accent3-glow); }
+
 /* ---- Light theme ----------------------------------------------------
-   This is the page a recruiter is most likely to open, and it was dark-only:
-   a visitor browsing in light mode landed on a dark document with no way out.
-   The CV keeps its own navy-and-blue identity rather than adopting the site's
-   gold — it is a deliberately formal document — but the values are darkened
-   to clear AA on paper. --white is used as a TEXT colour here (7 times), so
-   in light mode it has to become ink, not stay white. */
+   Warm cream paper rather than cold white, matching the rest of the site.
+   The three hues darken here because gold, green and red that read well on
+   charcoal all fail on paper: #f4c430 is 1.7:1 on cream, #3fbf6e is 2.1:1.
+   --white is the strongest heading ink on the page background (12 uses), so
+   on paper it becomes near-black, not white. */
 :root[data-theme="light"] {
-  --navy: #f7f9fc;
-  --deep: #eef2f8;
-  --accent: #1359a8;          /* #4a9eff is 2.3:1 on paper */
-  --accent-glow: #1359a81f;
-  --accent2: #04705d;         /* #00d4aa is 1.7:1 on paper */
-  --accent2-glow: #04705d1a;
-  --text: #14202e;
-  --text-secondary: #46586b;
-  --text-muted: #5d6e80;
+  --navy: #f7f4ea;
+  --deep: #ede8d4;
+  --accent:       #7d5800;    /* gold */
+  --accent-glow:  #7d58001f;
+  --accent2:      #0f6a2e;    /* green */
+  --accent2-glow: #0f6a2e1a;
+  --accent3:      #a01a30;    /* red */
+  --accent3-glow: #a01a301a;
+  --text: #1a1408;
+  --text-secondary: #3a2c0e;
+  --text-muted: #6f5420;
   --surface: #ffffff;
-  --surface-hover: #f1f5fb;
-  --border: #d3dce7;
-  --white: #14202e;           /* reads as "text on the accent fill" */
+  --surface-hover: #fffaed;
+  --border: rgba(164, 130, 58, 0.28);
+  --white: #14100a;
   --warm: #8a5c00;
-  --nav-bg: rgba(247, 249, 252, 0.9);
+  --nav-bg: rgba(247, 244, 234, 0.92);
 }
 /* Same values when the OS asks for light and no explicit choice was stored,
    so the page is right even if the inline script never runs. */
 @media (prefers-color-scheme: light) {
   :root:not([data-theme]) {
-    --navy: #f7f9fc;
-    --deep: #eef2f8;
-    --accent: #1359a8;
-    --accent-glow: #1359a81f;
-    --accent2: #04705d;
-    --accent2-glow: #04705d1a;
-    --text: #14202e;
-    --text-secondary: #46586b;
-    --text-muted: #5d6e80;
+    --navy: #f7f4ea;
+    --deep: #ede8d4;
+    --accent:       #7d5800;
+    --accent-glow:  #7d58001f;
+    --accent2:      #0f6a2e;
+    --accent2-glow: #0f6a2e1a;
+    --accent3:      #a01a30;
+    --accent3-glow: #a01a301a;
+    --text: #1a1408;
+    --text-secondary: #3a2c0e;
+    --text-muted: #6f5420;
     --surface: #ffffff;
-    --surface-hover: #f1f5fb;
-    --border: #d3dce7;
-    --white: #14202e;
+    --surface-hover: #fffaed;
+    --border: rgba(164, 130, 58, 0.28);
+    --white: #14100a;
     --warm: #8a5c00;
-    --nav-bg: rgba(247, 249, 252, 0.9);
+    --nav-bg: rgba(247, 244, 234, 0.92);
   }
 }
 
@@ -114,16 +134,32 @@ body {
    markings read as texture rather than as lines competing with copy. */
 .pitch-bg {
   position: fixed; inset: 0; z-index: 0; pointer-events: none;
-  opacity: 0.5;                /* on top of the per-stroke opacity below */
+  opacity: 0.62;               /* on top of the per-stroke opacity below */
 }
 .pitch-bg svg { width: 100%; height: 100%; display: block; }
 .pitch-lines {
   fill: none;
-  stroke: var(--accent2);
+  stroke: var(--accent2);      /* green, like grass */
   stroke-width: 2;
-  opacity: 0.13;
+  opacity: 0.16;
 }
 .pitch-lines .spot { fill: var(--accent2); stroke: none; opacity: 0.5; }
+/* Halves picked out in the flag's other two colours, so the pitch carries
+   all three rather than reading as one tinted graphic. */
+.pitch-lines .box-left  { stroke: var(--accent);  opacity: 1; }
+.pitch-lines .box-right { stroke: var(--accent3); opacity: 1; }
+.pitch-lines .centre    { stroke: var(--accent);  opacity: 1; }
+
+/* Kente band across the top of the viewport — the same weave the site uses
+   as a rule elsewhere, here as a wide, faint stripe behind everything. */
+.pitch-weave {
+  position: fixed; left: 0; right: 0; top: 0; height: 10px;
+  z-index: 0; pointer-events: none; opacity: 0.5;
+  background: repeating-linear-gradient(90deg,
+    var(--accent)  0 26px, transparent 26px 34px,
+    var(--accent2) 34px 60px, transparent 60px 68px,
+    var(--accent3) 68px 94px, transparent 94px 102px);
+}
 
 /* The ball loops the pitch slowly. offset-path keeps it on a real curve
    rather than a linear drift, which reads as a pass being played. */
@@ -251,16 +287,20 @@ section { padding: 40px 0 16px; }
   margin-bottom: 4px;
   display: flex; align-items: center; gap: 12px;
 }
+/* The bar beside each heading carries that section's hue, and the rule under
+   it fades from the same colour — so the eye picks up the rotation without
+   any heading text having to change colour (headings stay maximum-contrast
+   ink, which is what keeps this readable as a CV). */
 .section-title::before {
   content: ''; display: block;
-  width: 4px; height: 28px;
-  background: linear-gradient(180deg, var(--accent), var(--accent2));
+  width: 5px; height: 30px;
+  background: var(--sec, var(--accent));
   border-radius: 4px;
   flex-shrink: 0;
 }
 .section-rule {
   height: 1px; border: none;
-  background: linear-gradient(90deg, var(--accent) 0%, transparent 80%);
+  background: linear-gradient(90deg, var(--sec, var(--accent)) 0%, transparent 80%);
   margin: 8px 0 24px;
 }
 
@@ -278,12 +318,13 @@ section { padding: 40px 0 16px; }
 .card::before {
   content: ''; position: absolute;
   top: 0; left: 0; width: 3px; height: 100%;
-  background: linear-gradient(180deg, var(--accent), var(--accent2));
+  background: var(--sec, var(--accent));   /* inherits the section's hue */
   opacity: 0; transition: opacity 0.3s;
 }
 .card:hover {
-  border-color: var(--accent);
-  box-shadow: 0 4px 24px rgba(74,158,255,0.08);
+  border-color: var(--sec, var(--accent));
+  /* was a hard-coded rgba(74,158,255,…) left over from the navy palette */
+  box-shadow: 0 4px 24px var(--sec-glow, var(--accent-glow));
   transform: translateY(-1px);
 }
 .card:hover::before { opacity: 1; }
@@ -540,7 +581,7 @@ footer a { color: var(--accent); text-decoration: none; }
 /* ── Print styles ── */
 @media print {
   body { background: white; color: #222; }
-  .bg-grid, .pitch-bg, nav { display: none; }
+  .bg-grid, .pitch-bg, .pitch-weave, nav { display: none; }
   .card { border: 1px solid #ddd; box-shadow: none; background: white; }
   .card:hover { transform: none; }
   .section-title { color: #1a2744; }
@@ -607,23 +648,25 @@ footer a { color: var(--accent); text-decoration: none; }
 <!-- Pitch markings behind the page. Deliberately faint: this is a CV, so the
      motif should be noticed on the second look, not the first. Hidden from
      assistive tech and from print. -->
+<div class="pitch-weave" aria-hidden="true"></div>
+
 <div class="pitch-bg" aria-hidden="true">
   <svg viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice" focusable="false">
     <g class="pitch-lines">
       <rect x="60" y="40" width="1080" height="720" rx="4"/>
-      <line x1="600" y1="40" x2="600" y2="760"/>
-      <circle cx="600" cy="400" r="120"/>
+      <line x1="600" y1="40" x2="600" y2="760" class="centre"/>
+      <circle cx="600" cy="400" r="120" class="centre"/>
       <circle cx="600" cy="400" r="6" class="spot"/>
-      <!-- penalty areas -->
-      <rect x="60"  y="220" width="150" height="360"/>
-      <rect x="990" y="220" width="150" height="360"/>
-      <rect x="60"  y="310" width="60"  height="180"/>
-      <rect x="1080" y="310" width="60" height="180"/>
+      <!-- penalty areas, one end gold and one red -->
+      <rect x="60"  y="220" width="150" height="360" class="box-left"/>
+      <rect x="990" y="220" width="150" height="360" class="box-right"/>
+      <rect x="60"  y="310" width="60"  height="180" class="box-left"/>
+      <rect x="1080" y="310" width="60" height="180" class="box-right"/>
       <circle cx="170"  cy="400" r="6" class="spot"/>
       <circle cx="1030" cy="400" r="6" class="spot"/>
       <!-- penalty arcs -->
-      <path d="M210 322 A 120 120 0 0 1 210 478"/>
-      <path d="M990 322 A 120 120 0 0 0 990 478"/>
+      <path d="M210 322 A 120 120 0 0 1 210 478" class="box-left"/>
+      <path d="M990 322 A 120 120 0 0 0 990 478" class="box-right"/>
     </g>
     <g class="pitch-ball">
       <circle r="9" class="ball-body"/>
@@ -698,7 +741,7 @@ footer a { color: var(--accent); text-decoration: none; }
 </header>
 
 <!-- Education -->
-<section id="education">
+<section id="education" class="cv-sec">
   <h2 class="section-title">Education</h2>
   <hr class="section-rule">
 
@@ -729,7 +772,7 @@ footer a { color: var(--accent); text-decoration: none; }
 </section>
 
 <!-- Research Experience -->
-<section id="research">
+<section id="research" class="cv-sec">
   <h2 class="section-title">Research Experience</h2>
   <hr class="section-rule">
 
@@ -832,7 +875,7 @@ footer a { color: var(--accent); text-decoration: none; }
 </section>
 
 <!-- Other Work Experience -->
-<section id="other-work">
+<section id="other-work" class="cv-sec">
   <h2 class="section-title">Other Work Experience</h2>
   <hr class="section-rule">
 
@@ -872,7 +915,7 @@ footer a { color: var(--accent); text-decoration: none; }
 </section>
 
 <!-- Publications -->
-<section id="publications">
+<section id="publications" class="cv-sec">
   <h2 class="section-title">Publications</h2>
   <hr class="section-rule">
   <div class="card">
@@ -895,7 +938,7 @@ footer a { color: var(--accent); text-decoration: none; }
 </section>
 
 <!-- Presentations -->
-<section id="presentations">
+<section id="presentations" class="cv-sec">
   <h2 class="section-title">Presentations</h2>
   <hr class="section-rule">
   <div class="card">
@@ -930,7 +973,7 @@ footer a { color: var(--accent); text-decoration: none; }
 </section>
 
 <!-- Teaching -->
-<section id="teaching">
+<section id="teaching" class="cv-sec">
   <h2 class="section-title">Teaching Experience</h2>
   <hr class="section-rule">
   <div class="card">
@@ -955,7 +998,7 @@ footer a { color: var(--accent); text-decoration: none; }
 </section>
 
 <!-- Awards -->
-<section id="awards">
+<section id="awards" class="cv-sec">
   <h2 class="section-title">Funding &amp; Awards</h2>
   <hr class="section-rule">
   <div class="card">
@@ -997,7 +1040,7 @@ footer a { color: var(--accent); text-decoration: none; }
 </section>
 
 <!-- Mentorship -->
-<section id="mentorship">
+<section id="mentorship" class="cv-sec">
   <h2 class="section-title">Mentorship</h2>
   <hr class="section-rule">
 
@@ -1025,7 +1068,7 @@ footer a { color: var(--accent); text-decoration: none; }
 </section>
 
 <!-- Leadership -->
-<section id="leadership">
+<section id="leadership" class="cv-sec">
   <h2 class="section-title">Leadership, Service &amp; Community</h2>
   <hr class="section-rule">
   <div class="card">
@@ -1045,7 +1088,7 @@ footer a { color: var(--accent); text-decoration: none; }
 </section>
 
 <!-- Skills -->
-<section id="skills">
+<section id="skills" class="cv-sec">
   <h2 class="section-title">Technical Expertise</h2>
   <hr class="section-rule">
   <div class="card">
@@ -1117,7 +1160,7 @@ footer a { color: var(--accent); text-decoration: none; }
 </section>
 
 <!-- Certifications -->
-<section id="certifications">
+<section id="certifications" class="cv-sec">
   <h2 class="section-title">Training &amp; Certifications</h2>
   <hr class="section-rule">
   <div class="card">
@@ -1135,7 +1178,7 @@ footer a { color: var(--accent); text-decoration: none; }
 </section>
 
 <!-- Membership -->
-<section id="membership">
+<section id="membership" class="cv-sec">
   <h2 class="section-title">Professional Membership</h2>
   <hr class="section-rule">
   <div class="card">
