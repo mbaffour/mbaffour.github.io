@@ -2190,6 +2190,13 @@
         /* ============================================================
            TAILFIBER MINI-GAME
         ============================================================ */
+        /* The game is focusable (tabindex=0) because its key handlers are gated
+           on focus — so that focus has to be visible, or a keyboard player
+           cannot tell when the arrows will reach the game. */
+        .tf-wrap:focus-visible {
+            outline: 3px solid var(--gold);
+            outline-offset: 3px;
+        }
         .tf-wrap {
             position: relative;
             width: 100%;
@@ -3880,3 +3887,48 @@
 }
 /* Transparent, finger-sized target sitting under the drawn shirt. */
 .shirt-hit { fill: transparent; stroke: none; }
+
+/* ---- publication accessions + citation block ---- */
+/* A genome announcement's whole point is the accession; it belongs on the card,
+   not only in the paper. */
+.pub-data { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 8px; }
+.pub-data-label {
+    font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: .14em;
+    text-transform: uppercase; color: var(--ink-3);
+}
+.pub-acc {
+    font-family: var(--font-mono); font-size: 0.72rem; color: var(--ink-2);
+    text-decoration: none; border: 1px solid var(--border);
+    border-radius: 999px; padding: 3px 10px; transition: all .18s ease;
+}
+.pub-acc code { color: var(--gold); font-family: inherit; }
+.pub-acc:hover { border-color: var(--gold); background: var(--gold-dim); }
+
+.pub-cite-btn { cursor: pointer; font: inherit; background: transparent; }
+.pub-citation-block {
+    margin-top: 12px; padding: 14px; border: 1px solid var(--border);
+    border-radius: 10px; background: var(--bg-2, var(--bg));
+}
+.pub-citation-block .cite-tabs { display: flex; gap: 6px; margin-bottom: 10px; }
+.pub-citation-block .cite-tab {
+    font-family: var(--font-mono); font-size: 0.7rem; cursor: pointer;
+    background: transparent; color: var(--ink-3);
+    border: 1px solid var(--border); border-radius: 6px; padding: 4px 10px;
+}
+.pub-citation-block .cite-tab.active { color: var(--gold); border-color: var(--gold); }
+.pub-citation-block .cite-text {
+    font-family: var(--font-mono); font-size: 0.72rem; color: var(--ink-2);
+    white-space: pre-wrap; word-break: break-word; margin: 0 0 8px;
+    max-height: 240px; overflow: auto;
+}
+.pub-citation-block .cite-copy {
+    font-family: var(--font-mono); font-size: 0.7rem; cursor: pointer;
+    background: var(--gold); color: #1a1408; border: 0;
+    border-radius: 6px; padding: 5px 12px;
+}
+/* In-preparation work: real, but visibly not yet peer-reviewed. Muted rather
+   than coloured like a published result, so it cannot be mistaken for one. */
+.pub-status.inprep {
+    color: var(--ink-3); border-color: var(--border-strong);
+    background: transparent; font-style: italic;
+}

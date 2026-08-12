@@ -759,7 +759,25 @@
     }
 
     // ===== Input =====
+    /* The game lives in the middle of a long page, so its key handlers must not
+       act unless it actually has focus. Bound to document (a canvas game needs
+       keys wherever the pointer is inside it) they previously swallowed the
+       arrow keys for the WHOLE page the moment a game started: scrolling by
+       keyboard died, and a/s/d/w could not be typed into the ⌘K search. That is
+       a WCAG 2.1.2 keyboard trap. Fullscreen always counts as focused. */
+    function gameHasFocus() {
+        return wrap.contains(document.activeElement) || wrap.classList.contains('tf-fullscreen');
+    }
+    function isTypingTarget(t) {
+        return !!t && (t.isContentEditable ||
+            t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.tagName === 'SELECT');
+    }
+    function gameShouldHandle(e) {
+        return gameHasFocus() && !isTypingTarget(e.target);
+    }
+
     function onKeyDown(e) {
+        if (!gameShouldHandle(e)) return;
         const k = e.key;
         if (state === 'playing') {
             if (['ArrowUp','ArrowDown','ArrowLeft','ArrowRight','w','a','s','d','W','A','S','D'].includes(k)) {
@@ -775,9 +793,25 @@
             if (k === 'p' || k === 'P') { resumeGame(); }
         }
     }
+    // Note: keyup is NOT focus-gated. If focus leaves mid-press the keydown was
+    // already recorded, and skipping the keyup would leave that key stuck down
+    // and the phage gliding on its own when the visitor comes back.
     function onKeyUp(e) { keys[e.key] = false; }
     document.addEventListener('keydown', onKeyDown);
     document.addEventListener('keyup', onKeyUp);
+
+    /* Stop the game running off-screen: it kept a rAF loop and a canvas redraw
+       going while the visitor read the rest of the page, which is wasted battery
+       on a phone. pauseGame() already no-ops unless state === 'playing'. */
+    if ('IntersectionObserver' in window) {
+        new IntersectionObserver(function (entries) {
+            entries.forEach(function (en) { if (!en.isIntersecting) pauseGame(); });
+        }, { threshold: 0 }).observe(wrap);
+    }
+    // Same for a backgrounded tab.
+    document.addEventListener('visibilitychange', function () {
+        if (document.hidden) pauseGame();
+    });
 
     function updatePointer(e) {
         const r = canvas.getBoundingClientRect();
@@ -881,10 +915,14 @@
             requestAnimationFrame(resize);
         }
     });
-    // Keyboard: F to toggle, ESC to exit
+    // Keyboard: F to toggle, ESC to exit.
+    // The old gate was `wrap.matches(':hover') || state !== 'setup'`, and state
+    // is only reset to 'setup' when a new game starts — so after playing once,
+    // pressing "f" ANYWHERE on the page (including in the ⌘K search box) threw
+    // the game into fullscreen. Same focus rule as the movement keys.
     document.addEventListener('keydown', (e) => {
         if (e.key === 'f' || e.key === 'F') {
-            if (wrap.matches(':hover') || state !== 'setup') { toggleFullscreen(); e.preventDefault(); }
+            if (gameShouldHandle(e)) { toggleFullscreen(); e.preventDefault(); }
         } else if (e.key === 'Escape' && wrap.classList.contains('tf-fullscreen')) {
             toggleFullscreen();
         }
