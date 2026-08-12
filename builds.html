@@ -12,6 +12,7 @@
     <meta name="theme-color" content="#f7f4ea" media="(prefers-color-scheme: light)">
     <meta name="theme-color" content="#0a0802" media="(prefers-color-scheme: dark)">
     <link rel="canonical" href="https://mbaffour.github.io/builds.html">
+    <link rel="alternate" type="application/rss+xml" title="Michael Baffour Awuah — Blog &amp; Notes" href="https://mbaffour.github.io/feed.xml">
     <title>Other Tools · Michael Baffour Awuah</title>
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><polygon points='16,5 25,10 25,18 16,23 7,18 7,10' fill='%23f4c430' stroke='%23f4c430' stroke-width='1.5'/><line x1='16' y1='23' x2='16' y2='28' stroke='%23f4c430' stroke-width='2' stroke-linecap='round'/><line x1='13' y1='28' x2='19' y2='28' stroke='%23f4c430' stroke-width='2' stroke-linecap='round'/></svg>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -30,7 +31,8 @@
         html[data-theme="light"] {
             --bg: #f7f4ea; --bg-card: #ffffff; --bg-card-hover: #fffaed;
             --border: rgba(164,130,58,0.18); --border-strong: rgba(164,130,58,0.38);
-            --gold: #9a6e00; --green: #0f6a2e; --red: #a01a30;
+            /* #9a6e00 gave 4.01:1 for the button label below — under AA. */
+            --gold: #7d5800; --green: #0f6a2e; --red: #a01a30;
             --ink: #1a1408; --ink-2: #3a2c0e; --ink-3: #7a5e2a;
         }
         html[data-theme="light"] .topbar { background: rgba(247,244,234,0.92); }
@@ -43,7 +45,7 @@
             html:not([data-theme]) {
                 --bg: #f7f4ea; --bg-card: #ffffff; --bg-card-hover: #fffaed;
                 --border: rgba(164,130,58,0.18); --border-strong: rgba(164,130,58,0.38);
-                --gold: #9a6e00; --green: #0f6a2e; --red: #a01a30;
+                --gold: #7d5800; --green: #0f6a2e; --red: #a01a30;
                 --ink: #1a1408; --ink-2: #3a2c0e; --ink-3: #7a5e2a;
             }
             html:not([data-theme]) .topbar { background: rgba(247,244,234,0.92); }
@@ -77,7 +79,10 @@
         .tag { font-family: var(--font-mono); font-size: 0.68rem; color: var(--ink-3); border: 1px solid var(--border); border-radius: 999px; padding: 3px 9px; }
         .actions { display: flex; gap: 10px; }
         .btn { font-family: var(--font-mono); font-size: 0.8rem; text-decoration: none; padding: 9px 16px; border-radius: 10px; transition: all 0.2s; }
-        .btn-primary { background: var(--gold); color: #1a1408; font-weight: 500; }
+        /* var(--bg), not a fixed ink: hard-coding dark text meant the label sat
+           on light-mode gold at 4.01:1. This flips with the theme and clears AA
+           both ways (5.84:1 light, ~16:1 dark). */
+        .btn-primary { background: var(--gold); color: var(--bg); font-weight: 500; }
         .btn-primary:hover { box-shadow: 0 6px 24px rgba(244,196,48,0.3); }
         .btn-ghost { border: 1px solid var(--border-strong); color: var(--ink-2); }
         .btn-ghost:hover { border-color: var(--gold); color: var(--gold); }

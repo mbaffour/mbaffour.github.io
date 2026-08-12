@@ -234,7 +234,16 @@ const tools = [
         citation: {
             plain: "Awuah, M. B. (2026). FigureLab: a browser-based tool for assembling publication-quality scientific figures (Version 3.5) [Computer software]. Zenodo. https://doi.org/10.5281/zenodo.21269456",
             bibtex: "@software{awuah_figurelab_2026,\n  author    = {Awuah, Michael Baffour},\n  title     = {{FigureLab}: a browser-based tool for assembling publication-quality scientific figures},\n  year      = {2026},\n  version   = {3.5},\n  publisher = {Zenodo},\n  doi       = {10.5281/zenodo.21269456},\n  url       = {https://doi.org/10.5281/zenodo.21269456}\n}"
-        }
+        },
+        /* Independent use of the tool in someone else's published paper. This is
+           the only evidence on the site that the software is used by people who
+           did not build it, which is the thing a hiring committee actually wants
+           from "I build open tools". */
+        usedIn: [{
+            quote: "use of the FigureLab web-based application developed by Michael Baffour Awuah",
+            citation: "Hoxha EM, Brown GD, Niemiec KA, Ramsey J. The complete genome sequence of Caulobacter phages Senya and Shash. Microbiol Resour Announc. 2026;15(8):e00457-26.",
+            doi: "https://doi.org/10.1128/mra.00457-26"
+        }]
     },
     {
         title: "CellMorphR",
@@ -1106,7 +1115,7 @@ function renderPublications(filter = 'all') {
                 ${pub.summary ? `<div class="pub-summary" style="color:var(--ink-2); font-size:0.9rem; margin-top:6px; line-height:1.55;">${pub.summary}</div>` : ''}
                 <div class="pub-meta">
                     <span class="pub-status ${pub.status}">${labelFor(pub.status)}</span>
-                    ${pub.firstAuthor ? '<span class="pub-status preprint" style="background:var(--green-dim); color:var(--green); border-color:var(--green);">★ First author</span>' : ''}
+                    ${pub.firstAuthor ? '<span class="pub-status first-author">★ First author</span>' : ''}
                     ${pub.latest ? '<span class="pub-status preprint">★ Latest</span>' : ''}
                 </div>
                 ${linkRow}
@@ -1241,6 +1250,15 @@ function renderTools(filter = 'all') {
                     ${t.doi ? `<a href="https://doi.org/${t.doi}" class="proj-link alt" target="_blank" rel="noopener">Zenodo ↗</a>` : ''}
                     ${t.doi ? `<button class="proj-link proj-cite-btn" data-tool="${t.title}" type="button">Cite</button>` : ''}
                 </div>
+                ${t.usedIn && t.usedIn.length ? `
+                <div class="proj-usedin">
+                    <span class="usedin-badge">Used in published research</span>
+                    ${t.usedIn.map(u => `
+                    <blockquote class="usedin-quote">&ldquo;${u.quote}&rdquo;</blockquote>
+                    <cite class="usedin-cite">${u.citation}
+                        <a href="${u.doi}" target="_blank" rel="noopener">doi&nbsp;↗</a>
+                    </cite>`).join('')}
+                </div>` : ''}
                 ${t.citation ? `
                 <div class="proj-citation-block" id="cite-${t.title.replace(/\s+/g,'-').toLowerCase()}" aria-hidden="true">
                     <div class="proj-citation-tabs">
@@ -1478,8 +1496,13 @@ document.addEventListener('click', (e) => {
 /* ==============================================================
    NAV: ACTIVE SECTION HIGHLIGHT
 =============================================================== */
-const navIds = ['about', 'research', 'playground', 'publications', 'tools', 'builds', 'blog', 'next', 'recognition', 'gallery', 'contact'];
-/* (CV merged into About — no separate section.) */
+/* Derived from the nav itself rather than hand-listed. The literal had drifted
+   both ways: five spied sections had no nav anchor, so the highlight went blank
+   while the reader scrolled them, and nav links that were never spied kept a
+   stale highlight. Reading the DOM means adding a section to the nav is enough. */
+const navIds = Array.from(document.querySelectorAll('.nav-links a[href^="#"]'))
+    .map(a => a.getAttribute('href').slice(1))
+    .filter(id => id && document.getElementById(id));
 const sectionEls = navIds.map(id => document.getElementById(id)).filter(Boolean);
 const navAnchors = Array.from(document.querySelectorAll('.nav-links a')).filter(a => a.getAttribute('href') && a.getAttribute('href').startsWith('#'));
 

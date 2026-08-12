@@ -1,5 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<!-- .no-js is stripped by the inline script below before first paint. Sections
+     use .fade-in { opacity: 0 } and are only revealed by an IntersectionObserver,
+     so without this the whole page reads as empty when JS is unavailable. -->
+<html lang="en" class="no-js">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,6 +22,7 @@
     <meta name="twitter:description" content="Decoding how bacteriophage N4 decides whether to give up its host cell, with molecular biology, genomics, and genetics.">
     <meta name="twitter:image" content="https://mbaffour.github.io/assets/og-card.jpg">
     <link rel="canonical" href="https://mbaffour.github.io/">
+    <link rel="alternate" type="application/rss+xml" title="Michael Baffour Awuah — Blog &amp; Notes" href="https://mbaffour.github.io/feed.xml">
     <meta name="theme-color" content="#f7f4ea" media="(prefers-color-scheme: light)">
     <meta name="theme-color" content="#121009" media="(prefers-color-scheme: dark)">
     <title>Michael Baffour Awuah — Phage Biologist</title>
@@ -61,9 +65,10 @@
          storage is blocked (private mode, third-party-cookie policies); without
          the catch the attribute was never set, :root's dark palette won, and a
          light-mode visitor got a dark site permanently. -->
-    <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
+    <script>(function(){var r=document.documentElement;r.classList.remove('no-js');
+    var t=null;try{t=localStorage.getItem('theme')}catch(e){}
     if(t!=='dark'&&t!=='light'){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}
-    document.documentElement.setAttribute('data-theme',t)})()</script>
+    r.setAttribute('data-theme',t)})()</script>
     <script type="text/javascript" src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js" async></script>
     <!-- Privacy-friendly analytics: no cookies, no personal data. -->
     <script data-goatcounter="https://mbaffour.goatcounter.com/count"
@@ -192,9 +197,10 @@
 
             <p class="hero-availability">
                 <span class="open-pulse" aria-hidden="true"></span>
-                Graduating 2027 and open to <strong>biotech R&amp;D</strong>, <strong>AI for science</strong>,
-                <strong>translational research</strong> and <strong>scientific software</strong> roles —
-                <a href="#contact">get in touch</a>.
+                Graduating 2027 and open to <strong>postdoctoral positions</strong>,
+                <strong>biotech R&amp;D</strong>, <strong>AI for science</strong>,
+                <strong>translational research</strong> and <strong>scientific software</strong> —
+                wherever the problem is hardest. <a href="#contact">Get in touch</a>.
             </p>
 
             <div class="hero-stats">
@@ -390,7 +396,7 @@
         <div class="research-lead" style="background:linear-gradient(135deg, rgba(244,196,48,0.07), rgba(26,128,64,0.04)); border:1px solid var(--border-strong); border-radius:18px; padding:28px 30px; margin:0 0 36px; max-width:880px;">
             <p style="font-family:var(--font-mono); font-size:0.72rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--gold); margin:0 0 10px;">The headline finding</p>
             <p style="font-size:1.08rem; color:var(--ink); margin:0 0 14px; line-height:1.65;">Bacteriophage&nbsp;N4 deliberately delays lysing its host, turning each infected cell into a high-output virus factory that yields up to <strong>~3,000 particles in 3–6&nbsp;hours</strong>. My first-author preprint shows N4 lyses through a <strong>SAR endolysin–holin system</strong> and maps genomic regions — inside and outside the lysis cassette — involved in holding lysis off. Separately, my thesis work identified a novel regulator of that decision; that manuscript is in preparation. The question isn't <em>when</em> a phage kills; it's <em>whether to give up the cell</em> — and N4 keeps choosing to hold on.</p>
-            <p style="font-size:0.96rem; color:var(--ink-2); margin:0; line-height:1.6;"><span style="color:var(--green); font-weight:600;">Where I'm taking it →</span> Reverse-engineering this timing switch into a control knob for high-titer phage production and programmable microbial biofactories, while shipping the open analysis tools that make those experiments reproducible for the whole field.</p>
+            <p style="font-size:0.96rem; color:var(--ink-2); margin:0; line-height:1.6;"><span style="color:var(--green-text); font-weight:600;">Where I'm taking it →</span> Reverse-engineering this timing switch into a control knob for high-titer phage production and programmable microbial biofactories, while shipping the open analysis tools that make those experiments reproducible for the whole field.</p>
         </div>
 
         <div class="research-grid">
@@ -1110,6 +1116,7 @@
                 <span class="open-pulse"></span>
                 <span class="open-label">Open to:</span>
                 <span class="open-tags">
+                    <span>Postdoctoral positions</span>
                     <span>Biotech R&amp;D</span>
                     <span>AI for science</span>
                     <span>Translational research</span>
@@ -1187,7 +1194,7 @@
             ·
             <span style="color:var(--ink)">C</span><span style="color:var(--red-text)">G</span><span style="color:var(--green-text)">A</span><span style="color:var(--gold)">T</span>
         </div>
-        <p class="footer-credit">Press <kbd style="font-family:var(--font-mono);background:rgba(0,0,0,0.4);border:1px solid var(--border);border-radius:3px;padding:1px 5px;">⌘K</kbd> anywhere to search.</p>
+        <p class="footer-credit">Press <kbd>⌘K</kbd> anywhere to search.</p>
     </footer>
 
     <!-- ===== JAVASCRIPT ===== -->

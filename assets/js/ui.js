@@ -185,13 +185,30 @@
             if (el) el.click();
         } else if (e.key === 'Escape') {
             close();
-        } else if (e.key === 'Tab') {
-            /* The palette is a modal dialog; keep Tab inside it. */
-            e.preventDefault();
-            const el = list[active];
-            if (el) el.focus ? el.focus() : input.focus();
         }
+        /* Tab is handled on the overlay, not here — see trapTab below. Handling
+           it on the input only ever fired for the first press: after focus moved
+           to a result link nothing intercepted Tab again, and focus walked out
+           of a dialog marked aria-modal into the page behind it. */
     });
+
+    /* Real focus trap: wrap first<->last, and honour Shift. The previous version
+       never tested e.shiftKey, so Shift+Tab moved focus FORWARD. */
+    function trapTab(e) {
+        if (e.key !== 'Tab' || !overlay.classList.contains('open')) return;
+        const focusable = Array.prototype.filter.call(
+            overlay.querySelectorAll('input, a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'),
+            el => el.offsetParent !== null || el === document.activeElement
+        );
+        if (!focusable.length) return;
+        const first = focusable[0], last = focusable[focusable.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+            e.preventDefault(); last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+            e.preventDefault(); first.focus();
+        }
+    }
+    overlay.addEventListener('keydown', trapTab);
     document.addEventListener('keydown', (e) => {
         if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
             e.preventDefault();
@@ -351,9 +368,11 @@ const ambientEl = document.getElementById('ambientCanvas');
 function updateScrollUI() {
     const nav = document.getElementById('navbar');
     const y = window.scrollY;
-    nav.style.background = y > 80
-        ? 'rgba(10, 8, 2, 0.92)'
-        : 'rgba(10, 8, 2, 0.78)';
+    /* Toggle a class; let CSS own the colour. Writing the background inline here
+       hard-coded a DARK rgba on every scroll event, which beat the light-theme
+       rule on specificity — so in light mode the whole navigation bar stayed
+       near-black behind near-black links. */
+    nav.classList.toggle('scrolled', y > 80);
     const docH = document.documentElement.scrollHeight - window.innerHeight;
     const pct = docH > 0 ? (y / docH) * 100 : 0;
     progress.style.width = pct + '%';
