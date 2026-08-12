@@ -149,7 +149,7 @@
                 <li><a href="#tools">Software</a></li>
                 <li><a href="#blog">Blog</a></li>
                 <li><a href="#teaching">Teaching</a></li>
-                <li><a href="#recognition">Recognition</a></li>
+                <li><a href="#pitch-section">Off the pitch</a></li>
                 <li><a href="#contact">Contact</a></li>
                 <li><button class="nav-theme-toggle" id="themeToggle" aria-label="Switch to light mode" title="Toggle light / dark mode">
                     <svg class="theme-icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
@@ -306,8 +306,12 @@
                 <p>My primary project decodes <em>lysis inhibition</em> in bacteriophage N4 — the phenomenon where the phage strategically delays host cell lysis to transform each infected bacterium into a high-output viral factory (up to ~3,000 viral particles per cell within 3–6 hours). By reverse-engineering these decision-making systems, I aim to power high-titer phage production for therapy and programmable microbial biofactories.</p>
                 <p>Alongside the wet lab, I build open-source tools — increasingly with AI in the loop, which lets me go from a lab annoyance to a shipped, working tool in days rather than months. Not because they'll go on my CV, but because writing the same <code>ggplot2</code> boilerplate twelve times will make anyone snap. Every tool here was built to solve a real problem I or someone next to me hit. Most are browser-based, privacy-first, and zero-install.</p>
                 <p>As I approach the completion of my doctoral studies, I'm interested in roles where wet-lab phage biology, computational genomics, and tool-building all matter — biotech R&amp;D, AI-for-science startups, translational research labs, or scientific software teams.</p>
+                <p>Outside the lab I play soccer most weeks, grew up on the Black Stars, and
+                   built <a href="#pitch-section">a starting XI out of the skills this PhD runs on</a>
+                   because the metaphor was sitting right there.</p>
                 <div class="about-cv-actions">
-                    <a href="cv-resume/Michael_Baffour_Awuah_CV.html" class="btn btn-primary" target="_blank" rel="noopener">📄 View HTML CV</a>
+                    <a href="journey.html" class="btn btn-primary">🧭 The journey</a>
+                    <a href="cv-resume/Michael_Baffour_Awuah_CV.html" class="btn btn-secondary" target="_blank" rel="noopener">📄 HTML CV</a>
                     <a href="cv-resume/Michael_Baffour_Awuah_CV.pdf" class="btn btn-secondary" download>⬇ CV (PDF)</a>
                 </div>
 
@@ -955,6 +959,75 @@
 
     <hr class="section-divider">
 
+    <!-- ===== OFF THE PITCH ===== -->
+    <section class="section fade-in" id="pitch-section">
+        <div class="section-header">
+            <span class="section-label">Off the Clock</span>
+            <h2 class="section-title">Off the <span class="highlight">Pitch</span></h2>
+            <p class="section-subtitle">I play soccer. Badly, enthusiastically, and most weeks — which turns out to be the same way I do science.</p>
+        </div>
+
+        <div class="pitch-grid">
+            <div class="pitch-prose">
+                <p>I grew up on Ghanaian football, which means I grew up on hope with a very
+                   specific shape to it. The <strong>Black Stars</strong> teach you early that
+                   talent is not the same as a result, that the run someone makes off the ball
+                   is usually what created the goal, and that you can play beautifully and
+                   still lose on penalties. Reasonable preparation for a PhD.</p>
+                <p>These days it's pickup games in College Station — a squad that speaks about
+                   six languages and agrees on nothing except that the last goal was offside.
+                   It is the only part of my week with no reviewers.</p>
+                <p>The habits transfer more than I expected. You play the pass that's on, not
+                   the one you rehearsed. You spend most of the match without the ball, which
+                   is exactly like waiting on an overnight culture. And the players worth
+                   having around are the ones who track back when the experiment fails, not
+                   the ones who only turn up for the result.</p>
+                <p class="pitch-flag"><span aria-hidden="true">🇬🇭</span> The gold, green and red
+                   on this site is the Ghanaian flag, not a coincidence.</p>
+            </div>
+
+            <!-- Interactive: the eleven things I lean on, as a starting XI. -->
+            <div class="pitch-widget" id="pitchWidget">
+                <h3 class="pitch-h3">My starting XI</h3>
+                <p class="pitch-hint">Every skill this PhD runs on, in a 4&#8209;3&#8209;3. Pick a shirt.</p>
+
+                <svg class="pitch-svg" viewBox="0 0 100 100" role="group"
+                     aria-label="A soccer pitch showing eleven skills arranged in a 4-3-3 formation. Each shirt is a button.">
+                    <rect class="pitch-turf" x="0" y="0" width="100" height="100" rx="2"/>
+                    <g class="pitch-lines" aria-hidden="true" fill="none">
+                        <rect x="3" y="3" width="94" height="94" rx="1"/>
+                        <line x1="3" y1="50" x2="97" y2="50"/>
+                        <circle cx="50" cy="50" r="11"/>
+                        <circle cx="50" cy="50" r="0.9" class="spot"/>
+                        <rect x="28" y="3" width="44" height="15"/>
+                        <rect x="40" y="3" width="20" height="6"/>
+                        <rect x="28" y="82" width="44" height="15"/>
+                        <rect x="40" y="91" width="20" height="6"/>
+                    </g>
+                </svg>
+
+                <div class="pitch-detail" role="status" aria-live="polite"></div>
+
+                <!-- No-JS view: the same eleven, as text. -->
+                <ul class="pitch-fallback">
+                    <li><strong>GK</strong> Controls &amp; replicates</li>
+                    <li><strong>RB</strong> Molecular cloning</li>
+                    <li><strong>CB</strong> Phage isolation</li>
+                    <li><strong>CB</strong> Genome assembly &amp; annotation</li>
+                    <li><strong>LB</strong> CRISPR engineering</li>
+                    <li><strong>CM</strong> Experimental design</li>
+                    <li><strong>CM</strong> RNA-seq &amp; DESeq2</li>
+                    <li><strong>CM</strong> R &amp; Python pipelines</li>
+                    <li><strong>RW</strong> Tool building</li>
+                    <li><strong>ST</strong> Lysis inhibition in N4</li>
+                    <li><strong>LW</strong> Teaching &amp; mentoring</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <hr class="section-divider">
+
     <!-- ===== LIFE IN THE LAB GALLERY ===== -->
     <section class="section fade-in" id="gallery">
         <div class="section-header">
@@ -1113,5 +1186,6 @@
     <script defer src="assets/js/playground.js"></script>
     <script defer src="assets/js/ui.js"></script>
     <script defer src="assets/js/tailfiber.js"></script>
+    <script defer src="assets/js/pitch.js"></script>
 </body>
 </html>
