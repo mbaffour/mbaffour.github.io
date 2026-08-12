@@ -308,54 +308,38 @@
 
             <figure class="scene">
               <svg viewBox="0 0 800 250" role="img" aria-hidden="true" focusable="false">
-                <!-- Gulf of Guinea: sun over the water, canoes drawn up on the sand -->
-                <circle class="sun drift" cx="640" cy="70" r="30"/>
-                <path class="sea" d="M0 128 H800 V182 H0 Z"/>
-                <path class="stroke-green" d="M40 144 q28 -7 56 0 t56 0 M180 158 q28 -7 56 0 t56 0
-                                              M420 146 q28 -7 56 0 t56 0 M600 160 q28 -7 56 0 t56 0" opacity=".5"/>
-                <path class="sand" d="M0 182 H800 V250 H0 Z"/>
-                <!-- fishing canoe, the kind still launched off these beaches -->
-                <path class="ink-shape" d="M250 214 q60 26 150 0 l-14 12 q-62 16 -122 0 Z"/>
-                <path class="stroke-ink" d="M325 214 V168 M325 176 l40 14 -40 14"/>
-                <!-- palms -->
-                <g class="stroke-ink">
-                  <path d="M96 250 q6 -46 2 -74"/>
-                  <path d="M98 176 q-30 -18 -50 -6 M98 176 q-16 -30 -44 -32 M98 176 q26 -22 52 -10 M98 176 q10 -32 40 -30"/>
-                  <path d="M712 250 q-6 -40 -2 -64"/>
-                  <path d="M710 186 q-26 -16 -44 -5 M710 186 q-14 -26 -38 -27 M710 186 q23 -19 46 -9"/>
+
+                <circle class="sun drift" cx="646" cy="64" r="30"/>
+                <!-- sea -->
+                <path class="sea" d="M0 138 H800 V196 H0 Z"/>
+                <path class="stroke-green" d="M60 158 q26 -6 52 0 t52 0 M420 166 q26 -6 52 0 t52 0" opacity=".45"/>
+                <!-- headland rising from the left, castle standing on it -->
+                <path class="land" d="M0 138 q120 -46 260 -30 L300 138 Z" opacity=".5"/>
+                <path class="ink-shape" opacity=".14" d="M0 138 q120 -46 260 -30 L300 138 Z"/>
+                <g transform="translate(96,74)">
+                  <path class="ink-shape" d="M0 0 h24 v-26 h-24 Z M24 8 h64 v-20 h-64 Z M88 0 h24 v-26 h-24 Z" opacity=".9"/>
+                  <path class="gold-shape" d="M8 -26 h8 v-8 h-8 Z M96 -26 h8 v-8 h-8 Z" opacity=".8"/>
                 </g>
-                <!-- sankofa, as a watermark -->
-                <g transform="translate(60,52) scale(0.85)" opacity=".5">
-                  <path class="stroke-gold" d="M-14 6 a12 12 0 0 1 24 0 a12 12 0 0 1 -24 0 M-2 -6 q10 -20 26 -8
-                                               q14 12 -2 22 M22 12 l4 -10 8 6"/>
-                </g>
-              
-                <!-- Cape Coast Castle on the headland: whitewashed walls above the sea -->
-                <g transform="translate(508,88)">
-                  <path class="ink-shape" opacity=".14" d="M-24 40 h150 v-8 h-150 Z"/>
-                  <g class="stroke-ink">
-                    <path d="M0 32 V6 h22 V32 M11 6 V-6 M4 -6 h14"/>
-                    <path d="M34 32 V14 h58 V32 M44 14 v-8 h10 v8 M78 14 v-8 h10 v8"/>
-                    <path d="M104 32 V6 h22 V32 M115 6 V-6 M108 -6 h14"/>
-                  </g>
-                </g>
-                <!-- gull over the water -->
-                <path class="stroke-ink" d="M420 84 q8 -8 16 0 q8 -8 16 0" opacity=".6"/>
-                <path class="stroke-ink" d="M472 100 q6 -6 12 0 q6 -6 12 0" opacity=".45"/>
-                <!-- net floats along the beach -->
-                <g class="gold-shape" opacity=".8">
-                  <circle cx="180" cy="236" r="4"/><circle cx="196" cy="240" r="4"/>
-                  <circle cx="212" cy="236" r="4"/><circle cx="228" cy="241" r="4"/>
+                <!-- beach -->
+                <path class="sand" d="M0 196 H800 V250 H0 Z"/>
+                <!-- canoe: one solid dugout hull with a pennant -->
+                <path class="ink-shape" d="M330 208 q90 26 190 0 q-16 20 -95 20 q-79 0 -95 -20 Z"/>
+                <path class="stroke-ink" d="M424 208 V172"/>
+                <path class="red-shape" d="M424 172 l26 8 -26 8 Z"/>
+                <!-- palms: solid fronds, not stick lines -->
+                <g class="ink-shape" opacity=".9">
+                  <path d="M724 250 q-8 -44 -4 -70 l10 0 q-6 26 2 70 Z"/>
+                  <path d="M726 180 q-30 -22 -54 -12 q26 -4 42 10 Z M726 180 q-24 -30 -50 -30 q24 4 40 26 Z
+                           M726 180 q28 -24 52 -14 q-24 -2 -40 12 Z M726 180 q22 -30 48 -28 q-24 2 -38 24 Z
+                           M726 180 q-2 -34 -20 -46 q12 16 10 44 Z"/>
                 </g>
               </svg>
               <figcaption>
-                <b>Cape Coast, Ghana.</b> Fishing canoes still launch off these beaches under
-                Cape Coast Castle, the whitewashed fort on the headland — a UNESCO site and one
+                <b>Cape Coast, Ghana.</b> Fishing canoes still launch off these beaches beneath
+                Cape Coast Castle — the whitewashed fort on the headland, a UNESCO site and one
                 of the heaviest places on the Atlantic coast, where the dungeons and the
-                “Door of No Return” are kept as memorial. The university sits on the hills
-                above the same sea. <span class="sym">Sankofa</span>, drawn at the left, is the
-                Akan bird looking backward: <em>“go back and fetch it”</em> — the past is not
-                left behind, it is carried.
+                “Door of No Return” are kept as memorial. The University of Cape Coast sits on
+                the hills above the same sea.
               </figcaption>
             </figure>
             <p>I read Biochemistry at the University of Cape Coast and graduated with a
@@ -384,40 +368,29 @@
 
             <figure class="scene">
               <svg viewBox="0 0 800 250" role="img" aria-hidden="true" focusable="false">
-                <path class="hill" d="M0 250 V150 q200 -40 400 -10 t400 -20 V250 Z"/>
-                <!-- a board, and the rows in front of it -->
-                <rect class="ink-shape" x="250" y="42" width="300" height="118" rx="6" opacity=".16"/>
-                <rect x="250" y="42" width="300" height="118" rx="6" class="stroke-ink"/>
-                <path class="stroke-gold" d="M282 84 h120 M282 106 h180 M282 128 h96"/>
-                <g class="stroke-ink">
-                  <path d="M180 210 h120 M195 210 v22 M285 210 v22"/>
-                  <path d="M340 210 h120 M355 210 v22 M445 210 v22"/>
-                  <path d="M500 210 h120 M515 210 v22 M605 210 v22"/>
+                <path class="hill" d="M0 250 V168 q200 -34 400 -12 t400 -16 V250 Z"/>
+                <!-- adinkrahene -->
+                <g transform="translate(160,118)">
+                  <circle class="stroke-gold" r="52"/><circle class="stroke-gold" r="34"/>
+                  <circle class="stroke-gold" r="16"/>
                 </g>
-                <g class="ink-shape">
-                  <circle cx="212" cy="192" r="9"/><circle cx="268" cy="192" r="9"/>
-                  <circle cx="372" cy="192" r="9"/><circle cx="428" cy="192" r="9"/>
-                  <circle cx="532" cy="192" r="9"/><circle cx="588" cy="192" r="9"/>
+                <!-- talking drum: ink-solid hourglass, gold heads and lacing, curved stick -->
+                <g transform="translate(430,140)">
+                  <path class="ink-shape" opacity=".92"
+                        d="M-36 -50 q0 -8 8 -8 h56 q8 0 8 8 q-16 30 0 100 q0 8 -8 8 h-56 q-8 0 -8 -8 q16 -70 0 -100 Z"/>
+                  <path class="gold-shape" d="M-38 -58 h76 v10 h-76 Z M-38 48 h76 v10 h-76 Z"/>
+                  <path class="stroke-gold" d="M-28 -46 L20 44 M28 -46 L-20 44 M0 -46 V44" opacity=".8"/>
+                  <path class="stroke-ink" d="M50 -60 q24 12 18 38"/>
+                  <circle class="ink-shape" cx="70" cy="-64" r="6"/>
                 </g>
-                <!-- adinkrahene: concentric rings -->
-                <g transform="translate(96,86)" opacity=".55">
-                  <circle class="stroke-gold" r="30"/><circle class="stroke-gold" r="20"/>
-                  <circle class="stroke-gold" r="10"/>
-                </g>
-              
-                <!-- talking drum, squeezed under the arm to bend its pitch -->
-                <g transform="translate(680,150)">
-                  <path class="stroke-gold" d="M-20 -34 q20 12 40 0 M-20 34 q20 -12 40 0"/>
-                  <path class="stroke-gold" d="M-20 -34 q-10 34 0 68 M20 -34 q10 34 0 68"/>
-                  <path class="stroke-ink" d="M-18 -30 L14 28 M-14 -33 L18 24 M-19 -22 L10 31 M18 -30 L-14 28 M14 -33 L-18 24" opacity=".55"/>
-                  <path class="stroke-gold" d="M30 -44 q14 8 10 22" />
-                </g>
-                <!-- cocoa pods: the crop the region runs on -->
-                <g transform="translate(52,196)">
-                  <path class="gold-shape" opacity=".85" d="M0 0 q14 -6 20 8 q8 18 -4 30 q-14 6 -20 -8 q-8 -18 4 -30 Z"/>
-                  <path class="stroke-ink" d="M8 4 q6 12 0 26" opacity=".5"/>
-                  <path class="gold-shape" opacity=".6" transform="translate(30,10) rotate(24)"
-                        d="M0 0 q11 -5 16 6 q6 14 -3 24 q-11 5 -16 -6 q-6 -14 3 -24 Z"/>
+                <!-- cocoa pods: elongated, pointed, stems; one gold one green -->
+                <g transform="translate(625,190)">
+                  <path class="stroke-ink" d="M8 -8 q4 -8 12 -10" opacity=".7"/>
+                  <path class="gold-shape" transform="rotate(18)"
+                        d="M0 0 q16 -6 24 8 q10 18 4 40 q-4 12 -14 12 q-16 -2 -20 -20 q-4 -26 6 -40 Z"/>
+                  <path class="stroke-ink" d="M8 8 q8 18 4 38" opacity=".45"/>
+                  <path transform="translate(52,10) rotate(-14)" fill="var(--green)" opacity=".85"
+                        d="M0 0 q13 -5 19 6 q8 15 3 32 q-3 10 -11 10 q-13 -2 -16 -16 q-3 -21 5 -32 Z"/>
                 </g>
               </svg>
               <figcaption>
@@ -459,38 +432,31 @@
 
             <figure class="scene">
               <svg viewBox="0 0 800 250" role="img" aria-hidden="true" focusable="false">
-                <circle class="sun drift" cx="150" cy="66" r="26"/>
-                <!-- post oak savannah: low rolling ground, scattered oaks, big sky -->
-                <path class="hill" d="M0 250 V176 q120 -26 240 -6 t240 -14 q120 -12 320 8 V250 Z"/>
-                <path class="land" d="M0 250 V208 q200 -20 400 -4 t400 -12 V250 Z"/>
-                <g class="stroke-ink">
-                  <path d="M120 214 v-34 M120 190 q-22 -14 -34 -2 M120 190 q20 -16 34 -4"/>
-                  <path d="M640 218 v-30 M640 196 q-20 -13 -31 -2 M640 196 q18 -14 31 -3"/>
+
+                <circle class="sun drift" cx="140" cy="62" r="26"/>
+                <path class="hill" d="M0 250 V180 q140 -28 280 -8 t280 -16 q120 -10 240 6 V250 Z"/>
+                <path class="land" d="M0 250 V212 q200 -18 400 -4 t400 -10 V250 Z"/>
+                <!-- post oaks: solid trunks, solid rounded canopies -->
+                <g class="ink-shape" opacity=".88">
+                  <path d="M236 214 h10 l-2 -30 h-6 Z"/>
+                  <path d="M241 150 q-40 4 -40 26 q0 14 18 16 q-4 12 14 12 q22 2 26 -12 q20 0 18 -16 q-2 -22 -36 -26 Z"/>
+                  <path d="M654 220 h9 l-2 -26 h-5 Z"/>
+                  <path d="M658 166 q-32 3 -32 21 q0 12 15 13 q-3 10 11 10 q18 2 21 -10 q16 0 15 -13 q-2 -18 -30 -21 Z"/>
                 </g>
-                <!-- water tower, the landmark of a small Texas town -->
-                <g class="stroke-ink" transform="translate(430,0)">
-                  <path d="M-26 132 h52 l-8 -22 h-36 Z"/>
-                  <path d="M-18 132 v62 M18 132 v62 M-18 162 h36 M-14 194 h28"/>
-                </g>
-                <!-- bluebonnets -->
-                <g class="gold-shape" opacity=".9">
-                  <circle cx="228" cy="232" r="3"/><circle cx="236" cy="226" r="3"/>
-                  <circle cx="244" cy="233" r="3"/><circle cx="700" cy="236" r="3"/>
-                  <circle cx="710" cy="230" r="3"/><circle cx="718" cy="237" r="3"/>
-                </g>
-              
-                <!-- longhorn: the horn line is the whole silhouette -->
-                <g transform="translate(240,196)">
-                  <path class="stroke-ink" d="M-52 -14 q-16 -12 -28 -6 q14 -2 20 6 M52 -14 q16 -12 28 -6 q-14 -2 -20 6"/>
-                  <path class="ink-shape" d="M-52 -14 q0 -10 12 -10 h80 q12 0 12 10 q0 8 -10 10 l-6 26 h-10 l-4 -24 h-44 l-4 24 h-10 l-6 -26 q-10 -2 -10 -10 Z" opacity=".7"/>
+                <!-- water tower: solid tank on legs, standpipe style -->
+                <g transform="translate(430,0)">
+                  <path class="ink-shape" d="M-30 118 h60 v-6 a30 18 0 0 0 -60 0 Z"/>
+                  <path class="ink-shape" d="M-3 84 h6 v-14 h-6 Z" opacity=".8"/>
+                  <g class="stroke-ink">
+                    <path d="M-22 118 L-30 196 M22 118 L30 196 M-26 158 H26 M-16 196 h32"/>
+                  </g>
                 </g>
               </svg>
               <figcaption>
-                <b>The Brazos Valley, Texas.</b> College Station sits in post oak savannah — open
-                grassland with oaks scattered through it, bluebonnets in spring, and a great
-                deal of sky. The <b>longhorn</b> descends from the first cattle brought to the
-                Americas, shaped by centuries of open range; the water tower is how most small
-                Texas towns are navigated. About 7,500&nbsp;km from the Gulf of Guinea.
+                <b>The Brazos Valley, Texas.</b> College Station sits in post oak savannah —
+                open grassland with squat, broad oaks scattered through it rather than closed
+                forest, and a great deal of sky. The water tower is the landmark most small
+                Texas towns are navigated by. About 7,500&nbsp;km from the Gulf of Guinea.
               </figcaption>
             </figure>
 
@@ -746,27 +712,31 @@
 
             <figure class="scene">
               <svg viewBox="0 0 800 250" role="img" aria-hidden="true" focusable="false">
+
                 <path class="land" d="M0 250 V206 q200 -18 400 -2 t400 -10 V250 Z"/>
-                <!-- the black star of the Ghana flag, on its band of colour -->
-                <g opacity=".85">
-                  <rect class="red-shape" x="250" y="52" width="300" height="34"/>
-                  <rect class="gold-shape" x="250" y="86" width="300" height="34"/>
-                  <rect x="250" y="120" width="300" height="34" fill="var(--green)"/>
+                <g opacity=".92">
+                  <rect class="red-shape" x="270" y="46" width="260" height="36"/>
+                  <rect class="gold-shape" x="270" y="82" width="260" height="36"/>
+                  <rect x="270" y="118" width="260" height="36" fill="var(--green)"/>
                 </g>
-                <path class="ink-shape" transform="translate(400,103) scale(1.15)"
+                <!-- the Black Star is black in any theme: it is the point of the flag -->
+                <path transform="translate(400,101) scale(1.05)" fill="#0d0b06"
                       d="M0 -30 L7 -9 H29 L11 4 L18 26 L0 13 L-18 26 L-11 4 L-29 -9 H-7 Z"/>
-                <g class="stroke-gold" opacity=".8">
-                  <path d="M300 200 q-40 -34 -34 -74 M500 200 q40 -34 34 -74"/>
+                <!-- fontomfrom pair: solid tapered bodies, gold pegs, on the ground -->
+                <g transform="translate(130,144)">
+                  <path class="ink-shape" d="M-24 -50 h48 l8 108 h-64 Z"/>
+                  <path class="gold-shape" d="M-26 -54 h52 v10 h-52 Z"/>
+                  <g class="gold-shape">
+                    <circle cx="-16" cy="-28" r="3"/><circle cx="0" cy="-26" r="3"/><circle cx="16" cy="-28" r="3"/>
+                    <circle cx="-19" cy="6" r="3"/><circle cx="0" cy="8" r="3"/><circle cx="19" cy="6" r="3"/>
+                  </g>
                 </g>
-              
-                <!-- fontomfrom pair: the tall royal drums that drive adowa and kete -->
-                <g transform="translate(120,158)">
-                  <path class="stroke-gold" d="M-16 -44 h32 M-16 -44 q-8 44 -4 78 M16 -44 q8 44 4 78 M-20 34 h40"/>
-                  <path class="stroke-ink" d="M-14 -38 L10 26 M14 -38 L-10 26 M0 -40 V30" opacity=".5"/>
-                </g>
-                <g transform="translate(176,170)">
-                  <path class="stroke-gold" d="M-12 -32 h24 M-12 -32 q-6 32 -3 58 M12 -32 q6 32 3 58 M-15 26 h30"/>
-                  <path class="stroke-ink" d="M-10 -27 L8 20 M10 -27 L-8 20" opacity=".5"/>
+                <g transform="translate(206,168)">
+                  <path class="ink-shape" d="M-18 -38 h36 l6 84 h-48 Z"/>
+                  <path class="gold-shape" d="M-20 -42 h40 v9 h-40 Z"/>
+                  <g class="gold-shape">
+                    <circle cx="-12" cy="-20" r="2.6"/><circle cx="0" cy="-18" r="2.6"/><circle cx="12" cy="-20" r="2.6"/>
+                  </g>
                 </g>
               </svg>
               <figcaption>
@@ -815,10 +785,10 @@
                   <path d="M400 238 v-16 M400 210 v-13 M400 186 v-10 M400 168 v-8 M400 154 v-6"/>
                 </g>
               
-                <!-- baobab: the upside-down tree, planted where roads meet -->
-                <g transform="translate(640,0)" class="stroke-ink">
-                  <path d="M0 214 q-4 -30 -2 -44 q-14 -4 -18 -18 M-2 170 q-16 2 -24 -8 M-2 170 q2 -16 -6 -26 M-2 170 q14 -2 20 -14 M-2 170 q18 6 28 -2"/>
-                  <path d="M8 214 q4 -30 2 -44" opacity=".5"/>
+                <!-- baobab: solid — thick trunk flaring at the base, wide flat crown -->
+                <g transform="translate(640,0)" class="ink-shape">
+                  <path d="M-6 214 q-3 -26 -2 -42 l-8 -10 h28 l-8 10 q1 16 2 42 Z"/>
+                  <path d="M-44 158 q4 -22 44 -22 q40 0 44 22 q2 12 -18 14 q-6 8 -26 8 q-20 0 -26 -8 q-20 -2 -18 -14 Z"/>
                 </g>
               </svg>
               <figcaption>
