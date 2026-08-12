@@ -107,6 +107,46 @@ body {
     radial-gradient(ellipse 60% 40% at 80% 100%, var(--accent2-glow) 0%, transparent 60%);
 }
 
+/* ── Pitch markings ──────────────────────────────────────────────
+   A football pitch behind the CV. Everything here is decorative and
+   pointer-events:none, so it can never intercept a click or affect the
+   contrast of the text above it — the opacity is low enough that the
+   markings read as texture rather than as lines competing with copy. */
+.pitch-bg {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  opacity: 0.5;                /* on top of the per-stroke opacity below */
+}
+.pitch-bg svg { width: 100%; height: 100%; display: block; }
+.pitch-lines {
+  fill: none;
+  stroke: var(--accent2);
+  stroke-width: 2;
+  opacity: 0.13;
+}
+.pitch-lines .spot { fill: var(--accent2); stroke: none; opacity: 0.5; }
+
+/* The ball loops the pitch slowly. offset-path keeps it on a real curve
+   rather than a linear drift, which reads as a pass being played. */
+.pitch-ball {
+  offset-path: path("M 170,400 C 300,180 900,180 1030,400 C 900,620 300,620 170,400 Z");
+  offset-rotate: 0deg;
+  animation: pitch-roll 48s linear infinite;
+  opacity: 0.16;
+}
+.pitch-ball .ball-body  { fill: var(--accent); }
+.pitch-ball .ball-panel { fill: var(--navy); opacity: 0.55; }
+@keyframes pitch-roll { to { offset-distance: 100%; } }
+
+/* No offset-path support: park the ball on the centre spot rather than
+   leaving it stuck at the SVG origin in the corner. */
+@supports not (offset-path: path("M0,0 L1,1")) {
+  .pitch-ball { transform: translate(600px, 400px); animation: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pitch-ball { animation: none; }
+}
+
 /* ── Main container ── */
 .container {
   position: relative; z-index: 1;
@@ -500,7 +540,7 @@ footer a { color: var(--accent); text-decoration: none; }
 /* ── Print styles ── */
 @media print {
   body { background: white; color: #222; }
-  .bg-grid, nav { display: none; }
+  .bg-grid, .pitch-bg, nav { display: none; }
   .card { border: 1px solid #ddd; box-shadow: none; background: white; }
   .card:hover { transform: none; }
   .section-title { color: #1a2744; }
@@ -563,6 +603,34 @@ footer a { color: var(--accent); text-decoration: none; }
 <p style="max-width:900px;margin:0 auto;padding:16px 22px 0;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.78rem;line-height:2;"><a href="../index.html" style="color:var(--accent);text-decoration:underline;">&larr; Back to portfolio</a><span style="opacity:.4"> · </span><a href="Michael_Baffour_Awuah_CV.pdf" download style="color:var(--accent);text-decoration:underline;">Download PDF</a><span style="opacity:.4"> · </span><a href="https://orcid.org/0009-0007-9036-413X" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:underline;">ORCID</a><span style="opacity:.4"> · </span><a href="https://scholar.google.com/citations?user=e5_h_2YAAAAJ&amp;hl=en" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:underline;">Google Scholar</a></p>
 
 <div class="bg-grid"></div>
+
+<!-- Pitch markings behind the page. Deliberately faint: this is a CV, so the
+     motif should be noticed on the second look, not the first. Hidden from
+     assistive tech and from print. -->
+<div class="pitch-bg" aria-hidden="true">
+  <svg viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice" focusable="false">
+    <g class="pitch-lines">
+      <rect x="60" y="40" width="1080" height="720" rx="4"/>
+      <line x1="600" y1="40" x2="600" y2="760"/>
+      <circle cx="600" cy="400" r="120"/>
+      <circle cx="600" cy="400" r="6" class="spot"/>
+      <!-- penalty areas -->
+      <rect x="60"  y="220" width="150" height="360"/>
+      <rect x="990" y="220" width="150" height="360"/>
+      <rect x="60"  y="310" width="60"  height="180"/>
+      <rect x="1080" y="310" width="60" height="180"/>
+      <circle cx="170"  cy="400" r="6" class="spot"/>
+      <circle cx="1030" cy="400" r="6" class="spot"/>
+      <!-- penalty arcs -->
+      <path d="M210 322 A 120 120 0 0 1 210 478"/>
+      <path d="M990 322 A 120 120 0 0 0 990 478"/>
+    </g>
+    <g class="pitch-ball">
+      <circle r="9" class="ball-body"/>
+      <path d="M0,-9 L5,-3 L3,4 L-3,4 L-5,-3 Z" class="ball-panel"/>
+    </g>
+  </svg>
+</div>
 
 <!-- Navigation -->
 <nav id="mainNav">
