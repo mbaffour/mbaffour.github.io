@@ -580,14 +580,59 @@ footer a { color: var(--accent); text-decoration: none; }
 
 /* ── Print styles ── */
 @media print {
-  body { background: white; color: #222; }
-  .bg-grid, .pitch-bg, .pitch-weave, nav { display: none; }
-  .card { border: 1px solid #ddd; box-shadow: none; background: white; }
+  /* The PDF is generated FROM this block (headless Chrome printToPDF), so this
+     is the single source of truth for the paper CV. It used to hardcode the
+     retired navy palette (#1a2744 / #2c5f8a) — the web CV moved to kente and
+     the PDF must match. Values are the light-theme set: the print-safe dark
+     variants of gold/green/red on paper. */
+  :root, :root[data-theme="dark"], :root[data-theme="light"] {
+    --navy: #ffffff;
+    --deep: #f7f4ea;
+    --accent:       #7d5800;
+    --accent-glow:  transparent;
+    --accent2:      #0f6a2e;
+    --accent2-glow: transparent;
+    --accent3:      #a01a30;
+    --accent3-glow: transparent;
+    --text: #1a1408;
+    --text-secondary: #3a2c0e;
+    --text-muted: #5d4a1e;
+    --surface: #ffffff;
+    --surface-hover: #ffffff;
+    --border: #d9d2bd;
+    --white: #14100a;
+    --nav-bg: transparent;
+  }
+  body { background: white; color: var(--text); }
+  .bg-grid, .pitch-bg, nav, .cv-theme-toggle, .skip-link { display: none; }
+  /* The web breadcrumb is nonsense on paper — it contains "Download PDF". */
+  main > p:first-of-type { display: none; }
+  /* The kente band survives print — it is one line of ink and it is the
+     identity. It needs print-color-adjust or Chrome drops backgrounds. */
+  .pitch-weave {
+    display: block; position: static; height: 8px; opacity: 1;
+    margin-bottom: 14px;
+    -webkit-print-color-adjust: exact; print-color-adjust: exact;
+    background: repeating-linear-gradient(90deg,
+      #7d5800 0 26px, #ffffff 26px 34px,
+      #0f6a2e 34px 60px, #ffffff 60px 68px,
+      #a01a30 68px 94px, #ffffff 94px 102px);
+  }
+  .card {
+    border: 1px solid var(--border); box-shadow: none; background: white;
+    break-inside: avoid; page-break-inside: avoid;
+  }
   .card:hover { transform: none; }
-  .section-title { color: #1a2744; }
-  .hero h1 { color: #1a2744; }
-  .hero .tagline { color: #2c5f8a; }
-  a { color: #2c5f8a; }
+  .card::before { opacity: 1; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  /* Section hue bars keep the gold->green->red rotation on paper. */
+  .section-title::before,
+  .section-rule { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .section-title { color: var(--white); }
+  section { break-inside: auto; }
+  .section-title, .card-header { break-after: avoid; page-break-after: avoid; }
+  .hero h1 { color: var(--white); }
+  .hero .tagline { color: var(--accent); }
+  a { color: var(--accent); text-decoration: none; }
   .footer-animation, .rocket-track { display: none; }
   .expandable { max-height: none !important; }
 }
