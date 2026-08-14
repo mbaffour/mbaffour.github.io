@@ -72,6 +72,11 @@ const publications = [
         status: "preprint",
         firstAuthor: true,
         code: "https://github.com/mbaffour/N4-Lysis-paper-codes",
+        /* Eleven authors: a screener cannot tell what was his without opening the
+           DOI, and three of five recruiter reads stalled here. Drawn only from
+           work this CV already claims as his own. Replace with the manuscript's
+           CRediT statement verbatim if the wording there differs. */
+        contribution: "Led the lysis genetics — CRISPR-based deletion and complementation series to define the minimal lysis gene set, SAR endolysin–holin characterisation, lysis-phenotype assays, and the RNA-seq comparison of wild-type and rapid-lysis lineages — and wrote the manuscript.",
         summary: "First-author study of how phage N4 takes its host cell apart, showing it lyses via a SAR endolysin–holin system and mapping genomic regions — inside and outside the lysis cassette — involved in lysis inhibition.",
         citation: {
             plain: "Awuah MB, Martin C, Chamblee JS, Tomaszewski AJ, Sullivan TE, Emilia Q, Tran S, Snowden JH, Niemiec KA, Zhu J, Ramsey J. Phage N4 uses a SAR endolysin-holin system for host cell lysis. bioRxiv. 2025. doi:10.1101/2025.11.12.688109",
@@ -200,6 +205,7 @@ const publications = [
 const tools = [
     {
         title: "Lysis Curve Plotter",
+        repo: "https://github.com/mbaffour/lysis-curve-app",
         featured: true,
         blurb: "Browser-based R Shiny app for plotting phage lysis curves — 19 metrics, 7 variability modes, full export. Replaces hours of ggplot2 boilerplate per experiment.",
         tech: ["R Shiny", "OD600", "Data Viz"],
@@ -211,6 +217,7 @@ const tools = [
     },
     {
         title: "Dilution Designer",
+        repo: "https://github.com/mbaffour/dilution-designer",
         blurb: "96-well plate experiment designer — stock volumes, dilution factors, and pipetting maps in seconds. Built because I kept doing the math by hand.",
         tech: ["JavaScript", "Lab Tool", "Offline"],
         stack: "js",
@@ -221,6 +228,7 @@ const tools = [
     },
     {
         title: "FigureLab",
+        repo: "https://github.com/mbaffour/FigureLab",
         featured: true,
         blurb: "Browser-based microscopy figure assembly — no installs, no exports, just open and build publication-ready panels.",
         tech: ["JavaScript", "Microscopy", "Figures"],
@@ -246,6 +254,7 @@ const tools = [
     },
     {
         title: "CellMorphR",
+        repo: "https://github.com/mbaffour/CellMorphR",
         featured: true,
         blurb: "Python pipeline for quantifying cell morphology from microscopy data — statistics, publication-ready plots, reproducible workflows.",
         tech: ["Python", "Morphology", "Stats"],
@@ -257,6 +266,7 @@ const tools = [
     },
     {
         title: "AlphaFold Stoichiometry Generator",
+        repo: "https://github.com/mbaffour/AlphaFold-Stoichiometry-Generator",
         blurb: "R script that auto-generates stoichiometry strings for AlphaFold multi-chain predictions — kill the manual formatting errors.",
         tech: ["R", "AlphaFold", "Automation"],
         stack: "r",
@@ -267,6 +277,7 @@ const tools = [
     },
     {
         title: "PooledPPI",
+        repo: "https://github.com/mbaffour/PooledPPI",
         featured: true,
         blurb: "R Shiny app for genome-scale protein-protein interaction screens — designs pooled AlphaFold 3 jobs, imports ipTM results, applies size-bias correction, and builds publication-ready interaction networks.",
         tech: ["R Shiny", "AlphaFold 3", "PPI"],
@@ -278,6 +289,7 @@ const tools = [
     },
     {
         title: "killcurveplot",
+        repo: "https://github.com/mbaffour/killcurveplot",
         blurb: "Lightweight R package for generating clean lysis and kill curves from raw OD data. Fast, reproducible, ggplot2-flavored.",
         tech: ["R Package", "OD600", "Viz"],
         stack: "r",
@@ -288,6 +300,7 @@ const tools = [
     },
     {
         title: "N4 Lysis Paper Codes",
+        repo: "https://github.com/mbaffour/N4-Lysis-paper-codes",
         blurb: "Shiny apps released alongside the N4 lysis preprint — lysis curve visualization, FASTA reformatting, and reproducibility scaffolding.",
         tech: ["R Shiny", "N4", "Reproducibility"],
         stack: "r",
@@ -298,6 +311,7 @@ const tools = [
     },
     {
         title: "CFU Plot Studio",
+        repo: "https://github.com/mbaffour/cfu-plot-studio",
         featured: true,
         blurb: "R Shiny app for publication-ready CFU plots — bar charts, error bars, significance annotations, and reproducible figure exports in one place.",
         tech: ["R Shiny", "CFU", "Statistics"],
@@ -309,6 +323,7 @@ const tools = [
     },
     {
         title: "Genomics Kitchen",
+        repo: "https://github.com/mbaffour/genomics-kitchen",
         blurb: "Browser-based sequence preparation toolkit — trim, filter, dedupe, and format sequences for reproducible genomics workflows. No installs.",
         tech: ["JavaScript", "Genomics", "Offline"],
         stack: "js",
@@ -319,6 +334,7 @@ const tools = [
     },
     {
         title: "SeqSieve",
+        repo: "https://github.com/mbaffour/SeqSieve",
         blurb: "Browser-based exact sequence deduplication with provenance-preserving exports — upload a FASTA, sieve out duplicates, download clean sequences.",
         tech: ["JavaScript", "FASTA", "Offline"],
         stack: "js",
@@ -329,6 +345,7 @@ const tools = [
     },
     {
         title: "ReadQraft",
+        repo: "https://github.com/mbaffour/ReadQraft",
         blurb: "Desktop FASTQ quality control and trimming without terminal fear — drag in reads, inspect Phred scores, set trim thresholds, export clean files.",
         tech: ["Python", "FASTQ", "QC"],
         stack: "py",
@@ -339,6 +356,7 @@ const tools = [
     },
     {
         title: "Gibson Assembly Calculator",
+        repo: "https://github.com/mbaffour/gibson-assembly-calculator",
         blurb: "Browser-based Gibson Assembly setup — enter fragment lengths and concentrations, get exact pipetting volumes at NEB-recommended molar ratios. Export CSV, save reactions. Runs entirely client-side.",
         tech: ["JavaScript", "Cloning", "Offline"],
         stack: "js",
@@ -349,9 +367,10 @@ const tools = [
     },
     {
         title: "Plaque Toolkit",
+        repo: "https://github.com/mbaffour/plaque-toolkit",
         featured: true,
-        blurb: "Measures bacteriophage plaques straight from Petri-dish photos — size, turbidity, count, and titer — as a desktop app and CLI. Wraps a published method alongside in-house detection models so plaque scoring stops being manual and subjective. My newest flagship tool.",
-        tech: ["Python", "Computer Vision", "PySide6"],
+        blurb: "Measures bacteriophage plaques straight from Petri-dish photos — size, turbidity, count, and titer — as a desktop app and CLI. Four detection engines: a published, citable method plus an in-house YOLO segmentation model (PlaqSeg) and a learned plaque-vs-texture classifier, with a click-to-correct editor so a human always has the last word on the count.",
+        tech: ["Python", "YOLO", "Computer Vision", "PySide6"],
         stack: "py",
         blog: "blog/plaque-toolkit.html",
         app:  "https://github.com/mbaffour/plaque-toolkit",
@@ -360,6 +379,7 @@ const tools = [
     },
     {
         title: "HMM Homologue Finder",
+        repo: "https://github.com/mbaffour/hmm-homologue-finder",
         featured: true,
         blurb: "One-command, reproducible HMM-based homologue discovery for protein families across phage and viral databases — six-frame search, ORF validation, and iterative convergence, with golden-file regression tests baked in.",
         tech: ["Python", "HMMER", "Bioinformatics"],
@@ -371,6 +391,7 @@ const tools = [
     },
     {
         title: "HMM Discovery App",
+        repo: "https://github.com/mbaffour/hmm-discovery-app",
         blurb: "The no-code, in-browser version of the homologue workflow: alignment, HMM building, database search, hit classification, synteny, phylogeny, and reproducible export — the whole pipeline without touching a terminal.",
         tech: ["Python", "Shiny", "Bioinformatics"],
         stack: "py",
@@ -1108,6 +1129,7 @@ function renderPublications(filter = 'all') {
                 ${thumb}
                 <div class="pub-title">${titleHtml}</div>
                 ${pub.authors ? `<div class="pub-authors">${auth}</div>` : ''}
+                ${pub.contribution ? `<div class="pub-contribution"><span class="pub-contribution-kicker">My contribution</span> ${pub.contribution}</div>` : ''}
                 <div class="pub-journal">${pub.journal}</div>
                 ${pub.ids ? `<div class="pub-ids">${esc(pub.ids)}</div>` : ''}
                 ${dataRow}
@@ -1250,13 +1272,18 @@ function renderTalks() {
 /* ==============================================================
    RENDER — Tools
 =============================================================== */
-/* Sixteen equal cards buried the four that carry the section's argument.
-   Default = the flagships; every other view is one click away. */
-const FLAGSHIPS = ['Plaque Toolkit', 'FigureLab', 'Lysis Curve Plotter', 'HMM Discovery App'];
+/* Sixteen equal cards buried the ones that carry the section's argument.
+   Default = this explicit six; every other view is one click away.
+   The list is ordered, not derived from `featured`: the old flagship filter
+   showed four browser apps and hid the two heaviest pieces of engineering
+   (a pooled AlphaFold 3 screen designer and a tested CLI), which inverted
+   what a technical reader saw first. */
+const FLAGSHIPS = ['Plaque Toolkit', 'PooledPPI', 'HMM Homologue Finder',
+                   'FigureLab', 'Lysis Curve Plotter', 'HMM Discovery App'];
 function renderTools(filter = 'flagship') {
     const container = document.getElementById('toolsGrid');
     const filtered = filter === 'flagship'
-        ? tools.filter(t => FLAGSHIPS.some(f => t.title.includes(f)))
+        ? FLAGSHIPS.map(f => tools.find(t => t.title === f)).filter(Boolean)
         : filter === 'all' ? tools : tools.filter(t => t.stack === filter);
     container.innerHTML = filtered.map(t => `
         <div class="proj-card ${t.app ? 'proj-card--link' : ''} ${t.featured ? 'featured' : ''}" data-stack="${t.stack}">
@@ -1274,6 +1301,7 @@ function renderTools(filter = 'flagship') {
                 </div>
                 <div class="proj-actions">
                     ${t.app  ? `<a href="${t.app}"  class="proj-link" target="_blank" rel="noopener">Open ↗</a>` : ''}
+                    ${t.repo && t.repo !== t.app ? `<a href="${t.repo}" class="proj-link alt" target="_blank" rel="noopener">Source ↗</a>` : ''}
                     ${t.blog && t.blog !== t.app ? `<a href="${t.blog}" class="proj-link alt" target="_blank" rel="noopener">Blog</a>` : ''}
                     ${t.doi ? `<a href="https://doi.org/${t.doi}" class="proj-link alt" target="_blank" rel="noopener">Zenodo ↗</a>` : ''}
                     ${t.doi ? `<button class="proj-link proj-cite-btn" data-tool="${t.title}" type="button">Cite</button>` : ''}
@@ -1402,6 +1430,7 @@ function renderBuilds() {
             <div class="build-tags">${b.tech.map(t => `<span class="build-tag">${esc(t)}</span>`).join('')}</div>
             <div class="build-actions">
                 <a href="${b.app}" class="proj-link" target="_blank" rel="noopener">Open app ↗</a>
+                ${b.repo ? `<a href="${b.repo}" class="proj-link alt" target="_blank" rel="noopener">Source ↗</a>` : ''}
                 ${b.blog ? `<a href="${b.blog}" class="proj-link alt" target="_blank" rel="noopener">Read blog ↗</a>` : ''}
             </div>
         </div>
@@ -1428,7 +1457,10 @@ renderTools();
 (function() {
     const root = document.getElementById('toolFilters');
     const counts = tools.reduce((a, t) => { a[t.stack] = (a[t.stack] || 0) + 1; return a; }, {});
+    /* The grid opens on the flagships, but the row marked "All Tools" as
+       active — the control contradicted what was on screen. */
     const map = [
+        ['flagship', 'Flagships', FLAGSHIPS.length],
         ['all',  'All Tools', tools.length],
         ['r',    'R / Shiny', counts.r || 0],
         ['js',   'Web / JS',  counts.js || 0],

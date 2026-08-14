@@ -733,6 +733,7 @@ footer a { color: var(--accent); text-decoration: none; }
       <a href="#awards">Awards</a>
       <a href="#mentorship">Mentorship</a>
       <a href="#skills">Skills</a>
+      <a href="#references">References</a>
     </div>
     <button id="cvThemeToggle" class="cv-theme-toggle" type="button" aria-label="Switch theme">
       <svg class="ti-sun" width="15" height="15" viewBox="0 0 24 24" fill="none"
@@ -833,6 +834,7 @@ footer a { color: var(--accent); text-decoration: none; }
       <li>Performed RNA-seq transcriptomic profiling to uncover transcriptional differences between wild-type N4 and rapid-lysis lineages, revealing key regulatory networks governing lysis timing.</li>
       <li>Engineered bacteriophage N4 mutants using combinatorial genetics, designing complex genetic circuits to study how bacterial growth phases affect translation machinery availability during infection.</li>
       <li>Isolated, purified, and characterized three novel <em>E. coli</em> 4s-infecting bacteriophages from environmental samples using TEM, restriction analysis, and lysis phenotype assays.</li>
+      <li>Quantified LPS/endotoxin content and total protein in phage lysates via BCA assays, comparing disruptin vs. spanin LPS-quenching properties.</li>
     </ul>
     <button class="expand-toggle" onclick="toggle(this)">
       Show more
@@ -841,7 +843,6 @@ footer a { color: var(--accent); text-decoration: none; }
     <div class="expandable">
       <ul class="bullets">
         <li>Sequenced, assembled, and annotated genomes of three novel phages, integrating morphological, genomic, and lysis kinetics data to classify phage diversity.</li>
-        <li>Quantified LPS content and total protein in phage lysates via BCA assays, comparing disruptin vs. spanin LPS-quenching properties.</li>
         <li>Designed and optimized primers for molecular cloning, including plasmid design, construction, and verification for gene expression and complementation studies using SnapGene.</li>
         <li>Developed fluorophore-based reporter assays (GFP/mCherry) for real-time monitoring of lysis protein expression.</li>
       </ul>
@@ -1166,7 +1167,7 @@ footer a { color: var(--accent); text-decoration: none; }
       <div class="skill-group-title">Protein Biochemistry</div>
       <div class="pills">
         <span class="pill">BCA / Bradford Assays</span>
-        <span class="pill">LPS Quantification</span>
+        <span class="pill">LPS / Endotoxin Quantification (phage lysates)</span>
         <span class="pill">OM Protein Characterization</span>
         <span class="pill">Fluorophore Reporters (GFP/mCherry)</span>
       </div>
@@ -1197,8 +1198,26 @@ footer a { color: var(--accent); text-decoration: none; }
         <span class="pill">R</span>
         <span class="pill">R Shiny</span>
         <span class="pill">Python</span>
+        <span class="pill">Git / GitHub</span>
+        <span class="pill">CLI Development</span>
+        <span class="pill">Reproducible Environments</span>
+        <span class="pill">Regression Testing</span>
         <span class="pill">Data Visualization</span>
         <span class="pill">Pipeline Development</span>
+      </div>
+    </div>
+    <!-- Every chip below maps to a named, linked tool on the site: PlaqSeg
+         (Plaque Toolkit), PooledPPI, HMM Homologue Finder. -->
+    <div class="skill-group">
+      <div class="skill-group-title">Machine Learning &amp; Structural Prediction</div>
+      <div class="pills">
+        <span class="pill">YOLO Segmentation Models</span>
+        <span class="pill">Image Segmentation</span>
+        <span class="pill">Human-in-the-Loop Annotation</span>
+        <span class="pill">AlphaFold 3 / ipTM Screening</span>
+        <span class="pill">HMMER</span>
+        <span class="pill">MAFFT</span>
+        <span class="pill">IQ-TREE</span>
       </div>
     </div>
   </div>
@@ -1228,6 +1247,19 @@ footer a { color: var(--accent); text-decoration: none; }
   <hr class="section-rule">
   <div class="card">
     <p style="font-size:0.88rem;">American Society for Microbiology (ASM) — January 2021 – Present</p>
+  </div>
+</section>
+
+<!-- References: the fastest way a PI triangulates a stranger. No referee
+     contact details published — letters on request. -->
+<section id="references" class="cv-sec">
+  <h2 class="section-title">References</h2>
+  <hr class="section-rule">
+  <div class="card">
+    <p style="font-size:0.88rem;"><strong>Dr. Jolene Ramsey</strong> — dissertation advisor, Ramsey Laboratory,
+      Center for Phage Technology, Texas A&amp;M University.</p>
+    <p style="font-size:0.88rem; margin-top:6px;">Additional letters from Texas A&amp;M University and the
+      University of Cape Coast available on request.</p>
   </div>
 </section>
 

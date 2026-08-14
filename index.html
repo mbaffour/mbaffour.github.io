@@ -231,10 +231,11 @@
 
             <p class="hero-availability">
                 <span class="open-pulse" aria-hidden="true"></span>
-                Graduating 2027 and open to <strong>postdoctoral positions</strong>,
+                Defending in 2027 and available for <strong>2027 starts</strong>. Open to
+                <strong>postdoctoral positions</strong>,
                 <strong>biotech R&amp;D</strong>, <strong>AI for science</strong>,
-                <strong>translational research</strong> and <strong>scientific software</strong> —
-                wherever the problem is hardest. <a href="#contact">Get in touch</a>.
+                <strong>translational research</strong> and <strong>scientific software</strong>.
+                <a href="#contact">Get in touch</a>.
             </p>
 
             <!-- Outcomes, not seniority: "5th-year PhD" as the lead metric
@@ -249,9 +250,15 @@
                     <div class="hero-stat-value">3</div>
                     <div class="hero-stat-label">Novel phages isolated &amp; sequenced</div>
                 </div>
+                <!-- Counts the third-party citation, not the inventory: "16 apps"
+                     next to "1 preprint" invited the arithmetic "is he a
+                     biologist or a developer?". The raw count now lives in the
+                     software section, where it reads as inventory. -->
                 <div class="hero-stat">
-                    <div class="hero-stat-value" id="toolCount">16+</div>
-                    <div class="hero-stat-label">Open tools · used in published research</div>
+                    <a class="hero-stat-link" href="#tools">
+                        <div class="hero-stat-value">1</div>
+                        <div class="hero-stat-label">Tool cited by name in another lab's paper</div>
+                    </a>
                 </div>
                 <div class="hero-stat">
                     <div class="hero-stat-value">700+</div>
@@ -298,9 +305,9 @@
                    <em>lysis inhibition</em> in bacteriophage&nbsp;N4 — the phenomenon where a phage
                    senses that new hosts are scarce and holds the infected cell together,
                    turning it into a high-output virus factory instead of bursting it early.
-                   Reverse-engineering that decision is a route to high-titer phage production
-                   for therapy — and, further out, a foundation for programmable microbial
-                   biofactories.</p>
+                   Understanding how that decision is made is the part I can defend; where it
+                   could lead — phage preparations made to order, and further out, programmable
+                   microbial biofactories — is the part I want to work on next.</p>
                 <p>Alongside the wet lab I build open-source tools that make phage research
                    more reproducible, accessible, and efficient — every one of them started
                    as a real problem someone next to me hit,
@@ -332,8 +339,9 @@
 
         <div class="research-lead" style="background:linear-gradient(135deg, rgba(244,196,48,0.07), rgba(26,128,64,0.04)); border:1px solid var(--border-strong); border-radius:18px; padding:28px 30px; margin:0 0 36px; max-width:880px;">
             <p style="font-family:var(--font-mono); font-size:0.72rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--gold); margin:0 0 10px;">The headline finding</p>
-            <p style="font-size:1.08rem; color:var(--ink); margin:0 0 14px; line-height:1.65;">Bacteriophage&nbsp;N4 deliberately delays lysing its host, turning each infected cell into a high-output virus factory that yields up to <strong>~3,000 particles in 3–6&nbsp;hours</strong>. My first-author preprint shows N4 lyses through a <strong>SAR endolysin–holin system</strong> and maps genomic regions — inside and outside the lysis cassette — involved in holding lysis off. Separately, my thesis work identified a novel regulator of that decision; that manuscript is in preparation. The question isn't <em>when</em> a phage kills; it's <em>whether to give up the cell</em> — and N4 keeps choosing to hold on.</p>
+            <p style="font-size:1.08rem; color:var(--ink); margin:0 0 14px; line-height:1.65;">Bacteriophage&nbsp;N4 deliberately delays lysing its host, turning each infected cell into a high-output virus factory that yields up to <strong>~3,000 particles per infected cell over 3–6&nbsp;hours</strong> — where an uninhibited infection ends with a small fraction of that (flask scale, single host). My first-author preprint shows N4 lyses through a <strong>SAR endolysin–holin system</strong> and maps genomic regions — inside and outside the lysis cassette — involved in holding lysis off. Separately, my thesis work identified a novel regulator of that decision; that manuscript is in preparation. The question isn't <em>when</em> a phage kills; it's <em>whether to give up the cell</em> — and N4 keeps choosing to hold on.</p>
             <p style="font-size:0.96rem; color:var(--ink-2); margin:0; line-height:1.6;"><span style="color:var(--green-text); font-weight:600;">Where I'm taking it →</span> Reverse-engineering this timing switch into a control knob for high-titer phage production and programmable microbial biofactories, while shipping the open analysis tools that make those experiments reproducible for the whole field.</p>
+            <p style="font-size:0.9rem; color:var(--ink-2); margin:12px 0 0; line-height:1.6;">To be plain about the distance: this is mechanism, in a model <em>E.&nbsp;coli</em> phage, at flask scale. Turning a timing knob into a therapeutic preparation also takes host-range, manufacturing, purity and regulatory work I have not done — which is exactly the kind of group I want to join.</p>
             <p style="font-size:0.9rem; margin:14px 0 0;"><a href="#playground" style="color:var(--gold);">Try the interactive lysis playground&nbsp;↓</a> — tune the parameters and watch the curve respond.</p>
         </div>
 
@@ -369,14 +377,14 @@
             <div class="research-card" tabindex="0" role="button" aria-expanded="false">
                 
                 <h3>Molecular Engineering</h3>
-                <p>Engineering phage-based systems for high-titer production. <em>Future direction:</em> programmable microbial biofactories built from reverse-engineered viral machinery.</p>
+                <p>Cloning, targeted knockouts and complementation to test which N4 genes gate lysis timing. <em>Future direction:</em> programmable microbial biofactories built from reverse-engineered viral machinery.</p>
                 <div class="research-tags">
                     <span class="research-tag">Cloning</span>
                     <span class="research-tag">Gene Knockouts</span>
                     <span class="research-tag">Protein Expression</span>
                 </div>
                 <span class="research-more"><span class="chev">›</span> what this means</span>
-                <div class="research-detail"><p>Cloning, targeted knockouts, and protein expression to test which N4 genes gate lysis timing, and to turn that switch into a knob for <em>high-titer phage production</em>.</p></div>
+                <div class="research-detail"><p>Cloning, targeted knockouts, complementation and protein expression to test which N4 genes gate lysis timing. Lysis timing sets burst size, so the same genes are the knobs a production process would turn — <em>that translation is the goal, not yet a result</em>.</p></div>
             </div>
             <div class="research-card" tabindex="0" role="button" aria-expanded="false">
                 
@@ -404,7 +412,44 @@
             </div>
         </div>
 
-        
+        <!-- The techniques were spread across four cards, a collapsed CV block and
+             page 2 of the PDF. A hiring manager screening for "can he run my
+             assays?" should not have to assemble that himself. Every clause here
+             already appears on the CV — this is consolidation, not new claims. -->
+        <div class="bench-card">
+            <div class="bench-head">
+                <span class="bench-kicker">At the bench</span>
+                <h3>What I run without supervision</h3>
+            </div>
+            <div class="bench-cols">
+                <div class="bench-col">
+                    <h4>Phage &amp; microbiology</h4>
+                    <p>Isolation from environmental samples; plaque assays, titering, host-range
+                       profiling and lysis-phenotype scoring; transmission electron microscopy;
+                       one-step growth and lysis-timing experiments. BSL2 culture, 8+ years.</p>
+                </div>
+                <div class="bench-col">
+                    <h4>Molecular &amp; genomics</h4>
+                    <p>DNA/RNA extraction, restriction analysis, PCR and cloning; CRISPR-based
+                       deletion and complementation; genome sequencing, assembly, annotation and
+                       public deposition (GenBank&nbsp;PX021331 · BioProject&nbsp;PRJNA222858 ·
+                       SRA&nbsp;SRR34773693); RNA-seq with DESeq2.</p>
+                </div>
+                <div class="bench-col">
+                    <h4>Protein &amp; analytical</h4>
+                    <p>Protein expression; BCA total-protein and LPS/endotoxin quantification in
+                       phage lysates; GFP/mCherry reporter assays for real-time monitoring of
+                       lysis-protein expression.</p>
+                </div>
+                <div class="bench-col">
+                    <h4>Clinical microbiology, before phage</h4>
+                    <p>Antimicrobial susceptibility testing and MIC panels on drug-resistant
+                       clinical isolates at WACCBIP, and diagnostic bench work at the Noguchi
+                       Memorial Institute for Medical Research — the other side of the
+                       resistance problem I now work on.</p>
+                </div>
+            </div>
+        </div>
     </section>
 
     <hr class="section-divider">
@@ -451,7 +496,7 @@
         <div class="section-header">
             <span class="section-label">Open Source &middot; Reproducible Phage Biology</span>
             <h2 class="section-title">Research <span class="highlight">Software</span></h2>
-            <p class="section-subtitle">Small tools I build to automate my own research, then share because other labs hit the same walls. From lysis-curve analysis to sequence prep. Browser-first, privacy-first, reproducible by default. <a href="builds.html" style="color:var(--gold);text-decoration:underline;">Non-science side builds live here &rarr;</a></p>
+            <p class="section-subtitle">Every tool here came out of an N4 experiment I needed to finish — lysis curves, plaque scoring, figure assembly, sequence prep — and I shared them because other labs hit the same walls. Browser-first, privacy-first, reproducible by default. The heavier ones are not browser toys: HMM Homologue Finder ships as a CLI with a pinned environment (HMMER&nbsp;3.4, MAFFT, IQ-TREE) and golden-file regression tests, so a result from last year still reproduces today. Six are shown below; <strong>16 in total</strong>, the rest small utilities that do one job and stay out of the way.</p>
         </div>
         <!-- The strongest fact in this section leads it: another lab used the
              software in work that got published. The hero's FigureLab chip

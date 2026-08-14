@@ -141,7 +141,8 @@
             <span class="eyebrow">Other Tools</span>
             <h1>Tools I built <span class="accent">outside the lab</span></h1>
             <p class="lede">Web apps built outside my research, all free, browser-based, and privacy-first. Each one has a blog post explaining the why and how behind it.</p>
-            <p class="note">Separate from my <a href="index.html#tools" style="color:var(--gold);">research software</a> — they're here so the science stays front and center on the main site. Click any card to open the app or read the blog post.</p>
+            <p class="note">Separate from my <a href="index.html#tools" style="color:var(--gold);">research software</a> — they're here so the science stays front and center on the main site. Click any card to open the app, read the blog post, or go straight to the source.</p>
+            <p class="note">The AI on this page is product surface — generated explanations and training programs. The research-side machine learning lives with the <a href="index.html#tools" style="color:var(--gold);">science tools</a>: the PlaqSeg plaque segmenter and the pooled AlphaFold&nbsp;3 screen designer.</p>
         </header>
 
         <div class="grid" id="buildsGrid"></div>
@@ -277,6 +278,7 @@
                 <div class="tags">${b.tech.map(t => `<span class="tag">${esc(t)}</span>`).join('')}</div>
                 <div class="actions">
                     <a class="btn btn-primary" href="${b.app}" target="_blank" rel="noopener">Open app ↗</a>
+                    ${b.repo ? `<a class="btn btn-ghost" href="${b.repo}" target="_blank" rel="noopener">Source ↗</a>` : ''}
                     ${b.blog ? `<a class="btn btn-ghost" href="${b.blog}" target="_blank" rel="noopener">Read blog ↗</a>` : ''}
                 </div>
             </article>`).join('');
