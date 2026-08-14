@@ -3820,3 +3820,10 @@ kbd {
 @media (max-width: 600px) {
     .build-note { padding: 18px 16px; }
 }
+/* The primary role, marked. The five roles stay listed; one is named first
+   choice so a recruiter is not left guessing which door to knock on. */
+.contact-open-to .open-first {
+    border-color: var(--gold) !important;
+    color: var(--gold) !important;
+    font-weight: 600;
+}

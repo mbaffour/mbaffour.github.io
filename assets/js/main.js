@@ -96,7 +96,7 @@ const publications = [
         year: 2026,
         status: "inprep",
         firstAuthor: true,
-        summary: "Identification and characterisation of a novel regulator of the lysis-timing decision in phage N4 — the work recognised by the Thomas L. Patterson Graduate Student Fellowship (2025) and presented at BIOGSA and the Texas ASM Branch Meeting (2024)."
+        summary: "Identification and characterisation of a novel regulator of the lysis-timing decision in phage N4: an essential gene whose mutation drives rapid lysis. The work recognised by the Thomas L. Patterson Graduate Student Fellowship (2025) and presented at BIOGSA and the Texas ASM Branch Meeting (2024). The gene is unnamed here until the manuscript is submitted."
     },
     {
         kind: "paper",
@@ -369,8 +369,11 @@ const tools = [
         title: "Plaque Toolkit",
         repo: "https://github.com/mbaffour/plaque-toolkit",
         featured: true,
-        blurb: "Measures bacteriophage plaques straight from Petri-dish photos — size, turbidity, count, and titer — as a desktop app and CLI. Four detection engines: a published, citable method plus an in-house YOLO segmentation model (PlaqSeg) and a learned plaque-vs-texture classifier, with a click-to-correct editor so a human always has the last word on the count.",
-        tech: ["Python", "YOLO", "Computer Vision", "PySide6"],
+        /* Provenance stated exactly as the repo states it: the citable engine is
+           Trofimova & Jaschke's, PlaqSeg is a third-party YOLO model, and the
+           part that is mine is the fusion pipeline and the trained classifier. */
+        blurb: "Measures bacteriophage plaques straight from Petri-dish photos — size, turbidity, count, and titer — as a desktop app and CLI. Four detection engines: the published, citable Trofimova &amp; Jaschke method preserved byte-for-byte, plus a pipeline I built that fuses it with a third-party YOLO segmentation model and a ResNet-18 plaque-vs-texture classifier I trained (15,659 boxes; leave-one-plate-out F1&nbsp;≈&nbsp;0.95). A click-to-correct editor means a human always has the last word on the count.",
+        tech: ["Python", "ResNet-18", "Computer Vision", "PySide6"],
         stack: "py",
         blog: "blog/plaque-toolkit.html",
         app:  "https://github.com/mbaffour/plaque-toolkit",

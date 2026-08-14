@@ -231,10 +231,10 @@
 
             <p class="hero-availability">
                 <span class="open-pulse" aria-hidden="true"></span>
-                Defending in 2027 and available for <strong>2027 starts</strong>. Open to
-                <strong>postdoctoral positions</strong>,
-                <strong>biotech R&amp;D</strong>, <strong>AI for science</strong>,
-                <strong>translational research</strong> and <strong>scientific software</strong>.
+                Defending in 2027 and available for <strong>2027 starts</strong>. First choice:
+                a <strong>postdoc</strong> in phage or bacterial molecular genetics. Also open to
+                <strong>biotech R&amp;D</strong>, <strong>translational research</strong>,
+                <strong>AI for science</strong> and <strong>scientific software</strong>.
                 <a href="#contact">Get in touch</a>.
             </p>
 
@@ -345,7 +345,7 @@
 
         <div class="research-lead" style="background:linear-gradient(135deg, rgba(244,196,48,0.07), rgba(26,128,64,0.04)); border:1px solid var(--border-strong); border-radius:18px; padding:28px 30px; margin:0 0 36px; max-width:880px;">
             <p style="font-family:var(--font-mono); font-size:0.72rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--gold); margin:0 0 10px;">The headline finding</p>
-            <p style="font-size:1.08rem; color:var(--ink); margin:0 0 14px; line-height:1.65;">Bacteriophage&nbsp;N4 deliberately delays lysing its host, turning each infected cell into a high-output virus factory that yields up to <strong>~3,000 particles per infected cell over 3–6&nbsp;hours</strong> — where an uninhibited infection ends with a small fraction of that (flask scale, single host). My first-author preprint shows N4 lyses through a <strong>SAR endolysin–holin system</strong> and maps genomic regions — inside and outside the lysis cassette — involved in holding lysis off. Separately, my thesis work identified a novel regulator of that decision; that manuscript is in preparation. The question isn't <em>when</em> a phage kills; it's <em>whether to give up the cell</em> — and N4 keeps choosing to hold on.</p>
+            <p style="font-size:1.08rem; color:var(--ink); margin:0 0 14px; line-height:1.65;">Bacteriophage&nbsp;N4 deliberately delays lysing its host, turning each infected cell into a high-output virus factory that yields up to <strong>~3,000 particles per infected cell over 3–6&nbsp;hours</strong> — where an uninhibited infection ends with a small fraction of that (flask scale, single host). My first-author preprint shows N4 lyses through a <strong>SAR endolysin–holin system</strong> and maps genomic regions — inside and outside the lysis cassette — involved in holding lysis off. Separately, my thesis work identified a novel regulator of that decision — an <strong>essential</strong> gene whose mutation drives the phage into rapid lysis, which is how we know it gates the timing. That manuscript is in preparation, so the gene itself stays unnamed here. The question isn't <em>when</em> a phage kills; it's <em>whether to give up the cell</em> — and N4 keeps choosing to hold on.</p>
             <p style="font-size:0.96rem; color:var(--ink-2); margin:0; line-height:1.6;"><span style="color:var(--green-text); font-weight:600;">Where I'm taking it →</span> Reverse-engineering this timing switch into a control knob for high-titer phage production and programmable microbial biofactories, while shipping the open analysis tools that make those experiments reproducible for the whole field.</p>
             <!-- Same type size and ink as the ambition above it. A caveat set in
                  smaller, dimmer text reads as a disclaimer; at equal weight it
@@ -398,15 +398,16 @@
             </div>
             <div class="research-card" tabindex="0" role="button" aria-expanded="false">
                 
-                <h3>Computational Analysis</h3>
-                <p>Using RNA-seq, differential-expression analysis, and reproducible R/Python pipelines to read the transcriptomic landscape of phage–host interactions.</p>
+                <h3>Computational &amp; ML Analysis</h3>
+                <p>RNA-seq and differential expression to read the transcriptomic landscape of phage–host interactions, plus trained models where counting by eye does not scale.</p>
                 <div class="research-tags">
                     <span class="research-tag">RNA-seq</span>
                     <span class="research-tag">DESeq2</span>
-                    <span class="research-tag">R · Python</span>
+                    <span class="research-tag">ResNet-18</span>
+                    <span class="research-tag">AlphaFold 3</span>
                 </div>
                 <span class="research-more"><span class="chev">›</span> what this means</span>
-                <div class="research-detail"><p>Mapping the N4 infection transcriptome with RNA-seq and DESeq2, wrapped in <em>reproducible pipelines</em> I package as tools so the analysis runs the same way every time.</p></div>
+                <div class="research-detail"><p>Mapping the N4 infection transcriptome with RNA-seq and DESeq2, wrapped in <em>reproducible pipelines</em> I package as tools so the analysis runs the same way every time. Where the bottleneck is counting rather than sequencing, I train and evaluate the model myself: the plaque-vs-texture classifier in Plaque Toolkit is a ResNet-18 trained on 15,659 boxes, scoring <em>F1&nbsp;≈&nbsp;0.95</em> leave-one-plate-out, and validated against hand-labelled plates (<em>r&nbsp;≥&nbsp;0.99</em> on diameter, ICC&nbsp;0.97 versus independent Fiji tracing). PooledPPI designs pooled AlphaFold&nbsp;3 screens — predictions are hypotheses, and the top candidates are what I go back to the bench to test.</p></div>
             </div>
             <div class="research-card" tabindex="0" role="button" aria-expanded="false">
                 
@@ -448,8 +449,9 @@
                 <div class="bench-col">
                     <h4>Protein &amp; analytical</h4>
                     <p>Protein expression; BCA total-protein and LPS/endotoxin quantification in
-                       phage lysates; GFP/mCherry reporter assays for real-time monitoring of
-                       lysis-protein expression.</p>
+                       phage lysates by LAL assay — the specification any phage preparation has
+                       to clear before it goes near an animal or a patient; GFP/mCherry reporter
+                       assays for real-time monitoring of lysis-protein expression.</p>
                 </div>
                 <div class="bench-col">
                     <h4>Clinical microbiology, before phage</h4>
@@ -896,7 +898,7 @@
                 <span class="open-pulse"></span>
                 <span class="open-label">Open to:</span>
                 <span class="open-tags">
-                    <span>Postdoctoral positions</span>
+                    <span class="open-first">Postdoctoral positions &middot; first choice</span>
                     <span>Biotech R&amp;D</span>
                     <span>AI for science</span>
                     <span>Translational research</span>
