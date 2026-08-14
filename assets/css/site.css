@@ -420,6 +420,13 @@
         .teach-table td:nth-child(2) { font-family: var(--font-mono); color: var(--gold); white-space: nowrap; }
         .teach-table td:nth-child(3),
         .teach-table td:nth-child(4) { color: var(--ink-3); white-space: nowrap; font-size: 0.8rem; }
+        /* On a phone the nowrap cells force the table wider than the viewport;
+           let them wrap and lean on .teach-table-wrap's scroll for the rest. */
+        @media (max-width: 600px) {
+            .teach-table td:nth-child(2),
+            .teach-table td:nth-child(3),
+            .teach-table td:nth-child(4) { white-space: normal; }
+        }
 
         .mentee-list { list-style: none; margin: 0; padding: 0; }
         .mentee-list li {
@@ -470,7 +477,11 @@
         }
 
         @media (max-width: 920px) {
-            .teach-grid { grid-template-columns: 1fr; }
+            /* minmax(0,1fr): a bare 1fr track refuses to shrink below its
+           min-content width, and the teaching table inside it propagated that
+           width upward — the root cause of the whole page shearing off the
+           right edge at 390 px, name included. */
+        .teach-grid { grid-template-columns: minmax(0, 1fr); }
         }
 
 
@@ -920,6 +931,22 @@
                 radial-gradient(ellipse 60% 50% at 80% 80%, rgba(31, 146, 73, 0.09), transparent 70%),
                 radial-gradient(ellipse 55% 45% at 16% 78%, rgba(212, 50, 75, 0.06), transparent 72%),
                 linear-gradient(180deg, #15120a 0%, #1d1810 50%, #14110a 100%);
+
+            /* The band above is DELIBERATELY dark in both themes — it is the
+               kente-on-charcoal identity moment. But its text reads theme
+               tokens, so in light mode the inks flipped to near-black on the
+               dark band and the whole hero went illegible. Re-declaring the
+               dark palette here makes every descendant resolve dark-scheme
+               values regardless of theme — one block, instead of chasing each
+               element. Values must track :root's dark set. */
+            --bg: #121009; --bg-2: #1a160c; --bg-card: #221c0e;
+            --gold: #f4c430; --gold-dim: rgba(244, 196, 48, 0.18);
+            --green: #1f9249; --green-text: #3fbf6e;
+            --red: #d4324b; --red-text: #f4697f;
+            --ink: #f5edd8; --ink-2: #d8c98c; --ink-3: #ab9059; --ink-4: #ad8e52;
+            --border: rgba(244, 196, 48, 0.13);
+            --border-strong: rgba(244, 196, 48, 0.26);
+            --scrim: rgba(10, 8, 2, 0.55);
         }
         .hero-canvas {
             position: absolute;
@@ -942,6 +969,57 @@
             padding: 2rem 1.5rem;
             max-width: 880px;
         }
+        /* A face in the first viewport: the framed portrait stays in About,
+           but a small crop up here turns a faceless template into a person
+           before the five-second read ends. */
+        .hero-face {
+            width: 34px; height: 34px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 1.5px solid var(--gold);
+            margin: -4px 2px -4px -8px;
+            flex: none;
+        }
+
+        /* The evidence strip: the only three third-party-verifiable facts on
+           the page, surfaced where the decision to keep reading is made. */
+        .hero-proof {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: .6rem;
+            margin-top: 20px;
+        }
+        .proof-chip {
+            display: inline-flex;
+            align-items: baseline;
+            gap: .45rem;
+            font-family: var(--font-mono);
+            font-size: .72rem;
+            letter-spacing: .02em;
+            color: var(--ink-2);
+            text-decoration: none;
+            border: 1px solid var(--border-strong);
+            background: var(--scrim);
+            padding: .5rem .95rem;
+            border-radius: 50px;
+            transition: border-color .2s, color .2s, transform .2s;
+        }
+        .proof-chip:hover {
+            border-color: var(--gold);
+            color: var(--ink);
+            transform: translateY(-1px);
+        }
+        .proof-kicker {
+            color: var(--gold);
+            font-weight: 600;
+        }
+        .proof-chip::after {
+            content: "→";
+            color: var(--ink-3);
+            font-size: .8em;
+        }
+
         .hero-eyebrow {
             display: inline-flex;
             align-items: center;
@@ -1099,7 +1177,11 @@
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
-            gap: 2.2rem;
+            /* The outcome labels are longer than the old one-worders; a
+               tighter gap keeps all four on one row at desktop instead of an
+               uneven 2x2 wrap. Labels cap and centre so each stat is a neat
+               two-line block. */
+            gap: 1.4rem 2rem;
             margin-top: 3.5rem;
             padding-top: 2rem;
             border-top: 1px solid var(--border);
@@ -1109,6 +1191,7 @@
         .hero-stat {
             text-align: center;
             min-width: 110px;
+            max-width: 190px;      /* wraps the long outcome labels to 2 lines */
         }
         .hero-stat-value {
             font-family: var(--font-display);
@@ -3289,6 +3372,11 @@
             pointer-events: none;
             opacity: 0.45;
             z-index: 0;
+        }
+        /* The deliberate 2rem bleed poked past the viewport on phones and
+           joined the horizontal-overflow pileup. Pin it at small widths. */
+        @media (max-width: 600px) {
+            .contact-canvas { inset: 0; width: 100%; }
         }        .contact-primary-icon {
             font-size: 2.2rem;
             display: flex;

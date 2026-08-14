@@ -341,11 +341,14 @@
     const icon  = document.getElementById('nowIcon');
     const body  = document.getElementById('nowBody');
     if (!badge) return;
+    /* The first message is the strongest verifiable live fact, matching the
+       pill's static HTML — the rotation must never lead with something weaker
+       than what it replaces. "Wrapping up the preprint" was stale (it is
+       posted), and every entry here must stay true without maintenance. */
     const messages = [
-        { icon: '🦠', text: 'Wrapping up the N4 lysis preprint &amp; building new R Shiny tools for the lab.' },
+        { icon: '🦠', text: 'First-author N4 lysis preprint live on bioRxiv &middot; building open tools for phage biology.' },
+        { icon: '🧬', text: 'Reverse-engineering N4&rsquo;s lysis decision for high-titer phage production.' },
         { icon: '🧫', text: 'Mentoring undergrads through phage isolation, TEM, and genome annotation.' },
-        { icon: '🔬', text: 'Hunting for new phages in Texas creeks and characterizing them by TEM.' },
-        { icon: '🧬', text: 'Reverse-engineering N4’s lysis decisions for high-titer phage production.' },
         { icon: '💻', text: 'Shipping open scientific software &mdash; browser-first, privacy-first, zero-install.' }
     ];
     let i = 0;
