@@ -63,31 +63,6 @@ const publications = [
     /* ── Papers / Preprints ──────────────────────────────── */
     {
         kind: "paper",
-        title: "Complete genome sequence of <i>Escherichia</i> Siphophage Serwaa",
-        authors: "Debrah MA, Awuah MB, Koh A, Ramsey J",
-        journal: "Microbiology Resource Announcements",
-        ids: "e01222-25 · PMID 42214348 · PMCID PMC13348217",
-        year: 2026,
-        doi: "https://doi.org/10.1128/mra.01222-25",
-        status: "published",
-        latest: true,
-        // The accessions ARE the deliverable of a genome announcement — the
-        // first thing another phage lab checks, and previously nowhere on the site.
-        data: [
-            { label: "GenBank",    id: "PX021331",     url: "https://www.ncbi.nlm.nih.gov/nuccore/PX021331" },
-            { label: "BioProject", id: "PRJNA222858",  url: "https://www.ncbi.nlm.nih.gov/bioproject/PRJNA222858" },
-            { label: "SRA",        id: "SRR34773693",  url: "https://www.ncbi.nlm.nih.gov/sra/SRR34773693" },
-            { label: "BioSample",  id: "SAMN50231104", url: "https://www.ncbi.nlm.nih.gov/biosample/SAMN50231104" }
-        ],
-        citation: {
-            plain: "Debrah MA, Awuah MB, Koh A, Ramsey J. Complete genome sequence of Escherichia siphophage Serwaa. Microbiol Resour Announc. 2026;15(7):e01222-25. doi:10.1128/mra.01222-25",
-            bibtex: "@article{debrah2026serwaa,\n  title   = {Complete genome sequence of {Escherichia} siphophage {Serwaa}},\n  author  = {Debrah, Michael A. and Awuah, Michael Baffour and Koh, Annie and Ramsey, Jolene},\n  journal = {Microbiology Resource Announcements},\n  volume  = {15},\n  number  = {7},\n  pages   = {e01222-25},\n  year    = {2026},\n  doi     = {10.1128/mra.01222-25}\n}"
-        },
-        thumb: "blog/images/serwaa-tem-thumb.webp",
-        thumbAlt: "Transmission electron micrograph of phage Serwaa"
-    },
-    {
-        kind: "paper",
         title: "Phage N4 uses a SAR endolysin-holin system for host cell lysis",
         authors: "Awuah MB, Martin C, Chamblee JS, Tomaszewski AJ, Sullivan TE, Emilia Q, Tran S, Snowden JH, Niemiec KA, Zhu J, Ramsey J",
         journal: "bioRxiv [Preprint]",
@@ -117,6 +92,30 @@ const publications = [
         status: "inprep",
         firstAuthor: true,
         summary: "Identification and characterisation of a novel regulator of the lysis-timing decision in phage N4 — the work recognised by the Thomas L. Patterson Graduate Student Fellowship (2025) and presented at BIOGSA and the Texas ASM Branch Meeting (2024)."
+    },
+    {
+        kind: "paper",
+        title: "Complete genome sequence of <i>Escherichia</i> Siphophage Serwaa",
+        authors: "Debrah MA, Awuah MB, Koh A, Ramsey J",
+        journal: "Microbiology Resource Announcements",
+        ids: "e01222-25 · PMID 42214348 · PMCID PMC13348217",
+        year: 2026,
+        doi: "https://doi.org/10.1128/mra.01222-25",
+        status: "published",
+        // The accessions ARE the deliverable of a genome announcement — the
+        // first thing another phage lab checks, and previously nowhere on the site.
+        data: [
+            { label: "GenBank",    id: "PX021331",     url: "https://www.ncbi.nlm.nih.gov/nuccore/PX021331" },
+            { label: "BioProject", id: "PRJNA222858",  url: "https://www.ncbi.nlm.nih.gov/bioproject/PRJNA222858" },
+            { label: "SRA",        id: "SRR34773693",  url: "https://www.ncbi.nlm.nih.gov/sra/SRR34773693" },
+            { label: "BioSample",  id: "SAMN50231104", url: "https://www.ncbi.nlm.nih.gov/biosample/SAMN50231104" }
+        ],
+        citation: {
+            plain: "Debrah MA, Awuah MB, Koh A, Ramsey J. Complete genome sequence of Escherichia siphophage Serwaa. Microbiol Resour Announc. 2026;15(7):e01222-25. doi:10.1128/mra.01222-25",
+            bibtex: "@article{debrah2026serwaa,\n  title   = {Complete genome sequence of {Escherichia} siphophage {Serwaa}},\n  author  = {Debrah, Michael A. and Awuah, Michael Baffour and Koh, Annie and Ramsey, Jolene},\n  journal = {Microbiology Resource Announcements},\n  volume  = {15},\n  number  = {7},\n  pages   = {e01222-25},\n  year    = {2026},\n  doi     = {10.1128/mra.01222-25}\n}"
+        },
+        thumb: "blog/images/serwaa-tem-thumb.webp",
+        thumbAlt: "Transmission electron micrograph of phage Serwaa"
     },
     /* ── Oral talks ──────────────────────────────────────── */
     {
@@ -1388,12 +1387,12 @@ renderPublications();
 renderTalks();
 wireFilter('talkFilters', renderTalks);
 renderTools();
-/* One source of truth for the tool count; it used to be a literal in three
-   places that drifted apart from the computed hero stat. */
-['toolCount', 'glanceToolCount', 'aboutToolCount'].forEach(id => {
-    const el = document.getElementById(id);
+/* One source of truth for the tool count. (The glance-tile and About copies
+   of this stat were removed with their sections in the redesign.) */
+(() => {
+    const el = document.getElementById('toolCount');
     if (el) el.textContent = tools.length + '+';
-});
+})();
 
 /* Build tool filter buttons with counts */
 (function() {

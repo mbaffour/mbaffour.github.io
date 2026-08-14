@@ -19,6 +19,7 @@
     <link rel="preload" href="assets/fonts/fraunces-var-latin.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="assets/fonts/inter-var-latin.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="assets/fonts/fonts.css">
+    <link rel="stylesheet" href="assets/css/tailfiber.css">
     <style>
         :root {
             --bg: #0a0802; --bg-card: #1c1709; --bg-card-hover: #241d0c;
@@ -91,6 +92,15 @@
         footer a { color: var(--gold); text-decoration: none; }
         .theme-toggle { display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:7px;border:1px solid var(--border-strong);background:transparent;color:var(--ink-3);cursor:pointer;transition:all .2s; }
         .theme-toggle:hover { color:var(--gold);border-color:var(--gold); }
+
+        /* chrome for the TailFiber section (its game styles live in tailfiber.css) */
+        .section { padding: 56px 0 24px; max-width: 1080px; margin: 0 auto; padding-left: 24px; padding-right: 24px; }
+        .section-header { text-align: center; margin-bottom: 28px; }
+        .section-label { font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.16em;
+                         text-transform: uppercase; color: var(--gold); display: block; margin-bottom: 8px; }
+        .section-title { font-family: var(--font-display); font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 700; }
+        .section-title .highlight { color: var(--gold); font-style: italic; }
+        .section-subtitle { color: var(--ink-2); max-width: 640px; margin: 10px auto 0; font-size: 0.98rem; }
         .theme-toggle .ti-sun  { display:block; }
         .theme-toggle .ti-moon { display:none; }
         html[data-theme="light"] .theme-toggle .ti-sun  { display:none; }
@@ -138,6 +148,116 @@
     </div>
 
     </main>
+<!-- ===== TAILFIBER — playable outreach game ===== -->
+    <section class="section fade-in" id="next">
+        <div class="section-header">
+            <span class="section-label">Outreach · Now Playable</span>
+            <h2 class="section-title">Now <span class="highlight">Playable</span></h2>
+            <p class="section-subtitle">An educational mini-game about phage–host interactions — finished, and playable right here.</p>
+        </div>
+
+        <div class="concept-card">
+            <div class="concept-status">
+                <span class="concept-status-dot"></span>
+                <span class="concept-status-label">Live · play it now</span>
+            </div>
+
+            <div class="concept-grid">
+                <div class="concept-text">
+                    <h3 class="concept-title">
+                        <span class="concept-codename">TailFiber</span>
+                        <span class="concept-sub">a scientifically-grounded phage simulator</span>
+                    </h3>
+                    <p class="concept-tagline">
+                        Dock to the right receptor. Dodge antibodies, complement, and macrophages. Outpace CRISPR. Evolve your tail fibers. Burst.
+                    </p>
+                    <p class="concept-body">
+                        A small browser game that compresses the real biology of phage adsorption, infection timing, and host defense into something a microbiologist nods at and a 12-year-old loses an hour to. Built to double as outreach material — Darwin Day, K–12, conferences.
+                    </p>
+                    <div class="concept-pills-group">
+                        <div class="concept-pills-row">
+                            <span class="concept-pills-label">Receptors</span>
+                            <span class="concept-pill">LPS</span>
+                            <span class="concept-pill">OmpC</span>
+                            <span class="concept-pill">LamB</span>
+                            <span class="concept-pill">Type IV pili</span>
+                            <span class="concept-pill">NfrA</span>
+                        </div>
+                        <div class="concept-pills-row">
+                            <span class="concept-pills-label">Defenses</span>
+                            <span class="concept-pill">Antibodies</span>
+                            <span class="concept-pill">CRISPR</span>
+                            <span class="concept-pill">Restriction</span>
+                            <span class="concept-pill">Biofilm</span>
+                        </div>
+                        <div class="concept-pills-row">
+                            <span class="concept-pills-label">Real phages</span>
+                            <span class="concept-pill phage">T4</span>
+                            <span class="concept-pill phage">λ (Lambda)</span>
+                            <span class="concept-pill phage">N4</span>
+                            <span class="concept-pill phage">ICP1</span>
+                        </div>
+                    </div>
+                    <div class="concept-actions">
+                        <a href="mailto:baffour@tamu.edu?subject=TailFiber%20feedback" class="btn btn-primary">📬 Send feedback</a>
+                        <a href="https://github.com/mbaffour" target="_blank" rel="noopener" class="btn btn-ghost">⌥ Follow on GitHub</a>
+                    </div>
+                </div>
+
+                <div class="concept-viz">
+                    <!-- tabindex so the game can hold focus: its key handlers are
+                         gated on that, and without it wrap.focus() was a no-op and
+                         the game could never legitimately claim the arrow keys. -->
+                    <div class="tf-wrap" id="tfWrap" tabindex="0"
+                         aria-label="TailFiber game. Click or press Enter to play; arrow keys or WASD to move.">
+                        <canvas class="tf-canvas" id="tfCanvas" role="img" aria-label="TailFiber phage simulator game canvas"></canvas>
+
+                        <!-- HUD overlay -->
+                        <div class="tf-hud">
+                            <div class="tf-hud-row">
+                                <div class="tf-stat"><span class="tf-stat-label">SCORE</span><span class="tf-stat-val" id="tfScore">0</span></div>
+                                <div class="tf-stat"><span class="tf-stat-label">LYSES</span><span class="tf-stat-val" id="tfLyses">0</span></div>
+                                <div class="tf-stat"><span class="tf-stat-label" id="tfTimeLabel">TIME</span><span class="tf-stat-val" id="tfTime">90</span></div>
+                                <button class="tf-pause-btn" id="tfFullBtn" title="Fullscreen [F]" aria-label="Toggle fullscreen">⛶</button>
+                                <button class="tf-pause-btn" id="tfPauseBtn" title="Pause [P]" aria-label="Pause">⏸</button>
+                            </div>
+                            <div class="tf-hp-wrap">
+                                <div class="tf-hp-bar"><div class="tf-hp-fill" id="tfHpFill"></div></div>
+                                <span class="tf-hp-label">HP</span>
+                                <span class="tf-level-badge" id="tfLevel">LVL 1</span>
+                            </div>
+                            <div class="tf-fiber-wrap">
+                                <span class="tf-fiber-label">TAIL FIBER</span>
+                                <div class="tf-fiber-options">
+                                    <button class="tf-fiber-btn active" data-fiber="lps"  title="LPS · [1]">LPS</button>
+                                    <button class="tf-fiber-btn"        data-fiber="ompc" title="OmpC · [2]">OmpC</button>
+                                    <button class="tf-fiber-btn"        data-fiber="lamb" title="LamB · [3]">LamB</button>
+                                    <button class="tf-fiber-btn"        data-fiber="pili" title="Pili · [4]">Pili</button>
+                                    <button class="tf-fiber-btn"        data-fiber="nfra" title="NfrA · [5]">NfrA</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Setup / start / pause / over screen -->
+                        <div class="tf-overlay" id="tfOverlay">
+                            <div class="tf-overlay-card" id="tfOverlayCard">
+                                <!-- Body swapped per screen by JS -->
+                            </div>
+                        </div>
+
+                        <!-- Toast tip -->
+                        <div class="tf-toast" id="tfToast"></div>
+
+                        <!-- Mobile joystick -->
+                        <div class="tf-joystick" id="tfJoystick" aria-hidden="true">
+                            <div class="tf-joystick-thumb" id="tfJoyThumb"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
 <footer>
         <div class="wrap">
             &copy; 2026 Michael Baffour Awuah &middot; <a href="index.html">Research site</a> &middot; <a href="https://github.com/mbaffour" target="_blank" rel="noopener">GitHub</a>
@@ -174,5 +294,6 @@
     })();
     </script>
 
+<script defer src="assets/js/tailfiber.js"></script>
 </body>
 </html>
