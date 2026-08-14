@@ -1,26 +1,4 @@
 /* ==============================================================
-   LIFECYCLE STAGE INTERACTION
-=============================================================== */
-const stageData = [
-    { title: "Adsorption", info: "The phage tail fibers latch onto specific surface receptors on the bacterium — the molecular handshake that decides which hosts get infected." },
-    { title: "DNA Injection", info: "Tail contracts; viral genome is injected through the cell envelope into the cytoplasm. Phage protein arrives essentially empty afterward." },
-    { title: "Early Gene Expression", info: "Phage early genes hijack the host's transcription machinery, shut down defenses, and reprogram metabolism for viral replication." },
-    { title: "Replication", info: "Massive DNA replication and structural protein synthesis. The cell is now a fully-rerouted viral factory." },
-    { title: "Lysis Inhibition (N4)", info: "Phage N4 delays its own lysis decision, letting the factory keep producing — burst size jumps from ~200 to ~3,000 particles per cell." },
-    { title: "Lysis & Release", info: "Holins puncture the membrane and endolysins shred the peptidoglycan. The cell bursts and thousands of progeny phages spill out to start over." }
-];
-const lifeInfo = document.getElementById('lifecycleInfo');
-document.querySelectorAll('.lifecycle-stage').forEach((g, i) => {
-    const show = () => {
-        const d = stageData[i];
-        lifeInfo.innerHTML = `<strong>${d.title}</strong> &mdash; ${d.info}`;
-    };
-    g.addEventListener('mouseenter', show);
-    g.addEventListener('click', show);
-    g.addEventListener('touchstart', show, { passive: true });
-});
-
-/* ==============================================================
    LYSIS PLAYGROUND — interactive sim
 =============================================================== */
 (function() {
@@ -103,12 +81,18 @@ document.querySelectorAll('.lifecycle-stage').forEach((g, i) => {
         return a + (b - a) * frac;
     };
 
-    /* ---- Stage storyboard (no clock times) ---- */
+    /* ---- Stage storyboard (no clock times) ----
+       The standalone lifecycle widget merged into this stepper: its teaching
+       prose (receptor handshake, transcription hijack) folded into these
+       stages, and the sim became the single infection-cycle narrative. Its
+       "Lysis inhibition" and "Lysis & release" stages were NOT appended as
+       sequential steps — in the model they are alternative outcomes of the
+       decision, switched by mode, which is the biology. */
     const STAGES = [
-        { name: 'Adsorption & injection', text: 'The phage docks onto a surface receptor and injects its genome. The host is now infected.' },
-        { name: 'Eclipse', text: 'No virions yet. The phage hijacks the host machinery to copy its genome and build viral proteins.' },
-        { name: 'Assembly', text: 'New capsids fill with DNA. Virions pile up inside the still-intact cell, so the culture stays cloudy.' },
-        { name: 'The lysis decision', text: 'Holins puncture the membrane and endolysin digests the wall. A normal phage commits to bursting right here.' }
+        { name: 'Adsorption & injection', text: 'Tail fibers latch onto a specific surface receptor — the molecular handshake that decides which hosts get infected. The tail contracts and the genome enters the cytoplasm; the capsid stays outside, essentially empty.' },
+        { name: 'Eclipse · early genes', text: 'No virions exist yet. Early genes hijack the host&rsquo;s transcription machinery, shut down its defenses, and reroute metabolism toward making phage.' },
+        { name: 'Replication & assembly', text: 'Massive genome replication and structural protein synthesis; new capsids fill with DNA. Virions pile up inside the still-intact cell, so the culture stays cloudy.' },
+        { name: 'The lysis decision', text: 'Holins stand ready to puncture the membrane so endolysin can digest the wall. A normal phage commits to bursting right here — N4 can choose not to.' }
     ];
     function outcomeStage() {
         return state.mode === 'inhibited'
@@ -128,7 +112,7 @@ document.querySelectorAll('.lifecycle-stage').forEach((g, i) => {
 
     /* ---- Stepper UI ---- */
     const stepper = document.getElementById('pgStepper');
-    const shortLabels = ['Adsorption', 'Eclipse', 'Assembly', 'Decision', 'Outcome'];
+    const shortLabels = ['Adsorption', 'Early genes', 'Assembly', 'Decision', 'Outcome'];
     function buildStepper() {
         stepper.innerHTML = shortLabels.map((l, i) =>
             `<button type="button" class="pg-step" data-step="${i}"><span class="pg-step-num">${i + 1}</span><span class="pg-step-label">${i === 4 ? (state.mode === 'inhibited' ? 'Inhibition' : 'Burst') : l}</span></button>`

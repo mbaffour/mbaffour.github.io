@@ -1209,26 +1209,55 @@ function renderPublications(filter = 'all') {
 /* ==============================================================
    RENDER — Talks & posters
 =============================================================== */
-function renderTalks(filter = 'all') {
+function renderTalks() {
     const container = document.getElementById('talkList');
     if (!container) return;
     const items = publications.filter(p => p.kind === 'talk' || p.kind === 'poster');
-    const shown = filter === 'all' ? items : items.filter(p => p.kind === filter);
-    if (shown.length === 0) {
-        container.innerHTML = '<div class="pub-empty">Nothing under that filter.</div>';
-        return;
+
+    /* A ledger, not a card wall: ten near-identical cards gave conference
+       posters the same visual weight as the papers above them. Repeat
+       presentations merge into one entry — same work, several venues — with a
+       per-instance year and TALK/POSTER label, which is how a CV lists them. */
+    const norm = t => t.replace(/\s*\((Poster.*?|Blitz.*?)\)\s*$/i, '').trim();
+    const groups = new Map();
+    for (const p of items) {
+        const key = norm(p.title);
+        if (!groups.has(key)) groups.set(key, []);
+        groups.get(key).push(p);
     }
-    container.innerHTML = window.__renderPubEntry
-        ? shown.map(window.__renderPubEntry).join('')
-        : '';
+
+    const talkN = items.filter(p => p.kind === 'talk').length;
+    const posterN = items.filter(p => p.kind === 'poster').length;
+    const count = document.getElementById('talkCounts');
+    if (count) count.textContent = `${talkN} talks · ${posterN} posters`;
+
+    container.innerHTML = [...groups.entries()].map(([title, list]) => {
+        list.sort((a, b) => b.year - a.year);
+        const rows = list.map(p => `
+            <div class="ledger-venue">
+                <span class="ledger-year">${p.year}</span>
+                <span class="ledger-where">${p.journal}</span>
+                <span class="ledger-kind ${p.kind}">${p.kind === 'talk' ? 'Talk' : 'Poster'}</span>
+            </div>`).join('');
+        return `
+        <div class="ledger-entry">
+            <h3 class="ledger-title">${title}</h3>
+            ${rows}
+        </div>`;
+    }).join('');
 }
 
 /* ==============================================================
    RENDER — Tools
 =============================================================== */
-function renderTools(filter = 'all') {
+/* Sixteen equal cards buried the four that carry the section's argument.
+   Default = the flagships; every other view is one click away. */
+const FLAGSHIPS = ['Plaque Toolkit', 'FigureLab', 'Lysis Curve Plotter', 'HMM Discovery App'];
+function renderTools(filter = 'flagship') {
     const container = document.getElementById('toolsGrid');
-    const filtered = filter === 'all' ? tools : tools.filter(t => t.stack === filter);
+    const filtered = filter === 'flagship'
+        ? tools.filter(t => FLAGSHIPS.some(f => t.title.includes(f)))
+        : filter === 'all' ? tools : tools.filter(t => t.stack === filter);
     container.innerHTML = filtered.map(t => `
         <div class="proj-card ${t.app ? 'proj-card--link' : ''} ${t.featured ? 'featured' : ''}" data-stack="${t.stack}">
             ${t.app ? `<a class="proj-card-stretch" href="${t.app}" target="_blank" rel="noopener" aria-label="Open ${t.title}"></a>` : ''}
@@ -1275,7 +1304,9 @@ function renderTools(filter = 'all') {
                 </div>` : ''}
             </div>
         </div>
-    `).join('');
+    `).join('') + (filter === 'flagship'
+        ? `<button class="blog-more tools-more" type="button" onclick="renderTools('all')">All ${tools.length} tools ↓</button>`
+        : '');
 
     // Wire cite-block toggle + tabs + copy
     container.querySelectorAll('.proj-cite-btn').forEach(btn => {
@@ -1317,7 +1348,21 @@ function renderTools(filter = 'all') {
 =============================================================== */
 function renderPosts(filter = 'all') {
     const container = document.getElementById('blogList');
-    const filtered = filter === 'all' ? posts : posts.filter(p => p.tags.includes(filter));
+    /* Side builds have their own page; on the homepage they diluted the
+       science writing. The default band is three posts with the Serwaa story
+       pinned first — it is the post a hiring reader should meet. */
+    const science = posts.filter(p => !p.tags.includes('Side Builds'));
+    let filtered, capped = false;
+    if (filter === 'all') {
+        const serwaa = science.find(p => (p.url || '').includes('serwaa-first-paper'));
+        const rest = science.filter(p => p !== serwaa);
+        filtered = (serwaa ? [serwaa] : []).concat(rest).slice(0, 3);
+        capped = science.length > 3;
+    } else if (filter === 'everything') {
+        filtered = science;
+    } else {
+        filtered = science.filter(p => p.tags.includes(filter));
+    }
     if (filtered.length === 0) {
         container.innerHTML = `<div class="blog-empty">No posts under that tag yet.</div>`;
         return;
@@ -1327,7 +1372,7 @@ function renderPosts(filter = 'all') {
         <a class="blog-card ${i === 0 && filter === 'all' ? 'latest' : ''}" href="${p.url}">
             <div class="blog-date-col">
                 <time class="blog-date" datetime="${p.iso}">${p.date}</time>
-                ${i === 0 && filter === 'all' ? '<span class="blog-new-badge">Latest</span>' : ''}
+                ${i === 0 && filter === 'all' ? '<span class="blog-new-badge">Featured</span>' : ''}
             </div>
             <div class="blog-body">
                 ${p.image ? `<img class="blog-thumb" src="${p.image}" alt="${esc(p.imageAlt || p.title)}" width="108" height="78" loading="lazy" decoding="async">` : ''}
@@ -1337,7 +1382,9 @@ function renderPosts(filter = 'all') {
                 <span class="blog-read">Read post →</span>
             </div>
         </a>
-    `).join('');
+    `).join('') + (capped && filter === 'all'
+        ? `<button class="blog-more" type="button" onclick="renderPosts('everything')">All ${science.length} posts ↓</button>`
+        : '');
 }
 
 /* ==============================================================
@@ -1364,28 +1411,11 @@ function renderBuilds() {
 /* ==============================================================
    INITIAL RENDER + FILTERS
 =============================================================== */
-/* Build talk/poster filter buttons with counts */
-(function() {
-    const root = document.getElementById('talkFilters');
-    if (!root) return;
-    const items = publications.filter(p => p.kind === 'talk' || p.kind === 'poster');
-    const c = { talk: 0, poster: 0 };
-    items.forEach(p => { c[p.kind] = (c[p.kind] || 0) + 1; });
-    const map = [
-        ['all',    'All',     items.length],
-        ['talk',   'Talks',   c.talk   || 0],
-        ['poster', 'Posters', c.poster || 0]
-    ];
-    root.innerHTML = map.map(([k, label, n], i) => `
-        <button class="filter-btn ${i === 0 ? 'active' : ''}" data-filter="${k}">
-            ${label} <span class="filter-count">${n}</span>
-        </button>
-    `).join('');
-})();
+/* (The talk/poster filter buttons are gone with the ledger redesign — six
+   merged entries don't need filtering, and the counts line says the totals.) */
 
 renderPublications();
 renderTalks();
-wireFilter('talkFilters', renderTalks);
 renderTools();
 /* One source of truth for the tool count. (The glance-tile and About copies
    of this stat were removed with their sections in the redesign.) */
@@ -1411,14 +1441,17 @@ renderTools();
     `).join('');
 })();
 
-/* Build blog filter buttons (tags auto-populate from posts data) */
+/* Build blog filter buttons (tags auto-populate from posts data).
+   Side Builds are excluded — they have their own page, and on the homepage
+   they diluted the science writing the band exists to show. */
 (function() {
     const root = document.getElementById('blogFilters');
     if (!root) return;
-    const allTags = [...new Set(posts.flatMap(p => p.tags))];
+    const science = posts.filter(p => !p.tags.includes('Side Builds'));
+    const allTags = [...new Set(science.flatMap(p => p.tags))];
     const map = [
-        ['all', 'All Posts', posts.length],
-        ...allTags.map(t => [t, t, posts.filter(p => p.tags.includes(t)).length])
+        ['all', 'Featured', 3],
+        ...allTags.map(t => [t, t, science.filter(p => p.tags.includes(t)).length])
     ];
     root.innerHTML = map.map(([k, label, n], i) => `
         <button class="filter-btn ${i === 0 ? 'active' : ''}" data-filter="${k}">

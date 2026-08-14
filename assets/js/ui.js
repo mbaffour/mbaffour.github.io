@@ -47,8 +47,8 @@
         { type: 'section', label: 'Lysis curve playground', hint: 'tune phage parameters live', href: '#playground', icon: '📈' },
         { type: 'section', label: 'Publications',         hint: 'preprints & papers',  href: '#publications', icon: '📖' },
         { type: 'section', label: 'Research software',     hint: 'open-source tools', href: '#tools', icon: '🧰' },
-        { type: 'section', label: 'Other tools',             hint: 'apps built outside the lab', href: '#builds', icon: '⚙️' },
-        { type: 'section', label: 'TailFiber game',        hint: 'TailFiber · playable phage game', href: '#next', icon: '🧪' },
+        { type: 'section', label: 'Other tools',             hint: 'apps built outside the lab', href: 'builds.html', icon: '⚙️' },
+        { type: 'section', label: 'TailFiber game',        hint: 'TailFiber · playable phage game', href: 'builds.html#next', icon: '🧪' },
         { type: 'section', label: 'Recognition & service',hint: 'awards · outreach',   href: '#recognition', icon: '🏆' },
         { type: 'section', label: 'About',                hint: 'who I am',            href: '#about', icon: '🧬' },
         { type: 'section', label: 'CV',                   hint: 'view or download',    href: '#about', icon: '📄' },
@@ -356,7 +356,7 @@
         i = (i + 1) % messages.length;
         badge.classList.add('fading');
         setTimeout(() => {
-            icon.textContent = messages[i].icon;
+            /* icon is a static pulse dot now — emoji rotation retired */
             body.innerHTML = messages[i].text;
             badge.classList.remove('fading');
         }, 360);

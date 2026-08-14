@@ -1380,81 +1380,6 @@
         }
 
         /* ============================================================
-           PHAGE LIFECYCLE SVG
-        ============================================================ */
-        .lifecycle {
-            margin-top: 4.5rem;
-            background: var(--bg-2);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 2.2rem 1.5rem 1.7rem;
-            position: relative;
-            overflow: hidden;
-        }
-        .lifecycle::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(ellipse at 50% 0%, var(--gold-dim), transparent 60%);
-            pointer-events: none;
-        }
-        .lifecycle h3 {
-            font-family: var(--font-display);
-            font-size: 1.3rem;
-            text-align: center;
-            color: var(--ink);
-            margin-bottom: 0.4rem;
-            position: relative;
-        }
-        .lifecycle p.cap {
-            text-align: center;
-            color: var(--ink-3);
-            font-size: 0.9rem;
-            margin-bottom: 1.6rem;
-            position: relative;
-        }
-        .lifecycle-svg-wrap {
-            position: relative;
-            overflow-x: auto;
-            overflow-y: hidden;
-            padding-bottom: 0.5rem;
-        }
-        .lifecycle-svg {
-            min-width: 880px;
-            width: 100%;
-            height: 230px;
-            display: block;
-        }
-        .lifecycle-stage {
-            cursor: pointer;
-            transition: filter .25s ease;
-        }
-        .lifecycle-stage:hover { filter: brightness(1.4); }
-        .lifecycle-stage text {
-            font-family: var(--font-body);
-            fill: var(--ink-2);
-            font-size: 11px;
-        }
-        .lifecycle-stage .stage-label {
-            font-family: var(--font-mono);
-            font-size: 9.5px;
-            letter-spacing: 1.5px;
-            fill: var(--ink-3);
-            text-transform: uppercase;
-        }
-        .lifecycle-info {
-            margin-top: 1.2rem;
-            text-align: center;
-            min-height: 50px;
-            color: var(--ink-2);
-            font-size: 0.92rem;
-            line-height: 1.55;
-            padding: 0 1rem;
-            position: relative;
-        }
-        .lifecycle-info strong { color: var(--gold); }
-
-        /* ============================================================
            LYSIS PLAYGROUND
         ============================================================ */
         .playground {
@@ -1521,7 +1446,11 @@
             -webkit-appearance: none;
             appearance: none;
             width: 100%;
-            height: 4px;
+            /* 44px hit area with the same 4px visual track: the input is tall,
+               the drawn track is a background stripe down its centre. */
+            height: 44px;
+            background-clip: content-box;
+            padding-block: 20px;
             background: linear-gradient(90deg, var(--gold) var(--p, 50%), rgba(244, 196, 48, 0.15) var(--p, 50%));
             border-radius: 4px;
         }
@@ -1611,30 +1540,34 @@
         /* ============================================================
            PUBLICATIONS
         ============================================================ */
+        /* Filters read as ONE segmented control, not a row of competing gold
+           pills — one gold focal point per component. */
         .pub-filters {
             display: flex;
             justify-content: center;
-            gap: 0.55rem;
             margin-bottom: 2.5rem;
             flex-wrap: wrap;
         }
+        .pub-filters:empty { display: none; }
         .filter-btn {
             background: transparent;
             color: var(--ink-3);
             border: 1px solid var(--border);
+            border-right-width: 0;
             padding: 0.5rem 1.2rem;
-            border-radius: 50px;
+            border-radius: 0;
             font-family: var(--font-mono);
             font-size: 0.78rem;
             letter-spacing: 0.06em;
             text-transform: uppercase;
             transition: all .2s ease;
         }
-        .filter-btn:hover { color: var(--gold); border-color: var(--border-strong); }
+        .filter-btn:first-child { border-radius: 9px 0 0 9px; }
+        .filter-btn:last-child { border-radius: 0 9px 9px 0; border-right-width: 1px; }
+        .filter-btn:hover { color: var(--ink); }
         .filter-btn.active {
             background: var(--gold-dim);
             color: var(--gold);
-            border-color: var(--gold);
         }
         .filter-count {
             display: inline-block;
@@ -1784,20 +1717,30 @@
             flex-wrap: wrap;
             align-items: center;
         }
+        /* Statuses are borderless small-caps with a coloured dot — boxes made
+           them compete with the CTA buttons beside them. Colour comes from the
+           per-status classes below; the dot inherits it. */
         .pub-status {
             font-family: var(--font-mono);
-            font-size: 0.7rem;
-            letter-spacing: 0.08em;
+            font-size: 0.68rem;
+            letter-spacing: 0.1em;
             text-transform: uppercase;
-            padding: 3px 9px;
-            border-radius: 5px;
-            border: 1px solid;
+            padding: 3px 2px;
         }
-        .pub-status.published { color: var(--green-text); border-color: var(--green-text); background: var(--green-dim); }
-        .pub-status.preprint  { color: var(--gold);  border-color: var(--gold);  background: var(--gold-dim); }
-        .pub-status.in-review { color: var(--red-text);   border-color: var(--red-text);   background: var(--red-dim); }
-        .pub-status.talk      { color: #c4a8ff; border-color: rgba(196,168,255,0.6); background: rgba(196,168,255,0.10); }
-        .pub-status.poster    { color: #ff9b6c; border-color: rgba(255,155,108,0.6); background: rgba(255,155,108,0.10); }
+        .pub-status::before {
+            content: "";
+            display: inline-block;
+            width: 7px; height: 7px;
+            border-radius: 50%;
+            background: currentColor;
+            margin-right: 6px;
+            vertical-align: 1px;
+        }
+        .pub-status.published { color: var(--green-text); }
+        .pub-status.preprint  { color: var(--gold); }
+        .pub-status.in-review { color: var(--red-text); }
+        .pub-status.talk      { color: #c4a8ff; }
+        .pub-status.poster    { color: #ff9b6c; }
         /* Was an inline style using var(--green) as TEXT — the one token this
            file documents as background-only — which measured 3.46:1. */
         .pub-status.first-author {
@@ -1808,11 +1751,11 @@
         /* Those two are tuned for the dark card (8.4:1, 8.2:1) and were the only
            status colours with no light-mode value — on the white card they drop
            to 2.0:1. Same hues, darkened to clear AA (5.9:1, 5.5:1). */
-        html[data-theme="light"] .pub-status.talk   { color: #6d4ec4; border-color: rgba(109,78,196,0.55); background: rgba(109,78,196,0.08); }
-        html[data-theme="light"] .pub-status.poster { color: #b04a1f; border-color: rgba(176,74,31,0.55); background: rgba(176,74,31,0.08); }
+        html[data-theme="light"] .pub-status.talk   { color: #6d4ec4; }
+        html[data-theme="light"] .pub-status.poster { color: #b04a1f; }
         @media (prefers-color-scheme: light) {
-            html:not([data-theme]) .pub-status.talk   { color: #6d4ec4; border-color: rgba(109,78,196,0.55); background: rgba(109,78,196,0.08); }
-            html:not([data-theme]) .pub-status.poster { color: #b04a1f; border-color: rgba(176,74,31,0.55); background: rgba(176,74,31,0.08); }
+            html:not([data-theme]) .pub-status.talk   { color: #6d4ec4; }
+            html:not([data-theme]) .pub-status.poster { color: #b04a1f; }
         }
         .pub-empty {
             text-align: center;
@@ -3226,7 +3169,6 @@
             .btn { justify-content: center; }
             .pub-entry { grid-template-columns: 1fr; gap: 0.5rem; }
             .pub-year { font-size: 1.3rem; }
-            .lifecycle-svg { min-width: 720px; }
         }
         @media (max-width: 480px) {
             .glance { grid-template-columns: 1fr; }
@@ -3447,13 +3389,16 @@
     font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: .14em;
     text-transform: uppercase; color: var(--ink-3);
 }
+/* Accessions are references, not badges: plain underlined mono links. As
+   pills they competed with the status chips and the gold CTA on every card. */
 .pub-acc {
     font-family: var(--font-mono); font-size: 0.72rem; color: var(--ink-2);
-    text-decoration: none; border: 1px solid var(--border);
-    border-radius: 999px; padding: 3px 10px; transition: all .18s ease;
+    text-decoration: underline; text-underline-offset: 3px;
+    text-decoration-color: var(--border-strong);
+    transition: color .18s ease;
 }
-.pub-acc code { color: var(--gold); font-family: inherit; }
-.pub-acc:hover { border-color: var(--gold); background: var(--gold-dim); }
+.pub-acc code { color: inherit; font-family: inherit; }
+.pub-acc:hover { color: var(--gold); text-decoration-color: var(--gold); }
 
 .pub-cite-btn { cursor: pointer; font: inherit; background: transparent; }
 .pub-citation-block {
@@ -3620,4 +3565,107 @@ kbd {
 @media (max-width: 600px) {
     .pub-latest li { flex-direction: column; gap: 2px; }
     .pub-latest time { width: auto; }
+}
+
+/* ---- Talks & Posters ledger ----
+   Ten near-identical cards became six merged entries: mono year, Fraunces
+   title, muted venue, small-caps kind label with a coloured dot. No cards —
+   posters must not outweigh the papers above them. */
+.ledger-head {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    max-width: 880px;
+    margin: 0 0 18px;
+}
+.ledger-head .section-label { margin: 0; }
+.ledger-counts {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--ink-3);
+}
+.talk-ledger { max-width: 880px; }
+.ledger-entry {
+    padding: 14px 2px;
+    border-top: 1px solid var(--border);
+}
+.ledger-entry:last-child { border-bottom: 1px solid var(--border); }
+.ledger-title {
+    font-family: var(--font-display);
+    font-size: 1.02rem;
+    font-weight: 600;
+    color: var(--ink);
+    margin: 0 0 6px;
+}
+.ledger-venue {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    padding: 2px 0;
+    font-size: 0.86rem;
+    color: var(--ink-2);
+}
+.ledger-year {
+    flex: none;
+    width: 46px;
+    font-family: var(--font-mono);
+    font-size: 0.74rem;
+    color: var(--ink-3);
+}
+.ledger-where { flex: 1; min-width: 0; }
+.ledger-kind {
+    flex: none;
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+}
+.ledger-kind::before {
+    content: "";
+    display: inline-block;
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    margin-right: 6px;
+    vertical-align: 1px;
+}
+.ledger-kind.talk::before   { background: var(--green-text); }
+.ledger-kind.poster::before { background: var(--gold); }
+@media (max-width: 600px) {
+    .ledger-venue { flex-wrap: wrap; gap: 6px 12px; }
+}
+
+/* "All N posts" expander under the capped blog band */
+.blog-more {
+    display: inline-block;
+    margin-top: 6px;
+    padding: 8px 14px;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--gold);
+    background: transparent;
+    border: 1px solid var(--border-strong);
+    border-radius: 9px;
+    cursor: pointer;
+    transition: border-color .2s, color .2s;
+}
+.blog-more:hover { border-color: var(--gold); }
+
+.tools-more { grid-column: 1 / -1; justify-self: center; }
+
+/* ---- Touch affordances (playground + lifecycle) ---- */
+@media (max-width: 600px) {
+    .ctrl input[type="range"]::-webkit-slider-thumb { width: 28px; height: 28px; }
+    /* interactive mono labels get a legibility floor; decorative eyebrows stay */
+    .research-more, .pg-step, .ctrl label { font-size: 0.78rem; }
+}
+@media (max-width: 768px) {
+        }
+
+.btn-ico { vertical-align: -2px; margin-right: 2px; }
+.now-dot {
+    width: 10px; height: 10px; border-radius: 50%;
+    background: var(--green-text);
+    animation: pulse 2.4s ease-in-out infinite;
+    flex: none;
 }
