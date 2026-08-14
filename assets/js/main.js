@@ -1300,8 +1300,8 @@ function renderTools(filter = 'flagship') {
                     ${t.tech.map(x => `<span class="research-tag">${x}</span>`).join('')}
                 </div>
                 <div class="proj-actions">
-                    ${t.app  ? `<a href="${t.app}"  class="proj-link" target="_blank" rel="noopener">Open ↗</a>` : ''}
-                    ${t.repo && t.repo !== t.app ? `<a href="${t.repo}" class="proj-link alt" target="_blank" rel="noopener">Source ↗</a>` : ''}
+                    ${t.app && t.app !== t.repo ? `<a href="${t.app}"  class="proj-link" target="_blank" rel="noopener">Open ↗</a>` : ''}
+                    ${t.repo ? `<a href="${t.repo}" class="proj-link ${t.app && t.app !== t.repo ? 'alt' : ''}" target="_blank" rel="noopener">Source ↗</a>` : ''}
                     ${t.blog && t.blog !== t.app ? `<a href="${t.blog}" class="proj-link alt" target="_blank" rel="noopener">Blog</a>` : ''}
                     ${t.doi ? `<a href="https://doi.org/${t.doi}" class="proj-link alt" target="_blank" rel="noopener">Zenodo ↗</a>` : ''}
                     ${t.doi ? `<button class="proj-link proj-cite-btn" data-tool="${t.title}" type="button">Cite</button>` : ''}

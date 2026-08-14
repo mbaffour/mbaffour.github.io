@@ -3789,16 +3789,18 @@ kbd {
     .bench-card { padding: 24px 20px 20px; }
     .bench-cols { gap: 20px; }
 }
-/* "How these get built" — the AI-in-the-loop disclosure. Deliberately quieter
-   than the FigureLab quote above it: the disclosure is context, the
-   third-party citation is the evidence. */
+/* "How these get built" — the AI-in-the-loop disclosure. Originally styled as a
+   dashed, low-contrast footnote; that read as a disclaimer, and design that
+   hedges makes a reader wonder whether the author hedges too. It is a statement
+   of practice, so it gets a solid card like everything else that means it. */
 .build-note {
     max-width: 880px;
     margin: 26px auto 30px;
-    padding: 20px 24px;
-    border: 1px dashed var(--border-strong);
+    padding: 22px 26px;
+    border: 1px solid var(--border-strong);
+    border-left: 3px solid var(--gold);
     border-radius: 14px;
-    background: rgba(244, 196, 48, 0.035);
+    background: var(--bg-card, rgba(244, 196, 48, 0.05));
 }
 .build-note-kicker {
     display: block;
@@ -3811,9 +3813,9 @@ kbd {
 }
 .build-note p {
     margin: 0;
-    font-size: 0.92rem;
+    font-size: 0.95rem;
     line-height: 1.68;
-    color: var(--ink-2);
+    color: var(--ink);
 }
 @media (max-width: 600px) {
     .build-note { padding: 18px 16px; }

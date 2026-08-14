@@ -347,7 +347,7 @@
        posted), and every entry here must stay true without maintenance. */
     const messages = [
         { icon: '🦠', text: 'First-author N4 lysis preprint live on bioRxiv &middot; building open tools for phage biology.' },
-        { icon: '🧬', text: 'Reverse-engineering N4&rsquo;s lysis decision for high-titer phage production.' },
+        { icon: '🧬', text: 'Reverse-engineering N4&rsquo;s lysis decision &mdash; the timing switch that sets how many particles a cell releases.' },
         { icon: '🧫', text: 'Mentoring undergrads through phage isolation, TEM, and genome annotation.' },
         { icon: '💻', text: 'Shipping open scientific software &mdash; browser-first, privacy-first, zero-install.' }
     ];
