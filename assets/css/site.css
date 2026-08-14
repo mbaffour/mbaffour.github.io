@@ -3789,3 +3789,32 @@ kbd {
     .bench-card { padding: 24px 20px 20px; }
     .bench-cols { gap: 20px; }
 }
+/* "How these get built" — the AI-in-the-loop disclosure. Deliberately quieter
+   than the FigureLab quote above it: the disclosure is context, the
+   third-party citation is the evidence. */
+.build-note {
+    max-width: 880px;
+    margin: 26px auto 30px;
+    padding: 20px 24px;
+    border: 1px dashed var(--border-strong);
+    border-radius: 14px;
+    background: rgba(244, 196, 48, 0.035);
+}
+.build-note-kicker {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 8px;
+}
+.build-note p {
+    margin: 0;
+    font-size: 0.92rem;
+    line-height: 1.68;
+    color: var(--ink-2);
+}
+@media (max-width: 600px) {
+    .build-note { padding: 18px 16px; }
+}
