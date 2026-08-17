@@ -18,7 +18,7 @@
    INSTAGRAM_HANDLE drives the follow link at the foot of the section. Left as
    null, every Instagram link on the page disappears rather than 404ing, so a
    half-filled-in file never ships a broken link. */
-const INSTAGRAM_HANDLE = null;   // e.g. 'mbaffour' — no leading @
+const INSTAGRAM_HANDLE = '101fallacies';   // no leading @
 
 const poems = [
     /* Template — copy this, fill it in, delete the comment markers.
