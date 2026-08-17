@@ -74,27 +74,7 @@
     const projectItems = (typeof builds === 'undefined' ? [] : builds).map(b => ({
         type: 'project', label: b.title, hint: b.tech.join(' · '), href: b.app, icon: '⚙️', external: true
     }));
-    /* Poems are only searchable once poems-data.js has some — otherwise the
-       palette would advertise a section that is hidden on the page. */
-    const poemList = (typeof poems === 'undefined') ? [] : poems;
-    const igHandle = (typeof INSTAGRAM_HANDLE === 'undefined') ? null : INSTAGRAM_HANDLE;
-    if (igHandle) {
-        baseItems.push({
-            type: 'link', label: 'Instagram — @' + igHandle, hint: 'poems',
-            href: 'https://www.instagram.com/' + igHandle + '/', icon: '📷', external: true
-        });
-    }
-    const poemItems = poemList.length === 0 ? [] : [
-        { type: 'section', label: 'Poems', hint: 'verse · off the clock', href: '#poetry', icon: '✒️' },
-        ...poemList.map(p => ({
-            type: 'poem',
-            label: p.title || 'Untitled',
-            hint: 'poem' + (p.date ? ' · ' + p.date : ''),
-            href: '#' + poemSlug(p.title),
-            icon: '✒️'
-        }))
-    ];
-    const items = [...baseItems, ...poemItems, ...pubItems, ...toolItems, ...projectItems];
+    const items = [...baseItems, ...pubItems, ...toolItems, ...projectItems];
 
     function score(q, item) {
         if (!q) return 0;
@@ -114,7 +94,6 @@
         'Jump to': it => it.type === 'section',
         'Tools': it => it.type === 'tool',
         'Projects': it => it.type === 'project',
-        'Poems': it => it.type === 'poem',
         'Publications': it => it.type === 'pub',
         'Links': it => it.type === 'link'
     };
