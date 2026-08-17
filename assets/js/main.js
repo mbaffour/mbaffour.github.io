@@ -1419,6 +1419,69 @@ function renderPosts(filter = 'all') {
 }
 
 /* ==============================================================
+   RENDER — Poems
+   Reads assets/js/poems-data.js. The verse is emitted as text inside a
+   white-space: pre-line block, so the line breaks the poem was written with
+   survive without <br> soup, and a screen reader still gets one readable
+   paragraph.
+=============================================================== */
+/* Stable per-poem anchor, so the command palette can deep-link a single poem.
+   ui.js builds the same slug from the same titles. */
+const poemSlug = t => 'poem-' + String(t || 'untitled').toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+
+function renderPoems(showAll = false) {
+    const section = document.getElementById('poetry');
+    const container = document.getElementById('poemList');
+    if (!section || !container) return;
+
+    const all = (typeof poems === 'undefined' ? [] : poems)
+        .slice()
+        .sort((a, b) => String(b.iso || '').localeCompare(String(a.iso || '')));
+
+    /* An empty poems array hides the section AND its nav link, rather than
+       leaving a titled band with nothing under it. */
+    const navItem = document.getElementById('navPoetryItem');
+    if (all.length === 0) {
+        section.hidden = true;
+        if (navItem) navItem.hidden = true;
+        return;
+    }
+    section.hidden = false;
+    if (navItem) navItem.hidden = false;
+
+    const CAP = 3;
+    const shown = showAll ? all : all.slice(0, CAP);
+
+    container.innerHTML = shown.map(p => `
+        <article class="poem-card" id="${esc(poemSlug(p.title))}">
+            <div class="poem-head">
+                <h3 class="poem-title">${esc(p.title || 'Untitled')}</h3>
+                ${p.iso ? `<time class="poem-date" datetime="${esc(p.iso)}">${esc(p.date || p.iso)}</time>` : ''}
+            </div>
+            ${p.tags && p.tags.length ? `<div class="poem-tags">${p.tags.map(t => `<span class="poem-tag">${esc(t)}</span>`).join('')}</div>` : ''}
+            <p class="poem-body">${esc((p.lines || []).join('\n'))}</p>
+            ${p.note ? `<p class="poem-note">${esc(p.note)}</p>` : ''}
+            ${p.url ? `<a class="poem-link" href="${esc(p.url)}" target="_blank" rel="noopener">Read on Instagram ↗</a>` : ''}
+        </article>
+    `).join('') + (!showAll && all.length > CAP
+        ? `<button class="poem-more" type="button" onclick="renderPoems(true)">All ${all.length} poems ↓</button>`
+        : '');
+
+    /* Follow link only exists once the handle is filled in. */
+    const follow = document.getElementById('poemFollow');
+    if (follow) {
+        const handle = (typeof INSTAGRAM_HANDLE === 'undefined' ? null : INSTAGRAM_HANDLE);
+        if (handle) {
+            follow.hidden = false;
+            follow.innerHTML = `New ones go up on Instagram first — <a href="https://www.instagram.com/${esc(handle)}/" target="_blank" rel="noopener">@${esc(handle)} ↗</a>`;
+        } else {
+            follow.hidden = true;
+        }
+    }
+}
+
+/* ==============================================================
    RENDER — Side builds
    Reads the same `builds` array that builds.html uses (assets/js/builds-data.js)
    so the two pages can't drift apart the way the hand-copied cards did.
@@ -1497,6 +1560,21 @@ renderTools();
 renderPosts();
 wireFilter('blogFilters', renderPosts);
 renderBuilds();
+renderPoems();
+
+/* A link to a single poem (from the command palette, or a shared URL) may point
+   at one the collapsed list is holding back. Expand first, then jump. */
+(function() {
+    const jumpToPoem = () => {
+        const id = decodeURIComponent(location.hash.slice(1));
+        if (!id.startsWith('poem-') || document.getElementById(id)) return;
+        renderPoems(true);
+        const el = document.getElementById(id);
+        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    };
+    window.addEventListener('hashchange', jumpToPoem);
+    jumpToPoem();
+})();
 
 function wireFilter(filtersId, renderFn) {
     const root = document.getElementById(filtersId);

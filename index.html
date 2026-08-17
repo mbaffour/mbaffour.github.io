@@ -179,6 +179,8 @@
                 <li><a href="#blog">Blog</a></li>
                 <li><a href="#teaching">Teaching</a></li>
                 <li><a href="#pitch-section">Off the pitch</a></li>
+                <!-- Hidden by renderPoems() until poems-data.js actually has poems in it. -->
+                <li id="navPoetryItem" hidden><a href="#poetry">Poems</a></li>
                 <li><a href="#contact">Contact</a></li>
                 <li><button class="nav-theme-toggle" id="themeToggle" aria-label="Switch to light mode" title="Toggle light / dark mode">
                     <svg class="theme-icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
@@ -836,6 +838,21 @@
 
     <hr class="section-divider">
 
+    <!-- ===== POETRY =====
+         Content comes from assets/js/poems-data.js. The whole section hides
+         itself while that file is empty, so it can ship ahead of the poems. -->
+    <section class="section fade-in" id="poetry" hidden>
+        <div class="section-header">
+            <span class="section-label">Off the Clock · Writing</span>
+            <h2 class="section-title">Poems <span class="highlight">&amp; Verse</span></h2>
+            <p class="section-subtitle">The other thing I write. These go up on Instagram first; they are set here as text so they can be read properly — by a person, by a search engine, and by a screen reader.</p>
+        </div>
+        <div class="poem-list" id="poemList"></div>
+        <p class="poem-follow" id="poemFollow" hidden></p>
+    </section>
+
+    <hr class="section-divider">
+
     <!-- ===== LIFE IN THE LAB GALLERY ===== -->
     <section class="section fade-in" id="gallery">
         <div class="section-header">
@@ -991,6 +1008,7 @@
 
     <!-- ===== JAVASCRIPT ===== -->
     <script defer src="assets/js/builds-data.js"></script>
+    <script defer src="assets/js/poems-data.js"></script>
     <script defer src="assets/js/main.js"></script>
     <script defer src="assets/js/backgrounds.js"></script>
     <script defer src="assets/js/playground.js"></script>
