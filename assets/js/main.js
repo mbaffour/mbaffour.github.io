@@ -413,6 +413,14 @@ const tools = [
 =============================================================== */
 const posts = [
     {
+        title: "Watermark Remover — the characters you cannot see",
+        date: "August 17, 2026",
+        iso: "2026-08-17",
+        tags: ["Side Builds"],
+        blurb: "Unicode has a complete invisible alphabet, and a paragraph can carry a hidden message in it without looking any different. A browser tool that finds those characters — plus EXIF, C2PA and document properties — decodes what was in them, and removes them. Nothing is uploaded.",
+        url: "blog/watermark-remover.html"
+    },
+    {
         title: "Plaque Toolkit — plate photo to defensible numbers",
         date: "June 20, 2026",
         iso: "2026-06-20",
