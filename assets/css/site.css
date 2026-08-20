@@ -1891,7 +1891,9 @@
         ============================================================ */
         .card-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+            /* min() keeps 310px from becoming a hard floor on narrow phones,
+               where it overflowed the viewport by a couple of pixels. */
+            grid-template-columns: repeat(auto-fill, minmax(min(310px, 100%), 1fr));
             gap: 1.4rem;
         }
         .proj-card {
@@ -2049,6 +2051,13 @@
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 1.25rem;
         }
+        /* Heading for the homepage side-builds strip. */
+        .pg-builds-title {
+            font-family: var(--font-display); font-size: 1.15rem; font-weight: 600;
+            color: var(--ink); margin: 2.2rem 0 1rem;
+        }
+        .pg-builds-title + .card-grid { margin-bottom: 1.1rem; }
+
         .build-card {
             background: var(--bg-card);
             border: 1px solid var(--border);

@@ -1432,9 +1432,12 @@ function renderPosts(filter = 'all') {
    so the two pages can't drift apart the way the hand-copied cards did.
 =============================================================== */
 function renderBuilds() {
-    const container = document.getElementById('buildsGrid');
+    /* builds.html renders its own cards inline; this serves the homepage
+       strip, which shows only the newest few. */
+    const container = document.getElementById('buildsGrid') || document.getElementById('homeBuildsGrid');
     if (!container || typeof builds === 'undefined') return;
-    container.innerHTML = builds.map(b => `
+    const list = container.id === 'homeBuildsGrid' ? builds.slice(0, 3) : builds;
+    container.innerHTML = list.map(b => `
         <div class="build-card">
             <div class="build-card-top"><h3>${esc(b.title)}</h3><span class="build-year">${esc(b.date)}</span></div>
             <p>${esc(b.blurb)}</p>

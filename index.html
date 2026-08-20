@@ -753,7 +753,13 @@
             </div>
         </div>
     
-        <p class="pg-more-note">More playful builds — including <strong>TailFiber</strong>, the phage arcade game — live on the <a href="builds.html">other tools page</a>.</p>
+        <!-- The newest side builds, rendered from the shared `builds` array in
+             builds-data.js so this and builds.html cannot drift apart. Capped
+             at three: the full grid is what crowded these off the homepage in
+             the first place. -->
+        <h3 class="pg-builds-title">Other tools I've built</h3>
+        <div class="card-grid" id="homeBuildsGrid"></div>
+        <p class="pg-more-note">Every side build — including <strong>TailFiber</strong>, the phage arcade game — lives on the <a href="builds.html">other tools page</a>.</p>
 </section>
 
     <hr class="section-divider">
