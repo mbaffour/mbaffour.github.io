@@ -173,8 +173,13 @@ h1 .accent { color: var(--gold); }
 }
 .card .sub { color: var(--ink-3); font-size: 0.88rem; margin-bottom: 16px; }
 
-.cols { display: grid; grid-template-columns: 1fr 340px; gap: 18px; align-items: start; }
-@media (max-width: 900px) { .cols { grid-template-columns: 1fr; } }
+/* `1fr` resolves its automatic minimum to min-content, so one wide table set a
+   floor for the whole column and pushed the page past the viewport. minmax(0,1fr)
+   plus min-width:0 lets the column actually shrink; the wide things inside scroll
+   or wrap on their own terms below. */
+.cols { display: grid; grid-template-columns: minmax(0, 1fr) 340px; gap: 18px; align-items: start; }
+.cols > * { min-width: 0; }
+@media (max-width: 980px) { .cols { grid-template-columns: minmax(0, 1fr); } }
 
 /* ---------------------------------------------------------------- inputs */
 textarea, .output {
@@ -221,7 +226,7 @@ html[data-theme="light"] .btn-primary { color: #fffdf6; }
 .sev-likely-false-positive { background: var(--green-dim); color: var(--green-text); }
 
 /* ----------------------------------------------------------------- stats */
-.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 10px; margin: 4px 0 16px; }
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(118px, 1fr)); gap: 10px; margin: 4px 0 16px; }
 .stat {
     background: var(--bg-inset); border: 1px solid var(--border);
     border-radius: 10px; padding: 12px 14px;
@@ -243,7 +248,7 @@ table.findings tr:last-child td { border-bottom: 0; }
 table.findings code { font-family: var(--font-mono); font-size: 0.8rem; color: var(--gold); white-space: nowrap; }
 table.findings .name { color: var(--ink); }
 table.findings .detail { color: var(--ink-3); font-size: 0.79rem; }
-.table-scroll { overflow-x: auto; }
+.table-scroll { overflow-x: auto; max-width: 100%; }
 .act { font-family: var(--font-mono); font-size: 0.7rem; white-space: nowrap; }
 .act-removed { color: var(--red-text); }
 .act-replaced { color: var(--gold); }
@@ -338,4 +343,82 @@ footer {
 
 @media (prefers-reduced-motion: reduce) {
     * { transition: none !important; animation: none !important; }
+}
+
+
+/* ==========================================================================
+   NARROW SCREENS
+   The findings table is six columns wide. Squeezing six columns into 360px
+   makes every one of them unreadable, so below 700px each row becomes its own
+   small card with the column headings moved inline. Nothing is dropped — the
+   same data, restacked.
+   ========================================================================== */
+@media (max-width: 700px) {
+    .wrap { padding: 0 16px; }
+    header.hero { padding: 40px 0 14px; }
+    .lede { font-size: 0.98rem; }
+    .panel { padding: 20px 0 56px; }
+    .card { padding: 16px; }
+    .tabs { gap: 0; }
+    .tab { padding: 10px 12px; font-size: 0.88rem; }
+
+    .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+    .stat { padding: 10px 12px; }
+    .stat .n { font-size: 1.3rem; }
+
+    /* Each row becomes a compact three-line card rather than six labelled
+       lines — codepoint and name on top with the count, the verdict beneath,
+       and the note only when there is one. */
+    table.findings thead { display: none; }
+    table.findings, table.findings tbody { display: block; width: 100%; }
+    table.findings tr {
+        display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 0 10px;
+        align-items: baseline;
+        border: 1px solid var(--border); border-radius: 10px;
+        padding: 11px 13px; margin-bottom: 9px; background: var(--bg-inset);
+    }
+    table.findings td { display: block; border: 0; padding: 0; }
+    table.findings td::before { content: none; }
+    table.findings td:empty { display: none; }
+
+    /* Text findings: codepoint - name - count / action - classification / note */
+    /* Text findings, three lines:
+         U+FE00-FE0F, U+E0100-E01EF
+         VARIATION SELECTORS                      x3
+         removed                           confirmed
+       The codepoint gets its own line because the grouped ranges are wider
+       than a phone and would otherwise crowd the count out of its column. */
+    table.findings td[data-label="Codepoint"] { grid-column: 1 / -1; }
+    table.findings code { white-space: normal; overflow-wrap: anywhere; font-size: 0.76rem; }
+    table.findings td[data-label="Name"] { grid-column: 1; font-size: 0.84rem; margin-top: 1px; }
+    table.findings td[data-label="Count"] {
+        grid-column: 2; justify-self: end; margin-top: 1px;
+        color: var(--ink-3); font-family: var(--font-mono); font-size: 0.74rem;
+    }
+    table.findings td[data-label="Count"]::before { content: "\00d7"; }
+    table.findings td[data-label="Action"] { grid-column: 1; margin-top: 5px; }
+    table.findings td[data-label="Classification"] { grid-column: 2; justify-self: end; margin-top: 5px; }
+    table.findings td[data-label="Note"] { grid-column: 1 / -1; margin-top: 5px; }
+
+    /* File findings: what / action - classification / detail */
+    table.findings td[data-label="What"] { grid-column: 1 / -1; font-size: 0.86rem; }
+    table.findings td[data-label="Detail"] { grid-column: 1 / -1; margin-top: 5px; }
+
+    .table-scroll { overflow-x: visible; }
+
+    textarea, .output { min-height: 180px; font-size: 0.8rem; }
+    .hl-box { font-size: 0.78rem; }
+    .drop { padding: 30px 16px; }
+    .btn { padding: 9px 14px; }
+    .btn-row { gap: 8px; }
+    .file { padding: 14px; }
+    .file-head { gap: 6px; }
+}
+
+@media (max-width: 430px) {
+    /* The full name plus a back link plus a toggle does not fit; the link and
+       the toggle are the parts you actually press. */
+    .topbar .brand { display: none; }
+    h1 { font-size: 1.9rem; }
+    .badge { font-size: 0.65rem; padding: 4px 9px; }
 }

@@ -154,13 +154,13 @@
         } else {
             tbody.innerHTML = res.findings.map(function (f) {
                 return '<tr>' +
-                    '<td><code>' + esc(f.code) + '</code></td>' +
-                    '<td class="name">' + esc(f.name) + '</td>' +
-                    '<td>' + f.count + '</td>' +
-                    '<td class="act act-' + f.action + '">' + f.action +
+                    '<td data-label="Codepoint"><code>' + esc(f.code) + '</code></td>' +
+                    '<td class="name" data-label="Name">' + esc(f.name) + '</td>' +
+                    '<td data-label="Count">' + f.count + '</td>' +
+                    '<td class="act act-' + f.action + '" data-label="Action">' + f.action +
                         (f.replacement ? ' → ' + esc(JSON.stringify(f.replacement)) : '') + '</td>' +
-                    '<td>' + severityChip(f.severity) + '</td>' +
-                    '<td class="detail">' + esc(f.note) + '</td>' +
+                    '<td data-label="Classification">' + severityChip(f.severity) + '</td>' +
+                    '<td class="detail" data-label="' + (f.note ? 'Note' : '') + '">' + esc(f.note) + '</td>' +
                     '</tr>';
             }).join('');
         }
@@ -385,10 +385,10 @@
         }
         var rows = result.findings.map(function (f) {
             return '<tr>' +
-                '<td class="name">' + esc(f.label) + '</td>' +
-                '<td class="act act-' + f.action + '">' + esc(f.action) + '</td>' +
-                '<td>' + severityChip(f.severity) + '</td>' +
-                '<td class="detail">' + esc(f.detail) + '</td>' +
+                '<td class="name" data-label="What">' + esc(f.label) + '</td>' +
+                '<td class="act act-' + f.action + '" data-label="Action">' + esc(f.action) + '</td>' +
+                '<td data-label="Classification">' + severityChip(f.severity) + '</td>' +
+                '<td class="detail" data-label="' + (f.detail ? 'Detail' : '') + '">' + esc(f.detail) + '</td>' +
                 '</tr>';
         }).join('');
 

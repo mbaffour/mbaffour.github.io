@@ -70,7 +70,10 @@
         h1 .accent { color: var(--gold); }
         .lede { color: var(--ink-2); max-width: 640px; font-size: 1.05rem; }
         .note { margin-top: 18px; font-size: 0.9rem; color: var(--ink-3); border-left: 2px solid var(--border-strong); padding-left: 14px; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 22px; padding: 24px 0 72px; }
+        /* min() keeps the 300px track from becoming a hard floor: below a
+           ~350px screen the track shrinks to the container instead of
+           pushing the page sideways. */
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr)); gap: 22px; padding: 24px 0 72px; }
         .card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 26px; display: flex; flex-direction: column; transition: transform 0.2s, border-color 0.2s, background 0.2s; }
         .card:hover { transform: translateY(-4px); border-color: var(--border-strong); background: var(--bg-card-hover); }
         .card-top { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
