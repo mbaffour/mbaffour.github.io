@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CFU Plot Studio — reproducible colony-count figures</title>
-  <meta name="description" content="An R/Shiny app turning replicate-level CFU data into publication-ready bar plots with log10 statistics, significance annotations, and a reproducible export.">
+  <meta name="description" content="An R/Shiny app turning replicate-level CFU data into publication-ready figures: paired survival as well as absolute counts, log10 statistics with intervals and effect sizes, a data area that stays fixed however the figure is labelled, and one archive holding every export plus the script that rebuilds it.">
   <link rel="preload" href="../assets/fonts/fraunces-var-latin.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="../assets/fonts/inter-var-latin.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="../assets/fonts/fonts.css">
@@ -597,7 +597,7 @@
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="Michael Baffour Awuah">
     <meta property="og:title" content="CFU Plot Studio — reproducible colony-count figures">
-    <meta property="og:description" content="An R/Shiny app turning replicate-level CFU data into publication-ready bar plots with log10 statistics, significance annotations, and a reproducible export.">
+    <meta property="og:description" content="An R/Shiny app turning replicate-level CFU data into publication-ready figures: paired survival as well as absolute counts, log10 statistics with intervals and effect sizes, a data area that stays fixed however the figure is labelled, and one archive holding every export plus the script that rebuilds it.">
     <meta property="og:url" content="https://mbaffour.github.io/blog/cfu-plot-studio.html">
     <meta property="og:image" content="https://mbaffour.github.io/assets/og/cfu-plot-studio.jpg">
     <meta property="og:image:width" content="1200">
@@ -608,14 +608,14 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@AwuahMB">
     <meta name="twitter:title" content="CFU Plot Studio — reproducible colony-count figures">
-    <meta name="twitter:description" content="An R/Shiny app turning replicate-level CFU data into publication-ready bar plots with log10 statistics, significance annotations, and a reproducible export.">
+    <meta name="twitter:description" content="An R/Shiny app turning replicate-level CFU data into publication-ready figures: paired survival as well as absolute counts, log10 statistics with intervals and effect sizes, a data area that stays fixed however the figure is labelled, and one archive holding every export plus the script that rebuilds it.">
     <meta name="twitter:image" content="https://mbaffour.github.io/assets/og/cfu-plot-studio.jpg">
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "BlogPosting",
       "headline": "CFU Plot Studio \u2014 reproducible colony-count figures",
-      "description": "An R/Shiny app turning replicate-level CFU data into publication-ready bar plots with log10 statistics, significance annotations, and a reproducible export.",
+      "description": "An R/Shiny app turning replicate-level CFU data into publication-ready figures: paired survival as well as absolute counts, log10 statistics with intervals and effect sizes, a data area that stays fixed however the figure is labelled, and one archive holding every export plus the script that rebuilds it.",
       "datePublished": "2026-02-11",
       "dateModified": "2026-02-11",
       "image": "https://mbaffour.github.io/assets/og/cfu-plot-studio.jpg",
@@ -654,7 +654,7 @@
       <a href="#story" class="hide-sm">Notes</a>
       <a href="#protocol" class="hide-sm">Protocol</a>
       <a href="https://github.com/mbaffour/cfu-plot-studio" class="hide-sm">GitHub</a>
-      <a href="https://mbaffour.github.io/cfu-plot-studio/" class="btn btn-solid nav-cta">Open CFU Plot Studio</a>
+      <a href="https://mbaffour.github.io/cfu-plot-studio/" class="btn btn-solid nav-cta">Download &amp; run</a>
     </nav>
   </div>
 </header>
@@ -667,16 +667,17 @@
       <div>
         <h1>Colony counts in, a <em>publication figure</em> out.</h1>
         <p class="plate-lede">
-          <span class="dropcap">U</span>pload your replicate-level CFU data, map the columns, and get a bar plot with log<sub>10</sub> statistics, significance annotations, and a Figure QA pass — plus the exact R script that produced it.
+          <span class="dropcap">U</span>pload your replicate-level CFU data, map the columns, and get a figure with log<sub>10</sub> statistics, significance annotations and a Figure QA pass — plus the exact R script that produced it. It runs on your own machine, so unpublished counts never leave it.
         </p>
         <div class="plate-btns">
-          <a href="https://mbaffour.github.io/cfu-plot-studio/" class="btn btn-solid btn-lg">Open CFU Plot Studio →</a>
+          <a href="https://mbaffour.github.io/cfu-plot-studio/" class="btn btn-solid btn-lg">Download &amp; run it →</a>
           <a href="https://github.com/mbaffour/cfu-plot-studio" class="btn btn-outline btn-lg">Source on GitHub</a>
         </div>
         <p class="plate-meta">
-          <b>Statistics</b> computed on log<sub>10</sub>(CFU) &nbsp;·&nbsp; <b>Palette</b> Okabe–Ito, colorblind-safe<br>
-          <b>Exports</b> PNG · vector PDF/SVG · editable PPTX · reproducible R script<br>
-          <b>License</b> MIT · free &amp; open source
+          <b>Statistics</b> log<sub>10</sub>(CFU), with intervals and effect sizes &nbsp;·&nbsp; <b>Palette</b> Okabe–Ito, colorblind-safe<br>
+          <b>Readouts</b> absolute CFU, or survival paired within each culture<br>
+          <b>Exports</b> PNG · vector PDF/SVG · editable PPTX · every table · a rebuild script — in one archive<br>
+          <b>Runs</b> locally, on your own data &nbsp;·&nbsp; <b>License</b> MIT · free &amp; open source
         </p>
       </div>
 
@@ -880,6 +881,41 @@
       <div class="feat">
         <span class="feat-n">15</span>
         <div>
+          <h3>Paired survival, not just absolute counts</h3>
+          <p>An induction time-course is really asking how much of each culture survived &mdash; CFU at the readout relative to <em>that same flask</em> at baseline. Pairing within the culture does not change the estimate when every replicate has both timepoints; it changes the uncertainty, and on real data with a missing well it can change the sign of the result. The figure carries a no-change reference line, and the axis can be read as log<sub>10</sub> ratio, fold change or percent of baseline &mdash; the same numbers, relabelled.</p>
+        </div>
+      </div>
+      <div class="feat">
+        <span class="feat-n">16</span>
+        <div>
+          <h3>A data area that stays put</h3>
+          <p>ggplot hands the panel whatever space is left after the legend and labels have taken theirs, so moving a legend to the side can cost 40&#37; of the plotting area. Pin the panel instead and the data area is identical across every figure, however they are labelled &mdash; which is what makes panels comparable side by side.</p>
+        </div>
+      </div>
+      <div class="feat">
+        <span class="feat-n">17</span>
+        <div>
+          <h3>Honest about what it dropped</h3>
+          <p>log<sub>10</sub> is undefined at zero, so background-subtracted counts at or below it cannot be plotted. The app says how many rows that cost, which replicates lost their partner and can no longer be paired, and names any group that vanished from the figure entirely. The <em>n</em> under each bar is the surviving <em>n</em>, not the number of wells you plated.</p>
+        </div>
+      </div>
+      <div class="feat">
+        <span class="feat-n">18</span>
+        <div>
+          <h3>Move the labels where you want them</h3>
+          <p>Click to place the legend, click a significance star to pick it up and click again to drop it, colour bars individually, and align every piece of text. Nudges are stored against the label rather than the pixel, so they survive re-rendering, filtering, resizing and a preset reload.</p>
+        </div>
+      </div>
+      <div class="feat">
+        <span class="feat-n">19</span>
+        <div>
+          <h3>Download everything, in one archive</h3>
+          <p>One button collects the figure in PNG, PDF, SVG and PowerPoint, the cleaned and plotted data, the summary, statistics, ANOVA and QC tables, a standalone script that rebuilds the figure from embedded data, the preset, the manifest, and a README saying what is inside &mdash; and what could not be produced, and why.</p>
+        </div>
+      </div>
+      <div class="feat">
+        <span class="feat-n">20</span>
+        <div>
           <h3>Safe synthetic template data</h3>
           <p>A neutral, synthetic example dataset ships with the app and downloads as a formatting template — so you can learn the tool, or file a reproducible bug report, without touching unpublished lab data.</p>
         </div>
@@ -979,15 +1015,65 @@
   </div>
 </section>
 
+<!-- ── GETTING IT ───────────────────────────────────────── -->
+<section class="protocol" id="install">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">&sect; 4 &mdash; Getting it</span>
+      <h2 class="sec-title">Running it on your own machine</h2>
+      <p class="sec-intro">There is no hosted version, on purpose. It is an R Shiny app that runs locally, so unpublished counts stay on your computer and nothing is uploaded anywhere.</p>
+    </div>
+
+    <div class="steps">
+      <div class="step">
+        <span class="step-mark">1</span>
+        <div>
+          <h3>Install R</h3>
+          <p>Windows and macOS builds are at <a href="https://cran.r-project.org/">cran.r-project.org</a>. That is the only thing you install by hand &mdash; the launcher fetches the R packages itself, into a private folder beside the app rather than your system library.</p>
+        </div>
+      </div>
+      <div class="step">
+        <span class="step-mark">2</span>
+        <div>
+          <h3>Download the app</h3>
+          <p><a href="https://github.com/mbaffour/cfu-plot-studio/archive/refs/heads/main.zip">Grab the ZIP</a> and unzip it anywhere, or <code>git clone https://github.com/mbaffour/cfu-plot-studio.git</code> if you would rather pull updates later.</p>
+        </div>
+      </div>
+      <div class="step">
+        <span class="step-mark">3</span>
+        <div>
+          <h3>Start it</h3>
+          <p>On Windows, double-click <b>Run CFU Plot Studio.bat</b>. It finds R, installs whatever is missing, picks a free port and opens your browser; close the console window to stop it. On macOS or Linux, run <code>Rscript run_app.R</code> from the app folder. The first start takes a few minutes while packages install; after that it is seconds.</p>
+        </div>
+      </div>
+      <div class="step">
+        <span class="step-mark">4</span>
+        <div>
+          <h3>Try it on the synthetic data first</h3>
+          <p>Click <b>Load dummy example data</b>, or <b>Download dummy/template CSV</b> to see the expected layout. It is neutral synthetic data, so you can learn the tool &mdash; or file a reproducible bug report &mdash; without touching unpublished results.</p>
+        </div>
+      </div>
+      <div class="step">
+        <span class="step-mark">5</span>
+        <div>
+          <h3>Check it against your own file</h3>
+          <p><code>Rscript tests/test_end_to_end.R path/to/your.csv</code> runs the whole pipeline against your data and reports what it found &mdash; how many rows survived import, how many replicates paired, which groups could not be tested. Five more suites cover the figure geometry, the survival readout, every statistic, the export bundle and CSV column detection.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ── COLOPHON / CTA ───────────────────────────────────── -->
 <section class="colophon">
   <div class="wrap">
-    <span class="figlabel">§ 4 — Availability</span>
+    <span class="figlabel">§ 5 — Availability</span>
     <h2>Your figure and the script that made it, together.</h2>
     <p class="lead">Free, open-source, and reproducible. Bring a CSV of colony counts; leave with a figure you can trust and cite — and the R that rebuilds it.</p>
     <div class="colophon-btns">
-      <a href="https://mbaffour.github.io/cfu-plot-studio/" class="btn btn-solid btn-lg">Open CFU Plot Studio →</a>
-      <a href="https://github.com/mbaffour/cfu-plot-studio" class="btn btn-outline btn-lg">View source on GitHub</a>
+      <a href="https://mbaffour.github.io/cfu-plot-studio/" class="btn btn-solid btn-lg">Download &amp; run it →</a>
+      <a href="https://github.com/mbaffour/cfu-plot-studio/archive/refs/heads/main.zip" class="btn btn-outline btn-lg">Download ZIP</a>
+      <a href="https://github.com/mbaffour/cfu-plot-studio" class="btn btn-outline btn-lg">View source</a>
     </div>
     <p class="colophon-quote">“Built with passion for science and discovery. You can just build things.”</p>
   </div>
@@ -999,7 +1085,7 @@
   <div class="footer-inner">
     <p>CFU Plot Studio v0.1.0 · © 2026 Michael Baffour Awuah · MIT License</p>
     <nav>
-      <a href="https://mbaffour.github.io/cfu-plot-studio/">Open the app</a>
+      <a href="https://mbaffour.github.io/cfu-plot-studio/">Download &amp; run</a>
       <a href="https://github.com/mbaffour/cfu-plot-studio">GitHub</a>
       <a href="https://mbaffour.github.io/">← Back to site</a>
     </nav>

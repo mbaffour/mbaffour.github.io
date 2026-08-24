@@ -313,7 +313,7 @@ const tools = [
         title: "CFU Plot Studio",
         repo: "https://github.com/mbaffour/cfu-plot-studio",
         featured: true,
-        blurb: "R Shiny app for publication-ready CFU plots — bar charts, error bars, significance annotations, and reproducible figure exports in one place.",
+        blurb: "R Shiny app for publication-ready CFU figures — absolute counts or survival paired within each culture, log10 statistics with intervals and effect sizes, a data area that stays fixed however the figure is labelled, and one archive holding every export plus the script that rebuilds it.",
         tech: ["R Shiny", "CFU", "Statistics"],
         stack: "r",
         blog: "blog/cfu-plot-studio.html",
@@ -501,7 +501,7 @@ const posts = [
         date: "February 11, 2026",
         iso: "2026-02-11",
         tags: ["Research Software", "Statistics"],
-        blurb: "An R/Shiny app turning replicate-level CFU data into publication-ready bar plots with log10 statistics, significance annotations, and a reproducible export.",
+        blurb: "An R/Shiny app turning replicate-level CFU data into publication-ready figures: paired survival as well as absolute counts, log10 statistics with intervals and effect sizes, a data area that stays fixed however the figure is labelled, and one archive holding every export plus the script that rebuilds it.",
         url: "blog/cfu-plot-studio.html"
     },
     {
