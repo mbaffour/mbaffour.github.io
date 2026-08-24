@@ -6,8 +6,16 @@
     <atom:link href="https://mbaffour.github.io/feed.xml" rel="self" type="application/rss+xml"/>
     <description>Notes on phage biology, lab life, and building research software.</description>
     <language>en-us</language>
-    <lastBuildDate>Sat, 20 Jun 2026 09:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 24 Aug 2026 09:00:00 +0000</lastBuildDate>
     <managingEditor>baffour@tamu.edu (Michael Baffour Awuah)</managingEditor>
+    <item>
+      <title>CFU Calculator — colony counts without the arithmetic</title>
+      <link>https://mbaffour.github.io/blog/cfu-calculator.html</link>
+      <guid isPermaLink="true">https://mbaffour.github.io/blog/cfu-calculator.html</guid>
+      <pubDate>Mon, 24 Aug 2026 09:00:00 +0000</pubDate>
+      <category>Research software</category>
+      <description>A single-file browser calculator for bacterial colony counts: name samples, log replicates at any dilution, get mean ± SD with countable-window flags and detection limits, and export a real Excel workbook.</description>
+    </item>
     <item>
       <title>Plaque Toolkit — plate photo to defensible numbers</title>
       <link>https://mbaffour.github.io/blog/plaque-toolkit.html</link>
