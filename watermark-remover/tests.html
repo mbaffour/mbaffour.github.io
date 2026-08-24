@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Watermark Remover · test suite</title>
+<meta name="description" content="Browser test suite for the Watermark Remover modules.">
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%23121009'/><path d='M8 22 L24 10' stroke='%23f4c430' stroke-width='2.5' stroke-linecap='round'/><circle cx='11' cy='11' r='2.6' fill='none' stroke='%23f4c430' stroke-width='2'/><circle cx='21' cy='21' r='2.6' fill='none' stroke='%23f4c430' stroke-width='2' stroke-dasharray='2 2'/></svg>">
+<link rel="stylesheet" href="../assets/fonts/fonts.css">
+<link rel="stylesheet" href="assets/app.css">
+<style>
+    .t { display: flex; gap: 12px; align-items: baseline; padding: 8px 0; border-bottom: 1px solid var(--border); }
+    .t:last-child { border-bottom: 0; }
+    .t .mark { font-family: var(--font-mono); font-size: 0.72rem; padding: 2px 8px; border-radius: 6px; flex: none; }
+    .t.pass .mark { background: var(--green-dim); color: var(--green-text); }
+    .t.fail .mark { background: var(--red-dim); color: var(--red-text); }
+    .t .why { display: block; color: var(--red-text); font-family: var(--font-mono); font-size: 0.78rem; margin-top: 4px; }
+    .t .ms { margin-left: auto; color: var(--ink-3); font-family: var(--font-mono); font-size: 0.72rem; flex: none; }
+</style>
+<script>
+    (function () { try { var t = localStorage.getItem('theme'); if (t) document.documentElement.setAttribute('data-theme', t); } catch (e) {} })();
+</script>
+</head>
+<body>
+
+<div class="topbar">
+    <div class="wrap">
+        <a class="back" href="index.html">&larr; Watermark Remover</a>
+        <span class="brand">Test suite</span>
+    </div>
+</div>
+
+<div class="wrap">
+    <header class="hero">
+        <div class="eyebrow">Verification</div>
+        <h1>Test <span class="accent">suite</span></h1>
+        <p class="lede">
+            Every rule with a right answer, asserted. This runs in your browser against the same modules the tool
+            uses — no build step, no mocks. The same file runs headlessly with <code>node tests.node.js</code>.
+        </p>
+    </header>
+
+    <div class="panel">
+        <div class="card">
+            <div class="stats" id="summary"></div>
+            <div id="results"></div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <div class="wrap">
+        <a href="index.html">Back to the tool</a> &middot;
+        <a href="../builds.html">Other tools</a>
+    </div>
+</footer>
+
+<script src="assets/js/bytes.js"></script>
+<script src="assets/js/unicode.js"></script>
+<script src="assets/js/images.js"></script>
+<script src="assets/js/pdf.js"></script>
+<script src="assets/js/containers.js"></script>
+<script src="assets/js/tests.js"></script>
+<script>
+(function () {
+    var results = document.getElementById('results');
+    var esc = WMR.text.escapeHtml;
+
+    WMR.tests.run(function (r) {
+        var row = document.createElement('div');
+        row.className = 't ' + (r.pass ? 'pass' : 'fail');
+        row.innerHTML = '<span class="mark">' + (r.pass ? 'PASS' : 'FAIL') + '</span>' +
+            '<span>' + esc(r.name) + (r.pass ? '' : '<span class="why">' + esc(r.error) + '</span>') + '</span>' +
+            '<span class="ms">' + r.ms + 'ms</span>';
+        results.appendChild(row);
+    }).then(function (all) {
+        var failed = all.filter(function (r) { return !r.pass; }).length;
+        document.getElementById('summary').innerHTML =
+            '<div class="stat ' + (failed ? 'hit' : 'clean') + '"><div class="n">' + (all.length - failed) + '/' + all.length + '</div><div class="l">passing</div></div>' +
+            '<div class="stat ' + (failed ? 'hit' : '') + '"><div class="n">' + failed + '</div><div class="l">failing</div></div>';
+        document.title = (failed ? failed + ' failing · ' : 'All passing · ') + 'Watermark Remover tests';
+    });
+})();
+</script>
+</body>
+</html>

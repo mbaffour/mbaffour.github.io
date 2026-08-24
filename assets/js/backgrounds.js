@@ -422,33 +422,10 @@
     const ctx = canvas.getContext('2d');
     if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     const isMobile = matchMedia('(hover: none) and (pointer: coarse)').matches;
-    const PM = isMobile ? 0.5 : 1.0;
     const FRAME_MS = 1000 / 20;
-    let w, h, jPhase = 0, gPhase = 0;
-    let petals = [], phages = [];
+    let w, h, jPhase = 0;
     let lastFrame = 0, raf;
 
-    /* ─── Catmull-Rom spline through ridge points ─── */
-    /* ════════════════════════════════════
-       MOUNTAIN RANGE — varied peaks, drifting clouds, one erupting volcano
-       (lower silhouettes with cloud cover over two atmospheric ridge layers;
-        hero peak gets a molten crater, lava flows, and arcing embers)
-    ════════════════════════════════════ */
-ath.random() * w,
-                y:    Math.random() * h,
-                sz:   18 + Math.random() * 22,
-                vx:   (Math.random() - 0.5) * 0.18,
-                vy:   -0.04 - Math.random() * 0.13,
-                rot:  Math.random() * Math.PI * 2,
-                vrot: (Math.random() - 0.5) * 0.008,
-                alp:  0.08 + Math.random() * 0.12,
-            });
-        }
-    }
-
-    /* ════════════════════════════════════
-       CHERRY BLOSSOM PARTICLES
-    ════════════════════════════════════ */
     /* ════════════════════════════════════
        RESIZE
     ════════════════════════════════════ */
@@ -464,15 +441,39 @@ ath.random() * w,
     }
 
     /* ════════════════════════════════════
-       ATMOSPHERIC WASH
-       A single blended field instead of literal scenery: a cool indigo
-       bloom (heritage: Japan/Saitama) melts into a warm amber bloom
-       (Ghana/Accra), tied together by slow drifting haze. Everything
-       sits low and soft against the dark page.
-    ════════════════════════════════════ */
-    /* ════════════════════════════════════
        RENDER LOOP  (20 fps)
+       Restored verbatim from the last version in which this file parsed
+       (4c51eea^). The commit that removed the literal scenery took this
+       function with it but left the requestAnimationFrame(render) calls
+       below, so the canvas has been throwing rather than drawing.
     ════════════════════════════════════ */
+    function render(t) {
+        raf = requestAnimationFrame(render);
+        if (t - lastFrame < FRAME_MS) return;
+        lastFrame = t;
+
+        ctx.clearRect(0, 0, w, h);
+        jPhase += 0.006;
+
+        /* Minimal Kente-tinted wash — soft, slowly drifting glows in the
+           Kente palette (gold / green / red). No literal scenery; just
+           colour and texture so the content stays clean and readable. */
+        const glows = [
+            { c: '244,196,48', x: 0.16, y: 0.20, r: 0.60, a: 0.070, sp: 0.55 },  // gold
+            { c: '26,128,64',  x: 0.84, y: 0.80, r: 0.60, a: 0.055, sp: -0.45 }, // green
+            { c: '196,30,58',  x: 0.72, y: 0.18, r: 0.50, a: 0.045, sp: 0.40 },  // red
+            { c: '244,196,48', x: 0.30, y: 0.86, r: 0.50, a: 0.040, sp: -0.30 }  // gold
+        ];
+        for (const o of glows) {
+            const cx = w * (o.x + 0.02 * Math.sin(jPhase * o.sp));
+            const cy = h * (o.y + 0.02 * Math.cos(jPhase * o.sp));
+            const g = ctx.createRadialGradient(cx, cy, 0, cx, cy, w * o.r);
+            g.addColorStop(0, 'rgba(' + o.c + ',' + o.a + ')');
+            g.addColorStop(1, 'rgba(' + o.c + ',0)');
+            ctx.fillStyle = g; ctx.fillRect(0, 0, w, h);
+        }
+    }
+
     resize();
     window.addEventListener('resize', resize);
     document.addEventListener('visibilitychange', () => {

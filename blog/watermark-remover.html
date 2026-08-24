@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Watermark Remover — the characters you cannot see</title>
+<meta name="description" content="A browser tool that finds the invisible Unicode, hidden payloads and file metadata marking your text and documents — removes them, and shows you exactly what was in there. Nothing is uploaded.">
+
+<meta property="og:title" content="Watermark Remover — the characters you cannot see">
+<meta property="og:description" content="Invisible Unicode, hidden payloads, EXIF, C2PA, document properties. Found, decoded, removed — entirely in your browser.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://mbaffour.github.io/blog/watermark-remover.html">
+<meta property="og:site_name" content="Michael Baffour Awuah">
+<link rel="canonical" href="https://mbaffour.github.io/blog/watermark-remover.html">
+<meta name="theme-color" content="#f7f4ea" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#121009" media="(prefers-color-scheme: dark)">
+
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%23121009'/><path d='M8 22 L24 10' stroke='%23f4c430' stroke-width='2.5' stroke-linecap='round'/><circle cx='11' cy='11' r='2.6' fill='none' stroke='%23f4c430' stroke-width='2'/><circle cx='21' cy='21' r='2.6' fill='none' stroke='%23f4c430' stroke-width='2' stroke-dasharray='2 2'/></svg>">
+<link rel="preload" href="../assets/fonts/fraunces-var-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/inter-var-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/fonts/fonts.css">
+
+<style>
+:root {
+    --bg: #121009; --bg-2: #1a160c; --bg-card: #221c0e; --bg-inset: #17130a;
+    --border: rgba(244,196,48,0.13); --border-strong: rgba(244,196,48,0.26);
+    --gold: #f4c430; --gold-dim: rgba(244,196,48,0.14);
+    --green-text: #3fbf6e; --green-dim: rgba(31,146,73,0.16);
+    --red: #d4324b; --red-text: #f4697f; --red-dim: rgba(212,50,75,0.15);
+    --blue-text: #7fb2e8; --blue-dim: rgba(90,150,220,0.14);
+    --ink: #f5edd8; --ink-2: #d8c98c; --ink-3: #ab9059;
+    --display: 'Fraunces', Georgia, serif;
+    --body: 'Inter', 'Segoe UI', system-ui, sans-serif;
+    --mono: 'JetBrains Mono', 'SF Mono', Consolas, monospace;
+    --wrap: 780px;
+}
+html[data-theme="light"] {
+    --bg: #f7f4ea; --bg-2: #fffdf6; --bg-card: #ffffff; --bg-inset: #faf6e9;
+    --border: rgba(164,130,58,0.20); --border-strong: rgba(164,130,58,0.40);
+    --gold: #7d5800; --gold-dim: rgba(125,88,0,0.10);
+    --green-text: #0b5a26; --green-dim: rgba(15,106,46,0.10);
+    --red: #a01a30; --red-text: #8e142a; --red-dim: rgba(160,26,48,0.09);
+    --blue-text: #1d4f80; --blue-dim: rgba(29,79,128,0.09);
+    --ink: #1a1408; --ink-2: #3a2c0e; --ink-3: #6d5423;
+}
+@media (prefers-color-scheme: light) {
+    html:not([data-theme]) {
+        --bg: #f7f4ea; --bg-2: #fffdf6; --bg-card: #ffffff; --bg-inset: #faf6e9;
+        --border: rgba(164,130,58,0.20); --border-strong: rgba(164,130,58,0.40);
+        --gold: #7d5800; --gold-dim: rgba(125,88,0,0.10);
+        --green-text: #0b5a26; --green-dim: rgba(15,106,46,0.10);
+        --red: #a01a30; --red-text: #8e142a; --red-dim: rgba(160,26,48,0.09);
+        --blue-text: #1d4f80; --blue-dim: rgba(29,79,128,0.09);
+        --ink: #1a1408; --ink-2: #3a2c0e; --ink-3: #6d5423;
+    }
+    html:not([data-theme]) nav { background: rgba(247,244,234,0.92); }
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: var(--bg); color: var(--ink); font-family: var(--body); line-height: 1.7; -webkit-font-smoothing: antialiased; }
+a { color: var(--gold); }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 4px; }
+.skip-link { position: absolute; left: -9999px; }
+.skip-link:focus { left: 12px; top: 12px; background: var(--bg-card); padding: 10px 16px; border-radius: 8px; z-index: 99; }
+
+.wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 24px; }
+
+nav {
+    position: sticky; top: 0; z-index: 10; padding: 14px 0;
+    border-bottom: 1px solid var(--border); background: rgba(18,16,9,0.88); backdrop-filter: blur(10px);
+}
+html[data-theme="light"] nav { background: rgba(247,244,234,0.92); }
+nav .wrap { display: flex; align-items: center; justify-content: space-between; gap: 14px; max-width: 1080px; }
+nav .back { font-family: var(--mono); font-size: 0.8rem; color: var(--ink-2); text-decoration: none; }
+nav .back:hover { color: var(--gold); }
+nav .brand { font-family: var(--display); font-weight: 600; font-size: 0.92rem; }
+
+header.hero { padding: 76px 0 34px; }
+.eyebrow { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); }
+h1 { font-family: var(--display); font-size: clamp(2.1rem, 6vw, 3.2rem); font-weight: 700; line-height: 1.08; margin: 14px 0 18px; }
+h1 .accent { color: var(--gold); }
+.dek { color: var(--ink-2); font-size: 1.1rem; }
+.byline { font-family: var(--mono); font-size: 0.74rem; color: var(--ink-3); margin-top: 22px; letter-spacing: 0.04em; }
+
+main { padding-bottom: 40px; }
+h2 { font-family: var(--display); font-size: 1.6rem; font-weight: 600; margin: 46px 0 4px; }
+h3 { font-family: var(--display); font-size: 1.16rem; font-weight: 600; margin: 30px 0 2px; }
+p { margin-top: 14px; color: var(--ink-2); }
+p strong, li strong { color: var(--ink); font-weight: 600; }
+ul, ol { margin: 14px 0 0 22px; color: var(--ink-2); }
+li { margin: 7px 0; }
+code { font-family: var(--mono); font-size: 0.86em; color: var(--gold); }
+
+.lead-in { border-left: 3px solid var(--gold); padding-left: 18px; margin-top: 20px; }
+
+figure {
+    margin: 26px 0; background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: 14px; padding: 20px;
+}
+figcaption { font-size: 0.82rem; color: var(--ink-3); margin-top: 14px; }
+.spec { font-family: var(--mono); font-size: 0.88rem; line-height: 2.1; word-break: break-word; }
+.ghost {
+    display: inline-block; background: var(--red); color: #fff; border-radius: 4px;
+    font-size: 0.68rem; padding: 1px 6px; margin: 0 2px; vertical-align: 1px; letter-spacing: 0.04em;
+}
+html[data-theme="light"] .ghost { color: #fff; }
+.decoded {
+    margin-top: 16px; border: 1px solid var(--red); background: var(--red-dim);
+    border-radius: 10px; padding: 12px 15px;
+}
+.decoded .k { font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--red-text); }
+.decoded .v { font-family: var(--mono); font-size: 0.92rem; color: var(--ink); margin-top: 5px; }
+
+table { width: 100%; border-collapse: collapse; margin-top: 20px; font-size: 0.9rem; }
+th { text-align: left; font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-3); padding: 9px 10px; border-bottom: 1px solid var(--border-strong); }
+td { padding: 11px 10px; border-bottom: 1px solid var(--border); color: var(--ink-2); vertical-align: top; }
+td:first-child { color: var(--ink); font-weight: 500; white-space: nowrap; }
+.table-scroll { overflow-x: auto; }
+.yes { color: var(--green-text); font-family: var(--mono); font-size: 0.8rem; }
+.no  { color: var(--red-text); font-family: var(--mono); font-size: 0.8rem; }
+
+.callout { border-left: 3px solid var(--gold); background: var(--gold-dim); padding: 16px 20px; border-radius: 0 12px 12px 0; margin-top: 24px; }
+.callout.warn { border-left-color: var(--red); background: var(--red-dim); }
+.callout p:first-child { margin-top: 0; }
+
+.finale {
+    margin: 58px 0 20px; text-align: center; background: var(--bg-card);
+    border: 1px solid var(--border-strong); border-radius: 18px; padding: 42px 28px;
+}
+.finale h2 { margin-top: 0; }
+.cta { display: flex; flex-wrap: wrap; gap: 11px; justify-content: center; margin-top: 24px; }
+.btn {
+    display: inline-flex; align-items: center; gap: 7px; text-decoration: none;
+    font-size: 0.9rem; font-weight: 500; padding: 11px 20px; border-radius: 10px;
+    border: 1px solid var(--border-strong); color: var(--ink); background: var(--bg-inset);
+}
+.btn:hover { border-color: var(--gold); }
+.btn-primary { background: var(--gold); border-color: var(--gold); color: #16130a; font-weight: 600; }
+html[data-theme="light"] .btn-primary { color: #fffdf6; }
+
+footer { border-top: 1px solid var(--border); padding: 28px 0 48px; color: var(--ink-3); font-size: 0.85rem; }
+footer .wrap { max-width: 1080px; }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+<script>
+    (function () { try { var t = localStorage.getItem('theme'); if (t) document.documentElement.setAttribute('data-theme', t); } catch (e) {} })();
+</script>
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to main content</a>
+
+<nav>
+    <div class="wrap">
+        <a class="back" href="../builds.html">&larr; Other tools</a>
+        <span class="brand">Michael Baffour Awuah</span>
+    </div>
+</nav>
+
+<header class="hero">
+    <div class="wrap">
+        <div class="eyebrow">Build note</div>
+        <h1>The characters you <span class="accent">cannot see</span></h1>
+        <p class="dek">
+            There is a complete invisible alphabet in Unicode. Someone can write a sentence in it, paste it into the
+            middle of a paragraph you are reading, and you will never know — unless something looks. This is the tool
+            that looks.
+        </p>
+        <div class="byline">Watermark Remover · runs entirely in your browser · free and open source</div>
+    </div>
+</header>
+
+<main id="main">
+    <div class="wrap">
+        <p class="lead-in">
+            I built this after reading through
+            <a href="https://github.com/guillaumemeyer/watermarks-remover" target="_blank" rel="noopener">guillaumemeyer/watermarks-remover</a>,
+            a Python project that does something I had not seen anyone else do: it separates the parts of watermark
+            removal it can prove from the parts it cannot, and tells you which is which. That honesty is the actual
+            feature. The rest of this is a browser port of it.
+        </p>
+
+        <h2>What is actually hiding in text</h2>
+        <p>
+            Unicode has around 150 codepoints that render as absolutely nothing. Zero-width spaces. Word joiners. Two
+            hundred and fifty-six variation selectors. An entire block of "tag characters" at U+E0000 that mirrors ASCII
+            — meaning any message at all can be written in characters with no visible form, and carried inside an
+            ordinary-looking sentence.
+        </p>
+        <p>
+            Here is a line of text. It looks like one sentence. It is carrying four separate marks:
+        </p>
+
+        <figure>
+            <div class="spec">
+                The quarterly rep<span class="ghost">о</span>rt<span class="ghost">∅ ×14</span> is
+                attached.<span class="ghost">∅ ×2</span> Please review before Friday<span class="ghost">∅ ×2</span>.
+            </div>
+            <div class="decoded">
+                <div class="k">Hidden message · Unicode tag characters</div>
+                <div class="v">doc-id:7741-BX</div>
+            </div>
+            <div class="decoded">
+                <div class="k">Hidden message · variation-selector bytes</div>
+                <div class="v">MB</div>
+            </div>
+            <figcaption>
+                The red blocks are where the tool made invisible characters visible. The Cyrillic <code>о</code> in
+                "report" is a homoglyph — a different letter that looks identical. The tag characters spell out a
+                document identifier. The variation selectors spell out initials. All of it survives copy-paste, and
+                none of it survives this page.
+            </figcaption>
+        </figure>
+
+        <p>
+            The decoding is the part I care about most. Plenty of tools will strip invisible characters. Very few will
+            tell you what was <em>written</em> in them, and that is the difference between "your text has been cleaned"
+            and "someone tagged this paragraph with a document ID before sending it to you."
+        </p>
+
+        <h2>Three layers, two of which belong in a browser</h2>
+        <p>The upstream project splits the problem in a way that survives contact with reality:</p>
+
+        <div class="table-scroll">
+        <table>
+            <thead><tr><th>Layer</th><th>What it is</th><th>In the browser?</th></tr></thead>
+            <tbody>
+                <tr>
+                    <td>A — deterministic</td>
+                    <td>Invisible Unicode, tag characters, variation selectors, bidi controls, homoglyphs, exotic spaces. A character is present or it is not.</td>
+                    <td class="yes">yes</td>
+                </tr>
+                <tr>
+                    <td>B — statistical</td>
+                    <td>Watermarks built into which words a model picked. Removing one means rewriting the passage.</td>
+                    <td class="no">no</td>
+                </tr>
+                <tr>
+                    <td>File cleaners</td>
+                    <td>EXIF, XMP, IPTC, C2PA content credentials, PNG text chunks, PDF properties, Office and EPUB properties.</td>
+                    <td class="yes">yes</td>
+                </tr>
+            </tbody>
+        </table>
+        </div>
+
+        <p>
+            Layer B is missing on purpose, and the tool says so on its own front page. A statistical watermark is a
+            property of word choice across a whole passage — the only way to remove it is to rewrite a substantial
+            fraction of the text, sentence by sentence, which costs you your voice and requires a language model. In a
+            browser that means either a multi-gigabyte download or an API call. The API call would break the one promise
+            the tool makes, which is that nothing you paste in ever leaves your device. So it does the two layers it can
+            do honestly, and is explicit about the third rather than implying coverage it does not have.
+        </p>
+
+        <h2>Two decisions I would defend</h2>
+
+        <h3>Images get surgery, not a re-encode</h3>
+        <p>
+            The common way to strip metadata from an image in a browser is to draw it onto a canvas and export it again.
+            It works, and it is quietly destructive: your image is recompressed, transparency can be flattened, the
+            colour profile is gone, and the file you get back has nothing in common byte-wise with the file you put in.
+        </p>
+        <p>
+            This tool parses the container instead. A PNG is a sequence of length-tagged chunks; a JPEG is a sequence of
+            marker segments; a WebP is a RIFF. It drops the ones carrying metadata — including the PNG text chunk where
+            image generators write your entire prompt back into the file — and copies every remaining byte through
+            untouched. <strong>The pixels come out bit-identical.</strong> I test this by injecting an EXIF block and a
+            trailing tracker string into a real photograph, running it through, and asserting the result is byte-for-byte
+            the original file again.
+        </p>
+
+        <h3>PDF edits never change the file's length</h3>
+        <p>
+            A PDF ends with a cross-reference table recording the byte offset of every object in the document. Delete
+            four bytes near the front and every offset after it is wrong — which is why so many "remove PDF metadata"
+            scripts produce files that a reader refuses to open.
+        </p>
+        <p>
+            So nothing here deletes. Every edit overwrites in place with the same number of bytes: string contents
+            become spaces, hex digits become zeroes, XMP packet bodies become whitespace. The xref stays valid and the
+            document still opens. Running it over my own CV — a 279 KB PDF exported from a browser — it found the
+            document title, the creation and modification timestamps, and, in the <code>/Creator</code> field, the full
+            user-agent string of the headless Chrome that generated it, build number included. All 607 cross-reference
+            entries still resolve afterwards.
+        </p>
+
+        <div class="callout">
+            <p>
+                That user-agent leak is a good illustration of why metadata is worth taking seriously. Nobody chose to
+                put their browser build number in their CV. The export tool did it, silently, and it travels with every
+                copy of the file.
+            </p>
+        </div>
+
+        <h2>The part most tools leave out</h2>
+        <p>
+            A watermark remover that reports success on everything is lying, so here is the list of things this one
+            cannot do — the same list is on the tool's own page, one tab away from the button:
+        </p>
+        <ul>
+            <li><strong>Pixel-domain watermarks.</strong> SynthID and its relatives live in the image content, not the metadata. Stripping EXIF does nothing to them, and re-encoding does not reliably help — they are built to survive exactly that.</li>
+            <li><strong>Statistical text watermarks.</strong> Layer B, above.</li>
+            <li><strong>Metadata inside compressed PDF object streams.</strong> A byte-level pass cannot read them. The report says so rather than reporting a clean file.</li>
+            <li><strong>Encrypted PDFs.</strong> Detected and refused rather than corrupted.</li>
+            <li><strong>TIFF.</strong> The format addresses its own image data through the same tables that hold EXIF, so there is no chunk that can safely be dropped.</li>
+        </ul>
+
+        <div class="callout warn">
+            <p>
+                Findings are classified rather than just listed: <strong>confirmed</strong> (it was there, it is gone,
+                check it yourself), <strong>probable</strong>, <strong>informational</strong>, and
+                <strong>likely false positive</strong> — things it found, understood, and deliberately kept. A
+                zero-width joiner inside a family emoji is structural, not a mark. So is an ideographic space in
+                Japanese text, and a Cyrillic letter inside a Russian word. Getting those cases right is most of the
+                work; a tool that strips every invisible character it sees will break emoji and mangle every language
+                that is not English.
+            </p>
+        </div>
+
+        <h2>Checking my work</h2>
+        <p>
+            There is a <a href="../watermark-remover/tests.html">test page</a> that runs thirty assertions in your
+            browser against the same modules the tool uses — the emoji case, the Russian case, the CJK case, PNG and
+            JPEG and WebP and GIF round-trips, PDF length preservation, DOCX rebuild. The same file runs headlessly with
+            <code>node tests.node.js</code>. If the tool's claims and the tests disagree, the tests are the ones I trust.
+        </p>
+        <p>
+            And you should not trust either of them over a real checker. <code>exiftool -a -G1</code> will list
+            everything still in an image, <code>c2patool</code> checks for content credentials, and
+            <code>qpdf --qdf --object-streams=disable</code> makes a PDF greppable. If one of those disagrees with the
+            report, the checker is right.
+        </p>
+
+        <h2>What it is for</h2>
+        <p>
+            Content you own or are authorised to process. Taking the GPS coordinates out of a photograph before you post
+            it. Taking your name and your company off a document before it circulates. Finding out whether the text
+            someone sent you has a tracking string sewn into it. Passing off machine-written work as your own or
+            defeating attribution you agreed to is not what it is for, and removing a marker does not change what the
+            content is.
+        </p>
+        <p>
+            No dependencies, no build step, no server, no account. Four small JavaScript modules and a page. It works
+            offline after the first load, which felt like the right closing argument for a tool whose entire premise is
+            that your files stay yours.
+        </p>
+    </div>
+
+    <div class="wrap">
+        <section class="finale">
+            <h2>Have a look inside your own files</h2>
+            <p>Paste a paragraph, or drop a photo. Nothing is uploaded — check your network tab.</p>
+            <div class="cta">
+                <a class="btn btn-primary" href="../watermark-remover/">Open the tool</a>
+                <a class="btn" href="../watermark-remover/tests.html">Run the tests</a>
+                <a class="btn" href="https://github.com/mbaffour/mbaffour.github.io/tree/main/watermark-remover" target="_blank" rel="noopener">Source on GitHub ↗</a>
+            </div>
+        </section>
+    </div>
+</main>
+
+<footer>
+    <div class="wrap">
+        &copy; 2026 Michael Baffour Awuah &middot;
+        <a href="../index.html">Research site</a> &middot;
+        <a href="../builds.html">Other tools</a> &middot;
+        <a href="https://github.com/mbaffour" target="_blank" rel="noopener">GitHub</a>
+    </div>
+</footer>
+</body>
+</html>

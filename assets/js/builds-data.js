@@ -3,6 +3,12 @@
    can no longer drift apart. */
 const builds = [
     {
+        title: "Watermark Remover", repo: "https://github.com/mbaffour/mbaffour.github.io/tree/main/watermark-remover", date: "2026",
+        blurb: "Finds the invisible Unicode, hidden payloads and file metadata marking your text, images, PDFs and Office documents — decodes what was in there, then removes it. Nothing is uploaded.",
+        tech: ["JavaScript", "Privacy", "Offline"],
+        app: "https://mbaffour.github.io/watermark-remover/", blog: "https://mbaffour.github.io/blog/watermark-remover.html"
+    },
+    {
         title: "QR Forge", repo: "https://github.com/mbaffour/qr-forge", date: "2026",
         blurb: "Free open-source QR generator embedding Ghanaian Adinkra symbols and Kente patterns directly into corner squares. 10 content types, print-ready, fully client-side.",
         tech: ["JavaScript", "PWA", "Cultural"],
