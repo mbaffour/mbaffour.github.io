@@ -322,6 +322,17 @@ const tools = [
         preview: "cfu"
     },
     {
+        title: "CFU Calculator",
+        repo: "https://github.com/mbaffour/cfu-calculator",
+        blurb: "Colony counts to CFU/mL in one browser page — replicates, countable-window flags, detection limits, and a real Excel workbook on the way out. No installs, nothing uploaded.",
+        tech: ["JavaScript", "CFU", "Offline"],
+        stack: "js",
+        blog: "blog/cfu-calculator.html",
+        app:  "https://mbaffour.github.io/cfu-calculator/",
+        label: "CFU Bench Calc",
+        preview: "cfucalc"
+    },
+    {
         title: "Genomics Kitchen",
         repo: "https://github.com/mbaffour/genomics-kitchen",
         blurb: "Browser-based sequence preparation toolkit — trim, filter, dedupe, and format sequences for reproducible genomics workflows. No installs.",
@@ -412,6 +423,14 @@ const tools = [
    tags drive the filter buttons automatically.
 =============================================================== */
 const posts = [
+    {
+        title: "CFU Calculator — colony counts without the arithmetic",
+        date: "August 24, 2026",
+        iso: "2026-08-24",
+        tags: ["Research Software", "Bench"],
+        blurb: "A single-file browser calculator for bacterial colony counts: name samples, log replicates at any dilution, get mean ± SD with countable-window flags and detection limits, and export a real Excel workbook.",
+        url: "blog/cfu-calculator.html"
+    },
     {
         title: "Plaque Toolkit — plate photo to defensible numbers",
         date: "June 20, 2026",
@@ -923,6 +942,38 @@ const SVG_PREVIEWS = {
             <line x1="118" y1="26" x2="118" y2="46"/><line x1="113" y1="26" x2="123" y2="26"/><line x1="113" y1="46" x2="123" y2="46"/>
         </g>
         <text x="50" y="152" font-family="JetBrains Mono" font-size="8" fill="#7a8868">CFU/mL · log₁₀ · p&lt;0.05 ✓</text>
+    </svg>`,
+    cfucalc: `<svg viewBox="0 0 320 160" xmlns="http://www.w3.org/2000/svg">
+        <rect width="320" height="160" fill="#0a0f0b"/>
+        <g font-family="JetBrains Mono" font-size="9">
+            <text x="16" y="24" fill="#7a8868">SAMPLE</text>
+            <text x="122" y="24" fill="#7a8868">COL</text>
+            <text x="168" y="24" fill="#7a8868">DIL</text>
+            <text x="228" y="24" fill="#7a8868">CFU/mL</text>
+            <line x1="14" y1="30" x2="306" y2="30" stroke="#1f9249" stroke-opacity="0.45"/>
+            <text x="16" y="48" fill="#c8cfc6">Untreated</text>
+            <text x="122" y="48" fill="#e8e4d8">148</text>
+            <text x="168" y="48" fill="#7a8868">10&#8315;&#8310;</text>
+            <text x="228" y="48" fill="#f4c430">1.5e9</text>
+            <text x="16" y="70" fill="#c8cfc6">+ EDTA</text>
+            <text x="122" y="70" fill="#e8e4d8">96</text>
+            <text x="168" y="70" fill="#7a8868">10&#8315;&#8310;</text>
+            <text x="228" y="70" fill="#f4c430">9.6e8</text>
+            <text x="16" y="92" fill="#c8cfc6">Phage T4</text>
+            <text x="122" y="92" fill="#e8e4d8">42</text>
+            <text x="168" y="92" fill="#7a8868">10&#8315;&#8308;</text>
+            <text x="228" y="92" fill="#f4c430">4.2e6</text>
+            <text x="16" y="114" fill="#c8cfc6">T4 + EDTA</text>
+            <text x="122" y="114" fill="#e8e4d8">7</text>
+            <text x="168" y="114" fill="#7a8868">10&#8315;&#179;</text>
+            <text x="228" y="114" fill="#d4324b">&lt; 30</text>
+            <text x="16" y="136" fill="#c8cfc6">Media ctrl</text>
+            <text x="122" y="136" fill="#e8e4d8">0</text>
+            <text x="168" y="136" fill="#7a8868">10&#8315;&#178;</text>
+            <text x="228" y="136" fill="#7a8868">&lt; 1000</text>
+            <line x1="14" y1="146" x2="306" y2="146" stroke="#1f9249" stroke-opacity="0.25"/>
+            <text x="16" y="157" fill="#1f9249" font-size="8">&#10003; .xlsx ready</text>
+        </g>
     </svg>`,
     genomicskitchen: `<svg viewBox="0 0 320 160" xmlns="http://www.w3.org/2000/svg">
         <rect width="320" height="160" fill="#080e18"/>

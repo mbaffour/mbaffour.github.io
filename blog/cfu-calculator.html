@@ -1,0 +1,1130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CFU Calculator — colony counts without the arithmetic</title>
+  <meta name="description" content="A single-file browser calculator for bacterial colony counts: name samples, log replicates at any dilution, get mean ± SD with countable-window flags and detection limits, and export a real Excel workbook.">
+  <link rel="preload" href="../assets/fonts/fraunces-var-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="../assets/fonts/inter-var-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="../assets/fonts/fonts.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      /* ground + panels — agar-green biased neutrals */
+      --void:      #0a0d0b;
+      --panel:     #131714;
+      --panel-2:   #181d19;
+      --hairline:  #242c26;
+      --hairline-2:#303931;
+
+      /* text */
+      --text:      #e6e9e4;
+      --text-2:    #a7ada7;
+      --text-dim:  #757c76;
+
+      /* one accent + two semantic readouts (countable / out-of-window) */
+      --amber:     #e8a838;
+      --amber-dim: #a9822f;
+      --amber-glow:rgba(232,168,56,0.13);
+      --agar:      #4fae76;   /* in the countable window */
+      --agar-dim:  #2f7a4f;
+      --flag:      #cf6656;   /* outside it */
+      --flag-dim:  #8f4a41;
+
+      --mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+      --sans: 'Inter', system-ui, -apple-system, sans-serif;
+      --serif:'Fraunces', Georgia, serif;
+    }
+
+    html { scroll-behavior: smooth; }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+    body {
+      font-family: var(--sans);
+      background: var(--void);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    ::selection { background: var(--amber); color: var(--void); }
+
+    .wrap { max-width: 1120px; margin: 0 auto; padding: 0 28px; }
+
+    /* Units must never inherit text-transform: uppercase maps the micro sign
+       to Greek capital Mu, which reads as M. This post is partly ABOUT that
+       bug — reproducing it here would be a poor look. */
+    .u { text-transform: none !important; }
+
+    /* eyebrow / instrument label */
+    .eyebrow {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--amber);
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+    }
+    .eyebrow::before {
+      content: '';
+      width: 22px; height: 1px;
+      background: var(--amber-dim);
+    }
+
+    /* ── NAV ─────────────────────────────────────────────── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(10,13,11,0.86);
+      backdrop-filter: blur(14px) saturate(1.2);
+      border-bottom: 1px solid var(--hairline);
+    }
+    .nav-inner {
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      font-family: var(--mono);
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      color: var(--text);
+    }
+    .brand .dish { flex: none; }
+    .brand .dish circle { fill: none; stroke: var(--amber); }
+    .brand .dish .col { fill: var(--amber); stroke: none; }
+    .brand b { font-weight: 600; }
+    .brand .live {
+      font-size: 0.62rem;
+      color: var(--text-dim);
+      letter-spacing: 0.14em;
+      border: 1px solid var(--hairline-2);
+      border-radius: 3px;
+      padding: 2px 6px;
+      margin-left: 2px;
+    }
+    .nav-right { display: flex; align-items: center; gap: 22px; }
+    .nav-links { display: flex; gap: 22px; }
+    .nav-links a {
+      font-family: var(--mono);
+      font-size: 0.76rem;
+      letter-spacing: 0.04em;
+      color: var(--text-2);
+      transition: color 0.15s;
+    }
+    .nav-links a:hover { color: var(--amber); }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--mono);
+      font-size: 0.76rem;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+      cursor: pointer;
+      transition: transform 0.12s, background 0.15s, border-color 0.15s, color 0.15s;
+    }
+    .btn-amber {
+      background: var(--amber);
+      color: #17130a;
+      padding: 9px 16px;
+      border-radius: 4px;
+      border: 1px solid var(--amber);
+    }
+    .btn-amber:hover { background: #f4b849; transform: translateY(-1px); }
+    .btn-ghost {
+      background: transparent;
+      color: var(--text);
+      padding: 9px 16px;
+      border-radius: 4px;
+      border: 1px solid var(--hairline-2);
+    }
+    .btn-ghost:hover { border-color: var(--amber-dim); color: var(--amber); }
+    .btn-lg { padding: 14px 26px; font-size: 0.82rem; }
+
+    /* ── HERO ────────────────────────────────────────────── */
+    .hero {
+      position: relative;
+      padding: 96px 0 76px;
+      border-bottom: 1px solid var(--hairline);
+      overflow: hidden;
+    }
+    .rings-bg { position: absolute; pointer-events: none; opacity: 0.5; }
+    .rings-bg circle { fill: none; stroke: var(--hairline); }
+    .rings-hero { top: -220px; right: -180px; width: 720px; height: 720px; }
+    .hero-grid {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1.02fr 0.98fr;
+      gap: 56px;
+      align-items: center;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-2);
+      border: 1px solid var(--hairline-2);
+      border-radius: 100px;
+      padding: 5px 13px;
+      margin-bottom: 26px;
+    }
+    .hero-badge .pulse {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--agar);
+      box-shadow: 0 0 0 0 rgba(79,174,118,0.4);
+      animation: pulse 2.4s infinite;
+    }
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(79,174,118,0.4); }
+      70% { box-shadow: 0 0 0 7px rgba(79,174,118,0); }
+      100% { box-shadow: 0 0 0 0 rgba(79,174,118,0); }
+    }
+    @media (prefers-reduced-motion: reduce) { .hero-badge .pulse { animation: none; } }
+    .hero h1 {
+      font-size: clamp(2.1rem, 4.6vw, 3.5rem);
+      font-weight: 600;
+      line-height: 1.08;
+      letter-spacing: -0.025em;
+      text-wrap: balance;
+      margin-bottom: 22px;
+    }
+    .hero h1 .lit { color: var(--amber); }
+    .hero-sub {
+      font-size: 1.06rem;
+      color: var(--text-2);
+      max-width: 47ch;
+      line-height: 1.66;
+      margin-bottom: 34px;
+    }
+    .hero-btns { display: flex; gap: 13px; flex-wrap: wrap; margin-bottom: 34px; }
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 26px;
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--text-dim);
+    }
+    .hero-meta span { display: inline-flex; align-items: center; gap: 7px; }
+    .hero-meta span::before { content: ''; width: 5px; height: 5px; background: var(--amber-dim); border-radius: 50%; }
+
+    /* ── the quick table, as an instrument readout ────────── */
+    .readout {
+      position: relative;
+      background: linear-gradient(160deg, var(--panel-2), var(--panel));
+      border: 1px solid var(--hairline);
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 24px 60px -30px rgba(0,0,0,0.9), inset 0 1px 0 rgba(255,255,255,0.02);
+    }
+    .readout-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-family: var(--mono);
+      font-size: 0.66rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      border-bottom: 1px dashed var(--hairline-2);
+      padding-bottom: 13px;
+      margin-bottom: 14px;
+    }
+    .readout-top .dot { color: var(--agar); }
+    .qt { width: 100%; border-collapse: collapse; font-family: var(--mono); }
+    .qt th {
+      font-size: 0.58rem;
+      letter-spacing: 0.11em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      font-weight: 500;
+      text-align: left;
+      padding: 0 8px 9px 0;
+      border-bottom: 1px solid var(--hairline);
+      white-space: nowrap;
+    }
+    .qt th.r, .qt td.r { text-align: right; padding-right: 0; }
+    .qt td {
+      font-size: 0.79rem;
+      color: var(--text);
+      padding: 9px 8px 9px 0;
+      border-bottom: 1px solid var(--hairline);
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+    .qt tr:last-child td { border-bottom: none; }
+    .qt td.name { font-family: var(--sans); font-size: 0.8rem; color: var(--text-2); white-space: normal; }
+    .qt td.out { color: var(--amber); }
+    .qt .pill {
+      font-size: 0.58rem;
+      letter-spacing: 0.06em;
+      padding: 2px 7px;
+      border-radius: 100px;
+      border: 1px solid;
+    }
+    .qt .pill.ok  { color: var(--agar); border-color: var(--agar-dim); background: rgba(79,174,118,0.08); }
+    .qt .pill.lo  { color: var(--flag); border-color: var(--flag-dim); background: rgba(207,102,86,0.08); }
+    .qt .pill.nil { color: var(--text-dim); border-color: var(--hairline-2); }
+    .readout-foot {
+      margin-top: 14px;
+      padding-top: 13px;
+      border-top: 1px dashed var(--hairline-2);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-family: var(--mono);
+      font-size: 0.64rem;
+      color: var(--text-dim);
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .readout-foot .ok { color: var(--agar); }
+
+    /* ── FACTS BAR ───────────────────────────────────────── */
+    .facts { border-bottom: 1px solid var(--hairline); background: var(--panel); }
+    .facts-inner { display: grid; grid-template-columns: repeat(4, 1fr); }
+    .fact { padding: 28px 26px; border-right: 1px solid var(--hairline); }
+    .fact:last-child { border-right: none; }
+    .fact .n {
+      font-family: var(--mono);
+      font-size: 2rem;
+      font-weight: 500;
+      color: var(--amber);
+      font-variant-numeric: tabular-nums;
+      line-height: 1;
+      display: block;
+      margin-bottom: 9px;
+    }
+    .fact .d { font-size: 0.78rem; color: var(--text-2); line-height: 1.45; }
+
+    /* ── SECTION SCAFFOLD ────────────────────────────────── */
+    section { position: relative; }
+    .band { padding: 92px 0; border-bottom: 1px solid var(--hairline); }
+    .sec-head { max-width: 60ch; margin-bottom: 52px; }
+    .sec-head h2 {
+      font-size: clamp(1.6rem, 3vw, 2.15rem);
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      margin: 16px 0 14px;
+      text-wrap: balance;
+    }
+    .sec-head p { color: var(--text-2); font-size: 1.02rem; max-width: 58ch; }
+
+    /* ── FEATURE CARDS ───────────────────────────────────── */
+    .feat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 14px;
+    }
+    .card {
+      position: relative;
+      background: var(--panel);
+      border: 1px solid var(--hairline);
+      border-radius: 9px;
+      padding: 22px 22px 24px;
+      transition: border-color 0.18s, transform 0.18s, background 0.18s;
+    }
+    .card:hover { border-color: var(--amber-dim); transform: translateY(-2px); background: var(--panel-2); }
+    .card .chan {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.14em;
+      color: var(--text-dim);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px dashed var(--hairline-2);
+      padding-bottom: 12px;
+      margin-bottom: 15px;
+      text-transform: uppercase;
+    }
+    .card .chan .ch { color: var(--amber); }
+    .card h3 { font-size: 0.98rem; font-weight: 600; margin-bottom: 8px; letter-spacing: -0.01em; }
+    .card p { font-size: 0.85rem; color: var(--text-2); line-height: 1.62; }
+    code {
+      font-family: var(--mono);
+      font-size: 0.8em;
+      color: var(--amber);
+      background: var(--void);
+      border: 1px solid var(--hairline);
+      padding: 1px 5px;
+      border-radius: 3px;
+    }
+    .card code { white-space: nowrap; }
+
+    /* ── THE MATH ────────────────────────────────────────── */
+    .math-grid { display: grid; grid-template-columns: 1fr 0.92fr; gap: 30px; align-items: start; }
+    .eq {
+      background: var(--panel);
+      border: 1px solid var(--hairline);
+      border-radius: 10px;
+      padding: 30px 28px;
+    }
+    .eq .formula {
+      font-family: var(--mono);
+      font-size: clamp(0.9rem, 1.9vw, 1.16rem);
+      color: var(--text);
+      line-height: 1.9;
+      text-align: center;
+      padding: 12px 0 20px;
+    }
+    .eq .formula b { color: var(--amber); font-weight: 500; }
+    .eq .formula .den { border-top: 1px solid var(--hairline-2); display: inline-block; padding-top: 4px; }
+    .eq dl { margin-top: 6px; border-top: 1px dashed var(--hairline-2); padding-top: 18px; }
+    .eq dt {
+      font-family: var(--mono);
+      font-size: 0.76rem;
+      color: var(--amber);
+      margin-top: 14px;
+    }
+    .eq dt:first-child { margin-top: 0; }
+    .eq dd { font-size: 0.86rem; color: var(--text-2); line-height: 1.6; margin-top: 4px; }
+    .worked {
+      background: var(--panel);
+      border: 1px solid var(--hairline);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .worked-h {
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      padding: 14px 20px;
+      border-bottom: 1px solid var(--hairline);
+      background: var(--panel-2);
+    }
+    .worked-b { padding: 20px; font-family: var(--mono); font-size: 0.83rem; line-height: 2.1; }
+    .worked-b .l { color: var(--text-dim); }
+    .worked-b .v { color: var(--text); }
+    .worked-b .res { color: var(--amber); }
+    .worked-b hr { border: none; border-top: 1px dashed var(--hairline-2); margin: 12px 0; }
+
+    /* ── STORY ───────────────────────────────────────────── */
+    .story { background: var(--panel); }
+    .story-panel {
+      max-width: 720px;
+      margin: 0 auto;
+      background: linear-gradient(180deg, var(--panel-2), var(--panel));
+      border: 1px solid var(--hairline);
+      border-radius: 12px;
+      padding: 52px clamp(24px, 5vw, 60px) 56px;
+      position: relative;
+    }
+    .story-panel::before {
+      content: 'LOG';
+      position: absolute;
+      top: 20px; right: 22px;
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      color: var(--text-dim);
+      border: 1px solid var(--hairline-2);
+      border-radius: 3px;
+      padding: 3px 7px;
+    }
+    .story-panel h2 {
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      line-height: 1.16;
+      margin: 14px 0 28px;
+      text-wrap: balance;
+    }
+    .story-body p { font-size: 1.03rem; color: var(--text); line-height: 1.8; margin-bottom: 1.3em; }
+    .story-body p.dim { color: var(--text-2); }
+    .story-body strong { color: var(--amber); font-weight: 600; }
+    .story-body em { color: var(--text); font-style: italic; }
+    .story-body a { color: var(--amber-dim); text-decoration: underline; text-underline-offset: 2px; }
+    .story-body a:hover { color: var(--amber); }
+    .pull { border-left: 2px solid var(--amber); padding: 4px 0 4px 22px; margin: 30px 0; }
+    .pull p { font-family: var(--mono); font-size: 1.02rem; line-height: 1.6; color: var(--amber); margin: 0; }
+    .byline {
+      margin-top: 34px;
+      padding-top: 22px;
+      border-top: 1px dashed var(--hairline-2);
+      font-family: var(--mono);
+      font-size: 0.74rem;
+      color: var(--text-dim);
+    }
+    .byline a { color: var(--amber-dim); text-decoration: underline; text-underline-offset: 2px; }
+    .byline a:hover { color: var(--amber); }
+
+    /* ── THE BUG ─────────────────────────────────────────── */
+    .bug-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 30px; }
+    .bug-card {
+      border-radius: 10px;
+      border: 1px solid var(--hairline);
+      background: var(--panel);
+      overflow: hidden;
+    }
+    .bug-card.wrong { border-color: var(--flag-dim); }
+    .bug-card.right { border-color: var(--agar-dim); }
+    .bug-h {
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 12px 18px;
+      border-bottom: 1px solid var(--hairline);
+    }
+    .bug-card.wrong .bug-h { color: var(--flag); background: rgba(207,102,86,0.07); }
+    .bug-card.right .bug-h { color: var(--agar); background: rgba(79,174,118,0.07); }
+    .bug-b { padding: 22px 18px 24px; }
+    .bug-th {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.11em;
+      color: var(--text-dim);
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--hairline);
+      margin-bottom: 12px;
+    }
+    .bug-val { font-family: var(--mono); font-size: 1.34rem; color: var(--text); font-variant-numeric: tabular-nums; }
+    .bug-note { font-size: 0.8rem; color: var(--text-2); margin-top: 14px; line-height: 1.6; }
+    .bug-card.wrong .bug-note b { color: var(--flag); }
+    .bug-card.right .bug-note b { color: var(--agar); }
+
+    /* ── CHAIN ───────────────────────────────────────────── */
+    .chain { display: grid; gap: 14px; }
+    .link {
+      display: grid;
+      grid-template-columns: 68px 1fr;
+      gap: 22px;
+      align-items: start;
+      background: var(--panel);
+      border: 1px solid var(--hairline);
+      border-radius: 9px;
+      padding: 22px 24px;
+      transition: border-color 0.18s;
+    }
+    .link:hover { border-color: var(--hairline-2); }
+    .link .idx {
+      font-family: var(--mono);
+      font-size: 1.4rem;
+      font-weight: 500;
+      color: var(--amber);
+      font-variant-numeric: tabular-nums;
+      border-right: 1px solid var(--hairline);
+      padding-right: 20px;
+      line-height: 1;
+      padding-top: 2px;
+    }
+    .link h3 { font-size: 0.98rem; font-weight: 600; margin-bottom: 6px; }
+    .link p { font-size: 0.86rem; color: var(--text-2); line-height: 1.62; }
+
+    /* ── LIMITS ──────────────────────────────────────────── */
+    .limits { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px; }
+    .limit {
+      background: var(--void);
+      border: 1px solid var(--hairline);
+      border-left: 2px solid var(--flag-dim);
+      border-radius: 0 8px 8px 0;
+      padding: 18px 20px;
+    }
+    .limit h3 { font-size: 0.9rem; font-weight: 600; margin-bottom: 6px; }
+    .limit p { font-size: 0.83rem; color: var(--text-2); line-height: 1.6; }
+    .limit p a { color: var(--amber-dim); text-decoration: underline; text-underline-offset: 2px; }
+    .limit p a:hover { color: var(--amber); }
+
+    /* ── CTA ─────────────────────────────────────────────── */
+    .cta { position: relative; padding: 104px 0; text-align: center; overflow: hidden; border-bottom: 1px solid var(--hairline); }
+    .rings-cta { top: 50%; left: 50%; transform: translate(-50%, -50%); width: 760px; height: 760px; opacity: 0.4; }
+    .cta-inner { position: relative; }
+    .cta h2 {
+      font-size: clamp(1.8rem, 4vw, 2.7rem);
+      font-weight: 600;
+      letter-spacing: -0.025em;
+      line-height: 1.12;
+      text-wrap: balance;
+      margin: 18px auto 16px;
+      max-width: 22ch;
+    }
+    .cta h2 .lit { color: var(--amber); }
+    .cta p { color: var(--text-2); max-width: 48ch; margin: 0 auto 34px; font-size: 1rem; }
+    .cta-btns { display: flex; gap: 13px; justify-content: center; flex-wrap: wrap; }
+
+    /* ── FOOTER ──────────────────────────────────────────── */
+    footer { padding: 40px 0; }
+    .foot-inner { display: flex; align-items: center; justify-content: space-between; gap: 18px; flex-wrap: wrap; }
+    .foot-inner p, .foot-inner a { font-family: var(--mono); font-size: 0.72rem; color: var(--text-dim); }
+    .foot-links { display: flex; gap: 20px; }
+    .foot-links a { transition: color 0.15s; }
+    .foot-links a:hover { color: var(--amber); }
+    .foot-tag { font-family: var(--mono); font-size: 0.68rem; color: var(--text-dim); }
+
+    :focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; border-radius: 3px; }
+
+    /* ── RESPONSIVE ──────────────────────────────────────── */
+    @media (max-width: 980px) {
+      .math-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 900px) {
+      .hero-grid { grid-template-columns: 1fr; gap: 44px; }
+      .facts-inner { grid-template-columns: repeat(2, 1fr); }
+      .fact:nth-child(2) { border-right: none; }
+      .fact:nth-child(1), .fact:nth-child(2) { border-bottom: 1px solid var(--hairline); }
+      .bug-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 620px) {
+      .nav-links { display: none; }
+      .hero { padding: 64px 0 56px; }
+      .band { padding: 68px 0; }
+      .link { grid-template-columns: 1fr; gap: 12px; }
+      .link .idx { border-right: none; border-bottom: 1px solid var(--hairline); padding-right: 0; padding-bottom: 10px; }
+      .story-panel { padding: 40px 22px 44px; }
+      .readout { padding: 16px; }
+      .qt td, .qt th { font-size: 0.72rem; }
+    }
+    @media (max-width: 400px) {
+      .facts-inner { grid-template-columns: 1fr; }
+      .fact { border-right: none; border-bottom: 1px solid var(--hairline); }
+      .fact:last-child { border-bottom: none; }
+    }
+  </style>
+<style>
+.skip-link{position:absolute;left:1rem;top:-3rem;z-index:2000;padding:.7rem 1.15rem;background:#f4c430;color:#121009;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.82rem;font-weight:700;border-radius:0 0 10px 10px;text-decoration:none;transition:top .18s ease}
+.skip-link:focus{top:0}
+@media (prefers-reduced-motion: reduce){*,*::before,*::after{animation-duration:.01ms !important;transition-duration:.01ms !important}html{scroll-behavior:auto}}
+</style>
+
+    <link rel="canonical" href="https://mbaffour.github.io/blog/cfu-calculator.html">
+
+    <link rel="alternate" type="application/rss+xml" title="Michael Baffour Awuah — Blog &amp; Notes" href="https://mbaffour.github.io/feed.xml">
+    <meta name="author" content="Michael Baffour Awuah">
+    <meta name="theme-color" content="#f7f4ea" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#121009" media="(prefers-color-scheme: dark)">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Michael Baffour Awuah">
+    <meta property="og:title" content="CFU Calculator — colony counts without the arithmetic">
+    <meta property="og:description" content="A single-file browser calculator for bacterial colony counts: name samples, log replicates at any dilution, get mean ± SD with countable-window flags and detection limits, and export a real Excel workbook.">
+    <meta property="og:url" content="https://mbaffour.github.io/blog/cfu-calculator.html">
+    <meta property="og:image" content="https://mbaffour.github.io/assets/og/cfu-calculator.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="CFU Calculator — colony counts without the arithmetic">
+    <meta property="article:published_time" content="2026-08-24">
+    <meta property="article:author" content="Michael Baffour Awuah">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@AwuahMB">
+    <meta name="twitter:title" content="CFU Calculator — colony counts without the arithmetic">
+    <meta name="twitter:description" content="A single-file browser calculator for bacterial colony counts: name samples, log replicates at any dilution, get mean ± SD with countable-window flags and detection limits, and export a real Excel workbook.">
+    <meta name="twitter:image" content="https://mbaffour.github.io/assets/og/cfu-calculator.jpg">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "CFU Calculator — colony counts without the arithmetic",
+      "description": "A single-file browser calculator for bacterial colony counts: name samples, log replicates at any dilution, get mean ± SD with countable-window flags and detection limits, and export a real Excel workbook.",
+      "datePublished": "2026-08-24",
+      "dateModified": "2026-08-24",
+      "image": "https://mbaffour.github.io/assets/og/cfu-calculator.jpg",
+      "url": "https://mbaffour.github.io/blog/cfu-calculator.html",
+      "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://mbaffour.github.io/blog/cfu-calculator.html"
+      },
+      "author": {
+            "@type": "Person",
+            "name": "Michael Baffour Awuah",
+            "url": "https://mbaffour.github.io/"
+      },
+      "publisher": {
+            "@type": "Person",
+            "name": "Michael Baffour Awuah"
+      }
+}
+    </script>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='13' fill='none' stroke='%23f4c430' stroke-width='2'/><circle cx='11' cy='12' r='2.2' fill='%23f4c430'/><circle cx='20' cy='14' r='1.7' fill='%231f9249'/><circle cx='14' cy='21' r='1.9' fill='%23f4c430'/><circle cx='21' cy='21' r='1.4' fill='%23d4324b'/></svg>">
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to main content</a>
+<main id="main">
+<p style="max-width:820px;margin:0 auto;padding:18px 22px 0;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.8rem;"><a href="../index.html#blog" style="color:#c9a227;text-decoration:none;">&larr; All posts</a><span style="opacity:.45"> · </span><a href="../index.html" style="color:#c9a227;text-decoration:none;">Michael Baffour Awuah</a></p>
+
+<!-- ── NAV ──────────────────────────────────────────────── -->
+<nav>
+  <div class="wrap nav-inner">
+    <a href="#top" class="brand">
+      <svg class="dish" width="18" height="18" viewBox="0 0 18 18" aria-hidden="true">
+        <circle cx="9" cy="9" r="8" stroke-width="1"/>
+        <circle cx="9" cy="9" r="6" stroke-width="0.6"/>
+        <circle class="col" cx="6.4" cy="6.8" r="1.25"/>
+        <circle class="col" cx="11.4" cy="8" r="0.95"/>
+        <circle class="col" cx="8.2" cy="11.6" r="1.1"/>
+        <circle class="col" cx="12" cy="12" r="0.8"/>
+      </svg>
+      <b>CFU Calculator</b>
+      <span class="live">v1 · runs offline</span>
+    </a>
+    <div class="nav-right">
+      <div class="nav-links">
+        <a href="#does">What it does</a>
+        <a href="#math">The math</a>
+        <a href="#bug">The bug</a>
+        <a href="#run">Run it</a>
+      </div>
+      <a href="https://mbaffour.github.io/cfu-calculator/" class="btn btn-amber">Open the calculator &rarr;</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ── HERO ──────────────────────────────────────────────── -->
+<section class="hero" id="top">
+  <svg class="rings-bg rings-hero" viewBox="0 0 720 720" aria-hidden="true">
+    <circle cx="360" cy="360" r="350" stroke-width="1"/>
+    <circle cx="360" cy="360" r="286" stroke-width="1"/>
+    <circle cx="360" cy="360" r="222" stroke-width="1"/>
+    <circle cx="360" cy="360" r="158" stroke-width="1"/>
+    <circle cx="360" cy="360" r="96" stroke-width="1"/>
+    <circle cx="360" cy="360" r="44" stroke-width="1.2"/>
+  </svg>
+  <div class="wrap hero-grid">
+    <div>
+      <span class="hero-badge"><span class="pulse"></span> Bacterial colony counting</span>
+      <h1>Colony counts to CFU/mL, <span class="lit">without the arithmetic</span>.</h1>
+      <p class="hero-sub">Name your samples, type the colonies you counted, and read the CFU/mL straight off the table. One HTML file, no installs, no uploads — and an Excel workbook on the way out that a spreadsheet can actually compute on.</p>
+      <div class="hero-btns">
+        <a href="https://mbaffour.github.io/cfu-calculator/" class="btn btn-amber btn-lg">Open the calculator</a>
+        <a href="https://github.com/mbaffour/cfu-calculator" class="btn btn-ghost btn-lg">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.385-1.335-1.755-1.335-1.755-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12"/></svg>
+          Read the source
+        </a>
+      </div>
+      <div class="hero-meta">
+        <span>One HTML file</span>
+        <span>Runs offline</span>
+        <span>Excel <span class="u">+</span> CSV export</span>
+        <span>Also inside Dilution Designer</span>
+      </div>
+    </div>
+
+    <!-- the quick table, as an instrument readout -->
+    <div class="readout" role="img" aria-label="The quick table showing five samples. Untreated, 148 colonies at 10 to the minus 6 in 100 microlitres, 1.48 times 10 to the 9 CFU per mL, countable. Untreated plus EDTA, 96 colonies, 9.60 times 10 to the 8. Phage T4, 42 colonies at 10 to the minus 4, 4.20 times 10 to the 6. Phage T4 plus EDTA, 7 colonies, below the countable window. Media control, 0 colonies, reported as below 1000 CFU per mL, a detection limit.">
+      <div class="readout-top">
+        <span><span class="dot">&#9679;</span> Quick table / biofilm assay</span>
+        <span>Plate <span class="u">30&ndash;300</span></span>
+      </div>
+      <table class="qt">
+        <thead>
+          <tr>
+            <th>Sample</th>
+            <th class="r">Col.</th>
+            <th class="r">Dil.</th>
+            <th class="r">Vol <span class="u">(&micro;L)</span></th>
+            <th class="r"><span class="u">CFU/mL</span></th>
+            <th class="r">Flag</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="name">Untreated</td>
+            <td class="r">148</td><td class="r">10<sup>&minus;6</sup></td><td class="r">100</td>
+            <td class="r out">1.48&times;10<sup>9</sup></td>
+            <td class="r"><span class="pill ok">ok</span></td>
+          </tr>
+          <tr>
+            <td class="name">Untreated + EDTA</td>
+            <td class="r">96</td><td class="r">10<sup>&minus;6</sup></td><td class="r">100</td>
+            <td class="r out">9.60&times;10<sup>8</sup></td>
+            <td class="r"><span class="pill ok">ok</span></td>
+          </tr>
+          <tr>
+            <td class="name">Phage T4</td>
+            <td class="r">42</td><td class="r">10<sup>&minus;4</sup></td><td class="r">100</td>
+            <td class="r out">4.20&times;10<sup>6</sup></td>
+            <td class="r"><span class="pill ok">ok</span></td>
+          </tr>
+          <tr>
+            <td class="name">Phage T4 + EDTA</td>
+            <td class="r">7</td><td class="r">10<sup>&minus;3</sup></td><td class="r">100</td>
+            <td class="r out">70,000</td>
+            <td class="r"><span class="pill lo">&lt; 30</span></td>
+          </tr>
+          <tr>
+            <td class="name">Media control</td>
+            <td class="r">0</td><td class="r">10<sup>&minus;2</sup></td><td class="r">100</td>
+            <td class="r out">&lt; 1,000</td>
+            <td class="r"><span class="pill nil">limit</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="readout-foot">
+        <span>Enter adds the next row</span>
+        <span class="ok">&#10003; <span class="u">.xlsx</span> ready</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FACTS ─────────────────────────────────────────────── -->
+<div class="facts">
+  <div class="wrap facts-inner">
+    <div class="fact"><span class="n">2</span><span class="d">entry modes — a flat quick table, or full replicates with stats</span></div>
+    <div class="fact"><span class="n">0</span><span class="d">dependencies, CDNs, build steps or network requests</span></div>
+    <div class="fact"><span class="n">32</span><span class="d">kilobytes — one HTML file you could email to a labmate</span></div>
+    <div class="fact"><span class="n">2</span><span class="d">exports: a real Excel workbook, or tidy CSV</span></div>
+  </div>
+</div>
+
+<!-- ── WHAT IT DOES ──────────────────────────────────────── -->
+<section class="band" id="does">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Channels</span>
+      <h2>Everything a plating session needs, and nothing it doesn't</h2>
+      <p>The whole tool is one screen. You name samples, type counts, and the numbers appear as you go. The parts worth explaining are the ones that stop a plausible-looking answer from being wrong.</p>
+    </div>
+    <div class="feat-grid">
+
+      <div class="card">
+        <div class="chan"><span>CH 01</span><span class="ch">QUICK</span></div>
+        <h3>One row per sample</h3>
+        <p>The default mode is a flat table: name, colonies, dilution, volume, CFU/mL. Press <code>Enter</code> in a colonies box and it adds the next row and puts the cursor in it, so a five-sample series types straight down the column without touching the mouse.</p>
+      </div>
+
+      <div class="card">
+        <div class="chan"><span>CH 02</span><span class="ch">CARRY-DOWN</span></div>
+        <h3>Dilution and volume inherit</h3>
+        <p>New rows copy the previous row's dilution and plating volume, because in a real session those barely change. You type them once for the first plate and then only the counts.</p>
+      </div>
+
+      <div class="card">
+        <div class="chan"><span>CH 03</span><span class="ch">REPLICATES</span></div>
+        <h3>Mean <span class="u">&plusmn;</span> SD when you need it</h3>
+        <p>One click switches to the replicates view: several plates per sample, with mean, sample standard deviation and CV% across the countable ones. The quick table stays available for the next session.</p>
+      </div>
+
+      <div class="card">
+        <div class="chan"><span>CH 04</span><span class="ch">WINDOW</span></div>
+        <h3>The countable window, flagged</h3>
+        <p>Counts outside 30&ndash;300 on a full plate get flagged; switch to spot-assay mode and the window becomes 3&ndash;30, since a 5&ndash;10&nbsp;&micro;L spot saturates far sooner. Flagged counts are still included &mdash; the tool tells you, it doesn't decide for you.</p>
+      </div>
+
+      <div class="card">
+        <div class="chan"><span>CH 05</span><span class="ch">ZERO</span></div>
+        <h3>Detection limits, not fake zeros</h3>
+        <p>A plate with no colonies does not mean zero cells; it means fewer than one colony's worth. An all-zero sample reports <code>&lt; limit</code> computed from its least-diluted plate, instead of averaging a zero into a mean that would then look real.</p>
+      </div>
+
+      <div class="card">
+        <div class="chan"><span>CH 06</span><span class="ch">TNTC</span></div>
+        <h3>Too numerous, or just excluded</h3>
+        <p>Mark a plate <code>TNTC</code> when it was uncountable, or <code>Excl</code> to drop a contaminated one. Both leave the stats and carry the reason into the export, so the summary reads "counted 2 of 3" rather than silently shrinking&nbsp;<em>n</em>.</p>
+      </div>
+
+      <div class="card">
+        <div class="chan"><span>CH 07</span><span class="ch">LADDER</span></div>
+        <h3>Any dilution factor</h3>
+        <p>Ten-fold is the default, not an assumption. Set the factor to 5 and step 3 means a 1:5 series diluted three times &mdash; 125-fold. The superscript label next to each row updates so you can see what you actually plated.</p>
+      </div>
+
+      <div class="card">
+        <div class="chan"><span>CH 08</span><span class="ch">EXCEL</span></div>
+        <h3>A workbook, not a CSV renamed</h3>
+        <p>The Excel button writes a genuine <code>.xlsx</code>: two sheets, with numbers stored as numbers. <code>SUM</code> and <code>AVERAGE</code> work on the CFU column immediately, without a text-to-columns detour.</p>
+      </div>
+
+      <div class="card">
+        <div class="chan"><span>CH 09</span><span class="ch">LOCAL</span></div>
+        <h3>Nothing leaves the browser</h3>
+        <p>No network requests at all. Your session autosaves to local storage, so a reload or a closed laptop lid doesn't cost you the plate counts, and the file works opened straight off the disk.</p>
+      </div>
+
+      <div class="card">
+        <div class="chan"><span>CH 10</span><span class="ch">TWINNED</span></div>
+        <h3>Also a module in Dilution Designer</h3>
+        <p>The same calculator lives inside <a href="https://mbaffour.github.io/dilution-designer/" style="color:var(--amber-dim);text-decoration:underline;text-underline-offset:2px">Dilution Designer</a> as <em>CFU Counts</em>, where an experiment can hold several named runs, feed the lab notebook, and ride along in a workspace backup.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── THE MATH ──────────────────────────────────────────── -->
+<section class="band" id="math">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">The arithmetic</span>
+      <h2>One formula, and the two numbers people mix up</h2>
+      <p>There is no clever mathematics here. The value of doing it in software is that the same expression runs every time, on every row, with the units kept straight.</p>
+    </div>
+    <div class="math-grid">
+      <div class="eq">
+        <div class="formula">
+          <b>CFU/mL</b> &nbsp;=&nbsp;
+          colonies &times; factor<sup>step</sup>
+          &nbsp;&divide;&nbsp;
+          <span class="den">volume plated (mL)</span>
+        </div>
+        <dl>
+          <dt>factor</dt>
+          <dd>How much you dilute at each step of the series. Ten for a standard ten-fold ladder, five for a 1:5 ladder.</dd>
+          <dt>step</dt>
+          <dd>Which rung you actually plated. With a factor of ten, step&nbsp;5 is the 10<sup>&minus;5</sup> tube &mdash; diluted a hundred thousand fold. Step&nbsp;0 is neat, undiluted sample.</dd>
+          <dt>volume plated</dt>
+          <dd>Entered in microlitres because that is what you pipette, divided by 1000 internally because the answer is per millilitre. This is the conversion that gets fumbled at the bench.</dd>
+        </dl>
+      </div>
+      <div class="worked">
+        <div class="worked-h">Worked example</div>
+        <div class="worked-b">
+          <div><span class="l">colonies counted</span> &nbsp; <span class="v">148</span></div>
+          <div><span class="l">dilution plated</span> &nbsp; <span class="v">10<sup>&minus;6</sup></span> <span class="l">(factor 10, step 6)</span></div>
+          <div><span class="l">volume plated</span> &nbsp; <span class="v">100 &micro;L = 0.1 mL</span></div>
+          <hr>
+          <div><span class="l">148 &times; 10<sup>6</sup></span> &nbsp;=&nbsp; <span class="v">1.48 &times; 10<sup>8</sup></span></div>
+          <div><span class="l">&divide; 0.1 mL</span> &nbsp;=&nbsp; <span class="res">1.48 &times; 10<sup>9</sup> CFU/mL</span></div>
+          <hr>
+          <div style="font-size:.78rem;line-height:1.7;color:var(--text-dim)">The same expression, fed plaque counts instead of colonies, is what Dilution Designer uses for phage titers. One implementation, two assays &mdash; a second copy would eventually drift from the first.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── STORY ─────────────────────────────────────────────── -->
+<section class="band story" id="story">
+  <div class="wrap">
+    <div class="story-panel">
+      <span class="eyebrow">Why this exists</span>
+      <h2>The counting was never the slow part</h2>
+      <div class="story-body">
+
+        <p>Plating is patient work. You do the serial dilutions, you plate, you wait overnight, and the next morning you sit down with a marker and a plate and count. That part I don't mind &mdash; it's the closest thing microbiology has to meditation.</p>
+
+        <p class="dim">What I minded was the twenty minutes afterwards. Colonies times the dilution, divided by the volume plated, once per plate, for however many samples the experiment had. Then the same numbers again into a spreadsheet so they'd survive past the notebook page. It is arithmetic a calculator can do and a tired person can get wrong, and the failure mode is quiet: a number that is off by a factor of ten still looks like a perfectly reasonable bacterial density.</p>
+
+        <p>The specific thing I kept getting wrong was the volume. You pipette in microlitres and you report per millilitre, so every single row carries a divide-by-a-thousand that has nothing to do with the biology. Miss it once and the result is wrong by three orders of magnitude &mdash; and it will not look wrong.</p>
+
+        <div class="pull"><p>An error of 10&times; in a CFU count doesn't look like an error. It looks like a result.</p></div>
+
+        <p>So this is a deliberately small tool. Type the counts, read the answer. The interesting decisions were all about <strong>refusing to produce a confident-looking number</strong> when the data doesn't support one: a plate with no colonies reports a detection limit rather than a zero; counts outside the countable window get flagged rather than quietly averaged; an uncountable plate can be marked as such and the summary then admits it counted two of three replicates instead of pretending&nbsp;<em>n</em>&nbsp;was two all along.</p>
+
+        <p>It deliberately stops there. It does not plot, and it does not do statistics beyond mean, SD and CV. That work already has a home in <a href="cfu-plot-studio.html">CFU Plot Studio</a>, which takes replicate-level counts and produces publication-ready figures with log<sub>10</sub> statistics and significance annotations. This tool is the step before: the bench arithmetic that turns a morning of counting into the tidy table those figures are built from. The Excel export is shaped to be that table.</p>
+
+        <p>I'll be straight about how it got built, as I have been about the others: the science and the design judgements are mine &mdash; what to compute, when to refuse to compute it, why a zero is a detection limit and not a data point. The engineering I did alongside <a href="https://claude.ai">Claude</a>. I'm a scientist who has gotten good at building tools with AI, not a career software engineer, and I would rather say that plainly than imply a dependency-free spreadsheet writer materialised on its own. The next section is about a bug that came out of exactly that collaboration, and what it taught me.</p>
+
+        <div class="byline">
+          MICHAEL BAFFOUR AWUAH &middot; built with <a href="https://claude.ai">Claude</a> &middot; <a href="https://github.com/mbaffour/cfu-calculator">github.com/mbaffour/cfu-calculator</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── THE BUG ───────────────────────────────────────────── -->
+<section class="band" id="bug">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Post-mortem</span>
+      <h2>The column header that said millilitres</h2>
+      <p>While checking a screenshot of the finished quick table, I noticed the volume column was labelled <span style="font-family:var(--mono);color:var(--flag)">VOL (ML)</span>. The values under it were microlitres. In a tool people dose from, that is a thousand-fold error sitting in the interface.</p>
+    </div>
+
+    <div class="bug-grid">
+      <div class="bug-card wrong">
+        <div class="bug-h">What rendered</div>
+        <div class="bug-b">
+          <div class="bug-th">VOL (ML)</div>
+          <div class="bug-val">100</div>
+          <p class="bug-note">Reads as <b>100 millilitres</b>. Nobody plates 100&nbsp;mL. But a hurried reader doesn't parse the header &mdash; they read the number and trust the label.</p>
+        </div>
+      </div>
+      <div class="bug-card right">
+        <div class="bug-h">What it should say</div>
+        <div class="bug-b">
+          <div class="bug-th">VOL <span class="u">(&micro;L)</span></div>
+          <div class="bug-val">100</div>
+          <p class="bug-note">Reads as <b>100 microlitres</b>, which is what the maths actually divides by. Same markup, one CSS rule different.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec-head" style="margin-bottom:26px">
+      <h2 style="font-size:clamp(1.2rem,2.2vw,1.5rem)">The mechanism</h2>
+      <p>The table headers are styled <code>text-transform: uppercase</code>. The micro sign, U+00B5, has an uppercase mapping in Unicode: Greek capital Mu, U+039C. In most fonts that glyph is drawn identically to a Latin capital M. So the browser dutifully rendered &micro;L as ML, and the label became a different unit &mdash; not a typo, a correct-by-the-spec case conversion that happens to change scientific meaning by three orders of magnitude.</p>
+    </div>
+
+    <div class="chain">
+      <div class="link">
+        <span class="idx">!</span>
+        <div>
+          <h3>It was older than the feature I was building</h3>
+          <p>Every table with a volume column had it: the phage titering module, the results view, the plate planner's volume tables. It had been live for a long time. The new CFU table just happened to be the one I looked at closely enough, in a screenshot, at the right size to notice.</p>
+        </div>
+      </div>
+      <div class="link">
+        <span class="idx">&#10003;</span>
+        <div>
+          <h3>The fix is one rule</h3>
+          <p>Units in a header now sit in a span that opts out of the transform, so the casing applies to the words and never to the unit. Cheap to apply and it fixed every affected table at once &mdash; including the ones in this very page, which are styled the same way.</p>
+        </div>
+      </div>
+      <div class="link">
+        <span class="idx">&#8594;</span>
+        <div>
+          <h3>The lesson worth keeping: assert on what renders</h3>
+          <p>A test reading the DOM would have passed. <code>textContent</code> returns the source text, micro sign intact &mdash; <code>text-transform</code> is a paint-time effect. Only <code>innerText</code> reflects the transform, which means the bug was invisible to the obvious check and visible only to an eye on a screenshot. Anywhere a unit gets styled, the test has to look at the rendered string.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── RUN IT ────────────────────────────────────────────── -->
+<section class="band" id="run">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Signal chain</span>
+      <h2>From a stack of plates to a workbook</h2>
+      <p>There is nothing to install and no account. Open the page and start typing.</p>
+    </div>
+    <div class="chain">
+
+      <div class="link">
+        <span class="idx">01</span>
+        <div>
+          <h3>Open it</h3>
+          <p>Go to the <a href="https://mbaffour.github.io/cfu-calculator/" style="color:var(--amber);text-decoration:underline;text-underline-offset:2px">calculator</a>, or download the single HTML file and open it from your disk. After one visit it works with no network, which matters in a cold room or a BSL suite.</p>
+        </div>
+      </div>
+
+      <div class="link">
+        <span class="idx">02</span>
+        <div>
+          <h3>Set the series once</h3>
+          <p>Dilution factor, plate or spot for the countable window, and a default plating volume. For a routine ten-fold series on full plates, the defaults already match.</p>
+        </div>
+      </div>
+
+      <div class="link">
+        <span class="idx">03</span>
+        <div>
+          <h3>Type down the column</h3>
+          <p>Name the sample, type the colonies, and press <code>Enter</code> for the next row. Dilution and volume carry down, so most rows are a name and a number. CFU/mL appears as you type.</p>
+        </div>
+      </div>
+
+      <div class="link">
+        <span class="idx">04</span>
+        <div>
+          <h3>Deal with the awkward plates</h3>
+          <p>Switch to the replicates view for samples plated more than once, and mark anything uncountable or contaminated. Zero-colony samples become detection limits on their own.</p>
+        </div>
+      </div>
+
+      <div class="link">
+        <span class="idx">05</span>
+        <div>
+          <h3>Export</h3>
+          <p>One click gives an <code>.xlsx</code> with a raw-counts sheet and a summary sheet, or CSV if you'd rather pipe it into R. Sample names are escaped so a name beginning with <code>=</code> lands as text and not as a live spreadsheet formula.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── LIMITS ────────────────────────────────────────────── -->
+<section class="band">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Scope</span>
+      <h2>What it deliberately doesn't do</h2>
+      <p>A small tool stays useful by staying small. These are the edges, so you know before you open it.</p>
+    </div>
+    <div class="limits">
+      <div class="limit">
+        <h3>No plots</h3>
+        <p>No charts, no error-bar figures. Take the export to <a href="cfu-plot-studio.html">CFU Plot Studio</a>, which is built for exactly that.</p>
+      </div>
+      <div class="limit">
+        <h3>No significance testing</h3>
+        <p>Mean, SD and CV% only. No t-tests, no ANOVA, no log<sub>10</sub> modelling &mdash; deliberately, because a bench calculator is the wrong place to pick a statistical test.</p>
+      </div>
+      <div class="limit">
+        <h3>One experiment at a time</h3>
+        <p>The standalone page holds a single working session. For a registry of named experiments with notebook capture, use the CFU Counts module in <a href="https://mbaffour.github.io/dilution-designer/">Dilution Designer</a>.</p>
+      </div>
+      <div class="limit">
+        <h3>No sync</h3>
+        <p>Data lives in one browser on one machine, which is the price of never uploading anything. Export if you want it somewhere else.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ───────────────────────────────────────────────── -->
+<section class="cta">
+  <svg class="rings-bg rings-cta" viewBox="0 0 760 760" aria-hidden="true">
+    <circle cx="380" cy="380" r="370" stroke-width="1"/>
+    <circle cx="380" cy="380" r="300" stroke-width="1"/>
+    <circle cx="380" cy="380" r="230" stroke-width="1"/>
+    <circle cx="380" cy="380" r="160" stroke-width="1"/>
+    <circle cx="380" cy="380" r="94" stroke-width="1"/>
+    <circle cx="380" cy="380" r="40" stroke-width="1.2"/>
+  </svg>
+  <div class="wrap cta-inner">
+    <span class="eyebrow" style="justify-content:center">Free &middot; offline &middot; one file</span>
+    <h2>Count the plates. Let something else <span class="lit">do the dividing</span>.</h2>
+    <p>Free, open source, and it runs entirely in your own browser. Nothing to install, nothing uploaded.</p>
+    <div class="cta-btns">
+      <a href="https://mbaffour.github.io/cfu-calculator/" class="btn btn-amber btn-lg">Open the calculator</a>
+      <a href="https://github.com/mbaffour/cfu-calculator" class="btn btn-ghost btn-lg">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.385-1.335-1.755-1.335-1.755-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12"/></svg>
+        Read the source
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ────────────────────────────────────────────── -->
+</main>
+<footer>
+  <div class="wrap foot-inner">
+    <p>CFU CALCULATOR &middot; &copy; 2026 MICHAEL BAFFOUR AWUAH</p>
+    <span class="foot-tag">You can just build things.</span>
+    <div class="foot-links">
+      <a href="https://github.com/mbaffour/cfu-calculator">GitHub</a>
+      <a href="https://claude.ai">Built with Claude</a>
+      <a href="https://mbaffour.github.io/">Back to site &rarr;</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // smooth-scroll for in-page anchors (respects reduced-motion via CSS)
+  document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      var id = a.getAttribute('href');
+      if (id.length < 2) return;
+      var el = document.querySelector(id);
+      if (!el) return;
+      e.preventDefault();
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+</script>
+
+</body>
+</html>
