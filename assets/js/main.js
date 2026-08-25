@@ -322,6 +322,17 @@ const tools = [
         preview: "cfu"
     },
     {
+        title: "PFU Calculator",
+        repo: "https://github.com/mbaffour/pfu-calculator",
+        blurb: "Plaque counts to PFU/mL in one browser page — full plates or spot assays, replicates, detection limits, and a real Excel workbook on the way out. The phage twin of the CFU Calculator.",
+        tech: ["JavaScript", "Phage", "Offline"],
+        stack: "js",
+        blog: "blog/pfu-calculator.html",
+        app:  "https://mbaffour.github.io/pfu-calculator/",
+        label: "Phage Titer Calc",
+        preview: "pfucalc"
+    },
+    {
         title: "CFU Calculator",
         repo: "https://github.com/mbaffour/cfu-calculator",
         blurb: "Colony counts to CFU/mL in one browser page — replicates, countable-window flags, detection limits, and a real Excel workbook on the way out. No installs, nothing uploaded.",
@@ -423,6 +434,14 @@ const tools = [
    tags drive the filter buttons automatically.
 =============================================================== */
 const posts = [
+    {
+        title: "PFU Calculator — the same arithmetic, for plaques",
+        date: "August 24, 2026",
+        iso: "2026-08-24",
+        tags: ["Research Software", "Phage Biology"],
+        blurb: "A single-file browser calculator for phage titers: plaque counts to PFU/mL, full plates or spot assays, with replicates, detection limits and a real Excel export.",
+        url: "blog/pfu-calculator.html"
+    },
     {
         title: "CFU Calculator — colony counts without the arithmetic",
         date: "August 24, 2026",
@@ -950,6 +969,42 @@ const SVG_PREVIEWS = {
             <line x1="118" y1="26" x2="118" y2="46"/><line x1="113" y1="26" x2="123" y2="26"/><line x1="113" y1="46" x2="123" y2="46"/>
         </g>
         <text x="50" y="152" font-family="JetBrains Mono" font-size="8" fill="#7a8868">CFU/mL · log₁₀ · p&lt;0.05 ✓</text>
+    </svg>`,
+    pfucalc: `<svg viewBox="0 0 320 160" xmlns="http://www.w3.org/2000/svg">
+        <rect width="320" height="160" fill="#080b10"/>
+        <g font-family="JetBrains Mono" font-size="9">
+            <text x="14" y="22" fill="#7a8868">LYSATE</text>
+            <text x="112" y="22" fill="#7a8868">PLQ</text>
+            <text x="156" y="22" fill="#7a8868">DIL</text>
+            <text x="196" y="22" fill="#7a8868">VOL</text>
+            <text x="240" y="22" fill="#7a8868">PFU/mL</text>
+            <line x1="12" y1="28" x2="308" y2="28" stroke="#5fb6ad" stroke-opacity="0.45"/>
+            <text x="14" y="46" fill="#c6cdd6">Serwaa</text>
+            <text x="112" y="46" fill="#e8e4d8">148</text>
+            <text x="156" y="46" fill="#7a8868">10&#8315;&#8310;</text>
+            <text x="196" y="46" fill="#7a8868">100</text>
+            <text x="240" y="46" fill="#f4c430">1.5e9</text>
+            <text x="14" y="68" fill="#c6cdd6">N4 spot</text>
+            <text x="112" y="68" fill="#e8e4d8">22</text>
+            <text x="156" y="68" fill="#7a8868">10&#8315;&#8311;</text>
+            <text x="196" y="68" fill="#5fb6ad">10</text>
+            <text x="240" y="68" fill="#f4c430">2.2e10</text>
+            <text x="14" y="90" fill="#c6cdd6">resistant</text>
+            <text x="112" y="90" fill="#e8e4d8">4</text>
+            <text x="156" y="90" fill="#7a8868">10&#8315;&#178;</text>
+            <text x="196" y="90" fill="#5fb6ad">10</text>
+            <text x="240" y="90" fill="#f4c430">4.0e4</text>
+            <text x="14" y="112" fill="#c6cdd6">buffer</text>
+            <text x="112" y="112" fill="#e8e4d8">0</text>
+            <text x="156" y="112" fill="#7a8868">10&#8315;&#185;</text>
+            <text x="196" y="112" fill="#5fb6ad">10</text>
+            <text x="240" y="112" fill="#7a8868">&lt; 1e4</text>
+        </g>
+        <circle cx="46" cy="140" r="15" fill="#2f7a74" fill-opacity="0.55" stroke="#f4c430" stroke-width="1.2"/>
+        <circle cx="41" cy="136" r="2.6" fill="#080b10"/>
+        <circle cx="51" cy="139" r="2" fill="#080b10"/>
+        <circle cx="45" cy="145" r="2.3" fill="#080b10"/>
+        <text x="70" y="144" font-family="JetBrains Mono" font-size="8" fill="#5fb6ad">&#10003; plate or spot &#183; .xlsx ready</text>
     </svg>`,
     cfucalc: `<svg viewBox="0 0 320 160" xmlns="http://www.w3.org/2000/svg">
         <rect width="320" height="160" fill="#0a0f0b"/>
