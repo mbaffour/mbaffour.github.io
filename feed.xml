@@ -6,8 +6,16 @@
     <atom:link href="https://mbaffour.github.io/feed.xml" rel="self" type="application/rss+xml"/>
     <description>Notes on phage biology, lab life, and building research software.</description>
     <language>en-us</language>
-    <lastBuildDate>Mon, 24 Aug 2026 09:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 24 Aug 2026 11:00:00 +0000</lastBuildDate>
     <managingEditor>baffour@tamu.edu (Michael Baffour Awuah)</managingEditor>
+    <item>
+      <title>PFU Calculator — the same arithmetic, for plaques</title>
+      <link>https://mbaffour.github.io/blog/pfu-calculator.html</link>
+      <guid isPermaLink="true">https://mbaffour.github.io/blog/pfu-calculator.html</guid>
+      <pubDate>Mon, 24 Aug 2026 11:00:00 +0000</pubDate>
+      <category>Research software</category>
+      <description>A single-file browser calculator for phage titers: plaque counts to PFU/mL, full plates or spot assays, with replicates, detection limits and a real Excel export.</description>
+    </item>
     <item>
       <title>CFU Calculator — colony counts without the arithmetic</title>
       <link>https://mbaffour.github.io/blog/cfu-calculator.html</link>
