@@ -1396,7 +1396,8 @@ function renderTalks() {
    (a pooled AlphaFold 3 screen designer and a tested CLI), which inverted
    what a technical reader saw first. */
 const FLAGSHIPS = ['Plaque Toolkit', 'PooledPPI', 'HMM Homologue Finder',
-                   'FigureLab', 'Lysis Curve Plotter', 'HMM Discovery App'];
+                   'FigureLab', 'CFU Plot Studio', 'Lysis Curve Plotter',
+                   'HMM Discovery App'];
 function renderTools(filter = 'flagship') {
     const container = document.getElementById('toolsGrid');
     const filtered = filter === 'flagship'
