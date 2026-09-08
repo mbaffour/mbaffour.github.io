@@ -3836,3 +3836,17 @@ kbd {
     color: var(--gold) !important;
     font-weight: 600;
 }
+/* Touch targets. Inline links inside a sentence are exempt from WCAG 2.5.8,
+   but these three are standalone controls that measured 17-21px tall on a
+   phone — under the 24px minimum and genuinely fiddly to hit. */
+@media (pointer: coarse), (max-width: 700px) {
+    .pub-acc,
+    .rec-link,
+    .proof-chip {
+        min-height: 24px;
+        display: inline-flex;
+        align-items: center;
+        padding-top: 3px;
+        padding-bottom: 3px;
+    }
+}

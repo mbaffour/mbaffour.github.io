@@ -71,9 +71,12 @@
     if(t!=='dark'&&t!=='light'){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}
     r.setAttribute('data-theme',t)})()</script>
     <script type="text/javascript" src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js" async></script>
-    <!-- Privacy-friendly analytics: no cookies, no personal data. -->
-    <script data-goatcounter="https://mbaffour.goatcounter.com/count"
-            async src="https://gc.zgo.at/count.js"></script>
+    <!-- Analytics removed: mbaffour.goatcounter.com was never registered, so every
+         page load fired a third-party request that returned 400, logged a console
+         error, and recorded nothing. To switch it back on, create the site at
+         goatcounter.com and restore:
+         <script data-goatcounter="https://<name>.goatcounter.com/count"
+                 async src="https://gc.zgo.at/count.js"></script> -->
 
     <script type="application/ld+json">
     {
