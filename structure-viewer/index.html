@@ -1,0 +1,3576 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline' 'unsafe-eval' 'wasm-unsafe-eval' blob: https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline'; img-src 'self' blob: data:; font-src 'self' data:; media-src 'self' blob: data:; connect-src 'self' blob: data: https://files.rcsb.org https://alphafold.ebi.ac.uk; worker-src blob:; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<title>Protein Structure Viewer</title>
+<meta name="description" content="A single-file, offline-capable browser viewer for AlphaFold and experimental protein structures: overlay, align, measure, inspect confidence, and export publication figures without uploading anything.">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%23339cff'/><path d='M9 24c0-9 14-7 14-16' stroke='%23fff' stroke-width='2.6' stroke-linecap='round' fill='none'/><path d='M9 8c0 9 14 7 14 16' stroke='%23fff' stroke-width='2.6' stroke-linecap='round' fill='none' opacity='.55'/><circle cx='16' cy='16' r='2.6' fill='%23fff'/></svg>">
+<style>:root {
+  color-scheme: light dark;
+  background-color: var(--background) !important;
+
+  /* Agent-facing contract; keep in sync with SKILL.md. */
+  --background: light-dark(rgb(255 255 255), rgb(24 24 24));
+  --foreground: light-dark(rgb(26 28 31), rgb(255 255 255));
+  --card: color-mix(in oklab, var(--foreground) 5%, transparent);
+  --card-foreground: var(--foreground);
+  --popover: light-dark(rgb(255 255 255), rgb(45 45 45));
+  --popover-foreground: var(--foreground);
+  --primary: light-dark(rgb(51 156 255), rgb(131 195 255));
+  --primary-foreground: light-dark(rgb(255 255 255), rgb(13 13 13));
+  --secondary: light-dark(rgb(255 255 255 / 96%), rgb(54 54 54 / 96%));
+  --secondary-foreground: var(--foreground);
+  --muted: color-mix(in srgb, var(--foreground) 10%, transparent);
+  --muted-foreground: light-dark(
+    rgb(26 28 31 / 49.4%),
+    rgb(255 255 255 / 49.8%)
+  );
+  --accent: light-dark(rgb(229 242 255), rgb(13 39 63));
+  --accent-foreground: var(--primary);
+  --destructive: light-dark(rgb(226 85 7), rgb(255 133 73));
+  --border: light-dark(rgb(26 28 31 / 8%), rgb(255 255 255 / 8.2%));
+  --input: light-dark(
+    rgb(26 28 31 / 11.8%),
+    color-mix(in oklab, rgb(0 0 0) 10%, transparent)
+  );
+  --ring: light-dark(rgb(51 156 255), rgb(131 195 255 / 76%));
+  --font-size-base: 14px;
+  --viz-series-1: var(--primary);
+  --viz-series-2: light-dark(rgb(243 136 59), rgb(245 154 86));
+  --viz-series-3: light-dark(rgb(93 201 119), rgb(116 213 139));
+  --viz-series-4: light-dark(rgb(235 119 177), rgb(240 143 192));
+  --viz-series-5: light-dark(rgb(155 121 236), rgb(170 145 239));
+  --viz-series-6: light-dark(rgb(58 185 177), rgb(90 203 194));
+
+  /* Internal implementation variables; not part of the agent contract. */
+  --font-sans: -apple-system, system-ui, "Segoe UI", sans-serif;
+  --font-mono:
+    ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono",
+    monospace;
+  --font-size-normal: max(11px, var(--font-size-base));
+  --font-size-tooltip: calc(var(--font-size-base) - 1px);
+  --font-size-small: max(11px, calc(var(--font-size-base) - 2px));
+  --font-size-h1: calc(var(--font-size-normal) * 1.7142857143);
+  --font-size-h2: calc(var(--font-size-normal) * 1.4285714286);
+  --font-size-h3: calc(var(--font-size-normal) * 1.2857142857);
+  --font-weight-normal: 430;
+  --font-weight-medium: 500;
+  --line-height-normal: calc(var(--font-size-normal) * 1.5);
+  --line-height-tooltip: calc(var(--font-size-tooltip) * 1.4285714286);
+  --line-height-small: calc(var(--font-size-small) + 4px);
+  --radius: 12.5px;
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-2xl: calc(var(--radius) * 1.6);
+  --radius-full: 9999px;
+  --shadow-sm: 0 1px 2px -1px rgb(0 0 0 / 8%);
+  --checkmark-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 17 17'%3E%3Cpath d='M12.8961 3.64101C13.1297 3.41418 13.4984 3.37523 13.7779 3.56581C14.0571 3.75635 14.1554 4.11331 14.0299 4.41347L13.9615 4.53847L7.71151 13.7045C7.59411 13.8767 7.4063 13.9877 7.19881 14.0072C6.99136 14.0267 6.78564 13.9533 6.63826 13.806L2.88826 10.056L2.79842 9.9457C2.6192 9.67407 2.64927 9.30496 2.88826 9.06581C3.12738 8.82669 3.49647 8.79676 3.76815 8.97597L3.8785 9.06581L7.03084 12.2182L12.8053 3.74941L12.8961 3.64101Z'/%3E%3C/svg%3E");
+
+  /* Legacy aliases; not part of the current agent contract. */
+  --viz-bg: transparent;
+  --viz-panel: var(--card);
+  --viz-border: var(--border);
+  --viz-text: var(--foreground);
+  --viz-muted: var(--muted-foreground);
+  --viz-accent: var(--primary);
+  --viz-accent-text: var(--primary-foreground);
+  --viz-accent-bg: var(--accent);
+  --viz-font-size: var(--font-size-base);
+  --viz-warning: var(--destructive);
+  --color-background-primary: var(--background);
+  --color-text-primary: var(--foreground);
+  --color-border-secondary: var(--border);
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html > body {
+  margin: 0;
+  padding: 5px;
+  color: var(--foreground);
+  background: transparent !important;
+  font-family: var(--font-sans);
+  font-size: var(--font-size-normal);
+  font-weight: var(--font-weight-normal);
+  line-height: var(--line-height-normal);
+}
+
+a {
+  color: color-mix(in srgb, var(--viz-accent) 80%, var(--viz-text) 20%);
+  cursor: pointer;
+  font-weight: var(--viz-font-weight-medium);
+  text-decoration: none;
+  text-underline-offset: 2px;
+}
+
+a:is(:hover, :focus-visible) {
+  text-decoration-line: underline;
+  text-decoration-style: dashed;
+  text-decoration-thickness: 0.5px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin-block: 0;
+}
+
+h1 {
+  font-size: var(--font-size-h1);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.25;
+}
+
+h2 {
+  font-size: var(--font-size-h2);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.25;
+}
+
+h3,
+h4,
+h5,
+h6 {
+  font-size: var(--font-size-h3);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.3;
+}
+
+b,
+strong,
+th {
+  font-weight: var(--font-weight-medium);
+}
+
+code:not(pre code) {
+  display: inline;
+  padding: 1px 6px;
+  border-radius: var(--radius-sm);
+  corner-shape: superellipse(1.5);
+  background: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.92em;
+  overflow-wrap: anywhere;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  word-break: break-word;
+}
+
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  color: var(--foreground);
+  font: inherit;
+  text-align: start;
+}
+
+.table :is(th, td) {
+  padding-block: 10px;
+  padding-inline: 0 24px;
+  overflow-wrap: anywhere;
+  border-bottom: 1px solid var(--border);
+  text-align: start;
+  vertical-align: top;
+}
+
+.table-responsive > .table :is(th, td) {
+  overflow-wrap: break-word;
+}
+
+.table :is(th, td):last-child {
+  padding-inline-end: 0;
+}
+
+.table :is(caption, thead th) {
+  font-weight: 600;
+}
+
+.table thead th {
+  padding-block: 8px;
+  border-bottom-color: color-mix(in srgb, var(--foreground) 16%, transparent);
+}
+
+.table tbody tr:last-child :is(th, td) {
+  border-bottom: 0;
+}
+
+.table.table-sm :is(th, td) {
+  padding-block: 6px;
+}
+
+.table.table-sm :is(th, td):not(:last-child) {
+  padding-inline-end: 16px;
+}
+
+.table :is(.text-end, [align="right"]) {
+  text-align: end;
+  font-variant-numeric: tabular-nums;
+}
+
+.table :is(.text-center, [align="center"]) {
+  text-align: center;
+}
+
+.table .text-nowrap {
+  white-space: nowrap;
+}
+
+#widget {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  padding: 0;
+  background: transparent !important;
+}
+
+.card {
+  min-width: 0;
+  padding: 12px;
+  overflow: hidden;
+  overflow-wrap: break-word;
+  border-radius: var(--radius-2xl);
+  corner-shape: superellipse(1.5);
+  color: var(--card-foreground);
+  background: var(--card);
+}
+
+#widget > :not(.card) {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.tooltip {
+  position: fixed;
+  z-index: 50;
+  top: 0;
+  left: 0;
+  width: max-content;
+  max-width: min(
+    20rem,
+    var(--tooltip-available-width, calc(100vw - 10px)),
+    calc(100vw - 10px)
+  );
+  max-height: min(
+    var(--tooltip-available-height, calc(100vh - 10px)),
+    calc(100vh - 10px)
+  );
+  padding: 4px 8px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  corner-shape: superellipse(1.5);
+  color: var(--popover-foreground);
+  background: var(--popover);
+  box-shadow: none;
+  font-size: var(--font-size-tooltip);
+  line-height: var(--line-height-tooltip);
+  overflow-wrap: break-word;
+  white-space: normal;
+  pointer-events: none;
+  user-select: none;
+}
+
+.viz-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(max(180px, 24%), 1fr));
+  gap: 10px;
+}
+
+.viz-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.viz-stat-value {
+  font-size: var(--font-size-h2);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.25;
+}
+
+.viz-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.viz-badge {
+  padding: 3px 8px;
+  border-radius: var(--radius-full);
+  color: var(--accent-foreground);
+  background: var(--accent);
+  font-weight: var(--font-weight-medium);
+}
+
+small,
+.text-small,
+.viz-badge {
+  font-size: var(--font-size-small);
+  line-height: var(--line-height-small);
+}
+
+.text-muted {
+  color: var(--muted-foreground);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.viz-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.viz-controls > .form-label {
+  display: grid;
+  min-width: min(100%, 260px);
+  flex: 1 1 280px;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: baseline;
+  gap: 2px 12px;
+  margin-bottom: 0;
+}
+
+.viz-controls > .form-label > :is(.form-control, .form-range, .form-select) {
+  grid-column: 1 / -1;
+}
+
+.btn,
+.form-check-input,
+.form-control,
+.form-range,
+.form-select {
+  font: inherit;
+}
+
+.btn {
+  appearance: button;
+  display: inline-flex;
+  inline-size: fit-content;
+  max-inline-size: 100%;
+  min-height: 28px;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  margin: 0;
+  padding: 0 8px;
+  -webkit-app-region: no-drag;
+  border: 1px solid var(--input);
+  border-radius: var(--radius-lg);
+  corner-shape: superellipse(1.5);
+  color: var(--secondary-foreground);
+  background: var(--secondary);
+  cursor: var(--cursor-interaction, pointer);
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  user-select: none;
+  -webkit-font-smoothing: antialiased;
+}
+
+.btn:is(.btn-block, .viz-tile) {
+  inline-size: 100%;
+}
+
+.btn.viz-tile {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  white-space: normal;
+}
+
+a.btn {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn:not(:disabled):hover {
+  background: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.btn-primary {
+  border-color: transparent;
+  color: var(--primary-foreground);
+  background: var(--foreground);
+  background-clip: padding-box;
+}
+
+.btn-primary .text-muted {
+  color: color-mix(in srgb, var(--primary-foreground) 50%, transparent);
+}
+
+.btn-primary:not(:disabled):hover {
+  background: color-mix(in srgb, var(--foreground) 80%, transparent);
+  background-clip: padding-box;
+}
+
+.btn-ghost {
+  border-color: transparent;
+  color: var(--muted-foreground);
+  background: transparent;
+}
+
+.btn-ghost:not(:disabled):hover {
+  color: var(--foreground);
+  background: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+[data-icon] {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+}
+
+[data-icon] svg {
+  stroke-width: 1.6;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--foreground);
+}
+
+.form-control {
+  display: block;
+  width: 100%;
+  min-height: 28px;
+  padding: 0 8px;
+  outline: none;
+  border: 1px solid var(--input);
+  border-radius: var(--radius-lg);
+  corner-shape: superellipse(1.5);
+  color: var(--foreground);
+  background: var(--secondary);
+}
+
+.form-control::placeholder {
+  color: var(--muted-foreground);
+}
+
+.form-control[type="file"] {
+  padding: 0;
+  overflow: hidden;
+  cursor: var(--cursor-interaction, pointer);
+}
+
+.form-control[type="file"]::file-selector-button {
+  min-height: 26px;
+  margin-right: 8px;
+  padding: 0 8px;
+  border: 0;
+  border-right: 1px solid var(--input);
+  color: var(--secondary-foreground);
+  background: var(--secondary);
+  cursor: inherit;
+  font: inherit;
+}
+
+.form-control[type="file"]:not(:disabled):hover::file-selector-button {
+  background: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.form-control-color[type="color"] {
+  width: 40px;
+  height: 28px;
+  padding: 3px;
+  cursor: var(--cursor-interaction, pointer);
+}
+
+.form-control-color[type="color"]::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
+.form-control-color[type="color"]::-webkit-color-swatch {
+  border: 0;
+  border-radius: calc(var(--radius-lg) - 4px);
+  corner-shape: superellipse(1.5);
+}
+
+textarea.form-control {
+  height: auto;
+  min-height: 72px;
+  padding: 8px 10px;
+  resize: vertical;
+}
+
+.form-control:focus-visible {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-control:disabled,
+.form-select:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+.form-select {
+  appearance: none;
+  display: block;
+  width: 100%;
+  min-height: 28px;
+  margin: 0;
+  padding: 0 32px 0 8px;
+  outline: none;
+  border: 1px solid var(--input);
+  border-radius: var(--radius-lg);
+  corner-shape: superellipse(1.5);
+  color: var(--foreground);
+  background-color: var(--secondary);
+  background-image:
+    linear-gradient(45deg, transparent 50%, var(--muted-foreground) 50%),
+    linear-gradient(135deg, var(--muted-foreground) 50%, transparent 50%);
+  background-position:
+    calc(100% - 14px) 50%,
+    calc(100% - 10px) 50%;
+  background-repeat: no-repeat;
+  background-size: 4px 4px;
+  cursor: var(--cursor-interaction, default);
+}
+
+.form-select:not(:disabled):hover {
+  background-color: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.form-select:focus-visible {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-check {
+  display: flex;
+  min-height: 20px;
+  align-items: center;
+  gap: 6px;
+}
+
+.form-check-input {
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  flex: 0 0 auto;
+  margin: 0;
+  border: 1px solid var(--input);
+  color: var(--primary-foreground);
+  background-color: transparent;
+  cursor: var(--cursor-interaction, default);
+  transition:
+    background-color 150ms,
+    border-color 150ms,
+    box-shadow 150ms;
+}
+
+.form-check:not(.form-switch) .form-check-input[type="checkbox"] {
+  border-color: var(--input);
+  border-radius: var(--radius-sm);
+  corner-shape: superellipse(1.5);
+  background-color: var(--secondary);
+  box-shadow: var(--shadow-sm);
+}
+
+.form-check:not(.form-switch)
+  .form-check-input:not(:disabled):not(:checked):hover {
+  background-color: var(--card);
+}
+
+.form-check:not(.form-switch) .form-check-input[type="checkbox"]:checked {
+  border-color: var(--primary);
+  background-color: var(--primary);
+}
+
+.form-check:not(.form-switch)
+  .form-check-input[type="checkbox"]:checked::before {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: var(--primary-foreground);
+  content: "";
+  mask: var(--checkmark-image) center / 12px 12px no-repeat;
+}
+
+.form-check-input[type="radio"] {
+  width: 14px;
+  height: 14px;
+  border-radius: var(--radius-full);
+}
+
+.form-check-input[type="radio"]:checked {
+  border: 2px solid var(--primary);
+  background:
+    radial-gradient(circle, var(--primary-foreground) 0 2.5px, transparent 3px),
+    var(--primary);
+}
+
+.form-check:not(.form-switch) .form-check-input:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+.form-check:not(.form-switch) .form-check-input:disabled {
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.form-check:not(.form-switch) .form-check-input:disabled + .form-check-label {
+  cursor: not-allowed;
+}
+
+.form-switch .form-check-input:disabled,
+.form-switch .form-check-input:disabled + .form-check-label {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.form-check-label {
+  color: var(--foreground);
+  cursor: var(--cursor-interaction, default);
+}
+
+.form-switch .form-check-input {
+  position: relative;
+  width: 32px;
+  height: 20px;
+  border: 0;
+  border-radius: var(--radius-full);
+  background: var(--muted);
+  box-shadow: none;
+  transition: background-color 200ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.form-switch .form-check-input::before {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 16px;
+  height: 16px;
+  box-sizing: border-box;
+  border: 1px solid light-dark(var(--primary-foreground), var(--foreground));
+  border-radius: var(--radius-full);
+  background: light-dark(var(--primary-foreground), var(--foreground));
+  box-shadow: var(--shadow-sm);
+  content: "";
+  transform: translate(2px, -50%);
+  transition: transform 200ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.form-switch .form-check-input:checked {
+  background: var(--primary);
+}
+
+.form-switch .form-check-input:checked::before {
+  transform: translate(14px, -50%);
+}
+
+.form-switch .form-check-input:focus-visible {
+  box-shadow: 0 0 0 2px var(--ring);
+}
+
+.form-range {
+  appearance: none;
+  display: block;
+  width: 100%;
+  height: 28px;
+  flex: 1;
+  margin: 0;
+  padding: 0;
+  outline: none;
+  border: 0;
+  accent-color: var(--primary);
+  background: linear-gradient(
+      color-mix(in srgb, var(--foreground) 7%, transparent),
+      color-mix(in srgb, var(--foreground) 7%, transparent)
+    )
+    center / 100% 2px no-repeat;
+}
+
+.form-range::-webkit-slider-runnable-track {
+  height: 28px;
+  background: transparent;
+}
+
+.form-range::-webkit-slider-thumb {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  margin-top: 4px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  background: light-dark(var(--primary-foreground), var(--foreground));
+}
+
+.form-range:focus-visible::-webkit-slider-thumb {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-range::-moz-range-track {
+  height: 28px;
+  background: transparent;
+}
+
+.form-range::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  background: light-dark(var(--primary-foreground), var(--foreground));
+}
+
+.form-range:focus-visible::-moz-range-thumb {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-range:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+.btn:not(.btn-primary, .viz-tile):is(
+    [aria-pressed="true"],
+    [aria-selected="true"],
+    .is-selected
+  ) {
+  border-color: var(--primary);
+  color: var(--primary-foreground);
+  background: var(--primary);
+}
+
+.btn.viz-tile:is([aria-pressed="true"], [aria-selected="true"], .is-selected) {
+  border-color: var(--primary);
+  box-shadow: inset 0 0 0 1px var(--primary);
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+#widget > svg {
+  width: 100%;
+}
+
+.text-warning,
+.text-destructive {
+  color: var(--destructive);
+}
+
+html>body{padding:0}</style>
+</head>
+<body>
+<div id="generic-protein-viewer">
+  <header class="gpv-header">
+    <div class="gpv-brand">
+      <span class="gpv-brand-mark" aria-hidden="true"><i data-icon="orbit"></i></span>
+      <span class="gpv-brand-copy">
+        <strong>Protein Structure Viewer</strong>
+        <span class="text-muted text-small">Compare, annotate, and publish predicted and experimental structures — entirely in your browser</span>
+      </span>
+    </div>
+    <div class="gpv-header-actions">
+      <button class="btn btn-ghost gpv-icon-btn" type="button" id="gpv-theme" data-tooltip="Switch between system, light, and dark appearance" aria-label="Appearance: follow system"><i data-icon="monitor" aria-hidden="true"></i><span class="gpv-theme-text">System</span></button>
+      <button class="btn btn-ghost gpv-icon-btn" type="button" id="gpv-help-open" data-tooltip="Keyboard shortcuts and quick help (?)" aria-label="Open help"><i data-icon="circle-help" aria-hidden="true"></i><span class="gpv-hide-narrow">Help</span></button>
+    </div>
+  </header>
+
+  <div class="card gpv-drop" id="gpv-drop">
+    <span class="gpv-drop-icon" aria-hidden="true"><i data-icon="folder-up"></i></span>
+    <strong>Add structures or AlphaFold result ZIPs</strong>
+    <span class="text-muted">Drop files anywhere on this page, or choose PDB, CIF/mmCIF, JSON, CSV, and ZIP files</span>
+    <span class="gpv-drop-badges"><span class="viz-badge">Multiple ZIPs</span><span class="viz-badge">Local processing</span><span class="viz-badge">No upload</span></span>
+    <div class="gpv-drop-actions">
+      <input class="form-control gpv-file-input" id="gpv-files" aria-label="Choose model files" type="file" accept=".pdb,.cif,.mmcif,.json,.csv,.zip" multiple>
+      <form class="gpv-fetch" id="gpv-fetch-form">
+        <input class="form-control gpv-fetch-field" id="gpv-fetch-id" type="text" autocomplete="off" spellcheck="false" aria-label="Structure identifier to fetch" placeholder="or fetch an ID: 1ubq, P69905">
+        <button class="btn" type="submit" id="gpv-fetch" data-tooltip="Download a PDB entry from RCSB, or an AlphaFold DB model from EMBL-EBI"><i data-icon="cloud-download" aria-hidden="true"></i>Fetch</button>
+      </form>
+    </div>
+    <span class="text-muted text-small gpv-fetch-note">Fetching contacts <code>files.rcsb.org</code> or <code>alphafold.ebi.ac.uk</code>. Files you open locally are never sent anywhere.</span>
+  </div>
+  <div class="gpv-import-state" id="gpv-import-state" hidden aria-live="polite">
+    <progress id="gpv-import-progress" value="0" max="1"></progress>
+    <span class="text-small" id="gpv-import-label">Preparing files…</span>
+  </div>
+  <div class="text-destructive text-small" id="gpv-import-errors" hidden role="alert"></div>
+
+  <div class="viz-controls gpv-primary" aria-label="Primary viewer controls">
+    <label class="form-label gpv-current-label">Current model
+      <select class="form-select" id="gpv-current" disabled><option>No models loaded</option></select>
+    </label>
+    <button class="btn" type="button" id="gpv-previous" disabled data-tooltip="Previous model (left arrow)"><i data-icon="chevron-left" aria-hidden="true"></i>Previous</button>
+    <button class="btn" type="button" id="gpv-next" disabled data-tooltip="Next model (right arrow)">Next<i data-icon="chevron-right" aria-hidden="true"></i></button>
+    <button class="btn" type="button" id="gpv-fit" data-tooltip="Recentre and zoom to everything on screen (F)"><i data-icon="scan" aria-hidden="true"></i>Fit</button>
+    <button class="btn" type="button" id="gpv-fullscreen" data-tooltip="Expand the 3D view to fill the screen (Shift + F)"><i data-icon="maximize" aria-hidden="true"></i>Full screen</button>
+    <button class="btn btn-primary" type="button" id="gpv-report" disabled data-tooltip="Download a self-contained interactive HTML report"><i data-icon="share-2" aria-hidden="true"></i>Share report</button>
+  </div>
+
+  <div class="gpv-view-grid" id="gpv-view-grid">
+    <div class="gpv-view-pane">
+      <span class="viz-badge gpv-view-label" id="gpv-left-label" hidden>Primary</span>
+      <div class="card gpv-stage" id="gpv-stage" tabindex="0" role="application" aria-label="Interactive three-dimensional protein structure viewer. Drag to rotate, scroll to zoom, click an atom to inspect it."></div>
+      <div class="gpv-stage-empty" id="gpv-stage-empty"><i data-icon="orbit" aria-hidden="true"></i><strong>No structure loaded yet</strong><span class="text-muted">Drop a PDB, CIF, or AlphaFold ZIP anywhere on this page, or fetch an ID above</span></div>
+      <div class="gpv-busy" id="gpv-busy" hidden aria-hidden="true"><span class="gpv-spinner"></span><span id="gpv-busy-label">Working…</span></div>
+    </div>
+    <div class="gpv-view-pane" id="gpv-compare-pane" hidden>
+      <span class="viz-badge gpv-view-label">Comparison</span>
+      <div class="card gpv-stage" id="gpv-stage-compare" role="img" aria-label="Synchronized comparison structure viewer"></div>
+    </div>
+  </div>
+  <div class="gpv-status text-small">
+    <span id="gpv-count">0 structures</span>
+    <span id="gpv-confidence">Mean pLDDT —</span>
+    <span id="gpv-state" aria-live="polite">Ready</span>
+  </div>
+
+  <div class="gpv-legend text-small" id="gpv-plddt-legend" hidden aria-label="pLDDT confidence color legend">
+    <span><i class="gpv-swatch gpv-vlow"></i>Very low &lt;50</span>
+    <span><i class="gpv-swatch gpv-low"></i>Low 50–70</span>
+    <span><i class="gpv-swatch gpv-confident"></i>Confident 70–90</span>
+    <span><i class="gpv-swatch gpv-vhigh"></i>Very high ≥90</span>
+  </div>
+
+  <div class="viz-controls gpv-tabs" role="tablist" aria-label="Viewer tools">
+    <button class="btn" type="button" role="tab" aria-selected="true" data-gpv-tab="models"><i data-icon="layers-3" aria-hidden="true"></i>Models</button>
+    <button class="btn" type="button" role="tab" aria-selected="false" data-gpv-tab="appearance"><i data-icon="palette" aria-hidden="true"></i>Appearance</button>
+    <button class="btn" type="button" role="tab" aria-selected="false" data-gpv-tab="annotate"><i data-icon="mouse-pointer-2" aria-hidden="true"></i>Annotate</button>
+    <button class="btn" type="button" role="tab" aria-selected="false" data-gpv-tab="compare"><i data-icon="columns-2" aria-hidden="true"></i>Compare</button>
+    <button class="btn" type="button" role="tab" aria-selected="false" data-gpv-tab="confidence"><i data-icon="chart-no-axes-column-increasing" aria-hidden="true"></i>Confidence</button>
+    <button class="btn" type="button" role="tab" aria-selected="false" data-gpv-tab="publish"><i data-icon="image-down" aria-hidden="true"></i>Publish</button>
+  </div>
+
+  <section class="gpv-tool-panel" data-gpv-panel="models">
+    <div class="viz-controls">
+      <label class="form-label gpv-current-label">Source<select class="form-select" id="gpv-source-filter"><option value="all">All loaded sources</option></select></label>
+      <label class="form-label gpv-current-label">Find models<input class="form-control" id="gpv-model-search" type="search" placeholder="Filter by name or stoichiometry"></label>
+      <label class="form-label">View mode<select class="form-select" id="gpv-view-mode"><option value="overlay">Overlay selected</option><option value="single">One at a time</option></select></label>
+      <label class="form-label">Model order<select class="form-select" id="gpv-order"><option value="loaded">As loaded</option><option value="ranking">Ranking score</option><option value="plddt">Mean pLDDT</option></select></label>
+      <button class="btn" type="button" id="gpv-cycle" disabled data-tooltip="Step through the filtered models automatically (C)"><i data-icon="play" aria-hidden="true"></i>Cycle models</button>
+      <label class="form-label gpv-slider-label">Interval <span id="gpv-cycle-value">2.0 s</span><input class="form-range" id="gpv-cycle-speed" type="range" min="0.5" max="10" value="2" step="0.5"></label>
+      <button class="btn" type="button" id="gpv-show-all" data-tooltip="Show every model that matches the current filter"><i data-icon="eye" aria-hidden="true"></i>Show all</button>
+      <button class="btn" type="button" id="gpv-hide-all" data-tooltip="Hide every model that matches the current filter"><i data-icon="eye-off" aria-hidden="true"></i>Hide all</button>
+      <button class="btn btn-ghost" type="button" id="gpv-clear" data-tooltip="Remove all models, annotations, and saved views"><i data-icon="trash-2" aria-hidden="true"></i>Clear all</button>
+    </div>
+    <div class="gpv-list" id="gpv-list" aria-label="Loaded structures"></div>
+    <div class="viz-controls gpv-list-more" id="gpv-list-more" hidden>
+      <span class="text-muted text-small" id="gpv-list-more-label"></span>
+      <button class="btn btn-ghost" type="button" id="gpv-show-more"><i data-icon="chevron-down" aria-hidden="true"></i>Show more</button>
+    </div>
+    <div class="gpv-empty text-muted" id="gpv-empty">Load one or more structures to begin.</div>
+  </section>
+
+  <section class="gpv-tool-panel" data-gpv-panel="appearance" hidden>
+    <div class="viz-controls">
+      <label class="form-label">Representation<select class="form-select" id="gpv-style"><option value="cartoon">Cartoon</option><option value="stick">Sticks</option><option value="sphere">Spheres</option><option value="line">Lines</option></select></label>
+      <label class="form-label">Color scheme<select class="form-select" id="gpv-color-mode"><option value="structure">Per structure</option><option value="chain">Per chain</option><option value="plddt">pLDDT confidence</option><option value="spectrum">Sequence spectrum</option><option value="element">Element</option></select></label>
+      <label class="form-label">Projection<select class="form-select" id="gpv-projection"><option value="perspective">Perspective</option><option value="orthographic">Orthographic</option></select></label>
+      <label class="form-label">Background<select class="form-select" id="gpv-background"><option value="transparent">Transparent</option><option value="white">White</option><option value="dark">Dark</option><option value="custom">Custom</option></select></label>
+      <label class="form-label">Custom background<input class="form-control form-control-color" id="gpv-background-color" type="color" value="#ffffff"></label>
+      <label class="form-label">Motion<select class="form-select" id="gpv-motion"><option value="off">Off</option><option value="spin">Spin</option><option value="rock">Rock</option></select></label>
+      <label class="form-label gpv-slider-label">Speed <span id="gpv-speed-value">1.0×</span><input class="form-range" id="gpv-speed" type="range" min="0.25" max="2.5" value="1" step="0.25"></label>
+    </div>
+  </section>
+
+  <section class="gpv-tool-panel" data-gpv-panel="annotate" hidden>
+    <div class="gpv-selected-state" id="gpv-residue">Click a residue to inspect it.</div>
+    <div class="viz-controls">
+      <label class="form-label">Residue label<input class="form-control" id="gpv-label-text" type="text" placeholder="Custom label"></label>
+      <button class="btn" type="button" id="gpv-add-label" disabled>Add or update</button>
+      <label class="form-check form-switch"><input class="form-check-input" id="gpv-all-labels" type="checkbox"><span class="form-check-label">Label every residue</span></label>
+      <button class="btn btn-ghost" type="button" id="gpv-clear-labels">Clear labels</button>
+    </div>
+    <div class="viz-controls">
+      <label class="form-label gpv-current-label">Selection model<select class="form-select" id="gpv-selection-model" disabled><option>No models loaded</option></select></label>
+      <label class="form-label">Chain<input class="form-control" id="gpv-selection-chain" type="text" placeholder="A"></label>
+      <label class="form-label">Residues<input class="form-control" id="gpv-selection-range" type="text" placeholder="20-45 or 20,24,31"></label>
+      <label class="form-label">Action<select class="form-select" id="gpv-selection-action"><option value="highlight">Highlight</option><option value="hide">Hide</option></select></label>
+      <label class="form-label">Highlight color<input class="form-control form-control-color" id="gpv-selection-color" type="color" value="#f97316"></label>
+      <button class="btn" type="button" id="gpv-add-selection" disabled>Add selection</button>
+      <button class="btn btn-ghost" type="button" id="gpv-clear-selections">Clear selections</button>
+    </div>
+    <div class="gpv-list" id="gpv-selection-list" aria-label="Structure selections"></div>
+    <div class="viz-controls">
+      <label class="form-label">Measurement<select class="form-select" id="gpv-measure-type"><option value="distance">Distance (2 atoms)</option><option value="angle">Angle (3 atoms)</option></select></label>
+      <button class="btn" type="button" id="gpv-measure">Start measuring</button>
+      <button class="btn btn-ghost" type="button" id="gpv-clear-measurements">Clear measurements</button>
+      <span class="text-muted" id="gpv-measure-state">Measurement mode is off.</span>
+    </div>
+    <div class="gpv-list" id="gpv-measurement-list" aria-label="Measurements"></div>
+  </section>
+
+  <section class="gpv-tool-panel" data-gpv-panel="compare" hidden>
+    <div class="viz-controls">
+      <label class="form-label gpv-current-label">Alignment reference<select class="form-select" id="gpv-reference" disabled><option>No models loaded</option></select></label>
+      <label class="form-label">Residue mapping<select class="form-select" id="gpv-alignment-mode"><option value="sequence">Sequence-aware</option><option value="identifier">Chain and residue IDs</option></select></label>
+      <button class="btn" type="button" id="gpv-align" disabled>Align visible</button>
+      <button class="btn" type="button" id="gpv-restore" disabled>Restore coordinates</button>
+      <button class="btn" type="button" id="gpv-alignment-csv" disabled>Download RMSD CSV</button>
+    </div>
+    <div class="table-responsive" id="gpv-alignment-wrap" hidden><table class="table table-sm" aria-label="Structural alignment results"><thead><tr><th>Model</th><th>Reference</th><th class="text-end">Cα pairs</th><th class="text-end">Identity</th><th class="text-end">RMSD (Å)</th><th>Mapping</th></tr></thead><tbody id="gpv-alignment-results"></tbody></table></div>
+    <div class="viz-controls">
+      <label class="form-check form-switch"><input class="form-check-input" id="gpv-side-by-side" type="checkbox"><span class="form-check-label">Synchronized side-by-side view</span></label>
+      <label class="form-label">Left model<select class="form-select" id="gpv-left-model" disabled><option>No models loaded</option></select></label>
+      <label class="form-label">Right model<select class="form-select" id="gpv-right-model" disabled><option>No models loaded</option></select></label>
+    </div>
+  </section>
+
+  <section class="gpv-tool-panel" data-gpv-panel="confidence" hidden>
+    <div class="gpv-confidence-layout" id="gpv-confidence-panel" hidden>
+      <div><div class="viz-controls"><button class="btn" type="button" id="gpv-confidence-csv">Download confidence CSV</button></div><div class="table-responsive"><table class="table table-sm" aria-label="AlphaFold model confidence metrics"><thead><tr><th>Model</th><th class="text-end">Mean pLDDT</th><th class="text-end">pTM</th><th class="text-end">ipTM</th><th class="text-end">Ranking score</th><th class="text-end">Rank</th><th>Clash</th></tr></thead><tbody id="gpv-metrics"></tbody></table></div></div>
+      <div class="gpv-pae-panel" id="gpv-pae-panel" hidden><div id="gpv-pae-plot" hidden><div class="viz-controls"><button class="btn" type="button" id="gpv-pae-png">Download PAE PNG</button></div><canvas id="gpv-pae" width="420" height="420" role="img" aria-label="Predicted aligned error heatmap"></canvas><div class="gpv-pae-legend text-small"><span>Low error</span><span>PAE (Å)</span><span>High error</span></div><div class="text-small" id="gpv-pae-detail">Move over the heatmap to inspect a residue pair.</div></div><div class="table-responsive" id="gpv-interface-wrap" hidden><table class="table table-sm" aria-label="Chain-pair interface confidence"><thead><tr><th>Chain pair</th><th class="text-end">ipTM</th><th class="text-end">Min PAE (Å)</th></tr></thead><tbody id="gpv-interface-metrics"></tbody></table></div></div>
+    </div>
+  </section>
+
+  <section class="gpv-tool-panel" data-gpv-panel="publish" hidden>
+    <div class="viz-controls">
+      <label class="form-label">Image size<select class="form-select" id="gpv-export-size"><option value="1200x1200">Square · 1200 × 1200</option><option value="1800x1200" selected>Landscape · 1800 × 1200</option><option value="1200x1800">Portrait · 1200 × 1800</option><option value="2400x1600">Large landscape · 2400 × 1600</option></select></label>
+      <label class="form-label">Scale<select class="form-select" id="gpv-export-scale"><option value="1">1×</option><option value="2" selected>2×</option><option value="4">4×</option></select></label>
+      <button class="btn" type="button" id="gpv-image" disabled>Download publication PNG</button>
+      <label class="form-label">Video length<select class="form-select" id="gpv-video-length"><option value="5">5 seconds</option><option value="10">10 seconds</option><option value="15">15 seconds</option></select></label>
+      <button class="btn" type="button" id="gpv-video" disabled data-tooltip="Record the viewport spinning once, as a WebM file">Record spin video</button>
+    </div>
+    <div class="viz-controls">
+      <label class="form-label gpv-current-label">Report contents<select class="form-select" id="gpv-report-scope"><option value="visible">Models currently shown</option><option value="all">Every loaded model</option></select></label>
+      <span class="text-muted text-small" id="gpv-report-size">Load models to estimate the report size.</span>
+    </div>
+    <div class="viz-controls">
+      <label class="form-label">View name<input class="form-control" id="gpv-view-name" type="text" placeholder="Overview, interface, pore…"></label>
+      <label class="form-label gpv-current-label">Caption<input class="form-control" id="gpv-view-caption" type="text" placeholder="Short panel caption"></label>
+      <button class="btn" type="button" id="gpv-save-view" disabled>Save current view</button>
+      <label class="form-label">Panel columns<select class="form-select" id="gpv-panel-columns"><option value="1">1</option><option value="2" selected>2</option><option value="3">3</option></select></label>
+      <button class="btn" type="button" id="gpv-contact-sheet" disabled>Download figure panels</button>
+      <button class="btn" type="button" id="gpv-captions" disabled>Download captions</button>
+    </div>
+    <div class="gpv-list" id="gpv-saved-views" aria-label="Saved publication views"></div>
+    <details class="gpv-provenance" open><summary>Provenance and reproducible scene</summary><div class="viz-controls"><label class="form-label">Figure or project title<input class="form-control" id="gpv-project-title" type="text"></label><label class="form-label">Model source or run<input class="form-control" id="gpv-project-source" type="text" placeholder="Job, accession, or run ID"></label><label class="form-label">Method and version<input class="form-control" id="gpv-project-method" type="text" placeholder="For example AlphaFold 3"></label><label class="form-label">Notes<textarea class="form-control" id="gpv-project-notes" rows="2"></textarea></label></div><div class="viz-controls"><button class="btn" type="button" id="gpv-save-scene" disabled>Download scene JSON</button><label class="form-label">Restore scene JSON<input class="form-control" id="gpv-load-scene" type="file" accept=".json"></label></div></details>
+  </section>
+
+  <div class="gpv-toasts" id="gpv-toasts" aria-live="polite" aria-atomic="false"></div>
+
+  <dialog class="gpv-dialog" id="gpv-help">
+    <form method="dialog" class="gpv-dialog-head">
+      <h2>Help and keyboard shortcuts</h2>
+      <button class="btn btn-ghost gpv-icon-btn" value="close" aria-label="Close help"><i data-icon="x" aria-hidden="true"></i></button>
+    </form>
+    <div class="gpv-dialog-body">
+      <h3>Getting structures in</h3>
+      <ul>
+        <li>Drop <code>.pdb</code>, <code>.cif</code>, <code>.mmcif</code>, or whole AlphaFold result <code>.zip</code> archives anywhere on the page.</li>
+        <li>Add AlphaFold <code>*_confidences.json</code>, <code>*_summary_confidences.json</code>, <code>ranking_debug.json</code>, or <code>ranking_scores.csv</code> to attach pTM, ipTM, ranking scores, and PAE to matching models.</li>
+        <li>Type an identifier to fetch it: a four-character PDB ID (<code>1ubq</code>), a UniProt accession (<code>P69905</code>), or an AlphaFold DB name (<code>AF-P0DTC2-F1</code>).</li>
+      </ul>
+      <h3>In the 3D view</h3>
+      <ul>
+        <li>Drag to rotate, scroll to zoom, right-drag or two-finger drag to pan.</li>
+        <li>Click any atom to inspect its residue, chain, and pLDDT, and to place a label.</li>
+      </ul>
+      <h3>Keyboard</h3>
+      <table class="table table-sm gpv-shortcuts">
+        <tbody>
+          <tr><th><kbd>←</kbd> <kbd>→</kbd></th><td>Previous / next model</td></tr>
+          <tr><th><kbd>C</kbd></th><td>Start or pause automatic cycling</td></tr>
+          <tr><th><kbd>F</kbd></th><td>Fit the view to what is displayed</td></tr>
+          <tr><th><kbd>Shift</kbd> + <kbd>F</kbd></th><td>Toggle full screen</td></tr>
+          <tr><th><kbd>1</kbd> – <kbd>6</kbd></th><td>Jump to a tool tab</td></tr>
+          <tr><th><kbd>?</kbd></th><td>Open this help</td></tr>
+          <tr><th><kbd>Esc</kbd></th><td>Close help, leave full screen, stop measuring</td></tr>
+        </tbody>
+      </table>
+      <h3>Reading the numbers</h3>
+      <ul>
+        <li><strong>pLDDT</strong> is per-residue local confidence. High pLDDT does not mean the relative placement of chains is right.</li>
+        <li><strong>PAE</strong> and <strong>ipTM</strong> are what to read for interfaces and domain placement in complexes.</li>
+        <li><strong>RMSD</strong> from the Compare tab is a visual-comparison aid. Always report the alignment method, chain mapping, and aligned Cα count alongside it.</li>
+      </ul>
+      <p class="text-muted text-small">Everything runs locally. Structure files you open are read in the browser and are never uploaded.</p>
+    </div>
+  </dialog>
+</div>
+
+<style>
+  #generic-protein-viewer { width: 100%; color: var(--foreground); }
+  #generic-protein-viewer .viz-controls { margin-bottom: 12px; align-items: end; }
+  #generic-protein-viewer .form-label { min-width: 126px; flex: 1 1 138px; }
+  #generic-protein-viewer .gpv-current-label { flex: 3 1 280px; }
+  #generic-protein-viewer .gpv-drop { display: grid; gap: 6px; justify-items: center; text-align: center; margin-bottom: 10px; }
+  #generic-protein-viewer .gpv-drop-icon { color: var(--primary); }
+  #generic-protein-viewer .gpv-drop-badges { display: flex; justify-content: center; gap: 6px; flex-wrap: wrap; }
+  #generic-protein-viewer .gpv-drop-actions { display: flex; align-items: center; justify-content: center; gap: 8px; flex-wrap: wrap; max-width: 100%; }
+  #generic-protein-viewer .gpv-file-input { width: auto; max-width: 100%; flex: 0 1 auto; }
+  #generic-protein-viewer .gpv-drop.is-dragging { outline: 2px solid var(--ring); outline-offset: 2px; }
+  /* Once structures are loaded the card shrinks to a single toolbar row so the
+     3D view keeps as much of the viewport as possible. */
+  #generic-protein-viewer .gpv-drop.is-compact { display: flex; align-items: center; justify-items: stretch; gap: 8px; flex-wrap: wrap; text-align: left; }
+  #generic-protein-viewer .gpv-drop.is-compact > strong { margin-right: auto; }
+  #generic-protein-viewer .gpv-drop.is-compact .gpv-drop-actions { justify-content: flex-end; }
+  #generic-protein-viewer .gpv-drop.is-compact > .text-muted, #generic-protein-viewer .gpv-drop.is-compact > .gpv-drop-badges { display: none; }
+  #generic-protein-viewer .gpv-import-state[hidden] { display: none; }
+  #generic-protein-viewer .gpv-import-state { display: grid; grid-template-columns: minmax(120px, 1fr) auto; gap: 10px; align-items: center; margin-bottom: 10px; }
+  #generic-protein-viewer .gpv-import-state progress { width: 100%; accent-color: var(--primary); }
+  #generic-protein-viewer .gpv-primary { margin-bottom: 8px; }
+  #generic-protein-viewer .form-range { width: 100%; }
+  #generic-protein-viewer .gpv-slider-label { flex: 0 1 170px; min-width: 120px; }
+  #generic-protein-viewer .gpv-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 8px; margin: 0 0 10px; }
+  #generic-protein-viewer .gpv-entry { display: flex; align-items: center; gap: 8px; min-width: 0; padding: 8px 0; border-bottom: 1px solid var(--border); }
+  #generic-protein-viewer .gpv-entry-copy { display: grid; flex: 1; min-width: 0; gap: 2px; }
+  #generic-protein-viewer .gpv-entry-name { min-width: 0; overflow-wrap: anywhere; }
+  #generic-protein-viewer .gpv-entry-source { color: var(--muted-foreground); overflow-wrap: anywhere; }
+  #generic-protein-viewer .gpv-entry.is-active { background: var(--accent); color: var(--accent-foreground); }
+  #generic-protein-viewer .gpv-entry-score { color: var(--muted-foreground); white-space: nowrap; }
+  #generic-protein-viewer .gpv-entry .form-control-color { flex: 0 0 auto; }
+  #generic-protein-viewer .gpv-empty { margin: 0 0 10px; }
+  #generic-protein-viewer .gpv-view-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 8px; }
+  #generic-protein-viewer .gpv-view-grid.is-comparing { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  #generic-protein-viewer .gpv-view-pane { position: relative; min-width: 0; }
+  #generic-protein-viewer .gpv-view-label { position: absolute; z-index: 2; top: 8px; left: 8px; pointer-events: none; }
+  #generic-protein-viewer .gpv-stage-empty { position: absolute; inset: 0; display: grid; place-content: center; justify-items: center; gap: 6px; pointer-events: none; text-align: center; }
+  #generic-protein-viewer .gpv-stage-empty[hidden] { display: none; }
+  #generic-protein-viewer .gpv-stage-empty > i { color: var(--primary); }
+  #generic-protein-viewer .gpv-tabs { margin-top: 14px; overflow-x: auto; flex-wrap: nowrap; padding-bottom: 2px; }
+  #generic-protein-viewer .gpv-tool-panel { padding-top: 4px; }
+  #generic-protein-viewer .gpv-tool-panel[hidden] { display: none; }
+  #generic-protein-viewer .gpv-selected-state { padding: 10px 0; margin-bottom: 8px; border-bottom: 1px solid var(--border); }
+  #generic-protein-viewer .gpv-confidence-layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(240px, 420px); gap: 16px; align-items: start; margin: 0 0 12px; }
+  #generic-protein-viewer .gpv-confidence-layout[hidden], #generic-protein-viewer .gpv-pae-panel[hidden], #generic-protein-viewer #gpv-pae-plot[hidden], #generic-protein-viewer #gpv-interface-wrap[hidden], #generic-protein-viewer #gpv-alignment-wrap[hidden] { display: none; }
+  #generic-protein-viewer .gpv-pae-panel { min-width: 0; }
+  #generic-protein-viewer .gpv-pae-panel canvas { display: block; width: 100%; height: auto; max-width: 420px; background: var(--muted); }
+  #generic-protein-viewer .gpv-pae-legend { display: flex; justify-content: space-between; gap: 8px; margin-top: 4px; color: var(--muted-foreground); }
+  #generic-protein-viewer .gpv-provenance { margin: 0 0 12px; }
+  #generic-protein-viewer .gpv-provenance summary { cursor: pointer; margin-bottom: 10px; }
+  #generic-protein-viewer .gpv-legend[hidden] { display: none; }
+  #generic-protein-viewer .gpv-legend { display: flex; gap: 14px; flex-wrap: wrap; margin: 0 0 10px; color: var(--muted-foreground); }
+  #generic-protein-viewer .gpv-legend span { display: inline-flex; align-items: center; gap: 5px; }
+  #generic-protein-viewer .gpv-swatch { width: 12px; height: 12px; display: inline-block; }
+  #generic-protein-viewer .gpv-vlow { background: #ff7d45; }
+  #generic-protein-viewer .gpv-low { background: #ffdb13; }
+  #generic-protein-viewer .gpv-confident { background: #65cbf3; }
+  #generic-protein-viewer .gpv-vhigh { background: #0053d6; }
+  #generic-protein-viewer .gpv-stage { position: relative; width: 100%; height: 480px; min-height: 320px; overflow: hidden; }
+  #generic-protein-viewer .gpv-stage canvas { display: block; }
+  #generic-protein-viewer .gpv-status { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 8px; color: var(--muted-foreground); }
+  #generic-protein-viewer .gpv-status > :last-child { margin-left: auto; text-align: right; }
+  #generic-protein-viewer .gpv-export-surface { position: absolute; left: -100000px; top: 0; overflow: hidden; }
+
+  /* ---- Header ---- */
+  #generic-protein-viewer .gpv-header { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-bottom: 12px; }
+  #generic-protein-viewer .gpv-brand { display: flex; align-items: center; gap: 10px; min-width: 0; }
+  #generic-protein-viewer .gpv-brand-mark { display: grid; place-items: center; width: 32px; height: 32px; flex: 0 0 auto; border-radius: var(--radius-md); color: var(--primary-foreground); background: var(--primary); }
+  #generic-protein-viewer .gpv-brand-copy { display: grid; gap: 1px; min-width: 0; }
+  #generic-protein-viewer .gpv-brand-copy > strong { font-size: var(--font-size-h3); }
+  #generic-protein-viewer .gpv-header-actions { display: flex; gap: 6px; flex: 0 0 auto; }
+  #generic-protein-viewer .gpv-icon-btn { gap: 6px; }
+
+  /* ---- Import ---- */
+  #generic-protein-viewer .gpv-fetch { display: flex; align-items: center; gap: 6px; flex: 0 1 auto; min-width: 0; }
+  #generic-protein-viewer .gpv-fetch-field { width: 250px; max-width: 100%; min-width: 0; }
+  #generic-protein-viewer .gpv-drop.is-compact > .gpv-fetch-note { display: none; }
+  #generic-protein-viewer .gpv-drop.is-dragging { outline-width: 2px; background: var(--accent); }
+
+  /* ---- Stage overlays ---- */
+  #generic-protein-viewer .gpv-stage:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+  #generic-protein-viewer .gpv-busy { position: absolute; inset: auto 8px 8px auto; display: flex; align-items: center; gap: 8px; padding: 6px 10px; border-radius: var(--radius-md); color: var(--popover-foreground); background: var(--popover); border: 1px solid var(--border); font-size: var(--font-size-small); }
+  #generic-protein-viewer .gpv-busy[hidden] { display: none; }
+  #generic-protein-viewer .gpv-spinner { width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--border); border-top-color: var(--primary); animation: gpv-spin 0.8s linear infinite; }
+  @keyframes gpv-spin { to { transform: rotate(360deg); } }
+  @media (prefers-reduced-motion: reduce) { #generic-protein-viewer .gpv-spinner { animation-duration: 2.4s; } }
+
+  /* ---- Full screen ---- */
+  #generic-protein-viewer .gpv-view-grid.is-fullscreen { position: fixed; inset: 0; z-index: 40; padding: 8px; gap: 8px; background: var(--background); }
+  #generic-protein-viewer .gpv-view-grid.is-fullscreen .gpv-stage { height: 100%; }
+  #generic-protein-viewer .gpv-view-grid.is-fullscreen .gpv-view-pane { height: 100%; }
+
+  /* ---- Lists ---- */
+  #generic-protein-viewer .gpv-list-more { justify-content: center; align-items: center; margin-bottom: 10px; }
+  #generic-protein-viewer .gpv-list-more[hidden] { display: none; }
+  #generic-protein-viewer .gpv-entry.is-active { border-radius: var(--radius-sm); padding-inline: 6px; }
+  #generic-protein-viewer .gpv-entry-score { font-variant-numeric: tabular-nums; }
+
+  /* ---- Toasts ---- */
+  #generic-protein-viewer .gpv-toasts { position: fixed; z-index: 60; bottom: 12px; right: 12px; display: grid; gap: 6px; justify-items: end; pointer-events: none; max-width: min(440px, calc(100vw - 24px)); }
+  #generic-protein-viewer .gpv-toast { pointer-events: none; padding: 7px 12px; border-radius: var(--radius-full); border: 1px solid var(--border); color: var(--popover-foreground); background: var(--popover); box-shadow: 0 6px 20px -8px rgb(0 0 0 / 35%); font-size: var(--font-size-small); animation: gpv-toast-in 0.18s ease-out; }
+  #generic-protein-viewer .gpv-toast.is-error { color: var(--destructive); border-color: color-mix(in srgb, var(--destructive) 40%, var(--border)); }
+  #generic-protein-viewer .gpv-toast.is-leaving { opacity: 0; transition: opacity 0.25s ease-in; }
+  @keyframes gpv-toast-in { from { opacity: 0; transform: translateY(6px); } }
+  @media (prefers-reduced-motion: reduce) { #generic-protein-viewer .gpv-toast { animation: none; } }
+
+  /* ---- Help dialog ---- */
+  #generic-protein-viewer .gpv-dialog { width: min(680px, calc(100vw - 32px)); max-height: min(84vh, 780px); padding: 0; border: 1px solid var(--border); border-radius: var(--radius-lg); color: var(--foreground); background: var(--popover); overflow: hidden; }
+  #generic-protein-viewer .gpv-dialog::backdrop { background: rgb(0 0 0 / 45%); }
+  #generic-protein-viewer .gpv-dialog-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 16px; border-bottom: 1px solid var(--border); }
+  #generic-protein-viewer .gpv-dialog-head h2 { margin: 0; font-size: var(--font-size-h3); }
+  #generic-protein-viewer .gpv-dialog-body { padding: 4px 16px 18px; overflow-y: auto; max-height: calc(min(84vh, 780px) - 52px); }
+  #generic-protein-viewer .gpv-dialog-body h3 { margin: 16px 0 6px; font-size: var(--font-size-normal); }
+  #generic-protein-viewer .gpv-dialog-body ul { margin: 0; padding-left: 18px; display: grid; gap: 4px; }
+  #generic-protein-viewer .gpv-dialog-body code { font-family: var(--font-mono); font-size: var(--font-size-small); padding: 1px 4px; border-radius: var(--radius-sm); background: var(--muted); }
+  #generic-protein-viewer .gpv-shortcuts th { white-space: nowrap; width: 1%; }
+  #generic-protein-viewer kbd { font-family: var(--font-mono); font-size: var(--font-size-small); padding: 1px 5px; border: 1px solid var(--border); border-bottom-width: 2px; border-radius: var(--radius-sm); background: var(--muted); }
+
+  @media (max-width: 680px) { #generic-protein-viewer .gpv-confidence-layout, #generic-protein-viewer .gpv-view-grid.is-comparing, #generic-protein-viewer .gpv-import-state, #generic-protein-viewer .gpv-drop.is-compact { grid-template-columns: 1fr; } }
+  @media (max-width: 560px) { #generic-protein-viewer .gpv-hide-narrow { display: none; } #generic-protein-viewer .gpv-header-actions { gap: 4px; } }
+  @media (max-width: 520px) { #generic-protein-viewer .gpv-stage { height: 380px; } }
+</style>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/3Dmol/2.4.2/3Dmol-min.js" integrity="sha512-hMLvWa58N20AYqzvAVgf4Utdz0jGshnzaknHRzQSm3I7TUeN6ehikRsICUbDB8JIt625tPV3a3s6I9BMrxT0Gg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js" integrity="sha512-XMVd28F1oH/O71fzwBnV7HucLxVwtxf26XV8P4wPk26EDxuGZ91N8bsOttmnomcCD3CS5ZMRL50H0GgOHvegtg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/numeric/1.2.6/numeric.min.js" integrity="sha512-BK/c8SKG4PMGMg8wo/56FdGMkgQFJgFl8rnVdF1wqIZW73Vw6M/Tde9GmwibV8MoBSBJcwurXGg6B9yvd/Fvcw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+(() => {
+  const root = document.getElementById('generic-protein-viewer');
+
+  /* 3Dmol.js is the one hard dependency. Without it nothing below can run, so
+     fail loudly and usefully instead of leaving a blank page behind. */
+  if (typeof $3Dmol === 'undefined' || typeof $3Dmol.createViewer !== 'function') {
+    const notice = root.querySelector('#gpv-import-errors');
+    notice.hidden = false;
+    notice.textContent = 'The 3Dmol.js rendering library could not be loaded from the CDN. '
+      + 'Check your internet connection (or any blocker or offline cache) and reload the page.';
+    root.querySelector('#gpv-stage-empty').hidden = true;
+    root.querySelectorAll('button, select, input').forEach(control => { control.disabled = true; });
+    return;
+  }
+
+  const viewer = $3Dmol.createViewer(root.querySelector('#gpv-stage'), {
+    backgroundColor: '#ffffff',
+    backgroundAlpha: 0,
+    antialias: true
+  });
+  const palette = ['#8b5cf6', '#06b6d4', '#f97316', '#22c55e', '#ec4899', '#eab308', '#3b82f6', '#ef4444'];
+  let structures = [];
+  let animationFrame = 0;
+  let rockPhase = 0;
+  let rockDirection = 1;
+  let activeId = null;
+  let cycleTimer = 0;
+  let selectedResidue = null;
+  let labelRecords = [];
+  let nextStructureId = 1;
+  let confidenceAssets = [];
+  let alignmentResults = [];
+  let selectionRecords = [];
+  let measurementRecords = [];
+  let measurementDraft = [];
+  let measurementActive = false;
+  let savedViews = [];
+  let nextAnnotationId = 1;
+  let compareViewer = null;
+  let compareModel = null;
+  let syncingView = false;
+  let compareSyncFrame = 0;
+  let pendingScene = null;
+  let listLimit = 60;
+  let fullscreen = false;
+  let busyDepth = 0;
+  let restoreMotion = null;
+  const listPageSize = 60;
+  const viewerVersion = '2.1.0';
+  const preferenceKey = 'protein-structure-viewer:preferences';
+  const themeKey = 'protein-structure-viewer:theme';
+  const labelColors = getComputedStyle(root);
+  const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------- Small UI helpers ---------- */
+
+  function toast(message, kind = 'info') {
+    const host = root.querySelector('#gpv-toasts');
+    const item = document.createElement('div');
+    item.className = 'gpv-toast' + (kind === 'error' ? ' is-error' : '');
+    item.setAttribute('role', kind === 'error' ? 'alert' : 'status');
+    item.textContent = message;
+    host.append(item);
+    while (host.children.length > 3) host.firstElementChild.remove();
+    setTimeout(() => {
+      item.classList.add('is-leaving');
+      setTimeout(() => item.remove(), 280);
+    }, kind === 'error' ? 6000 : 3200);
+  }
+
+  function announce(message, kind = 'info') {
+    updateStatus(message);
+    toast(message, kind);
+  }
+
+  function setBusy(label) {
+    busyDepth += 1;
+    const badge = root.querySelector('#gpv-busy');
+    root.querySelector('#gpv-busy-label').textContent = label;
+    badge.hidden = false;
+    return () => {
+      busyDepth = Math.max(0, busyDepth - 1);
+      if (busyDepth === 0) badge.hidden = true;
+    };
+  }
+
+  function setButtonText(button, text) {
+    const last = button.lastChild;
+    if (last && last.nodeType === Node.TEXT_NODE) last.nodeValue = text;
+    else button.append(text);
+  }
+
+  function showImportErrors(messages) {
+    const panel = root.querySelector('#gpv-import-errors');
+    panel.hidden = messages.length === 0;
+    panel.textContent = messages.length
+      ? messages.slice(0, 3).join(' · ') + (messages.length > 3 ? ' · +' + (messages.length - 3) + ' more' : '')
+      : '';
+    if (messages.length) console.warn('Protein viewer notes:', messages);
+  }
+
+  function readJson(key, fallback) {
+    try {
+      const stored = localStorage.getItem(key);
+      return stored ? JSON.parse(stored) : fallback;
+    } catch (error) { return fallback; }
+  }
+
+  function writeJson(key, value) {
+    try { localStorage.setItem(key, JSON.stringify(value)); } catch (error) { /* private mode */ }
+  }
+
+  function plddtColor(score) {
+    if (score < 50) return '#ff7d45';
+    if (score < 70) return '#ffdb13';
+    if (score < 90) return '#65cbf3';
+    return '#0053d6';
+  }
+
+  function modelScores(model) {
+    const scores = [];
+    model.selectedAtoms({}).forEach(atom => {
+      const score = Number(atom.b);
+      if (atom.atom === 'CA' && Number.isFinite(score)) scores.push(score);
+    });
+    return scores;
+  }
+
+  function mean(values) {
+    return values.length ? values.reduce((sum, value) => sum + value, 0) / values.length : null;
+  }
+
+  function finiteNumber(value) {
+    const number = Number(value);
+    return Number.isFinite(number) ? number : null;
+  }
+
+  function formatMetric(value, digits = 3) {
+    const number = finiteNumber(value);
+    return number === null ? '—' : number.toFixed(digits);
+  }
+
+  function matrixMaximum(matrix) {
+    let maximum = 0;
+    if (!Array.isArray(matrix)) return maximum;
+    matrix.forEach(row => {
+      if (!Array.isArray(row)) return;
+      row.forEach(value => { const number = finiteNumber(value); if (number !== null) maximum = Math.max(maximum, number); });
+    });
+    return maximum;
+  }
+
+  function fileStem(path) {
+    return path.split('/').pop().replace(/\.(pdb|cif|mmcif|json|csv)$/i, '');
+  }
+
+  function associationKey(path) {
+    const stem = fileStem(path).toLowerCase();
+    return stem.replace(/_(summary_confidences|confidences|full_data|model)(?:_(\d+))?$/, (_, marker, index) => index ? '_' + index : '');
+  }
+
+  function assetFitsEntry(asset, entry) {
+    if (asset.collection && entry.collection && asset.collection !== entry.collection) return false;
+    const assetKey = associationKey(asset.name);
+    const entryKey = associationKey(entry.sourcePath || entry.name);
+    if (assetKey === entryKey) return true;
+    const assetBase = fileStem(asset.name).toLowerCase();
+    const entryBase = fileStem(entry.name).toLowerCase();
+    const ranked = entryBase.match(/^ranked_(\d+)$/);
+    if (ranked && asset.rankIndex === Number(ranked[1])) return true;
+    if (asset.modelName && (entryBase === asset.modelName.toLowerCase() || entryBase.endsWith('_' + asset.modelName.toLowerCase()))) return true;
+    if (asset.seed !== undefined && asset.sample !== undefined) {
+      return entryBase.includes('seed-' + asset.seed + '_sample-' + asset.sample);
+    }
+    return false;
+  }
+
+  function normalizeConfidenceJson(value) {
+    if (Array.isArray(value) && value.length === 1 && typeof value[0] === 'object') return value[0];
+    return value;
+  }
+
+  function confidenceFromJson(raw) {
+    const data = normalizeConfidenceJson(raw);
+    if (!data || typeof data !== 'object' || Array.isArray(data)) return null;
+    const pae = Array.isArray(data.pae) ? data.pae : Array.isArray(data.predicted_aligned_error) ? data.predicted_aligned_error : null;
+    return {
+      ptm: finiteNumber(data.ptm ?? data.predicted_tm_score),
+      iptm: finiteNumber(data.iptm ?? data.interface_predicted_tm_score),
+      rankingScore: finiteNumber(data.ranking_score ?? data.ranking_confidence),
+      fractionDisordered: finiteNumber(data.fraction_disordered),
+      hasClash: data.has_clash === undefined ? null : data.has_clash === true || Number(data.has_clash) === 1,
+      pae,
+      paeMaximum: pae ? matrixMaximum(pae) : null,
+      tokenChainIds: Array.isArray(data.token_chain_ids) ? data.token_chain_ids : null,
+      tokenResidueIds: Array.isArray(data.token_res_ids) ? data.token_res_ids : null,
+      chainIds: Array.isArray(data.chain_ids) ? data.chain_ids : null,
+      chainPairIptm: Array.isArray(data.chain_pair_iptm) ? data.chain_pair_iptm : null,
+      chainPairPaeMin: Array.isArray(data.chain_pair_pae_min) ? data.chain_pair_pae_min : null
+    };
+  }
+
+  function mergeConfidence(target, incoming) {
+    if (!incoming) return target || {};
+    const merged = { ...(target || {}) };
+    Object.entries(incoming).forEach(([key, value]) => {
+      if (value !== null && value !== undefined) merged[key] = value;
+    });
+    return merged;
+  }
+
+  function attachConfidenceAssets() {
+    structures.forEach(entry => {
+      confidenceAssets.filter(asset => assetFitsEntry(asset, entry)).forEach(asset => {
+        entry.confidence = mergeConfidence(entry.confidence, asset.confidence);
+        if (asset.rank !== null && asset.rank !== undefined) entry.rank = asset.rank;
+      });
+    });
+    applyModelOrder();
+    if (!root.querySelector('[data-gpv-panel="confidence"]').hidden) renderConfidence();
+  }
+
+  function applyModelOrder() {
+    const mode = root.querySelector('#gpv-order').value;
+    const value = entry => mode === 'ranking' ? finiteNumber(entry.confidence && entry.confidence.rankingScore) : mode === 'plddt' ? mean(entry.scores) : -entry.loadIndex;
+    structures.sort((a, b) => {
+      if (mode === 'loaded') return a.loadIndex - b.loadIndex;
+      return (value(b) ?? -Infinity) - (value(a) ?? -Infinity) || a.loadIndex - b.loadIndex;
+    });
+  }
+
+  function renderConfidence() {
+    const panel = root.querySelector('#gpv-confidence-panel');
+    panel.hidden = structures.length === 0;
+    const body = root.querySelector('#gpv-metrics');
+    body.replaceChildren();
+    structures.forEach(entry => {
+      const row = document.createElement('tr');
+      const values = [
+        entry.name,
+        formatMetric(mean(entry.scores), 1),
+        formatMetric(entry.confidence && entry.confidence.ptm),
+        formatMetric(entry.confidence && entry.confidence.iptm),
+        formatMetric(entry.confidence && entry.confidence.rankingScore),
+        entry.rank === null || entry.rank === undefined ? '—' : String(entry.rank),
+        Object.prototype.hasOwnProperty.call(entry.confidence || {}, 'hasClash') ? (entry.confidence.hasClash ? 'Yes' : 'No') : '—'
+      ];
+      values.forEach((value, index) => {
+        const cell = document.createElement(index === 0 ? 'th' : 'td');
+        cell.textContent = value;
+        if (index > 0 && index < 6) cell.className = 'text-end';
+        row.append(cell);
+      });
+      body.append(row);
+    });
+    drawPae(activeEntry());
+  }
+
+  function paeColor(value, maximum) {
+    const t = Math.max(0, Math.min(1, value / Math.max(1, maximum)));
+    const low = [0, 83, 214];
+    const high = [255, 219, 19];
+    return low.map((channel, index) => Math.round(channel + (high[index] - channel) * t));
+  }
+
+  function drawPae(entry) {
+    const panel = root.querySelector('#gpv-pae-panel');
+    const plot = root.querySelector('#gpv-pae-plot');
+    const matrix = entry && entry.confidence && entry.confidence.pae;
+    if (!Array.isArray(matrix) || !matrix.length || !Array.isArray(matrix[0])) {
+      plot.hidden = true;
+      renderInterfaceMetrics(entry);
+      return;
+    }
+    plot.hidden = false;
+    const canvas = root.querySelector('#gpv-pae');
+    const context = canvas.getContext('2d');
+    const size = matrix.length;
+    const image = context.createImageData(canvas.width, canvas.height);
+    const maximum = finiteNumber(entry.confidence.paeMaximum) || matrixMaximum(matrix);
+    for (let y = 0; y < canvas.height; y += 1) {
+      const row = matrix[Math.min(size - 1, Math.floor(y * size / canvas.height))] || [];
+      for (let x = 0; x < canvas.width; x += 1) {
+        const value = finiteNumber(row[Math.min(row.length - 1, Math.floor(x * row.length / canvas.width))]) || 0;
+        const color = paeColor(value, maximum);
+        const offset = (y * canvas.width + x) * 4;
+        image.data[offset] = color[0];
+        image.data[offset + 1] = color[1];
+        image.data[offset + 2] = color[2];
+        image.data[offset + 3] = 255;
+      }
+    }
+    context.putImageData(image, 0, 0);
+    const chains = entry.confidence.tokenChainIds || [];
+    context.save();
+    context.strokeStyle = labelColors.getPropertyValue('--foreground').trim() || '#111827';
+    context.globalAlpha = 0.7;
+    context.lineWidth = 1;
+    for (let index = 1; index < chains.length; index += 1) {
+      if (chains[index] === chains[index - 1]) continue;
+      const position = Math.round(index * canvas.width / size) + 0.5;
+      context.beginPath();
+      context.moveTo(position, 0);
+      context.lineTo(position, canvas.height);
+      context.moveTo(0, position);
+      context.lineTo(canvas.width, position);
+      context.stroke();
+    }
+    context.restore();
+    canvas.dataset.entryId = String(entry.id);
+    canvas.dataset.maximum = String(maximum);
+    canvas.setAttribute('aria-label', 'Predicted aligned error heatmap for ' + entry.name + ', ' + size + ' by ' + size + ' tokens, maximum ' + maximum.toFixed(1) + ' angstroms');
+    root.querySelector('#gpv-pae-detail').textContent = entry.name + ' · ' + size + ' × ' + size + ' tokens · maximum ' + maximum.toFixed(1) + ' Å';
+    renderInterfaceMetrics(entry);
+  }
+
+  function renderInterfaceMetrics(entry) {
+    const panel = root.querySelector('#gpv-pae-panel');
+    const wrap = root.querySelector('#gpv-interface-wrap');
+    const body = root.querySelector('#gpv-interface-metrics');
+    body.replaceChildren();
+    const confidence = entry && entry.confidence || {};
+    const iptm = confidence.chainPairIptm;
+    const pae = confidence.chainPairPaeMin;
+    const size = Math.max(Array.isArray(iptm) ? iptm.length : 0, Array.isArray(pae) ? pae.length : 0);
+    const derivedChainIds = [...new Set(confidence.tokenChainIds || [])];
+    const chainIds = confidence.chainIds && confidence.chainIds.length ? confidence.chainIds : derivedChainIds.length ? derivedChainIds : Array.from({ length: size }, (_, index) => String(index + 1));
+    for (let i = 0; i < size; i += 1) {
+      for (let j = i + 1; j < size; j += 1) {
+        const row = document.createElement('tr');
+        const values = [
+          (chainIds[i] ?? i + 1) + '–' + (chainIds[j] ?? j + 1),
+          formatMetric(iptm && iptm[i] && iptm[i][j]),
+          formatMetric(pae && pae[i] && pae[i][j], 2)
+        ];
+        values.forEach((value, index) => {
+          const cell = document.createElement(index === 0 ? 'th' : 'td');
+          cell.textContent = value;
+          if (index > 0) cell.className = 'text-end';
+          row.append(cell);
+        });
+        body.append(row);
+      }
+    }
+    wrap.hidden = body.children.length === 0;
+    panel.hidden = root.querySelector('#gpv-pae-plot').hidden && wrap.hidden;
+  }
+
+  async function sha256(textValue) {
+    if (!globalThis.crypto || !crypto.subtle) return null;
+    const bytes = new TextEncoder().encode(textValue);
+    const digest = await crypto.subtle.digest('SHA-256', bytes);
+    return [...new Uint8Array(digest)].map(byte => byte.toString(16).padStart(2, '0')).join('');
+  }
+
+  function downloadBlob(contents, type, filename) {
+    const url = URL.createObjectURL(new Blob([contents], { type }));
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = filename;
+    link.click();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+  }
+
+  function csvCell(value) {
+    return '"' + String(value ?? '').replace(/"/g, '""') + '"';
+  }
+
+  function confidenceSourcesByEntry() {
+    const sources = new Map(structures.map(entry => [entry.id, []]));
+    confidenceAssets.forEach(asset => {
+      structures.forEach(entry => { if (assetFitsEntry(asset, entry)) sources.get(entry.id).push(asset.name); });
+    });
+    return sources;
+  }
+
+  function downloadConfidenceCsv() {
+    if (!structures.length) { announce('Load a model before exporting confidence metrics', 'error'); return; }
+    const sources = confidenceSourcesByEntry();
+    const rows = [['model', 'source_archive', 'mean_plddt', 'ptm', 'iptm', 'ranking_score', 'rank', 'has_clash', 'confidence_sources']];
+    structures.forEach(entry => {
+      const confidence = entry.confidence || {};
+      rows.push([entry.name, entry.collection ?? '', mean(entry.scores) ?? '', confidence.ptm ?? '', confidence.iptm ?? '', confidence.rankingScore ?? '', entry.rank ?? '', Object.prototype.hasOwnProperty.call(confidence, 'hasClash') ? confidence.hasClash : '', (sources.get(entry.id) || []).join('; ')]);
+    });
+    downloadBlob(rows.map(row => row.map(csvCell).join(',')).join('\n'), 'text/csv', 'protein-confidence-metrics.csv');
+    announce('Confidence CSV downloaded');
+  }
+
+  function entriesById() {
+    return new Map(structures.map(entry => [entry.id, entry]));
+  }
+
+  function entryById(id) {
+    return structures.find(entry => entry.id === id) || null;
+  }
+
+  function activeEntry() {
+    if (root.querySelector('#gpv-side-by-side').checked) return structures.find(entry => entry.id === Number(root.querySelector('#gpv-left-model').value)) || structures[0] || null;
+    return structures.find(entry => entry.id === activeId && entry.visible) || structures.find(entry => entry.visible) || structures[0] || null;
+  }
+
+  function displayedEntries() {
+    if (root.querySelector('#gpv-side-by-side').checked) {
+      const left = structures.find(entry => entry.id === Number(root.querySelector('#gpv-left-model').value));
+      return left ? [left] : [];
+    }
+    const visible = structures.filter(entry => entry.visible);
+    if (root.querySelector('#gpv-view-mode').value === 'single') {
+      const active = activeEntry();
+      return active && active.visible ? [active] : [];
+    }
+    return visible;
+  }
+
+  function selectToolTab(name) {
+    root.querySelectorAll('[data-gpv-tab]').forEach(button => {
+      const selected = button.dataset.gpvTab === name;
+      button.setAttribute('aria-selected', String(selected)); button.tabIndex = selected ? 0 : -1;
+    });
+    root.querySelectorAll('[data-gpv-panel]').forEach(panel => { panel.hidden = panel.dataset.gpvPanel !== name; });
+    if (name === 'confidence') renderConfidence();
+  }
+
+  function backgroundSpec() {
+    const mode = root.querySelector('#gpv-background').value;
+    if (mode === 'transparent') return { color: '#ffffff', alpha: 0 };
+    if (mode === 'dark') return { color: '#101827', alpha: 1 };
+    if (mode === 'custom') return { color: root.querySelector('#gpv-background-color').value, alpha: 1 };
+    return { color: '#ffffff', alpha: 1 };
+  }
+
+  function applyAppearance() {
+    const background = backgroundSpec();
+    root.querySelector('#gpv-background-color').disabled = root.querySelector('#gpv-background').value !== 'custom';
+    viewer.setBackgroundColor(background.color, background.alpha);
+    if (typeof viewer.setProjection === 'function') viewer.setProjection(root.querySelector('#gpv-projection').value);
+    if (compareViewer) {
+      compareViewer.setBackgroundColor(background.color, background.alpha);
+      if (typeof compareViewer.setProjection === 'function') compareViewer.setProjection(root.querySelector('#gpv-projection').value);
+      compareViewer.render();
+    }
+    viewer.render();
+  }
+
+  function styleFor(entry) {
+    const representation = root.querySelector('#gpv-style').value;
+    const mode = root.querySelector('#gpv-color-mode').value;
+    const style = {};
+    let options = { color: entry.color };
+    if (mode === 'chain') options = { colorscheme: 'chainHetatm' };
+    if (mode === 'plddt') options = { colorfunc: atom => plddtColor(Number(atom.b || 0)) };
+    if (mode === 'spectrum') options = { colorscheme: 'spectrum' };
+    if (mode === 'element') options = { colorscheme: 'default' };
+    if (representation === 'line') options.linewidth = 2;
+    style[representation] = options;
+    return style;
+  }
+
+  function updateStatus(message = 'Ready') {
+    const visible = displayedEntries();
+    root.querySelector('#gpv-count').textContent = visible.length + ' displayed / ' + structures.length + ' loaded';
+    const scores = visible.flatMap(entry => entry.scores);
+    const score = mean(scores);
+    root.querySelector('#gpv-confidence').textContent = score === null ? 'Mean pLDDT —' : 'Mean pLDDT ' + score.toFixed(1);
+    root.querySelector('#gpv-state').textContent = message;
+    root.querySelector('#gpv-empty').hidden = structures.length > 0;
+    root.querySelector('#gpv-stage-empty').hidden = structures.length > 0;
+    root.querySelector('#gpv-drop').classList.toggle('is-compact', structures.length > 0);
+    root.querySelector('#gpv-report').disabled = structures.length === 0;
+    root.querySelector('#gpv-image').disabled = structures.length === 0;
+    root.querySelector('#gpv-video').disabled = structures.length === 0;
+    root.querySelector('#gpv-save-scene').disabled = structures.length === 0;
+    root.querySelector('#gpv-save-view').disabled = structures.length === 0;
+    root.querySelector('#gpv-contact-sheet').disabled = savedViews.length === 0;
+    root.querySelector('#gpv-captions').disabled = savedViews.length === 0;
+    updateReportEstimate();
+    ['#gpv-current', '#gpv-reference', '#gpv-selection-model', '#gpv-left-model', '#gpv-right-model', '#gpv-previous', '#gpv-next', '#gpv-cycle', '#gpv-align', '#gpv-restore', '#gpv-add-selection'].forEach(selector => {
+      root.querySelector(selector).disabled = structures.length === 0;
+    });
+  }
+
+  function materializeEntry(entry) {
+    if (entry.model) return entry.model;
+    const model = viewer.addModel(entry.text, entry.format);
+    const atoms = model.selectedAtoms({});
+    if (!atoms.length) {
+      viewer.removeModel(model);
+      throw new Error('No atoms could be read from ' + entry.name);
+    }
+    entry.model = model;
+    entry.atoms = atoms;
+    if (!entry.scores.length) entry.scores = modelScores(model);
+    entry.originalAtoms = atoms.map(atom => ({ x: atom.x, y: atom.y, z: atom.z }));
+    viewer.setClickable({ model: model.getID() }, true, atom => handleAtomClick(entry, atom));
+    return model;
+  }
+
+  function releaseHiddenModels(shown) {
+    if (structures.length < 40 || root.querySelector('#gpv-view-mode').value !== 'single' || alignmentResults.length) return;
+    const protectedIds = new Set([
+      ...labelRecords.map(record => record.entryId),
+      ...selectionRecords.map(record => record.entryId),
+      ...measurementRecords.flatMap(record => record.points.map(point => point.entryId))
+    ]);
+    structures.forEach(entry => {
+      if (!entry.model || shown.has(entry) || protectedIds.has(entry.id)) return;
+      viewer.removeModel(entry.model);
+      entry.model = null;
+      entry.atoms = [];
+      entry.originalAtoms = [];
+    });
+  }
+
+  function applyStyle() {
+    let shown = new Set(displayedEntries());
+    const broken = [];
+    structures.forEach(entry => {
+      if (shown.has(entry) && !entry.model) {
+        try { materializeEntry(entry); }
+        catch (error) { entry.visible = false; shown.delete(entry); broken.push(error.message); }
+      }
+      if (!entry.model) return;
+      entry.model.setStyle({}, {});
+      if (shown.has(entry)) entry.model.setStyle({}, styleFor(entry));
+    });
+    if (broken.length) {
+      shown = new Set(displayedEntries());
+      showImportErrors(broken);
+    }
+    releaseHiddenModels(shown);
+    applySelections(shown);
+    root.querySelector('#gpv-plddt-legend').hidden = root.querySelector('#gpv-color-mode').value !== 'plddt';
+    rebuildLabels(false);
+    rebuildMeasurements(false);
+    renderCompareViewer();
+    viewer.render();
+    if (!root.querySelector('[data-gpv-panel="confidence"]').hidden) renderConfidence();
+    updateStatus();
+  }
+
+  function syncModelControls() {
+    if (!structures.length) activeId = null;
+    if (structures.length && !structures.some(entry => entry.id === activeId)) activeId = structures[0].id;
+    ['#gpv-current', '#gpv-reference', '#gpv-selection-model', '#gpv-left-model', '#gpv-right-model'].forEach(selector => {
+      const select = root.querySelector(selector);
+      const previous = selector === '#gpv-current' ? activeId : (select.value || (selector === '#gpv-left-model' ? activeId : ''));
+      select.replaceChildren();
+      structures.forEach(entry => {
+        const option = document.createElement('option');
+        option.value = String(entry.id);
+        option.textContent = (entry.collection ? entry.collection + ' › ' : '') + entry.name;
+        select.append(option);
+      });
+      if (structures.some(entry => String(entry.id) === String(previous))) select.value = String(previous);
+    });
+    const right = root.querySelector('#gpv-right-model');
+    if (structures.length > 1 && (!right.value || right.value === root.querySelector('#gpv-left-model').value)) right.value = String(structures[1].id);
+    const sourceFilter = root.querySelector('#gpv-source-filter');
+    const previousSource = sourceFilter.value || 'all';
+    sourceFilter.replaceChildren(new Option('All loaded sources', 'all'));
+    [...new Set(structures.map(entry => entry.collection).filter(Boolean))].forEach(collection => sourceFilter.append(new Option(collection, collection)));
+    sourceFilter.value = [...sourceFilter.options].some(option => option.value === previousSource) ? previousSource : 'all';
+    if (!root.querySelector('[data-gpv-panel="confidence"]').hidden) renderConfidence();
+  }
+
+  function filteredStructures() {
+    const source = root.querySelector('#gpv-source-filter').value;
+    const query = root.querySelector('#gpv-model-search').value.trim().toLowerCase();
+    return structures.filter(entry => (source === 'all' || entry.collection === source) && (!query || (entry.name + ' ' + entry.sourcePath + ' ' + entry.collection).toLowerCase().includes(query)));
+  }
+
+  function renderList() {
+    syncModelControls();
+    const list = root.querySelector('#gpv-list');
+    list.replaceChildren();
+    const matching = filteredStructures();
+    /* Large AlphaFold archives routinely hold hundreds of models. Building a row
+       for every one of them makes each re-render visibly slow, so page them. */
+    const shownRows = matching.slice(0, listLimit);
+    const more = root.querySelector('#gpv-list-more');
+    more.hidden = matching.length <= shownRows.length;
+    root.querySelector('#gpv-list-more-label').textContent = more.hidden
+      ? ''
+      : 'Showing ' + shownRows.length + ' of ' + matching.length + ' models';
+    shownRows.forEach(entry => {
+      const row = document.createElement('div');
+      row.className = 'gpv-entry' + (entry.id === activeId ? ' is-active' : '');
+      row.dataset.entryId = String(entry.id);
+
+      const visibleLabel = document.createElement('label');
+      visibleLabel.className = 'form-check form-switch';
+      const visible = document.createElement('input');
+      visible.className = 'form-check-input';
+      visible.type = 'checkbox';
+      visible.checked = entry.visible;
+      visible.setAttribute('aria-label', 'Show ' + entry.name);
+      visible.addEventListener('change', () => { entry.visible = visible.checked; applyStyle(); });
+      visibleLabel.append(visible);
+
+      const copy = document.createElement('span');
+      copy.className = 'gpv-entry-copy';
+      const name = document.createElement('span');
+      name.className = 'gpv-entry-name';
+      name.textContent = entry.name;
+      const source = document.createElement('span');
+      source.className = 'gpv-entry-source text-small';
+      source.textContent = entry.collection || 'Individual files';
+      copy.append(name, source);
+
+      const score = document.createElement('span');
+      score.className = 'gpv-entry-score text-small';
+      const average = mean(entry.scores);
+      score.textContent = average === null ? (entry.model ? 'pLDDT —' : 'Not viewed') : average.toFixed(1);
+
+      const color = document.createElement('input');
+      color.className = 'form-control form-control-color';
+      color.type = 'color';
+      color.value = entry.color;
+      color.setAttribute('aria-label', 'Color for ' + entry.name);
+      color.addEventListener('input', () => { entry.color = color.value; root.querySelector('#gpv-color-mode').value = 'structure'; applyStyle(); });
+
+      const remove = document.createElement('button');
+      remove.className = 'btn btn-ghost';
+      remove.type = 'button';
+      remove.textContent = 'Remove';
+      remove.addEventListener('click', () => {
+        if (entry.model) viewer.removeModel(entry.model);
+        structures = structures.filter(item => item !== entry);
+        labelRecords = labelRecords.filter(label => label.entryId !== entry.id);
+        selectionRecords = selectionRecords.filter(selection => selection.entryId !== entry.id);
+        measurementRecords = measurementRecords.filter(measurement => measurement.points.every(point => point.entryId !== entry.id));
+        alignmentResults = [];
+        renderAlignmentResults();
+        renderSelectionList();
+        renderMeasurementList();
+        renderList();
+        applyStyle();
+      });
+
+      row.append(visibleLabel, copy, score, color, remove);
+      list.append(row);
+    });
+  }
+
+  function addStructure(name, text, format, sourcePath = name, collection = 'Individual files', lazy = false) {
+    const entry = {
+      id: nextStructureId++,
+      loadIndex: nextStructureId - 2,
+      name,
+      collection,
+      model: null,
+      visible: true,
+      color: palette[structures.length % palette.length],
+      text,
+      format,
+      sourcePath,
+      confidence: {},
+      rank: null,
+      scores: [],
+      atoms: [],
+      originalAtoms: []
+    };
+    structures.push(entry);
+    if (activeId === null) activeId = entry.id;
+    if (!lazy) {
+      try { materializeEntry(entry); }
+      catch (error) { structures = structures.filter(item => item !== entry); if (activeId === entry.id) activeId = structures[0] ? structures[0].id : null; throw error; }
+    }
+    if (!lazy) sha256(text).then(hash => { entry.hash = hash; });
+    return entry;
+  }
+
+  function stopCycle() {
+    clearInterval(cycleTimer);
+    cycleTimer = 0;
+    const button = root.querySelector('#gpv-cycle');
+    setButtonText(button, 'Cycle models');
+    const host = button.querySelector('[data-icon]');
+    host.setAttribute('data-icon', 'play');
+    host.replaceChildren();
+    if (typeof gpvRenderIcons === 'function') gpvRenderIcons(button);
+  }
+
+  function visibleEntries() {
+    return structures.filter(entry => entry.visible);
+  }
+
+  function cycleEntries() {
+    return filteredStructures().filter(entry => entry.visible);
+  }
+
+  function selectModel(entry, fit = true) {
+    if (!entry) return;
+    if (!entry.visible) {
+      entry.visible = true;
+      renderList();
+    }
+    activeId = entry.id;
+    root.querySelector('#gpv-current').value = String(entry.id);
+    root.querySelector('#gpv-view-mode').value = 'single';
+    applyStyle();
+    root.querySelectorAll('#gpv-list [data-entry-id]').forEach(row => row.classList.toggle('is-active', Number(row.dataset.entryId) === entry.id));
+    const activeRow = root.querySelector('#gpv-list [data-entry-id="' + entry.id + '"] .gpv-entry-score');
+    const average = mean(entry.scores);
+    if (activeRow) activeRow.textContent = average === null ? 'pLDDT —' : average.toFixed(1);
+    if (fit && entry.model) { viewer.zoomTo({ model: entry.model.getID() }); viewer.render(); }
+    updateStatus('Showing ' + entry.name);
+  }
+
+  function selectRelative(delta, fit = true) {
+    const candidates = cycleEntries();
+    if (!candidates.length) return;
+    let index = candidates.findIndex(entry => entry.id === activeId);
+    if (index < 0) index = delta > 0 ? -1 : 0;
+    selectModel(candidates[(index + delta + candidates.length) % candidates.length], fit);
+  }
+
+  function toggleCycle() {
+    if (cycleTimer) { stopCycle(); return; }
+    if (!cycleEntries().length) return;
+    root.querySelector('#gpv-view-mode').value = 'single';
+    const delay = Math.max(500, Number(root.querySelector('#gpv-cycle-speed').value) * 1000);
+    cycleTimer = setInterval(() => selectRelative(1, false), delay);
+    const button = root.querySelector('#gpv-cycle');
+    setButtonText(button, 'Pause cycle');
+    const host = button.querySelector('[data-icon]');
+    host.setAttribute('data-icon', 'pause');
+    host.replaceChildren();
+    if (typeof gpvRenderIcons === 'function') gpvRenderIcons(button);
+    const candidates = cycleEntries();
+    const active = activeEntry();
+    selectModel(candidates.includes(active) ? active : candidates[0], false);
+  }
+
+  function residueKey(entryId, chain, resi) {
+    return [entryId, chain || '', resi].join('|');
+  }
+
+  function residueText(entry, atom) {
+    const chain = atom.chain ? ' chain ' + atom.chain : '';
+    const confidence = Number.isFinite(Number(atom.b)) ? ' · pLDDT ' + Number(atom.b).toFixed(1) : '';
+    return entry.name + ' · ' + (atom.resn || 'Residue') + ' ' + atom.resi + chain + ' · atom ' + (atom.atom || '—') + confidence;
+  }
+
+  function selectResidue(entry, atom) {
+    selectedResidue = {
+      entryId: entry.id,
+      chain: atom.chain || '',
+      resi: atom.resi,
+      resn: atom.resn || 'RES',
+      atom: atom.atom || '',
+      x: atom.x,
+      y: atom.y,
+      z: atom.z,
+      b: atom.b
+    };
+    root.querySelector('#gpv-residue').textContent = residueText(entry, atom);
+    const key = residueKey(entry.id, atom.chain, atom.resi);
+    const saved = labelRecords.find(label => label.key === key);
+    root.querySelector('#gpv-label-text').value = saved ? saved.text : (atom.resn || 'RES') + atom.resi + (atom.chain ? ' · ' + atom.chain : '');
+    root.querySelector('#gpv-add-label').disabled = false;
+  }
+
+  function addOrEditLabel() {
+    if (!selectedResidue) return;
+    const text = root.querySelector('#gpv-label-text').value.trim();
+    if (!text) return;
+    const key = residueKey(selectedResidue.entryId, selectedResidue.chain, selectedResidue.resi);
+    const record = { ...selectedResidue, key, text };
+    const index = labelRecords.findIndex(label => label.key === key);
+    if (index >= 0) labelRecords[index] = record;
+    else labelRecords.push(record);
+    rebuildLabels();
+    updateStatus(index >= 0 ? 'Residue label updated' : 'Residue label added');
+  }
+
+  function labelStyle(position) {
+    return {
+      position,
+      backgroundColor: labelColors.getPropertyValue('--card').trim() || '#ffffff',
+      fontColor: labelColors.getPropertyValue('--card-foreground').trim() || '#111827',
+      borderColor: labelColors.getPropertyValue('--border').trim() || '#cbd5e1',
+      borderThickness: 1,
+      fontSize: 12,
+      inFront: true,
+      showBackground: true
+    };
+  }
+
+  function rebuildLabels(shouldRender = true) {
+    viewer.removeAllLabels();
+    const shownIds = new Set(displayedEntries().map(entry => entry.id));
+    const byId = entriesById();
+    labelRecords.filter(label => shownIds.has(label.entryId)).forEach(label => {
+      const entry = byId.get(label.entryId);
+      const atom = entry && entry.atoms.find(item => (item.chain || '') === label.chain && item.resi === label.resi && (item.atom === 'CA' || item.atom === label.atom));
+      const position = atom ? { x: atom.x, y: atom.y, z: atom.z } : { x: label.x, y: label.y, z: label.z };
+      viewer.addLabel(label.text, labelStyle(position));
+    });
+    if (root.querySelector('#gpv-all-labels').checked) {
+      const entry = activeEntry();
+      if (entry && shownIds.has(entry.id)) {
+        entry.atoms.filter(atom => atom.atom === 'CA').forEach(atom => {
+          const text = (atom.resn || 'RES') + atom.resi + (atom.chain ? ' · ' + atom.chain : '');
+          viewer.addLabel(text, labelStyle({ x: atom.x, y: atom.y, z: atom.z }));
+        });
+      }
+    }
+    if (shouldRender) viewer.render();
+  }
+
+  function parseResidueRange(value) {
+    const residues = new Set();
+    String(value || '').split(',').forEach(part => {
+      const match = part.trim().match(/^(-?\d+)(?:\s*-\s*(-?\d+))?$/);
+      if (!match) return;
+      const start = Number(match[1]);
+      const end = match[2] === undefined ? start : Number(match[2]);
+      const step = start <= end ? 1 : -1;
+      for (let residue = start; residue !== end + step && residues.size < 10000; residue += step) residues.add(residue);
+    });
+    return [...residues];
+  }
+
+  function applySelections(shown = new Set(displayedEntries())) {
+    const byId = entriesById();
+    selectionRecords.forEach(record => {
+      const entry = byId.get(record.entryId);
+      /* A record can outlive its model: the entry may have been released to save
+         memory, or its coordinates may have failed to parse. */
+      if (!entry || !entry.model || !shown.has(entry)) return;
+      const selection = { resi: record.residues };
+      if (record.chain) selection.chain = record.chain;
+      if (record.action === 'hide') entry.model.setStyle(selection, {});
+      else if (typeof entry.model.addStyle === 'function') entry.model.addStyle(selection, { stick: { color: record.color, radius: 0.25 }, sphere: { color: record.color, scale: 0.3 } });
+    });
+  }
+
+  function renderSelectionList() {
+    const list = root.querySelector('#gpv-selection-list');
+    list.replaceChildren();
+    selectionRecords.forEach(record => {
+      const entry = structures.find(item => item.id === record.entryId);
+      if (!entry) return;
+      const row = document.createElement('div');
+      row.className = 'gpv-entry';
+      const name = document.createElement('span');
+      name.className = 'gpv-entry-name';
+      name.textContent = entry.name + ' · chain ' + (record.chain || '—') + ' · ' + record.residues.join(', ') + ' · ' + record.action;
+      const remove = document.createElement('button');
+      remove.className = 'btn btn-ghost'; remove.type = 'button'; remove.textContent = 'Remove';
+      remove.addEventListener('click', () => { selectionRecords = selectionRecords.filter(item => item.id !== record.id); renderSelectionList(); applyStyle(); });
+      row.append(name, remove); list.append(row);
+    });
+  }
+
+  function addSelection() {
+    const entryId = Number(root.querySelector('#gpv-selection-model').value);
+    const chain = root.querySelector('#gpv-selection-chain').value.trim();
+    const residues = parseResidueRange(root.querySelector('#gpv-selection-range').value);
+    if (!entryId || !residues.length) { updateStatus('Enter a valid residue number or range'); return; }
+    selectionRecords.push({ id: nextAnnotationId++, entryId, chain, residues, action: root.querySelector('#gpv-selection-action').value, color: root.querySelector('#gpv-selection-color').value });
+    renderSelectionList(); applyStyle(); updateStatus('Selection added');
+  }
+
+  function atomReference(entry, atom) {
+    return { entryId: entry.id, chain: atom.chain || '', resi: atom.resi, atom: atom.atom || '', index: Number.isInteger(atom.index) ? atom.index : null };
+  }
+
+  function resolvePoint(reference) {
+    const entry = structures.find(item => item.id === reference.entryId);
+    if (!entry) return null;
+    return entry.atoms.find(atom => Number.isInteger(reference.index) && atom.index === reference.index)
+      || entry.atoms.find(atom => (atom.chain || '') === reference.chain && atom.resi === reference.resi && (atom.atom || '') === reference.atom) || null;
+  }
+
+  function pointName(reference) {
+    const entry = structures.find(item => item.id === reference.entryId);
+    return (entry ? entry.name : 'Missing model') + ' · ' + (reference.chain || '—') + ':' + reference.resi + ' ' + (reference.atom || 'atom');
+  }
+
+  function measurementValue(record) {
+    const points = record.points.map(resolvePoint);
+    if (points.some(point => !point)) return null;
+    const vector = (a, b) => [a.x - b.x, a.y - b.y, a.z - b.z];
+    const length = value => Math.hypot(...value);
+    if (record.type === 'distance') return length(vector(points[0], points[1]));
+    const a = vector(points[0], points[1]); const b = vector(points[2], points[1]);
+    const cosine = a.reduce((sum, value, index) => sum + value * b[index], 0) / Math.max(1e-9, length(a) * length(b));
+    return Math.acos(Math.max(-1, Math.min(1, cosine))) * 180 / Math.PI;
+  }
+
+  function rebuildMeasurements(shouldRender = true) {
+    viewer.removeAllShapes();
+    measurementRecords.forEach(record => {
+      const points = record.points.map(resolvePoint);
+      if (points.some(point => !point)) return;
+      const line = (start, end) => viewer.addLine({ start, end, color: '#e11d48', dashed: true, linewidth: 2 });
+      line(points[0], points[1]);
+      if (record.type === 'angle') line(points[1], points[2]);
+      const value = measurementValue(record);
+      const position = record.type === 'angle' ? points[1] : { x: (points[0].x + points[1].x) / 2, y: (points[0].y + points[1].y) / 2, z: (points[0].z + points[1].z) / 2 };
+      viewer.addLabel(value === null ? '—' : value.toFixed(2) + (record.type === 'distance' ? ' Å' : '°'), labelStyle(position));
+    });
+    if (shouldRender) viewer.render();
+  }
+
+  function renderMeasurementList() {
+    const list = root.querySelector('#gpv-measurement-list'); list.replaceChildren();
+    measurementRecords.forEach(record => {
+      const row = document.createElement('div'); row.className = 'gpv-entry';
+      const label = document.createElement('span'); label.className = 'gpv-entry-name';
+      const value = measurementValue(record);
+      label.textContent = record.points.map(pointName).join(record.type === 'distance' ? ' ↔ ' : ' → ') + ' · ' + (value === null ? '—' : value.toFixed(2) + (record.type === 'distance' ? ' Å' : '°'));
+      const remove = document.createElement('button'); remove.className = 'btn btn-ghost'; remove.type = 'button'; remove.textContent = 'Remove';
+      remove.addEventListener('click', () => { measurementRecords = measurementRecords.filter(item => item.id !== record.id); renderMeasurementList(); rebuildMeasurements(); });
+      row.append(label, remove); list.append(row);
+    });
+  }
+
+  function handleAtomClick(entry, atom) {
+    selectResidue(entry, atom);
+    if (!measurementActive) return;
+    measurementDraft.push(atomReference(entry, atom));
+    const required = root.querySelector('#gpv-measure-type').value === 'angle' ? 3 : 2;
+    root.querySelector('#gpv-measure-state').textContent = 'Selected ' + measurementDraft.length + ' of ' + required + ' atoms.';
+    if (measurementDraft.length >= required) {
+      measurementRecords.push({ id: nextAnnotationId++, type: root.querySelector('#gpv-measure-type').value, points: measurementDraft.slice(0, required) });
+      measurementDraft = [];
+      renderMeasurementList(); rebuildMeasurements();
+      root.querySelector('#gpv-measure-state').textContent = 'Measurement added. Select ' + required + ' atoms for another.';
+    }
+  }
+
+  function toggleMeasurement() {
+    measurementActive = !measurementActive; measurementDraft = [];
+    root.querySelector('#gpv-measure').textContent = measurementActive ? 'Stop measuring' : 'Start measuring';
+    const required = root.querySelector('#gpv-measure-type').value === 'angle' ? 3 : 2;
+    root.querySelector('#gpv-measure-state').textContent = measurementActive ? 'Select ' + required + ' atoms in the viewer.' : 'Measurement mode is off.';
+  }
+
+  function ensureCompareViewer() {
+    if (compareViewer) return compareViewer;
+    compareViewer = $3Dmol.createViewer(root.querySelector('#gpv-stage-compare'), { backgroundColor: '#ffffff', backgroundAlpha: 0, antialias: true });
+    applyAppearance();
+    return compareViewer;
+  }
+
+  function renderCompareViewer() {
+    const enabled = root.querySelector('#gpv-side-by-side').checked && structures.length > 0;
+    root.querySelector('#gpv-compare-pane').hidden = !enabled;
+    root.querySelector('#gpv-left-label').hidden = !enabled;
+    root.querySelector('#gpv-view-grid').classList.toggle('is-comparing', enabled);
+    if (!enabled) return;
+    const target = entryById(Number(root.querySelector('#gpv-right-model').value));
+    if (!target) return;
+    /* Without this, a lazily-loaded model has no atoms of its own and the clone
+       silently shows unaligned, unstyled coordinates. */
+    if (!target.model) {
+      try { materializeEntry(target); }
+      catch (error) { showImportErrors([error.message]); return; }
+    }
+    const secondary = ensureCompareViewer();
+    secondary.removeAllModels(); secondary.removeAllLabels(); secondary.removeAllShapes();
+    compareModel = secondary.addModel(target.text, target.format);
+    const cloneAtoms = compareModel.selectedAtoms({});
+    cloneAtoms.forEach((atom, index) => { if (target.atoms[index]) { atom.x = target.atoms[index].x; atom.y = target.atoms[index].y; atom.z = target.atoms[index].z; } });
+    compareModel.setStyle({}, styleFor(target));
+    const background = backgroundSpec(); secondary.setBackgroundColor(background.color, background.alpha);
+    if (typeof secondary.setProjection === 'function') secondary.setProjection(root.querySelector('#gpv-projection').value);
+    secondary.zoomTo();
+    if (typeof viewer.getView === 'function' && typeof secondary.setView === 'function') secondary.setView(viewer.getView());
+    secondary.render();
+    setTimeout(() => secondary.resize(), 0);
+  }
+
+  function restoreCoordinates(shouldRender = true) {
+    structures.filter(entry => entry.model).forEach(entry => entry.atoms.forEach((atom, index) => {
+      const original = entry.originalAtoms[index];
+      /* originalAtoms is cleared when a model is released to reclaim memory. */
+      if (!original) return;
+      atom.x = original.x;
+      atom.y = original.y;
+      atom.z = original.z;
+    }));
+    if (shouldRender) {
+      alignmentResults = [];
+      renderAlignmentResults();
+      applyStyle();
+      viewer.zoomTo();
+      viewer.render();
+      updateStatus('Original coordinates restored');
+    }
+  }
+
+  function centroid(points) {
+    const total = points.reduce((sum, point) => [sum[0] + point[0], sum[1] + point[1], sum[2] + point[2]], [0, 0, 0]);
+    return total.map(value => value / points.length);
+  }
+
+  function identifierPairs(reference, target) {
+    const referenceMap = new Map(reference.atoms.filter(atom => atom.atom === 'CA').map(atom => [(atom.chain || '') + '|' + atom.resi, atom]));
+    const pairs = target.atoms.filter(atom => atom.atom === 'CA' && referenceMap.has((atom.chain || '') + '|' + atom.resi)).map(atom => [referenceMap.get((atom.chain || '') + '|' + atom.resi), atom]);
+    return { pairs, method: 'chain/residue IDs', identity: null, chainPairs: null };
+  }
+
+  const aminoAcids = {
+    ALA: 'A', ARG: 'R', ASN: 'N', ASP: 'D', CYS: 'C', GLN: 'Q', GLU: 'E', GLY: 'G', HIS: 'H', ILE: 'I',
+    LEU: 'L', LYS: 'K', MET: 'M', PHE: 'F', PRO: 'P', SER: 'S', THR: 'T', TRP: 'W', TYR: 'Y', VAL: 'V',
+    SEC: 'U', PYL: 'O', ASX: 'B', GLX: 'Z'
+  };
+
+  function residueChains(entry) {
+    const chains = new Map();
+    entry.atoms.filter(atom => atom.atom === 'CA').forEach(atom => {
+      const chain = atom.chain || '';
+      if (!chains.has(chain)) chains.set(chain, []);
+      chains.get(chain).push({ atom, letter: aminoAcids[String(atom.resn || '').toUpperCase()] || 'X' });
+    });
+    return chains;
+  }
+
+  function alignSequences(referenceResidues, targetResidues) {
+    const rows = referenceResidues.length + 1;
+    const columns = targetResidues.length + 1;
+    const scores = Array.from({ length: rows }, () => new Int32Array(columns));
+    const trace = Array.from({ length: rows }, () => new Uint8Array(columns));
+    for (let i = 1; i < rows; i += 1) { scores[i][0] = -2 * i; trace[i][0] = 1; }
+    for (let j = 1; j < columns; j += 1) { scores[0][j] = -2 * j; trace[0][j] = 2; }
+    for (let i = 1; i < rows; i += 1) {
+      for (let j = 1; j < columns; j += 1) {
+        const diagonal = scores[i - 1][j - 1] + (referenceResidues[i - 1].letter === targetResidues[j - 1].letter ? 2 : -1);
+        const up = scores[i - 1][j] - 2;
+        const left = scores[i][j - 1] - 2;
+        const best = Math.max(diagonal, up, left);
+        scores[i][j] = best;
+        trace[i][j] = best === diagonal ? 0 : best === up ? 1 : 2;
+      }
+    }
+    let i = referenceResidues.length;
+    let j = targetResidues.length;
+    const pairs = [];
+    let matches = 0;
+    while (i > 0 || j > 0) {
+      const direction = trace[i][j];
+      if (i > 0 && j > 0 && direction === 0) {
+        const referenceResidue = referenceResidues[i - 1];
+        const targetResidue = targetResidues[j - 1];
+        pairs.push([referenceResidue.atom, targetResidue.atom]);
+        if (referenceResidue.letter === targetResidue.letter) matches += 1;
+        i -= 1;
+        j -= 1;
+      } else if (i > 0 && (j === 0 || direction === 1)) i -= 1;
+      else j -= 1;
+    }
+    pairs.reverse();
+    return { pairs, identity: pairs.length ? matches / pairs.length : 0, score: scores[rows - 1][columns - 1] };
+  }
+
+  function sequencePairs(reference, target) {
+    const referenceChains = residueChains(reference);
+    const targetChains = residueChains(target);
+    const candidates = [];
+    referenceChains.forEach((referenceResidues, referenceChain) => {
+      targetChains.forEach((targetResidues, targetChain) => {
+        const alignment = alignSequences(referenceResidues, targetResidues);
+        candidates.push({ referenceChain, targetChain, ...alignment });
+      });
+    });
+    candidates.sort((a, b) => (b.identity - a.identity) || (b.pairs.length - a.pairs.length) || (b.score - a.score));
+    const usedReference = new Set();
+    const usedTarget = new Set();
+    const selected = [];
+    candidates.forEach(candidate => {
+      if (!usedReference.has(candidate.referenceChain) && !usedTarget.has(candidate.targetChain)) {
+        usedReference.add(candidate.referenceChain);
+        usedTarget.add(candidate.targetChain);
+        selected.push(candidate);
+      }
+    });
+    const pairs = selected.flatMap(candidate => candidate.pairs);
+    const matches = selected.reduce((sum, candidate) => sum + Math.round(candidate.identity * candidate.pairs.length), 0);
+    return {
+      pairs,
+      method: 'global sequence alignment',
+      identity: pairs.length ? matches / pairs.length : 0,
+      chainPairs: selected.map(candidate => (candidate.referenceChain || '—') + '→' + (candidate.targetChain || '—')).join('; ')
+    };
+  }
+
+  function caPairs(reference, target) {
+    return root.querySelector('#gpv-alignment-mode').value === 'sequence' ? sequencePairs(reference, target) : identifierPairs(reference, target);
+  }
+
+  function determinant3(matrix) {
+    return matrix[0][0] * (matrix[1][1] * matrix[2][2] - matrix[1][2] * matrix[2][1])
+      - matrix[0][1] * (matrix[1][0] * matrix[2][2] - matrix[1][2] * matrix[2][0])
+      + matrix[0][2] * (matrix[1][0] * matrix[2][1] - matrix[1][1] * matrix[2][0]);
+  }
+
+  function alignEntry(reference, target) {
+    const pairing = caPairs(reference, target);
+    const pairs = pairing.pairs;
+    if (pairs.length < 3) return null;
+    const referencePoints = pairs.map(pair => [pair[0].x, pair[0].y, pair[0].z]);
+    const targetPoints = pairs.map(pair => [pair[1].x, pair[1].y, pair[1].z]);
+    const referenceCenter = centroid(referencePoints);
+    const targetCenter = centroid(targetPoints);
+    const x = targetPoints.map(point => point.map((value, axis) => value - targetCenter[axis]));
+    const y = referencePoints.map(point => point.map((value, axis) => value - referenceCenter[axis]));
+    const svd = numeric.svd(numeric.dot(numeric.transpose(x), y));
+    let rotation = numeric.dot(svd.V, numeric.transpose(svd.U));
+    if (determinant3(rotation) < 0) {
+      svd.V.forEach(row => { row[2] *= -1; });
+      rotation = numeric.dot(svd.V, numeric.transpose(svd.U));
+    }
+    target.atoms.forEach(atom => {
+      const centered = [atom.x - targetCenter[0], atom.y - targetCenter[1], atom.z - targetCenter[2]];
+      const transformed = numeric.dot(rotation, centered);
+      atom.x = transformed[0] + referenceCenter[0];
+      atom.y = transformed[1] + referenceCenter[1];
+      atom.z = transformed[2] + referenceCenter[2];
+    });
+    const squaredError = pairs.reduce((sum, pair) => {
+      const dx = pair[0].x - pair[1].x;
+      const dy = pair[0].y - pair[1].y;
+      const dz = pair[0].z - pair[1].z;
+      return sum + dx * dx + dy * dy + dz * dz;
+    }, 0);
+    return { count: pairs.length, rmsd: Math.sqrt(squaredError / pairs.length), method: pairing.method, identity: pairing.identity, chainPairs: pairing.chainPairs, name: target.name, reference: reference.name };
+  }
+
+  function renderAlignmentResults() {
+    const wrap = root.querySelector('#gpv-alignment-wrap');
+    wrap.hidden = alignmentResults.length === 0;
+    root.querySelector('#gpv-alignment-csv').disabled = alignmentResults.length === 0;
+    const body = root.querySelector('#gpv-alignment-results');
+    body.replaceChildren();
+    alignmentResults.forEach(result => {
+      const row = document.createElement('tr');
+      const values = [result.name, result.reference, String(result.count), result.identity === null ? '—' : (result.identity * 100).toFixed(1) + '%', result.rmsd.toFixed(3), result.method + (result.chainPairs ? ' · ' + result.chainPairs : '')];
+      values.forEach((value, index) => {
+        const cell = document.createElement(index < 2 ? 'th' : 'td');
+        cell.textContent = value;
+        if (index >= 2 && index <= 4) cell.className = 'text-end';
+        row.append(cell);
+      });
+      body.append(row);
+    });
+  }
+
+  function downloadAlignmentCsv() {
+    const quote = value => '"' + String(value ?? '').replace(/"/g, '""') + '"';
+    const rows = [['model', 'reference', 'ca_pairs', 'sequence_identity', 'rmsd_angstrom', 'mapping', 'chain_pairs']];
+    alignmentResults.forEach(result => rows.push([result.name, result.reference, result.count, result.identity === null ? '' : result.identity, result.rmsd, result.method, result.chainPairs || '']));
+    downloadBlob(rows.map(row => row.map(quote).join(',')).join('\n'), 'text/csv', 'protein-alignment-results.csv');
+    updateStatus('Alignment CSV downloaded');
+  }
+
+  function alignVisible() {
+    if (typeof numeric === 'undefined' || typeof numeric.svd !== 'function') {
+      announce('Alignment needs the numeric.js library, which did not load. Reload the page and try again.', 'error');
+      return;
+    }
+    const referenceId = Number(root.querySelector('#gpv-reference').value);
+    const reference = entryById(referenceId);
+    if (!reference) return;
+    const done = setBusy('Aligning…');
+    const failures = [];
+    const ready = entry => {
+      try { materializeEntry(entry); return true; }
+      catch (error) { failures.push(error.message); entry.visible = false; return false; }
+    };
+    if (!ready(reference)) { done(); showImportErrors(failures); announce('The reference model could not be read', 'error'); return; }
+    const targets = visibleEntries().filter(ready);
+    restoreCoordinates(false);
+    const results = [];
+    targets.forEach(entry => {
+      if (entry !== reference) {
+        const result = alignEntry(reference, entry);
+        if (result) results.push(result);
+      }
+    });
+    done();
+    showImportErrors(failures);
+    alignmentResults = results;
+    renderAlignmentResults();
+    applyStyle();
+    viewer.zoomTo();
+    viewer.render();
+    if (results.length) {
+      const averageRmsd = mean(results.map(result => result.rmsd));
+      const identities = results.map(result => result.identity).filter(value => value !== null);
+      announce('Aligned ' + results.length + ' model' + (results.length === 1 ? '' : 's') + ' · mean Cα RMSD ' + averageRmsd.toFixed(2) + ' Å' + (identities.length ? ' · mean identity ' + (mean(identities) * 100).toFixed(1) + '%' : ''));
+    } else announce('No model had at least three matching Cα atoms to align on', 'error');
+  }
+
+  function recordSpinVideo() {
+    const canvas = root.querySelector('#gpv-stage canvas');
+    if (!canvas || !canvas.captureStream || typeof MediaRecorder === 'undefined') {
+      announce('This browser cannot record video from a canvas. Safari in particular does not support it; Chrome and Firefox do.', 'error');
+      return;
+    }
+    if (restoreMotion !== null) return;
+    const button = root.querySelector('#gpv-video');
+    const duration = Number(root.querySelector('#gpv-video-length').value) || 5;
+    const stream = canvas.captureStream(30);
+    const mimeType = MediaRecorder.isTypeSupported('video/webm;codecs=vp9') ? 'video/webm;codecs=vp9' : 'video/webm';
+    const recorder = new MediaRecorder(stream, { mimeType });
+    const chunks = [];
+    recorder.ondataavailable = event => { if (event.data.size) chunks.push(event.data); };
+    recorder.onstop = () => {
+      viewer.spin(false);
+      stream.getTracks().forEach(track => track.stop());
+      const url = URL.createObjectURL(new Blob(chunks, { type: 'video/webm' }));
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = 'protein-spin.webm';
+      link.click();
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
+      button.disabled = structures.length === 0;
+      button.textContent = 'Record spin video';
+      /* Recording commandeers the viewer's motion; put the user's choice back. */
+      if (restoreMotion !== null) { root.querySelector('#gpv-motion').value = restoreMotion; restoreMotion = null; applyMotion(); }
+      announce('Spin video downloaded');
+    };
+    restoreMotion = root.querySelector('#gpv-motion').value;
+    stopMotion();
+    button.disabled = true;
+    button.textContent = 'Recording ' + duration + 's…';
+    recorder.start();
+    viewer.spin('y', 0.8);
+    announce('Recording a ' + duration + ' second spin video…');
+    setTimeout(() => recorder.stop(), duration * 1000);
+  }
+
+  function rankingAssets(name, data) {
+    if (!data || !Array.isArray(data.order)) return [];
+    const scoreMaps = [data['iptm+ptm'], data.ranking_confidences, data.plddts].filter(value => value && typeof value === 'object');
+    return data.order.map((modelName, rankIndex) => {
+      let score = null;
+      scoreMaps.some(map => {
+        const value = finiteNumber(map[modelName]);
+        if (value !== null) { score = value; return true; }
+        return false;
+      });
+      return {
+        name,
+        modelName,
+        rankIndex,
+        rank: rankIndex + 1,
+        confidence: { rankingScore: score }
+      };
+    });
+  }
+
+  function parseRankingCsv(name, textValue) {
+    const rows = textValue.trim().split(/\r?\n/).map(line => line.split(',').map(value => value.trim()));
+    if (rows.length < 2) return [];
+    const headers = rows[0].map(value => value.toLowerCase());
+    const seedIndex = headers.indexOf('seed');
+    const sampleIndex = headers.indexOf('sample');
+    const scoreIndex = headers.indexOf('ranking_score');
+    if (scoreIndex < 0) return [];
+    return rows.slice(1).map(row => ({
+      name,
+      seed: seedIndex >= 0 ? row[seedIndex] : undefined,
+      sample: sampleIndex >= 0 ? row[sampleIndex] : undefined,
+      confidence: { rankingScore: finiteNumber(row[scoreIndex]) }
+    })).sort((a, b) => (b.confidence.rankingScore ?? -Infinity) - (a.confidence.rankingScore ?? -Infinity)).map((asset, index) => ({ ...asset, rank: index + 1 }));
+  }
+
+  function registerMetadata(name, textValue, collection = null) {
+    const lower = name.toLowerCase();
+    if (lower.endsWith('.csv')) {
+      const assets = parseRankingCsv(name, textValue);
+      assets.forEach(asset => { asset.collection = collection; });
+      confidenceAssets.push(...assets);
+      return assets.length > 0;
+    }
+    let data;
+    try { data = JSON.parse(textValue); } catch (error) { return false; }
+    if (data && data.type === 'protein-viewer-scene') {
+      pendingScene = data;
+      return true;
+    }
+    const ranked = rankingAssets(name, data);
+    if (ranked.length) {
+      ranked.forEach(asset => { asset.collection = collection; });
+      confidenceAssets.push(...ranked);
+      return true;
+    }
+    const confidence = confidenceFromJson(data);
+    if (!confidence) return false;
+    const useful = Object.values(confidence).some(value => value !== null && value !== false);
+    if (!useful) return false;
+    confidenceAssets.push({ name, confidence, rank: null, collection });
+    return true;
+  }
+
+  function provenanceValues() {
+    return {
+      title: root.querySelector('#gpv-project-title').value.trim(),
+      source: root.querySelector('#gpv-project-source').value.trim(),
+      method: root.querySelector('#gpv-project-method').value.trim(),
+      notes: root.querySelector('#gpv-project-notes').value.trim()
+    };
+  }
+
+  async function saveScene() {
+    const modelRecords = await Promise.all(structures.map(async entry => ({
+      name: entry.name,
+      sourcePath: entry.sourcePath,
+      sha256: entry.hash || await sha256(entry.text),
+      visible: entry.visible,
+      color: entry.color
+    })));
+    const active = activeEntry();
+    const reference = structures.find(entry => entry.id === Number(root.querySelector('#gpv-reference').value));
+    const scene = {
+      type: 'protein-viewer-scene',
+      schemaVersion: 1,
+      viewerVersion,
+      createdAt: new Date().toISOString(),
+      provenance: provenanceValues(),
+      confidenceSources: [...new Set(confidenceAssets.map(asset => asset.name))],
+      models: modelRecords,
+      settings: {
+        viewMode: root.querySelector('#gpv-view-mode').value,
+        representation: root.querySelector('#gpv-style').value,
+        colorMode: root.querySelector('#gpv-color-mode').value,
+        modelOrder: root.querySelector('#gpv-order').value,
+        alignmentMode: root.querySelector('#gpv-alignment-mode').value,
+        alignmentApplied: alignmentResults.length > 0,
+        activeModel: active ? active.name : null,
+        referenceModel: reference ? reference.name : null,
+        allResidueLabels: root.querySelector('#gpv-all-labels').checked,
+        projection: root.querySelector('#gpv-projection').value,
+        background: root.querySelector('#gpv-background').value,
+        backgroundColor: root.querySelector('#gpv-background-color').value,
+        sideBySide: root.querySelector('#gpv-side-by-side').checked,
+        leftModel: (structures.find(entry => entry.id === Number(root.querySelector('#gpv-left-model').value)) || {}).name || null,
+        rightModel: (structures.find(entry => entry.id === Number(root.querySelector('#gpv-right-model').value)) || {}).name || null,
+        camera: typeof viewer.getView === 'function' ? viewer.getView() : null
+      },
+      labels: labelRecords.map(label => ({
+        model: (structures.find(entry => entry.id === label.entryId) || {}).name,
+        chain: label.chain,
+        resi: label.resi,
+        atom: label.atom,
+        text: label.text
+      })),
+      selections: selectionRecords.map(record => ({ model: (structures.find(entry => entry.id === record.entryId) || {}).name, chain: record.chain, residues: record.residues, action: record.action, color: record.color })),
+      measurements: measurementRecords.map(record => ({ type: record.type, points: record.points.map(point => ({ model: (structures.find(entry => entry.id === point.entryId) || {}).name, chain: point.chain, resi: point.resi, atom: point.atom, index: point.index })) })),
+      savedViews: savedViews.map(view => ({ ...view }))
+    };
+    downloadBlob(JSON.stringify(scene, null, 2), 'application/json', 'protein-viewer-scene.json');
+    updateStatus('Reproducible scene JSON downloaded');
+  }
+
+  async function applyScene(scene) {
+    if (!scene || scene.type !== 'protein-viewer-scene') return;
+    const byName = new Map(structures.map(entry => [entry.name, entry]));
+    let hashWarnings = 0;
+    for (const modelRecord of scene.models || []) {
+      const entry = byName.get(modelRecord.name);
+      if (!entry) continue;
+      entry.visible = modelRecord.visible !== false;
+      if (/^#[0-9a-f]{6}$/i.test(modelRecord.color || '')) entry.color = modelRecord.color;
+      if (modelRecord.sha256) {
+        const actual = entry.hash || await sha256(entry.text);
+        if (actual && actual !== modelRecord.sha256) hashWarnings += 1;
+      }
+    }
+    const settings = scene.settings || {};
+    if (['overlay', 'single'].includes(settings.viewMode)) root.querySelector('#gpv-view-mode').value = settings.viewMode;
+    if (['cartoon', 'stick', 'sphere', 'line'].includes(settings.representation)) root.querySelector('#gpv-style').value = settings.representation;
+    if (['structure', 'chain', 'plddt', 'spectrum', 'element'].includes(settings.colorMode)) root.querySelector('#gpv-color-mode').value = settings.colorMode;
+    if (['loaded', 'ranking', 'plddt'].includes(settings.modelOrder)) root.querySelector('#gpv-order').value = settings.modelOrder;
+    if (['sequence', 'identifier'].includes(settings.alignmentMode)) root.querySelector('#gpv-alignment-mode').value = settings.alignmentMode;
+    if (['perspective', 'orthographic'].includes(settings.projection)) root.querySelector('#gpv-projection').value = settings.projection;
+    if (['transparent', 'white', 'dark', 'custom'].includes(settings.background)) root.querySelector('#gpv-background').value = settings.background;
+    if (/^#[0-9a-f]{6}$/i.test(settings.backgroundColor || '')) root.querySelector('#gpv-background-color').value = settings.backgroundColor;
+    const active = byName.get(settings.activeModel);
+    if (active) activeId = active.id;
+    const reference = byName.get(settings.referenceModel);
+    labelRecords = (scene.labels || []).map(label => {
+      const entry = byName.get(label.model);
+      if (!entry) return null;
+      const atom = entry.atoms.find(item => (item.chain || '') === (label.chain || '') && item.resi === label.resi && (item.atom === label.atom || item.atom === 'CA'));
+      if (!atom) return null;
+      return { entryId: entry.id, chain: label.chain || '', resi: label.resi, atom: label.atom || 'CA', resn: atom.resn, x: atom.x, y: atom.y, z: atom.z, key: residueKey(entry.id, label.chain, label.resi), text: label.text };
+    }).filter(Boolean);
+    selectionRecords = (scene.selections || []).map(record => {
+      const entry = byName.get(record.model); if (!entry) return null;
+      return { id: nextAnnotationId++, entryId: entry.id, chain: record.chain || '', residues: (record.residues || []).map(Number).filter(Number.isFinite), action: record.action === 'hide' ? 'hide' : 'highlight', color: /^#[0-9a-f]{6}$/i.test(record.color || '') ? record.color : '#f97316' };
+    }).filter(Boolean);
+    measurementRecords = (scene.measurements || []).map(record => {
+      const points = (record.points || []).map(point => { const entry = byName.get(point.model); return entry ? { entryId: entry.id, chain: point.chain || '', resi: point.resi, atom: point.atom || '', index: point.index } : null; }).filter(Boolean);
+      return points.length >= 2 ? { id: nextAnnotationId++, type: record.type === 'angle' ? 'angle' : 'distance', points } : null;
+    }).filter(Boolean);
+    savedViews = (scene.savedViews || []).map(view => ({ ...view, id: nextAnnotationId++ }));
+    root.querySelector('#gpv-all-labels').checked = settings.allResidueLabels === true;
+    const provenance = scene.provenance || {};
+    root.querySelector('#gpv-project-title').value = provenance.title || '';
+    root.querySelector('#gpv-project-source').value = provenance.source || '';
+    root.querySelector('#gpv-project-method').value = provenance.method || '';
+    root.querySelector('#gpv-project-notes').value = provenance.notes || '';
+    applyModelOrder();
+    renderList();
+    if (reference) root.querySelector('#gpv-reference').value = String(reference.id);
+    const left = byName.get(settings.leftModel); const right = byName.get(settings.rightModel);
+    if (left) root.querySelector('#gpv-left-model').value = String(left.id);
+    if (right) root.querySelector('#gpv-right-model').value = String(right.id);
+    root.querySelector('#gpv-side-by-side').checked = settings.sideBySide === true;
+    renderSelectionList(); renderMeasurementList(); renderSavedViews(); applyAppearance();
+    applyStyle();
+    if (settings.alignmentApplied && reference) alignVisible();
+    if (settings.camera && typeof viewer.setView === 'function') viewer.setView(settings.camera);
+    viewer.render();
+    pendingScene = null;
+    updateStatus('Scene restored' + (hashWarnings ? ' · warning: ' + hashWarnings + ' file hash mismatch' + (hashWarnings === 1 ? '' : 'es') : ''));
+  }
+
+  function nextPaint() {
+    return new Promise(resolve => requestAnimationFrame(() => resolve()));
+  }
+
+  function afterPaint() {
+    return new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+  }
+
+  function importProgress(value, maximum, label) {
+    const state = root.querySelector('#gpv-import-state');
+    state.hidden = false;
+    const progress = root.querySelector('#gpv-import-progress');
+    progress.max = Math.max(1, maximum); progress.value = Math.max(0, value);
+    root.querySelector('#gpv-import-label').textContent = label;
+  }
+
+  function uniqueModelName(name, collection) {
+    if (!structures.some(entry => entry.name === name)) return name;
+    const prefixed = collection + ' › ' + name;
+    if (!structures.some(entry => entry.name === prefixed)) return prefixed;
+    let index = 2;
+    while (structures.some(entry => entry.name === prefixed + ' (' + index + ')')) index += 1;
+    return prefixed + ' (' + index + ')';
+  }
+
+  async function loadFiles(files) {
+    if (!files.length) return;
+    showImportErrors([]);
+    listLimit = listPageSize;
+    const doneBusy = setBusy('Importing ' + files.length + ' file' + (files.length === 1 ? '' : 's') + '…');
+    stopCycle(); stopMotion();
+    importProgress(0, files.length, 'Reading ' + files.length + ' file' + (files.length === 1 ? '' : 's') + '…');
+    updateStatus('Loading…');
+    let loaded = 0;
+    let skipped = 0;
+    let deferredPae = 0;
+    let importedArchive = false;
+    const failures = [];
+    for (let fileIndex = 0; fileIndex < files.length; fileIndex += 1) {
+      const file = files[fileIndex];
+      const extension = file.name.split('.').pop().toLowerCase();
+      try {
+        if (extension === 'zip') {
+          if (typeof JSZip === 'undefined') throw new Error('The ZIP reader did not load. Refresh the page and try again.');
+          importedArchive = true;
+          importProgress(fileIndex, files.length, 'Opening ' + file.name + '…');
+          const zip = await JSZip.loadAsync(file);
+          const members = Object.values(zip.files);
+          const structureMembers = members.filter(member => {
+            const lower = member.name.toLowerCase();
+            const supported = lower.endsWith('.pdb') || lower.endsWith('.cif') || lower.endsWith('.mmcif');
+            return !member.dir && supported && !lower.includes('/templates/') && !lower.includes('template_hit');
+          });
+          if (!structureMembers.length) { skipped += 1; failures.push(file.name + ': no structure models found'); continue; }
+          root.querySelector('#gpv-view-mode').value = 'single';
+          for (let memberIndex = 0; memberIndex < structureMembers.length; memberIndex += 1) {
+            const member = structureMembers[memberIndex];
+            const memberExtension = member.name.split('.').pop().toLowerCase();
+            try {
+              const pathParts = member.name.split('/').filter(Boolean);
+              const displayName = pathParts.length > 1 ? pathParts.slice(-2).join(' / ') : pathParts[0];
+              addStructure(uniqueModelName(displayName, file.name), await member.async('string'), memberExtension === 'pdb' ? 'pdb' : 'cif', member.name, file.name, memberIndex > 0);
+              loaded += 1;
+              importProgress(fileIndex + (memberIndex + 1) / Math.max(1, structureMembers.length), files.length, file.name + ' · model ' + (memberIndex + 1) + ' of ' + structureMembers.length);
+              if (memberIndex === 0) {
+                renderList(); applyStyle();
+                const active = activeEntry(); if (active && active.model) { viewer.zoomTo({ model: active.model.getID() }); viewer.render(); }
+              }
+              if (memberIndex % 5 === 4) await nextPaint();
+            } catch (error) { skipped += 1; failures.push(member.name + ': ' + error.message); }
+          }
+          const metadataMembers = members.filter(member => {
+            const lower = member.name.toLowerCase();
+            return !member.dir && (lower.endsWith('.json') || lower.endsWith('ranking_scores.csv')) && !lower.includes('/templates/');
+          });
+          const fullData = metadataMembers.filter(member => /_full_data_\d+\.json$/i.test(member.name));
+          const selectedMetadata = structureMembers.length > 25 ? metadataMembers.filter(member => !fullData.includes(member)) : metadataMembers;
+          deferredPae += metadataMembers.length - selectedMetadata.length;
+          for (let metadataIndex = 0; metadataIndex < selectedMetadata.length; metadataIndex += 1) {
+            const member = selectedMetadata[metadataIndex];
+            try { registerMetadata(member.name, await member.async('string'), file.name); }
+            catch (error) { skipped += 1; failures.push(member.name + ': confidence data could not be read'); }
+            if (metadataIndex % 12 === 11) await nextPaint();
+          }
+        } else if (['pdb', 'cif', 'mmcif'].includes(extension)) {
+          addStructure(uniqueModelName(file.name, 'Individual files'), await file.text(), extension === 'pdb' ? 'pdb' : 'cif', file.name, 'Individual files');
+          loaded += 1;
+        } else if (['json', 'csv'].includes(extension)) {
+          if (!registerMetadata(file.name, await file.text())) skipped += 1;
+        } else {
+          skipped += 1; failures.push(file.name + ': unsupported file type');
+        }
+      } catch (error) {
+        skipped += 1; failures.push(file.name + ': ' + error.message);
+      }
+      importProgress(fileIndex + 1, files.length, 'Finished ' + file.name);
+      await nextPaint();
+    }
+    if (importedArchive && structures.length > 1) root.querySelector('#gpv-view-mode').value = 'single';
+    attachConfidenceAssets();
+    renderList();
+    applyStyle();
+    const active = activeEntry();
+    if (loaded && active && active.model) viewer.zoomTo({ model: active.model.getID() });
+    viewer.render();
+    root.querySelector('#gpv-files').value = '';
+    root.querySelector('#gpv-save-scene').disabled = structures.length === 0;
+    root.querySelector('#gpv-import-state').hidden = true;
+    if (pendingScene && structures.length) await applyScene(pendingScene);
+    else {
+      const note = loaded ? 'Loaded ' + loaded + ' model' + (loaded === 1 ? '' : 's') + ' from ' + files.length + ' source' + (files.length === 1 ? '' : 's') : pendingScene ? 'Scene loaded; now add its matching structure files' : confidenceAssets.length ? 'Confidence data loaded; add matching structures' : 'No supported structures found';
+      updateStatus(note + (confidenceAssets.length ? ' · confidence attached' : '') + (deferredPae ? ' · skipped ' + deferredPae + ' large PAE files for performance' : '') + (skipped ? ' · ' + skipped + ' skipped' : ''));
+    }
+    showImportErrors(failures);
+    doneBusy();
+    if (loaded) toast('Loaded ' + loaded + ' model' + (loaded === 1 ? '' : 's') + (skipped ? ' · ' + skipped + ' skipped' : ''));
+    else if (failures.length) toast(failures[0], 'error');
+  }
+
+  function stopMotion() {
+    viewer.spin(false);
+    cancelAnimationFrame(animationFrame);
+    animationFrame = 0;
+  }
+
+  function startRock() {
+    const tick = () => {
+      const speed = Number(root.querySelector('#gpv-speed').value);
+      const delta = 0.32 * speed * rockDirection;
+      viewer.rotate(delta, 'y');
+      viewer.render();
+      rockPhase += Math.abs(delta);
+      if (rockPhase >= 24) { rockPhase = 0; rockDirection *= -1; }
+      animationFrame = requestAnimationFrame(tick);
+    };
+    tick();
+  }
+
+  function applyMotion() {
+    stopMotion();
+    const motion = root.querySelector('#gpv-motion').value;
+    const speed = Number(root.querySelector('#gpv-speed').value);
+    if (motion === 'spin') viewer.spin('y', 0.7 * speed);
+    if (motion === 'rock') startRock();
+    updateStatus(motion === 'off' ? 'Ready' : root.querySelector('#gpv-motion').selectedOptions[0].text);
+  }
+
+  function captureViewState(name = '', caption = '') {
+    const active = activeEntry();
+    return {
+      id: nextAnnotationId++, name, caption,
+      camera: typeof viewer.getView === 'function' ? viewer.getView() : null,
+      activeModel: active ? active.name : null,
+      visibleModels: structures.filter(entry => entry.visible).map(entry => entry.name),
+      colors: Object.fromEntries(structures.map(entry => [entry.name, entry.color])),
+      viewMode: root.querySelector('#gpv-view-mode').value,
+      representation: root.querySelector('#gpv-style').value,
+      colorMode: root.querySelector('#gpv-color-mode').value,
+      projection: root.querySelector('#gpv-projection').value,
+      background: root.querySelector('#gpv-background').value,
+      backgroundColor: root.querySelector('#gpv-background-color').value,
+      sideBySide: root.querySelector('#gpv-side-by-side').checked,
+      leftModel: (structures.find(entry => entry.id === Number(root.querySelector('#gpv-left-model').value)) || {}).name || null,
+      rightModel: (structures.find(entry => entry.id === Number(root.querySelector('#gpv-right-model').value)) || {}).name || null
+    };
+  }
+
+  function applyViewState(state) {
+    const byName = new Map(structures.map(entry => [entry.name, entry]));
+    const visibleNames = new Set(state.visibleModels || []);
+    structures.forEach(entry => {
+      entry.visible = visibleNames.has(entry.name);
+      if (/^#[0-9a-f]{6}$/i.test((state.colors || {})[entry.name] || '')) entry.color = state.colors[entry.name];
+    });
+    const active = byName.get(state.activeModel); if (active) activeId = active.id;
+    if (['overlay', 'single'].includes(state.viewMode)) root.querySelector('#gpv-view-mode').value = state.viewMode;
+    if (['cartoon', 'stick', 'sphere', 'line'].includes(state.representation)) root.querySelector('#gpv-style').value = state.representation;
+    if (['structure', 'chain', 'plddt', 'spectrum', 'element'].includes(state.colorMode)) root.querySelector('#gpv-color-mode').value = state.colorMode;
+    if (['perspective', 'orthographic'].includes(state.projection)) root.querySelector('#gpv-projection').value = state.projection;
+    if (['transparent', 'white', 'dark', 'custom'].includes(state.background)) root.querySelector('#gpv-background').value = state.background;
+    if (/^#[0-9a-f]{6}$/i.test(state.backgroundColor || '')) root.querySelector('#gpv-background-color').value = state.backgroundColor;
+    root.querySelector('#gpv-side-by-side').checked = state.sideBySide === true;
+    const left = byName.get(state.leftModel); const right = byName.get(state.rightModel);
+    renderList();
+    if (left) root.querySelector('#gpv-left-model').value = String(left.id);
+    if (right) root.querySelector('#gpv-right-model').value = String(right.id);
+    applyAppearance(); applyStyle();
+    if (state.camera && typeof viewer.setView === 'function') viewer.setView(state.camera);
+    viewer.render(); renderCompareViewer();
+  }
+
+  function renderSavedViews() {
+    const list = root.querySelector('#gpv-saved-views'); list.replaceChildren();
+    savedViews.forEach((view, index) => {
+      const row = document.createElement('div'); row.className = 'gpv-entry';
+      const textValue = document.createElement('span'); textValue.className = 'gpv-entry-name';
+      textValue.textContent = String.fromCharCode(65 + index) + ' · ' + view.name + (view.caption ? ' — ' + view.caption : '');
+      const load = document.createElement('button'); load.className = 'btn'; load.type = 'button'; load.textContent = 'Load'; load.addEventListener('click', () => { applyViewState(view); updateStatus('Loaded view ' + view.name); });
+      const remove = document.createElement('button'); remove.className = 'btn btn-ghost'; remove.type = 'button'; remove.textContent = 'Remove'; remove.addEventListener('click', () => { savedViews = savedViews.filter(item => item.id !== view.id); renderSavedViews(); updateStatus('Saved view removed'); });
+      row.append(textValue, load, remove); list.append(row);
+    });
+    updateStatus();
+  }
+
+  function saveCurrentView() {
+    const nameInput = root.querySelector('#gpv-view-name'); const captionInput = root.querySelector('#gpv-view-caption');
+    const name = nameInput.value.trim() || 'View ' + (savedViews.length + 1);
+    savedViews.push(captureViewState(name, captionInput.value.trim()));
+    nameInput.value = ''; captionInput.value = ''; renderSavedViews(); updateStatus('Saved publication view ' + name);
+  }
+
+  function exportDimensions() {
+    const parts = root.querySelector('#gpv-export-size').value.split('x').map(Number);
+    const requestedScale = Number(root.querySelector('#gpv-export-scale').value) || 1;
+    let width = parts[0] * requestedScale; let height = parts[1] * requestedScale;
+    const maxPixels = 24000000;
+    if (width * height > maxPixels) {
+      const correction = Math.sqrt(maxPixels / (width * height)); width = Math.floor(width * correction); height = Math.floor(height * correction);
+    }
+    return { width, height, capped: width !== parts[0] * requestedScale || height !== parts[1] * requestedScale };
+  }
+
+  /* Off-screen render target for PNG export.
+     Browsers cap the number of live WebGL contexts (commonly 8–16) and silently
+     kill the oldest one past the limit — which used to be the main viewer's.
+     A contact sheet created one context per panel, so a 10-panel sheet reliably
+     lost the scene. One reusable surface is created here instead, and released
+     as soon as the export job finishes. */
+  let exportSurface = null;
+  let exportViewer = null;
+
+  function acquireExportViewer(width, height) {
+    if (!exportSurface) {
+      exportSurface = document.createElement('div');
+      exportSurface.className = 'gpv-export-surface';
+      root.append(exportSurface);
+    }
+    exportSurface.style.width = width + 'px';
+    exportSurface.style.height = height + 'px';
+    if (!exportViewer) {
+      exportViewer = $3Dmol.createViewer(exportSurface, { backgroundColor: '#ffffff', backgroundAlpha: 0, antialias: true, upscale: true });
+    } else {
+      exportViewer.removeAllModels();
+      exportViewer.removeAllLabels();
+      exportViewer.removeAllShapes();
+      exportViewer.resize();
+    }
+    return exportViewer;
+  }
+
+  function releaseExportViewer() {
+    if (!exportSurface) return;
+    const canvas = exportSurface.querySelector('canvas');
+    const context = canvas && (canvas.getContext('webgl2') || canvas.getContext('webgl'));
+    const lose = context && context.getExtension('WEBGL_lose_context');
+    if (lose) lose.loseContext();
+    exportSurface.remove();
+    exportSurface = null;
+    exportViewer = null;
+  }
+
+  async function renderPublicationImage(state = null, dimensions = exportDimensions()) {
+    const restore = state ? captureViewState() : null;
+    if (state) applyViewState(state);
+    const target = acquireExportViewer(dimensions.width, dimensions.height);
+    const background = backgroundSpec();
+    target.setBackgroundColor(background.color, background.alpha);
+    if (typeof target.setProjection === 'function') target.setProjection(root.querySelector('#gpv-projection').value);
+    displayedEntries().forEach(entry => {
+      if (!entry.model) return;
+      const model = target.addModel(entry.text, entry.format);
+      const atoms = model.selectedAtoms({});
+      atoms.forEach((atom, index) => { if (entry.atoms[index]) { atom.x = entry.atoms[index].x; atom.y = entry.atoms[index].y; atom.z = entry.atoms[index].z; } });
+      model.setStyle({}, styleFor(entry));
+    });
+    target.zoomTo();
+    if (typeof viewer.getView === 'function' && typeof target.setView === 'function') target.setView(viewer.getView());
+    target.render();
+    await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+    const uri = target.pngURI();
+    if (restore) applyViewState(restore);
+    return uri;
+  }
+
+  async function downloadPublicationPng() {
+    const button = root.querySelector('#gpv-image');
+    const requested = exportDimensions();
+    if (requested.width * requested.height > 6000000) {
+      toast('Rendering ' + requested.width + ' × ' + requested.height + ' — this can take a while and the page will not respond meanwhile.');
+    }
+    const done = setBusy('Rendering PNG…');
+    button.disabled = true; button.textContent = 'Rendering…';
+    await afterPaint();
+    try {
+      const uri = await renderPublicationImage(null, requested);
+      const link = document.createElement('a'); link.href = uri; link.download = 'protein-publication-' + requested.width + 'x' + requested.height + '.png'; link.click();
+      announce('Publication PNG downloaded' + (requested.capped ? ' · size capped for browser stability' : ''));
+    } catch (error) {
+      announce('Could not render the publication PNG: ' + error.message, 'error');
+    } finally {
+      releaseExportViewer();
+      done();
+      button.disabled = structures.length === 0; button.textContent = 'Download publication PNG';
+    }
+  }
+
+  function loadImage(uri) {
+    return new Promise((resolve, reject) => { const imageValue = new Image(); imageValue.onload = () => resolve(imageValue); imageValue.onerror = reject; imageValue.src = uri; });
+  }
+
+  function wrapText(context, text, maxWidth) {
+    const lines = [];
+    let line = '';
+    String(text || '').split(/\s+/).filter(Boolean).forEach(word => {
+      const candidate = line ? line + ' ' + word : word;
+      if (context.measureText(candidate).width > maxWidth && line) { lines.push(line); line = word; }
+      else line = candidate;
+    });
+    if (line) lines.push(line);
+    return lines;
+  }
+
+  async function downloadContactSheet() {
+    if (!savedViews.length) return;
+    const button = root.querySelector('#gpv-contact-sheet');
+    const done = setBusy('Rendering panels…');
+    button.disabled = true; button.textContent = 'Rendering panels…';
+    await afterPaint();
+    const restore = captureViewState(); const columns = Number(root.querySelector('#gpv-panel-columns').value) || 2;
+    const cellWidth = 1200; const imageHeight = 900; const captionHeight = 140; const rows = Math.ceil(savedViews.length / columns);
+    const canvas = document.createElement('canvas'); canvas.width = columns * cellWidth; canvas.height = rows * (imageHeight + captionHeight); const context = canvas.getContext('2d');
+    context.fillStyle = '#ffffff'; context.fillRect(0, 0, canvas.width, canvas.height); context.fillStyle = '#111827'; context.textBaseline = 'top';
+    try {
+      for (let index = 0; index < savedViews.length; index += 1) {
+        button.textContent = 'Rendering ' + (index + 1) + ' / ' + savedViews.length + '…';
+        await afterPaint();
+        const uri = await renderPublicationImage(savedViews[index], { width: cellWidth, height: imageHeight }); const imageValue = await loadImage(uri);
+        const x = (index % columns) * cellWidth; const y = Math.floor(index / columns) * (imageHeight + captionHeight); context.drawImage(imageValue, x, y, cellWidth, imageHeight);
+        context.font = '700 42px system-ui'; context.fillText(String.fromCharCode(65 + index), x + 32, y + imageHeight + 24);
+        context.font = '600 30px system-ui'; context.fillText(savedViews[index].name, x + 96, y + imageHeight + 24);
+        context.font = '24px system-ui';
+        wrapText(context, savedViews[index].caption, cellWidth - 128).slice(0, 3)
+          .forEach((line, lineIndex) => context.fillText(line, x + 96, y + imageHeight + 70 + lineIndex * 30));
+      }
+      const link = document.createElement('a'); link.href = canvas.toDataURL('image/png'); link.download = 'protein-figure-panels.png'; link.click();
+      announce('Figure panels downloaded');
+    } catch (error) {
+      announce('Could not render the figure panels: ' + error.message, 'error');
+    } finally {
+      releaseExportViewer();
+      done();
+    }
+    applyViewState(restore); button.disabled = savedViews.length === 0; button.textContent = 'Download figure panels';
+  }
+
+  function downloadCaptions() {
+    const provenance = provenanceValues();
+    const lines = [provenance.title || 'Protein structure figure', provenance.source, provenance.method, '', ...savedViews.map((view, index) => String.fromCharCode(65 + index) + '. ' + view.name + (view.caption ? ': ' + view.caption : '')), '', provenance.notes].filter((line, index, array) => line || array[index - 1]);
+    downloadBlob(lines.join('\n'), 'text/plain', 'protein-figure-captions.txt'); updateStatus('Figure captions downloaded');
+  }
+
+  function reportEntries() {
+    if (root.querySelector('#gpv-report-scope').value === 'all') return structures;
+    const visible = structures.filter(entry => entry.visible);
+    return visible.length ? visible : structures;
+  }
+
+  function formatBytes(bytes) {
+    if (bytes < 1024) return bytes + ' B';
+    if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(0) + ' KB';
+    return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
+  }
+
+  function updateReportEstimate() {
+    const label = root.querySelector('#gpv-report-size');
+    if (!structures.length) { label.textContent = 'Load models to estimate the report size.'; return; }
+    const chosen = reportEntries();
+    const bytes = chosen.reduce((sum, entry) => sum + entry.text.length, 0);
+    label.textContent = chosen.length + ' model' + (chosen.length === 1 ? '' : 's') + ' · roughly ' + formatBytes(bytes)
+      + (bytes > 40 * 1024 * 1024 ? ' — large enough to be slow to open; consider narrowing the selection.' : '');
+  }
+
+  function reportConfidence(entry) {
+    const confidence = { ...(entry.confidence || {}) };
+    const matrix = confidence.pae;
+    if (!Array.isArray(matrix) || matrix.length <= 400) return confidence;
+    const indices = Array.from({ length: 400 }, (_, index) => Math.min(matrix.length - 1, Math.floor(index * matrix.length / 400)));
+    confidence.pae = indices.map(row => indices.map(column => matrix[row][column]));
+    if (Array.isArray(confidence.tokenChainIds)) confidence.tokenChainIds = indices.map(index => confidence.tokenChainIds[index]);
+    if (Array.isArray(confidence.tokenResidueIds)) confidence.tokenResidueIds = indices.map(index => confidence.tokenResidueIds[index]);
+    confidence.paeOriginalSize = matrix.length;
+    confidence.paeDownsampled = true;
+    return confidence;
+  }
+
+  function downloadReport() {
+    const chosen = reportEntries();
+    if (!chosen.length) { announce('Load a model before building a report', 'error'); return; }
+    const exported = chosen.map(entry => ({
+      name: entry.name,
+      text: entry.text,
+      format: entry.format,
+      color: entry.color,
+      confidence: reportConfidence(entry),
+      rank: entry.rank,
+      labels: labelRecords.filter(label => label.entryId === entry.id).map(label => ({
+        text: label.text,
+        chain: label.chain,
+        resi: label.resi,
+        atom: label.atom,
+        x: label.x,
+        y: label.y,
+        z: label.z
+      }))
+    }));
+    const payload = JSON.stringify(exported).replace(/</g, '\\u003c');
+    const reportMetadata = JSON.stringify(provenanceValues()).replace(/</g, '\\u003c');
+    const reportViews = JSON.stringify(savedViews).replace(/</g, '\\u003c');
+    const reportSeconds = Number(root.querySelector('#gpv-video-length').value) || 5;
+    const html = [
+      "<!doctype html>",
+      "<html lang='en'><head><meta charset='utf-8'>",
+      "<meta name='viewport' content='width=device-width,initial-scale=1'>",
+      "<title>" + (provenanceValues().title || 'Protein Model Report').replace(/[<>&]/g, '') + "</title>",
+      "<link rel='icon' type='image/svg+xml' href=\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%23339cff'/><circle cx='16' cy='16' r='3' fill='%23fff'/></svg>\">",
+      "<style>",
+      ":root{color-scheme:light dark;font-family:system-ui,sans-serif}body{margin:0;padding:18px;background:#111827;color:#f8fafc}main{max-width:1100px;margin:auto}.controls{display:flex;gap:10px;flex-wrap:wrap;align-items:end;margin-bottom:12px}label{display:grid;gap:4px}button,select,input{font:inherit;padding:7px 10px}#view{position:relative;overflow:hidden;height:65vh;min-height:420px;background:#020617}#view canvas{display:block}#status{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:8px;color:#cbd5e1}.legend{display:flex;gap:12px;flex-wrap:wrap;margin:8px 0}.legend span{display:flex;align-items:center;gap:5px}.swatch{width:12px;height:12px;display:inline-block}.vlow{background:#ff7d45}.low{background:#ffdb13}.conf{background:#65cbf3}.vhigh{background:#0053d6}#caption{padding:10px 0;font-size:1.05rem}#pae-wrap{max-width:360px;margin-top:14px}#pae{display:block;width:100%;height:auto}#pae-detail{margin-top:5px;color:#cbd5e1}.meta{white-space:pre-wrap;color:#cbd5e1}@media(prefers-color-scheme:light){body{background:#f8fafc;color:#0f172a}#view{background:#e2e8f0}#status,#pae-detail,.meta{color:#475569}}",
+      "</style></head><body><main>",
+      "<h1 id='project-title' hidden></h1><p class='meta' id='project-meta'></p>",
+      "<p class='meta'>Interactive report generated by Protein Structure Viewer " + viewerVersion + " on " + new Date().toISOString().slice(0, 10) + ". Predicted structures are predictions, not experimental determinations.</p>",
+      "<div class='controls'><label id='guided-wrap'>Guided view<select id='guided'><option value=''>Choose a saved view</option></select></label><label>Model<select id='model'></select></label><button id='previous'>Previous</button><button id='next'>Next</button><button id='play'>Play cycle</button><label>Interval (seconds)<input id='interval' type='number' min='0.5' max='20' step='0.5' value='2'></label><label>Representation<select id='style'><option value='cartoon'>Cartoon</option><option value='stick'>Sticks</option><option value='sphere'>Spheres</option><option value='line'>Lines</option></select></label><label>Colors<select id='colors'><option value='plddt'>pLDDT</option><option value='structure'>Model color</option><option value='chain'>Chain</option><option value='spectrum'>Spectrum</option><option value='element'>Element</option></select></label><button id='spin'>Spin</button><button id='png'>Download PNG</button><button id='video'>Record " + reportSeconds + "s video</button></div><div id='caption' hidden></div>",
+      "<div class='legend'><span><i class='swatch vlow'></i>&lt;50</span><span><i class='swatch low'></i>50–70</span><span><i class='swatch conf'></i>70–90</span><span><i class='swatch vhigh'></i>≥90</span></div>",
+      "<div id='view'></div><div id='status'><span id='name'></span><span id='score'></span><span id='model-confidence'></span><span id='position'></span></div><div id='pae-wrap' hidden><canvas id='pae' width='360' height='360' aria-label='Predicted aligned error heatmap'></canvas><div id='pae-detail'>Predicted aligned error (Å)</div></div>",
+      "<script src='https://cdnjs.cloudflare.com/ajax/libs/3Dmol/2.4.2/3Dmol-min.js'><" + "/script>",
+      "<script>",
+      "const structures=" + payload + ";",
+      "const savedViews=" + reportViews + ";const guided=document.getElementById('guided'),guidedWrap=document.getElementById('guided-wrap');if(!savedViews.length)guidedWrap.hidden=true;savedViews.forEach((v,i)=>{const o=document.createElement('option');o.value=i;o.textContent=String.fromCharCode(65+i)+' · '+v.name;guided.append(o)});",
+      "const metadata=" + reportMetadata + ";const title=document.getElementById('project-title');if(metadata.title){title.hidden=false;title.textContent=metadata.title}document.getElementById('project-meta').textContent=[metadata.source,metadata.method,metadata.notes].filter(Boolean).join(' · ');",
+      "const viewer=$3Dmol.createViewer(document.getElementById('view'),{backgroundColor:'#ffffff',backgroundAlpha:0,antialias:true});let current=0,timer=0,spinning=false;",
+      "const picker=document.getElementById('model');structures.forEach((s,i)=>{const o=document.createElement('option');o.value=i;o.textContent=s.name;picker.append(o)});",
+      "function pcolor(v){return v<50?'#ff7d45':v<70?'#ffdb13':v<90?'#65cbf3':'#0053d6'}",
+      "function mean(a){return a.length?a.reduce((s,v)=>s+v,0)/a.length:null}",
+      "function metric(v,d=3){return Number.isFinite(Number(v))?Number(v).toFixed(d):'—'}function drawPae(s){const wrap=document.getElementById('pae-wrap'),c=s.confidence||{},matrix=c.pae;if(!Array.isArray(matrix)||!matrix.length){wrap.hidden=true;return}wrap.hidden=false;const canvas=document.getElementById('pae'),ctx=canvas.getContext('2d'),image=ctx.createImageData(canvas.width,canvas.height);let max=1;matrix.forEach(r=>r.forEach(v=>{if(Number.isFinite(Number(v)))max=Math.max(max,Number(v))}));for(let y=0;y<canvas.height;y++){const row=matrix[Math.min(matrix.length-1,Math.floor(y*matrix.length/canvas.height))]||[];for(let x=0;x<canvas.width;x++){const v=Number(row[Math.min(row.length-1,Math.floor(x*row.length/canvas.width))])||0,t=Math.max(0,Math.min(1,v/max)),o=(y*canvas.width+x)*4;image.data[o]=Math.round(255*t);image.data[o+1]=Math.round(83+136*t);image.data[o+2]=Math.round(214-195*t);image.data[o+3]=255}}ctx.putImageData(image,0,0);document.getElementById('pae-detail').textContent='PAE · '+(c.paeOriginalSize||matrix.length)+' × '+(c.paeOriginalSize||matrix.length)+' tokens · maximum '+max.toFixed(1)+' Å'+(c.paeDownsampled?' · heatmap downsampled for report':'')}",
+      "function show(i,preserveView=false){const oldView=preserveView&&viewer.getView?viewer.getView():null;current=(Number(i)+structures.length)%structures.length;picker.value=current;const s=structures[current];viewer.removeAllModels();viewer.removeAllLabels();const m=viewer.addModel(s.text,s.format);const rep=document.getElementById('style').value;const mode=document.getElementById('colors').value;let options={color:s.color};if(mode==='plddt')options={colorfunc:a=>pcolor(Number(a.b||0))};if(mode==='chain')options={colorscheme:'chainHetatm'};if(mode==='spectrum')options={colorscheme:'spectrum'};if(mode==='element')options={colorscheme:'default'};if(rep==='line')options.linewidth=2;const spec={};spec[rep]=options;m.setStyle({},spec);(s.labels||[]).forEach(l=>viewer.addLabel(l.text,{position:{x:l.x,y:l.y,z:l.z},backgroundColor:'#fff',fontColor:'#111827',borderColor:'#94a3b8',borderThickness:1,fontSize:12,inFront:true}));if(oldView&&viewer.setView)viewer.setView(oldView);else viewer.zoomTo();viewer.render();const values=m.selectedAtoms({}).filter(a=>a.atom==='CA'&&Number.isFinite(Number(a.b))).map(a=>Number(a.b));const avg=mean(values),c=s.confidence||{};document.getElementById('name').textContent=s.name;document.getElementById('score').textContent=avg===null?'Mean pLDDT —':'Mean pLDDT '+avg.toFixed(1);document.getElementById('model-confidence').textContent='pTM '+metric(c.ptm)+' · ipTM '+metric(c.iptm)+' · ranking '+metric(c.rankingScore)+(c.hasClash?' · clash warning':'');document.getElementById('position').textContent=(current+1)+' / '+structures.length;drawPae(s)}",
+      "function stop(){clearInterval(timer);timer=0;document.getElementById('play').textContent='Play cycle'}",
+      "function guide(i){const v=savedViews[Number(i)];if(!v)return;stop();const modelIndex=structures.findIndex(s=>s.name===v.activeModel);if(v.representation)document.getElementById('style').value=v.representation;if(v.colorMode)document.getElementById('colors').value=v.colorMode;show(modelIndex>=0?modelIndex:current);if(v.camera&&viewer.setView)viewer.setView(v.camera);viewer.render();const caption=document.getElementById('caption');caption.hidden=false;caption.textContent=v.name+(v.caption?' — '+v.caption:'')}",
+      "function play(){if(timer){stop();return}const seconds=Math.max(.5,Number(document.getElementById('interval').value)||2);timer=setInterval(()=>show(current+1,true),seconds*1000);document.getElementById('play').textContent='Pause cycle'}",
+      "const seconds=" + reportSeconds + ";function record(){const canvas=document.querySelector('#view canvas'),button=document.getElementById('video');if(!canvas||!canvas.captureStream||typeof MediaRecorder==='undefined'){alert('Video recording is not supported by this browser.');return}const stream=canvas.captureStream(30),type=MediaRecorder.isTypeSupported('video/webm;codecs=vp9')?'video/webm;codecs=vp9':'video/webm',recorder=new MediaRecorder(stream,{mimeType:type}),chunks=[];recorder.ondataavailable=e=>{if(e.data.size)chunks.push(e.data)};recorder.onstop=()=>{viewer.spin(false);stream.getTracks().forEach(t=>t.stop());const url=URL.createObjectURL(new Blob(chunks,{type:'video/webm'})),a=document.createElement('a');a.href=url;a.download='protein-spin.webm';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);button.disabled=false;button.textContent='Record '+seconds+'s video'};button.disabled=true;button.textContent='Recording…';viewer.spin('y',.8);recorder.start();setTimeout(()=>recorder.stop(),seconds*1000)}",
+      "guided.addEventListener('change',e=>guide(e.target.value));picker.addEventListener('change',e=>{stop();show(e.target.value)});document.getElementById('previous').onclick=()=>{stop();show(current-1)};document.getElementById('next').onclick=()=>{stop();show(current+1)};document.getElementById('play').onclick=play;document.getElementById('style').onchange=()=>show(current);document.getElementById('colors').onchange=()=>show(current);document.getElementById('spin').onclick=()=>{spinning=!spinning;viewer.spin(spinning?'y':false);document.getElementById('spin').textContent=spinning?'Stop spin':'Spin'};document.getElementById('png').onclick=()=>{const a=document.createElement('a');a.href=viewer.pngURI();a.download='protein-model.png';a.click()};document.getElementById('video').onclick=record;window.addEventListener('keydown',e=>{if(e.target instanceof Element&&e.target.matches('input,select,textarea'))return;if(e.key==='ArrowLeft'){stop();show(current-1)}if(e.key==='ArrowRight'){stop();show(current+1)}});new ResizeObserver(()=>viewer.resize()).observe(document.getElementById('view'));show(0);",
+      "<" + "/script></main></body></html>"
+    ].join('\n');
+    const blob = new Blob([html], { type: 'text/html' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = 'protein-model-report.html';
+    link.click();
+    setTimeout(() => URL.revokeObjectURL(link.href), 1000);
+    announce('HTML report downloaded · ' + chosen.length + ' model' + (chosen.length === 1 ? '' : 's') + ' · ' + formatBytes(blob.size));
+  }
+
+  /* ---------- Appearance theme ---------- */
+
+  const themeModes = [
+    { value: 'system', icon: 'monitor', label: 'System' },
+    { value: 'light', icon: 'sun', label: 'Light' },
+    { value: 'dark', icon: 'moon', label: 'Dark' }
+  ];
+
+  function applyTheme(value) {
+    const mode = themeModes.find(item => item.value === value) || themeModes[0];
+    if (mode.value === 'system') document.documentElement.removeAttribute('data-theme');
+    else document.documentElement.setAttribute('data-theme', mode.value);
+    const button = root.querySelector('#gpv-theme');
+    button.dataset.mode = mode.value;
+    button.querySelector('.gpv-theme-text').textContent = mode.label;
+    const host = button.querySelector('[data-icon]');
+    host.setAttribute('data-icon', mode.icon);
+    host.replaceChildren();
+    if (typeof gpvRenderIcons === 'function') gpvRenderIcons(button);
+    button.setAttribute('aria-label', 'Appearance: ' + (mode.value === 'system' ? 'follow system' : mode.label.toLowerCase()));
+    writeJson(themeKey, mode.value);
+    /* The 3D canvas background follows the resolved theme, so repaint it. */
+    applyAppearance();
+  }
+
+  /* ---------- Full screen ---------- */
+
+  function setFullscreen(next) {
+    fullscreen = next;
+    const grid = root.querySelector('#gpv-view-grid');
+    grid.classList.toggle('is-fullscreen', fullscreen);
+    document.body.style.overflow = fullscreen ? 'hidden' : '';
+    const button = root.querySelector('#gpv-fullscreen');
+    const host = button.querySelector('[data-icon]');
+    host.setAttribute('data-icon', fullscreen ? 'minimize' : 'maximize');
+    host.replaceChildren();
+    if (typeof gpvRenderIcons === 'function') gpvRenderIcons(button);
+    button.lastChild.textContent = fullscreen ? 'Exit full screen' : 'Full screen';
+    requestAnimationFrame(() => {
+      viewer.resize();
+      viewer.render();
+      if (compareViewer) { compareViewer.resize(); compareViewer.render(); }
+    });
+  }
+
+  /* ---------- Help ---------- */
+
+  function openHelp() {
+    const dialog = root.querySelector('#gpv-help');
+    if (dialog.open) return;
+    if (typeof dialog.showModal === 'function') dialog.showModal();
+    else dialog.setAttribute('open', '');
+  }
+
+  /* ---------- Fetch a structure by identifier ---------- */
+
+  function parseIdentifier(raw) {
+    const id = raw.trim();
+    if (!id) return null;
+    /* AlphaFold DB entry name, with or without the fragment suffix. */
+    const alphafold = id.match(/^AF[-_]([A-Z0-9]+)(?:[-_]F(\d+))?$/i);
+    if (alphafold) return { kind: 'alphafold', accession: alphafold[1].toUpperCase(), fragment: Number(alphafold[2] || 1) };
+    /* A PDB ID is four characters and starts with a digit. */
+    if (/^[0-9][A-Za-z0-9]{3}$/.test(id)) return { kind: 'pdb', code: id.toLowerCase() };
+    /* Otherwise treat it as a UniProt accession and look it up in AlphaFold DB. */
+    if (/^[A-Z][A-Z0-9]{5,9}$/i.test(id)) return { kind: 'alphafold', accession: id.toUpperCase(), fragment: 1 };
+    return null;
+  }
+
+  async function fetchText(url, what) {
+    const response = await fetch(url, { referrerPolicy: 'no-referrer' });
+    if (!response.ok) {
+      throw new Error(response.status === 404 ? 'no ' + what + ' with that identifier' : what + ' request failed with status ' + response.status);
+    }
+    return response.text();
+  }
+
+  async function resolveAlphafold(target) {
+    /* The file names carry a model version that changes over time (v4 in 2023,
+       v6 today), so ask the API for the current URLs instead of guessing. */
+    const listing = JSON.parse(await fetchText('https://alphafold.ebi.ac.uk/api/prediction/' + encodeURIComponent(target.accession), 'AlphaFold DB entry'));
+    if (!Array.isArray(listing) || !listing.length) throw new Error('no AlphaFold DB model for ' + target.accession);
+    const record = listing.find(item => item.modelEntityId === 'AF-' + target.accession + '-F' + target.fragment) || listing[0];
+    if (!record.cifUrl) throw new Error('AlphaFold DB returned no coordinate file');
+    return {
+      url: record.cifUrl,
+      paeUrl: record.paeDocUrl || null,
+      name: (record.modelEntityId || 'AF-' + target.accession + '-F1') + '.cif',
+      format: 'cif',
+      collection: 'AlphaFold DB'
+    };
+  }
+
+  async function fetchStructure() {
+    const field = root.querySelector('#gpv-fetch-id');
+    const target = parseIdentifier(field.value);
+    if (!target) {
+      announce('Enter a four-character PDB ID (1ubq), a UniProt accession (P69905), or an AlphaFold DB name (AF-P0DTC2-F1)', 'error');
+      field.focus();
+      return;
+    }
+    const button = root.querySelector('#gpv-fetch');
+    const done = setBusy('Fetching ' + field.value.trim() + '…');
+    button.disabled = true;
+    try {
+      const source = target.kind === 'pdb'
+        ? { url: 'https://files.rcsb.org/download/' + target.code + '.cif', paeUrl: null, name: target.code + '.cif', format: 'cif', collection: 'RCSB PDB' }
+        : await resolveAlphafold(target);
+      const text = await fetchText(source.url, 'structure');
+      const entry = addStructure(uniqueModelName(source.name, source.collection), text, source.format, source.url, source.collection);
+      let note = '';
+      if (source.paeUrl) {
+        /* Best effort: a missing PAE file must not fail the whole fetch.
+           Attach it directly rather than through the filename-matching used for
+           local archives — AlphaFold DB file names carry a model version that
+           those heuristics do not recognise. */
+        try {
+          const confidence = confidenceFromJson(JSON.parse(await fetchText(source.paeUrl, 'PAE')));
+          if (confidence && Array.isArray(confidence.pae) && confidence.pae.length) {
+            entry.confidence = mergeConfidence(entry.confidence, confidence);
+            confidenceAssets.push({ name: source.paeUrl.split('/').pop(), confidence, rank: null, collection: source.collection, modelName: entry.name });
+            note = ' with predicted aligned error';
+          }
+        } catch (error) { note = ' (predicted aligned error unavailable)'; }
+      }
+      renderList();
+      applyStyle();
+      selectModel(entry);
+      field.value = '';
+      announce('Loaded ' + entry.name + ' from ' + source.collection + note);
+    } catch (error) {
+      announce('Could not fetch that structure: ' + error.message, 'error');
+    } finally {
+      done();
+      button.disabled = false;
+    }
+  }
+
+  /* ---------- Preference persistence ---------- */
+
+  const persistedControls = [
+    '#gpv-style', '#gpv-color-mode', '#gpv-projection', '#gpv-background', '#gpv-background-color',
+    '#gpv-view-mode', '#gpv-order', '#gpv-alignment-mode', '#gpv-export-size', '#gpv-export-scale',
+    '#gpv-panel-columns', '#gpv-video-length', '#gpv-cycle-speed', '#gpv-speed', '#gpv-report-scope'
+  ];
+
+  function savePreferences() {
+    writeJson(preferenceKey, Object.fromEntries(persistedControls.map(selector => [selector, root.querySelector(selector).value])));
+  }
+
+  function restorePreferences() {
+    const stored = readJson(preferenceKey, null);
+    if (!stored || typeof stored !== 'object') return;
+    persistedControls.forEach(selector => {
+      const control = root.querySelector(selector);
+      const value = stored[selector];
+      if (typeof value !== 'string') return;
+      /* Only accept values the control actually offers, so a stale or hand-edited
+         preference cannot put a control into an unhandled state. */
+      if (control.tagName === 'SELECT') {
+        if ([...control.options].some(option => option.value === value)) control.value = value;
+      } else control.value = value;
+    });
+    root.querySelector('#gpv-cycle-value').textContent = Number(root.querySelector('#gpv-cycle-speed').value).toFixed(1) + ' s';
+    root.querySelector('#gpv-speed-value').textContent = Number(root.querySelector('#gpv-speed').value).toFixed(2).replace(/0$/, '') + '×';
+  }
+
+  root.querySelector('#gpv-files').addEventListener('change', event => loadFiles([...event.target.files]));
+
+  const dropZone = root.querySelector('#gpv-drop');
+  let dragDepth = 0;
+  const carriesFiles = event => [...(event.dataTransfer ? event.dataTransfer.types : [])].includes('Files');
+  /* dragenter/dragleave fire for every child element, so count them rather than
+     toggling on each event — otherwise the highlight flickers while dragging. */
+  window.addEventListener('dragenter', event => {
+    if (!carriesFiles(event)) return;
+    event.preventDefault();
+    dragDepth += 1;
+    dropZone.classList.add('is-dragging');
+  });
+  window.addEventListener('dragover', event => { if (carriesFiles(event)) event.preventDefault(); });
+  window.addEventListener('dragleave', () => {
+    dragDepth = Math.max(0, dragDepth - 1);
+    if (!dragDepth) dropZone.classList.remove('is-dragging');
+  });
+  window.addEventListener('drop', event => {
+    /* Without this the browser opens the dropped file and the session is lost. */
+    event.preventDefault();
+    dragDepth = 0;
+    dropZone.classList.remove('is-dragging');
+    const files = [...(event.dataTransfer ? event.dataTransfer.files : [])];
+    if (files.length) loadFiles(files);
+  });
+  root.querySelector('#gpv-theme').addEventListener('click', () => {
+    const current = root.querySelector('#gpv-theme').dataset.mode || 'system';
+    const index = themeModes.findIndex(mode => mode.value === current);
+    applyTheme(themeModes[(index + 1) % themeModes.length].value);
+  });
+  root.querySelector('#gpv-help-open').addEventListener('click', openHelp);
+  root.querySelector('#gpv-fullscreen').addEventListener('click', () => setFullscreen(!fullscreen));
+  root.querySelector('#gpv-fetch-form').addEventListener('submit', event => { event.preventDefault(); fetchStructure(); });
+  persistedControls.forEach(selector => {
+    root.querySelector(selector).addEventListener('change', savePreferences);
+  });
+  root.querySelector('#gpv-show-more').addEventListener('click', () => { listLimit += listPageSize; renderList(); });
+  root.querySelector('#gpv-report-scope').addEventListener('change', updateReportEstimate);
+  root.querySelector('#gpv-style').addEventListener('change', applyStyle);
+  root.querySelector('#gpv-color-mode').addEventListener('change', applyStyle);
+  root.querySelectorAll('[data-gpv-tab]').forEach((button, index, buttons) => {
+    const panel = root.querySelector('[data-gpv-panel="' + button.dataset.gpvTab + '"]');
+    button.id = 'gpv-tab-' + button.dataset.gpvTab; button.setAttribute('aria-controls', 'gpv-panel-' + button.dataset.gpvTab);
+    panel.id = 'gpv-panel-' + button.dataset.gpvTab; panel.setAttribute('role', 'tabpanel'); panel.setAttribute('aria-labelledby', button.id);
+    button.addEventListener('click', () => selectToolTab(button.dataset.gpvTab));
+    button.addEventListener('keydown', event => {
+      if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
+      event.preventDefault();
+      const nextIndex = event.key === 'Home' ? 0 : event.key === 'End' ? buttons.length - 1 : (index + (event.key === 'ArrowRight' ? 1 : -1) + buttons.length) % buttons.length;
+      selectToolTab(buttons[nextIndex].dataset.gpvTab); buttons[nextIndex].focus();
+    });
+  });
+  root.querySelector('#gpv-projection').addEventListener('change', applyAppearance);
+  root.querySelector('#gpv-background').addEventListener('change', applyAppearance);
+  root.querySelector('#gpv-background-color').addEventListener('input', applyAppearance);
+  root.querySelector('#gpv-view-mode').addEventListener('change', () => {
+    stopCycle();
+    applyStyle();
+    viewer.zoomTo();
+    viewer.render();
+  });
+  root.querySelector('#gpv-current').addEventListener('change', event => {
+    stopCycle();
+    selectModel(structures.find(entry => entry.id === Number(event.target.value)));
+  });
+  root.querySelector('#gpv-order').addEventListener('change', () => {
+    stopCycle();
+    applyModelOrder();
+    renderList();
+    applyStyle();
+    updateStatus('Model order updated');
+  });
+  root.querySelector('#gpv-source-filter').addEventListener('change', () => {
+    stopCycle(); listLimit = listPageSize; renderList();
+    const count = filteredStructures().length;
+    updateStatus(count + ' model' + (count === 1 ? '' : 's') + ' in this source');
+  });
+  root.querySelector('#gpv-model-search').addEventListener('input', () => {
+    stopCycle(); listLimit = listPageSize; renderList();
+    const count = filteredStructures().length;
+    updateStatus(count + ' matching model' + (count === 1 ? '' : 's'));
+  });
+  root.querySelector('#gpv-previous').addEventListener('click', () => { stopCycle(); selectRelative(-1); });
+  root.querySelector('#gpv-next').addEventListener('click', () => { stopCycle(); selectRelative(1); });
+  root.querySelector('#gpv-cycle').addEventListener('click', toggleCycle);
+  root.querySelector('#gpv-cycle-speed').addEventListener('input', event => {
+    root.querySelector('#gpv-cycle-value').textContent = Number(event.target.value).toFixed(1) + ' s';
+    if (cycleTimer) { stopCycle(); toggleCycle(); }
+  });
+  root.querySelector('#gpv-motion').addEventListener('change', applyMotion);
+  root.querySelector('#gpv-speed').addEventListener('input', event => {
+    root.querySelector('#gpv-speed-value').textContent = Number(event.target.value).toFixed(2).replace(/0$/, '') + '×';
+    applyMotion();
+  });
+  root.querySelector('#gpv-clear').addEventListener('click', () => {
+    if (structures.length > 1 && !confirm('Remove all ' + structures.length + ' models, plus any labels, selections, measurements, and saved views?')) return;
+    stopCycle();
+    stopMotion();
+    viewer.removeAllModels();
+    viewer.removeAllLabels();
+    viewer.removeAllShapes();
+    if (compareViewer) { compareViewer.removeAllModels(); compareViewer.removeAllLabels(); compareViewer.removeAllShapes(); compareViewer.render(); }
+    releaseExportViewer();
+    structures = [];
+    activeId = null;
+    selectedResidue = null;
+    labelRecords = [];
+    selectionRecords = [];
+    measurementRecords = [];
+    measurementDraft = [];
+    measurementActive = false;
+    savedViews = [];
+    confidenceAssets = [];
+    alignmentResults = [];
+    pendingScene = null;
+    root.querySelector('#gpv-residue').textContent = 'Click any atom in the viewer to inspect it.';
+    root.querySelector('#gpv-label-text').value = '';
+    root.querySelector('#gpv-add-label').disabled = true;
+    root.querySelector('#gpv-all-labels').checked = false;
+    root.querySelector('#gpv-side-by-side').checked = false;
+    root.querySelector('#gpv-model-search').value = '';
+    root.querySelector('#gpv-measure').textContent = 'Start measuring';
+    root.querySelector('#gpv-measure-state').textContent = 'Measurement mode is off.';
+    root.querySelector('#gpv-source-filter').value = 'all';
+    root.querySelector('#gpv-import-errors').hidden = true;
+    root.querySelector('#gpv-pae-detail').textContent = 'Move over the heatmap to inspect a residue pair.';
+    root.querySelector('#gpv-fetch-id').value = '';
+    listLimit = listPageSize;
+    nextStructureId = 1;
+    nextAnnotationId = 1;
+    renderAlignmentResults();
+    renderSelectionList();
+    renderMeasurementList();
+    renderSavedViews();
+    renderList();
+    applyStyle();
+    renderCompareViewer();
+    announce('Cleared everything');
+  });
+  root.querySelector('#gpv-show-all').addEventListener('click', () => {
+    filteredStructures().forEach(entry => { entry.visible = true; });
+    renderList();
+    applyStyle();
+  });
+  root.querySelector('#gpv-hide-all').addEventListener('click', () => {
+    filteredStructures().forEach(entry => { entry.visible = false; });
+    renderList();
+    applyStyle();
+  });
+  root.querySelector('#gpv-fit').addEventListener('click', () => { viewer.zoomTo(); viewer.render(); });
+  root.querySelector('#gpv-align').addEventListener('click', alignVisible);
+  root.querySelector('#gpv-alignment-csv').addEventListener('click', downloadAlignmentCsv);
+  root.querySelector('#gpv-restore').addEventListener('click', () => restoreCoordinates(true));
+  root.querySelector('#gpv-add-label').addEventListener('click', addOrEditLabel);
+  root.querySelector('#gpv-label-text').addEventListener('keydown', event => { if (event.key === 'Enter') addOrEditLabel(); });
+  root.querySelector('#gpv-all-labels').addEventListener('change', rebuildLabels);
+  root.querySelector('#gpv-clear-labels').addEventListener('click', () => {
+    labelRecords = [];
+    root.querySelector('#gpv-all-labels').checked = false;
+    root.querySelector('#gpv-label-text').value = '';
+    rebuildLabels();
+    updateStatus('Residue labels cleared');
+  });
+  root.querySelector('#gpv-add-selection').addEventListener('click', addSelection);
+  root.querySelector('#gpv-selection-range').addEventListener('keydown', event => { if (event.key === 'Enter') addSelection(); });
+  root.querySelector('#gpv-clear-selections').addEventListener('click', () => { selectionRecords = []; renderSelectionList(); applyStyle(); updateStatus('Selections cleared'); });
+  root.querySelector('#gpv-measure').addEventListener('click', toggleMeasurement);
+  root.querySelector('#gpv-measure-type').addEventListener('change', () => { measurementDraft = []; if (measurementActive) root.querySelector('#gpv-measure-state').textContent = 'Select ' + (root.querySelector('#gpv-measure-type').value === 'angle' ? 3 : 2) + ' atoms in the viewer.'; });
+  root.querySelector('#gpv-clear-measurements').addEventListener('click', () => { measurementRecords = []; measurementDraft = []; renderMeasurementList(); rebuildMeasurements(); updateStatus('Measurements cleared'); });
+  root.querySelector('#gpv-side-by-side').addEventListener('change', () => { stopCycle(); const left = structures.find(entry => entry.id === Number(root.querySelector('#gpv-left-model').value)); if (left) activeId = left.id; applyStyle(); setTimeout(() => viewer.resize(), 0); });
+  root.querySelector('#gpv-left-model').addEventListener('change', event => { activeId = Number(event.target.value); root.querySelector('#gpv-current').value = event.target.value; applyStyle(); viewer.zoomTo(); viewer.render(); });
+  root.querySelector('#gpv-right-model').addEventListener('change', renderCompareViewer);
+  root.querySelector('#gpv-image').addEventListener('click', downloadPublicationPng);
+  root.querySelector('#gpv-save-view').addEventListener('click', saveCurrentView);
+  root.querySelector('#gpv-contact-sheet').addEventListener('click', downloadContactSheet);
+  root.querySelector('#gpv-captions').addEventListener('click', downloadCaptions);
+  root.querySelector('#gpv-video').addEventListener('click', recordSpinVideo);
+  root.querySelector('#gpv-report').addEventListener('click', downloadReport);
+  root.querySelector('#gpv-confidence-csv').addEventListener('click', downloadConfidenceCsv);
+  root.querySelector('#gpv-pae-png').addEventListener('click', () => {
+    const link = document.createElement('a');
+    link.href = root.querySelector('#gpv-pae').toDataURL('image/png');
+    link.download = 'predicted-aligned-error.png';
+    link.click();
+    updateStatus('PAE heatmap PNG downloaded');
+  });
+  root.querySelector('#gpv-save-scene').addEventListener('click', saveScene);
+  root.querySelector('#gpv-load-scene').addEventListener('change', async event => {
+    const file = event.target.files[0];
+    if (!file) return;
+    try {
+      const scene = JSON.parse(await file.text());
+      if (scene.type !== 'protein-viewer-scene') throw new Error('Not a scene file');
+      if (structures.length) await applyScene(scene);
+      else { pendingScene = scene; updateStatus('Scene loaded; now add its matching structure files'); }
+    } catch (error) {
+      updateStatus('Could not read that scene JSON');
+    }
+    event.target.value = '';
+  });
+  root.querySelector('#gpv-pae').addEventListener('pointermove', event => {
+    const entry = structures.find(item => item.id === Number(event.currentTarget.dataset.entryId));
+    const matrix = entry && entry.confidence && entry.confidence.pae;
+    if (!matrix || !matrix.length) return;
+    const bounds = event.currentTarget.getBoundingClientRect();
+    const row = Math.min(matrix.length - 1, Math.max(0, Math.floor((event.clientY - bounds.top) * matrix.length / bounds.height)));
+    /* PAE matrices are square in practice, but do not assume it. */
+    const columns = Array.isArray(matrix[row]) ? matrix[row].length : matrix.length;
+    const column = Math.min(columns - 1, Math.max(0, Math.floor((event.clientX - bounds.left) * columns / bounds.width)));
+    const value = finiteNumber(matrix[row] && matrix[row][column]);
+    const chains = entry.confidence.tokenChainIds || [];
+    const residues = entry.confidence.tokenResidueIds || [];
+    const describe = index => 'token ' + (index + 1) + (chains[index] !== undefined ? ', chain ' + chains[index] : '') + (residues[index] !== undefined ? ', residue ' + residues[index] : '');
+    root.querySelector('#gpv-pae-detail').textContent = describe(row) + ' → ' + describe(column) + ' · PAE ' + (value === null ? '—' : value.toFixed(2) + ' Å');
+  });
+  const tabOrder = ['models', 'appearance', 'annotate', 'compare', 'confidence', 'publish'];
+  window.addEventListener('keydown', event => {
+    const target = event.target;
+    /* event.target is not always an Element (it can be the document), and a
+       shortcut must never swallow a character someone is typing — including the
+       "?" that opens help. */
+    if (target instanceof Element && (target.matches('input, select, textarea, [contenteditable]') || target.closest('dialog[open]'))) {
+      if (event.key !== 'Escape') return;
+    }
+    if (event.ctrlKey || event.metaKey || event.altKey) return;
+    if (event.key === '?') { event.preventDefault(); openHelp(); return; }
+    if (event.key === 'Escape') {
+      if (fullscreen) { setFullscreen(false); return; }
+      if (measurementActive) { toggleMeasurement(); return; }
+      return;
+    }
+    if (event.key === 'ArrowLeft') { event.preventDefault(); stopCycle(); selectRelative(-1); return; }
+    if (event.key === 'ArrowRight') { event.preventDefault(); stopCycle(); selectRelative(1); return; }
+    const key = event.key.toLowerCase();
+    if (key === 'f') { event.preventDefault(); if (event.shiftKey) setFullscreen(!fullscreen); else { viewer.zoomTo(); viewer.render(); } return; }
+    if (key === 'c' && !event.shiftKey) { event.preventDefault(); toggleCycle(); return; }
+    const tabIndex = Number(event.key) - 1;
+    if (Number.isInteger(tabIndex) && tabIndex >= 0 && tabIndex < tabOrder.length) {
+      event.preventDefault();
+      selectToolTab(tabOrder[tabIndex]);
+      root.querySelector('[data-gpv-tab="' + tabOrder[tabIndex] + '"]').focus();
+    }
+  });
+  new ResizeObserver(() => viewer.resize()).observe(root.querySelector('#gpv-stage'));
+  new ResizeObserver(() => { if (compareViewer) compareViewer.resize(); }).observe(root.querySelector('#gpv-stage-compare'));
+  if (typeof viewer.setStateChangeCallback === 'function') viewer.setStateChangeCallback(() => {
+    if (!compareViewer || syncingView || compareSyncFrame || !root.querySelector('#gpv-side-by-side').checked) return;
+    compareSyncFrame = requestAnimationFrame(() => {
+      compareSyncFrame = 0;
+      if (!compareViewer || !root.querySelector('#gpv-side-by-side').checked) return;
+      syncingView = true;
+      if (typeof compareViewer.setView === 'function') compareViewer.setView(viewer.getView());
+      compareViewer.render(); syncingView = false;
+    });
+  });
+  restorePreferences();
+  applyTheme(readJson(themeKey, 'system'));
+  selectToolTab('models');
+  applyAppearance();
+  applyStyle();
+  updateStatus();
+  if (typeof gpvRenderIcons === 'function') gpvRenderIcons(root);
+})();
+</script>
+
+<script>
+/* Inline icon set (Lucide 1.17.0, ISC licence) and a self-contained tooltip.
+   Both used to be CDN downloads; keeping them local removes two network
+   round-trips and lets the page render correctly with no connectivity. */
+(() => {
+  const icons = {"folder-up":"<path d=\"M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z\"/><path d=\"M12 10v6\"/><path d=\"m9 13 3-3 3 3\"/>","chevron-left":"<path d=\"m15 18-6-6 6-6\"/>","chevron-right":"<path d=\"m9 18 6-6-6-6\"/>","chevron-down":"<path d=\"m6 9 6 6 6-6\"/>","scan":"<path d=\"M3 7V5a2 2 0 0 1 2-2h2\"/><path d=\"M17 3h2a2 2 0 0 1 2 2v2\"/><path d=\"M21 17v2a2 2 0 0 1-2 2h-2\"/><path d=\"M7 21H5a2 2 0 0 1-2-2v-2\"/>","share-2":"<circle cx=\"18\" cy=\"5\" r=\"3\"/><circle cx=\"6\" cy=\"12\" r=\"3\"/><circle cx=\"18\" cy=\"19\" r=\"3\"/><line x1=\"8.59\" x2=\"15.42\" y1=\"13.51\" y2=\"17.49\"/><line x1=\"15.41\" x2=\"8.59\" y1=\"6.51\" y2=\"10.49\"/>","orbit":"<path d=\"M20.341 6.484A10 10 0 0 1 10.266 21.85\"/><path d=\"M3.659 17.516A10 10 0 0 1 13.74 2.152\"/><circle cx=\"12\" cy=\"12\" r=\"3\"/><circle cx=\"19\" cy=\"5\" r=\"2\"/><circle cx=\"5\" cy=\"19\" r=\"2\"/>","layers-3":"<path d=\"M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z\"/><path d=\"M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12\"/><path d=\"M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17\"/>","palette":"<path d=\"M12 22a1 1 0 0 1 0-20 10 9 0 0 1 10 9 5 5 0 0 1-5 5h-2.25a1.75 1.75 0 0 0-1.4 2.8l.3.4a1.75 1.75 0 0 1-1.4 2.8z\"/><circle cx=\"13.5\" cy=\"6.5\" r=\".5\" fill=\"currentColor\"/><circle cx=\"17.5\" cy=\"10.5\" r=\".5\" fill=\"currentColor\"/><circle cx=\"6.5\" cy=\"12.5\" r=\".5\" fill=\"currentColor\"/><circle cx=\"8.5\" cy=\"7.5\" r=\".5\" fill=\"currentColor\"/>","mouse-pointer-2":"<path d=\"M4.037 4.688a.495.495 0 0 1 .651-.651l16 6.5a.5.5 0 0 1-.063.947l-6.124 1.58a2 2 0 0 0-1.438 1.435l-1.579 6.126a.5.5 0 0 1-.947.063z\"/>","columns-2":"<rect width=\"18\" height=\"18\" x=\"3\" y=\"3\" rx=\"2\"/><path d=\"M12 3v18\"/>","chart-no-axes-column-increasing":"<path d=\"M5 21v-6\"/><path d=\"M12 21V9\"/><path d=\"M19 21V3\"/>","image-down":"<path d=\"M10.3 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10l-3.1-3.1a2 2 0 0 0-2.814.014L6 21\"/><path d=\"m14 19 3 3v-5.5\"/><path d=\"m17 22 3-3\"/><circle cx=\"9\" cy=\"9\" r=\"2\"/>","sun":"<circle cx=\"12\" cy=\"12\" r=\"4\"/><path d=\"M12 2v2\"/><path d=\"M12 20v2\"/><path d=\"m4.93 4.93 1.41 1.41\"/><path d=\"m17.66 17.66 1.41 1.41\"/><path d=\"M2 12h2\"/><path d=\"M20 12h2\"/><path d=\"m6.34 17.66-1.41 1.41\"/><path d=\"m19.07 4.93-1.41 1.41\"/>","moon":"<path d=\"M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401\"/>","monitor":"<rect width=\"20\" height=\"14\" x=\"2\" y=\"3\" rx=\"2\"/><line x1=\"8\" x2=\"16\" y1=\"21\" y2=\"21\"/><line x1=\"12\" x2=\"12\" y1=\"17\" y2=\"21\"/>","circle-help":"<circle cx=\"12\" cy=\"12\" r=\"10\"/><path d=\"M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3\"/><path d=\"M12 17h.01\"/>","maximize":"<path d=\"M8 3H5a2 2 0 0 0-2 2v3\"/><path d=\"M21 8V5a2 2 0 0 0-2-2h-3\"/><path d=\"M3 16v3a2 2 0 0 0 2 2h3\"/><path d=\"M16 21h3a2 2 0 0 0 2-2v-3\"/>","minimize":"<path d=\"M8 3v3a2 2 0 0 1-2 2H3\"/><path d=\"M21 8h-3a2 2 0 0 1-2-2V3\"/><path d=\"M3 16h3a2 2 0 0 1 2 2v3\"/><path d=\"M16 21v-3a2 2 0 0 1 2-2h3\"/>","download":"<path d=\"M12 15V3\"/><path d=\"M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4\"/><path d=\"m7 10 5 5 5-5\"/>","x":"<path d=\"M18 6 6 18\"/><path d=\"m6 6 12 12\"/>","search":"<path d=\"m21 21-4.34-4.34\"/><circle cx=\"11\" cy=\"11\" r=\"8\"/>","trash-2":"<path d=\"M10 11v6\"/><path d=\"M14 11v6\"/><path d=\"M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6\"/><path d=\"M3 6h18\"/><path d=\"M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2\"/>","play":"<path d=\"M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z\"/>","pause":"<rect x=\"14\" y=\"3\" width=\"5\" height=\"18\" rx=\"1\"/><rect x=\"5\" y=\"3\" width=\"5\" height=\"18\" rx=\"1\"/>","ruler":"<path d=\"M21.3 15.3a2.4 2.4 0 0 1 0 3.4l-2.6 2.6a2.4 2.4 0 0 1-3.4 0L2.7 8.7a2.41 2.41 0 0 1 0-3.4l2.6-2.6a2.41 2.41 0 0 1 3.4 0Z\"/><path d=\"m14.5 12.5 2-2\"/><path d=\"m11.5 9.5 2-2\"/><path d=\"m8.5 6.5 2-2\"/><path d=\"m17.5 15.5 2-2\"/>","tag":"<path d=\"M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.426 2.426 0 0 0 3.42 0l6.58-6.58a2.426 2.426 0 0 0 0-3.42z\"/><circle cx=\"7.5\" cy=\"7.5\" r=\".5\" fill=\"currentColor\"/>","database":"<ellipse cx=\"12\" cy=\"5\" rx=\"9\" ry=\"3\"/><path d=\"M3 5V19A9 3 0 0 0 21 19V5\"/><path d=\"M3 12A9 3 0 0 0 21 12\"/>","rotate-ccw":"<path d=\"M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8\"/><path d=\"M3 3v5h5\"/>","eye":"<path d=\"M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0\"/><circle cx=\"12\" cy=\"12\" r=\"3\"/>","eye-off":"<path d=\"M10.733 5.076a10.744 10.744 0 0 1 11.205 6.575 1 1 0 0 1 0 .696 10.747 10.747 0 0 1-1.444 2.49\"/><path d=\"M14.084 14.158a3 3 0 0 1-4.242-4.242\"/><path d=\"M17.479 17.499a10.75 10.75 0 0 1-15.417-5.151 1 1 0 0 1 0-.696 10.75 10.75 0 0 1 4.446-5.143\"/><path d=\"m2 2 20 20\"/>","triangle-alert":"<path d=\"m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3\"/><path d=\"M12 9v4\"/><path d=\"M12 17h.01\"/>","check":"<path d=\"M20 6 9 17l-5-5\"/>","refresh-cw":"<path d=\"M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8\"/><path d=\"M21 3v5h-5\"/><path d=\"M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16\"/><path d=\"M8 16H3v5\"/>","crosshair":"<circle cx=\"12\" cy=\"12\" r=\"10\"/><line x1=\"22\" x2=\"18\" y1=\"12\" y2=\"12\"/><line x1=\"6\" x2=\"2\" y1=\"12\" y2=\"12\"/><line x1=\"12\" x2=\"12\" y1=\"6\" y2=\"2\"/><line x1=\"12\" x2=\"12\" y1=\"22\" y2=\"18\"/>","file-down":"<path d=\"M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z\"/><path d=\"M14 2v5a1 1 0 0 0 1 1h5\"/><path d=\"M12 18v-6\"/><path d=\"m9 15 3 3 3-3\"/>","table":"<path d=\"M12 3v18\"/><rect width=\"18\" height=\"18\" x=\"3\" y=\"3\" rx=\"2\"/><path d=\"M3 9h18\"/><path d=\"M3 15h18\"/>","cloud-download":"<path d=\"M12 13v8l-4-4\"/><path d=\"m12 21 4-4\"/><path d=\"M4.393 15.269A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.436 8.284\"/>","info":"<circle cx=\"12\" cy=\"12\" r=\"10\"/><path d=\"M12 16v-4\"/><path d=\"M12 8h.01\"/>","circle-alert":"<circle cx=\"12\" cy=\"12\" r=\"10\"/><line x1=\"12\" x2=\"12\" y1=\"8\" y2=\"12\"/><line x1=\"12\" x2=\"12.01\" y1=\"16\" y2=\"16\"/>","external-link":"<path d=\"M15 3h6v6\"/><path d=\"M10 14 21 3\"/><path d=\"M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6\"/>","keyboard":"<path d=\"M10 8h.01\"/><path d=\"M12 12h.01\"/><path d=\"M14 8h.01\"/><path d=\"M16 12h.01\"/><path d=\"M18 8h.01\"/><path d=\"M6 8h.01\"/><path d=\"M7 16h10\"/><path d=\"M8 12h.01\"/><rect width=\"20\" height=\"16\" x=\"2\" y=\"4\" rx=\"2\"/>"};
+  const renderIcons = (scope = document) => {
+    scope.querySelectorAll('[data-icon]').forEach(host => {
+      const body = icons[host.getAttribute('data-icon')];
+      if (body === undefined || host.firstElementChild) return;
+      host.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"'
+        + ' fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"'
+        + ' stroke-linejoin="round" aria-hidden="true" focusable="false">' + body + '</svg>';
+    });
+  };
+  renderIcons();
+  globalThis.gpvRenderIcons = renderIcons;
+})();
+
+(() => {
+  /* Accessible hover/focus tooltips for [data-tooltip] elements. */
+  const openDelay = 450;
+  const tip = document.createElement('div');
+  tip.className = 'tooltip';
+  tip.id = 'gpv-tooltip';
+  tip.setAttribute('role', 'tooltip');
+  let current = null;
+  let timer = 0;
+
+  const place = () => {
+    if (!current) return;
+    const anchor = current.getBoundingClientRect();
+    const gap = 6;
+    tip.style.maxWidth = Math.min(280, window.innerWidth - 16) + 'px';
+    const box = tip.getBoundingClientRect();
+    let top = anchor.top - box.height - gap;
+    if (top < 4) top = Math.min(anchor.bottom + gap, window.innerHeight - box.height - 4);
+    let left = anchor.left + anchor.width / 2 - box.width / 2;
+    left = Math.max(8, Math.min(left, window.innerWidth - box.width - 8));
+    tip.style.transform = 'translate(' + Math.round(left) + 'px,' + Math.round(top) + 'px)';
+    tip.style.visibility = 'visible';
+  };
+
+  const hide = () => {
+    clearTimeout(timer);
+    timer = 0;
+    if (current) current.removeAttribute('aria-describedby');
+    current = null;
+    tip.remove();
+  };
+
+  const show = element => {
+    const text = (element.getAttribute('data-tooltip') || '').trim();
+    if (!text || !element.isConnected) return;
+    hide();
+    current = element;
+    tip.textContent = text;
+    tip.style.visibility = 'hidden';
+    tip.style.transform = 'translate(0,0)';
+    document.body.append(tip);
+    element.setAttribute('aria-describedby', tip.id);
+    place();
+  };
+
+  const trigger = target => (target instanceof Element ? target.closest('[data-tooltip]') : null);
+
+  document.addEventListener('pointerover', event => {
+    if (event.pointerType === 'touch') return;
+    const element = trigger(event.target);
+    if (!element || element === current) return;
+    clearTimeout(timer);
+    timer = setTimeout(() => show(element), openDelay);
+  });
+  document.addEventListener('pointerout', event => {
+    const element = trigger(event.target);
+    if (element && (element === current || timer)) hide();
+  });
+  document.addEventListener('focusin', event => {
+    const element = trigger(event.target);
+    if (element && element.matches(':focus-visible')) show(element);
+  });
+  document.addEventListener('focusout', hide);
+  document.addEventListener('keydown', event => { if (event.key === 'Escape') hide(); });
+  window.addEventListener('scroll', hide, true);
+  window.addEventListener('resize', hide);
+})();
+</script>
+
+</body>
+</html>
