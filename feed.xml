@@ -6,8 +6,16 @@
     <atom:link href="https://mbaffour.github.io/feed.xml" rel="self" type="application/rss+xml"/>
     <description>Notes on phage biology, lab life, and building research software.</description>
     <language>en-us</language>
-    <lastBuildDate>Mon, 24 Aug 2026 11:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 11 Sep 2026 09:00:00 +0000</lastBuildDate>
     <managingEditor>baffour@tamu.edu (Michael Baffour Awuah)</managingEditor>
+    <item>
+      <title>Protein Structure Viewer — what the confidence numbers actually say</title>
+      <link>https://mbaffour.github.io/blog/protein-structure-viewer.html</link>
+      <guid isPermaLink="true">https://mbaffour.github.io/blog/protein-structure-viewer.html</guid>
+      <pubDate>Fri, 11 Sep 2026 09:00:00 +0000</pubDate>
+      <category>Research software</category>
+      <description>A browser viewer for AlphaFold and experimental structures: compare models while it shows its chain pairing, read pLDDT, PAE and interface confidence next to the structure, and export a figure or a self-contained interactive report. Nothing is uploaded.</description>
+    </item>
     <item>
       <title>PFU Calculator — the same arithmetic, for plaques</title>
       <link>https://mbaffour.github.io/blog/pfu-calculator.html</link>

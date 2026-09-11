@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Protein Structure Viewer — what the confidence numbers actually say</title>
+<meta name="description" content="A browser viewer for AlphaFold and experimental structures: compare models, align them, read pLDDT and PAE honestly, and export a figure or a self-contained interactive report. Nothing is uploaded.">
+
+<meta property="og:title" content="Protein Structure Viewer — what the confidence numbers actually say">
+<meta property="og:description" content="Compare predictions, align them, read pLDDT and PAE honestly, and ship a figure or an interactive report. Entirely in your browser.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://mbaffour.github.io/blog/protein-structure-viewer.html">
+<meta property="og:site_name" content="Michael Baffour Awuah">
+<link rel="canonical" href="https://mbaffour.github.io/blog/protein-structure-viewer.html">
+<meta name="theme-color" content="#f7f4ea" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#121009" media="(prefers-color-scheme: dark)">
+
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%23121009'/><path d='M9 23c0-8 14-6 14-14' stroke='%23f4c430' stroke-width='2.4' stroke-linecap='round' fill='none'/><path d='M9 9c0 8 14 6 14 14' stroke='%23f4c430' stroke-width='2.4' stroke-linecap='round' fill='none' opacity='0.5'/><circle cx='16' cy='16' r='2.6' fill='%23f4c430'/></svg>">
+<link rel="preload" href="../assets/fonts/fraunces-var-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/inter-var-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/fonts/fonts.css">
+
+<style>
+:root {
+    --bg: #121009; --bg-2: #1a160c; --bg-card: #221c0e; --bg-inset: #17130a;
+    --border: rgba(244,196,48,0.13); --border-strong: rgba(244,196,48,0.26);
+    --gold: #f4c430; --gold-dim: rgba(244,196,48,0.14);
+    --green-text: #3fbf6e; --green-dim: rgba(31,146,73,0.16);
+    --red: #d4324b; --red-text: #f4697f; --red-dim: rgba(212,50,75,0.15);
+    --blue-text: #7fb2e8; --blue-dim: rgba(90,150,220,0.14);
+    --ink: #f5edd8; --ink-2: #d8c98c; --ink-3: #ab9059;
+    --display: 'Fraunces', Georgia, serif;
+    --body: 'Inter', 'Segoe UI', system-ui, sans-serif;
+    --mono: 'JetBrains Mono', 'SF Mono', Consolas, monospace;
+    --wrap: 780px;
+}
+html[data-theme="light"] {
+    --bg: #f7f4ea; --bg-2: #fffdf6; --bg-card: #ffffff; --bg-inset: #faf6e9;
+    --border: rgba(164,130,58,0.20); --border-strong: rgba(164,130,58,0.40);
+    --gold: #7d5800; --gold-dim: rgba(125,88,0,0.10);
+    --green-text: #0b5a26; --green-dim: rgba(15,106,46,0.10);
+    --red: #a01a30; --red-text: #8e142a; --red-dim: rgba(160,26,48,0.09);
+    --blue-text: #1d4f80; --blue-dim: rgba(29,79,128,0.09);
+    --ink: #1a1408; --ink-2: #3a2c0e; --ink-3: #6d5423;
+}
+@media (prefers-color-scheme: light) {
+    html:not([data-theme]) {
+        --bg: #f7f4ea; --bg-2: #fffdf6; --bg-card: #ffffff; --bg-inset: #faf6e9;
+        --border: rgba(164,130,58,0.20); --border-strong: rgba(164,130,58,0.40);
+        --gold: #7d5800; --gold-dim: rgba(125,88,0,0.10);
+        --green-text: #0b5a26; --green-dim: rgba(15,106,46,0.10);
+        --red: #a01a30; --red-text: #8e142a; --red-dim: rgba(160,26,48,0.09);
+        --blue-text: #1d4f80; --blue-dim: rgba(29,79,128,0.09);
+        --ink: #1a1408; --ink-2: #3a2c0e; --ink-3: #6d5423;
+    }
+    html:not([data-theme]) nav { background: rgba(247,244,234,0.92); }
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: var(--bg); color: var(--ink); font-family: var(--body); line-height: 1.7; -webkit-font-smoothing: antialiased; }
+a { color: var(--gold); }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 4px; }
+.skip-link { position: absolute; left: -9999px; }
+.skip-link:focus { left: 12px; top: 12px; background: var(--bg-card); padding: 10px 16px; border-radius: 8px; z-index: 99; }
+
+.wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 24px; }
+
+nav {
+    position: sticky; top: 0; z-index: 10; padding: 14px 0;
+    border-bottom: 1px solid var(--border); background: rgba(18,16,9,0.88); backdrop-filter: blur(10px);
+}
+html[data-theme="light"] nav { background: rgba(247,244,234,0.92); }
+nav .wrap { display: flex; align-items: center; justify-content: space-between; gap: 14px; max-width: 1080px; }
+nav .back { font-family: var(--mono); font-size: 0.8rem; color: var(--ink-2); text-decoration: none; }
+nav .back:hover { color: var(--gold); }
+nav .brand { font-family: var(--display); font-weight: 600; font-size: 0.92rem; }
+
+header.hero { padding: 76px 0 34px; }
+.eyebrow { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); }
+h1 { font-family: var(--display); font-size: clamp(2.1rem, 6vw, 3.2rem); font-weight: 700; line-height: 1.08; margin: 14px 0 18px; }
+h1 .accent { color: var(--gold); }
+.dek { color: var(--ink-2); font-size: 1.1rem; }
+.byline { font-family: var(--mono); font-size: 0.74rem; color: var(--ink-3); margin-top: 22px; letter-spacing: 0.04em; }
+
+main { padding-bottom: 40px; }
+h2 { font-family: var(--display); font-size: 1.6rem; font-weight: 600; margin: 46px 0 4px; }
+h3 { font-family: var(--display); font-size: 1.16rem; font-weight: 600; margin: 30px 0 2px; }
+p { margin-top: 14px; color: var(--ink-2); }
+p strong, li strong { color: var(--ink); font-weight: 600; }
+ul, ol { margin: 14px 0 0 22px; color: var(--ink-2); }
+li { margin: 7px 0; }
+code { font-family: var(--mono); font-size: 0.86em; color: var(--gold); }
+kbd { font-family: var(--mono); font-size: 0.78em; padding: 1px 5px; border: 1px solid var(--border-strong); border-bottom-width: 2px; border-radius: 4px; color: var(--ink); }
+
+.lead-in { border-left: 3px solid var(--gold); padding-left: 18px; margin-top: 20px; }
+
+figure {
+    margin: 26px 0; background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: 14px; padding: 20px;
+}
+figcaption { font-size: 0.82rem; color: var(--ink-3); margin-top: 14px; }
+
+/* pLDDT band strip */
+.bands { display: flex; border-radius: 8px; overflow: hidden; font-family: var(--mono); font-size: 0.7rem; }
+.bands div { padding: 10px 6px; text-align: center; flex: 1; color: #10131a; font-weight: 600; }
+.b1 { background: #ff7d45; } .b2 { background: #ffdb13; } .b3 { background: #65cbf3; } .b4 { background: #0053d6; color: #eaf1ff !important; }
+
+table { width: 100%; border-collapse: collapse; margin-top: 20px; font-size: 0.9rem; }
+th { text-align: left; font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-3); padding: 9px 10px; border-bottom: 1px solid var(--border-strong); }
+td { padding: 11px 10px; border-bottom: 1px solid var(--border); color: var(--ink-2); vertical-align: top; }
+td:first-child { color: var(--ink); font-weight: 500; white-space: nowrap; }
+.table-scroll { overflow-x: auto; }
+.yes { color: var(--green-text); font-family: var(--mono); font-size: 0.8rem; }
+.no  { color: var(--red-text); font-family: var(--mono); font-size: 0.8rem; }
+
+.callout { border-left: 3px solid var(--gold); background: var(--gold-dim); padding: 16px 20px; border-radius: 0 12px 12px 0; margin-top: 24px; }
+.callout.warn { border-left-color: var(--red); background: var(--red-dim); }
+.callout p:first-child { margin-top: 0; }
+
+.finale {
+    margin: 58px 0 20px; text-align: center; background: var(--bg-card);
+    border: 1px solid var(--border-strong); border-radius: 18px; padding: 42px 28px;
+}
+.finale h2 { margin-top: 0; }
+.cta { display: flex; flex-wrap: wrap; gap: 11px; justify-content: center; margin-top: 24px; }
+.btn {
+    display: inline-flex; align-items: center; gap: 7px; text-decoration: none;
+    font-size: 0.9rem; font-weight: 500; padding: 11px 20px; border-radius: 10px;
+    border: 1px solid var(--border-strong); color: var(--ink); background: var(--bg-inset);
+}
+.btn:hover { border-color: var(--gold); }
+.btn-primary { background: var(--gold); border-color: var(--gold); color: #16130a; font-weight: 600; }
+html[data-theme="light"] .btn-primary { color: #fffdf6; }
+
+footer { border-top: 1px solid var(--border); padding: 28px 0 48px; color: var(--ink-3); font-size: 0.85rem; }
+footer .wrap { max-width: 1080px; }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+<script>
+    (function () { try { var t = localStorage.getItem('theme'); if (t) document.documentElement.setAttribute('data-theme', t); } catch (e) {} })();
+</script>
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to main content</a>
+
+<nav>
+    <div class="wrap">
+        <a class="back" href="../index.html#tools">&larr; Research software</a>
+        <span class="brand">Michael Baffour Awuah</span>
+    </div>
+</nav>
+
+<header class="hero">
+    <div class="wrap">
+        <div class="eyebrow">Build note</div>
+        <h1>What the confidence numbers <span class="accent">actually say</span></h1>
+        <p class="dek">
+            AlphaFold hands you a folder of predictions and a pile of JSON. The 3D view is the easy part. The hard part
+            is not talking yourself into a result that the confidence data does not support — and most viewers make that
+            easy to do, because they show you the structure and leave the numbers in a file you never open.
+        </p>
+        <div class="byline">Protein Structure Viewer · one HTML file · runs entirely in your browser · free and open source</div>
+    </div>
+</header>
+
+<main id="main">
+    <div class="wrap">
+        <p class="lead-in">
+            This started as the thing I needed while staring at holin oligomer predictions: a way to flip through
+            forty models, see which regions were confident, put two of them on top of each other, and get a figure out
+            — without launching PyMOL, and without uploading unpublished coordinates to anyone's server.
+        </p>
+
+        <h2>The mistake the tool is built to make harder</h2>
+        <p>
+            pLDDT is the number everybody quotes, and it is <em>per-residue</em> and <em>local</em>. A model can average
+            96 and still have two domains in completely the wrong arrangement relative to each other, because pLDDT
+            never had an opinion about their relative placement. For complexes this matters enormously: a high mean
+            pLDDT across a predicted dimer tells you the two chains are each individually well-folded. It tells you
+            approximately nothing about whether they actually touch the way the picture shows.
+        </p>
+
+        <figure>
+            <div class="bands">
+                <div class="b1">&lt;50 · very low</div>
+                <div class="b2">50–70 · low</div>
+                <div class="b3">70–90 · confident</div>
+                <div class="b4">≥90 · very high</div>
+            </div>
+            <figcaption>
+                The standard pLDDT bands, which the viewer uses for colouring and shows as a legend under the viewport.
+                Useful, and routinely over-read. The number that speaks to <em>arrangement</em> is predicted aligned
+                error, not this.
+            </figcaption>
+        </figure>
+
+        <p>
+            So the viewer puts predicted aligned error and interface confidence one tab away from the structure, not one
+            folder away. Drop an AlphaFold result ZIP and it pulls the confidence JSON out of the archive itself: the PAE
+            heatmap with chain boundaries drawn on it, per-token inspection on hover, chain-pair ipTM, chain-pair
+            minimum PAE, pTM, ranking score, rank, clash flag. All of it exports to CSV with the file each number came
+            from recorded next to it, because "where did this ipTM come from" is a question you will be asked six months
+            later.
+        </p>
+
+        <div class="callout">
+            <p>
+                The interpretation guidance is in the tool, not just in the README. Press <kbd>?</kbd> and the help
+                panel says, in as many words, that high pLDDT is not evidence an interface is real. A tool that renders
+                a beautiful predicted complex and stays silent about that is doing half a job.
+            </p>
+        </div>
+
+        <h2>Comparison that shows its work</h2>
+        <p>
+            Overlaying two predictions and quoting an RMSD is the most common way to make a comparison look more
+            rigorous than it is. The number depends entirely on which atoms you paired, and that decision is usually
+            invisible.
+        </p>
+        <p>
+            There are two pairing modes here and the tool always tells you which ran. <strong>Chain and residue IDs</strong>
+            pairs Cα atoms with identical identifiers — strict, no heuristics, right when your models genuinely share a
+            numbering scheme. <strong>Sequence-aware</strong> runs a global Needleman–Wunsch alignment between every
+            reference chain and every target chain, then greedily assigns chain pairs by identity — which is what you
+            need when two prediction runs disagree about chain order or numbering.
+        </p>
+        <p>
+            Either way the results table reports the aligned Cα count, the sequence identity, the chain mapping it
+            chose, and the RMSD, and exports all of it as CSV. If the chain mapping looks wrong, the RMSD is wrong, and
+            you can see that before you put it in a figure. For a homo-oligomer with near-identical chains the mapping
+            is essentially arbitrary among equivalent chains, which is exactly the case where a bare RMSD misleads.
+        </p>
+
+        <h2>The report is the figure</h2>
+        <p>
+            <strong>Share report</strong> produces one HTML file with the coordinates embedded. Open it and you get the
+            viewer, not a screenshot: pick models, step through them, cycle, follow the guided views and captions the
+            author saved, read the pLDDT and PAE, export your own PNG. No server, no install, nothing to configure.
+        </p>
+        <p>
+            This is what I send to a collaborator instead of eleven PNGs and a paragraph explaining what they are
+            looking at. It is also what a reviewer can be given so they can check the claim themselves rather than take
+            the figure's word for it.
+        </p>
+        <p>
+            Alongside it there is a <strong>scene manifest</strong>: a JSON file recording a SHA-256 hash of every
+            structure file, plus the camera, colours, labels, selections, measurements, saved views, alignment settings,
+            and your provenance notes. Reload it a year later with the same coordinate files and you get the same
+            figure; reload it with files that have changed and it says so, because it recomputes the hashes.
+        </p>
+
+        <h2>Three bugs worth naming</h2>
+        <p>
+            The recent pass over this was mostly unglamorous correctness work. Three are worth writing down because they
+            are the kind that look fine in casual use and bite in real ones.
+        </p>
+
+        <h3>Exporting a figure could kill the viewport</h3>
+        <p>
+            Rendering a publication PNG happens off-screen, at full resolution, in a second WebGL context. Browsers cap
+            how many live WebGL contexts a page may hold — commonly eight to sixteen — and when you exceed it they
+            silently discard the oldest. Every export was creating a fresh context and never releasing it, so a
+            six-panel contact sheet would quietly destroy the main viewer's context somewhere around panel six. The fix
+            is one reusable off-screen target, explicitly released with <code>WEBGL_lose_context</code> when the job
+            finishes.
+        </p>
+
+        <h3>Dropping a file half an inch off target lost the session</h3>
+        <p>
+            The drop handler was attached to the upload card. Drop a PDB anywhere else on the page and the browser did
+            its default thing: navigated to the file and threw away everything you had loaded, annotated, and aligned.
+            Drops are now accepted across the whole window, and the default is suppressed everywhere regardless.
+        </p>
+
+        <h3>Fetching by accession was asking for a file that no longer exists</h3>
+        <p>
+            Database fetch built AlphaFold DB URLs by appending <code>_v4</code> to the entry name. AlphaFold DB is on
+            v6. Every accession lookup would have 404'd. It now asks the EBI API for the current URLs, which also means
+            it can pull the entry's predicted-aligned-error file in along with the coordinates.
+        </p>
+
+        <h2>What it loads</h2>
+        <div class="table-scroll">
+        <table>
+            <thead><tr><th>Input</th><th>What happens</th><th>Needs network?</th></tr></thead>
+            <tbody>
+                <tr><td>.pdb / .cif / .mmcif</td><td>Loaded as a model, read locally</td><td class="no">no</td></tr>
+                <tr><td>AlphaFold result .zip</td><td>Every model extracted and grouped by archive; template hits ignored</td><td class="no">no</td></tr>
+                <tr><td>Confidence JSON / ranking CSV</td><td>pTM, ipTM, ranking score, rank, clash, PAE attached to matching models</td><td class="no">no</td></tr>
+                <tr><td>Scene manifest JSON</td><td>Whole annotated scene restored, with hash verification</td><td class="no">no</td></tr>
+                <tr><td><code>1ubq</code></td><td>Fetched from RCSB</td><td class="yes">yes</td></tr>
+                <tr><td><code>P69905</code> / <code>AF-P0DTC2-F1</code></td><td>Fetched from AlphaFold DB, with its PAE data</td><td class="yes">yes</td></tr>
+            </tbody>
+        </table>
+        </div>
+
+        <h2>Privacy, stated precisely</h2>
+        <p>
+            Files you open are read by the browser and never leave the machine. The page makes network requests in
+            exactly two situations, and it is worth being exact rather than waving at "privacy-first":
+        </p>
+        <ul>
+            <li>On load, for the three pinned libraries (3Dmol.js, JSZip, numeric.js) from one CDN. All three carry
+                Subresource Integrity hashes, so a tampered or substituted file refuses to execute.</li>
+            <li>When <em>you</em> type an identifier and press Fetch, to RCSB or EMBL-EBI. That request carries only the
+                identifier you typed.</li>
+        </ul>
+        <p>
+            A Content-Security-Policy restricts the page to those origins and nothing else. The icon set and tooltips
+            used to be two more CDN downloads; they are inline now, which removed about 600 KB and two third-party
+            origins, and means the interface renders correctly even when the network does not cooperate.
+        </p>
+
+        <h2>What it is not</h2>
+        <p>
+            It is not PyMOL or ChimeraX, and it is not trying to be. There is no molecular dynamics, no density fitting,
+            no ray tracer, no scripting language. It does not compute buried surface area or contact maps yet — that is
+            the next thing I want, for exactly the holin-interface question that started this.
+        </p>
+        <div class="callout warn">
+            <p>
+                And it does not turn a prediction into a result. Aligning two models and getting a small RMSD means two
+                predictions agree with each other, which is a much weaker statement than either being correct. The tool
+                is built to keep that distinction visible; it cannot make it for you.
+            </p>
+        </div>
+    </div>
+
+    <div class="wrap">
+        <section class="finale">
+            <h2>Open it with one of your own models</h2>
+            <p>No install, no account, no upload. Drop a PDB, or type <code>1ubq</code> and press Fetch.</p>
+            <div class="cta">
+                <a class="btn btn-primary" href="../structure-viewer/">Open the viewer</a>
+                <a class="btn" href="https://github.com/mbaffour/protein-structure-viewer/blob/main/docs/USAGE.md" target="_blank" rel="noopener">Usage guide ↗</a>
+                <a class="btn" href="https://github.com/mbaffour/protein-structure-viewer" target="_blank" rel="noopener">Source on GitHub ↗</a>
+            </div>
+        </section>
+    </div>
+</main>
+
+<footer>
+    <div class="wrap">
+        &copy; 2026 Michael Baffour Awuah &middot;
+        <a href="../index.html">Research site</a> &middot;
+        <a href="../index.html#tools">Research software</a> &middot;
+        <a href="https://github.com/mbaffour" target="_blank" rel="noopener">GitHub</a>
+    </div>
+</footer>
+</body>
+</html>

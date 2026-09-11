@@ -288,6 +288,18 @@ const tools = [
         preview: "alphafold"
     },
     {
+        title: "Protein Structure Viewer",
+        repo: "https://github.com/mbaffour/protein-structure-viewer",
+        featured: true,
+        blurb: "Single-file browser viewer for AlphaFold and experimental structures — compares models while showing its chain pairing, puts pLDDT, PAE and interface confidence next to the structure, and exports figures or a self-contained interactive report. Nothing is uploaded.",
+        tech: ["JavaScript", "AlphaFold", "3Dmol.js"],
+        stack: "js",
+        blog: "blog/protein-structure-viewer.html",
+        app:  "https://mbaffour.github.io/structure-viewer/",
+        label: "Structure Viewer",
+        preview: "structure"
+    },
+    {
         title: "killcurveplot",
         repo: "https://github.com/mbaffour/killcurveplot",
         blurb: "Lightweight R package for generating clean lysis and kill curves from raw OD data. Fast, reproducible, ggplot2-flavored.",
@@ -434,6 +446,14 @@ const tools = [
    tags drive the filter buttons automatically.
 =============================================================== */
 const posts = [
+    {
+        title: "Protein Structure Viewer — what the confidence numbers actually say",
+        date: "September 11, 2026",
+        iso: "2026-09-11",
+        tags: ["Research Software", "Structure Prediction"],
+        blurb: "AlphaFold hands you a folder of predictions and a pile of JSON, and most viewers show you the structure while leaving the confidence data in a file you never open. A browser viewer that puts pLDDT, PAE and interface confidence next to the model, compares predictions while showing its pairing, and exports a self-contained interactive report. Nothing is uploaded.",
+        url: "blog/protein-structure-viewer.html"
+    },
     {
         title: "PFU Calculator — the same arithmetic, for plaques",
         date: "August 24, 2026",
@@ -868,6 +888,25 @@ const SVG_PREVIEWS = {
             <line x1="115" y1="60" x2="155" y2="55" stroke="#1f9249" stroke-width="1" stroke-dasharray="2 2"/>
             <text x="120" y="50" font-family="JetBrains Mono" font-size="7" fill="#1f9249">42μm</text>
         </g>
+    </svg>`,
+    structure: `<svg viewBox="0 0 320 160" xmlns="http://www.w3.org/2000/svg">
+        <rect width="320" height="160" fill="#0a1020"/>
+        <g fill="none" stroke-width="7" stroke-linecap="round">
+            <path d="M24,116 C40,74 58,66 72,96" stroke="#ff7d45"/>
+            <path d="M72,96 C86,126 100,128 114,96" stroke="#ffdb13"/>
+            <path d="M114,96 C128,64 142,60 156,86" stroke="#65cbf3"/>
+            <path d="M156,86 C168,110 178,112 190,84" stroke="#0053d6"/>
+        </g>
+        <g font-family="JetBrains Mono" font-size="8" fill="#7a8ca8">
+            <text x="24" y="34">pLDDT</text><text x="24" y="142">Cα RMSD 2.02 Å · 60 pairs</text>
+        </g>
+        <g>${(()=>{let s='';for(let r=0;r<7;r++){for(let c=0;c<7;c++){
+            const d=Math.abs(r-c), t=Math.min(1,d/4.2);
+            s+=`<rect x="${218+c*13}" y="${30+r*13}" width="12" height="12" fill="rgb(${Math.round(255*t)},${Math.round(83+136*t)},${Math.round(214-195*t)})"/>`;
+        }}return s;})()}</g>
+        <line x1="218" y1="82" x2="309" y2="82" stroke="#0a1020" stroke-width="1.5"/>
+        <line x1="270" y1="30" x2="270" y2="121" stroke="#0a1020" stroke-width="1.5"/>
+        <text x="218" y="136" font-family="JetBrains Mono" font-size="8" fill="#7a8ca8">PAE · chains A|B</text>
     </svg>`,
     alphafold: `<svg viewBox="0 0 320 160" xmlns="http://www.w3.org/2000/svg">
         <rect width="320" height="160" fill="#0e1608"/>
@@ -1395,9 +1434,9 @@ function renderTalks() {
    showed four browser apps and hid the two heaviest pieces of engineering
    (a pooled AlphaFold 3 screen designer and a tested CLI), which inverted
    what a technical reader saw first. */
-const FLAGSHIPS = ['Plaque Toolkit', 'PooledPPI', 'HMM Homologue Finder',
-                   'FigureLab', 'CFU Plot Studio', 'Lysis Curve Plotter',
-                   'HMM Discovery App'];
+const FLAGSHIPS = ['Protein Structure Viewer', 'Plaque Toolkit', 'PooledPPI',
+                   'HMM Homologue Finder', 'FigureLab', 'CFU Plot Studio',
+                   'Lysis Curve Plotter', 'HMM Discovery App'];
 function renderTools(filter = 'flagship') {
     const container = document.getElementById('toolsGrid');
     const filtered = filter === 'flagship'
