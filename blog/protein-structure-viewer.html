@@ -345,6 +345,15 @@ structures fetched by identifier there is a <strong>share link</strong>: the sce
 labels, annotations — compressed into the URL fragment, so a reviewer opens the exact view without a file
 changing hands. Local files stay local; the link simply cannot carry them.
 </p>
+<p>
+Two additions answer the question that follows any comparison: <em>where</em> do the models disagree?
+After aligning, a <strong>Cα deviation</strong> colour scheme paints each residue by its distance from the
+reference — blue under an ångström, red at eight or more, grey where nothing matched — in the viewer, the
+panels, the strip and every export. And a <strong>pLDDT profile</strong> figure plots per-residue confidence
+for every displayed model, one panel per chain with the standard bands shaded behind, as editable SVG. A
+one-click cut hides residues below pLDDT 50 or 70 everywhere at once, which is how most AlphaFold figures
+lose their disordered tails.
+</p>
 <h2>Three bugs worth naming</h2>
         <p>
             The recent pass over this was mostly unglamorous correctness work. Three are worth writing down because they
