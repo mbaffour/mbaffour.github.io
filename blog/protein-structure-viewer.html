@@ -31,7 +31,7 @@
   "headline": "Protein Structure Viewer — what the confidence numbers actually say",
   "description": "A browser viewer for AlphaFold and experimental structures: compare models, align them, read pLDDT and PAE honestly, and export a figure or a self-contained interactive report. Nothing is uploaded.",
   "datePublished": "2026-09-11",
-  "dateModified": "2026-09-11",
+  "dateModified": "2026-09-12",
   "image": "https://mbaffour.github.io/assets/og/protein-structure-viewer.jpg",
   "url": "https://mbaffour.github.io/blog/protein-structure-viewer.html",
   "mainEntityOfPage": {
@@ -320,6 +320,19 @@ a model picker and its pLDDT and ipTM — steps every panel together, spins and 
 background, follows the guided views, and exports a stitched PNG or a composite video. If you aligned models
 before sharing, it carries the aligned coordinates rather than the raw file positions, so the reader sees
 the superposition you saw.
+</p>
+<p>
+Since then the tool has grown the pieces that make a figure <em>finished</em> rather than merely exported.
+Models take a display name, so a caption reads "Round tip, model 0" instead of a file name. The pLDDT
+legend is drawn onto the exported figure. Every label can be nudged into place with arrow buttons and
+stays put when the model turns. The same figures export as <strong>SVG</strong> — the molecule as a raster,
+every label, arrow, caption, and legend as an editable vector layer — so typography can be finished in
+Illustrator or Inkscape without re-rendering. And the Confidence tab now analyses <strong>interfaces</strong>:
+inter-chain contacts at a chosen cutoff, interface residues per chain, and buried surface area by
+Shrake–Rupley, highlightable in one click and exportable with residue lists. It is geometry of the
+prediction as loaded — how the model is packed — and the interface says so; read it next to the
+chain-pair ipTM, not instead of it. Reports can now embed the rendering library so they open with no
+network, and compact or omit the PAE heatmaps to stay small.
 </p>
 <h2>Three bugs worth naming</h2>
         <p>
