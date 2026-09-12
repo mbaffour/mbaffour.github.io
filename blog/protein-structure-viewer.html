@@ -334,6 +334,17 @@ prediction as loaded — how the model is packed — and the interface says so; 
 chain-pair ipTM, not instead of it. Reports can now embed the rendering library so they open with no
 network, and compact or omit the PAE heatmaps to stay small.
 </p>
+<p>
+The latest round is about working faster on residues. A <strong>sequence strip</strong> under the viewer draws
+every chain as a row of residues coloured by pLDDT: hover to read one, click to select it for a label, drag
+a range to fill the selection fields, double-click to zoom to it. Labelled residues and highlighted ranges
+are marked on the strip, so it doubles as an index of what a figure annotates. Every label, selection,
+measurement and annotation change now has <strong>undo and redo</strong>. Chain colouring uses a fixed
+palette named in the legend, so chain A is the same blue in every panel and in the report. And for
+structures fetched by identifier there is a <strong>share link</strong>: the scene — camera, colours,
+labels, annotations — compressed into the URL fragment, so a reviewer opens the exact view without a file
+changing hands. Local files stay local; the link simply cannot carry them.
+</p>
 <h2>Three bugs worth naming</h2>
         <p>
             The recent pass over this was mostly unglamorous correctness work. Three are worth writing down because they
