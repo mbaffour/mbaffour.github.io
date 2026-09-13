@@ -378,6 +378,16 @@ range, mean pLDDT — with a switch to hide it everywhere at once, and counts th
 can be copied straight to the clipboard. And the shared report caught up with the viewer: the same colour
 themes, the same ligand handling, the same hidden chains.
 </p>
+<p>
+The predicted aligned error matrix is the most informative and least read output of a prediction. A
+<strong>PAE domains</strong> tool now reads it: residues that the model places together — low PAE to one
+another — are merged into groups, listed with their ranges and mean internal error, highlighted in one click
+or used as a colour scheme. For an assembly this shows which subunits the model treats as a rigid unit and
+which it merely places nearby. And reviewers get the sequence strip too: every panel of the shared report
+carries one, with hover-to-read and click-to-zoom. And domains can be <strong>named</strong>: a region, a
+colour, and a scope — this model, every model of the run, or everything loaded — so that "the N-lobe in
+blue" means the same thing in every panel, every export and the report, with a legend that says so.
+</p>
 <h2>Three bugs worth naming</h2>
         <p>
             The recent pass over this was mostly unglamorous correctness work. Three are worth writing down because they
