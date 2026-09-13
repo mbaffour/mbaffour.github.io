@@ -1371,7 +1371,7 @@ function renderTools(filter = 'flagship') {
             </div>
         </div>
     `).join('') + (filter === 'flagship'
-        ? `<button class="blog-more tools-more" type="button" onclick="renderTools('all')">All ${tools.length} tools ↓</button>`
+        ? `<div class="grid-more"><button class="blog-more tools-more" type="button" onclick="renderTools('all')">All ${tools.length} tools ↓</button></div>`
         : '');
 
     // Wire cite-block toggle + tabs + copy

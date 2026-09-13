@@ -294,6 +294,7 @@
         <div class="section-header">
             <span class="section-label">Who I Am</span>
             <h2 class="section-title">About <span class="highlight">Me</span></h2>
+            <p class="section-subtitle">Phage biologist at Texas A&amp;M's Center for Phage Technology, working on how N4 times its lysis and building open tools alongside the bench.</p>
         </div>
         <div class="about-grid">
             <div class="about-photo-area">
@@ -344,13 +345,13 @@
 
     <!-- ===== RESEARCH ===== -->
     <section class="section fade-in" id="research">
-        <div class="section-header bare">
+        <div class="section-header">
             <span class="section-label">What I Study</span>
             <h2 class="section-title">Research <span class="highlight">Focus</span></h2>
             <p class="section-subtitle">Bridging molecular virology and engineering to unlock the potential of bacteriophages — from lysis decision-making to programmable biofactories.</p>
         </div>
 
-        <div class="research-lead" style="background:linear-gradient(135deg, rgba(244,196,48,0.07), rgba(26,128,64,0.04)); border:1px solid var(--border-strong); border-radius:18px; padding:28px 30px; margin:0 0 36px; max-width:880px;">
+        <div class="research-lead" style="background:linear-gradient(135deg, rgba(244,196,48,0.07), rgba(26,128,64,0.04)); border:1px solid var(--border-strong); border-radius:18px; padding:28px 30px; margin:0 auto 36px; max-width:880px;">
             <p style="font-family:var(--font-mono); font-size:0.72rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--gold); margin:0 0 10px;">The headline finding</p>
             <p style="font-size:1.08rem; color:var(--ink); margin:0 0 14px; line-height:1.65;">Bacteriophage&nbsp;N4 deliberately delays lysing its host, turning each infected cell into a high-output virus factory that releases <strong>over 3,000 phage per cell</strong>, bursting asynchronously from about three hours post-infection rather than ending early with a fraction of that — the classic observation of Schito's ultrastructural study of N4 development (<a href="https://doi.org/10.1128/JVI.13.1.186-196.1974" target="_blank" rel="noopener">J&nbsp;Virol 1974</a>), at flask scale in a single host. My first-author preprint shows N4 lyses through a <strong>SAR endolysin–holin system</strong> and maps genomic regions — inside and outside the lysis cassette — involved in holding lysis off. Separately, my thesis work identified a novel regulator of that decision — an <strong>essential</strong> gene whose mutation drives the phage into rapid lysis, which is how we know it gates the timing. That manuscript is in preparation, so the gene itself stays unnamed here. The question isn't <em>when</em> a phage kills; it's <em>whether to give up the cell</em> — and N4 keeps choosing to hold on.</p>
             <p style="font-size:0.96rem; color:var(--ink-2); margin:0; line-height:1.6;"><span style="color:var(--green-text); font-weight:600;">Where I'm taking it →</span> Reverse-engineering this timing switch into a control knob for high-titer phage production and programmable microbial biofactories, while shipping the open analysis tools that make those experiments reproducible for the whole field.</p>
@@ -475,7 +476,7 @@
 
     <!-- ===== PUBLICATIONS ===== -->
     <section class="section fade-in" id="publications">
-        <div class="section-header bare">
+        <div class="section-header">
             <span class="section-label">Papers &amp; Preprints</span>
             <h2 class="section-title"><span class="highlight">Publications</span></h2>
             <p class="section-subtitle">A journal article and a first-author preprint on N4 lysis. Talks and posters are listed separately below.</p>
@@ -499,11 +500,10 @@
 
     <!-- ===== TALKS & POSTERS ===== -->
     <section class="section fade-in" id="talks">
-        <!-- Stratum header, not an act header: talks support Publications,
-             they are not a co-equal act of the page. -->
-        <div class="ledger-head">
-            <span class="section-label">Talks &amp; Posters</span>
-            <span class="ledger-counts" id="talkCounts"></span>
+        <div class="section-header">
+            <span class="section-label">Conferences &amp; Symposia</span>
+            <h2 class="section-title">Talks &amp; <span class="highlight">Posters</span></h2>
+            <p class="section-subtitle">Oral presentations and posters on N4 lysis inhibition. <span class="ledger-counts" id="talkCounts"></span></p>
         </div>
         <div class="talk-ledger" id="talkList"></div>
     </section>
@@ -612,7 +612,7 @@
 
     <!-- ===== RECOGNITION & SERVICE ===== -->
     <section class="section fade-in" id="recognition">
-        <div class="section-header bare">
+        <div class="section-header">
             <span class="section-label">Awards · Service · Mentoring</span>
             <h2 class="section-title">Recognition <span class="highlight">&amp; Service</span></h2>
             <p class="section-subtitle">Awards, outreach, judging, and the trainees I've had the privilege of working alongside.</p>
@@ -760,6 +760,23 @@
              builds-data.js so this and builds.html cannot drift apart. Capped
              at three: the full grid is what crowded these off the homepage in
              the first place. -->
+        <a class="tf-callout" href="builds.html#next" aria-label="Play TailFiber, the phage arcade game, on the other tools page">
+            <span class="tf-callout-art" aria-hidden="true">
+                <svg viewBox="0 0 120 120" width="120" height="120" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="60,10 88,26 88,58 60,74 32,58 32,26"/>
+                    <line x1="60" y1="74" x2="60" y2="96"/>
+                    <path d="M42 110 L60 96 L78 110"/><path d="M36 100 L60 96 L84 100"/>
+                    <circle cx="60" cy="42" r="8" stroke-dasharray="3 4"/>
+                </svg>
+            </span>
+            <span class="tf-callout-text">
+                <span class="tf-callout-kicker">Also interactive · arcade game</span>
+                <span class="tf-callout-title">TailFiber — dock to the right receptor, dodge the defences, burst.</span>
+                <span class="tf-callout-body">A browser game built on real phage biology: LPS, OmpC, LamB, type IV pili and NfrA as receptors; antibodies, CRISPR and restriction as the enemies; T4, λ, N4 and ICP1 as playable phages. Arrow keys, WASD or a thumb joystick.</span>
+                <span class="tf-callout-cta">Play TailFiber →</span>
+            </span>
+        </a>
+
         <h3 class="pg-builds-title">Other tools I've built</h3>
         <div class="card-grid" id="homeBuildsGrid"></div>
         <p class="pg-more-note">Every side build — including <strong>TailFiber</strong>, the phage arcade game — lives on the <a href="builds.html">other tools page</a>.</p>
@@ -769,7 +786,7 @@
 
     <!-- ===== BLOG / WEEKLY NOTES ===== -->
     <section class="section fade-in" id="blog">
-        <div class="section-header bare left">
+        <div class="section-header">
             <span class="section-label">Writing</span>
             <h2 class="section-title">Blog &amp; <span class="highlight">Notes</span></h2>
             <p class="section-subtitle">Notes on phage biology, lab life, and tool-building.</p>
@@ -864,7 +881,7 @@
 
     <!-- ===== CONTACT ===== -->
     <section class="section fade-in" id="contact">
-        <div class="section-header bare">
+        <div class="section-header">
             <span class="section-label">Let's Talk Phages</span>
             <h2 class="section-title">Get in <span class="highlight">Touch</span></h2>
             <p class="section-subtitle">Collaboration, phage research, scientific software, or just talking shop — I'd love to hear from you.</p>

@@ -1337,7 +1337,8 @@
         ============================================================ */
         .research-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+            /* 250px lets the four focus cards share one row inside the padded container. */
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 1.5rem;
         }
         .research-card {
@@ -3537,7 +3538,7 @@ kbd {
    research" register established on the tool cards. */
 .section-quote {
     max-width: 880px;
-    margin: 0 0 30px;
+    margin: 0 auto 30px;
     padding: 24px 28px;
     border: 1px solid var(--green-text);
     border-left-width: 4px;
@@ -3615,7 +3616,7 @@ kbd {
     font-size: 0.72rem;
     color: var(--ink-3);
 }
-.talk-ledger { max-width: 880px; }
+.talk-ledger { max-width: 880px; margin: 0 auto; }
 .ledger-entry {
     padding: 14px 2px;
     border-top: 1px solid var(--border);
@@ -3860,3 +3861,47 @@ kbd {
     .pub-acc, .hero-cv-link { display: inline-block; padding-top: 8px; padding-bottom: 8px; }
     .blog-tag, .filter-btn { min-height: 40px; }
 }
+
+
+/* ============================================================
+   UNIFORM ARRANGEMENT
+   Every section: label pill, centred title, subtitle. Blocks narrower than
+   the container sit on the same centre axis as the headings, and grids whose
+   last row is short centre that row instead of leaving it hanging left.
+============================================================ */
+.section-header .section-subtitle .ledger-counts { display: inline; font-family: var(--font-mono); font-size: 0.85em; color: var(--ink-3); margin-left: 6px; }
+#toolsGrid.card-grid, .rec-grid {
+    display: flex; flex-wrap: wrap; justify-content: center; align-items: stretch;
+}
+#toolsGrid.card-grid > * { flex: 0 1 calc((100% - 2.8rem) / 3); min-width: min(310px, 100%); }
+.rec-grid > * { flex: 0 1 calc((100% - 2.8rem) / 3); min-width: min(280px, 100%); }
+@media (max-width: 720px) {
+    #toolsGrid.card-grid > *, .rec-grid > * { flex-basis: 100%; }
+}
+
+/* TailFiber callout in the interactive section */
+.tf-callout {
+    display: grid; grid-template-columns: 120px 1fr; gap: 28px; align-items: center;
+    margin: 40px 0 44px; padding: 26px 30px; text-decoration: none; color: var(--ink);
+    background: linear-gradient(135deg, var(--bg-card), var(--bg-card-hover)); border: 1px solid var(--border-strong);
+    border-radius: 18px; position: relative; overflow: hidden;
+    transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+.tf-callout::before { content: ''; position: absolute; inset: 0 auto 0 0; width: 5px; background: var(--kente); background-size: 100% 60px; opacity: 0.9; }
+.tf-callout:hover { transform: translateY(-3px); border-color: var(--gold); box-shadow: var(--glow-gold); }
+.tf-callout-art { color: var(--gold); display: flex; justify-content: center; }
+.tf-callout-art svg { animation: tf-bob 4s ease-in-out infinite; }
+@keyframes tf-bob { 0%, 100% { transform: translateY(0) } 50% { transform: translateY(-6px) } }
+.tf-callout-text { display: flex; flex-direction: column; gap: 8px; }
+.tf-callout-kicker { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); }
+.tf-callout-title { font-family: var(--font-display); font-size: clamp(1.15rem, 2.2vw, 1.5rem); font-weight: 600; line-height: 1.3; }
+.tf-callout-body { color: var(--ink-2); font-size: 0.95rem; max-width: 760px; }
+.tf-callout-cta { font-family: var(--font-mono); font-size: 0.85rem; color: var(--gold); margin-top: 4px; }
+@media (max-width: 640px) {
+    .tf-callout { grid-template-columns: 1fr; text-align: center; padding: 22px; }
+    .tf-callout-text { align-items: center; }
+}
+@media (prefers-reduced-motion: reduce) { .tf-callout-art svg { animation: none; } }
+.pub-latest { margin-left: auto; margin-right: auto; }
+/* The "All N tools" button lives inside the tools grid; keep it on its own centred line. */
+#toolsGrid.card-grid > .grid-more { flex: 1 1 100%; min-width: 0; text-align: center; margin-top: 6px; }
