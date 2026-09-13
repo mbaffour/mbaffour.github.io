@@ -55,6 +55,7 @@ const pages = [
   { loc: '/blog/', file: 'blog/index.html', changefreq: 'weekly', priority: '0.9', extra: latest(...sorted.map(p => p.updated || p.iso)) },
   { loc: '/journey.html', file: 'journey.html', changefreq: 'monthly', priority: '0.8' },
   { loc: '/builds.html', file: 'builds.html', changefreq: 'monthly', priority: '0.7' },
+  { loc: '/beyond.html', file: 'beyond.html', changefreq: 'monthly', priority: '0.6' },
   { loc: '/structure-viewer/', file: 'structure-viewer/index.html', changefreq: 'weekly', priority: '0.8' },
   { loc: '/watermark-remover/', file: 'watermark-remover/index.html', changefreq: 'monthly', priority: '0.6' },
   { loc: '/cv-resume/Michael_Baffour_Awuah_CV.html', file: 'cv-resume/Michael_Baffour_Awuah_CV.html', changefreq: 'monthly', priority: '0.6' },

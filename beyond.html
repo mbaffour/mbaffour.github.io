@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Beyond the bench: Michael Baffour Awuah on football, the starting XI of skills a phage PhD runs on, and photographs from the lab, conferences and outreach.">
+    <meta property="og:title" content="Beyond the Bench · Michael Baffour Awuah">
+    <meta property="og:description" content="Off the pitch and life in the lab: the parts of the week that are not experiments.">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Michael Baffour Awuah">
+    <meta property="og:url" content="https://mbaffour.github.io/beyond.html">
+    <meta property="og:image" content="https://mbaffour.github.io/assets/og-card.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Beyond the Bench · Michael Baffour Awuah">
+    <meta name="twitter:image" content="https://mbaffour.github.io/assets/og-card.jpg">
+    <meta name="theme-color" content="#f7f4ea" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#121009" media="(prefers-color-scheme: dark)">
+    <link rel="canonical" href="https://mbaffour.github.io/beyond.html">
+    <title>Beyond the Bench · Michael Baffour Awuah</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><polygon points='16,5 25,10 25,18 16,23 7,18 7,10' fill='%23f4c430' stroke='%23f4c430' stroke-width='1.5'/><line x1='16' y1='23' x2='16' y2='28' stroke='%23f4c430' stroke-width='2' stroke-linecap='round'/><line x1='13' y1='28' x2='19' y2='28' stroke='%23f4c430' stroke-width='2' stroke-linecap='round'/></svg>">
+    <link rel="preload" href="assets/fonts/fraunces-var-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="assets/fonts/inter-var-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="assets/fonts/fonts.css">
+    <link rel="stylesheet" href="assets/css/site.css">
+    <style>
+        /* This page reuses the site stylesheet for the sections themselves; the
+           chrome below is the subpage top bar shared with builds.html. */
+        body { padding-top: 0; }
+        .topbar { border-bottom: 1px solid var(--border); padding: 18px 0; position: sticky; top: 0; background: var(--nav-bg); backdrop-filter: blur(10px); z-index: 10; }
+        .topbar .wrap { max-width: 1180px; margin: 0 auto; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+        .back { font-family: var(--font-mono); font-size: 0.85rem; color: var(--ink-2); text-decoration: none; }
+        .back:hover { color: var(--gold); }
+        .brand { font-family: var(--font-display); font-weight: 600; font-size: 0.95rem; }
+        .theme-toggle { display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:8px;border:1px solid var(--border-strong);background:transparent;color:var(--ink-3);cursor:pointer; }
+        .theme-toggle:hover { color:var(--gold);border-color:var(--gold); }
+        .theme-toggle .ti-sun { display:block; } .theme-toggle .ti-moon { display:none; }
+        html[data-theme="light"] .theme-toggle .ti-sun { display:none; } html[data-theme="light"] .theme-toggle .ti-moon { display:block; }
+        .page-hero { max-width: 1180px; margin: 0 auto; padding: 72px 24px 8px; text-align: center; }
+        .page-hero .eyebrow { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); }
+        .page-hero h1 { font-family: var(--font-display); font-size: clamp(2.2rem, 5vw, 3.4rem); font-weight: 700; margin: 14px 0; }
+        .page-hero h1 .accent { color: var(--gold); font-style: italic; }
+        .page-hero .lede { color: var(--ink-2); max-width: 640px; margin: 0 auto; font-size: 1.05rem; }
+        .page-hero .jump { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 22px; }
+        .page-hero .jump a { font-family: var(--font-mono); font-size: 0.8rem; text-decoration: none; color: var(--ink-2); border: 1px solid var(--border-strong); border-radius: 999px; padding: 8px 16px; }
+        .page-hero .jump a:hover { color: var(--gold); border-color: var(--gold); }
+        .skip-link{position:absolute;left:1rem;top:-3rem;z-index:2000;padding:.7rem 1.15rem;background:#f4c430;color:#121009;font-family:var(--font-mono);font-size:.82rem;font-weight:700;border-radius:0 0 10px 10px;text-decoration:none;transition:top .18s ease}
+        .skip-link:focus{top:0}
+        footer.page-footer { border-top: 1px solid var(--border); padding: 32px 24px; text-align: center; color: var(--ink-3); font-size: 0.85rem; }
+        footer.page-footer a { color: var(--gold); text-decoration: none; }
+    </style>
+    <script>(function(){var r=document.documentElement;r.classList.remove('no-js');var t=null;try{t=localStorage.getItem('theme')}catch(e){}
+    if(t!=='dark'&&t!=='light'){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}
+    r.setAttribute('data-theme',t)})()</script>
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to main content</a>
+<div class="topbar">
+    <div class="wrap">
+        <a href="index.html" class="back">&larr; Back to research site</a>
+        <span class="brand">Michael Baffour Awuah</span>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark mode" title="Toggle light/dark mode">
+            <svg class="ti-sun" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+            <svg class="ti-moon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+    </div>
+</div>
+<main id="main">
+    <header class="page-hero">
+        <span class="eyebrow">Off the clock</span>
+        <h1>Beyond the <span class="accent">Bench</span></h1>
+        <p class="lede">The parts of the week that are not experiments. The research, publications and software are on the <a href="index.html" style="color:var(--gold)">main site</a>; this page is the rest.</p>
+        <nav class="jump" aria-label="On this page"><a href="#pitch-section">Off the pitch</a><a href="#gallery">Life in the lab</a></nav>
+    </header>
+
+    <!-- ===== OFF THE PITCH ===== -->
+    <section class="section" id="pitch-section">
+        <div class="section-header">
+            <span class="section-label">Off the Clock</span>
+            <h2 class="section-title">Off the <span class="highlight">Pitch</span></h2>
+            <p class="section-subtitle">I play soccer. Badly, enthusiastically, and most weeks — which turns out to be the same way I do science.</p>
+        </div>
+
+        <div class="pitch-grid">
+            <div class="pitch-prose">
+                <p>I grew up on Ghanaian football, which means I grew up on hope with a very
+                   specific shape to it. The <strong>Black Stars</strong> teach you early that
+                   talent is not the same as a result, that the run someone makes off the ball
+                   is usually what created the goal, and that you can play beautifully and
+                   still lose on penalties. Reasonable preparation for a PhD.</p>
+                <p>These days it's pickup games in College Station — a squad that speaks about
+                   six languages and agrees on nothing except that the last goal was offside.
+                   It is the only part of my week with no reviewers.</p>
+                <p>The habits transfer more than I expected. You play the pass that's on, not
+                   the one you rehearsed. You spend most of the match without the ball, which
+                   is exactly like waiting on an overnight culture. And the players worth
+                   having around are the ones who track back when the experiment fails, not
+                   the ones who only turn up for the result.</p>
+                <p class="pitch-flag"><span aria-hidden="true">🇬🇭</span> The gold, green and red
+                   on this site is the Ghanaian flag, not a coincidence.</p>
+            </div>
+
+            <!-- Interactive: the eleven things I lean on, as a starting XI. -->
+            <div class="pitch-widget" id="pitchWidget">
+                <h3 class="pitch-h3">My starting XI</h3>
+                <p class="pitch-hint">Every skill this PhD runs on, in a 4&#8209;3&#8209;3. Pick a shirt.</p>
+
+                <svg class="pitch-svg" viewBox="0 0 100 100" role="group"
+                     aria-label="A soccer pitch showing eleven skills arranged in a 4-3-3 formation. Each shirt is a button.">
+                    <rect class="pitch-turf" x="0" y="0" width="100" height="100" rx="2"/>
+                    <g class="pitch-lines" aria-hidden="true" fill="none">
+                        <rect x="3" y="3" width="94" height="94" rx="1"/>
+                        <line x1="3" y1="50" x2="97" y2="50"/>
+                        <circle cx="50" cy="50" r="11"/>
+                        <circle cx="50" cy="50" r="0.9" class="spot"/>
+                        <rect x="28" y="3" width="44" height="15"/>
+                        <rect x="40" y="3" width="20" height="6"/>
+                        <rect x="28" y="82" width="44" height="15"/>
+                        <rect x="40" y="91" width="20" height="6"/>
+                    </g>
+                </svg>
+
+                <div class="pitch-detail" role="status" aria-live="polite"></div>
+
+                <!-- No-JS view: the same eleven, as text. -->
+                <ul class="pitch-fallback">
+                    <li><strong>GK</strong> Controls &amp; replicates</li>
+                    <li><strong>RB</strong> Molecular cloning</li>
+                    <li><strong>CB</strong> Phage isolation</li>
+                    <li><strong>CB</strong> Genome assembly &amp; annotation</li>
+                    <li><strong>LB</strong> CRISPR engineering</li>
+                    <li><strong>CM</strong> Experimental design</li>
+                    <li><strong>CM</strong> RNA-seq &amp; DESeq2</li>
+                    <li><strong>CM</strong> R &amp; Python pipelines</li>
+                    <li><strong>RW</strong> Tool building</li>
+                    <li><strong>ST</strong> Lysis inhibition in N4</li>
+                    <li><strong>LW</strong> Teaching &amp; mentoring</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <hr class="section-divider">
+
+
+    <hr class="section-divider">
+
+    <!-- ===== LIFE IN THE LAB GALLERY ===== -->
+    <section class="section" id="gallery">
+        <div class="section-header">
+            <span class="section-label">Behind the Bench</span>
+            <h2 class="section-title">Life in the <span class="highlight">Lab</span></h2>
+            <p class="section-subtitle">Whiteboards, the bench, conferences, and outreach. The science doesn't happen in a vacuum.</p>
+        </div>
+        <div class="pub-filters" id="galleryFilters"></div>
+        <div class="gallery-grid" id="galleryGrid"></div>
+    </section>
+
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
+        <button class="lightbox-close" id="lightboxClose" aria-label="Close">✕</button>
+        <figure class="lightbox-figure" onclick="event.stopPropagation()">
+            <img id="lightboxImg" src="" alt="">
+            <figcaption class="lightbox-cap" id="lightboxCap"></figcaption>
+        </figure>
+    </div>
+</main>
+<footer class="page-footer">
+    &copy; 2026 Michael Baffour Awuah &middot; <a href="index.html">Research site</a> &middot; <a href="journey.html">The journey</a> &middot; <a href="blog/">Blog</a> &middot; <a href="https://github.com/mbaffour" target="_blank" rel="noopener">GitHub</a>
+</footer>
+<script defer src="assets/js/gallery.js"></script>
+<script defer src="assets/js/pitch.js"></script>
+<script>
+(function () {
+    var btn = document.getElementById('themeToggle'); if (!btn) return;
+    btn.addEventListener('click', function () {
+        var next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', next);
+        try { localStorage.setItem('theme', next); } catch (e) {}
+    });
+})();
+</script>
+</body>
+</html>
