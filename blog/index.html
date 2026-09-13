@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Blog and notes by Michael Baffour Awuah: phage biology, lab life, and building research software that runs in the browser.">
+    <meta property="og:title" content="Blog &amp; Notes · Michael Baffour Awuah">
+    <meta property="og:description" content="Notes on phage biology, lab life, and building research software.">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Michael Baffour Awuah">
+    <meta property="og:url" content="https://mbaffour.github.io/blog/">
+    <meta property="og:image" content="https://mbaffour.github.io/assets/og-card.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Blog &amp; Notes · Michael Baffour Awuah">
+    <meta name="twitter:description" content="Notes on phage biology, lab life, and building research software.">
+    <meta name="twitter:image" content="https://mbaffour.github.io/assets/og-card.jpg">
+    <meta name="theme-color" content="#f7f4ea" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#0a0802" media="(prefers-color-scheme: dark)">
+    <link rel="canonical" href="https://mbaffour.github.io/blog/">
+    <link rel="alternate" type="application/rss+xml" title="Michael Baffour Awuah — Blog &amp; Notes" href="https://mbaffour.github.io/feed.xml">
+    <title>Blog &amp; Notes · Michael Baffour Awuah</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><polygon points='16,5 25,10 25,18 16,23 7,18 7,10' fill='%23f4c430' stroke='%23f4c430' stroke-width='1.5'/><line x1='16' y1='23' x2='16' y2='28' stroke='%23f4c430' stroke-width='2' stroke-linecap='round'/><line x1='13' y1='28' x2='19' y2='28' stroke='%23f4c430' stroke-width='2' stroke-linecap='round'/></svg>">
+    <link rel="preload" href="../assets/fonts/fraunces-var-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="../assets/fonts/inter-var-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="../assets/fonts/fonts.css">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Blog",
+      "name": "Michael Baffour Awuah — Blog & Notes",
+      "url": "https://mbaffour.github.io/blog/",
+      "description": "Notes on phage biology, lab life, and building research software.",
+      "author": { "@type": "Person", "name": "Michael Baffour Awuah", "url": "https://mbaffour.github.io/" }
+    }
+    </script>
+    <style>
+        :root {
+            --bg: #0a0802; --bg-card: #1c1709; --bg-card-hover: #241d0c;
+            --border: rgba(244,196,48,0.10); --border-strong: rgba(244,196,48,0.22);
+            --gold: #f4c430; --green: #1f9249; --red: #d4324b;
+            --ink: #f5edd8; --ink-2: #d8c98c; --ink-3: #a08652;
+            --font-display: 'Fraunces','Georgia',serif;
+            --font-body: 'Inter','Segoe UI',sans-serif;
+            --font-mono: 'JetBrains Mono','Courier New',monospace;
+            --topbar: rgba(10,8,2,0.85);
+        }
+        html[data-theme="light"] {
+            --bg: #f7f4ea; --bg-card: #ffffff; --bg-card-hover: #fffaed;
+            --border: rgba(164,130,58,0.18); --border-strong: rgba(164,130,58,0.38);
+            --gold: #7d5800; --green: #0f6a2e; --red: #a01a30;
+            --ink: #1a1408; --ink-2: #3a2c0e; --ink-3: #7a5e2a;
+            --topbar: rgba(247,244,234,0.92);
+        }
+        @media (prefers-color-scheme: light) {
+            html:not([data-theme]) {
+                --bg: #f7f4ea; --bg-card: #ffffff; --bg-card-hover: #fffaed;
+                --border: rgba(164,130,58,0.18); --border-strong: rgba(164,130,58,0.38);
+                --gold: #7d5800; --green: #0f6a2e; --red: #a01a30;
+                --ink: #1a1408; --ink-2: #3a2c0e; --ink-3: #7a5e2a;
+                --topbar: rgba(247,244,234,0.92);
+            }
+            html:not([data-theme]) .theme-toggle .ti-sun  { display:none; }
+            html:not([data-theme]) .theme-toggle .ti-moon { display:block; }
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { background: var(--bg); color: var(--ink); font-family: var(--font-body); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+        a { color: inherit; }
+        a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 4px; }
+        .skip-link{position:absolute;left:1rem;top:-3rem;z-index:2000;padding:.7rem 1.15rem;background:#f4c430;color:#121009;font-family:var(--font-mono);font-size:.82rem;font-weight:700;border-radius:0 0 10px 10px;text-decoration:none;transition:top .18s ease}
+        .skip-link:focus{top:0}
+        .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+        .topbar { border-bottom: 1px solid var(--border); padding: 18px 0; position: sticky; top: 0; background: var(--topbar); backdrop-filter: blur(10px); z-index: 10; }
+        .topbar .wrap { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+        .back { font-family: var(--font-mono); font-size: 0.85rem; color: var(--ink-2); text-decoration: none; transition: color 0.2s; }
+        .back:hover { color: var(--gold); }
+        .brand { font-family: var(--font-display); font-weight: 600; font-size: 0.95rem; }
+        header.hero { padding: 64px 0 24px; }
+        .eyebrow { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); }
+        h1 { font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3rem); font-weight: 700; margin: 14px 0; }
+        h1 .accent { color: var(--gold); font-style: italic; }
+        .lede { color: var(--ink-2); max-width: 640px; font-size: 1.05rem; }
+        .lede a { color: var(--gold); }
+        .toolbar { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin: 28px 0 8px; }
+        .search { flex: 1 1 260px; display: flex; align-items: center; gap: 10px; background: var(--bg-card); border: 1px solid var(--border-strong); border-radius: 12px; padding: 10px 14px; }
+        .search svg { flex: none; color: var(--ink-3); }
+        .search input { flex: 1; min-width: 0; background: none; border: 0; color: var(--ink); font: inherit; font-size: 0.98rem; }
+        .search input::placeholder { color: var(--ink-3); }
+        .search kbd { font-family: var(--font-mono); font-size: 0.7rem; color: var(--ink-3); border: 1px solid var(--border-strong); border-radius: 6px; padding: 1px 6px; }
+        .count { font-family: var(--font-mono); font-size: 0.78rem; color: var(--ink-3); }
+        .filters { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0 26px; }
+        .filter-btn { font-family: var(--font-mono); font-size: 0.76rem; color: var(--ink-2); background: transparent; border: 1px solid var(--border-strong); border-radius: 999px; padding: 8px 14px; cursor: pointer; transition: all 0.18s; }
+        .filter-btn:hover { color: var(--gold); border-color: var(--gold); }
+        .filter-btn.active { background: var(--gold); color: var(--bg); border-color: var(--gold); font-weight: 600; }
+        .filter-btn .n { opacity: 0.7; margin-left: 4px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(320px, 100%), 1fr)); gap: 22px; padding: 0 0 56px; }
+        .card { display: flex; flex-direction: column; background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 24px; text-decoration: none; color: inherit; transition: transform 0.2s, border-color 0.2s, background 0.2s; position: relative; }
+        .card:hover { transform: translateY(-4px); border-color: var(--border-strong); background: var(--bg-card-hover); }
+        .card.featured { grid-column: 1 / -1; }
+        @media (min-width: 720px) { .card.featured.has-thumb { display: grid; grid-template-columns: 1.2fr 1fr; gap: 28px; align-items: start; } .card.featured.has-thumb .thumb { order: 2; height: 100%; max-height: 260px; margin: 0; } .card.featured:not(.has-thumb) > div { max-width: 760px; } }
+        .card-top { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; font-family: var(--font-mono); font-size: 0.72rem; color: var(--ink-3); }
+        .badge { color: var(--gold); border: 1px solid var(--border-strong); border-radius: 999px; padding: 2px 9px; font-size: 0.66rem; letter-spacing: 0.1em; text-transform: uppercase; }
+        .card h2 { font-family: var(--font-display); font-size: 1.35rem; font-weight: 600; line-height: 1.3; margin: 12px 0 10px; }
+        .card.featured h2 { font-size: clamp(1.5rem, 3vw, 2rem); }
+        .card p { color: var(--ink-2); font-size: 0.94rem; flex: 1; }
+        .card .thumb { width: 100%; height: 160px; object-fit: cover; border-radius: 10px; margin: 0 0 14px; border: 1px solid var(--border); }
+        .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 16px; }
+        .tag { font-family: var(--font-mono); font-size: 0.68rem; color: var(--ink-3); border: 1px solid var(--border); border-radius: 999px; padding: 4px 9px; }
+        .read { margin-top: 14px; font-family: var(--font-mono); font-size: 0.78rem; color: var(--gold); }
+        .empty { grid-column: 1 / -1; text-align: center; color: var(--ink-3); padding: 48px 0; font-family: var(--font-mono); font-size: 0.9rem; }
+        .rss { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: 0.8rem; color: var(--ink-2); text-decoration: none; border: 1px solid var(--border-strong); border-radius: 10px; padding: 9px 14px; }
+        .rss:hover { color: var(--gold); border-color: var(--gold); }
+        footer { border-top: 1px solid var(--border); padding: 32px 0; text-align: center; color: var(--ink-3); font-size: 0.85rem; }
+        footer a { color: var(--gold); text-decoration: none; }
+        .theme-toggle { display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:8px;border:1px solid var(--border-strong);background:transparent;color:var(--ink-3);cursor:pointer;transition:all .2s; }
+        .theme-toggle:hover { color:var(--gold);border-color:var(--gold); }
+        .theme-toggle .ti-sun  { display:block; }
+        .theme-toggle .ti-moon { display:none; }
+        html[data-theme="light"] .theme-toggle .ti-sun  { display:none; }
+        html[data-theme="light"] .theme-toggle .ti-moon { display:block; }
+        @media (prefers-reduced-motion: reduce){*,*::before,*::after{animation-duration:.01ms !important;transition-duration:.01ms !important}html{scroll-behavior:auto}}
+    </style>
+    <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
+    if(t!=='dark'&&t!=='light'){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}
+    document.documentElement.setAttribute('data-theme',t)})()</script>
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to main content</a>
+<div class="topbar">
+    <div class="wrap">
+        <a href="../index.html" class="back">&larr; Back to research site</a>
+        <span class="brand">Michael Baffour Awuah</span>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark mode" title="Toggle light/dark mode">
+            <svg class="ti-sun" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+            <svg class="ti-moon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+    </div>
+</div>
+<main id="main">
+    <div class="wrap">
+        <header class="hero">
+            <span class="eyebrow">Writing</span>
+            <h1>Blog <span class="accent">&amp; Notes</span></h1>
+            <p class="lede">Notes on phage biology, lab life, and the research software I build so the work is reproducible. Every tool post links to the tool itself, and most of them started as something I needed at the bench that week. <a href="../feed.xml">Subscribe by RSS</a>.</p>
+        </header>
+        <div class="toolbar">
+            <label class="search" for="q">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                <input id="q" type="search" placeholder="Search posts — title, tag, or topic" autocomplete="off" spellcheck="false">
+                <kbd aria-hidden="true">/</kbd>
+            </label>
+            <span class="count" id="count" aria-live="polite"></span>
+            <a class="rss" href="../feed.xml"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 11a9 9 0 0 1 9 9"/><path d="M4 4a16 16 0 0 1 16 16"/><circle cx="5" cy="19" r="1"/></svg>RSS</a>
+        </div>
+        <div class="filters" id="filters" role="group" aria-label="Filter by tag"></div>
+        <div class="grid" id="grid"></div>
+    </div>
+</main>
+<footer>
+    <div class="wrap">
+        &copy; 2026 Michael Baffour Awuah &middot; <a href="../index.html">Research site</a> &middot; <a href="../index.html#tools">Research software</a> &middot; <a href="../builds.html">Other tools</a> &middot; <a href="https://github.com/mbaffour" target="_blank" rel="noopener">GitHub</a>
+    </div>
+</footer>
+<script src="../assets/js/posts-data.js"></script>
+<script>
+(function () {
+    'use strict';
+    const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+    const list = posts.slice().sort((a, b) => b.iso.localeCompare(a.iso));
+    const grid = document.getElementById('grid'); const filters = document.getElementById('filters');
+    const input = document.getElementById('q'); const count = document.getElementById('count');
+    const params = new URLSearchParams(location.search);
+    let tag = params.get('tag') || 'all'; let query = params.get('q') || '';
+    input.value = query;
+    const tags = [...new Set(list.flatMap(p => p.tags))].sort((a, b) => list.filter(p => p.tags.includes(b)).length - list.filter(p => p.tags.includes(a)).length);
+    const href = url => url.replace(/^blog\//, '');
+    const fmt = iso => new Date(iso + 'T12:00:00Z').toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' });
+    function renderFilters() {
+        filters.innerHTML = [['all', 'All', list.length], ...tags.map(t => [t, t, list.filter(p => p.tags.includes(t)).length])]
+            .map(([key, label, n]) => `<button class="filter-btn ${key === tag ? 'active' : ''}" type="button" data-tag="${esc(key)}" aria-pressed="${key === tag}">${esc(label)}<span class="n">${n}</span></button>`).join('');
+    }
+    function render() {
+        const q = query.trim().toLowerCase();
+        const shown = list.filter(p => (tag === 'all' || p.tags.includes(tag)) && (!q || (p.title + ' ' + p.blurb + ' ' + p.tags.join(' ')).toLowerCase().includes(q)));
+        count.textContent = shown.length === list.length ? list.length + ' posts' : shown.length + ' of ' + list.length + ' posts';
+        if (!shown.length) { grid.innerHTML = '<div class="empty">Nothing matches. Try another word, or clear the tag.</div>'; return; }
+        grid.innerHTML = shown.map((p, i) => `
+            <a class="card ${i === 0 && tag === 'all' && !q ? 'featured' : ''} ${p.image ? 'has-thumb' : ''}" href="${esc(href(p.url))}">
+                ${p.image ? `<img class="thumb" src="../${esc(p.image)}" alt="${esc(p.imageAlt || '')}" loading="lazy" decoding="async">` : ''}
+                <div>
+                    <div class="card-top"><time datetime="${esc(p.iso)}">${esc(fmt(p.iso))}${p.updated ? ' · updated ' + esc(fmt(p.updated)) : ''}</time>${i === 0 && tag === 'all' && !q ? '<span class="badge">Latest</span>' : ''}</div>
+                    <h2>${esc(p.title)}</h2>
+                    <p>${esc(p.blurb)}</p>
+                    <div class="tags">${p.tags.map(t => `<span class="tag">${esc(t)}</span>`).join('')}</div>
+                    <div class="read">Read post →</div>
+                </div>
+            </a>`).join('');
+        const url = new URL(location.href); tag === 'all' ? url.searchParams.delete('tag') : url.searchParams.set('tag', tag); q ? url.searchParams.set('q', query.trim()) : url.searchParams.delete('q');
+        history.replaceState(null, '', url.pathname + (url.search || ''));
+    }
+    filters.addEventListener('click', event => { const button = event.target.closest('[data-tag]'); if (!button) return; tag = button.dataset.tag; renderFilters(); render(); });
+    input.addEventListener('input', () => { query = input.value; render(); });
+    document.addEventListener('keydown', event => { if (event.key === '/' && document.activeElement !== input && !event.metaKey && !event.ctrlKey) { event.preventDefault(); input.focus(); } if (event.key === 'Escape' && document.activeElement === input) { input.value = ''; query = ''; render(); } });
+    renderFilters(); render();
+    const toggle = document.getElementById('themeToggle');
+    toggle.addEventListener('click', () => {
+        const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', next);
+        try { localStorage.setItem('theme', next); } catch (error) {}
+        toggle.setAttribute('aria-label', next === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+    });
+})();
+</script>
+</body>
+</html>

@@ -3850,3 +3850,13 @@ kbd {
         padding-bottom: 3px;
     }
 }
+/* ============================================================
+   TOUCH TARGETS
+   On coarse pointers the small mono chips and inline accession links get a
+   taller hit area (≥ 40px) without changing the desktop look.
+============================================================ */
+@media (pointer: coarse) {
+    .proof-chip, .rec-link { padding-top: 10px; padding-bottom: 10px; }
+    .pub-acc, .hero-cv-link { display: inline-block; padding-top: 8px; padding-bottom: 8px; }
+    .blog-tag, .filter-btn { min-height: 40px; }
+}

@@ -74,7 +74,11 @@
     const projectItems = (typeof builds === 'undefined' ? [] : builds).map(b => ({
         type: 'project', label: b.title, hint: b.tech.join(' · '), href: b.app, icon: '⚙️', external: true
     }));
-    const items = [...baseItems, ...pubItems, ...toolItems, ...projectItems];
+    /* Blog posts come from the shared posts array (assets/js/posts-data.js). */
+    const postItems = (typeof posts === 'undefined' ? [] : posts).map(p => ({
+        type: 'post', label: p.title, hint: p.tags.join(' · ') + ' · ' + p.date, href: p.url, icon: '📝', external: false
+    }));
+    const items = [...baseItems, ...pubItems, ...toolItems, ...projectItems, ...postItems];
 
     function score(q, item) {
         if (!q) return 0;
@@ -95,7 +99,8 @@
         'Tools': it => it.type === 'tool',
         'Projects': it => it.type === 'project',
         'Publications': it => it.type === 'pub',
-        'Links': it => it.type === 'link'
+        'Links': it => it.type === 'link',
+        'Blog':     it => it.type === 'post',
     };
 
     let active = 0;
