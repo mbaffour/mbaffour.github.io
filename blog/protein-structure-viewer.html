@@ -452,6 +452,15 @@ Nature, Science, Cell Press, PNAS, PLOS and eLife. And <strong>one panel per mod
 models of a run from the same camera into a single lettered figure, which is the figure a reviewer asks for
 first.
 </p>
+<p>
+And the thing the post above said was next: a <strong>contact map</strong> (2.18.0). Pick two chains of a
+model and a cutoff, and every residue pair whose atoms come within it becomes a cell, closer pairs darker,
+the first chain down the side and the second along the top. Hover reads the pair and the distance, a click
+selects both residues in 3D, one button highlights the whole interface, and the map and the pair list download
+as a 300 dpi figure and a CSV. The methods text states the rule and the counts. It uses the same distance
+definition as the proximity tool that was checked against Biopython, and the tool says plainly what it cannot
+say: that a predicted interface exists. For that, read it beside the inter-chain PAE.
+</p>
 <h2>Three bugs worth naming</h2>
         <p>
             The recent pass over this was mostly unglamorous correctness work. Three are worth writing down because they
