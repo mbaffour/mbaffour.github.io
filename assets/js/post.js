@@ -120,6 +120,9 @@ main svg[width]{max-width:100%;height:auto}
         if (older) nav.append(card(older, '← Older', 'prev')); else nav.append(el('span'));
         if (newer) nav.append(card(newer, 'Newer →', 'next'));
         const allLine = el('p', 'post-nav-all'); const link = el('a', null, 'All ' + list.length + ' posts'); link.href = 'index.html'; allLine.append(link);
-        tail.append(nav, allLine);
+        /* After the last section rather than inside it, so a closing call-to-action card keeps
+           its own shape; inside only when the parent is a grid or flex row. */
+        const parentIsRow = tail.parentElement && /^(grid|flex|inline-grid|inline-flex)$/.test(getComputedStyle(tail.parentElement).display);
+        if (tail !== main && tail.matches('section, article') && !parentIsRow) tail.after(nav, allLine); else tail.append(nav, allLine);
     }
 })();
