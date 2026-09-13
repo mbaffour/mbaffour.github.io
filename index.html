@@ -181,7 +181,7 @@
                 <li><a href="#tools">Software</a></li>
                 <li><a href="#teaching">Teaching</a></li>
                 <li><a href="#blog">Blog</a></li>
-                <li><a href="beyond.html" class="nav-page">Beyond</a></li>
+                <li><a href="#gallery">Gallery</a></li>
                 <li><a href="cv-resume/Michael_Baffour_Awuah_CV.html" class="nav-page nav-cv">CV</a></li>
                 <li><a href="#contact">Contact</a></li>
                 <li><button class="nav-theme-toggle" id="themeToggle" aria-label="Switch to light mode" title="Toggle light / dark mode">
@@ -643,7 +643,7 @@
                 <div class="rec-date">2024</div>
                 <h3>Invited Lectures &amp; Talks</h3>
                 <p>Three oral presentations on phage&nbsp;N4 lysis inhibition: the Bio&nbsp;&amp;&nbsp;Chem Sciences Symposium, the Texas ASM Branch Meeting, and BIOGSA.</p>
-                <a class="rec-link" href="beyond.html#gallery">See gallery ↗</a>
+                <a class="rec-link" href="#gallery">See gallery ↓</a>
             </div>
             <div class="rec-card mentor" style="--accent: var(--red);">
                 <span class="rec-icon">🧫</span>
@@ -803,30 +803,34 @@
 
     <hr class="section-divider">
 
-    <!-- ===== BEYOND THE BENCH (teaser; the full sections live on beyond.html) ===== -->
+    <!-- ===== LIFE IN THE LAB GALLERY ===== -->
+    <section class="section fade-in" id="gallery">
+        <div class="section-header">
+            <span class="section-label">Behind the Bench</span>
+            <h2 class="section-title">Life in the <span class="highlight">Lab</span></h2>
+            <p class="section-subtitle">Whiteboards, the bench, conferences, and outreach. The science doesn't happen in a vacuum.</p>
+        </div>
+        <div class="pub-filters" id="galleryFilters"></div>
+        <div class="gallery-grid" id="galleryGrid"></div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- ===== OFF THE PITCH (teaser; the piece lives on beyond.html) ===== -->
     <section class="section fade-in" id="beyond">
         <div class="section-header">
             <span class="section-label">Off the Clock</span>
-            <h2 class="section-title">Beyond the <span class="highlight">Bench</span></h2>
-            <p class="section-subtitle">The parts of the week that are not experiments: pickup football, and the photographs from the lab, conferences and outreach.</p>
+            <h2 class="section-title">Off the <span class="highlight">Pitch</span></h2>
+            <p class="section-subtitle">I play soccer. Badly, enthusiastically, and most weeks — which turns out to be the same way I do science.</p>
         </div>
         <div class="beyond-teaser">
-            <a class="beyond-card" href="beyond.html#pitch-section">
+            <a class="beyond-card" href="beyond.html">
                 <span class="beyond-art beyond-art-pitch" aria-hidden="true"><span>4-3-3</span></span>
                 <span class="beyond-text">
-                    <span class="beyond-kicker">Off the pitch</span>
-                    <span class="beyond-title">A starting XI built from the skills this PhD runs on</span>
-                    <span class="beyond-body">Ghanaian football, pickup games in College Station, and why the habits transfer. Click a shirt to read the scouting report.</span>
+                    <span class="beyond-kicker">The starting XI</span>
+                    <span class="beyond-title">Every skill this PhD runs on, lined up in a 4-3-3</span>
+                    <span class="beyond-body">Ghanaian football, pickup games in College Station, and why the habits transfer: you play the pass that's on, you spend most of the match without the ball, and the players worth having track back when the experiment fails. Click a shirt to read the scouting report.</span>
                     <span class="beyond-cta">Read it →</span>
-                </span>
-            </a>
-            <a class="beyond-card" href="beyond.html#gallery">
-                <img class="beyond-art" src="gallery/gallery-tem.webp" alt="Transmission electron micrographs of isolated phages" width="900" height="1200" loading="lazy" decoding="async">
-                <span class="beyond-text">
-                    <span class="beyond-kicker">Life in the lab</span>
-                    <span class="beyond-title">Fourteen photographs: whiteboards, the bench, conferences, outreach</span>
-                    <span class="beyond-body">TEMs of phages I isolated, poster sessions, Darwin Day, and the Patterson Fellowship ceremony.</span>
-                    <span class="beyond-cta">Open the gallery →</span>
                 </span>
             </a>
         </div>
@@ -928,6 +932,15 @@
     </section>
 
 
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
+        <button class="lightbox-close" id="lightboxClose" aria-label="Close">✕</button>
+        <figure class="lightbox-figure" onclick="event.stopPropagation()">
+            <img id="lightboxImg" src="" alt="">
+            <figcaption class="lightbox-cap" id="lightboxCap"></figcaption>
+        </figure>
+    </div>
+
     </main>
 
     <!-- ===== COMMAND PALETTE ===== -->
@@ -951,7 +964,7 @@
             <a href="cv-resume/Michael_Baffour_Awuah_CV.pdf" download>CV&nbsp;(PDF)</a>
             <a href="blog/">Blog</a>
             <a href="builds.html">Other tools</a>
-            <a href="beyond.html">Beyond the bench</a>
+            <a href="beyond.html">Off the pitch</a>
             <a href="feed.xml">RSS</a>
         </div>
         <p>&copy; 2026 Michael Baffour Awuah · All rights reserved.</p>
@@ -970,6 +983,7 @@
 
     <!-- ===== JAVASCRIPT ===== -->
     <script defer src="assets/js/posts-data.js"></script>
+    <script defer src="assets/js/gallery.js"></script>
     <script defer src="assets/js/builds-data.js"></script>
     <script defer src="assets/js/main.js"></script>
     <script defer src="assets/js/backgrounds.js"></script>

@@ -3929,3 +3929,7 @@ kbd {
 .about-glance dd { margin: 0; font-size: 0.86rem; color: var(--ink-2); line-height: 1.45; }
 .about-glance dd a { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--border-strong); }
 .about-glance dd a:hover { color: var(--gold); }
+
+.beyond-teaser:has(> :only-child) .beyond-card { grid-template-columns: 180px 1fr; }
+.beyond-teaser:has(> :only-child) .beyond-art { width: 180px; height: 180px; }
+@media (max-width: 520px) { .beyond-teaser:has(> :only-child) .beyond-card { grid-template-columns: 1fr; } .beyond-teaser:has(> :only-child) .beyond-art { width: 100%; height: 140px; } }
