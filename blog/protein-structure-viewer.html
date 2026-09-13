@@ -415,6 +415,20 @@ protein one colour, so a sixty-copy capsid shows its two or three proteins and t
 stoichiometry; the composition table gives extent and radius of gyration in nanometres. And a sequence
 motif — a regular expression over one-letter codes — is highlighted in every chain at once.
 </p>
+<p>
+Then the question a research tool has to answer: are the numbers right? I wrote an independent reference in
+Biopython and numpy — Kabsch RMSD, per-residue RMSF, radius of gyration, maximum Cα–Cα distance, residue
+contacts — and drove the viewer on the same three real runs: an M13 virion tip with fifteen chains, an MS2
+maturation-protein–coat complex and a phiX174 F–G complex. Seventy-two comparisons, every one within
+0.00005 Å, which is the rounding of the reference. One thing did not survive the check: the assembly
+"extent" was a two-pass estimate that under-read real assemblies by up to five per cent, and it is now the
+exact distance. The same pass made the biggest runs fit. An AlphaFold 3 confidence file carries a
+contact-probability matrix the viewer never used, and parsing a 175 MB file whole for the one matrix it
+did need cost 2.2 GB of memory on a five-model sub-complex. The file is now scanned byte by byte and that
+run holds a fraction of a gigabyte. And a <strong>methods text</strong> button writes the paragraph a
+paper needs: what was superposed on what and how, what RMSD means here, how the domains were cut, in the
+past tense, with versions, so the Methods section says what was actually computed.
+</p>
 <h2>Three bugs worth naming</h2>
         <p>
             The recent pass over this was mostly unglamorous correctness work. Three are worth writing down because they
