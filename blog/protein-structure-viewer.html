@@ -474,6 +474,14 @@ One more (2.20.0), because the pieces were all there: a <strong>composite figure
 PAE heatmap, the pLDDT profile and the contact map, rendered fresh at print resolution and stitched into one
 lettered figure with captions — the confidence panel most AlphaFold papers need, in one download.
 </p>
+<p>
+And a late one that had been hiding in plain sight (2.21.0): every AlphaFold 3 archive carries the
+<strong>multiple sequence alignment</strong> the model was built from, and nobody looks at it. The viewer
+now reads the <code>.a3m</code>, maps it onto the matching chains and colours them by conservation, identity
+to the query or coverage — the same per-residue pipeline as any pasted table, so the legend, the exports and
+the methods sentence come free. Read the coverage first; a conserved column with eleven sequences behind it is
+not saying much.
+</p>
 <h2>Three bugs worth naming</h2>
         <p>
             The recent pass over this was mostly unglamorous correctness work. Three are worth writing down because they
