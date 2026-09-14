@@ -519,6 +519,14 @@ the reader. <strong>Edit labels</strong> on the legend renames the title and ent
 into every export, the SVG, the composite figure and the generated legend text, while the data underneath stay exactly
 as computed. The names live in the scene, so a saved session or a share link reads the same way.
 </p>
+<p>
+Then the piece that closes the loop between "viewer" and "figure" (2.26.0): a <strong>figure builder</strong>. Saved
+views are the panels. Tick the ones to include, order them, caption them, choose the columns, and download one
+lettered figure — PNG with the resolution in the file, or SVG with every caption, label and legend as editable text.
+Each panel is rendered from its own camera and colour scheme at the same text size, and the panels are sized so the
+figure is exactly the journal width you chose: 178 mm with two panels or six. It also caught a bug of its own on the
+way — the all-views ZIP had been drawing each file's legend from the view on screen rather than the view in the file.
+</p>
 <h2>Three bugs worth naming</h2>
         <p>
             The recent pass over this was mostly unglamorous correctness work. Three are worth writing down because they
