@@ -503,6 +503,15 @@ caught a bug (files downloaded from AlphaFold DB did not pair with their PAE); a
 cross-validated against Biopython, bringing the checked quantities to 123. Ligand-site PAE is the one number left
 unvalidated, for want of a run with a ligand in it, and the validation record says so.
 </p>
+<p>
+Two honesty fixes followed (2.24.0). Conservation from an alignment now uses <strong>Henikoff position-based
+sequence weights</strong> before the column entropy, so fifty near-identical homologues do not masquerade as fifty
+independent observations; a switch gives the plain entropy, the legend and methods text say which was used, and
+both are cross-validated — the two differ by up to 0.32 at some columns of the phiX174 alignments, which is the
+difference between "invariant" and "moderately conserved". And every heuristic the viewer computes now says so
+where you read it: the PAE-domain panel and legend are labelled heuristic, and the ligand-site table says its PAE
+column is an unvalidated summary.
+</p>
 <h2>Three bugs worth naming</h2>
         <p>
             The recent pass over this was mostly unglamorous correctness work. Three are worth writing down because they

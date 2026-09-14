@@ -13,7 +13,7 @@ const posts = [
         title: "Protein Structure Viewer — what the confidence numbers actually say",
         date: "September 11, 2026",
         iso: "2026-09-11",
-        updated: "2026-09-13",
+        updated: "2026-09-14",
         tags: ["Research Software", "Structure Prediction"],
         blurb: "AlphaFold hands you a folder of predictions and a pile of JSON, and most viewers show you the structure while leaving the confidence data in a file you never open. A browser viewer that puts pLDDT, PAE and interface confidence next to the model, compares predictions while showing its pairing, and exports a self-contained interactive report. Nothing is uploaded.",
         url: "blog/protein-structure-viewer.html"
