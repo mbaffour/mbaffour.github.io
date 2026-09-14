@@ -297,7 +297,12 @@ const tools = [
         blog: "blog/protein-structure-viewer.html",
         app:  "https://mbaffour.github.io/structure-viewer/",
         label: "Structure Viewer",
-        preview: "structure"
+        preview: "structure",
+        doi: "10.5281/zenodo.22741487",
+        citation: {
+            plain: "Awuah, M. B. (2026). Protein Structure Viewer: compare, annotate and publish predicted and experimental protein structures in the browser (Version 2.22.0) [Computer software]. Zenodo. https://doi.org/10.5281/zenodo.22741488",
+            bibtex: "@software{awuah_protein_structure_viewer_2026,\n  author    = {Awuah, Michael Baffour},\n  title     = {{Protein Structure Viewer}: compare, annotate and publish predicted and experimental protein structures in the browser},\n  year      = {2026},\n  version   = {2.22.0},\n  publisher = {Zenodo},\n  doi       = {10.5281/zenodo.22741488},\n  url       = {https://doi.org/10.5281/zenodo.22741488}\n}"
+        }
     },
     {
         title: "killcurveplot",
