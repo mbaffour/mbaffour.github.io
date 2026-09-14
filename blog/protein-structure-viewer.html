@@ -543,6 +543,13 @@ against the screen, turning the camera does not scatter the arrangement. The col
 stacks down either side, on every export and every panel. Small things, but they are the difference between exporting
 a picture and finishing a figure.
 </p>
+<p>
+And the measurement that matters most when you overlay two predictions (2.29.0): <strong>which part you fit on</strong>.
+Superposing on everything and reading one RMSD hides the interesting case — a rigid core with a domain swung out.
+<em>Fit on</em> now takes a chain, a residue range or your current selection, computes the rotation from that alone, and
+reports both numbers side by side: the RMSD over the region you fitted and the RMSD over everything matched. Colour by
+Cα deviation and the figure says the rest.
+</p>
 <h2>Three bugs worth naming</h2>
         <p>
             The recent pass over this was mostly unglamorous correctness work. Three are worth writing down because they
