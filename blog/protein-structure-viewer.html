@@ -527,6 +527,14 @@ Each panel is rendered from its own camera and colour scheme at the same text si
 figure is exactly the journal width you chose: 178 mm with two panels or six. It also caught a bug of its own on the
 way — the all-views ZIP had been drawing each file's legend from the view on screen rather than the view in the file.
 </p>
+<p>
+The domain figure itself came next (2.27.0). Colouring by domain and listing the domains in a legend is not what a
+reader sees in a paper: the names sit on the structure, and a linear architecture bar sits under it. <strong>Label
+domains</strong> writes each name at the domain's centroid in its colour, using the legend's names, as an ordinary
+label that exports and shares like any other; <strong>Download architecture</strong> draws the bar — one row per
+chain, coloured boxes with names, residue numbers at the boundaries — and the same bar is a composite panel and an
+optional row under a figure-builder figure. One set of domain definitions, three views of it, all in agreement.
+</p>
 <h2>Three bugs worth naming</h2>
         <p>
             The recent pass over this was mostly unglamorous correctness work. Three are worth writing down because they
