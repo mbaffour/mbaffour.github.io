@@ -563,7 +563,10 @@ a subject against context instead of a tangle.
 And the panel every ensemble figure ends up needing (2.32.0): a <strong>pairwise RMSD matrix</strong>. Every shown
 model superposed onto every other with the same rules as the alignment, tabulated with a heat tint, exportable as CSV
 and as a heat map with the values in the cells. It answers the question the overlay only hints at — which models agree
-with which — and it goes straight into the composite figure.
+with which — and it goes straight into the composite figure. On my own M13 tip run it said something I had not
+noticed: the top-ranked model is the outlier, 13 Å from every other, while models 1–3 agree to 6–8 Å. The matrix
+now marks the <strong>medoid</strong> — the model closest to all the rest — and one press superposes everything onto
+it and draws it solid (2.33.0). Show the consensus, not the rank.
 </p>
 <h2>Three bugs worth naming</h2>
         <p>
