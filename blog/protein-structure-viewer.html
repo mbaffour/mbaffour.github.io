@@ -568,7 +568,16 @@ noticed: the top-ranked model is the outlier, 13 Å from every other, while mode
 now marks the <strong>medoid</strong> — the model closest to all the rest — and one press superposes everything onto
 it and draws it solid (2.33.0). Show the consensus, not the rank. And because a matrix says how much the models
 disagree but not where, the <strong>RMSF profile</strong> (2.34.0) plots the per-residue spread, one panel per chain
-with the agreement bands behind it, as SVG, PNG and a composite panel.
+with the agreement bands behind it, as SVG, PNG and a composite panel. And because "submit your figures as PDF" is a sentence every author meets, the
+figure now saves as PDF at exactly the physical page size you asked for, beside PNG, TIFF, JPEG and WebP — with the
+checklist telling you when you have picked a lossy one (2.35.0).
+</p>
+<p>
+Then the question a mutation study actually asks (2.36.0): I ran the wild type and the mutant, now what sits at that
+position in each? <strong>Compare this position</strong> takes the selected residue and, in every shown model, draws the
+side chain there, writes that model's own residue on it — Ala15 on one, Gly15 on the other — and states the difference
+in one line. It matches by chain and residue number, which is exactly what two runs of the same sequence share, and it
+says so in the methods text.
 </p>
 <h2>Three bugs worth naming</h2>
         <p>
