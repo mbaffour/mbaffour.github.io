@@ -579,6 +579,13 @@ side chain there, writes that model's own residue on it — Ala15 on one, Gly15 
 in one line. It matches by chain and residue number, which is exactly what two runs of the same sequence share, and it
 says so in the methods text.
 </p>
+<p>
+And what the substitution did (2.37.0): after superposing the two runs, the same button reports how far the Cα at that
+position moved between wild type and mutant, finds every residue within a chosen radius of the site, and tabulates how
+far each of those moved — with a highlight, a CSV, and a sentence for the legend. Corresponding residues are found
+through the alignment pairing, so a run with an insertion still compares the right residues. The agent that built it
+also caught a bug in mine: a rejected chain re-pairing had been leaving the model in the rejected fit.
+</p>
 <h2>Three bugs worth naming</h2>
         <p>
             The recent pass over this was mostly unglamorous correctness work. Three are worth writing down because they
