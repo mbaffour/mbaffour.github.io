@@ -550,6 +550,15 @@ Superposing on everything and reading one RMSD hides the interesting case — a 
 reports both numbers side by side: the RMSD over the region you fitted and the RMSD over everything matched. Colour by
 Cα deviation and the figure says the rest.
 </p>
+<p>
+Two more things an overlay of five predictions turned out to need (2.30.0, 2.31.0). First, honesty about which chain is
+which: in an assembly of identical subunits every chain pairs equally well by sequence, and AlphaFold does not keep the
+copies in the same order between models, so the viewer had been measuring subunits against the wrong partners.
+<strong>Match identical chains by position</strong> re-pairs them after a first fit; on my own M13 tip models it cut
+the apparent disagreement from 19–28 Å to 12.5–13 Å, and the mapping it chose is printed with every number. Second,
+readability: <strong>Emphasise</strong> draws one model solid and the rest as faded thin ribbons, so the overlay reads as
+a subject against context instead of a tangle.
+</p>
 <h2>Three bugs worth naming</h2>
         <p>
             The recent pass over this was mostly unglamorous correctness work. Three are worth writing down because they
