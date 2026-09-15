@@ -604,6 +604,18 @@ cameras or file names travel with it, so a template is safe to apply to a differ
 grew a third panel: the same close-up coloured by Cα deviation from the reference, blue under 1 Å through red at 8 Å
 and over, which on the M13 tip shows immediately that fitting on one chain leaves the distant subunits far apart.
 </p>
+<p>
+Then a loop that set out to fix a cosmetic annoyance and found a real one underneath. Two labels at the same site
+overlapped in the exported figure, so I had an agent separate them — and its measurements said the placement was
+never the problem. At 300 dpi and 8 pt the export scales label text by 2.78 while the panel geometry is only 1.11×
+the stage, so labels print about two and a half times larger <em>relative to the structure</em> than they look on
+screen: a pair that clears by a fraction of a pixel in the viewer overlaps by half a box on paper. Worse, a label's
+offset is one model-space vector shared by every panel, so the 11.5 Å that separates them in the overview throws the
+same label clean off the close-up. The fix (2.44.0) resolves label placement per panel, in that panel's own
+projection and text size, at render time — the figure comes out right and what you arranged on screen is untouched.
+It only takes the new placement when it demonstrably covers less; on a panel with twenty-two labels in it, nudging
+cannot help, and the honest answer is fewer positions per panel.
+</p>
 <h2>Three bugs worth naming</h2>
         <p>
             The recent pass over this was mostly unglamorous correctness work. Three are worth writing down because they
