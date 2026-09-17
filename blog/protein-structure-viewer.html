@@ -172,6 +172,30 @@ html[data-theme="light"] .btn-primary { color: #fffdf6; }
 footer { border-top: 1px solid var(--border); padding: 28px 0 48px; color: var(--ink-3); font-size: 0.85rem; }
 footer .wrap { max-width: 1080px; }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+
+/* Walkthroughs */
+.shot { display: block; width: 100%; height: auto; border-radius: 8px; }
+.shot-light { display: none; }
+html[data-theme="light"] .shot-light { display: block; }
+html[data-theme="light"] .shot-dark { display: none; }
+@media (prefers-color-scheme: light) {
+    html:not([data-theme]) .shot-light { display: block; }
+    html:not([data-theme]) .shot-dark { display: none; }
+}
+figure.shot-fig { padding: 10px; }
+.walk { border-top: 1px solid var(--border); margin-top: 34px; }
+.walk h3 { margin-top: 26px; }
+.walk .q { font-family: var(--display); font-style: italic; color: var(--ink); margin-top: 4px; }
+.walk-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+.walk-toc { list-style: none; margin: 22px 0 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 8px; }
+.walk-toc li { margin: 0; }
+.walk-toc a { display: block; padding: 10px 14px; border: 1px solid var(--border); border-radius: 10px; background: var(--bg-inset); color: var(--ink); text-decoration: none; font-size: 0.9rem; }
+.walk-toc a:hover { border-color: var(--gold); }
+.walk-toc .n { font-family: var(--mono); color: var(--gold); margin-right: 8px; }
+.live-demo { padding: 10px; }
+.demo-slot { position: relative; }
+.demo-load { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); box-shadow: 0 6px 24px rgba(0,0,0,0.35); cursor: pointer; }
+.demo-frame { display: block; width: 100%; height: 820px; border: 0; border-radius: 8px; background: #0f1320; }
 </style>
 <script>
     (function () { try { var t = localStorage.getItem('theme'); if (t) document.documentElement.setAttribute('data-theme', t); } catch (e) {} })();
@@ -207,6 +231,179 @@ footer .wrap { max-width: 1080px; }
             forty models, see which regions were confident, put several of them side by side or on top of each other, draw on them, and get a figure out
             — without launching PyMOL, and without uploading unpublished coordinates to anyone's server.
         </p>
+
+        <h2 id="walkthroughs">Seven things to do with it</h2>
+        <p>
+            Each of these starts from a question and a structure anyone can load. <strong>Open this example</strong>
+            opens the viewer in exactly the state pictured — same models, colours, labels, camera and panels — so you
+            can follow along or just take it apart. The pictures follow this page's light or dark theme; so does the
+            viewer, whose button beside <em>Help</em> switches between <strong>System</strong> (it follows your
+            operating system, including a sunset schedule), <strong>Light</strong> and <strong>Dark</strong>.
+        </p>
+
+        <figure class="live-demo" id="live-demo">
+            <div class="demo-slot">
+                <img class="shot shot-dark" src="images/psv-share-dark.webp" width="1400" height="875" alt="Interactive report exported from the viewer, showing human haemoglobin with its subunits coloured by chain." loading="lazy" decoding="async">
+                <img class="shot shot-light" src="images/psv-share-light.webp" width="1400" height="875" alt="Interactive report exported from the viewer, showing human haemoglobin with its subunits coloured by chain." loading="lazy" decoding="async">
+                <button class="btn btn-primary demo-load" type="button" data-src="demos/psv-haemoglobin-report.html">Load the live 3D report</button>
+            </div>
+            <figcaption>
+                Not a screenshot once you press the button: this is the one-file interactive report the viewer exports
+                (about 800 KB, loaded only on request). Drag to rotate, scroll to zoom, hover the coloured strip to read
+                a residue. <a href="demos/psv-haemoglobin-report.html">Open it on its own</a>.
+            </figcaption>
+        </figure>
+
+        <ol class="walk-toc">
+            <li><a href="#walk-confidence"><span class="n">1</span>Check an AlphaFold prediction</a></li>
+            <li><a href="#walk-superpose"><span class="n">2</span>Compare a prediction with experiment</a></li>
+            <li><a href="#walk-complex"><span class="n">3</span>Explore a complex</a></li>
+            <li><a href="#walk-annotate"><span class="n">4</span>Annotate domains and residues</a></li>
+            <li><a href="#walk-figure"><span class="n">5</span>Build a publication figure</a></li>
+            <li><a href="#walk-share"><span class="n">6</span>Share your work</a></li>
+            <li><a href="#walk-ensemble"><span class="n">7</span>Compare many models</a></li>
+        </ol>
+
+        <section class="walk" id="walk-confidence">
+            <h3>1. Check an AlphaFold prediction</h3>
+            <p class="q">Which parts of this model can I believe?</p>
+            <figure class="shot-fig">
+                <img class="shot shot-dark" src="images/psv-confidence-dark.webp" width="1400" height="875" alt="AlphaFold model of human p53 coloured by pLDDT — a blue, confident DNA-binding core with orange, low-confidence tails — beside its predicted aligned error heatmap." loading="lazy" decoding="async">
+                <img class="shot shot-light" src="images/psv-confidence-light.webp" width="1400" height="875" alt="AlphaFold model of human p53 coloured by pLDDT — a blue, confident DNA-binding core with orange, low-confidence tails — beside its predicted aligned error heatmap." loading="lazy" decoding="async">
+                <figcaption>Human p53 from AlphaFold DB (AF-P04637), mean pLDDT 75.1, with its PAE heatmap in the Confidence tab.</figcaption>
+            </figure>
+            <ol>
+                <li>Type <code>P04637</code> and press <strong>Fetch</strong> — or drop your own AlphaFold result ZIP, which brings its PAE and ipTM along.</li>
+                <li><strong>Appearance → Colour by → pLDDT confidence.</strong></li>
+                <li>Open <strong>Confidence</strong>: a low-error block on the PAE diagonal is a region whose internal arrangement is well predicted; high error between blocks means their relative placement is not.</li>
+                <li><strong>Appearance → Hide pLDDT below 70</strong> leaves only what the model is confident about — in the view, the panels and every export.</li>
+            </ol>
+            <figure class="shot-fig">
+                <img class="shot" src="images/psv-anim-confidence-threshold.webp" width="760" height="439" alt="Animation: the p53 model rotating while the confidence cut-off steps from every residue, to pLDDT 50, to pLDDT 70, leaving the DNA-binding domain." loading="lazy" decoding="async">
+                <figcaption>The cut-off stepping from every residue to pLDDT ≥ 50 to pLDDT ≥ 70.</figcaption>
+            </figure>
+            <p>
+                p53's DNA-binding domain is one confident block; the long termini are low confidence because they are
+                intrinsically disordered, and the loops drawn there are not a structure to read. The small second block
+                near the C-terminus in the PAE map is the tetramerisation region.
+            </p>
+            <p class="walk-actions"><a class="btn btn-primary" href="../structure-viewer/#scene=z.fVRNb-M2EP0rweylBShDkvVh6-akCHpo0WCz2EMXOdDUSGKXIlWScuIG-e_FULSzdrdrX0TO15s3w_cK_jghNDBZ41Hq5CDxGW3iBGoEBk4MOPLPaJ00GpqMweJwvoF8VVSrNTAQFrnHdufpMs2rJN0mWf0pq5uiatLtaltmf1LGgVtsofF2RkZlD6i5FgjNK3jpFYEhNzNbEb9H9INpl29tPDr6fGMwmhaVg-bLK2g-kvPuPnlIi2pdJ_fZSsgOGHToxXBlAmrDyT0VW3AIo4yFBj5s9qXoKmCg-B4VEVOub37aqWng90a1PwODQbYt6ruBS03Fn96eGDj0XureURfE0O-mJTxO6l4RjxYniw61536hTXDrjdEQS0f_SbWth9jZH7ZFwqQMb7EFBlzJXo-o_Sk7_j0jUfeNaTdNShK_HVcOGXDh5QEpQH2fH4sdWsryAx-u1Ed0sp3xN2LFnbNP1vyFIrY0oXUThnrAwMxeSU0wtQmr1Jn-HBfIffTHMO29eQntKexRtw_GyZhwb7w3Y6KwI05EIPz2-O4Qk3XSPwoTtpgrBeHiI_ZLDmAwxYC72Zuug6Ykj36252Ze32L2OxpFvFhcbmepwhReaU7zSBOHnNDwiXK6BeYQ4HuPFL1s1NLN-citGKRH4WeLEfm5yCccJ8V9eAIf-umQTFyjSi4LBsN-gZP8t_qF-QrKle0C14XtOyCjB75MxvpkjGtqpfanouGQPMvW0zPL6s2lQczOm5EseXpp4WFbyLIqLy3tJKGBdXoV4PGF3M8FIign_yFQ2SZNX7L8PehkFjys2ZlEOfIek87YkVO6SfdXEQtFFwwtV8n0f8sZnEKlZM_p0Z5RLCNOOqOp2M5KrtjNr6gO6KXg7MZx7RKHVnYkaXsuvvbWzFQevOXaTdxiIPvddHcSqy78FknCW1TmGZqUwYAerSGB8FJ8JTGdbcfFN2_Rkf_xUbbvY3ZHLaKuWBNlira48z8QBmFGwvdA-xq0kB7GiJZD8yXJV3m2TYuyyIvNuqrSomRJtsqzsqiKtMzzTV3WRcXqVVqV6zwtN5t8XebbLUvydb2q8jrLNuWmrIttXbM0_LOntygesZpDtehPPI_I3WyRlDDe2EW4fuGeQ6NnpRi0ZjxpNwOudWw3XpxmfKrAD9h-lvi8aP2_">Open this example</a><a class="btn" href="https://github.com/mbaffour/protein-structure-viewer/blob/main/docs/USE-CASES.md#1-check-an-alphafold-prediction" target="_blank" rel="noopener">Full walkthrough ↗</a></p>
+        </section>
+
+        <section class="walk" id="walk-superpose">
+            <h3>2. Compare a prediction with experiment</h3>
+            <p class="q">How close is the model to the crystal structure?</p>
+            <figure class="shot-fig">
+                <img class="shot shot-dark" src="images/psv-superpose-dark.webp" width="1400" height="875" alt="AlphaFold's human alpha-globin in amber superposed on the grey 4HHB crystal structure, with the alignment table." loading="lazy" decoding="async">
+                <img class="shot shot-light" src="images/psv-superpose-light.webp" width="1400" height="875" alt="AlphaFold's human alpha-globin in amber superposed on the grey 4HHB crystal structure, with the alignment table." loading="lazy" decoding="async">
+                <figcaption>AlphaFold's α-globin (amber) on the deoxyhaemoglobin crystal structure, PDB 4HHB chain A (grey).</figcaption>
+            </figure>
+            <ol>
+                <li>Fetch <code>4hhb</code> and <code>P69905</code>.</li>
+                <li>In <strong>Models</strong>, make the crystal structure current and untick chains B, C and D, so only the α chain the prediction corresponds to is shown; <strong>View mode → Overlay selected</strong>.</li>
+                <li><strong>Compare → Alignment reference:</strong> the crystal structure, then <strong>Align visible</strong>.</li>
+                <li>Colour each model with its swatch in the Models list, or by <strong>Cα deviation after alignment</strong>.</li>
+            </ol>
+            <figure class="shot-fig">
+                <img class="shot" src="images/psv-anim-superpose.webp" width="760" height="344" alt="Animation: the AlphaFold model and the crystal structure start apart, then Align visible superposes them and the pair rotates." loading="lazy" decoding="async">
+                <figcaption>Align visible, before and after.</figcaption>
+            </figure>
+            <p>141 Cα pairs, 100% sequence identity, RMSD 0.335 Å — the prediction sits almost exactly on the crystal structure. AlphaFold DB numbers this model from the initiator methionine (1–142) while the crystal chain starts at the mature valine (1–141); the sequence-aware matching pairs them correctly regardless, and the RMSD is over those pairs.</p>
+            <p class="walk-actions"><a class="btn btn-primary" href="../structure-viewer/#scene=z.fVRNb9s4EP0rwfRKCZJsfd5iF0EOXWzQFD1skQNNjSxuKVIlKSfeIP99MZTsxGl2daLm6z3ODN8z-OOI0MBojUepo4PER7SRE6gRGDjR48C_o3XSaGhSBnPA2QJZvC7iFTAQFrnH9tqTMcmKKKmjtPyWls26apIkLqrVX1Sx5xZbaLydkBHsATXXAqF5Bi-9IjIUZiYrlvOAvjftfNbGo6PjC4PBtKgcND-eQfOBgtd9v4uF7IBBh170iwmItpM7Kj7jCqOMhQY-1Wu-2lXAQPEdKoq_vd1cCXt0nitg0Mu2Rb3tudSEBBtgsAUGn-HhhZ1xr2-iu6Kukzy6Sd_hv3X9D48urzHZveFxrcae3xjV_k7i4eWBgUPvpd476hvN5A_TEhNzQKv4ERhYHC061J77eVKCW2-MhgV1SXDeTsJPlqYdGvqnbZEoKcNbJHSu5F4PqP0pA39NSBN747oeRyVfx8qFlwekeHU5FYsdWkr-wMeV-opOthN-oR44aDqu3Lwkf6NYbjGidSOG-sDATF5JTay0CQvbmf05L7Ty3h_DTu3MU7iNwj3q9s44uRTcGe_NECnsPLUmNHlzfA1YinXS3wsT3gpXtBmd9F9xP9cABuOSsJ286TpocorYT_Z8meeXpfqWur8Y5pDNJFVo-jONZhpoypARGz5STTfT7AN975Gy50bPtzn_cit66XGe58z8DPINh1FxHx7ap_14iEauUUWXgMGxm-lEv6NfuN9Reee74HXh-4DkEoFPo7E-GuY9G63U_gQafqJH2Xp6VGlZXTrE5LwZyJMllx4etoU8cX7paUcJDaySdwkenyj8DLCQcvIfIpVWSfKUZq9JJ7fgYc3OTZQD32PUGTtwKjfq_buMuUUXHZpN0fhfyxmCAlK04_RGzyzmEUed0QR2bSVX7OoW1QG9FJxdOa5d5NDKjoRzx8XPvTUTwYO3XLuRWwzNfnVtz9IUvlmGcIPKPEKTMOjRozVBQaT4SZI92Y6LN2_RUfzxXravY3ZHLRYZsWZRJtrizn8gCMIMxOuO9jToHj2IAS2H5keUZnGVpmWW5XlZ1Hm1qliUruMsL-qqqquyXBdpXrJoVcVpUuRFmdRlVaVVmrMqLvJ8XedZUZZFXa5YwpK4LvI6y6usyKo6KfOCJSxK4iyvqrRO1nmaZHmW5Q8vi6wsfByqWZmW_wG5myySJC4WO0vaZ-45NHpSikFrhpOSM-BaL41YDKfpnxD4AdvvEh9n5f8X">Open this example</a><a class="btn" href="https://github.com/mbaffour/protein-structure-viewer/blob/main/docs/USE-CASES.md#2-compare-a-prediction-with-experiment" target="_blank" rel="noopener">Full walkthrough ↗</a></p>
+        </section>
+
+        <section class="walk" id="walk-complex">
+            <h3>3. Explore a complex</h3>
+            <p class="q">How is this assembly put together, and where do its ligands sit?</p>
+            <figure class="shot-fig">
+                <img class="shot shot-dark" src="images/psv-complex-dark.webp" width="1400" height="875" alt="Haemoglobin coloured by subunit, alpha in reds and beta in blues, with the chain A–chain B contact map in the Compare tab." loading="lazy" decoding="async">
+                <img class="shot shot-light" src="images/psv-complex-light.webp" width="1400" height="875" alt="Haemoglobin coloured by subunit, alpha in reds and beta in blues, with the chain A–chain B contact map in the Compare tab." loading="lazy" decoding="async">
+                <figcaption>Human deoxyhaemoglobin (PDB 4HHB): α subunits in reds, β in blues, and the α1–β1 contact map.</figcaption>
+            </figure>
+            <ol>
+                <li>Fetch <code>4hhb</code>. <strong>Models → Composition</strong> lists the chains, the stoichiometry (α ×2, β ×2), the Cα extent and radius of gyration, and the ligands (HEM ×4, PO4 ×2).</li>
+                <li><strong>Colour by → Per chain</strong>, then click a chain's swatch to give it a colour that means something. Double-click to reset; sessions and share links keep the colours.</li>
+                <li><strong>Compare → Interface contact map</strong>, chain A against chain B, <strong>Compute contacts</strong>, then <strong>Highlight interface</strong>. Here that is 49 residue pairs within 4.5 Å — 20 interface residues on chain A and 21 on chain B — marked on both sequence strips.</li>
+                <li><strong>Confidence → Ligand sites → Analyse ligand sites</strong> lists each bound group with its pocket residues (six here).</li>
+            </ol>
+            <figure class="shot-fig">
+                <img class="shot" src="images/psv-anim-recolour.webp" width="760" height="368" alt="Animation: haemoglobin rotating as its four chains are recoloured one at a time by subunit." loading="lazy" decoding="async">
+                <figcaption>Recolouring the four chains by subunit, one swatch at a time.</figcaption>
+            </figure>
+            <p class="walk-actions"><a class="btn btn-primary" href="../structure-viewer/#scene=z.jVVLb9w2EP4rweTSAtRC1GP1uNnOwYcWDZIghwY-cKmRxIYiVZLyo4b_ezCUdu113KK7F3Ge33wzHD5CeJgRWpidDahMcqvwDl3iJRoEBl6OOImv6LyyBlrOYDU4SSDbFftdDgykQxGwuwgkTLN9kjYJr77wqi3qtih2TdX8SRFH4bCDNrgFGaW9RSOMRGgfIaigCQyZ2cXJ7XvCMNpu_TY2oKfPJwaT7VB7aL89ghETGRfjeNhJ1QODHoMcNxEQbK8OFHzNK622Dlp4Xx9K2e-BgRYH1NDCtcDJDtoelHn3S3F9ffkrMBhV16G5GoUylO_m6YaBxxCUGTwBJ1J-tx1B8MoMmqhzODv0aIIIK1NSuGCtgS37Zi8pKGzF_OE6JFjaig47YCC0GsyEJhyj498LElsvVBfzrBVR2gvtkYGQQd0iOehzShz26Mj7DZ3Q-hN61S34GxHhT9FmZ_9CuZUwo_MzxvjAwC5BK0OwjI3T0tvh5Bf5_BweYkMP9j6Wo3FA0320Xm0BDzYEOyUa-0C8RIIvH54NtmC9Cp-ljYMqtIYo-ITDGgMYzJvD1RJs30NbksWwuFMxj09b9CuiPvbsgtqPnHdFDQyu6NQfKl6XwOCSTmlWF7ICBh_olNeHrq9p7NbIl4vSsVmP1M5losGAjIoQM0Hxa3VjrDoEpKTr7K0knI7CyVEFlGFxuBV8SvIFp1mLEC_H-2G-TWZhUCfnCaPisMJJfs5-pn4F5ZXuDNeZ7g2QmwXez9aFZFrnc3bKhGPSeEjuVBfoIvKqPlfIxQc7kSZLzzUiDhlpduW5ppsVtJCnrxwC3pP5KcEGyqt_CBSv0_SeZ89OR7UUcTpPJKpJDJj01k2Cws1meOWxUnTG0CpK5n-b6WgUMyUHQXf7hGJtcdJbQ8kunBKavbtGfYtBScHeeWF84tGpnqbuIOT3wdmF0kNwwvhZOIxkP6uujmutj791c-ElansHbcpgxIDO0h4JSn6nNbu4XsgXV9iT_cNn1T232T8Yua0fZ7dtRlPchzf2iLQT4fpIcxpXJV2ICZ2A9lvC011eNFVepEVRVU2WZizh-S4r91leFmlRN_u8Zkne7Jq8LPf7uiyaJi0LluzTXVrkVVllTV7u9zlL45_fPG2bZsvlUa_Lan0WpjcAxn3bwkVciHHjkW2espyzvGB5yfI942nOeFowntJ3xThPGeeccZ4zzgvGOclqxnnDeJYynmWMZznj2f5m3cBxFEY1jFoNY4AXT04vpOQlPLH_xHf5M758w1dyVpaMpzXjabPByhjnJeN8_wakgvGsZDyrGM9qxnP-vyHe0OMr_OKQHpqN4w3VBxEEtGbRmkFnp-PTyEAYs43JJjjejWOPxC12XxXerU_pDw">Open this example</a><a class="btn" href="https://github.com/mbaffour/protein-structure-viewer/blob/main/docs/USE-CASES.md#3-explore-a-complex" target="_blank" rel="noopener">Full walkthrough ↗</a></p>
+        </section>
+
+        <section class="walk" id="walk-annotate">
+            <h3>4. Annotate domains and residues</h3>
+            <p class="q">Mark up the regions and residues I care about.</p>
+            <figure class="shot-fig">
+                <img class="shot shot-dark" src="images/psv-annotate-dark.webp" width="1400" height="875" alt="p53 coloured by five named domains with the cancer hotspot residues R175, R248 and R273 labelled, and the domain list." loading="lazy" decoding="async">
+                <img class="shot shot-light" src="images/psv-annotate-light.webp" width="1400" height="875" alt="p53 coloured by five named domains with the cancer hotspot residues R175, R248 and R273 labelled, and the domain list." loading="lazy" decoding="async">
+                <figcaption>p53 with five named domains (approximate boundaries from the literature) and three cancer hotspot residues labelled.</figcaption>
+            </figure>
+            <ol>
+                <li><strong>Annotate → Domains:</strong> a name, chain, residue range and colour, then <strong>Add domain</strong>. <em>Applies to</em> can reach every model of the same AlphaFold run at once.</li>
+                <li><strong>Colour by annotated domains</strong> paints them and names them in the legend; <strong>Label domains</strong> writes each name on the structure.</li>
+                <li><strong>Go to</strong> <code>A:175</code> selects and zooms to the residue; type the label and <strong>Add label</strong>. R175, R248 and R273 are among the positions most often mutated in human cancer.</li>
+                <li>Drag a label to move it — a leader line keeps it tied to its residue. <strong>Download architecture</strong> draws the domains as a linear diagram.</li>
+            </ol>
+            <p class="walk-actions"><a class="btn btn-primary" href="../structure-viewer/#scene=z.nVdNj9tIDv0rQc1lFnhuFMn69K3T2WAPu9ggacxhgxzUctmtGVnySnIn2Ub--4CSupPOJgEm9kUqsshXJN8r-95MH0_FbM1p6KfSdJu7prwvw2asS1cMzFjflmP1WxnGpu_MlmAWh8cVwxcuXIiBqYdSTWV3Oemi5bCxeUPxmuLW5a24i-joPxrxthrKzmyn4Vygae9KV3V1Mdt7MzVTq2DUrT8P9fp8LNNtv1ueu34qoz5-gjn2u9KOZvv23nTVUZ0vX25eWRckbl7SRd3sDcy-TPXtVyajxxibG0224Kj7th_M1vySbny9DwamrW5Kq4Xx8uzXy_Z0W73s293fDMxts9uV7uq2ajpN_u7TO5ixTFPTHUY9hVboX_1O8YxNd2i1jkM5DWUs3VRNS9nqapj6vjNr6tW_6rp-0iqa9XT_HnZFcbV9tZtXq7Y5dMfSTQ8Zyn_PRcv3henydGobrfG-ascCU9VTc1d0Q_vtGg1lXwaN8gOfqm1fl7HZncs_tTLjY_TT0P9e6vVYpzKMpzLnMzD9eWqbTmF2_TxO-_7wuG8u8Jvp49zxm_7DfLy2HEq3e9WPzRrwpp-m_rhpy37SWs1Ff_7xs8MabN9Mb-p-nuSqbc288LoclhgG5rRuuDpP_X5vtl49Dufh8TD3n9boV9qOdWFxeX5u2rkL99qr81G7bljRVCeNOS4wb2f401R09zJVy2keX6uhvm2mUk_noazIH5Ncl-OpraaZBr8cTnebU9WVdvM04Wy4WeBs_j_7E_NXUL6yPcH1xPYNkKtH-XDqh2lzXAbvNDTd9JB0ftm8b3aTUo1iemqoz-PUH9XC9qmlmqdFLRf-qWV3aszWiP1qw1Q-qPtjghXU2PxPQVGy9gPx500P5rqax-yxiM2xOpTNvh-OlYY7dYevdiwlelKhZWlz-t5wzk5zps1NpaR9RLG0eLPvO012OTRVi2f_KO1dmZq6wrOx6sbNWIZmr7J2U9V_HIb-rOnNNFTdeKqGMhf7s-nqQbD282eRpfK8tP17s7Uwt2UqQ68CMTX1Hyqo52Ff1V9wcVT_j2-a3ec2jx-7etWVoV-lSqd4P_1AGOr-qPhe6bzOeqjEOJahMtu3G75gytZ5xy5JCNZ5bOiCybvgrGdO0UcXEC9s8MLWp8TiOWdsWOJF4EiUfPLR5Rhh5y-9-7SKxyL9xx9AU0Krada4sTFbih6mWobxSpfXeXpN0ZtP-IvR2KVvR2OXfiJalO9Ei2KWS6ZdhHYt87FU43koKvnryrAo9Itqqsy2O7ctzK4_rhfV4y15ffnCfHHlFaKdS9-AtDvrVfuWwBA4eAREJGSQBRGIQQJyIA8KoAhKoAy2YAIzWMAO7MEBHMEJnCEWQhCGCMRBPCRAIiRBMpyFIziGEzgH5-ECXIRLcBnewhM8wwu8g_fwAT7CJ_iMYBFIy7ReBOtPCHy_C9qitSavXr_-siZ7n4u9-X5NgkPwCAEhIiSEjGgRCZERBdEhesSAGBETYkaySITESILkkDxSQIpICSkjW2RC5p8F_-L5k4ayD1J-AD47ZI8ckCNyQtaGWpAlkGWQFZB1IOtBNoBsBNkEshk0d55A2nttvnZf26_91wHQCaAMYgtiHREGsYDYgdiDOIA4gjiBOIPEgoRAorMkIHEg8SAJIIkgSSDJIGdBjkCOQU6HzoGcB7kAchHkEshlkLcgTyDPIC8gr9PpQT6AfAT5BPIZFCwoECgwKAgoOFDQMQ6gEEEhgUIGRQuKBIoMigKKDiohFHXeIygmUMygZEGJQIlBSUDJgZIHpQBKSowEShmULSgTKDMoCyg7UPagHEA5grIySClkwZbAlsFWwNaBrQfbALYRbBPYZjAp1whMDCYBkwOTB1MAUwRTAisllZMzKRmstFReKjGVmUpN5SZnsFiwEFiUvQIWBxYPlgCWCJYElgx2FuwI7BjslOYO7DzYBbCLUGFkl8Hegj2BPYO9gL3qgQf7APYR7BPYZ3Cw4EDgwOAg4ODAQYUjgEMEhwQOGRwtOBI4MlQuOTpw9OCoChPBMYFjBicLTgRODE4CTg6cPDgFcFIpSuCUwdmCM4F_nnvXf7_-knsUKnHV97kn7CEcIBwhnCAqiaqJKoqzKgpEdVGFUZVRpVG1UTLEWYgjiGOIU_l0EOchLkBchLgEcRniLcQTxDPEC8SrznqIDz97yqvrJwqTRaT86JTBQYJKe4CECAkJEjIkWkgkSGRIFEh0kOghUe-ACIkJEjMkWUgiSGJIEkhykOQhKUCSXhYJkjIkW0gmSGZIlr92und4-L_1-Up9-HG3vo7VXdn91pT3yx-9PwE">Open this example</a><a class="btn" href="https://github.com/mbaffour/protein-structure-viewer/blob/main/docs/USE-CASES.md#4-annotate-domains-and-residues" target="_blank" rel="noopener">Full walkthrough ↗</a></p>
+        </section>
+
+        <section class="walk" id="walk-figure">
+            <h3>5. Build a publication figure</h3>
+            <p class="q">Get a figure out at the size and resolution the journal asks for.</p>
+            <figure class="shot-fig">
+                <img class="shot" src="images/psv-figure-multipanel.webp" width="1400" height="353" alt="Three-panel haemoglobin figure exported by the viewer: the tetramer, a close-up of the alpha-1 haem pocket with His87 labelled, and a side view, each with a legend reading α1, β1, α2, β2 and a scale bar." loading="lazy" decoding="async">
+                <figcaption>The file the figure builder wrote, unedited: Nature double column, 183 mm at 300 dpi.</figcaption>
+            </figure>
+            <ol>
+                <li><strong>Appearance → Background → White.</strong></li>
+                <li><strong>Publish → Edit figure labels</strong> renames what the legend says — <code>Chain</code> to <code>Subunit</code>, A–D to α1, β1, α2, β2 — without touching the data.</li>
+                <li>A <strong>Journal preset</strong> sets width, dpi, text size and font in one choice; add a <strong>Scale bar</strong>.</li>
+                <li><strong>Save current view</strong> once per panel, then tick, order and caption them in the <strong>Figure builder</strong> and download PNG — or SVG, with the text still editable.</li>
+            </ol>
+            <figure class="shot-fig">
+                <img class="shot shot-dark" src="images/psv-figure-dark.webp" width="1400" height="875" alt="The Publish tab with a journal preset and three saved views in the figure builder." loading="lazy" decoding="async">
+                <img class="shot shot-light" src="images/psv-figure-light.webp" width="1400" height="875" alt="The Publish tab with a journal preset and three saved views in the figure builder." loading="lazy" decoding="async">
+                <figcaption>The Publish tab that made it.</figcaption>
+            </figure>
+            <p class="walk-actions"><a class="btn btn-primary" href="../structure-viewer/#scene=z.7VbNbtw2EH6VxfjSApSgf2l1s52DDw0axEEODXzgSqNdNhSpkpR_6vidmjxCH8DPVAyl3Y1cN2iBpr1kT-IMOTP85uM3ew_ubkCoYTDaoVDBtcAbNIFtUCEwsM0Oe_4WjRVaQR0zmDYcLJCEWRGmwKAxyB22p46MUVIE0TqIyzdxWedRnaVhkkU_UcQdN9hC7cyIjNJeo-KqQajvwQknqRjapkfTzN89up1up2-lHVr6fGDQ6xalhfrdPSje0-Zst9uEjeiAQYeu2c0moLKt2FDwKW-jpTZQw0m1yZuuAAaSb1BCDRcce72VeiPU6rvs4uLse2CwE22L6nzHhaJ8Vw9XDCw6J9TWUuEEykvdUglWqK0k6AwOBi0qx92EVMON01rBnH3e31BQmC_zo2mRypKat9gCAy7FVvWo3D46_jIiofWZ63QYpCBIOy4tMuCNE9dIB-QSEoMdGjr9jI9L-RqtaEf8gYCwh2iD0T9jM19hQGMH9PGBgR6dFIrKUtqzpdPbwzmP56W78w3d6Ft_HYlbVO0rbcUccKOd030gsXOEiwf47O64YQ7WCXfZaE9ULiV4w2vcTjGAwTAfOB-d7jqoc9qxHc3hMvdT7A97hl2Om1GJQ84Pp1DD48f4sD6j9afj-tz7k8P6hfcnxEJvOKeO-jwU6QTjuM0qYEDnTrpNGVc5MKCoJ1FSZU0JDCjGSVpt2q6iOFPBZ6OQngP3xJKxJ76Bf158oBvaCbSdB9M5pKQTpSdsD0tump1w2LjR4IzjIckb7AfJnX9zJ9vhOhi4QhksE3rHZion-HP2hftJKU98i7oWvmeKnHfg7aCNC_qJ9oMRyu2T-kVwI1pH77sZrdP90jfbaoirdOnhnr7kCfOlpx0EXTyKlmaHt7S9hGVdVvyKPn4U3cbJ8dDe3XBPs2RvFz3fYtBp03MKN6jtkxMTSguQJlMw_NVr8Zt8pmDDSTXiQxlTm4NOK8p2agSXbHWB8hqdaDhbWa5sYNGIjpi34c37rdEj5Ycbagh8bjzfa2Xnf5Mc4hlKfQN1xGCHDo0mcXKieU_aPZqON5_pgqX9d5eiPTbZ3qlm1jSjZ4kkDnfuGXFqdD9wg6-IpV5_6Tn0aDjU74I4CtNsXaZZlGVluU6ihAVxGiZ5kaR5FmXVukgrFqTrcJ3meVFUebZeR3nGgiIKoywt8zJZp3lRpCxiUVhGZRwVZRXHVZFnZf6csbh6mAVumj79MyV7Wa_h1OuuFVBXJQM-0fKcrDOzLoStSpgGipyEdr5ij9yOBkniZ4uZFPoFdxxqNUrJoNX9figx4ErNWM6GPXfmpeXX2L4VeLMYmm_QGULzKDKTGD5-ildctavHj8njp2TVip6e-NeDnkUsvvrC-JpH-Mv91D_6ruaR6gX4YD1OdxI-P1AX7r0m_gvD-wtD8h8_rq_wWLy8n_u2TX9f2KH59HdnNejmPbqn_V8NRt-KnsvVxNFF57MwKfJyffyxIInDvEjoIw3LdVWwPA-TPMmipMzWWVUl35r8PzWZ8qwIgUWLX1MWbFfr6PffvuKz_puK-o0T_wUnrh7-AA">Open this example</a><a class="btn" href="https://github.com/mbaffour/protein-structure-viewer/blob/main/docs/USE-CASES.md#5-build-a-publication-figure" target="_blank" rel="noopener">Full walkthrough ↗</a></p>
+        </section>
+
+        <section class="walk" id="walk-share">
+            <h3>6. Share your work</h3>
+            <p class="q">Send a collaborator exactly what I am looking at.</p>
+            <ul>
+                <li><strong>Copy share link</strong> puts the scene in a URL — models fetched by ID, camera, colours, labels, annotations and saved views. Every “Open this example” button on this page is one.</li>
+                <li><strong>Share report</strong> writes one self-contained HTML file, like the live demo above, that opens in any browser with no install and can embed 3Dmol.js to work offline.</li>
+                <li><strong>Save session file</strong> writes a ZIP that reopens everything, local files included; the page also autosaves and offers to restore.</li>
+            </ul>
+            <figure class="shot-fig">
+                <img class="shot shot-dark" src="images/psv-share-link-dark.webp" width="1400" height="875" alt="The Publish tab with the share link, report and session controls." loading="lazy" decoding="async">
+                <img class="shot shot-light" src="images/psv-share-link-light.webp" width="1400" height="875" alt="The Publish tab with the share link, report and session controls." loading="lazy" decoding="async">
+            </figure>
+            <p class="walk-actions"><a class="btn btn-primary" href="../structure-viewer/#scene=z.dVVNc9s2EP0rns0lnQE1_JQo3izn4EM7zcSZHJrxAQSXJBIQYAFQtuvxf-8sCMmR69oXAvvx3r5drJ7BP80IDczWeJQ6OUp8QJs4gRqBgRMjTvwbWieNhiZjsDqcbyDflNtNAQyERe6xu_Z0mebbJN0n2e5rtmuqrMnzTV7Uf1HGkVvsoPF2QUawR9RcC4TmGbz0isiQm1msiN8T-tF067c2Hh19vjCYTIfKQfP9GTSfyLkcx3YjZA8MevRijFdAtJ1sKfmKK4wyFhr4ULeV6LfAQPEWFTRwy3EygzKt1Fcfy9vbw2_AYJRdh_pm5FIT3v3LPQOH3ks9OCJOovxhOqLgpB4USWdxtuhQe-5XpQS33hgNET36C0oKsZg_bYdESxneYQcMuJKDnlD7U3b8e0FS6xfT9TwrSZL2XDlkwIWXR6QAdSmJxR4tRb9j40p9QSe7BX8nIdw522zNDxSxhBmtmzHkBwZm8UpqoqVNmJbeDOe4oOedfwoNbc1jKEfhgLr7bJyMCVvjvZkShb0nXYLAh6dXh5isl_5OmDCoXCkIF19wWHMAgzkG3Cze9D00FXkMiz0X8_wSs9-Q9KFn19R-zLKurIHBDZ36dpfVFTA40CnN61LsgMEnOhV12_U1jd2a-bBIFZr1TO1cJhoMyKkIPhMVt1Y3hqq9RwJdZ28V4XzkVozSo_CLxVjwGeQrTrPiPjyOD8N8TGauUSWXgMHQrnSS_6JfmN9QeWO74HVhe4dk9MDH2VifTOt8zlZqfwINh-RBdp4eYrarLw1icd5MZMnTSwsPQ0aWTXVp6WYJDRTpmwCPj-R-BoiknPyHSGV1mj5m-WvQySx4mM6ziHLiAya9sROndLMe3kSsEl0otF4l8__NdHAKSEnL6W2fWawtTnqjCezaSq7Y1S2qI3opOLtyXLvEoZU9TV3Lxc_BmoXgwVuu3cwtBrFfTTentdaHv3Vz4QGVeYAmZTCiR2toj3gpftKaXWzPxS9P2JH_053sXtvsnrSI68eauM1oinv_zh4RZiJen2lOw6qkBzGh5dB8T7J0U5T7XVGmZbnb7fM0Z0lWbPJqmxdVmZb1flvULCn2m31RVdttXZX7fVqVLNmmm7QsdtUu3xfVdluwNPxn9y9x00Qsh2pdVvE8IXeLRVqT8cauW-4T9xwavSjFoDPTabEz4FrHIuPFqbMnBH7E7pvEh_WH4F8">Open this example</a><a class="btn" href="https://github.com/mbaffour/protein-structure-viewer/blob/main/docs/USE-CASES.md#6-share-your-work" target="_blank" rel="noopener">Full walkthrough ↗</a></p>
+        </section>
+
+        <section class="walk" id="walk-ensemble">
+            <h3>7. Compare many models</h3>
+            <p class="q">Which of these models agree, and where do they differ?</p>
+            <figure class="shot-fig">
+                <img class="shot shot-dark" src="images/psv-ensemble-dark.webp" width="1400" height="875" alt="Four alpha-globin structures superposed and coloured by per-residue agreement, with the pairwise RMSD matrix." loading="lazy" decoding="async">
+                <img class="shot shot-light" src="images/psv-ensemble-light.webp" width="1400" height="875" alt="Four alpha-globin structures superposed and coloured by per-residue agreement, with the pairwise RMSD matrix." loading="lazy" decoding="async">
+                <figcaption>Human α-globin four ways: two deoxy crystal structures (4HHB, 1A3N), an oxy structure (1HHO) and the AlphaFold model.</figcaption>
+            </figure>
+            <ol>
+                <li>Fetch <code>4hhb</code>, <code>1a3n</code>, <code>1hho</code> and <code>P69905</code>; hide all but chain A of the crystal structures; overlay.</li>
+                <li><strong>Compare → Fit on → A chain or residue range…</strong> <code>A</code>, then <strong>Align visible</strong>.</li>
+                <li><strong>Compute matrix</strong> for the pairwise RMSD; <strong>Use medoid as reference</strong> re-fits on the most central model.</li>
+                <li><strong>Colour by → Model agreement</strong> paints each residue by how much the models disagree there.</li>
+            </ol>
+            <p>Fitted on chain A, the AlphaFold model sits 0.33 Å from 4HHB, 0.27 Å from 1A3N and 0.58 Å from the oxy structure 1HHO, and it is the medoid — the model closest to all the others. (The crystal structures' own pairwise figures, 0.59–1.21 Å, count every chain they match, not only the chain fitted on.) Model agreement then says where they differ rather than by how much overall: 135 of 141 residues agree within 0.5 Å, and what stands out is the C-terminal Tyr140–Arg141 and residues 88–89 beside the proximal His87 — the parts that move when haemoglobin binds oxygen. Against deoxy 4HHB, the oxy structure's Arg141 sits 4.8 Å away and its 88–89 stretch 1.3–1.7 Å, while the second deoxy structure stays within 0.5 Å; the prediction, at 0.3–0.7 Å, sits with the deoxy pair.</p>
+            <p class="walk-actions"><a class="btn btn-primary" href="../structure-viewer/#scene=z.lVVNb9s4EP0rwfRKGfqwZFs3J0WQw-42aIoetsiBpkYWtxSpJSkn3iD_vRiKdmy3DbD2hZwPvsfhzNML-P2AUMNgjUepk53EJ7SJE6gRGDjRYc-_onXSaKgzBlPA0QL5bF7NCmAgLHKPzdqTMc2rJF0l2eJLtqjLvJ6Xs6Ja_E0ndtxiA7W3IzKC3aHmWiDUL-ClV0SGwsxoRVz36DvTTGttPDpavjLoTYPKQf3tBTTvKXjedZuZkC0waNGLLpqAaDu5ocMnXGGUsVDDh-WmFG0FDBTfoKL4u7vrqwbN8x4YdLJpUN90XGrCgWtgcAMMPsLjKzuiZrzQF6hkegc1rTZVMz9BzdbFX_8XtevMJWrXmXdQ29WiyE7vmt3dfbr6HeYp1vo2ua9Wq7RMbrMLzFPXO9h5LsoST7DXauj4rVHNz-CPr48MHHov9dZRX1DP_WkaYmJ2aBUnxhYHiw61537qRMGtN4bKHlBjAt9axB61h9gwn2yDREkZ3iChcyW3miJihsN_R6SOPHGth0HJt7blwssdUrw6fwmLLVpKPvhOOpIr9RmdbEb8g2rgoG65ctMQ_IMi3mJA6wYM5wMDM3olNbHSJgxka7bHvFDKB78PM7Mxz-E2Creom3vjZDxwY7w3faKwpRKIUOTr_VtAPKyV_kGYoAUWtzLUsZX-87SuYQ0Mhph0M3rTtlCXFLId7fFCL68R4YZeIBqmkOtRqlD4F3qesaeXhpwY8YHOdBPVLlzBe6TsqdjTjY5bbkUnPQo_WozsjyBfsB8U90FMPmyHXTJwjSo5BwyOzUQn-Rn9zH1B5cJ3xuvM9wuSMQKfB2N90k-9NlgZOnMiS5vkSTY-DPNiee4Qo_OmJ0-ennt46BjyzMpzTzNIqKFILxI8PlP4ESCScvK_oCzLNH3O8rekg1vw0GrHIsqebzFpje05HTfo7UXGVKKzCk2mZPhdg4aggJRsOM3pkcX0xElrNIGtreSKXd2h2qGXgrMrx7VLHFrZ0sdhw8X3rTUjwYO3XLuB20kG3lw3R2kMv0mK8BqVeYI6ZdChR2tIE7wU3-mzNNqWi5N5dBS_f5DN2zO7vRZRSqyJ6kRd3PpfiIIwPfG6pz4N2kcD0aPlUH9LsmK2yJZpUaVZVharLGdkKvJqnq6yIpsv83lZsKRYzlblqliW5bwqVnlRsHJWLfJymVZltVjmi2zB0vDPHl-jbEQsh2pSnrjvkbvRBr2MFjtJ1kfuOdR6VIpBY_qDUjPgWsdLRsPhZQ8IfIfNV4lPk7L_AA">Open this example</a><a class="btn" href="https://github.com/mbaffour/protein-structure-viewer/blob/main/docs/USE-CASES.md#7-compare-many-models" target="_blank" rel="noopener">Full walkthrough ↗</a></p>
+        </section>
+
 
         <h2>The mistake the tool is built to make harder</h2>
         <p>
@@ -616,6 +813,24 @@ projection and text size, at render time — the figure comes out right and what
 It only takes the new placement when it demonstrably covers less; on a panel with twenty-two labels in it, nudging
 cannot help, and the honest answer is fewer positions per panel.
 </p>
+<p>
+Then 2.46, which began as a small request — let a chain be whatever colour a figure needs, from the
+composition table or straight from the figure-label editor — and turned into an argument for making
+demos. Having an agent drive the viewer through a scripted run-through for the pictures on this page
+turned up four things I had not seen. A structure fetched from the PDB was coloured as though its
+crystallographic B-factors were pLDDT, so an experimental structure read as a poor prediction, and the
+exported report printed a <em>mean pLDDT</em> for it. The chain colours I had just added were forgotten
+on reload and absent from share links. <strong>Model agreement</strong> pooled residues by number, and
+AlphaFold DB counts α-globin from its initiator methionine while the crystal structures start one residue
+later — so four structures that agree to a few tenths of an ångström were painted as disagreeing by more
+than one, uniformly, along the whole chain. And every label in the 3D view had quietly become a black box
+on a black background, because the interface's colours are now CSS expressions — <code>light-dark()</code>,
+<code>color-mix()</code> — that 3Dmol reads as black. None of the four could fail a suite that checks
+numbers rather than pictures, on fixtures that all share one residue numbering. They are fixed in
+2.46.1 through 2.46.3, each with a regression test, and the build now refuses to write a file whose
+script does not parse, which is how I broke the whole viewer for ten minutes with one apostrophe.
+</p>
+
 <h2>Three bugs worth naming</h2>
         <p>
             The recent pass over this was mostly unglamorous correctness work. Three are worth writing down because they
@@ -714,6 +929,18 @@ cannot help, and the honest answer is fewer positions per panel.
         <a href="https://github.com/mbaffour" target="_blank" rel="noopener">GitHub</a>
     </div>
 </footer>
+<script>
+    document.addEventListener('click', function (event) {
+        var button = event.target.closest ? event.target.closest('.demo-load') : null;
+        if (!button) return;
+        var frame = document.createElement('iframe');
+        frame.className = 'demo-frame';
+        frame.src = button.getAttribute('data-src');
+        frame.title = 'Interactive report exported from Protein Structure Viewer: human haemoglobin';
+        frame.setAttribute('allow', 'fullscreen');
+        button.closest('.demo-slot').replaceChildren(frame);
+    });
+</script>
 <script defer src="../assets/js/posts-data.js"></script>
 <script defer src="../assets/js/post.js"></script>
 </body>
