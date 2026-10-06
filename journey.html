@@ -152,6 +152,60 @@
         @media (prefers-reduced-motion: reduce) { .drift { animation: none; } }
         @media print { .scene { break-inside: avoid; } }
 
+        /* ── Figure plates ───────────────────────────────────────────────
+           Each scene is labelled like a figure panel: number top-left, subject
+           top-right. Figs 4, 6 and 7 also get a control row (action left, live
+           status right); it ships `hidden` and the script below un-hides it, so
+           without JS the page shows the static drawings and no dead buttons. */
+        .fig-lbl { display: flex; justify-content: space-between; align-items: center; gap: 12px;
+                   padding: 11px 15px 0; font-family: var(--font-mono); font-size: .66rem;
+                   letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); }
+        .fig-lbl span:first-child { text-transform: none; letter-spacing: .06em; }
+        .fig-ctl { padding: 0 15px 10px; }
+        .fig-ctl[hidden] { display: none; }
+        .fig-act { font: inherit; letter-spacing: inherit; text-transform: inherit; color: var(--gold);
+                   background: none; border: 1px solid var(--border-strong); border-radius: 6px;
+                   padding: 4px 10px; cursor: pointer; transition: border-color .2s, background .2s; }
+        .fig-act:hover { border-color: var(--gold); background: var(--bg-card-hover); }
+        .fig-status { text-transform: none; letter-spacing: .04em; text-align: right; }
+        .scene[data-fig] svg { cursor: pointer; }
+
+        /* Fig 4: landing phages, a cell that can give way, virions that scatter */
+        .lin-out g g { transition: transform .5s ease-out, opacity .5s ease-out; }
+        .lin-cell { transition: opacity .6s ease; }
+        .lin-cell.burst ellipse { stroke-dasharray: 18 12; }
+        .lin-cell.burst { opacity: .45; }
+        .lin-in path { transition: transform .9s cubic-bezier(.2,.7,.3,1), opacity .9s ease; }
+        /* Fig 6: holin pore and endolysin release */
+        .holin-plug, .holin-pore, .holin-trail { transition: opacity .5s ease; }
+        .holin-lys circle { transition: transform .7s cubic-bezier(.3,.6,.3,1); }
+        /* Fig 7: script lines and the curve draw themselves */
+        .curve-code path, .curve-line { stroke-dasharray: 1; stroke-dashoffset: 0; }
+        .curve-peak { transition: opacity .3s ease; }
+
+        /* ── Chapter tracker ─────────────────────────────────────────────
+           Ticks on the right edge, one per chapter; hovering names it, the
+           current one is long and gold. Only where there is margin beside the
+           1080px column, so it never sits on top of text. */
+        .ticks { position: fixed; right: 18px; top: 50%; transform: translateY(-50%); z-index: 15;
+                 display: none; flex-direction: column; gap: 4px; list-style: none; }
+        @media (min-width: 1260px) { .ticks { display: flex; } }
+        .ticks a { display: flex; align-items: center; justify-content: flex-end; gap: 10px;
+                   padding: 4px 0; text-decoration: none; font-family: var(--font-mono);
+                   font-size: .64rem; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3); }
+        .ticks a::after { content: ""; width: 14px; height: 2px; border-radius: 1px;
+                          background: var(--border-strong); transition: width .3s, background .3s; }
+        .ticks .name { opacity: 0; transform: translateX(6px); transition: opacity .3s, transform .3s;
+                       white-space: nowrap; background: var(--bg); padding: 0 4px; }
+        .ticks a:hover .name, .ticks a:focus-visible .name { opacity: 1; transform: none; }
+        .ticks a.active { color: var(--ink); }
+        .ticks a.active::after { width: 30px; background: var(--gold); }
+        .count { font-family: var(--font-mono); font-size: .72rem; color: var(--ink-3);
+                 letter-spacing: .06em; min-width: 4.5em; }
+        .count b { color: var(--gold); font-weight: 500; }
+        @media (max-width: 560px) { .count { display: none; } }
+        @media print { .ticks, .fig-ctl { display: none; } }
+
         /* ---- hero ---- */
         header.intro { padding: 96px 0 48px; position: relative; }
         .eyebrow { font-family: var(--font-mono); font-size:.72rem; letter-spacing:.18em;
@@ -183,7 +237,7 @@
         .num { font-family: var(--font-display); font-size: 2.6rem; font-weight:700;
                color: var(--border-strong); line-height:1; margin-bottom:10px; display:block; }
 
-        .chapter-body h2 { font-family: var(--font-display); font-size: clamp(1.4rem, 3vw, 1.9rem);
+        .chapter-body h2 { scroll-margin-top: 96px; font-family: var(--font-display); font-size: clamp(1.4rem, 3vw, 1.9rem);
                            font-weight:600; margin-bottom:14px; }
         .chapter-body p { color: var(--ink-2); margin-bottom: 14px; max-width: 62ch; }
         .chapter-body p:last-child { margin-bottom: 0; }
@@ -273,10 +327,15 @@
     <div class="wrap">
         <a href="index.html" class="back">&larr; Back to research site</a>
         <span class="brand">Michael Baffour Awuah</span>
+        <div class="topbar-right" style="display:flex;align-items:center;gap:14px">
+        <!-- Filled by the chapter tracker. aria-hidden: announcing it on every
+             scroll would be noise; the Chapters nav is the accessible version. -->
+        <span class="count" aria-hidden="true"></span>
         <button class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark mode" title="Toggle light/dark mode">
             <svg class="ti-sun" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
             <svg class="ti-moon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
         </button>
+        </div>
     </div>
 </div>
 
@@ -307,6 +366,7 @@
             <h2 id="ch1">Biochemistry, and a question about fruit</h2>
 
             <figure class="scene">
+              <div class="fig-lbl" aria-hidden="true"><span>Fig 1</span><span>Cape Coast</span></div>
               <svg viewBox="0 0 800 250" role="img" aria-hidden="true" focusable="false">
 
                 <circle class="sun drift" cx="646" cy="64" r="30"/>
@@ -367,6 +427,7 @@
             <h2 id="ch2">Seven courses, and what teaching does to you</h2>
 
             <figure class="scene">
+              <div class="fig-lbl" aria-hidden="true"><span>Fig 2</span><span>Adinkrahene &amp; drum</span></div>
               <svg viewBox="0 0 800 250" role="img" aria-hidden="true" focusable="false">
                 <path class="hill" d="M0 250 V168 q200 -34 400 -12 t400 -16 V250 Z"/>
                 <!-- adinkrahene -->
@@ -431,6 +492,7 @@
             <h2 id="ch3">Ramsey Lab, and the Center for Phage Technology</h2>
 
             <figure class="scene">
+              <div class="fig-lbl" aria-hidden="true"><span>Fig 3</span><span>Brazos Valley</span></div>
               <svg viewBox="0 0 800 250" role="img" aria-hidden="true" focusable="false">
 
                 <circle class="sun drift" cx="140" cy="62" r="26"/>
@@ -483,13 +545,16 @@
         <div class="chapter-body">
             <h2 id="ch4">Delaying the inevitable</h2>
 
-            <figure class="scene">
+            <figure class="scene" data-fig="lin">
+              <div class="fig-lbl" aria-hidden="true"><span>Fig 4</span><span>Lysis inhibition</span></div>
               <svg viewBox="0 0 800 250" role="img" aria-hidden="true" focusable="false">
                 <!-- one bacterium, drawn large; phages adsorbed outside -->
-                <ellipse class="stroke-gold" cx="400" cy="130" rx="170" ry="72"/>
-                <ellipse class="stroke-gold" cx="400" cy="130" rx="158" ry="62" opacity=".35"/>
+                <g class="lin-cell">
+                  <ellipse class="stroke-gold" cx="400" cy="130" rx="170" ry="72"/>
+                  <ellipse class="stroke-gold" cx="400" cy="130" rx="158" ry="62" opacity=".35"/>
+                </g>
                 <!-- new virions assembling inside -->
-                <g class="stroke-ink" opacity=".85">
+                <g class="stroke-ink lin-in" opacity=".85">
                   <path d="M340 110 l10 -6 10 6 v12 l-10 6 -10 -6 Z M350 128 v10"/>
                   <path d="M395 96  l10 -6 10 6 v12 l-10 6 -10 -6 Z M405 114 v10"/>
                   <path d="M448 118 l10 -6 10 6 v12 l-10 6 -10 -6 Z M458 136 v10"/>
@@ -503,12 +568,16 @@
                   <path d="M640 190 l8 -5 8 5 v10 l-8 5 -8 -5 Z M648 205 v12 M640 217 h16"/>
                   <path d="M150 180 l8 -5 8 5 v10 l-8 5 -8 -5 Z M158 195 v12 M150 207 h16"/>
                 </g>
+                <!-- landing site for phages added by the Fig 4 control -->
+                <g class="stroke-green lin-out"></g>
                 <!-- a clock face, because the phenotype is TIMING -->
-                <g transform="translate(400,130)">
+                <g class="lin-clock" transform="translate(400,130)">
                   <circle class="stroke-ink" r="24" opacity=".9"/>
-                  <path class="stroke-gold" d="M0 0 V-15 M0 0 L10 6"/>
+                  <path class="stroke-gold" d="M0 0 L10 6"/>
+                  <path class="stroke-gold lin-hand" d="M0 0 V-15"/>
                 </g>
               </svg>
+              <div class="fig-lbl fig-ctl" hidden><button type="button" class="fig-act">Add a phage</button><span class="fig-status" aria-live="polite">infected · building</span></div>
               <figcaption>
                 <b>Lysis inhibition, in one picture.</b> The infected cell is ready to burst —
                 virions are assembled — but phages landing on the outside signal that hosts are
@@ -548,6 +617,7 @@
             <h2 id="ch5">A phage named after my grandmother</h2>
 
             <figure class="scene">
+              <div class="fig-lbl" aria-hidden="true"><span>Fig 5</span><span>Kente</span></div>
               <svg viewBox="0 0 800 250" role="img" aria-hidden="true" focusable="false">
                 <!-- kente: warp and weft in the flag's three colours -->
                 <g opacity=".75">
@@ -605,7 +675,8 @@
         <div class="chapter-body">
             <h2 id="ch6">How N4 actually opens the cell</h2>
 
-            <figure class="scene">
+            <figure class="scene" data-fig="holin">
+              <div class="fig-lbl" aria-hidden="true"><span>Fig 6</span><span>Lysis machinery</span></div>
               <svg viewBox="0 0 800 250" role="img" aria-hidden="true" focusable="false">
                 <!-- membrane as a lipid bilayer band -->
                 <g class="stroke-ink" opacity=".55">
@@ -619,19 +690,28 @@
                            M240 150 v-14 M270 150 v-14 M300 150 v-14 M500 150 v-14 M530 150 v-14 M560 150 v-14
                            M590 150 v-14 M620 150 v-14 M650 150 v-14 M680 150 v-14 M710 150 v-14 M740 150 v-14"/>
                 </g>
-                <!-- the hole the holin opens -->
-                <path class="stroke-gold" d="M330 100 q-14 25 0 50 M470 100 q14 25 0 50"/>
-                <!-- endolysins released through it -->
-                <g class="gold-shape" opacity=".9">
-                  <circle cx="400" cy="125" r="7"/>
-                  <circle cx="380" cy="70" r="6"/>
-                  <circle cx="424" cy="52" r="6"/>
-                  <circle cx="404" cy="28" r="5"/>
+                <!-- lipid heads across the gap: shown only while the Fig 6 control has
+                     the holin closed, so the static drawing is unchanged. Inline
+                     style, not the attribute: .stroke-ink's opacity beats it. -->
+                <g class="stroke-ink holin-plug" style="opacity:0">
+                  <path d="M330 100 v14 M358 100 v14 M386 100 v14 M414 100 v14 M442 100 v14 M470 100 v14
+                           M330 150 v-14 M358 150 v-14 M386 150 v-14 M414 150 v-14 M442 150 v-14 M470 150 v-14"/>
                 </g>
-                <path class="stroke-gold" d="M400 112 q-16 -28 -20 -36 M400 112 q18 -40 22 -54" opacity=".45"/>
-                <text x="400" y="196" text-anchor="middle" class="sym"
+                <!-- the hole the holin opens -->
+                <path class="stroke-gold holin-pore" d="M330 100 q-14 25 0 50 M470 100 q14 25 0 50"/>
+                <!-- endolysins released through it; data-from is where each waits
+                     in the cytoplasm before the hole opens -->
+                <g class="gold-shape holin-lys" opacity=".9">
+                  <circle cx="400" cy="125" r="7" data-from="372,174"/>
+                  <circle cx="380" cy="70" r="6" data-from="394,182"/>
+                  <circle cx="424" cy="52" r="6" data-from="414,172"/>
+                  <circle cx="404" cy="28" r="5" data-from="434,180"/>
+                </g>
+                <path class="stroke-gold holin-trail" d="M400 112 q-16 -28 -20 -36 M400 112 q18 -40 22 -54" opacity=".45"/>
+                <text x="400" y="230" text-anchor="middle" class="sym"
                       style="fill:var(--green-text);font-size:13px;letter-spacing:.14em">HOLIN OPENS · ENDOLYSIN CUTS</text>
               </svg>
+              <div class="fig-lbl fig-ctl" hidden><button type="button" class="fig-act">Open the holin</button><span class="fig-status" aria-live="polite">holin closed</span></div>
               <figcaption>
                 <b>The lysis machinery.</b> N4 opens its host with a two-part system: a
                 <b>holin</b> punches holes in the inner membrane, and a <b>SAR endolysin</b>
@@ -661,7 +741,8 @@
         <div class="chapter-body">
             <h2 id="ch7">The tools were self-defence first</h2>
 
-            <figure class="scene">
+            <figure class="scene" data-fig="curve">
+              <div class="fig-lbl" aria-hidden="true"><span>Fig 7</span><span>Lysis curve</span></div>
               <svg viewBox="0 0 800 250" role="img" aria-hidden="true" focusable="false">
                 <!-- a terminal window -->
                 <rect class="stroke-ink" x="70" y="46" width="300" height="160" rx="8"/>
@@ -669,18 +750,20 @@
                 <circle class="red-shape"  cx="92"  cy="60" r="5"/>
                 <circle class="gold-shape" cx="112" cy="60" r="5"/>
                 <circle cx="132" cy="60" r="5" fill="var(--green)"/>
-                <g class="stroke-gold" opacity=".8">
-                  <path d="M92 100 h80 M92 122 h140 M92 144 h100 M92 166 h60"/>
+                <g class="stroke-gold curve-code" opacity=".8">
+                  <path d="M92 100 h80" pathLength="1"/><path d="M92 122 h140" pathLength="1"/>
+                  <path d="M92 144 h100" pathLength="1"/><path d="M92 166 h60" pathLength="1"/>
                 </g>
                 <!-- a lysis curve on axes: rises, then the crash -->
                 <g transform="translate(430,0)">
                   <path class="stroke-ink" d="M40 60 V190 H310"/>
-                  <path class="stroke-gold" d="M50 176 q60 -10 100 -46 q30 -26 44 -28 q20 0 26 60 q6 24 70 26"/>
-                  <circle class="gold-shape" cx="194" cy="102" r="5"/>
+                  <path class="stroke-gold curve-line" pathLength="1" d="M50 176 q60 -10 100 -46 q30 -26 44 -28 q20 0 26 60 q6 24 70 26"/>
+                  <circle class="gold-shape curve-peak" cx="194" cy="102" r="5"/>
                 </g>
                 <text x="595" y="228" text-anchor="middle" class="sym"
                       style="fill:var(--green-text);font-size:12px;letter-spacing:.12em">OD FALLS = CELLS BURST</text>
               </svg>
+              <div class="fig-lbl fig-ctl" hidden><button type="button" class="fig-act">Run the script</button><span class="fig-status" aria-live="polite">ready</span></div>
               <figcaption>
                 <b>Why the tools exist.</b> A lysis experiment produces the curve on the right:
                 turbidity climbs while cells grow, then crashes when they burst. Drawing that
@@ -717,6 +800,7 @@
             <h2 id="ch8">The Patterson Fellowship</h2>
 
             <figure class="scene">
+              <div class="fig-lbl" aria-hidden="true"><span>Fig 8</span><span>Black Star</span></div>
               <svg viewBox="0 0 800 250" role="img" aria-hidden="true" focusable="false">
 
                 <path class="land" d="M0 250 V206 q200 -18 400 -2 t400 -10 V250 Z"/>
@@ -781,6 +865,7 @@
             <h2 id="ch9">What I'm looking for next</h2>
 
             <figure class="scene">
+              <div class="fig-lbl" aria-hidden="true"><span>Fig 9</span><span>Still open</span></div>
               <svg viewBox="0 0 800 250" role="img" aria-hidden="true" focusable="false">
                 <circle class="sun drift" cx="400" cy="118" r="34"/>
                 <path class="hill" d="M0 250 V182 q160 -34 320 -8 t320 -20 q90 -8 160 6 V250 Z"/>
@@ -904,6 +989,172 @@
         setTimeout(revealAll, 2500);
     }
 
+    /* ── Interactive figures ───────────────────────────────────────────
+       fig(name, init): init builds one figure's behaviour and returns the
+       function a click runs. The control row is un-hidden only once that
+       succeeds, and the button is the keyboard route; the drawing itself is
+       also clickable, as a convenience for pointers. */
+    var NS = 'http://www.w3.org/2000/svg';
+    function fig(name, init) {
+        var f = document.querySelector('.scene[data-fig="' + name + '"]');
+        if (!f) return;
+        var btn = f.querySelector('.fig-act'), st = f.querySelector('.fig-status');
+        var ui = { svg: f.querySelector('svg'),
+                   set: function (hint, status) { btn.textContent = hint; st.textContent = status; } };
+        var step = init(ui);
+        btn.addEventListener('click', step);
+        ui.svg.addEventListener('click', step);
+        f.querySelector('.fig-ctl').hidden = false;
+    }
+
+    /* Fig 4. Each click lands a superinfecting phage on the membrane and moves
+       the clock on: the cell is held, still building. After five, the next
+       click lets it lyse; the one after resets. */
+    fig('lin', function (ui) {
+        var svg = ui.svg, out = svg.querySelector('.lin-out'),
+            cell = svg.querySelector('.lin-cell'), hand = svg.querySelector('.lin-hand'),
+            virions = Array.prototype.slice.call(svg.querySelectorAll('.lin-in path'));
+        var SITES = [200, 330, 105, 25, 250];   // landing angles round the ellipse
+        var n = 0, burst = false;
+
+        function land(deg) {
+            var a = deg * Math.PI / 180,
+                mx = 400 + 170 * Math.cos(a), my = 130 + 72 * Math.sin(a),
+                dx = 400 - mx, dy = 130 - my, l = Math.sqrt(dx * dx + dy * dy);
+            dx /= l; dy /= l;
+            // tail (+y in the phage's own frame) points at the cell centre
+            var g = document.createElementNS(NS, 'g');
+            g.setAttribute('transform', 'translate(' + (mx - dx * 25).toFixed(1) + ',' +
+                (my - dy * 25).toFixed(1) + ') rotate(' + (Math.atan2(-dx, dy) * 180 / Math.PI).toFixed(1) + ')');
+            var inner = document.createElementNS(NS, 'g');
+            var p = document.createElementNS(NS, 'path');
+            p.setAttribute('d', 'M-8 -5 l8 -5 8 5 v10 l-8 5 -8 -5 Z M0 10 v12 M-8 22 h16');
+            inner.appendChild(p); g.appendChild(inner); out.appendChild(g);
+            inner.style.transform = 'translate(0,-34px)'; inner.style.opacity = '0';
+            requestAnimationFrame(function () { requestAnimationFrame(function () {
+                inner.style.transform = ''; inner.style.opacity = '';
+            }); });
+        }
+
+        return function () {
+            if (burst) {
+                burst = false; n = 0;
+                while (out.firstChild) out.removeChild(out.firstChild);
+                cell.classList.remove('burst');
+                virions.forEach(function (v) { v.style.transform = ''; v.style.opacity = ''; });
+                hand.setAttribute('transform', '');
+                ui.set('Add a phage', 'infected · building');
+            } else if (n === SITES.length) {
+                burst = true;
+                cell.classList.add('burst');
+                virions.forEach(function (v) {
+                    var b = v.getBBox(), dx = b.x + b.width / 2 - 400, dy = b.y + b.height / 2 - 130,
+                        l = Math.sqrt(dx * dx + dy * dy) || 1;
+                    v.style.transform = 'translate(' + (dx / l * 175).toFixed(1) + 'px,' + (dy / l * 85).toFixed(1) + 'px)';
+                    v.style.opacity = '.6';
+                });
+                ui.set('Reset', 'lysed · progeny released');
+            } else {
+                land(SITES[n]); n++;
+                hand.setAttribute('transform', 'rotate(' + n * 50 + ')');
+                ui.set(n === SITES.length ? 'Let it lyse' : 'Add a phage',
+                       'held · ' + n + ' phage' + (n > 1 ? 's' : '') + ' outside');
+            }
+        };
+    });
+
+    /* Fig 6. Three stages: holin closed with endolysin waiting in the
+       cytoplasm, hole open, endolysin through. Starts closed. */
+    fig('holin', function (ui) {
+        var svg = ui.svg, plug = svg.querySelector('.holin-plug'),
+            pore = svg.querySelector('.holin-pore'), trail = svg.querySelector('.holin-trail'),
+            lys = Array.prototype.slice.call(svg.querySelectorAll('.holin-lys circle'));
+        var stage = 0;
+        var STAGES = [['Open the holin', 'holin closed · endolysin waiting'],
+                      ['Release endolysin', 'holin · hole open'],
+                      ['Reset', 'endolysin out · cutting the wall']];
+        function render() {
+            plug.style.opacity = stage === 0 ? '.7' : '0';   // .7 = .stroke-ink, as the other heads
+            pore.style.opacity = stage === 0 ? '0' : '';
+            trail.style.opacity = stage === 2 ? '' : '0';
+            lys.forEach(function (c, i) {
+                var from = c.getAttribute('data-from').split(',');
+                c.style.transitionDelay = stage === 2 && !reduce ? i * 0.12 + 's' : '0s';
+                c.style.transform = stage === 2 ? '' : 'translate(' + (from[0] - c.getAttribute('cx')) +
+                    'px,' + (from[1] - c.getAttribute('cy')) + 'px)';
+            });
+            ui.set(STAGES[stage][0], STAGES[stage][1]);
+        }
+        render();
+        return function () { stage = (stage + 1) % 3; render(); };
+    });
+
+    /* Fig 7. Runs the "script": its lines type out, then the curve draws and
+       the peak marks where OD turns. Counts runs, because the essay says the
+       twelfth time is when it became a tool. */
+    fig('curve', function (ui) {
+        var svg = ui.svg, lines = Array.prototype.slice.call(svg.querySelectorAll('.curve-code path')),
+            curve = svg.querySelector('.curve-line'), peak = svg.querySelector('.curve-peak');
+        var runs = 0, timer = null, k = reduce ? 0 : 1;
+        return function () {
+            clearTimeout(timer); runs++;
+            lines.concat([curve]).forEach(function (p) {
+                p.style.transition = 'none'; p.style.strokeDashoffset = '1';
+            });
+            peak.style.opacity = '0';
+            svg.getBoundingClientRect();   // commit the reset before transitioning back
+            lines.forEach(function (p, i) {
+                p.style.transition = 'stroke-dashoffset ' + .35 * k + 's linear ' + i * .35 * k + 's';
+                p.style.strokeDashoffset = '0';
+            });
+            curve.style.transition = 'stroke-dashoffset ' + 1.4 * k + 's ease-in-out ' + 1.4 * k + 's';
+            curve.style.strokeDashoffset = '0';
+            ui.set('Running…', 'run #' + runs + ' · plotting');
+            timer = setTimeout(function () {
+                peak.style.opacity = '';
+                ui.set('Run it again', runs === 12 ? 'run #12 · time to automate'
+                                                   : 'run #' + runs + ' · plotted');
+            }, 2900 * k);
+        };
+    });
+
+    /* ── Chapter tracker ───────────────────────────────────────────────
+       A tick per chapter on the right edge and "04 / 09" in the top bar.
+       The current chapter is the last one whose top has passed 40% of the
+       viewport; updated from draw() below, so it shares the scroll rAF. */
+    var countEl = document.querySelector('.count');
+    var ticks = document.createElement('nav');
+    ticks.className = 'ticks';
+    ticks.setAttribute('aria-label', 'Chapters');
+    var tickLinks = chapters.map(function (c, i) {
+        var h = c.querySelector('h2'), a = document.createElement('a'),
+            name = document.createElement('span');
+        name.className = 'name';
+        name.textContent = c.querySelector('.kick').textContent;
+        a.href = '#' + h.id;
+        a.setAttribute('aria-label', 'Chapter ' + (i + 1) + ': ' + h.textContent);
+        a.appendChild(name);
+        ticks.appendChild(a);
+        return a;
+    });
+    document.body.appendChild(ticks);
+    function pad(n) { return (n < 10 ? '0' : '') + n; }
+    var current = null;
+    function track() {
+        var line = window.innerHeight * 0.4, cur = -1;
+        for (var i = 0; i < chapters.length; i++) {
+            if (chapters[i].getBoundingClientRect().top <= line) cur = i;
+        }
+        if (cur === current) return;
+        current = cur;
+        tickLinks.forEach(function (a, i) {
+            a.classList.toggle('active', i === cur);
+            if (i === cur) a.setAttribute('aria-current', 'step'); else a.removeAttribute('aria-current');
+        });
+        if (countEl) countEl.innerHTML = cur < 0 ? '' :
+            '<b>' + pad(cur + 1) + '</b> / ' + pad(chapters.length);
+    }
+
     /* Reading progress, with a ball rolling along it. rAF-throttled so a fast
        scroll doesn't thrash layout. The ball's spin is derived from distance
        travelled, not from a timer, so it rolls rather than spins on the spot —
@@ -922,6 +1173,7 @@
             var spin = reduce ? 0 : (x / 50.3) * 360;
             ball.style.transform = 'translateX(' + x + 'px) rotate(' + spin + 'deg)';
         }
+        track();
         ticking = false;
     }
     addEventListener('scroll', function () {
