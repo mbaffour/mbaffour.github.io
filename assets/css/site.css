@@ -3933,3 +3933,45 @@ kbd {
 .beyond-teaser:has(> :only-child) .beyond-card { grid-template-columns: 180px 1fr; }
 .beyond-teaser:has(> :only-child) .beyond-art { width: 180px; height: 180px; }
 @media (max-width: 520px) { .beyond-teaser:has(> :only-child) .beyond-card { grid-template-columns: 1fr; } .beyond-teaser:has(> :only-child) .beyond-art { width: 100%; height: 140px; } }
+
+/* ── N4 lysis-machinery plate (Research Focus) ───────────────────────────
+   Same figure as journey.html Fig 6, labelled like a figure panel (number
+   top-left, subject top-right, control and live status beneath). Wired by
+   assets/js/lysis-fig.js. Everything is scoped to .lysis-plate because the
+   drawing's class names (.sym, .stroke-ink, …) are generic. */
+.lysis-plate { max-width: 880px; margin: 0 auto 36px; border: 1px solid var(--border);
+               border-radius: 18px; overflow: hidden; background: var(--bg-card); }
+.lysis-plate svg { display: block; width: 100%; height: auto; cursor: pointer; }
+.lysis-plate figcaption { padding: 12px 18px 14px; border-top: 1px solid var(--border);
+                          font-size: .86rem; line-height: 1.6; color: var(--ink-2); }
+.lysis-plate figcaption b { color: var(--gold); font-weight: 600; }
+.lysis-plate .fig-lbl { display: flex; justify-content: space-between; align-items: center; gap: 12px;
+                        padding: 12px 18px 0; font-family: var(--font-mono); font-size: .66rem;
+                        letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); }
+.lysis-plate .fig-lbl span:first-child { text-transform: none; letter-spacing: .06em; }
+.lysis-plate .fig-ctl { padding: 0 18px 12px; }
+.lysis-plate .fig-ctl[hidden] { display: none; }
+.lysis-plate .fig-act { font: inherit; letter-spacing: inherit; text-transform: inherit; color: var(--gold);
+                        background: none; border: 1px solid var(--border-strong); border-radius: 6px;
+                        padding: 4px 10px; cursor: pointer; transition: border-color .2s, background .2s; }
+.lysis-plate .fig-act:hover { border-color: var(--gold); background: var(--bg-card-hover); }
+.lysis-plate .fig-status { text-transform: none; letter-spacing: .04em; text-align: right; }
+.lysis-plate .sym { font-family: var(--font-mono); text-transform: uppercase; }
+.lysis-plate .gold-shape { fill: var(--gold); }
+.lysis-plate .stroke-ink { fill: none; stroke: var(--ink); stroke-width: 2;
+                           stroke-linecap: round; stroke-linejoin: round; opacity: .7; }
+.lysis-plate .stroke-gold { fill: none; stroke: var(--gold); stroke-width: 2.2;
+                            stroke-linecap: round; stroke-linejoin: round; }
+.lysis-plate .sar-pins > g, .lysis-plate .sar-intact, .lysis-plate .sar-broken,
+.lysis-plate .sar-cuts rect, .lysis-plate .sar-lys path { transition: opacity .5s ease; }
+.lysis-plate .sar-lys g g { transition: transform .7s cubic-bezier(.3,.6,.3,1); }
+.lysis-plate .sar-pac { stroke: var(--gold); stroke-width: 1; stroke-linejoin: round; }
+.lysis-plate .sar-eye { fill: var(--bg-card); }
+.lysis-plate .sar-pac.chomp { animation: sar-chomp .32s ease-in-out infinite alternate; }
+@keyframes sar-chomp { to { d: path("M0 86 L0.52 76.01 A10 10 0 1 1 -0.52 76.01 Z"); } }
+@media (prefers-reduced-motion: reduce) { .lysis-plate .sar-pac.chomp { animation: none; } }
+@media print { .lysis-plate .fig-ctl { display: none; } .lysis-plate { break-inside: avoid; } }
+/* At phone width the 800-unit drawing shrinks its text to ~4px; drop it
+   (the caption says the same) and keep the control on one line. */
+.lysis-plate .fig-act { white-space: nowrap; }
+@media (max-width: 560px) { .lysis-plate svg text { display: none; } }

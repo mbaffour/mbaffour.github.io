@@ -92,7 +92,7 @@
         { name: 'Adsorption & injection', text: 'Tail fibers latch onto a specific surface receptor — the molecular handshake that decides which hosts get infected. The tail contracts and the genome enters the cytoplasm; the capsid stays outside, essentially empty.' },
         { name: 'Eclipse · early genes', text: 'No virions exist yet. Early genes hijack the host&rsquo;s transcription machinery, shut down its defenses, and reroute metabolism toward making phage.' },
         { name: 'Replication & assembly', text: 'Massive genome replication and structural protein synthesis; new capsids fill with DNA. Virions pile up inside the still-intact cell, so the culture stays cloudy.' },
-        { name: 'The lysis decision', text: 'Holins stand ready to puncture the membrane so endolysin can digest the wall. A normal phage commits to bursting right here — N4 can choose not to.' }
+        { name: 'The lysis decision', text: 'The lysis machinery is armed. In N4, the SAR endolysin waits anchored in the inner membrane, inactive, and a pinholin waits to form many small pinholes; when they open, the membrane depolarizes, the endolysin is released and cuts the wall. A normal phage commits to that right here — N4 can choose not to.' }
     ];
     function outcomeStage() {
         return state.mode === 'inhibited'
