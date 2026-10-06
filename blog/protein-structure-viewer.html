@@ -18,6 +18,7 @@
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Protein Structure Viewer — what the confidence numbers actually say">
 <meta property="article:published_time" content="2026-09-11">
+<meta property="article:modified_time" content="2026-10-06">
 <meta property="article:author" content="Michael Baffour Awuah">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@AwuahMB">
@@ -31,7 +32,7 @@
   "headline": "Protein Structure Viewer — what the confidence numbers actually say",
   "description": "A browser viewer for AlphaFold and experimental structures: compare models, align them, read pLDDT and PAE honestly, and export a figure or a self-contained interactive report. Nothing is uploaded.",
   "datePublished": "2026-09-11",
-  "dateModified": "2026-09-12",
+  "dateModified": "2026-10-06",
   "image": "https://mbaffour.github.io/assets/og/protein-structure-viewer.jpg",
   "url": "https://mbaffour.github.io/blog/protein-structure-viewer.html",
   "mainEntityOfPage": {
@@ -829,6 +830,21 @@ on a black background, because the interface's colours are now CSS expressions �
 numbers rather than pictures, on fixtures that all share one residue numbering. They are fixed in
 2.46.1 through 2.46.3, each with a regression test, and the build now refuses to write a file whose
 script does not parse, which is how I broke the whole viewer for ten minutes with one apostrophe.
+</p>
+<p>
+Versions 2.47 and 2.48 filled a gap I kept hitting when a prediction came from somewhere other than
+AlphaFold Server. ColabFold, Boltz and Chai-1 results now bring their scores and, where the predictor
+saves it, their PAE along with the structure. The Confidence tab can also score chain interfaces with
+ipSAE, pDockQ, pDockQ2 and LIS, and compare the scores across the models in a run. These are ways to
+inspect what a prediction says about an interface, not proof that the proteins bind.
+</p>
+<p>
+The interaction calculations were checked against the published <code>ipsae.py</code> implementation:
+304,650 comparisons on 31 of my AlphaFold 3 runs and another 354 on published predictor files were
+within the recorded tolerances. The tests and the limits of those comparisons are in the
+<a href="https://github.com/mbaffour/protein-structure-viewer/blob/main/VALIDATION.md">validation notes</a>.
+Release 2.48.1 then fixed issues found in review, including experimental B-factors being mistaken for
+pLDDT when a crystal structure was opened from disk.
 </p>
 
 <h2>Three bugs worth naming</h2>
