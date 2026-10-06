@@ -844,7 +844,9 @@ The interaction calculations were checked against the published <code>ipsae.py</
 within the recorded tolerances. The tests and the limits of those comparisons are in the
 <a href="https://github.com/mbaffour/protein-structure-viewer/blob/main/VALIDATION.md">validation notes</a>.
 Release 2.48.1 then fixed issues found in review, including experimental B-factors being mistaken for
-pLDDT when a crystal structure was opened from disk.
+pLDDT when a crystal structure was opened from disk. The 2.48.2 patch makes an unavailable AlphaFold
+DB fragment fail clearly instead of silently opening a different fragment, and restores the compact
+viewport on phones.
 </p>
 
 <h2>Three bugs worth naming</h2>
