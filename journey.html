@@ -179,6 +179,13 @@
         /* Fig 6: pinholes form, then SAR endolysin lifts off the membrane */
         .sar-pins > g, .sar-intact, .sar-broken, .sar-cuts rect, .sar-lys path { transition: opacity .5s ease; }
         .sar-lys g g { transition: transform .7s cubic-bezier(.3,.6,.3,1); }
+        .sar-eye { fill: var(--bg-card); }
+        /* Chomp by animating the path itself; where CSS `d` is unsupported
+           (Safari) the mouth simply stays open. Same command structure in
+           both, so it interpolates. */
+        .sar-pac.chomp { animation: chomp .32s ease-in-out infinite alternate; }
+        @keyframes chomp { to { d: path("M0 86 L0.52 76.01 A10 10 0 1 1 -0.52 76.01 Z"); } }
+        @media (prefers-reduced-motion: reduce) { .sar-pac.chomp { animation: none; } }
         /* Fig 7: script lines and the curve draw themselves */
         .curve-code path, .curve-line { stroke-dasharray: 1; stroke-dashoffset: 0; }
         .curve-peak { transition: opacity .3s ease; }
@@ -713,12 +720,13 @@
                 </g>
                 <!-- SAR endolysins: enzyme in the periplasm, tethered by its signal-anchor
                      (SAR) domain in the bilayer. Released, the domain leaves the membrane
-                     and the enzyme reaches the wall. Inline styles: the released two. -->
+                     and the enzyme reaches the wall. Drawn as Pac-Man heads, mouths to the
+                     wall; released ones chomp. Inline styles: the released two. -->
                 <g class="sar-lys">
-                  <g transform="translate(110,0)"><g><path class="stroke-gold" d="M0 95 V128"/><circle class="gold-shape" cy="86" r="9"/></g></g>
-                  <g transform="translate(280,0)"><g style="transform:translate(0,-17px)"><path class="stroke-gold" d="M0 95 V128" style="opacity:0"/><circle class="gold-shape" cy="86" r="9"/></g></g>
-                  <g transform="translate(460,0)"><g><path class="stroke-gold" d="M0 95 V128"/><circle class="gold-shape" cy="86" r="9"/></g></g>
-                  <g transform="translate(630,0)"><g style="transform:translate(0,-17px)"><path class="stroke-gold" d="M0 95 V128" style="opacity:0"/><circle class="gold-shape" cy="86" r="9"/></g></g>
+                  <g transform="translate(110,0)"><g><path class="stroke-gold" d="M0 95 V128"/><path class="gold-shape sar-pac" d="M0 86 L6.16 78.12 A10 10 0 1 1 -6.16 78.12 Z"/><circle class="sar-eye" cx="-4.5" cy="84" r="1.6"/></g></g>
+                  <g transform="translate(280,0)"><g style="transform:translate(0,-17px)"><path class="stroke-gold" d="M0 95 V128" style="opacity:0"/><path class="gold-shape sar-pac chomp" d="M0 86 L6.16 78.12 A10 10 0 1 1 -6.16 78.12 Z"/><circle class="sar-eye" cx="-4.5" cy="84" r="1.6"/></g></g>
+                  <g transform="translate(460,0)"><g><path class="stroke-gold" d="M0 95 V128"/><path class="gold-shape sar-pac" d="M0 86 L6.16 78.12 A10 10 0 1 1 -6.16 78.12 Z"/><circle class="sar-eye" cx="-4.5" cy="84" r="1.6"/></g></g>
+                  <g transform="translate(630,0)"><g style="transform:translate(0,-17px)"><path class="stroke-gold" d="M0 95 V128" style="opacity:0"/><path class="gold-shape sar-pac chomp" d="M0 86 L6.16 78.12 A10 10 0 1 1 -6.16 78.12 Z"/><circle class="sar-eye" cx="-4.5" cy="84" r="1.6"/></g></g>
                 </g>
                 <text x="400" y="222" text-anchor="middle" class="sym"
                       style="fill:var(--green-text);font-size:13px;letter-spacing:.14em">PINHOLES DEPOLARIZE · SAR ENDOLYSIN RELEASED</text>
@@ -1105,6 +1113,7 @@
                 var tm = g.querySelector('path');
                 tm.style.transitionDelay = d + 's';
                 tm.style.opacity = stage === 2 ? '0' : '1';
+                g.querySelector('.sar-pac').classList.toggle('chomp', stage === 2);
                 cuts[i].style.transitionDelay = stage === 2 && !reduce ? d + 0.6 + 's' : '0s';
                 cuts[i].style.opacity = stage === 2 ? '1' : '0';
             });
