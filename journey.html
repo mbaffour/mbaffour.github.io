@@ -177,7 +177,7 @@
         .lin-cell.burst { opacity: .45; }
         .lin-in path { transition: transform .9s cubic-bezier(.2,.7,.3,1), opacity .9s ease; }
         /* Fig 6: pinholes form, then SAR endolysin lifts off the membrane */
-        .sar-pins > g, .sar-cuts rect, .sar-lys path { transition: opacity .5s ease; }
+        .sar-pins > g, .sar-intact, .sar-broken, .sar-cuts rect, .sar-lys path { transition: opacity .5s ease; }
         .sar-lys g g { transition: transform .7s cubic-bezier(.3,.6,.3,1); }
         /* Fig 7: script lines and the curve draw themselves */
         .curve-code path, .curve-line { stroke-dasharray: 1; stroke-dashoffset: 0; }
@@ -694,17 +694,22 @@
                   <rect x="620" y="38" width="20" height="28" fill="var(--bg-card)"/>
                 </g>
                 <!-- inner membrane as a lipid bilayer band -->
-                <g class="stroke-ink" opacity=".55"><path d="M40 100 H760 M40 150 H760"/></g>
+                <!-- Two versions of the bilayer, crossfaded by the Fig 6 control: intact
+                     (first stage) and broken at each pinhole. Separate paths rather than
+                     patches over the gaps, which doubled up where they met. No-JS: broken. -->
+                <g class="stroke-ink sar-intact" style="opacity:0"><path d="M40 100 H760 M40 150 H760 M190 100 v14 M190 150 v-14 M370 100 v14 M370 150 v-14 M550 100 v14 M550 150 v-14 M700 100 v14 M700 150 v-14"/></g>
+                <g class="stroke-ink sar-broken" opacity=".55"><path d="M40 100 H173 M207 100 H353 M387 100 H533 M567 100 H683 M717 100 H760 M40 150 H173 M207 150 H353 M387 150 H533 M567 150 H683 M717 150 H760"/></g>
                 <g class="stroke-ink" opacity=".35">
-                  <path d="M60 100 v14 M90 100 v14 M150 100 v14 M180 100 v14 M210 100 v14 M240 100 v14 M300 100 v14 M330 100 v14 M360 100 v14 M390 100 v14 M420 100 v14 M480 100 v14 M510 100 v14 M540 100 v14 M570 100 v14 M600 100 v14 M660 100 v14 M690 100 v14 M720 100 v14"/>
-                  <path d="M60 150 v-14 M90 150 v-14 M150 150 v-14 M180 150 v-14 M210 150 v-14 M240 150 v-14 M300 150 v-14 M330 150 v-14 M360 150 v-14 M390 150 v-14 M420 150 v-14 M480 150 v-14 M510 150 v-14 M540 150 v-14 M570 150 v-14 M600 150 v-14 M660 150 v-14 M690 150 v-14 M720 150 v-14"/>
+                  <path d="M60 100 v14 M90 100 v14 M150 100 v14 M240 100 v14 M300 100 v14 M330 100 v14 M420 100 v14 M480 100 v14 M510 100 v14 M600 100 v14 M660 100 v14"/>
+                  <path d="M60 150 v-14 M90 150 v-14 M150 150 v-14 M240 150 v-14 M300 150 v-14 M330 150 v-14 M420 150 v-14 M480 150 v-14 M510 150 v-14 M600 150 v-14 M660 150 v-14"/>
                 </g>
-                <!-- pinholes: many small channels, not one large hole -->
+                <!-- pinholes: many small open pores straight through the bilayer, each
+                     lined by pinholin; not one large hole -->
                 <g class="sar-pins">
-                  <g transform="translate(190,0)"><rect x="-12" y="101" width="24" height="48" fill="var(--bg-card)"/><rect x="-10" y="101" width="7" height="48" rx="2" fill="var(--green)" opacity=".6"/><rect x="3" y="101" width="7" height="48" rx="2" fill="var(--green)" opacity=".6"/></g>
-                  <g transform="translate(370,0)"><rect x="-12" y="101" width="24" height="48" fill="var(--bg-card)"/><rect x="-10" y="101" width="7" height="48" rx="2" fill="var(--green)" opacity=".6"/><rect x="3" y="101" width="7" height="48" rx="2" fill="var(--green)" opacity=".6"/></g>
-                  <g transform="translate(550,0)"><rect x="-12" y="101" width="24" height="48" fill="var(--bg-card)"/><rect x="-10" y="101" width="7" height="48" rx="2" fill="var(--green)" opacity=".6"/><rect x="3" y="101" width="7" height="48" rx="2" fill="var(--green)" opacity=".6"/></g>
-                  <g transform="translate(700,0)"><rect x="-12" y="101" width="24" height="48" fill="var(--bg-card)"/><rect x="-10" y="101" width="7" height="48" rx="2" fill="var(--green)" opacity=".6"/><rect x="3" y="101" width="7" height="48" rx="2" fill="var(--green)" opacity=".6"/></g>
+                  <g transform="translate(190,0)"><rect x="-17" y="95" width="6" height="60" rx="2" fill="var(--green)" opacity=".75"/><rect x="11" y="95" width="6" height="60" rx="2" fill="var(--green)" opacity=".75"/></g>
+                  <g transform="translate(370,0)"><rect x="-17" y="95" width="6" height="60" rx="2" fill="var(--green)" opacity=".75"/><rect x="11" y="95" width="6" height="60" rx="2" fill="var(--green)" opacity=".75"/></g>
+                  <g transform="translate(550,0)"><rect x="-17" y="95" width="6" height="60" rx="2" fill="var(--green)" opacity=".75"/><rect x="11" y="95" width="6" height="60" rx="2" fill="var(--green)" opacity=".75"/></g>
+                  <g transform="translate(700,0)"><rect x="-17" y="95" width="6" height="60" rx="2" fill="var(--green)" opacity=".75"/><rect x="11" y="95" width="6" height="60" rx="2" fill="var(--green)" opacity=".75"/></g>
                 </g>
                 <!-- SAR endolysins: enzyme in the periplasm, tethered by its signal-anchor
                      (SAR) domain in the bilayer. Released, the domain leaves the membrane
@@ -1080,12 +1085,15 @@
         var svg = ui.svg,
             pins = Array.prototype.slice.call(svg.querySelectorAll('.sar-pins > g')),
             cuts = Array.prototype.slice.call(svg.querySelectorAll('.sar-cuts rect')),
+            intact = svg.querySelector('.sar-intact'), broken = svg.querySelector('.sar-broken'),
             lys = Array.prototype.slice.call(svg.querySelectorAll('.sar-lys g g'));
         var stage = 0;
         var STAGES = [['Form pinholes', 'SAR endolysin anchored · inactive'],
                       ['Release endolysin', 'pinholes · membrane depolarized'],
                       ['Reset', 'SAR endolysin released · cutting the wall']];
         function render() {
+            intact.style.opacity = stage === 0 ? '.7' : '0';   // .7 = .stroke-ink's own opacity
+            broken.style.opacity = stage === 0 ? '0' : '.7';
             pins.forEach(function (g, i) {
                 g.style.transitionDelay = stage === 1 && !reduce ? i * 0.1 + 's' : '0s';
                 g.style.opacity = stage === 0 ? '0' : '1';
