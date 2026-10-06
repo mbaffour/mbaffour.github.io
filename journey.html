@@ -176,9 +176,9 @@
         .lin-cell.burst ellipse { stroke-dasharray: 18 12; }
         .lin-cell.burst { opacity: .45; }
         .lin-in path { transition: transform .9s cubic-bezier(.2,.7,.3,1), opacity .9s ease; }
-        /* Fig 6: holin pore and endolysin release */
-        .holin-plug, .holin-pore, .holin-trail { transition: opacity .5s ease; }
-        .holin-lys circle { transition: transform .7s cubic-bezier(.3,.6,.3,1); }
+        /* Fig 6: pinholes form, then SAR endolysin lifts off the membrane */
+        .sar-pins > g, .sar-cuts rect, .sar-lys path { transition: opacity .5s ease; }
+        .sar-lys g g { transition: transform .7s cubic-bezier(.3,.6,.3,1); }
         /* Fig 7: script lines and the curve draw themselves */
         .curve-code path, .curve-line { stroke-dasharray: 1; stroke-dashoffset: 0; }
         .curve-peak { transition: opacity .3s ease; }
@@ -675,53 +675,62 @@
         <div class="chapter-body">
             <h2 id="ch6">How N4 actually opens the cell</h2>
 
-            <figure class="scene" data-fig="holin">
+            <figure class="scene" data-fig="sar">
               <div class="fig-lbl" aria-hidden="true"><span>Fig 6</span><span>Lysis machinery</span></div>
               <svg viewBox="0 0 800 250" role="img" aria-hidden="true" focusable="false">
-                <!-- membrane as a lipid bilayer band -->
-                <g class="stroke-ink" opacity=".55">
-                  <path d="M40 100 H760 M40 150 H760"/>
+                <!-- Periplasm on top, cytoplasm below. Static (no-JS) state shows the whole
+                     story at once: pinholes formed, two endolysins still anchored, two
+                     released and cutting. The Fig 6 control steps through it in order. -->
+                <text x="760" y="34" text-anchor="end" class="sym" style="fill:var(--ink-3);font-size:10px;letter-spacing:.12em">CELL WALL</text>
+                <text x="760" y="84" text-anchor="end" class="sym" style="fill:var(--ink-3);font-size:10px;letter-spacing:.12em">PERIPLASM</text>
+                <text x="760" y="176" text-anchor="end" class="sym" style="fill:var(--ink-3);font-size:10px;letter-spacing:.12em">CYTOPLASM</text>
+                <!-- peptidoglycan as a lattice -->
+                <g class="stroke-ink" opacity=".4"><path d="M40 44 H760 M40 60 H760 M50 44 V60 M70 44 V60 M90 44 V60 M110 44 V60 M130 44 V60 M150 44 V60 M170 44 V60 M190 44 V60 M210 44 V60 M230 44 V60 M250 44 V60 M270 44 V60 M290 44 V60 M310 44 V60 M330 44 V60 M350 44 V60 M370 44 V60 M390 44 V60 M410 44 V60 M430 44 V60 M450 44 V60 M470 44 V60 M490 44 V60 M510 44 V60 M530 44 V60 M550 44 V60 M570 44 V60 M590 44 V60 M610 44 V60 M630 44 V60 M650 44 V60 M670 44 V60 M690 44 V60 M710 44 V60 M730 44 V60 M750 44 V60"/></g>
+                <!-- cuts in the wall where released endolysin has acted (bg-coloured gaps) -->
+                <g class="sar-cuts">
+                  <rect x="100" y="38" width="20" height="28" fill="var(--bg-card)" style="opacity:0"/>
+                  <rect x="270" y="38" width="20" height="28" fill="var(--bg-card)"/>
+                  <rect x="450" y="38" width="20" height="28" fill="var(--bg-card)" style="opacity:0"/>
+                  <rect x="620" y="38" width="20" height="28" fill="var(--bg-card)"/>
                 </g>
+                <!-- inner membrane as a lipid bilayer band -->
+                <g class="stroke-ink" opacity=".55"><path d="M40 100 H760 M40 150 H760"/></g>
                 <g class="stroke-ink" opacity=".35">
-                  <path d="M60 100 v14 M90 100 v14 M120 100 v14 M150 100 v14 M180 100 v14 M210 100 v14
-                           M240 100 v14 M270 100 v14 M300 100 v14 M500 100 v14 M530 100 v14 M560 100 v14
-                           M590 100 v14 M620 100 v14 M650 100 v14 M680 100 v14 M710 100 v14 M740 100 v14"/>
-                  <path d="M60 150 v-14 M90 150 v-14 M120 150 v-14 M150 150 v-14 M180 150 v-14 M210 150 v-14
-                           M240 150 v-14 M270 150 v-14 M300 150 v-14 M500 150 v-14 M530 150 v-14 M560 150 v-14
-                           M590 150 v-14 M620 150 v-14 M650 150 v-14 M680 150 v-14 M710 150 v-14 M740 150 v-14"/>
+                  <path d="M60 100 v14 M90 100 v14 M150 100 v14 M180 100 v14 M210 100 v14 M240 100 v14 M300 100 v14 M330 100 v14 M360 100 v14 M390 100 v14 M420 100 v14 M480 100 v14 M510 100 v14 M540 100 v14 M570 100 v14 M600 100 v14 M660 100 v14 M690 100 v14 M720 100 v14"/>
+                  <path d="M60 150 v-14 M90 150 v-14 M150 150 v-14 M180 150 v-14 M210 150 v-14 M240 150 v-14 M300 150 v-14 M330 150 v-14 M360 150 v-14 M390 150 v-14 M420 150 v-14 M480 150 v-14 M510 150 v-14 M540 150 v-14 M570 150 v-14 M600 150 v-14 M660 150 v-14 M690 150 v-14 M720 150 v-14"/>
                 </g>
-                <!-- lipid heads across the gap: shown only while the Fig 6 control has
-                     the holin closed, so the static drawing is unchanged. Inline
-                     style, not the attribute: .stroke-ink's opacity beats it. -->
-                <g class="stroke-ink holin-plug" style="opacity:0">
-                  <path d="M330 100 v14 M358 100 v14 M386 100 v14 M414 100 v14 M442 100 v14 M470 100 v14
-                           M330 150 v-14 M358 150 v-14 M386 150 v-14 M414 150 v-14 M442 150 v-14 M470 150 v-14"/>
+                <!-- pinholes: many small channels, not one large hole -->
+                <g class="sar-pins">
+                  <g transform="translate(190,0)"><rect x="-12" y="101" width="24" height="48" fill="var(--bg-card)"/><rect x="-10" y="101" width="7" height="48" rx="2" fill="var(--green)" opacity=".6"/><rect x="3" y="101" width="7" height="48" rx="2" fill="var(--green)" opacity=".6"/></g>
+                  <g transform="translate(370,0)"><rect x="-12" y="101" width="24" height="48" fill="var(--bg-card)"/><rect x="-10" y="101" width="7" height="48" rx="2" fill="var(--green)" opacity=".6"/><rect x="3" y="101" width="7" height="48" rx="2" fill="var(--green)" opacity=".6"/></g>
+                  <g transform="translate(550,0)"><rect x="-12" y="101" width="24" height="48" fill="var(--bg-card)"/><rect x="-10" y="101" width="7" height="48" rx="2" fill="var(--green)" opacity=".6"/><rect x="3" y="101" width="7" height="48" rx="2" fill="var(--green)" opacity=".6"/></g>
+                  <g transform="translate(700,0)"><rect x="-12" y="101" width="24" height="48" fill="var(--bg-card)"/><rect x="-10" y="101" width="7" height="48" rx="2" fill="var(--green)" opacity=".6"/><rect x="3" y="101" width="7" height="48" rx="2" fill="var(--green)" opacity=".6"/></g>
                 </g>
-                <!-- the hole the holin opens -->
-                <path class="stroke-gold holin-pore" d="M330 100 q-14 25 0 50 M470 100 q14 25 0 50"/>
-                <!-- endolysins released through it; data-from is where each waits
-                     in the cytoplasm before the hole opens -->
-                <g class="gold-shape holin-lys" opacity=".9">
-                  <circle cx="400" cy="125" r="7" data-from="372,174"/>
-                  <circle cx="380" cy="70" r="6" data-from="394,182"/>
-                  <circle cx="424" cy="52" r="6" data-from="414,172"/>
-                  <circle cx="404" cy="28" r="5" data-from="434,180"/>
+                <!-- SAR endolysins: enzyme in the periplasm, tethered by its signal-anchor
+                     (SAR) domain in the bilayer. Released, the domain leaves the membrane
+                     and the enzyme reaches the wall. Inline styles: the released two. -->
+                <g class="sar-lys">
+                  <g transform="translate(110,0)"><g><path class="stroke-gold" d="M0 95 V128"/><circle class="gold-shape" cy="86" r="9"/></g></g>
+                  <g transform="translate(280,0)"><g style="transform:translate(0,-17px)"><path class="stroke-gold" d="M0 95 V128" style="opacity:0"/><circle class="gold-shape" cy="86" r="9"/></g></g>
+                  <g transform="translate(460,0)"><g><path class="stroke-gold" d="M0 95 V128"/><circle class="gold-shape" cy="86" r="9"/></g></g>
+                  <g transform="translate(630,0)"><g style="transform:translate(0,-17px)"><path class="stroke-gold" d="M0 95 V128" style="opacity:0"/><circle class="gold-shape" cy="86" r="9"/></g></g>
                 </g>
-                <path class="stroke-gold holin-trail" d="M400 112 q-16 -28 -20 -36 M400 112 q18 -40 22 -54" opacity=".45"/>
-                <text x="400" y="230" text-anchor="middle" class="sym"
-                      style="fill:var(--green-text);font-size:13px;letter-spacing:.14em">HOLIN OPENS · ENDOLYSIN CUTS</text>
+                <text x="400" y="222" text-anchor="middle" class="sym"
+                      style="fill:var(--green-text);font-size:13px;letter-spacing:.14em">PINHOLES DEPOLARIZE · SAR ENDOLYSIN RELEASED</text>
               </svg>
-              <div class="fig-lbl fig-ctl" hidden><button type="button" class="fig-act">Open the holin</button><span class="fig-status" aria-live="polite">holin closed</span></div>
+              <div class="fig-lbl fig-ctl" hidden><button type="button" class="fig-act">Form pinholes</button><span class="fig-status" aria-live="polite">SAR endolysin anchored · inactive</span></div>
               <figcaption>
-                <b>The lysis machinery.</b> N4 opens its host with a two-part system: a
-                <b>holin</b> punches holes in the inner membrane, and a <b>SAR endolysin</b>
-                escapes through them to cut the cell wall. This is the machinery whose timing
-                the regulator controls — the subject of the first-author preprint.
+                <b>The lysis machinery.</b> N4's SAR endolysin is made as a membrane-anchored,
+                inactive enzyme. A <b>pinholin</b> forms many small <b>pinholes</b> in the inner
+                membrane, collapsing its charge; that frees the <b>SAR endolysin</b> into the
+                periplasm, where it cuts the cell wall. This is the machinery whose timing the
+                regulator controls — the subject of the first-author preprint.
               </figcaption>
             </figure>
 
             <p>The first-author preprint describes the lysis machinery itself: N4 uses a
-               <strong>SAR endolysin–holin system</strong> to take the host cell apart. Knowing
+               <strong>SAR endolysin–holin system</strong>, with a pinholin as the holin, to
+               take the host cell apart. Knowing
                the mechanism is what makes the inhibition question answerable — you cannot
                explain how something is delayed until you know what is being delayed.</p>
             <ul class="facts">
@@ -1063,25 +1072,33 @@
         };
     });
 
-    /* Fig 6. Three stages: holin closed with endolysin waiting in the
-       cytoplasm, hole open, endolysin through. Starts closed. */
-    fig('holin', function (ui) {
-        var svg = ui.svg, plug = svg.querySelector('.holin-plug'),
-            pore = svg.querySelector('.holin-pore'), trail = svg.querySelector('.holin-trail'),
-            lys = Array.prototype.slice.call(svg.querySelectorAll('.holin-lys circle'));
+    /* Fig 6. Three stages, as N4 does it: SAR endolysin tethered in the
+       inner membrane and inactive; pinholes form and depolarize it; the
+       endolysins are released into the periplasm and cut the wall (cuts land
+       after each enzyme arrives). Starts at the first stage. */
+    fig('sar', function (ui) {
+        var svg = ui.svg,
+            pins = Array.prototype.slice.call(svg.querySelectorAll('.sar-pins > g')),
+            cuts = Array.prototype.slice.call(svg.querySelectorAll('.sar-cuts rect')),
+            lys = Array.prototype.slice.call(svg.querySelectorAll('.sar-lys g g'));
         var stage = 0;
-        var STAGES = [['Open the holin', 'holin closed · endolysin waiting'],
-                      ['Release endolysin', 'holin · hole open'],
-                      ['Reset', 'endolysin out · cutting the wall']];
+        var STAGES = [['Form pinholes', 'SAR endolysin anchored · inactive'],
+                      ['Release endolysin', 'pinholes · membrane depolarized'],
+                      ['Reset', 'SAR endolysin released · cutting the wall']];
         function render() {
-            plug.style.opacity = stage === 0 ? '.7' : '0';   // .7 = .stroke-ink, as the other heads
-            pore.style.opacity = stage === 0 ? '0' : '';
-            trail.style.opacity = stage === 2 ? '' : '0';
-            lys.forEach(function (c, i) {
-                var from = c.getAttribute('data-from').split(',');
-                c.style.transitionDelay = stage === 2 && !reduce ? i * 0.12 + 's' : '0s';
-                c.style.transform = stage === 2 ? '' : 'translate(' + (from[0] - c.getAttribute('cx')) +
-                    'px,' + (from[1] - c.getAttribute('cy')) + 'px)';
+            pins.forEach(function (g, i) {
+                g.style.transitionDelay = stage === 1 && !reduce ? i * 0.1 + 's' : '0s';
+                g.style.opacity = stage === 0 ? '0' : '1';
+            });
+            lys.forEach(function (g, i) {
+                var d = stage === 2 && !reduce ? i * 0.12 : 0;
+                g.style.transitionDelay = d + 's';
+                g.style.transform = stage === 2 ? 'translate(0,-17px)' : 'none';
+                var tm = g.querySelector('path');
+                tm.style.transitionDelay = d + 's';
+                tm.style.opacity = stage === 2 ? '0' : '1';
+                cuts[i].style.transitionDelay = stage === 2 && !reduce ? d + 0.6 + 's' : '0s';
+                cuts[i].style.opacity = stage === 2 ? '1' : '0';
             });
             ui.set(STAGES[stage][0], STAGES[stage][1]);
         }
