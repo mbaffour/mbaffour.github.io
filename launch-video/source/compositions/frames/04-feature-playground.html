@@ -1,0 +1,57 @@
+<template>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+  <style>
+    @font-face { font-family: "Fraunces"; src: url("assets/fonts/fraunces-var-latin.woff2") format("woff2"); font-weight: 100 900; font-style: normal; }
+    @font-face { font-family: "JetBrains Mono"; src: url("assets/fonts/jetbrains-mono-var-latin.woff2") format("woff2"); font-weight: 100 800; font-style: normal; }
+    #root { position: absolute; inset: 0; width: 1080px; height: 1920px; overflow: hidden; }
+    .f04-bg { position: absolute; inset: 0;
+      background: radial-gradient(110% 60% at 50% 45%, #1F1A0C 0%, #121009 65%); }
+    #f04-kicker { position: absolute; left: 72px; top: 250px; display: flex; align-items: center; gap: 16px;
+      font-family: "JetBrains Mono", monospace; font-weight: 500; font-size: 28px; letter-spacing: 0.16em;
+      text-transform: uppercase; color: #F4C430; }
+    #f04-kicker svg { width: 38px; height: 38px; }
+    #f04-title { position: absolute; left: 72px; right: 72px; top: 320px; color: #F5EDD8;
+      font-family: "Fraunces", Georgia, serif; font-weight: 400; font-size: 104px; line-height: 1.02; letter-spacing: -0.022em; }
+    #f04-card { position: absolute; left: 40px; top: 620px; width: 1000px; height: 725px; overflow: hidden;
+      border-radius: 24px; border: 2px solid rgba(244, 196, 48, 0.26); background: #221C0E;
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45); }
+    #f04-cam { position: absolute; inset: 0; }
+    #f04-cam img { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+    #f04-callout { position: absolute; left: 72px; top: 1410px; display: flex; align-items: center; gap: 18px;
+      padding: 20px 30px; border-radius: 999px; border: 2px solid #D4324B; background: rgba(212, 50, 75, 0.12);
+      font-family: "JetBrains Mono", monospace; font-weight: 500; font-size: 34px; letter-spacing: 0.02em; color: #F5EDD8; }
+    #f04-callout i { width: 40px; height: 6px; border-radius: 3px; background: #D4324B; display: block; }
+  </style>
+
+  <div id="root" data-composition-id="04-feature-playground" data-width="1080" data-height="1920" data-duration="5.5">
+    <div id="f04-bg" class="clip f04-bg" data-start="0" data-duration="5.5" data-track-index="0"></div>
+    <div id="f04-kicker">
+      <svg viewBox="0 0 32 32"><polygon points="16,5 25,10 25,18 16,23 7,18 7,10" fill="#F4C430" stroke="#F4C430" stroke-width="1.5"/><line x1="16" y1="23" x2="16" y2="28" stroke="#F4C430" stroke-width="2" stroke-linecap="round"/><line x1="13" y1="28" x2="19" y2="28" stroke="#F4C430" stroke-width="2" stroke-linecap="round"/></svg>
+      <span>02 · Playground</span>
+    </div>
+    <div id="f04-title">Run the infection yourself.</div>
+    <div id="f04-card">
+      <div id="f04-cam" data-layout-allow-overflow><img src="assets/f2-playground.png" alt=""></div>
+    </div>
+    <div id="f04-callout"><i></i><span>N4 holds lysis for hours</span></div>
+  </div>
+
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+      // Scene 1 (0.0–0.7s): kicker, then title
+      tl.fromTo("#f04-kicker", { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.35, ease: "power3.out" }, 0.05);
+      tl.fromTo("#f04-title", { y: 50, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: "power3.out" }, 0.18);
+      // Scene 2 (0.7–1.5s): the whole real widget enters, scaled to fit
+      tl.fromTo("#f04-card", { y: 120, opacity: 0, scale: 0.96 }, { y: 0, opacity: 1, scale: 1, duration: 0.6, ease: "expo.out" }, 0.6);
+      // Scene 3 (1.5–3.3s): camera leg 1 — push to the plot, onto the red N4 curve; callout lands
+      tl.fromTo("#f04-cam", { scale: 1, transformOrigin: "36% 38%" },
+        { scale: 1.85, transformOrigin: "36% 38%", duration: 1.1, ease: "power3.inOut" }, 1.5);
+      tl.fromTo("#f04-callout", { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4, ease: "power3.out" }, 2.4);
+      // Scene 4 (3.3–5.0s): camera leg 2 — glide down to the "Lysis inhibition (N4)" stage text; hold
+      tl.to("#f04-cam", { scale: 1.35, transformOrigin: "10% 75%", duration: 1.0, ease: "power3.inOut" }, 3.3);
+      tl.to({}, { duration: 0.01 }, 4.99);
+      window.__timelines["04-feature-playground"] = tl;
+    })();
+  </script>
+</template>

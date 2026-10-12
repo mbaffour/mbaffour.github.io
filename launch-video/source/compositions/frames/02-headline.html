@@ -1,0 +1,57 @@
+<template>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+  <style>
+    @font-face { font-family: "Fraunces"; src: url("assets/fonts/fraunces-var-latin.woff2") format("woff2"); font-weight: 100 900; font-style: normal; }
+    @font-face { font-family: "Fraunces"; src: url("assets/fonts/fraunces-italic-var-latin.woff2") format("woff2"); font-weight: 100 900; font-style: italic; }
+    @font-face { font-family: "JetBrains Mono"; src: url("assets/fonts/jetbrains-mono-var-latin.woff2") format("woff2"); font-weight: 100 800; font-style: normal; }
+    #root { position: absolute; inset: 0; width: 1080px; height: 1920px; overflow: hidden; }
+    .f02-bg { position: absolute; inset: 0;
+      background: radial-gradient(120% 70% at 50% 38%, #1F1A0C 0%, #121009 62%); }
+    #f02-kicker { position: absolute; left: 72px; top: 470px; display: flex; align-items: center; gap: 16px;
+      font-family: "JetBrains Mono", monospace; font-weight: 500; font-size: 28px; letter-spacing: 0.16em;
+      text-transform: uppercase; color: #F4C430; }
+    #f02-kicker svg { width: 40px; height: 40px; }
+    #f02-head { position: absolute; left: 72px; right: 60px; top: 560px; color: #F5EDD8;
+      font-family: "Fraunces", Georgia, serif; font-weight: 400; font-size: 128px; line-height: 1.04;
+      letter-spacing: -0.024em; }
+    .f02-line { display: block; white-space: nowrap; }
+    .f02-w { display: inline-block; margin-right: 0.22em; }
+    .f02-gold { color: #F4C430; font-style: italic; }
+    #f02-rule { position: absolute; left: 72px; top: 1300px; width: 520px; height: 4px; border-radius: 2px;
+      background: #F4C430; transform-origin: 0 50%; }
+  </style>
+
+  <div id="root" data-composition-id="02-headline" data-width="1080" data-height="1920" data-duration="5.5">
+    <div id="f02-bg" class="clip f02-bg" data-start="0" data-duration="5.5" data-track-index="0"></div>
+    <div id="f02-kicker">
+      <svg viewBox="0 0 32 32"><polygon points="16,5 25,10 25,18 16,23 7,18 7,10" fill="#F4C430" stroke="#F4C430" stroke-width="1.5"/><line x1="16" y1="23" x2="16" y2="28" stroke="#F4C430" stroke-width="2" stroke-linecap="round"/><line x1="13" y1="28" x2="19" y2="28" stroke="#F4C430" stroke-width="2" stroke-linecap="round"/></svg>
+      <span>What I study</span>
+    </div>
+    <div id="f02-head">
+      <span class="f02-line"><span class="f02-w">I</span><span class="f02-w">study</span><span class="f02-w">how</span></span>
+      <span class="f02-line"><span class="f02-w">phage</span><span class="f02-w">N4</span></span>
+      <span class="f02-line"><span class="f02-w">decides</span></span>
+      <span class="f02-line f02-gold"><span class="f02-w">when</span><span class="f02-w">to</span><span class="f02-w">kill</span></span>
+      <span class="f02-line f02-gold"><span class="f02-w">its</span><span class="f02-w">host.</span></span>
+    </div>
+    <div id="f02-rule"></div>
+  </div>
+
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+      // Scene 1 (0.0–0.4s): kicker
+      tl.fromTo("#f02-kicker", { x: -24, opacity: 0 }, { x: 0, opacity: 1, duration: 0.35, ease: "power3.out" }, 0.05);
+      // Scene 2 (0.4–3.9s): one word per beat
+      const words = gsap.utils.toArray("#f02-head .f02-w");
+      words.forEach((w, i) => {
+        tl.fromTo(w, { y: 42, opacity: 0, filter: "blur(10px)" },
+          { y: 0, opacity: 1, filter: "blur(0px)", duration: 0.42, ease: "expo.out" }, 0.4 + i * 0.32);
+      });
+      // Scene 3 (3.9–5.0s): gold rule draws under the last line, then hold
+      tl.fromTo("#f02-rule", { scaleX: 0 }, { scaleX: 1, duration: 0.5, ease: "power3.inOut" }, 3.9);
+      tl.to({}, { duration: 0.01 }, 4.99);
+      window.__timelines["02-headline"] = tl;
+    })();
+  </script>
+</template>

@@ -6,7 +6,9 @@ import { dirname, join, resolve, relative } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
-const skip = ['structure-viewer', 'watermark-remover', 'node_modules', '.git'];
+// launch-video/source is a HyperFrames project: its frames resolve assets from the
+// project root, not from the frame file, so this checker would misread them.
+const skip = ['structure-viewer', 'watermark-remover', 'launch-video', 'node_modules', '.git'];
 const pages = [];
 const walk = dir => readdirSync(dir, { withFileTypes: true }).forEach(entry => {
   if (skip.includes(entry.name)) return;

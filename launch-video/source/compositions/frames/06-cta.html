@@ -1,0 +1,56 @@
+<template>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+  <style>
+    @font-face { font-family: "Fraunces"; src: url("assets/fonts/fraunces-var-latin.woff2") format("woff2"); font-weight: 100 900; font-style: normal; }
+    @font-face { font-family: "Fraunces"; src: url("assets/fonts/fraunces-italic-var-latin.woff2") format("woff2"); font-weight: 100 900; font-style: italic; }
+    @font-face { font-family: "JetBrains Mono"; src: url("assets/fonts/jetbrains-mono-var-latin.woff2") format("woff2"); font-weight: 100 800; font-style: normal; }
+    #root { position: absolute; inset: 0; width: 1080px; height: 1920px; overflow: hidden; }
+    .f06-bg { position: absolute; inset: 0;
+      background: radial-gradient(100% 55% at 50% 42%, #241D10 0%, #121009 65%); }
+    #f06-mark { position: absolute; left: 430px; top: 380px; width: 220px; height: 220px; }
+    #f06-stripe { position: absolute; left: 360px; top: 640px; width: 360px; height: 12px; border-radius: 2px;
+      background: repeating-linear-gradient(90deg, #F4C430 0 22px, #0A0802 22px 30px, #1F9249 30px 52px, #0A0802 52px 60px, #D4324B 60px 82px, #0A0802 82px 90px);
+      transform-origin: 50% 50%; }
+    .f06-line { position: absolute; left: 0; right: 0; text-align: center; font-family: "Fraunces", Georgia, serif;
+      font-weight: 400; font-size: 104px; line-height: 1.04; letter-spacing: -0.022em; color: #F5EDD8; }
+    #f06-l1 { top: 740px; }
+    #f06-l2 { top: 860px; color: #F4C430; font-style: italic; }
+    #f06-pill { position: absolute; left: 100px; width: 880px; top: 1150px; height: 128px; border-radius: 999px;
+      background: #F4C430; overflow: hidden; display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 10px 50px rgba(244, 196, 48, 0.35); }
+    #f06-url { font-family: "JetBrains Mono", monospace; font-weight: 600; font-size: 58px; letter-spacing: 0.01em; color: #121009; }
+    #f06-sheen { position: absolute; top: -20px; bottom: -20px; left: 0; width: 160px;
+      background: linear-gradient(100deg, rgba(255, 255, 255, 0) 0%, rgba(255, 250, 230, 0.55) 50%, rgba(255, 255, 255, 0) 100%); }
+    #f06-sub { position: absolute; left: 0; right: 0; top: 1330px; text-align: center; font-family: "JetBrains Mono", monospace;
+      font-weight: 500; font-size: 30px; letter-spacing: 0.14em; text-transform: uppercase; color: #AB9059; }
+  </style>
+
+  <div id="root" data-composition-id="06-cta" data-width="1080" data-height="1920">
+    <div id="f06-bg" class="clip f06-bg" data-start="0" data-duration="7" data-track-index="0"></div>
+    <svg id="f06-mark" viewBox="0 0 32 32"><polygon points="16,5 25,10 25,18 16,23 7,18 7,10" fill="#F4C430" stroke="#F4C430" stroke-width="1.5"/><line x1="16" y1="23" x2="16" y2="28" stroke="#F4C430" stroke-width="2" stroke-linecap="round"/><line x1="13" y1="28" x2="19" y2="28" stroke="#F4C430" stroke-width="2" stroke-linecap="round"/></svg>
+    <div id="f06-stripe"></div>
+    <div class="f06-line" id="f06-l1">Defending in 2027.</div>
+    <div class="f06-line" id="f06-l2">Open to postdoc roles.</div>
+    <div id="f06-pill"><span id="f06-url">mbaffour.github.io</span><div id="f06-sheen" data-layout-allow-overflow></div></div>
+    <div id="f06-sub">Michael Baffour Awuah · Texas A&amp;M</div>
+  </div>
+
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+      // Scene 1 (0.0–1.0s): gold mark scales in, Kente stripe wipes on
+      tl.fromTo("#f06-mark", { scale: 0.6, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.55, ease: "expo.out", transformOrigin: "50% 50%" }, 0.1);
+      tl.fromTo("#f06-stripe", { scaleX: 0 }, { scaleX: 1, duration: 0.5, ease: "expo.out" }, 0.45);
+      // Scene 2 (1.0–2.6s): the ask, line by line
+      tl.fromTo("#f06-l1", { y: 50, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: "power3.out" }, 1.0);
+      tl.fromTo("#f06-l2", { y: 50, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: "power3.out" }, 1.6);
+      // Scene 3 (2.6–3.6s): the URL springs up in a gold pill (the one spring), then the sub-line
+      tl.fromTo("#f06-pill", { y: 80, scale: 0.85, opacity: 0 }, { y: 0, scale: 1, opacity: 1, duration: 0.7, ease: "back.out(1.6)" }, 2.6);
+      tl.fromTo("#f06-sub", { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4, ease: "power3.out" }, 3.15);
+      // Scene 4 (3.6–7.0s): still hold; one slow sheen across the pill
+      tl.fromTo("#f06-sheen", { x: -200 }, { x: 1000, duration: 1.0, ease: "power2.inOut" }, 4.8);
+      tl.to({}, { duration: 0.01 }, 6.99);
+      window.__timelines["06-cta"] = tl;
+    })();
+  </script>
+</template>
