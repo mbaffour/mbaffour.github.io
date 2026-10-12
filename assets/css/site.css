@@ -3990,3 +3990,23 @@ kbd {
    (the caption says the same) and keep the control on one line. */
 .lysis-plate .fig-act { white-space: nowrap; }
 @media (max-width: 560px) { .lysis-plate svg text { display: none; } }
+
+
+/* ── The 30-second version (launch video) ─────────────────────────────── */
+.tour-grid { display: grid; grid-template-columns: minmax(220px, 300px) minmax(0, 440px); gap: 48px;
+             align-items: center; justify-content: center; }
+.tour-phone { margin: 0; padding: 10px; border-radius: 30px; background: var(--bg-card);
+              border: 1px solid var(--border-strong); box-shadow: 0 24px 60px rgba(0, 0, 0, .35); }
+.tour-phone video { display: block; width: 100%; height: auto; aspect-ratio: 9 / 16;
+                    border-radius: 22px; background: #121009; }
+.tour-scenes { margin: 0; padding-left: 1.3em; display: grid; gap: 14px; color: var(--ink-2); line-height: 1.55; }
+.tour-scenes b { color: var(--ink); font-weight: 600; }
+.tour-scenes em { color: var(--gold); }
+.tour-scenes li::marker { color: var(--gold); font-family: var(--font-mono); }
+.tour-note { margin: 18px 0 0; font-family: var(--font-mono); font-size: .78rem; letter-spacing: .04em; color: var(--ink-3); }
+.tour-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+@media (max-width: 760px) {
+    .tour-grid { grid-template-columns: minmax(0, 1fr); gap: 28px; }
+    .tour-phone { width: min(300px, 78vw); justify-self: center; }
+}
+@media print { #tour { display: none; } }
