@@ -186,6 +186,8 @@
         .sar-om-intact, .sar-om-broken { transition: opacity .5s ease; }
         .sar-sin > g > g { transition: transform .6s cubic-bezier(.3,.6,.3,1); }
         .sar-ispan { transition: stroke-dashoffset .8s cubic-bezier(.3,.6,.3,1); }
+        .sar-env { transition: opacity .6s ease; }
+        .sar-virions > g > g { transition: transform .9s cubic-bezier(.2,.7,.3,1); }
         /* Pathway toggle + step button on one row, the status on its own line under them */
         .scene[data-fig="sar"] .fig-ctl { flex-wrap: wrap; justify-content: flex-start; row-gap: 10px; }
         .scene[data-fig="sar"] .fig-status { flex: 1 1 100%; text-align: left; }
@@ -716,6 +718,7 @@
                   <g transform="translate(330,0)"><g><path d="M-8 6 l8 -5 8 5 v10 l-8 5 -8 -5 Z M0 21 v19 M-8 40 h16" fill="none" stroke="var(--green-text)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></g></g>
                   <g transform="translate(520,0)"><g><path d="M-8 6 l8 -5 8 5 v10 l-8 5 -8 -5 Z M0 21 v19 M-8 40 h16" fill="none" stroke="var(--green-text)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></g></g>
                 </g>
+                <g class="sar-env">
                 <g class="stroke-ink sar-om-intact" style="opacity:0"><path d="M40 46 H760 M40 60 H760"/></g>
                 <g class="stroke-ink sar-om-broken" opacity=".55"><path d="M40 46 H46 M74 46 H206 M234 46 H456 M484 46 H760 M40 60 H46 M74 60 H206 M234 60 H456 M484 60 H760"/></g>
                 <g class="stroke-ink" opacity=".3"><path d="M90 46 v6 M120 46 v6 M150 46 v6 M180 46 v6 M240 46 v6 M270 46 v6 M300 46 v6 M330 46 v6 M360 46 v6 M390 46 v6 M420 46 v6 M450 46 v6 M510 46 v6 M540 46 v6 M570 46 v6 M600 46 v6 M630 46 v6 M660 46 v6 M690 46 v6 M720 46 v6 M90 60 v-6 M120 60 v-6 M150 60 v-6 M180 60 v-6 M240 60 v-6 M270 60 v-6 M300 60 v-6 M330 60 v-6 M360 60 v-6 M390 60 v-6 M420 60 v-6 M450 60 v-6 M510 60 v-6 M540 60 v-6 M570 60 v-6 M600 60 v-6 M630 60 v-6 M660 60 v-6 M690 60 v-6 M720 60 v-6"/></g>
@@ -757,6 +760,16 @@
                   <g transform="translate(420,0)"><g style="transform:translate(0,-20px)"><path class="stroke-gold" d="M0 141 V174" style="opacity:0"/><path class="gold-shape sar-pac chomp" d="M0 132 L6.16 124.12 A10 10 0 1 1 -6.16 124.12 Z" data-open="M0 132 L6.16 124.12 A10 10 0 1 1 -6.16 124.12 Z" data-shut="M0 132 L0.09 122.00 A10 10 0 1 1 -0.09 122.00 Z"/><circle class="sar-eye" cx="-4.5" cy="130" r="1.6"/></g></g>
                   <g transform="translate(640,0)"><g style="transform:translate(0,-20px)"><path class="stroke-gold" d="M0 141 V174" style="opacity:0"/><path class="gold-shape sar-pac chomp" d="M0 132 L6.16 124.12 A10 10 0 1 1 -6.16 124.12 Z" data-open="M0 132 L6.16 124.12 A10 10 0 1 1 -6.16 124.12 Z" data-shut="M0 132 L0.09 122.00 A10 10 0 1 1 -0.09 122.00 Z"/><circle class="sar-eye" cx="-4.5" cy="130" r="1.6"/></g></g>
                 </g>
+                </g>
+                <g class="sar-virions">
+                  <g transform="translate(90,214)"><g data-dx="-30" data-dy="-196"><path d="M-6 -6 l6 -4 6 4 v7 l-6 4 -6 -4 Z M0 5 v8 M-5 13 h10" fill="none" stroke="var(--ink)" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round" opacity=".85"/></g></g>
+                  <g transform="translate(170,236)"><g data-dx="30" data-dy="-206"><path d="M-6 -6 l6 -4 6 4 v7 l-6 4 -6 -4 Z M0 5 v8 M-5 13 h10" fill="none" stroke="var(--ink)" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round" opacity=".85"/></g></g>
+                  <g transform="translate(250,214)"><g data-dx="20" data-dy="-200"><path d="M-6 -6 l6 -4 6 4 v7 l-6 4 -6 -4 Z M0 5 v8 M-5 13 h10" fill="none" stroke="var(--ink)" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round" opacity=".85"/></g></g>
+                  <g transform="translate(330,236)"><g data-dx="65" data-dy="-208"><path d="M-6 -6 l6 -4 6 4 v7 l-6 4 -6 -4 Z M0 5 v8 M-5 13 h10" fill="none" stroke="var(--ink)" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round" opacity=".85"/></g></g>
+                  <g transform="translate(410,214)"><g data-dx="40" data-dy="-198"><path d="M-6 -6 l6 -4 6 4 v7 l-6 4 -6 -4 Z M0 5 v8 M-5 13 h10" fill="none" stroke="var(--ink)" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round" opacity=".85"/></g></g>
+                  <g transform="translate(490,236)"><g data-dx="100" data-dy="-208"><path d="M-6 -6 l6 -4 6 4 v7 l-6 4 -6 -4 Z M0 5 v8 M-5 13 h10" fill="none" stroke="var(--ink)" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round" opacity=".85"/></g></g>
+                  <g transform="translate(570,214)"><g data-dx="65" data-dy="-198"><path d="M-6 -6 l6 -4 6 4 v7 l-6 4 -6 -4 Z M0 5 v8 M-5 13 h10" fill="none" stroke="var(--ink)" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round" opacity=".85"/></g></g>
+                </g>
                 <text class="sym sar-stage" x="400" y="262" text-anchor="middle" style="fill:var(--green-text);font-size:12px;letter-spacing:.14em">RAPID LYSIS · gp63 → gp61 → gp60/gp60a</text>
               </svg>
               <div class="fig-lbl fig-ctl" hidden><span class="fig-modes" role="group" aria-label="Pathway"><button type="button" class="fig-mode" data-mode="rapid" aria-pressed="true">Rapid lysis</button><button type="button" class="fig-mode" data-mode="lin" aria-pressed="false">Lysis inhibition</button></span><button type="button" class="fig-act">Next step</button><span class="fig-status" aria-live="polite"></span></div>
@@ -764,7 +777,8 @@
                 <b>The lysis model.</b> The model from the first-author preprint. <b>Rapid lysis:</b> the
                 gp63 <b>pinholin</b> opens nanometre-scale pinholes that depolarize the inner membrane,
                 releasing the gp61 <b>SAR endolysin</b> to cut the cell wall; the gp60/gp60a
-                <b>spanins</b> then disrupt the outer membrane, and cells lyse together.
+                <b>spanins</b> then disrupt the outer membrane and the cell bursts, releasing its
+                new phages; cells lyse together.
                 <b>Lysis inhibition:</b> under superinfection the gp63 pinholin appears to be held
                 off; gp61, released spontaneously or by the late gp62 <b>holin</b>, then lyses cells
                 one at a time. That second pathway is the mechanism the preprint proposes.

@@ -7,7 +7,8 @@
    (doi:10.1101/2025.11.12.688109):
    - Rapid lysis: the gp63 pinholin makes pinholes that depolarize the inner
      membrane; the gp61 SAR endolysin is released, takes its active form and
-     cuts the wall; the gp60/gp60a spanins disrupt the outer membrane.
+     cuts the wall; the gp60/gp60a spanins disrupt the outer membrane, and the
+     cell bursts, releasing its progeny (the last step of both pathways).
    - Lysis inhibition (LIN): under superinfection the gp63 pinholin appears to
      be held off; gp61, released spontaneously or by the late gp62 holin, then
      gives asynchronous lysis. The paper marks this half as a proposed model,
@@ -25,14 +26,14 @@
             { pins: 'none', status: 'Lysis proteins made · gp61 tethered in the membrane, inactive', tag: 'INFECTED · LYSIS PROTEINS MADE' },
             { pins: 'open', status: 'gp63 pinholin opens pinholes · inner membrane depolarized', tag: 'gp63 PINHOLES · MEMBRANE DEPOLARIZED' },
             { pins: 'open', rel: true, status: 'gp61 SAR endolysin released, now active · cutting the wall', tag: 'gp61 RELEASED · CELL WALL CUT' },
-            { pins: 'open', rel: true, span: true, status: 'gp60/gp60a spanins disrupt the outer membrane · rapid, synchronous lysis', tag: 'SPANINS · RAPID, SYNCHRONOUS LYSIS' }
+            { pins: 'open', rel: true, span: true, burst: true, status: 'gp60/gp60a spanins disrupt the outer membrane · the cell bursts, releasing new phages (rapid, synchronous lysis)', tag: 'CELL BURSTS · PROGENY RELEASED' }
         ],
         lin: [
             { pins: 'none', status: 'Lysis proteins made · gp61 tethered in the membrane, inactive', tag: 'INFECTED · LYSIS PROTEINS MADE' },
             { pins: 'held', sin: true, status: 'Superinfection → lysis inhibition · gp63 pinholin held off', tag: 'SUPERINFECTION · gp63 HELD OFF' },
             { pins: 'held', sin: true, gp62: true, status: 'Proposed: the late gp62 holin opens the membrane', tag: 'PROPOSED · LATE gp62 HOLIN' },
             { pins: 'held', sin: true, gp62: true, rel: true, status: 'Proposed: gp61 released (by gp62, or spontaneously) · cutting the wall', tag: 'PROPOSED · gp61 RELEASED' },
-            { pins: 'held', sin: true, gp62: true, rel: true, span: true, status: 'Spanins disrupt the outer membrane · exit from LIN, asynchronous lysis', tag: 'SPANINS · EXIT FROM LIN' }
+            { pins: 'held', sin: true, gp62: true, rel: true, span: true, burst: true, status: 'Spanins disrupt the outer membrane · the cell bursts, releasing new phages (exit from LIN, asynchronous lysis)', tag: 'CELL BURSTS · EXIT FROM LIN' }
         ]
     };
 
@@ -49,6 +50,7 @@
             imG = svg.querySelector('.sar-broken-g'),
             omIntact = svg.querySelector('.sar-om-intact'), omBroken = svg.querySelector('.sar-om-broken'),
             ispans = all(svg, '.sar-ispan'),
+            env = svg.querySelector('.sar-env'), virions = all(svg, '.sar-virions > g > g'),
             cuts = all(svg, '.sar-cuts rect'), lys = all(svg, '.sar-lys g g');
         var mode = 'rapid', step = 0;
 
@@ -89,6 +91,16 @@
             });
             delay(omBroken, st.span ? 0.6 : 0); delay(omIntact, st.span ? 0.6 : 0);
             op(omIntact, !st.span, '.7'); op(omBroken, st.span, '.7');
+            // the burst: once the outer membrane is breached, the envelope gives way and the
+            // progeny assembled in the cytoplasm stream out through it
+            delay(env, st.burst ? 1.2 : 0);
+            env.style.opacity = st.burst ? '.35' : '1';
+            virions.forEach(function (v, i) {
+                delay(v, st.burst ? 1.2 + i * 0.07 : 0);
+                v.style.transform = st.burst
+                    ? 'translate(' + v.getAttribute('data-dx') + 'px,' + v.getAttribute('data-dy') + 'px)'
+                    : 'none';
+            });
 
             if (tag) tag.textContent = st.tag;
             status.textContent = (step + 1) + '/' + path.length + ' · ' + st.status;

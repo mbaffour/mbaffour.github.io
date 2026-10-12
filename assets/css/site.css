@@ -3969,6 +3969,8 @@ kbd {
 .lysis-plate .sar-om-intact, .lysis-plate .sar-om-broken { transition: opacity .5s ease; }
 .lysis-plate .sar-sin > g > g { transition: transform .6s cubic-bezier(.3,.6,.3,1); }
 .lysis-plate .sar-ispan { transition: stroke-dashoffset .8s cubic-bezier(.3,.6,.3,1); }
+.lysis-plate .sar-env { transition: opacity .6s ease; }
+.lysis-plate .sar-virions > g > g { transition: transform .9s cubic-bezier(.2,.7,.3,1); }
 /* Pathway toggle + step button on one row, the status on its own line under them */
 .lysis-plate .fig-ctl { flex-wrap: wrap; justify-content: flex-start; row-gap: 10px; }
 .lysis-plate .fig-status { flex: 1 1 100%; text-align: left; }
