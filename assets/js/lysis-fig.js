@@ -1,61 +1,109 @@
-/* lysis-fig.js — the N4 lysis-machinery figure, shared by the homepage
+/* lysis-fig.js — the N4 lysis-model figure, shared by the homepage
    (Research Focus) and journey.html (Fig 6). Wires every
    <figure data-fig="sar"> on the page; the markup and styles live with each
-   page.
+   page (the markup is generated identically into both).
 
-   Three stages, as N4 does it: SAR endolysin tethered in the inner membrane
-   and inactive (no mouth); pinholes form and depolarize the membrane; the
-   endolysins are released into the periplasm, open their mouths and cut the
-   wall (cuts land after each enzyme arrives). Starts at the first stage.
+   Two pathways, after Fig. 7 of the first-author preprint
+   (doi:10.1101/2025.11.12.688109):
+   - Rapid lysis: the gp63 pinholin makes pinholes that depolarize the inner
+     membrane; the gp61 SAR endolysin is released, takes its active form and
+     cuts the wall; the gp60/gp60a spanins disrupt the outer membrane.
+   - Lysis inhibition (LIN): under superinfection the gp63 pinholin appears to
+     be held off; gp61, released spontaneously or by the late gp62 holin, then
+     gives asynchronous lysis. The paper marks this half as a proposed model,
+     and the status text says so.
 
    The control row ships `hidden` and is un-hidden here, so without JS the
-   static drawing shows and there is no dead button. The button is the
-   keyboard route; the drawing is also clickable, as a pointer convenience. */
+   static drawing (the end of rapid lysis) shows and there is no dead button. */
 (function () {
     'use strict';
     var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var STAGES = [['Form pinholes', 'SAR endolysin anchored · inactive'],
-                  ['Release endolysin', 'pinholes · membrane depolarized'],
-                  ['Reset', 'SAR endolysin released · cutting the wall']];
+
+    // Each step: what is on screen. pins: 'none' | 'open' | 'held'.
+    var PATHS = {
+        rapid: [
+            { pins: 'none', status: 'Lysis proteins made · gp61 tethered in the membrane, inactive', tag: 'INFECTED · LYSIS PROTEINS MADE' },
+            { pins: 'open', status: 'gp63 pinholin opens pinholes · inner membrane depolarized', tag: 'gp63 PINHOLES · MEMBRANE DEPOLARIZED' },
+            { pins: 'open', rel: true, status: 'gp61 SAR endolysin released, now active · cutting the wall', tag: 'gp61 RELEASED · CELL WALL CUT' },
+            { pins: 'open', rel: true, span: true, status: 'gp60/gp60a spanins disrupt the outer membrane · rapid, synchronous lysis', tag: 'SPANINS · RAPID, SYNCHRONOUS LYSIS' }
+        ],
+        lin: [
+            { pins: 'none', status: 'Lysis proteins made · gp61 tethered in the membrane, inactive', tag: 'INFECTED · LYSIS PROTEINS MADE' },
+            { pins: 'held', sin: true, status: 'Superinfection → lysis inhibition · gp63 pinholin held off', tag: 'SUPERINFECTION · gp63 HELD OFF' },
+            { pins: 'held', sin: true, gp62: true, status: 'Proposed: the late gp62 holin opens the membrane', tag: 'PROPOSED · LATE gp62 HOLIN' },
+            { pins: 'held', sin: true, gp62: true, rel: true, status: 'Proposed: gp61 released (by gp62, or spontaneously) · cutting the wall', tag: 'PROPOSED · gp61 RELEASED' },
+            { pins: 'held', sin: true, gp62: true, rel: true, span: true, status: 'Spanins disrupt the outer membrane · exit from LIN, asynchronous lysis', tag: 'SPANINS · EXIT FROM LIN' }
+        ]
+    };
+
+    function all(root, sel) { return Array.prototype.slice.call(root.querySelectorAll(sel)); }
 
     function wire(f) {
         var svg = f.querySelector('svg'),
             btn = f.querySelector('.fig-act'), status = f.querySelector('.fig-status'),
-            pins = Array.prototype.slice.call(svg.querySelectorAll('.sar-pins > g')),
-            cuts = Array.prototype.slice.call(svg.querySelectorAll('.sar-cuts rect')),
-            intact = svg.querySelector('.sar-intact'), broken = svg.querySelector('.sar-broken'),
-            lys = Array.prototype.slice.call(svg.querySelectorAll('.sar-lys g g'));
-        var stage = 0;
+            modes = all(f, '.fig-mode'), tag = svg.querySelector('.sar-stage'),
+            sin = svg.querySelector('.sar-sin'), phages = all(svg, '.sar-sin > g > g'),
+            pins = all(svg, '.sar-pins > g'), held = svg.querySelector('.sar-pins-held'),
+            gp62 = svg.querySelector('.sar-gp62'),
+            imIntact = svg.querySelector('.sar-intact'), imPins = svg.querySelector('.sar-broken'),
+            imG = svg.querySelector('.sar-broken-g'),
+            omIntact = svg.querySelector('.sar-om-intact'), omBroken = svg.querySelector('.sar-om-broken'),
+            ispans = all(svg, '.sar-ispan'),
+            cuts = all(svg, '.sar-cuts rect'), lys = all(svg, '.sar-lys g g');
+        var mode = 'rapid', step = 0;
+
+        function op(el, on, max) { el.style.opacity = on ? (max || '1') : '0'; }
+        function delay(el, s) { el.style.transitionDelay = (reduce ? 0 : s) + 's'; }
 
         function render() {
-            intact.style.opacity = stage === 0 ? '.7' : '0';   // .7 = .stroke-ink's own opacity
-            broken.style.opacity = stage === 0 ? '0' : '.7';
-            pins.forEach(function (g, i) {
-                g.style.transitionDelay = stage === 1 && !reduce ? i * 0.1 + 's' : '0s';
-                g.style.opacity = stage === 0 ? '0' : '1';
+            var path = PATHS[mode], st = path[step];
+            // superinfecting phages drop onto the outer membrane
+            op(sin, st.sin);
+            phages.forEach(function (g, i) {
+                delay(g, st.sin ? i * 0.12 : 0);
+                g.style.transform = st.sin ? 'none' : 'translate(0,-24px)';
             });
+            // inner membrane: intact, broken at the pinholes, or broken at the gp62 hole
+            op(imIntact, st.pins !== 'open' && !st.gp62, '.7');   // .7 = .stroke-ink's own opacity
+            op(imPins, st.pins === 'open', '.7');
+            op(imG, st.gp62 && st.pins !== 'open', '.7');
+            pins.forEach(function (g, i) { delay(g, st.pins === 'open' ? i * 0.1 : 0); op(g, st.pins === 'open'); });
+            op(held, st.pins === 'held');
+            op(gp62, st.gp62);
+            // gp61: tethered without a mouth, or released, mouth open and chomping
             lys.forEach(function (g, i) {
-                var d = stage === 2 && !reduce ? i * 0.12 : 0;
-                g.style.transitionDelay = d + 's';
-                g.style.transform = stage === 2 ? 'translate(0,-17px)' : 'none';
+                var d = st.rel ? i * 0.12 : 0;
+                delay(g, d);
+                g.style.transform = st.rel ? 'translate(0,-20px)' : 'none';
                 var tm = g.querySelector('path');
-                tm.style.transitionDelay = d + 's';
-                tm.style.opacity = stage === 2 ? '0' : '1';
-                // inactive in the membrane: no mouth until released
+                delay(tm, d); op(tm, !st.rel);
                 var pac = g.querySelector('.sar-pac');
-                pac.setAttribute('d', pac.getAttribute(stage === 2 ? 'data-open' : 'data-shut'));
-                pac.classList.toggle('chomp', stage === 2);
-                cuts[i].style.transitionDelay = stage === 2 && !reduce ? d + 0.6 + 's' : '0s';
-                cuts[i].style.opacity = stage === 2 ? '1' : '0';
+                pac.setAttribute('d', pac.getAttribute(st.rel ? 'data-open' : 'data-shut'));
+                pac.classList.toggle('chomp', !!st.rel);
+                delay(cuts[i], st.rel ? d + 0.6 : 0); op(cuts[i], st.rel);
             });
-            btn.textContent = STAGES[stage][0];
-            status.textContent = STAGES[stage][1];
-        }
-        function step() { stage = (stage + 1) % 3; render(); }
+            // spanins: i-spanin a stub until it reaches the outer membrane, which then breaks
+            ispans.forEach(function (p, i) {
+                delay(p, st.span ? i * 0.1 : 0);
+                p.style.strokeDashoffset = st.span ? '0' : '0.62';
+            });
+            delay(omBroken, st.span ? 0.6 : 0); delay(omIntact, st.span ? 0.6 : 0);
+            op(omIntact, !st.span, '.7'); op(omBroken, st.span, '.7');
 
+            if (tag) tag.textContent = st.tag;
+            status.textContent = (step + 1) + '/' + path.length + ' · ' + st.status;
+            btn.textContent = step === path.length - 1 ? 'Replay' : 'Next step';
+            modes.forEach(function (m) { m.setAttribute('aria-pressed', String(m.getAttribute('data-mode') === mode)); });
+        }
+
+        function next() { step = (step + 1) % PATHS[mode].length; render(); }
+
+        modes.forEach(function (m) {
+            m.addEventListener('click', function () { mode = m.getAttribute('data-mode'); step = 0; render(); });
+        });
+        btn.addEventListener('click', next);
+        svg.addEventListener('click', next);
         render();
-        btn.addEventListener('click', step);
-        svg.addEventListener('click', step);
         f.querySelector('.fig-ctl').hidden = false;
     }
 

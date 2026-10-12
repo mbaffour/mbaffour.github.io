@@ -3965,10 +3965,23 @@ kbd {
 .lysis-plate .sar-pins > g, .lysis-plate .sar-intact, .lysis-plate .sar-broken,
 .lysis-plate .sar-cuts rect, .lysis-plate .sar-lys path { transition: opacity .5s ease; }
 .lysis-plate .sar-lys g g { transition: transform .7s cubic-bezier(.3,.6,.3,1); }
+.lysis-plate .sar-sin, .lysis-plate .sar-pins-held, .lysis-plate .sar-gp62, .lysis-plate .sar-broken-g,
+.lysis-plate .sar-om-intact, .lysis-plate .sar-om-broken { transition: opacity .5s ease; }
+.lysis-plate .sar-sin > g > g { transition: transform .6s cubic-bezier(.3,.6,.3,1); }
+.lysis-plate .sar-ispan { transition: stroke-dashoffset .8s cubic-bezier(.3,.6,.3,1); }
+/* Pathway toggle + step button on one row, the status on its own line under them */
+.lysis-plate .fig-ctl { flex-wrap: wrap; justify-content: flex-start; row-gap: 10px; }
+.lysis-plate .fig-status { flex: 1 1 100%; text-align: left; }
+.lysis-plate .fig-modes { display: inline-flex; border: 1px solid var(--border-strong); border-radius: 6px; overflow: hidden; }
+.lysis-plate .fig-mode { font: inherit; letter-spacing: inherit; text-transform: inherit; color: var(--ink-3);
+    background: none; border: 0; padding: 5px 10px; cursor: pointer; white-space: nowrap; }
+.lysis-plate .fig-mode + .fig-mode { border-left: 1px solid var(--border-strong); }
+.lysis-plate .fig-mode[aria-pressed="true"] { background: var(--gold); color: var(--bg); }
+.lysis-plate .fig-mode:focus-visible { outline: 2px solid var(--gold); outline-offset: -2px; }
 .lysis-plate .sar-pac { stroke: var(--gold); stroke-width: 1; stroke-linejoin: round; }
 .lysis-plate .sar-eye { fill: var(--bg-card); }
 .lysis-plate .sar-pac.chomp { animation: sar-chomp .32s ease-in-out infinite alternate; }
-@keyframes sar-chomp { to { d: path("M0 86 L0.52 76.01 A10 10 0 1 1 -0.52 76.01 Z"); } }
+@keyframes sar-chomp { to { d: path("M0 132 L0.52 122.01 A10 10 0 1 1 -0.52 122.01 Z"); } }
 @media (prefers-reduced-motion: reduce) { .lysis-plate .sar-pac.chomp { animation: none; } }
 @media print { .lysis-plate .fig-ctl { display: none; } .lysis-plate { break-inside: avoid; } }
 /* At phone width the 800-unit drawing shrinks its text to ~4px; drop it
