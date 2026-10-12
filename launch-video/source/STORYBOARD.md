@@ -70,25 +70,25 @@ Scene 1 (0.0–0.4s): charcoal ground; a small gold phage glyph + mono kicker "W
 Scene 2 (0.4–3.9s): headline "I study how phage N4 decides when to kill its host." builds word by word, ≈0.32s apart, each word rising 40px + fading in with a slight blur clear. Left-aligned block, Fraunces display ≈ 112px, line-height 1.02, stacked over 5–6 lines, x = 72. "when to kill its host." are gold italic.
 Scene 3 (3.9–5.0s): a thin gold rule draws under the last line; hold still.
 
-## Frame 3 — Feature 1: the lysis machinery
+## Frame 3 — Feature 1: the lysis model
 
-- scene: The real "Fig 1 · N4 lysis machinery" figure steps through its three states, then pushes in on the chomping endolysins
+- scene: The real "Fig 1 · N4 lysis model" figure steps through rapid lysis, ending as the cell bursts and releases its phages
 - duration: 5s
 - poster: 4.4s
 - transition_in: blur-crossfade 0.5s
 - status: animated
 - src: compositions/frames/03-feature-lysis.html
 - type: key_feature
-- asset_candidates: assets/f1a-lysis-anchored.png — figure, endolysins anchored; assets/f1b-lysis-pinholes.png — figure, pinholes open; assets/f1c-lysis-released.png — figure, endolysins released and chomping
+- asset_candidates: assets/f1-0-anchored.png — figure, gp61 tethered, progeny inside; assets/f1-1-pinholes.png — figure, gp63 pinholes open; assets/f1-2-released.png — figure, gp61 released and cutting the wall; assets/f1-burst-00.png — burst flipbook frame 1 of 11 (f1-burst-00…10.png, seeked from the live animation)
 - blueprint: device-surface-showcase (Adapt)
-- focal: assets/f1c-lysis-released.png
-- roles: f1a-lysis-anchored = supporting · f1b-lysis-pinholes = supporting · f1c-lysis-released = cutout
+- focal: assets/f1-burst-10.png
+- roles: f1-0-anchored = supporting · f1-1-pinholes = supporting · f1-2-released = supporting · f1-burst-00…10 = cutout (flipbook)
 
-Adapt: keep the cursorless stepwise-flow signature (the screen cycles through a real flow); the "device" is the site's own figure card.
-Scene 1 (0.0–0.7s): kicker "01 · INTERACTIVE FIGURE" (glyph + mono, gold) then title "Watch N4 open the cell." (Fraunces ≈ 88px, ink, 2 lines) slide up, top third (y 300–560).
-Scene 2 (0.7–1.4s): the screenshot card rises in below (width 936, centred, y ≈ 700), showing f1a (anchored).
-Scene 3 (1.4–3.0s): in place, f1a → f1b (pinholes) → f1c (released) by quick crossfades ≈0.7s apart, a mono status line under the card swapping with each: "anchored · inactive" → "pinholes open" → "released · cutting the wall".
-Scene 4 (3.0–5.0s): push in (scale ≈1.0→1.55) on the cell-wall row with the Pac-Man endolysins (upper-left third of the figure); hold.
+Adapt: keep the cursorless stepwise-flow signature (the screen cycles through a real flow); the "device" is the site's own figure card, now the full model's rapid pathway.
+Scene 1 (0.0–0.7s): kicker "01 · INTERACTIVE FIGURE" then title "Watch N4 open the cell." top third.
+Scene 2 (0.7–1.2s): the figure card rises in below (width 1000, y ≈ 620) on state 1, step 1 lights.
+Scene 3 (1.2–3.0s): in place, state 1 → 2 → 3 by quick crossfades ≈0.6s apart, then the burst plays as an 11-frame flipbook of the live animation (≈1s), a four-step list under the card lighting in sync: "gp61 tethered · inactive" → "gp63 pinholes open" → "gp61 released · cutting the wall" → "Cell bursts · phages released".
+Scene 4 (3.0–5.0s): push in on the top of the figure where the released phages land outside the torn envelope; hold.
 
 ## Frame 4 — Feature 2: the lysis-curve playground
 

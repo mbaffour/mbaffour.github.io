@@ -12,15 +12,15 @@
     #f03-kicker svg { width: 38px; height: 38px; }
     #f03-title { position: absolute; left: 72px; right: 72px; top: 320px; color: #F5EDD8;
       font-family: "Fraunces", Georgia, serif; font-weight: 400; font-size: 104px; line-height: 1.02; letter-spacing: -0.022em; }
-    #f03-card { position: absolute; left: 40px; top: 640px; width: 1000px; height: 525px; overflow: hidden;
+    #f03-card { position: absolute; left: 40px; top: 600px; width: 1000px; height: 378px; overflow: hidden;
       border-radius: 24px; border: 2px solid rgba(244, 196, 48, 0.26); background: #221C0E;
       box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45); }
     #f03-cam { position: absolute; inset: 0; }
     #f03-cam img { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
-    #f03-steps { position: absolute; left: 72px; right: 72px; top: 1240px; display: flex; flex-direction: column; gap: 22px; }
+    #f03-steps { position: absolute; left: 72px; right: 72px; top: 1060px; display: flex; flex-direction: column; gap: 26px; }
     .f03-step { display: flex; align-items: center; gap: 22px; font-family: "JetBrains Mono", monospace;
       font-weight: 500; font-size: 34px; letter-spacing: 0.04em; color: #AB9059; }
-    .f03-dot { width: 48px; height: 48px; border-radius: 50%; border: 2px solid rgba(244, 196, 48, 0.4);
+    .f03-dot { flex: none; width: 50px; height: 50px; border-radius: 50%; border: 2px solid rgba(244, 196, 48, 0.4);
       display: flex; align-items: center; justify-content: center; font-size: 24px; color: #AB9059; }
   </style>
 
@@ -32,16 +32,30 @@
     </div>
     <div id="f03-title">Watch N4 open the cell.</div>
     <div id="f03-card">
+      <!-- real screenshots of the live figure, rapid pathway steps 1–4 -->
       <div id="f03-cam" data-layout-allow-overflow>
-        <img id="f03-a" src="assets/f1a-lysis-anchored.png" alt="">
-        <img id="f03-b" src="assets/f1b-lysis-pinholes.png" alt="">
-        <img id="f03-c" src="assets/f1c-lysis-released.png" alt="">
+        <img id="f03-s0" src="assets/f1-0-anchored.png" alt="">
+        <img id="f03-s1i" src="assets/f1-1-pinholes.png" alt="">
+        <img id="f03-s2i" src="assets/f1-2-released.png" alt="">
+        <!-- the burst, as eleven frames seeked from the live figure's own animation -->
+        <img class="f03-b" id="f03-b00" src="assets/f1-burst-00.png" alt="">
+        <img class="f03-b" id="f03-b01" src="assets/f1-burst-01.png" alt="">
+        <img class="f03-b" id="f03-b02" src="assets/f1-burst-02.png" alt="">
+        <img class="f03-b" id="f03-b03" src="assets/f1-burst-03.png" alt="">
+        <img class="f03-b" id="f03-b04" src="assets/f1-burst-04.png" alt="">
+        <img class="f03-b" id="f03-b05" src="assets/f1-burst-05.png" alt="">
+        <img class="f03-b" id="f03-b06" src="assets/f1-burst-06.png" alt="">
+        <img class="f03-b" id="f03-b07" src="assets/f1-burst-07.png" alt="">
+        <img class="f03-b" id="f03-b08" src="assets/f1-burst-08.png" alt="">
+        <img class="f03-b" id="f03-b09" src="assets/f1-burst-09.png" alt="">
+        <img class="f03-b" id="f03-b10" src="assets/f1-burst-10.png" alt="">
       </div>
     </div>
     <div id="f03-steps">
-      <div class="f03-step" id="f03-s1"><span class="f03-dot">1</span><span>Endolysin anchored · inactive</span></div>
-      <div class="f03-step" id="f03-s2"><span class="f03-dot">2</span><span>Pinholes open</span></div>
-      <div class="f03-step" id="f03-s3"><span class="f03-dot">3</span><span>Released · cutting the wall</span></div>
+      <div class="f03-step" id="f03-t1"><span class="f03-dot">1</span><span>gp61 tethered · inactive</span></div>
+      <div class="f03-step" id="f03-t2"><span class="f03-dot">2</span><span>gp63 pinholes open</span></div>
+      <div class="f03-step" id="f03-t3"><span class="f03-dot">3</span><span>gp61 released · cutting the wall</span></div>
+      <div class="f03-step" id="f03-t4"><span class="f03-dot">4</span><span>Cell bursts · phages released</span></div>
     </div>
   </div>
 
@@ -49,27 +63,28 @@
     (function () {
       const tl = gsap.timeline({ paused: true });
       const lit = { color: "#F5EDD8" }, dotLit = { backgroundColor: "#F4C430", borderColor: "#F4C430", color: "#121009" };
+      function light(n, at) {
+        tl.fromTo("#f03-t" + n, { x: -30, opacity: 0 }, { x: 0, opacity: 1, duration: 0.3, ease: "power3.out" }, at - 0.05);
+        tl.to("#f03-t" + n, { ...lit, duration: 0.2 }, at);
+        tl.to("#f03-t" + n + " .f03-dot", { ...dotLit, duration: 0.2 }, at);
+      }
       // Scene 1 (0.0–0.7s): kicker, then title
       tl.fromTo("#f03-kicker", { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.35, ease: "power3.out" }, 0.05);
       tl.fromTo("#f03-title", { y: 50, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: "power3.out" }, 0.18);
-      // Scene 2 (0.7–1.4s): the real figure card rises in, state 1 (anchored)
-      tl.fromTo("#f03-card", { y: 120, opacity: 0, scale: 0.96 }, { y: 0, opacity: 1, scale: 1, duration: 0.6, ease: "expo.out" }, 0.6);
-      tl.set(["#f03-b", "#f03-c"], { opacity: 0 }, 0);
-      tl.fromTo("#f03-s1", { x: -30, opacity: 0 }, { x: 0, opacity: 1, duration: 0.35, ease: "power3.out" }, 0.95);
-      tl.to("#f03-s1", { ...lit, duration: 0.2 }, 1.0);
-      tl.to("#f03-s1 .f03-dot", { ...dotLit, duration: 0.2 }, 1.0);
-      // Scene 3 (1.4–3.0s): the screen steps through its real states
-      tl.fromTo("#f03-s2", { x: -30, opacity: 0 }, { x: 0, opacity: 1, duration: 0.35, ease: "power3.out" }, 1.55);
-      tl.to("#f03-b", { opacity: 1, duration: 0.3, ease: "power2.out" }, 1.6);
-      tl.to("#f03-s2", { ...lit, duration: 0.2 }, 1.65);
-      tl.to("#f03-s2 .f03-dot", { ...dotLit, duration: 0.2 }, 1.65);
-      tl.fromTo("#f03-s3", { x: -30, opacity: 0 }, { x: 0, opacity: 1, duration: 0.35, ease: "power3.out" }, 2.3);
-      tl.to("#f03-c", { opacity: 1, duration: 0.3, ease: "power2.out" }, 2.35);
-      tl.to("#f03-s3", { ...lit, duration: 0.2 }, 2.4);
-      tl.to("#f03-s3 .f03-dot", { ...dotLit, duration: 0.2 }, 2.4);
-      // Scene 4 (3.0–5.0s): push in on the chomping endolysins at the cell wall
-      tl.fromTo("#f03-cam", { scale: 1 }, { scale: 1.6, duration: 1.3, ease: "power3.inOut", transformOrigin: "46% 22%" }, 3.0);
-      tl.to({}, { duration: 0.01 }, 4.99);
+      // Scene 2 (0.7–1.2s): the real figure card rises in on step 1
+      tl.set(["#f03-s1i", "#f03-s2i", ".f03-b"], { opacity: 0 }, 0);
+      tl.fromTo("#f03-card", { y: 120, opacity: 0, scale: 0.96 }, { y: 0, opacity: 1, scale: 1, duration: 0.55, ease: "expo.out" }, 0.6);
+      light(1, 0.95);
+      // Scene 3 (1.2–3.0s): the screen steps through the real states, ending on the burst
+      tl.to("#f03-s1i", { opacity: 1, duration: 0.25, ease: "power2.out" }, 1.45); light(2, 1.5);
+      tl.to("#f03-s2i", { opacity: 1, duration: 0.25, ease: "power2.out" }, 2.05); light(3, 2.1);
+      // the burst plays as a flipbook of the live figure: spanins reach the outer membrane,
+      // the envelope gives way and the progeny stream out (frames stack, each on top of the last)
+      for (let k = 0; k < 11; k++) tl.set("#f03-b" + String(k).padStart(2, "0"), { opacity: 1 }, 2.55 + k * 0.1);
+      light(4, 2.75);
+      // Scene 4 (3.6–5.0s): push in on the top of the figure, where the released phages land
+      tl.fromTo("#f03-cam", { scale: 1 }, { scale: 1.5, duration: 1.2, ease: "power3.inOut", transformOrigin: "45% 12%" }, 3.65);
+      tl.to({}, { duration: 0.01 }, 5.49);
       window.__timelines["03-feature-lysis"] = tl;
     })();
   </script>

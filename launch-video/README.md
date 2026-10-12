@@ -15,7 +15,7 @@ A 30-second vertical launch video for the site, built with
 |---|---|---|
 | 0–3s | `01-logo` | The favicon phage mark draws itself on gold; name and Kente stripe lock up |
 | 3–8s | `02-headline` | "I study how phage N4 decides *when to kill its host.*", one word at a time |
-| 8–13s | `03-feature-lysis` | The homepage lysis figure steps through its three states, then pushes in on the endolysins |
+| 8–13s | `03-feature-lysis` | The homepage lysis-model figure steps through rapid lysis; the cell bursts and its phages stream out (11 frames seeked from the live animation), then a push-in on them |
 | 13–18s | `04-feature-playground` | Camera journey across the Lysis Curve Playground to the red N4 curve |
 | 18–23s | `05-feature-tools` | Three tool cards cascade in; lands on FigureLab's published-research citation |
 | 23–30s | `06-cta` | "Defending in 2027. Open to postdoc roles." and the site URL |
