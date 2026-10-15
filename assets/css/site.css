@@ -3941,7 +3941,6 @@ kbd {
    drawing's class names (.sym, .stroke-ink, …) are generic. */
 .lysis-plate { max-width: 880px; margin: 0 auto 36px; border: 1px solid var(--border);
                border-radius: 18px; overflow: hidden; background: var(--bg-card); }
-.lysis-plate svg { display: block; width: 100%; height: auto; cursor: pointer; }
 .lysis-plate figcaption { padding: 12px 18px 14px; border-top: 1px solid var(--border);
                           font-size: .86rem; line-height: 1.6; color: var(--ink-2); }
 .lysis-plate figcaption b { color: var(--gold); font-weight: 600; }
@@ -3962,15 +3961,6 @@ kbd {
                            stroke-linecap: round; stroke-linejoin: round; opacity: .7; }
 .lysis-plate .stroke-gold { fill: none; stroke: var(--gold); stroke-width: 2.2;
                             stroke-linecap: round; stroke-linejoin: round; }
-.lysis-plate .sar-pins > g, .lysis-plate .sar-intact, .lysis-plate .sar-broken,
-.lysis-plate .sar-cuts rect, .lysis-plate .sar-lys path { transition: opacity .5s ease; }
-.lysis-plate .sar-lys g g { transition: transform .7s cubic-bezier(.3,.6,.3,1); }
-.lysis-plate .sar-sin, .lysis-plate .sar-pins-held, .lysis-plate .sar-gp62, .lysis-plate .sar-broken-g,
-.lysis-plate .sar-om-intact, .lysis-plate .sar-om-broken { transition: opacity .5s ease; }
-.lysis-plate .sar-sin > g > g { transition: transform .6s cubic-bezier(.3,.6,.3,1); }
-.lysis-plate .sar-ispan { transition: stroke-dashoffset .8s cubic-bezier(.3,.6,.3,1); }
-.lysis-plate .sar-env { transition: opacity .6s ease; }
-.lysis-plate .sar-virions > g > g { transition: transform .9s cubic-bezier(.2,.7,.3,1); }
 /* Pathway toggle + step button on one row, the status on its own line under them */
 .lysis-plate .fig-ctl { flex-wrap: wrap; justify-content: flex-start; row-gap: 10px; }
 .lysis-plate .fig-status { flex: 1 1 100%; text-align: left; }
@@ -3980,11 +3970,26 @@ kbd {
 .lysis-plate .fig-mode + .fig-mode { border-left: 1px solid var(--border-strong); }
 .lysis-plate .fig-mode[aria-pressed="true"] { background: var(--gold); color: var(--bg); }
 .lysis-plate .fig-mode:focus-visible { outline: 2px solid var(--gold); outline-offset: -2px; }
-.lysis-plate .sar-pac { stroke: var(--gold); stroke-width: 1; stroke-linejoin: round; }
+/* the N4 cell, drawn by assets/js/lysis-fig.js */
+.lysis-plate .sar-cell svg { display: block; width: 100%; height: auto; cursor: pointer; }
+.lysis-plate .sar-static { display: block; width: 100%; height: auto; }
+.lysis-plate .sar-om { fill: none; stroke: var(--ink); stroke-width: 3; opacity: .9; }
+.lysis-plate .sar-pg { fill: none; stroke: var(--ink-2); stroke-width: 2.5; stroke-dasharray: 5 3; }
+.lysis-plate .sar-im { fill: none; stroke: var(--ink); stroke-width: 2; }
+.lysis-plate .sar-peri { fill: var(--gold); fill-opacity: .06; }
+.lysis-plate .sar-cyto { fill: var(--ink); fill-opacity: .04; }
+.lysis-plate .sar-pin { fill: var(--green); }
+.lysis-plate .sar-pin-held { fill: var(--green); opacity: .5; }
+.lysis-plate .sar-g62 { fill: var(--red); }
+.lysis-plate .sar-span { fill: none; stroke: var(--ink-2); stroke-width: 2; stroke-linecap: round; }
+.lysis-plate .sar-tether { fill: none; stroke: var(--gold); stroke-width: 2; stroke-linecap: round; }
+.lysis-plate .sar-pac { fill: var(--gold); stroke: var(--gold); stroke-width: .8; stroke-linejoin: round; }
 .lysis-plate .sar-eye { fill: var(--bg-card); }
-.lysis-plate .sar-pac.chomp { animation: sar-chomp .32s ease-in-out infinite alternate; }
-@keyframes sar-chomp { to { d: path("M0 132 L0.52 122.01 A10 10 0 1 1 -0.52 122.01 Z"); } }
-@media (prefers-reduced-motion: reduce) { .lysis-plate .sar-pac.chomp { animation: none; } }
+.lysis-plate .sar-phage { fill: none; stroke: var(--ink); stroke-width: 1.6; stroke-linejoin: round; stroke-linecap: round; }
+.lysis-plate .sar-sinphage { fill: none; stroke: var(--green-text); stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; }
+.lysis-plate .sar-leader { fill: none; stroke: var(--ink-3); stroke-width: 1; opacity: .6; }
+.lysis-plate .sar-lab { fill: var(--ink-3); font-size: 10px; letter-spacing: .12em; }
+.lysis-plate .sar-stage { fill: var(--green-text); font-size: 12px; letter-spacing: .14em; }
 @media print { .lysis-plate .fig-ctl { display: none; } .lysis-plate { break-inside: avoid; } }
 /* At phone width the 800-unit drawing shrinks its text to ~4px; drop it
    (the caption says the same) and keep the control on one line. */
