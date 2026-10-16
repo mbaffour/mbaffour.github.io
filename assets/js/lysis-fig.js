@@ -6,12 +6,12 @@
    (doi:10.1101/2025.11.12.688109), shown on one E. coli cell so each lysis
    protein's effect on the cell is visible:
    - Rapid lysis: gp63 pinholes depolarize the inner membrane; the gp61 SAR
-     endolysin is released and cuts the cell wall, so the rod loses its shape
-     and rounds up; the gp60/gp60a spanins disrupt the outer membrane and the
-     cell bursts, releasing its progeny.
+     endolysin is released and degrades the wall evenly, so the rod contracts
+     from the poles and rounds; with enough wall gone the gp60/gp60a spanins
+     act and the cell lyses explosively, releasing its progeny.
    - Lysis inhibition (LIN): under superinfection gp63 appears to be held off;
-     the late gp62 holin, or spontaneous release, frees gp61; the cell rounds
-     and bursts (asynchronous lysis). The paper marks this half as a proposed
+     the cell keeps elongating; the late gp62 holin, or spontaneous release,
+     frees gp61; the cell rounds and lyses (asynchronous lysis). The paper marks this half as a proposed
      model, and the status text says so.
 
    Everything is computed from a handful of numbers (cell half-length and
@@ -23,8 +23,10 @@
     'use strict';
     var NS = 'http://www.w3.org/2000/svg';
     var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var W = 800, H = 360, CX = 360, CY = 186;
-    var ROD = { L: 150, R: 62 }, ROUND = { L: 0, R: 100 };   // half-length of the straight sides, radius
+    var W = 800, H = 360, CX = 345, CY = 186;
+    // Half-length of the straight sides, and radius. The round cell is only a little wider than the rod:
+    // the preprint sees the rod contract from the poles as gp61 degrades the wall evenly, not balloon.
+    var ROD = { L: 150, R: 62 }, ROUND = { L: 0, R: 84 }, GROW = 38;   // GROW: extra half-length as an inhibited cell keeps elongating
     var PERI = 7, OM = 14;                                    // cell wall and outer membrane offsets from the inner membrane
 
     // Where things sit on the inner membrane, as fractions of its perimeter
@@ -40,19 +42,19 @@
         rapid: [
             { pins: 0, status: 'A rod-shaped cell full of new phages · gp61 tethered in the inner membrane, inactive', tag: 'INFECTED · LYSIS PROTEINS MADE' },
             { pins: 1, status: 'gp63 pinholin opens pinholes · the inner membrane depolarizes', tag: 'gp63 PINHOLES · MEMBRANE DEPOLARIZED' },
-            { pins: 1, rel: 1, status: 'gp61 released and active · the wall is cut, so the rod loses its shape and rounds up', tag: 'gp61 CUTS THE WALL · ROD → ROUND' },
-            { pins: 1, rel: 1, span: 1, burst: 1, status: 'gp60/gp60a spanins disrupt the outer membrane · the cell bursts, releasing its phages (rapid, synchronous lysis)', tag: 'SPANINS · THE CELL BURSTS' }
+            { pins: 1, rel: 1, status: 'gp61 released and active · it degrades the wall evenly, and the rod contracts from the poles and rounds', tag: 'gp61 DEGRADES THE WALL · ROD → ROUND' },
+            { pins: 1, rel: 1, span: 1, burst: 1, status: 'With enough wall gone, the gp60/gp60a spanins act · explosive lysis releases the phages (rapid, synchronous lysis)', tag: 'SPANINS · EXPLOSIVE LYSIS' }
         ],
         lin: [
             { status: 'A rod-shaped cell full of new phages · gp61 tethered in the inner membrane, inactive', tag: 'INFECTED · LYSIS PROTEINS MADE' },
-            { sin: 1, held: 1, status: 'Superinfection → lysis inhibition · gp63 pinholin held off; the rod holds its shape', tag: 'SUPERINFECTION · gp63 HELD OFF' },
-            { sin: 1, held: 1, g62: 1, status: 'Proposed: the late gp62 holin opens the inner membrane', tag: 'PROPOSED · LATE gp62 HOLIN' },
-            { sin: 1, held: 1, g62: 1, rel: 1, status: 'Proposed: gp61 released (by gp62, or spontaneously) · the wall is cut and the cell rounds up', tag: 'PROPOSED · gp61 CUTS THE WALL' },
-            { sin: 1, held: 1, g62: 1, rel: 1, span: 1, burst: 1, status: 'Spanins disrupt the outer membrane · the cell bursts, releasing its phages (exit from LIN, asynchronous lysis)', tag: 'SPANINS · THE CELL BURSTS' }
+            { sin: 1, held: 1, grow: 1, status: 'Superinfection → lysis inhibition · gp63 held off; the cell stays a rod and keeps elongating', tag: 'SUPERINFECTION · gp63 HELD OFF' },
+            { sin: 1, held: 1, grow: 1, g62: 1, status: 'Proposed: the late gp62 holin opens the inner membrane (holins alone leave the rod shape unchanged)', tag: 'PROPOSED · LATE gp62 HOLIN' },
+            { sin: 1, held: 1, grow: 1, g62: 1, rel: 1, status: 'Proposed: gp61 released (by gp62, or spontaneously) · the wall is degraded and the rod contracts to round', tag: 'PROPOSED · gp61 DEGRADES THE WALL' },
+            { sin: 1, held: 1, grow: 1, g62: 1, rel: 1, span: 1, burst: 1, status: 'Spanins act · explosive lysis releases the phages (exit from LIN, asynchronous lysis)', tag: 'SPANINS · EXPLOSIVE LYSIS' }
         ]
     };
     // How each quantity moves when it changes: [duration, delay] in seconds
-    var TIMING = { pins: [0.5, 0], held: [0.4, 0], sin: [0.6, 0], g62: [0.5, 0],
+    var TIMING = { pins: [0.5, 0], held: [0.4, 0], sin: [0.6, 0], grow: [1.4, 0.3], g62: [0.5, 0],
                    rel: [0.8, 0], round: [1.3, 0.55], span: [0.6, 0], burst: [1.3, 0.7] };
 
     function el(tag, attrs, parent) {
@@ -134,7 +136,7 @@
     var PAC_SHUT = pac(0.5), PAC_OPEN = pac(38);
 
     function draw(g, v, now) {
-        var L = lerp(ROD.L, ROUND.L, v.round), R = lerp(ROD.R, ROUND.R, v.round);
+        var L = lerp(ROD.L + GROW * v.grow, ROUND.L, v.round), R = lerp(ROD.R, ROUND.R, v.round);
         var b = v.burst, swell = 1 + 0.12 * b;
         g.im.setAttribute('d', capsule(L, R));
         g.pg.setAttribute('d', capsule(L, R + PERI));
@@ -192,13 +194,13 @@
         if (!host) return;
         var g = build(host);
         var btn = f.querySelector('.fig-act'), status = f.querySelector('.fig-status'), modes = Array.prototype.slice.call(f.querySelectorAll('.fig-mode'));
-        var keys = ['pins', 'held', 'sin', 'g62', 'rel', 'round', 'span', 'burst'];
+        var keys = ['pins', 'held', 'sin', 'grow', 'g62', 'rel', 'round', 'span', 'burst'];
         var v = {}, anim = {};
         keys.forEach(function (k) { v[k] = 0; });
         var mode = 'rapid', step = 0, raf = null, visible = true;
 
         function target(st) {
-            return { pins: st.pins || 0, held: st.held || 0, sin: st.sin || 0, g62: st.g62 || 0,
+            return { pins: st.pins || 0, held: st.held || 0, sin: st.sin || 0, grow: st.grow || 0, g62: st.g62 || 0,
                      rel: st.rel || 0, round: st.rel || 0, span: st.span || 0, burst: st.burst || 0 };
         }
         function go(st, instant) {
