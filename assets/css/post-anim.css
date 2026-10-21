@@ -108,8 +108,8 @@
 .pa-motif.pa-hit { stroke: var(--pa-good); }
 .pa-score { fill: var(--pa-good); }
 .pa-band  { fill: var(--pa-hot); fill-opacity: 0.12; stroke: var(--pa-hot); stroke-opacity: 0.5; }
-.pa-bar   { fill: var(--pa-ink-3); }
-.pa-bar-c { fill: var(--pa-hot); }
+.pa-pbar  { fill: var(--pa-ink-3); }
+.pa-pbar-c { fill: var(--pa-hot); }
 
 /* unicode (HTML stage) */
 .pa-uni { position: relative; padding: 26px 22px 14px; overflow: hidden; }

@@ -407,7 +407,7 @@
         var prof = [profile(seeds), profile(seeds.concat(round1.map(function (h) { return hitSeq[h]; }))),
             profile(seeds.concat(hits.map(function (h) { return hitSeq[h]; })))];
         var PY = 248, bars = [];
-        for (i = 0; i < L; i++) bars.push(el('rect', { x: AX + i * CW + 1, width: CW - 3.5, y: PY, height: 0, rx: 1.5, 'class': 'pa-bar' + (CONS[i] ? ' pa-bar-c' : '') }, svg));
+        for (i = 0; i < L; i++) bars.push(el('rect', { x: AX + i * CW + 1, width: CW - 3.5, y: PY, height: 0, rx: 1.5, 'class': 'pa-pbar' + (CONS[i] ? ' pa-pbar-c' : '') }, svg));
         el('line', { x1: AX, x2: AX + L * CW, y1: PY, y2: PY, 'class': 'pa-axis' }, svg);
         var plab = txt(svg, AX, PY + 18, 'profile HMM', 'pa-lab');
         var newRows = hits.map(function (h, k) { return { h: h, g: row(hitSeq[h], AX, RY + (4 + k) * RH, 'pa-new') }; });
