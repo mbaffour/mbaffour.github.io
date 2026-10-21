@@ -1227,7 +1227,7 @@ function renderPosts(filter = 'all') {
             </div>
             <div class="blog-body">
                 ${p.image ? `<img class="blog-thumb" src="${p.image}" alt="${esc(p.imageAlt || p.title)}" width="108" height="78" loading="lazy" decoding="async">` : ''}
-                <div class="blog-tags">${p.tags.map(t => `<span class="blog-tag">${esc(t)}</span>`).join('')}</div>
+                <div class="blog-tags">${p.tags.map(t => `<span class="blog-tag">${esc(t)}</span>`).join('')}${p.animated ? '<span class="blog-tag blog-tag-anim">Animated figure</span>' : ''}</div>
                 <h3 class="blog-title">${esc(p.title)}</h3>
                 <p class="blog-blurb">${esc(p.blurb)}</p>
                 <span class="blog-read">Read post →</span>

@@ -1850,6 +1850,9 @@
             border: 1px solid var(--border-strong);
             color: var(--ink-2);
         }
+        /* posts with an animated figure (posts-data.js `animated`) */
+        .blog-tag-anim { color: var(--gold); border-color: var(--gold); }
+        .blog-tag-anim::before { content: "▶"; font-size: 0.8em; margin-right: 0.45em; }
         .blog-title {
             font-family: var(--font-display);
             font-size: 1.15rem;

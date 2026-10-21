@@ -107,6 +107,8 @@
         .card .thumb { width: 100%; height: 160px; object-fit: cover; border-radius: 10px; margin: 0 0 14px; border: 1px solid var(--border); }
         .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 16px; }
         .tag { font-family: var(--font-mono); font-size: 0.68rem; color: var(--ink-3); border: 1px solid var(--border); border-radius: 999px; padding: 4px 9px; }
+        .tag-anim { color: var(--gold); border-color: var(--gold); }
+        .tag-anim::before { content: "▶"; font-size: 0.8em; margin-right: 0.45em; }
         .read { margin-top: 14px; font-family: var(--font-mono); font-size: 0.78rem; color: var(--gold); }
         .empty { grid-column: 1 / -1; text-align: center; color: var(--ink-3); padding: 48px 0; font-family: var(--font-mono); font-size: 0.9rem; }
         .rss { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: 0.8rem; color: var(--ink-2); text-decoration: none; border: 1px solid var(--border-strong); border-radius: 10px; padding: 9px 14px; }
@@ -192,7 +194,7 @@
                     <div class="card-top"><time datetime="${esc(p.iso)}">${esc(fmt(p.iso))}${p.updated ? ' · updated ' + esc(fmt(p.updated)) : ''}</time>${i === 0 && tag === 'all' && !q ? '<span class="badge">Latest</span>' : ''}</div>
                     <h2>${esc(p.title)}</h2>
                     <p>${esc(p.blurb)}</p>
-                    <div class="tags">${p.tags.map(t => `<span class="tag">${esc(t)}</span>`).join('')}</div>
+                    <div class="tags">${p.tags.map(t => `<span class="tag">${esc(t)}</span>`).join('')}${p.animated ? '<span class="tag tag-anim">Animated figure</span>' : ''}</div>
                     <div class="read">Read post →</div>
                 </div>
             </a>`).join('');
