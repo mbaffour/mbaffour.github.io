@@ -7,7 +7,8 @@
    `node scripts/build-site.mjs`, commit. Fields: title, date (as shown), iso
    (YYYY-MM-DD), optional updated (YYYY-MM-DD, shown on the post and used as the
    sitemap lastmod), tags, blurb, url (relative to the site root), optional image
-   and imageAlt. */
+   and imageAlt, optional animated (true when the post has an animated figure from
+   assets/js/post-anim.js; listings show a chip for it). */
 const posts = [
     {
         title: "Protein Structure Viewer — what the confidence numbers actually say",
@@ -24,7 +25,8 @@ const posts = [
         iso: "2026-08-24",
         tags: ["Research Software", "Phage Biology"],
         blurb: "A single-file browser calculator for phage titers: plaque counts to PFU/mL, full plates or spot assays, with replicates, detection limits and a real Excel export.",
-        url: "blog/pfu-calculator.html"
+        url: "blog/pfu-calculator.html",
+        animated: true
     },
     {
         title: "CFU Calculator — colony counts without the arithmetic",
@@ -32,7 +34,8 @@ const posts = [
         iso: "2026-08-24",
         tags: ["Research Software", "Bench"],
         blurb: "A single-file browser calculator for bacterial colony counts: name samples, log replicates at any dilution, get mean ± SD with countable-window flags and detection limits, and export a real Excel workbook.",
-        url: "blog/cfu-calculator.html"
+        url: "blog/cfu-calculator.html",
+        animated: true
     },
     {
         title: "Watermark Remover — the characters you cannot see",
@@ -40,7 +43,8 @@ const posts = [
         iso: "2026-08-17",
         tags: ["Side Builds"],
         blurb: "Unicode has a complete invisible alphabet, and a paragraph can carry a hidden message in it without looking any different. A browser tool that finds those characters — plus EXIF, C2PA and document properties — decodes what was in them, and removes them. Nothing is uploaded.",
-        url: "blog/watermark-remover.html"
+        url: "blog/watermark-remover.html",
+        animated: true
     },
     {
         title: "Plaque Toolkit — plate photo to defensible numbers",
@@ -48,7 +52,8 @@ const posts = [
         iso: "2026-06-20",
         tags: ["Research Software", "Phage Biology"],
         blurb: "Measures bacteriophage plaques straight from a Petri-dish photo — size, turbidity, count and titer — so wild-type and mutant phages compare on the same footing.",
-        url: "blog/plaque-toolkit.html"
+        url: "blog/plaque-toolkit.html",
+        animated: true
     },
     {
         title: "Serwaa: My First Scientific Paper",
@@ -81,7 +86,8 @@ const posts = [
         iso: "2026-04-08",
         tags: ["Research Software", "Bioinformatics"],
         blurb: "A no-code web app running the whole profile-HMM discovery pipeline — alignment, HMM build, database search, classification and phylogeny — in your browser.",
-        url: "blog/hmm-discovery-app.html"
+        url: "blog/hmm-discovery-app.html",
+        animated: true
     },
     {
         title: "CellMorphR — single-cell morphometry, done honestly",
@@ -97,7 +103,8 @@ const posts = [
         iso: "2026-03-02",
         tags: ["Research Software", "Bioinformatics"],
         blurb: "A reproducible HMM-based homologue-discovery CLI: six-frame search, ORF validation, iterate-to-convergence, regression tests and a locked environment.",
-        url: "blog/hmm-homologue-finder.html"
+        url: "blog/hmm-homologue-finder.html",
+        animated: true
     },
     {
         title: "CFU Plot Studio — reproducible colony-count figures",
@@ -121,6 +128,7 @@ const posts = [
         iso: "2025-11-30",
         tags: ["Research Software", "Bench"],
         blurb: "Enter fragment lengths and concentrations, read off exact pipetting volumes at NEB-recommended molar ratios. A single page, no account, no spreadsheet.",
-        url: "blog/gibson-assembly-calculator.html"
+        url: "blog/gibson-assembly-calculator.html",
+        animated: true
     }
 ];

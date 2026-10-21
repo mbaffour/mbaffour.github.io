@@ -579,7 +579,7 @@
             if (!visible) { playing = 'waiting'; return; }
             t = Math.min(A.dur, t + Math.min(0.05, (now - last) / 1000));
             last = now;
-            if (t >= A.dur) playing = false;
+            if (t >= A.dur) { playing = false; fig.dispatchEvent(new CustomEvent('pa:end')); }
             render();
             if (playing) requestAnimationFrame(frame);
         }
@@ -598,6 +598,7 @@
         });
 
         fig.__paSeek = function (at) { seek(at, false); };
+        fig.__paRestart = function () { if (reduce) return; t = 0; play(); };
         if (reduce) { t = A.dur; render(); return; }
         render();
         if ('IntersectionObserver' in window) {
@@ -609,6 +610,51 @@
         } else { visible = true; play(); }
     }
 
-    function init() { document.querySelectorAll('figure.pa[data-anim]').forEach(wire); }
+    /* A tabbed showcase: <div class="pa-show"> holding a [role=tablist] of tabs and
+     * one [role=tabpanel] per tab, each with a figure.pa inside. Plays the panels in
+     * turn while it is on screen, until the reader picks a tab themselves. */
+    function show(box) {
+        var tabs = [].slice.call(box.querySelectorAll('[role=tab]'));
+        var panels = tabs.map(function (b) { return document.getElementById(b.getAttribute('aria-controls')); });
+        var cur = 0, auto = !reduce, timer = null, onScreen = false;
+        function select(i, restart) {
+            cur = (i + tabs.length) % tabs.length;
+            tabs.forEach(function (b, k) {
+                b.setAttribute('aria-selected', k === cur ? 'true' : 'false');
+                b.tabIndex = k === cur ? 0 : -1;
+                panels[k].hidden = k !== cur;
+            });
+            var f = panels[cur].querySelector('figure.pa');
+            if (restart && f && f.__paRestart) f.__paRestart();
+        }
+        tabs.forEach(function (b, i) {
+            b.addEventListener('click', function () { auto = false; clearTimeout(timer); select(i, true); });
+            b.addEventListener('keydown', function (e) {
+                var d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+                if (!d) return;
+                e.preventDefault(); auto = false; clearTimeout(timer);
+                select(cur + d, true); tabs[cur].focus();
+            });
+        });
+        panels.forEach(function (p, i) {
+            var f = p.querySelector('figure.pa');
+            if (f) f.addEventListener('pa:end', function () {
+                if (!auto || i !== cur) return;
+                clearTimeout(timer);
+                timer = setTimeout(function () { if (auto && onScreen) select(cur + 1, true); }, 2600);
+            });
+            // the figure's own buttons count as taking control too
+            if (f) f.addEventListener('click', function (e) { if (e.target.closest('button')) { auto = false; clearTimeout(timer); } });
+        });
+        if ('IntersectionObserver' in window) {
+            new IntersectionObserver(function (es) { onScreen = es[0].isIntersecting; }, { threshold: 0.2 }).observe(box);
+        }
+        select(0, false);
+    }
+
+    function init() {
+        document.querySelectorAll('figure.pa[data-anim]').forEach(wire);
+        document.querySelectorAll('.pa-show').forEach(show);
+    }
     if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
 })();

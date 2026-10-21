@@ -61,6 +61,7 @@
     <link rel="preload" href="assets/fonts/inter-var-latin.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="assets/fonts/fonts.css">
     <link rel="stylesheet" href="assets/css/site.css">
+    <link rel="stylesheet" href="assets/css/post-anim.css">
     <!-- Anti-FOUC: set theme before first paint -->
     <!-- Sets the theme before first paint. Reading localStorage THROWS when
          storage is blocked (private mode, third-party-cookie policies); without
@@ -533,6 +534,29 @@
                 </div>
             </div>
         </div>
+        <!-- Two of the bench methods above, as animated figures. Drawn by
+             assets/js/post-anim.js, the same script the blog posts use. -->
+        <div class="pa-show pa-home" aria-label="Bench methods, animated">
+            <div class="pa-show-head">
+                <span class="bench-kicker">Step by step</span>
+                <div class="pa-tabs" role="tablist" aria-label="Bench method">
+                    <button type="button" class="pa-tab" role="tab" id="bt-titer" aria-controls="bp-titer">Titering a phage</button>
+                    <button type="button" class="pa-tab" role="tab" id="bt-gibson" aria-controls="bp-gibson">Cloning by Gibson assembly</button>
+                </div>
+            </div>
+            <div class="pa-panel" role="tabpanel" id="bp-titer" aria-labelledby="bt-titer">
+                <figure class="pa" data-anim="dilution" data-variant="pfu">
+                    <figcaption><b>Titering a phage.</b> A ten-fold dilution series, 10&nbsp;µL of the 10<sup>−7</sup> tube spotted on a bacterial lawn, 22 plaques counted: 2.2&nbsp;×&nbsp;10<sup>10</sup>&nbsp;PFU/mL.
+                    <a href="blog/pfu-calculator.html">The PFU Calculator does the arithmetic&nbsp;→</a></figcaption>
+                </figure>
+            </div>
+            <div class="pa-panel" role="tabpanel" id="bp-gibson" aria-labelledby="bt-gibson" hidden>
+                <figure class="pa" data-anim="gibson">
+                    <figcaption><b>Gibson assembly.</b> Fragments with overlapping ends are chewed back, anneal, and are filled and sealed into one plasmid in a single tube.
+                    <a href="blog/gibson-assembly-calculator.html">The Gibson calculator works out the volumes&nbsp;→</a></figcaption>
+                </figure>
+            </div>
+        </div>
     </section>
 
     <hr class="section-divider">
@@ -613,6 +637,42 @@
                experiments whose answers I already knew, and FigureLab was used by another lab
                in a published paper before I would call it finished.</p>
         </aside>
+        <!-- What four of the tools do, animated (assets/js/post-anim.js). -->
+        <div class="pa-show pa-home" aria-label="Tools, animated">
+            <div class="pa-show-head">
+                <span class="build-note-kicker">See them work</span>
+                <div class="pa-tabs" role="tablist" aria-label="Tool">
+                    <button type="button" class="pa-tab" role="tab" id="tt-plaque" aria-controls="tp-plaque">Plaque Toolkit</button>
+                    <button type="button" class="pa-tab" role="tab" id="tt-hmm" aria-controls="tp-hmm">HMM Homologue Finder</button>
+                    <button type="button" class="pa-tab" role="tab" id="tt-cfu" aria-controls="tp-cfu">CFU Calculator</button>
+                    <button type="button" class="pa-tab" role="tab" id="tt-wm" aria-controls="tp-wm">Watermark Remover</button>
+                </div>
+            </div>
+            <div class="pa-panel" role="tabpanel" id="tp-plaque" aria-labelledby="tt-plaque">
+                <figure class="pa" data-anim="plaques">
+                    <figcaption><b>Plaque Toolkit</b> finds every plaque on a plate photo and measures it in millimetres, so wild-type and mutant compare on the same footing.
+                    <a href="blog/plaque-toolkit.html">How it works&nbsp;→</a> · <a href="https://github.com/mbaffour/plaque-toolkit" target="_blank" rel="noopener">Source&nbsp;↗</a></figcaption>
+                </figure>
+            </div>
+            <div class="pa-panel" role="tabpanel" id="tp-hmm" aria-labelledby="tt-hmm" hidden>
+                <figure class="pa" data-anim="hmm">
+                    <figcaption><b>HMM Homologue Finder</b> runs the whole remote-homologue loop: build a profile, search, add the hits, rebuild, until nothing new turns up.
+                    <a href="blog/hmm-homologue-finder.html">How it works&nbsp;→</a> · <a href="https://mbaffour.github.io/hmm-discovery-app/">Discovery App, no terminal&nbsp;↗</a></figcaption>
+                </figure>
+            </div>
+            <div class="pa-panel" role="tabpanel" id="tp-cfu" aria-labelledby="tt-cfu" hidden>
+                <figure class="pa" data-anim="dilution">
+                    <figcaption><b>CFU Calculator</b> turns colony counts into CFU/mL with the units kept straight: 148 colonies at 10<sup>−6</sup>, 100&nbsp;µL plated, 1.48&nbsp;×&nbsp;10<sup>9</sup>&nbsp;CFU/mL.
+                    <a href="blog/cfu-calculator.html">How it works&nbsp;→</a> · <a href="https://mbaffour.github.io/cfu-calculator/">Open it&nbsp;↗</a></figcaption>
+                </figure>
+            </div>
+            <div class="pa-panel" role="tabpanel" id="tp-wm" aria-labelledby="tt-wm" hidden>
+                <figure class="pa" data-anim="unicode">
+                    <figcaption><b>Watermark Remover</b> makes invisible Unicode visible, decodes what it spells, and strips it. Nothing is uploaded.
+                    <a href="blog/watermark-remover.html">How it works&nbsp;→</a> · <a href="https://mbaffour.github.io/watermark-remover/">Open it&nbsp;↗</a></figcaption>
+                </figure>
+            </div>
+        </div>
         <div class="pub-filters" id="toolFilters"></div>
         <div class="card-grid" id="toolsGrid"></div>
     </section>
@@ -1046,6 +1106,7 @@
     <script defer src="assets/js/backgrounds.js"></script>
     <script defer src="assets/js/playground.js"></script>
     <script defer src="assets/js/lysis-fig.js"></script>
+    <script defer src="assets/js/post-anim.js"></script>
     <script defer src="assets/js/ui.js"></script>
 </body>
 </html>

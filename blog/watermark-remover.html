@@ -182,6 +182,7 @@ footer .wrap { max-width: 1080px; }
 <script>
     (function () { try { var t = localStorage.getItem('theme'); if (t) document.documentElement.setAttribute('data-theme', t); } catch (e) {} })();
 </script>
+  <link rel="stylesheet" href="../assets/css/post-anim.css">
 </head>
 <body>
 <a href="#main" class="skip-link">Skip to main content</a>
@@ -227,7 +228,8 @@ footer .wrap { max-width: 1080px; }
             Here is a line of text. It looks like one sentence. It is carrying four separate marks:
         </p>
 
-        <figure>
+        <figure class="pa" data-anim="unicode">
+            <noscript>
             <div class="spec">
                 The quarterly rep<span class="ghost">о</span>rt<span class="ghost">∅ ×14</span> is
                 attached.<span class="ghost">∅ ×2</span> Please review before Friday<span class="ghost">∅ ×2</span>.
@@ -240,6 +242,7 @@ footer .wrap { max-width: 1080px; }
                 <div class="k">Hidden message · variation-selector bytes</div>
                 <div class="v">MB</div>
             </div>
+            </noscript>
             <figcaption>
                 The red blocks are where the tool made invisible characters visible. The Cyrillic <code>о</code> in
                 "report" is a homoglyph — a different letter that looks identical. The tag characters spell out a
@@ -406,5 +409,6 @@ footer .wrap { max-width: 1080px; }
 </footer>
 <script defer src="../assets/js/posts-data.js"></script>
 <script defer src="../assets/js/post.js"></script>
+<script defer src="../assets/js/post-anim.js"></script>
 </body>
 </html>

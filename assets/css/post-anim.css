@@ -2,7 +2,7 @@
    Text and line colours map onto the host page's tokens where they exist
    (the site's --ink / --gold family), with the dark-site values as fallbacks.
    Plates, agar and lawns use fixed colours: they stand for a photographed dish. */
-.pa {
+.pa, .pa-show {
     --pa-ink:   var(--ink, #f5edd8);
     --pa-ink-2: var(--ink-2, #d8c98c);
     --pa-ink-3: var(--ink-3, #ab9059);
@@ -12,7 +12,10 @@
     --pa-good:  var(--green-text, #3fbf6e);
     --pa-bad:   var(--red-text, #f4697f);
     --pa-mono:  'JetBrains Mono', ui-monospace, Menlo, monospace;
-    margin: 2rem 0;
+}
+.pa {
+    max-width: 920px;
+    margin: 2rem auto;
     padding: 0;
     border: 1px solid var(--pa-line);
     border-radius: 14px;
@@ -127,3 +130,17 @@
 .pa-uni-k { display: block; font: 500 0.66rem/1.4 var(--pa-mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--pa-ink-3); }
 .pa-uni-v { display: block; min-height: 1.5em; font: 600 1rem/1.5 var(--pa-mono); color: var(--pa-hot); }
 .pa-uni-foot { margin-top: 14px; font: 600 0.8rem/1.4 var(--pa-mono); color: var(--pa-good); opacity: 0; }
+
+/* tabbed showcase (homepage) */
+.pa-show { margin: 2.2rem auto 0; max-width: 880px; }
+.pa-show-head { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px; margin-bottom: 12px; }
+.pa-tabs { display: flex; flex-wrap: wrap; gap: 8px; }
+.pa-tab {
+    font: 500 0.76rem/1 var(--pa-mono); letter-spacing: 0.02em; color: var(--pa-ink-2); cursor: pointer;
+    padding: 9px 14px; background: transparent; border: 1px solid var(--pa-line); border-radius: 999px;
+}
+.pa-tab:hover { border-color: var(--pa-hot); color: var(--pa-ink); }
+.pa-tab[aria-selected="true"] { background: var(--pa-hot); border-color: var(--pa-hot); color: var(--pa-card); }
+.pa-tab:focus-visible { outline: 2px solid var(--pa-hot); outline-offset: 2px; }
+.pa-show .pa { margin: 0; }
+.pa figcaption a { color: var(--pa-hot); text-decoration: underline; text-underline-offset: 2px; }
