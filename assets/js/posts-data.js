@@ -17,7 +17,8 @@ const posts = [
         updated: "2026-09-14",
         tags: ["Research Software", "Structure Prediction"],
         blurb: "AlphaFold hands you a folder of predictions and a pile of JSON, and most viewers show you the structure while leaving the confidence data in a file you never open. A browser viewer that puts pLDDT, PAE and interface confidence next to the model, compares predictions while showing its pairing, and exports a self-contained interactive report. Nothing is uploaded.",
-        url: "blog/protein-structure-viewer.html"
+        url: "blog/protein-structure-viewer.html",
+        animated: true
     },
     {
         title: "PFU Calculator — the same arithmetic, for plaques",
@@ -95,7 +96,8 @@ const posts = [
         iso: "2026-03-18",
         tags: ["Research Software", "Statistics"],
         blurb: "Quantifies single-cell morphology over time and keeps the statistics honest: per-replicate summaries first, then models at the level the design supports.",
-        url: "blog/cellmorphr.html"
+        url: "blog/cellmorphr.html",
+        animated: true
     },
     {
         title: "HMM Homologue Finder — one reproducible command",
@@ -112,7 +114,8 @@ const posts = [
         iso: "2026-02-11",
         tags: ["Research Software", "Statistics"],
         blurb: "An R/Shiny app turning replicate-level CFU data into publication-ready figures: paired survival as well as absolute counts, log10 statistics with intervals and effect sizes, a data area that stays fixed however the figure is labelled, and one archive holding every export plus the script that rebuilds it.",
-        url: "blog/cfu-plot-studio.html"
+        url: "blog/cfu-plot-studio.html",
+        animated: true
     },
     {
         title: "Genomics Kitchen — the prep station for sequence work",
@@ -120,7 +123,8 @@ const posts = [
         iso: "2026-01-22",
         tags: ["Research Software", "Bioinformatics"],
         blurb: "Five browser-based sequence-prep tools: dedup, QC, comparison, ORF finding and HMM-ready protein cleanup. No installs, no server, no data leaving your machine.",
-        url: "blog/genomics-kitchen.html"
+        url: "blog/genomics-kitchen.html",
+        animated: true
     },
     {
         title: "Gibson Assembly Calculator — exact pipetting volumes",

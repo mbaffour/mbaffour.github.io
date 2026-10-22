@@ -306,6 +306,7 @@
     }
 
     document.addEventListener('keydown', function (e) {
+        if (e.defaultPrevented) return;   // the page handled the key itself (the blog index's own "/" search)
         var t = e.target, typing = t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.isContentEditable);
         if ((e.metaKey || e.ctrlKey) && !e.altKey && e.key.toLowerCase() === 'k') {
             e.preventDefault();
@@ -324,8 +325,7 @@
         b.type = 'button';
         b.className = 'sx-fab';
         b.setAttribute('data-search-open', '');
-        b.setAttribute('aria-label', 'Search the site');
-        b.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg><span>Search</span><kbd>' + (mac ? '⌘K' : 'Ctrl K') + '</kbd>';
+        b.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg><span>Search</span><kbd aria-hidden="true">' + (mac ? '⌘K' : 'Ctrl K') + '</kbd>';
         document.body.appendChild(b);
         // out of the way while reading down the page, back on any scroll up
         var lastY = window.scrollY, tick = false;

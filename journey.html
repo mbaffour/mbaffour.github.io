@@ -264,6 +264,7 @@
                 letter-spacing:.06em; display:block; }
         .place { font-family: var(--font-mono); font-size:.7rem; color: var(--ink-3);
                  margin-top:6px; display:block; line-height:1.4; }
+        .num::before { content: attr(data-n); }
         .num { font-family: var(--font-display); font-size: 2.6rem; font-weight:700;
                color: var(--border-strong); line-height:1; margin-bottom:10px; display:block; }
 
@@ -339,7 +340,9 @@
             body { background:#fff; color:#000; }
             .chapter { break-inside: avoid; }
         }
-    </style>
+            /* links in sentences and footers are underlined, not told apart by colour alone */
+        footer a, .lede a, p > a:not([class]) { text-decoration: underline; text-underline-offset: 3px; }
+</style>
   <link rel="stylesheet" href="assets/css/search.css">
 </head>
 <body>
@@ -354,7 +357,7 @@
     <polygon class="panel" points="16,29.4 10.6,25.9 12.4,20.4 19.6,20.4 21.4,25.9"/>
 </svg>
 
-<div class="topbar">
+<header class="topbar">
     <div class="wrap">
         <a href="index.html" class="back">&larr; Back to research site</a>
         <span class="brand">Michael Baffour Awuah</span>
@@ -368,7 +371,7 @@
         </button>
         </div>
     </div>
-</div>
+</header>
 
 <main id="main">
 <header class="intro">
@@ -389,7 +392,7 @@
     <section class="chapter" aria-labelledby="ch1">
         <div class="rail"><div class="rail-inner">
             <span class="kick">First touch</span>
-            <span class="num" aria-hidden="true">01</span>
+            <span class="num" aria-hidden="true" data-n="01"></span>
             <span class="year">2016 – 2020</span>
             <span class="place">University of Cape Coast<br>Ghana</span>
         </div></div>
@@ -450,7 +453,7 @@
     <section class="chapter" aria-labelledby="ch2">
         <div class="rail"><div class="rail-inner">
             <span class="kick">Build-up play</span>
-            <span class="num" aria-hidden="true">02</span>
+            <span class="num" aria-hidden="true" data-n="02"></span>
             <span class="year">2020 – 2021</span>
             <span class="place">University of Cape Coast<br>Teaching</span>
         </div></div>
@@ -515,7 +518,7 @@
     <section class="chapter" aria-labelledby="ch3">
         <div class="rail"><div class="rail-inner">
             <span class="kick">The transfer</span>
-            <span class="num" aria-hidden="true">03</span>
+            <span class="num" aria-hidden="true" data-n="03"></span>
             <span class="year">Aug 2022</span>
             <span class="place">Texas A&amp;M University<br>College Station, TX</span>
         </div></div>
@@ -569,7 +572,7 @@
     <section class="chapter" aria-labelledby="ch4">
         <div class="rail"><div class="rail-inner">
             <span class="kick">Holding it up</span>
-            <span class="num" aria-hidden="true">04</span>
+            <span class="num" aria-hidden="true" data-n="04"></span>
             <span class="year">The thesis</span>
             <span class="place">Bacteriophage N4<br>Lysis inhibition</span>
         </div></div>
@@ -640,7 +643,7 @@
     <section class="chapter" aria-labelledby="ch5">
         <div class="rail"><div class="rail-inner">
             <span class="kick">First goal</span>
-            <span class="num" aria-hidden="true">05</span>
+            <span class="num" aria-hidden="true" data-n="05"></span>
             <span class="year">2025</span>
             <span class="place">First paper<br>Serwaa</span>
         </div></div>
@@ -699,7 +702,7 @@
     <section class="chapter" aria-labelledby="ch6">
         <div class="rail"><div class="rail-inner">
             <span class="kick">The finish</span>
-            <span class="num" aria-hidden="true">06</span>
+            <span class="num" aria-hidden="true" data-n="06"></span>
             <span class="year">Nov 2025</span>
             <span class="place">First-author preprint<br>bioRxiv</span>
         </div></div>
@@ -742,7 +745,7 @@
     <section class="chapter" aria-labelledby="ch7">
         <div class="rail"><div class="rail-inner">
             <span class="kick">Off the ball</span>
-            <span class="num" aria-hidden="true">07</span>
+            <span class="num" aria-hidden="true" data-n="07"></span>
             <span class="year">Ongoing</span>
             <span class="place">Open-source<br>research software</span>
         </div></div>
@@ -800,7 +803,7 @@
     <section class="chapter" aria-labelledby="ch8">
         <div class="rail"><div class="rail-inner">
             <span class="kick">Silverware</span>
-            <span class="num" aria-hidden="true">08</span>
+            <span class="num" aria-hidden="true" data-n="08"></span>
             <span class="year">Aug 2025</span>
             <span class="place">Texas A&amp;M<br>Recognition</span>
         </div></div>
@@ -865,7 +868,7 @@
     <section class="chapter" aria-labelledby="ch9">
         <div class="rail"><div class="rail-inner">
             <span class="kick">Second half</span>
-            <span class="num" aria-hidden="true">09</span>
+            <span class="num" aria-hidden="true" data-n="09"></span>
             <span class="year">2027</span>
             <span class="place">Next</span>
         </div></div>

@@ -397,6 +397,7 @@
             margin: 0 0 16px;
         }
         .teach-table-wrap { overflow-x: auto; }
+        .teach-table-wrap:focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; border-radius: 6px; }
         .teach-table { width: 100%; border-collapse: collapse; font-size: 0.86rem; }
         .teach-table th {
             text-align: left;
@@ -4109,3 +4110,14 @@ html.motion .rv { opacity: 0; transform: translateY(24px) scale(.985); }
 html.motion .rv.rv-in { opacity: 1; transform: none;
     transition: opacity .7s ease, transform .9s cubic-bezier(.2, .8, .2, 1); transition-delay: calc(var(--rv-i, 0) * 75ms); }
 @media (prefers-reduced-motion: reduce) { html.motion .rv { opacity: 1; transform: none; } }
+
+/* ==========================================================================
+   ACCESSIBILITY PASS
+   ========================================================================== */
+/* the research cards' toggle is a real button now; keep its old look */
+button.research-more { font: inherit; background: none; border: 0; padding: 0; cursor: pointer; color: inherit; }
+button.research-more:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 4px; }
+.research-card { cursor: pointer; }
+/* links inside running text are underlined, not told apart by colour alone */
+main p a:not([class]), main li span a:not([class]), main figcaption a:not([class]), .about-text a, .rec-card span > a {
+    text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }

@@ -109,7 +109,9 @@
         .theme-toggle .ti-moon { display:none; }
         html[data-theme="light"] .theme-toggle .ti-sun  { display:none; }
         html[data-theme="light"] .theme-toggle .ti-moon { display:block; }
-    </style>
+            /* links in sentences and footers are underlined, not told apart by colour alone */
+        footer a, .lede a, p > a:not([class]) { text-decoration: underline; text-underline-offset: 3px; }
+</style>
     <!-- Reading localStorage throws when storage is blocked; without the catch
          the attribute is never set and the dark default wins regardless of the
          visitor's preference. -->
