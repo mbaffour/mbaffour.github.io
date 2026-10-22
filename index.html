@@ -152,6 +152,7 @@
       ]
 }
     </script>
+  <link rel="stylesheet" href="assets/css/search.css">
 </head>
 <body>
     <a href="#main" class="skip-link">Skip to main content</a>
@@ -189,7 +190,7 @@
                     <svg class="theme-icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
                     <svg class="theme-icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
                 </button></li>
-                <li><button class="nav-cmdk" id="cmdkOpen" aria-label="Open command palette">
+                <li><button class="nav-cmdk" id="cmdkOpen" aria-label="Search the site">
                     <span>Search</span> <kbd>⌘K</kbd>
                 </button></li>
             </ul>
@@ -202,6 +203,7 @@
         <canvas class="hero-canvas" id="heroCanvas" aria-hidden="true"></canvas>
         <div class="hero-overlay"></div>
         <div class="hero-content">
+            <div class="hero-copy">
             <span class="hero-eyebrow">
                 <img src="headshot-sm.webp" alt="" class="hero-face" width="96" height="96">
                 <span class="live-dot"></span>
@@ -242,6 +244,38 @@
                 <strong>AI for science</strong> and <strong>scientific software</strong>.
                 <a href="#contact">Get in touch</a>.
             </p>
+
+            </div>
+
+            <!-- A live, simulated darkfield field of view: N4 infecting E. coli,
+                 with lysis inhibition. Drawn by assets/js/scope.js. -->
+            <figure class="hero-scope" id="heroScope" aria-labelledby="scopeCap">
+                <div class="scope-top" aria-hidden="true">
+                    <span class="scope-live"></span>Live simulation · phage N4 × <i>E.&nbsp;coli</i>
+                </div>
+                <div class="scope-field" title="Click to add phages">
+                    <canvas class="scope-canvas" aria-hidden="true"></canvas>
+                    <svg class="scope-reticle" viewBox="0 0 200 200" aria-hidden="true">
+                        <g class="scope-ticks"></g>
+                        <line x1="100" y1="12" x2="100" y2="24"/><line x1="100" y1="176" x2="100" y2="188"/>
+                        <line x1="12" y1="100" x2="24" y2="100"/><line x1="176" y1="100" x2="188" y2="100"/>
+                        <rect class="scope-bar" x="83" y="168" width="34" height="2.4" rx="1"/>
+                        <text x="100" y="164" text-anchor="middle">2 µm</text>
+                    </svg>
+                </div>
+                <div class="scope-hud" aria-hidden="true">
+                    <span><b data-k="inf">1</b> infected</span>
+                    <span><b data-k="lin">0</b> <abbr title="lysis inhibition">LIN</abbr> delays</span>
+                    <span><b data-k="lys">0</b> lysed</span>
+                    <span><b data-k="rel">0</b> phages released</span>
+                </div>
+                <figcaption class="scope-cap" id="scopeCap">
+                    A simulated field, not to scale. Phages land and inject; each extra phage that
+                    arrives during infection holds lysis off longer (<b>LIN</b>), then the rod rounds
+                    up and bursts. Click or tap the field to add phages.
+                    <button type="button" class="scope-add">Add phages</button>
+                </figcaption>
+            </figure>
 
             <!-- Outcomes, not seniority: "5th-year PhD" as the lead metric
                  frames him as a student-in-progress, which is the exact read
@@ -1060,18 +1094,6 @@
 
     </main>
 
-    <!-- ===== COMMAND PALETTE ===== -->
-    <div class="cmdk-overlay" id="cmdkOverlay" role="dialog" aria-modal="true" aria-label="Command palette">
-        <div class="cmdk" id="cmdk">
-            <input class="cmdk-input" id="cmdkInput" type="text" aria-label="Search sections, tools and publications" placeholder="Jump to a section, tool, or paper..." autocomplete="off">
-            <div class="cmdk-results" id="cmdkResults"></div>
-            <div class="cmdk-foot">
-                <span><kbd>↑↓</kbd> navigate · <kbd>↵</kbd> open · <kbd>esc</kbd> close</span>
-                <span>⌘K</span>
-            </div>
-        </div>
-    </div>
-
     <!-- ===== FOOTER ===== -->
     <footer>
         <div class="footer-creds">
@@ -1102,11 +1124,15 @@
     <script defer src="assets/js/posts-data.js"></script>
     <script defer src="assets/js/gallery.js"></script>
     <script defer src="assets/js/builds-data.js"></script>
+    <script defer src="assets/js/site-data.js"></script>
     <script defer src="assets/js/main.js"></script>
     <script defer src="assets/js/backgrounds.js"></script>
     <script defer src="assets/js/playground.js"></script>
     <script defer src="assets/js/lysis-fig.js"></script>
+    <script defer src="assets/js/scope.js"></script>
     <script defer src="assets/js/post-anim.js"></script>
     <script defer src="assets/js/ui.js"></script>
+    <script defer src="assets/js/motion.js"></script>
+<script defer src="assets/js/search.js"></script>
 </body>
 </html>
