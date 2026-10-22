@@ -2418,6 +2418,7 @@
             grid-template-columns: repeat(6, 1fr);
             grid-auto-rows: 180px;
             gap: 0.75rem;
+            grid-auto-flow: dense;   /* back-fill the holes the mixed tile sizes leave */
         }
         .gallery-item {
             position: relative;
@@ -2867,7 +2868,10 @@
         @media (max-width: 560px) {
             .contact-emails { grid-template-columns: 1fr; }
             .contact-emails .contact-primary-icon { justify-self: center; }
-            .contact-email-addr { font-size: 0.92rem; }
+            .contact-email-addr { font-size: 0.98rem; white-space: normal; overflow: visible; text-overflow: clip; overflow-wrap: anywhere; }
+            /* the address on its own line, the buttons under it: never cut the address off */
+            .contact-email-row { grid-template-columns: 1fr; gap: 0.55rem; }
+            .contact-email-actions { justify-content: flex-start; }
         }
 
         .contact-open-to {
@@ -4149,6 +4153,9 @@ main p a:not([class]), main li span a:not([class]), main figcaption a:not([class
     display: flex; justify-content: space-between; align-items: baseline; gap: 12px; pointer-events: none; }
 .dive-kicker { margin: 0; font: 500 .74rem/1 var(--font-mono); letter-spacing: .18em; text-transform: uppercase; color: var(--gold); }
 .dive-clock { font: 600 .8rem/1 var(--font-mono); letter-spacing: .06em; color: var(--ink-2); font-variant-numeric: tabular-nums; }
+.dive-clock b { color: var(--gold); font-weight: 700; }
+.dive-kicker, .dive-clock { white-space: nowrap; }
+@media (max-width: 480px) { .dive-clock span { display: none; } .dive-kicker { font-size: .66rem; letter-spacing: .14em; } }
 .dive-beats { list-style: none; margin: 0; padding: 0; position: absolute; z-index: 2; left: max(20px, env(safe-area-inset-left, 0px)); right: max(20px, env(safe-area-inset-right, 0px)); bottom: 13vh; }
 .dive-beat { position: absolute; left: 0; bottom: 0; max-width: 34ch; padding: 18px 22px; border-radius: 16px;
     background: rgba(12, 10, 5, .72); border: 1px solid rgba(244, 196, 48, .22); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);

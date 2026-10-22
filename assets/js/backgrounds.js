@@ -366,7 +366,12 @@
     let lastFrame = 0;
     function tick(t) {
         if (!running) return;
-        if (t - lastFrame >= FRAME_MS) {
+        // Nothing to draw while the layer is faded out (top of the hero) or while the
+        // full-screen infection dive covers the viewport.
+        const dive = document.getElementById('dive');
+        const covered = dive && (() => { const r = dive.getBoundingClientRect(); return r.top <= 0 && r.bottom >= innerHeight; })();
+        const faded = parseFloat(canvas.style.opacity || '1') < 0.02;
+        if (!covered && !faded && t - lastFrame >= FRAME_MS) {
             lastFrame = t;
             ctx.clearRect(0, 0, w, h);
             for (let i = 0; i < drifters.length; i++) {

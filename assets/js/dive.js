@@ -247,7 +247,7 @@
             lastBeat = cur;
         }
         var m = Math.round(minutes(p));
-        if (clock) clock.textContent = Math.floor(m / 60) + ':' + ('0' + (m % 60)).slice(-2) + ' after infection';
+        if (clock) clock.innerHTML = '<b>' + Math.floor(m / 60) + ':' + ('0' + (m % 60)).slice(-2) + '</b><span> after infection</span>';
         if (bar) bar.style.transform = 'scaleX(' + p.toFixed(4) + ')';
     }
 

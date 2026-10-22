@@ -62,12 +62,19 @@
 .post-nav a{display:block;padding:1rem 1.1rem;border:1px solid var(--border,rgba(128,128,128,.25));border-radius:12px;text-decoration:none;color:inherit;background:var(--bg-card,transparent);transition:border-color .15s,transform .15s}
 .post-nav a:hover{border-color:var(--post-accent);transform:translateY(-2px)}
 .post-nav a.next{text-align:right}
-.post-nav .kicker{display:block;background:none;padding:0;border:0;font-family:var(--font-mono,ui-monospace,Menlo,monospace);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--post-accent);margin-bottom:.35rem}
-.post-nav .title{display:block;font-family:var(--font-display,Georgia,serif);font-size:1.05rem;line-height:1.35;color:var(--ink,inherit)}
+.post-nav .kicker{display:block;background:none;padding:0;border:0;font-family:var(--font-mono,ui-monospace,Menlo,monospace);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--pn-accent,var(--post-accent));margin-bottom:.35rem}
+.post-nav .title{display:block;font-family:var(--font-display,Georgia,serif);font-size:1.05rem;line-height:1.35;color:var(--pn-ink,var(--ink,inherit))}
+.post-nav[style*="--pn-ink"] a{background:var(--pn-card);border-color:var(--pn-line)}
+.post-nav-all[style*="--pn-ink"] a{color:var(--pn-ink)}
 .post-nav-all{text-align:center;margin:0 0 2rem;font-family:var(--font-mono,ui-monospace,Menlo,monospace);font-size:.8rem}
 .post-nav-all a{color:var(--ink-3,inherit);text-decoration:none}
 .post-nav-all a:hover{color:var(--post-accent)}
 main svg[width]{max-width:100%;height:auto}
+/* Posts style their own header with a bare nav{} rule (sticky, blurred, fixed height);
+   the contents list and the post links are <nav> too, and must not inherit any of it. */
+.post-toc nav,nav.post-nav{position:static!important;top:auto!important;z-index:auto!important;height:auto!important;width:auto!important;background:none!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important;border-bottom:0!important;box-shadow:none!important;padding:0!important;transform:none!important}
+nav.post-nav{display:grid!important}
+.post-toc nav{display:block!important}
 @media print{.post-meta-bar button,.post-toc,.post-nav,.post-nav-all{display:none}}`;
     const style = document.createElement('style'); style.textContent = css; document.head.append(style);
 
@@ -134,5 +141,25 @@ main svg[width]{max-width:100%;height:auto}
            its own shape; inside only when the parent is a grid or flex row. */
         const parentIsRow = tail.parentElement && /^(grid|flex|inline-grid|inline-flex)$/.test(getComputedStyle(tail.parentElement).display);
         if (tail !== main && tail.matches('section, article') && !parentIsRow) tail.after(nav, allLine); else tail.append(nav, allLine);
+        /* Light posts can end on a dark band (and dark posts on a light one): read the
+           background actually behind the links and pick inks that stay legible on it. */
+        let e = nav, rgb = null;
+        while (e && !rgb) {
+            const m = getComputedStyle(e).backgroundColor.match(/[\d.]+/g);
+            if (m && (m.length < 4 || +m[3] > 0.5)) rgb = m.slice(0, 3).map(Number);
+            e = e.parentElement;
+        }
+        rgb = rgb || [255, 255, 255];
+        const lin = v => { v /= 255; return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4); };
+        const dark = 0.2126 * lin(rgb[0]) + 0.7152 * lin(rgb[1]) + 0.0722 * lin(rgb[2]) < 0.2;
+        const pageDark = getComputedStyle(document.documentElement).getPropertyValue('--post-accent').trim() !== '#7a5807';
+        if (dark !== pageDark || dark) {
+            [nav, allLine].forEach(n => {
+                n.style.setProperty('--pn-ink', dark ? '#f2ecdc' : '#1a1408');
+                n.style.setProperty('--pn-accent', dark ? '#e3b341' : '#7a5807');
+                n.style.setProperty('--pn-card', dark ? 'rgba(255,255,255,.04)' : 'rgba(255,255,255,.7)');
+                n.style.setProperty('--pn-line', dark ? 'rgba(255,255,255,.18)' : 'rgba(0,0,0,.15)');
+            });
+        }
     }
 })();

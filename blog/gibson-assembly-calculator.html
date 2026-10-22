@@ -620,6 +620,8 @@
   <link rel="stylesheet" href="../assets/css/post-anim.css">
   <style>.pa,.pa-show{--pa-ink:var(--ink);--pa-ink-2:var(--ink-soft);--pa-ink-3:var(--slate);--pa-line:var(--line);--pa-card:#ffffff;--pa-hot:var(--blue);--pa-good:#0f7a43;--pa-bad:#c2410c;--pa-mono:var(--mono);}</style>
   <link rel="stylesheet" href="../assets/css/search.css">
+  <style>/* phone header: one line, no wrapped buttons */ @media (max-width: 560px) { .nav-logo .rev { display: none; } .nav-logo .name { white-space: nowrap; font-size: .9rem; } .nav-cta { white-space: nowrap; } }</style>
+  <style>@media (max-width: 420px) { .m-hide { display: none; }  }</style>
 </head>
 <body>
 <a href="#main" class="skip-link">Skip to main content</a>
@@ -647,7 +649,7 @@
       <a href="#story" class="nav-link">Story</a>
       <a href="#how" class="nav-link">Assembly</a>
       <a href="https://github.com/mbaffour/gibson-assembly-calculator" class="nav-link">GitHub</a>
-      <a href="https://mbaffour.github.io/gibson-assembly-calculator/" class="nav-cta">Open the calculator</a>
+      <a href="https://mbaffour.github.io/gibson-assembly-calculator/" class="nav-cta">Open<span class="m-hide"> the calculator</span></a>
     </div>
   </div>
 </nav>

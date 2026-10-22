@@ -658,6 +658,8 @@
   <link rel="stylesheet" href="../assets/css/post-anim.css">
   <style>.pa,.pa-show{--pa-ink:var(--text);--pa-ink-2:var(--text-2);--pa-ink-3:var(--text-dim);--pa-line:var(--hairline-2);--pa-card:var(--panel);--pa-hot:var(--amber);--pa-good:var(--agar);--pa-bad:var(--flag);--pa-mono:var(--mono);}</style>
   <link rel="stylesheet" href="../assets/css/search.css">
+  <style>/* phone header: one line, no wrapped buttons */ @media (max-width: 560px) { nav .live { display: none; } nav .brand b { white-space: nowrap; } nav .btn { white-space: nowrap; padding: 8px 12px; font-size: .74rem; } }</style>
+  <style>@media (max-width: 420px) { .m-hide { display: none; }  }</style>
 </head>
 <body>
 <a href="#main" class="skip-link">Skip to main content</a>
@@ -686,7 +688,7 @@
         <a href="#bug">The bug</a>
         <a href="#run">Run it</a>
       </div>
-      <a href="https://mbaffour.github.io/cfu-calculator/" class="btn btn-amber">Open the calculator &rarr;</a>
+      <a href="https://mbaffour.github.io/cfu-calculator/" class="btn btn-amber">Open<span class="m-hide"> the calculator</span> &rarr;</a>
     </div>
   </div>
 </nav>

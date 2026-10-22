@@ -342,6 +342,7 @@
         }
             /* links in sentences and footers are underlined, not told apart by colour alone */
         footer a, .lede a, p > a:not([class]) { text-decoration: underline; text-underline-offset: 3px; }
+        @media (max-width: 480px) { .back-long { display: none; } }
 </style>
   <link rel="stylesheet" href="assets/css/search.css">
 </head>
@@ -359,7 +360,7 @@
 
 <header class="topbar">
     <div class="wrap">
-        <a href="index.html" class="back">&larr; Back to research site</a>
+        <a href="index.html" class="back">&larr; Back<span class="back-long"> to research site</span></a>
         <span class="brand">Michael Baffour Awuah</span>
         <div class="topbar-right" style="display:flex;align-items:center;gap:14px">
         <!-- Filled by the chapter tracker. aria-hidden: announcing it on every
