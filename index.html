@@ -200,7 +200,7 @@
     <main id="main">
     <!-- ===== HERO ===== -->
     <section class="hero" id="hero">
-        <canvas class="hero-canvas" id="heroCanvas" aria-hidden="true"></canvas>
+        <canvas class="hero-canvas hero-depth" id="heroDepth" aria-hidden="true"></canvas>
         <div class="hero-overlay"></div>
         <div class="hero-content">
             <div class="hero-copy">
@@ -314,13 +314,35 @@
                     <span class="now-body" id="nowBody">First-author N4 lysis preprint live on bioRxiv · building open tools for phage biology.</span>
                 </span>
             </div>
+            <a class="hero-cue" href="#dive"><span>Look inside one infection</span><span class="hero-cue-arrow" aria-hidden="true">↓</span></a>
         </div>
     </section>
 
+    <!-- ===== INSIDE ONE INFECTION =====
+         A pinned, scroll-driven scene (assets/js/dive.js): one cell from landing
+         to burst. Each caption is real text, so the story reads without the canvas. -->
+    <section class="dive" id="dive" aria-labelledby="diveTitle">
+        <div class="dive-stage">
+            <canvas class="dive-canvas" aria-hidden="true"></canvas>
+            <div class="dive-top">
+                <h2 class="dive-kicker" id="diveTitle">Inside one infection</h2>
+                <span class="dive-clock" aria-hidden="true">0:00 after infection</span>
+            </div>
+            <ol class="dive-beats">
+                <li class="dive-beat" data-at="0">Scroll, and follow one <i>E.&nbsp;coli</i> cell from the moment phage&nbsp;N4 arrives to the moment it bursts.</li>
+                <li class="dive-beat" data-at="0.08"><b>Landing.</b> An N4 particle lands on the cell surface.</li>
+                <li class="dive-beat" data-at="0.18"><b>Injection.</b> It injects its genome. The empty capsid stays outside.</li>
+                <li class="dive-beat" data-at="0.30"><b>A factory.</b> New phages assemble inside, and the infected rod grows longer.</li>
+                <li class="dive-beat" data-at="0.44"><b>Holding on.</b> More phages arrive, and N4 holds lysis off: lysis inhibition. The cell keeps building.</li>
+                <li class="dive-beat" data-at="0.60"><b>The switch.</b> The gp63 pinholin opens holes in the inner membrane, the gp61 endolysin is released to cut the wall, and the rod contracts from the poles into a sphere.</li>
+                <li class="dive-beat" data-at="0.74"><b>Burst.</b> Spanins break the outer membrane and the cell bursts, releasing its progeny: more than 3,000 phages from one cell.</li>
+                <li class="dive-beat" data-at="0.86"><b>The question.</b> What sets that timer, and how N4 holds it, is what I study. <a href="#research">See the research&nbsp;↓</a></li>
+            </ol>
+            <p class="dive-note" aria-hidden="true">Simulation · not to scale · a few dozen progeny drawn</p>
+            <div class="dive-progress" aria-hidden="true"><span></span></div>
+        </div>
+    </section>
 
-    
-
-    
 <!-- ===== ABOUT ===== -->
     <section class="section fade-in" id="about">
         <div class="section-header">
@@ -1130,6 +1152,8 @@
     <script defer src="assets/js/playground.js"></script>
     <script defer src="assets/js/lysis-fig.js"></script>
     <script defer src="assets/js/scope.js"></script>
+    <script defer src="assets/js/hero-depth.js"></script>
+    <script defer src="assets/js/dive.js"></script>
     <script defer src="assets/js/post-anim.js"></script>
     <script defer src="assets/js/ui.js"></script>
     <script defer src="assets/js/motion.js"></script>
