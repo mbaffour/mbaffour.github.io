@@ -242,6 +242,9 @@
             scroll-padding-top: 80px;
             background: var(--bg);
             overflow-x: hidden;
+            /* clip, not hidden, where supported: hidden on both html and body makes
+               body a scroll container, and position: sticky (the dive) stops working */
+            overflow-x: clip;
         }
 
         body {
@@ -250,6 +253,7 @@
             color: var(--ink);
             line-height: 1.65;
             overflow-x: hidden;
+            overflow-x: clip;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
             text-rendering: optimizeLegibility;
@@ -4121,3 +4125,57 @@ button.research-more:focus-visible { outline: 2px solid var(--gold); outline-off
 /* links inside running text are underlined, not told apart by colour alone */
 main p a:not([class]), main li span a:not([class]), main figcaption a:not([class]), .about-text a, .rec-card span > a {
     text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+
+/* ==========================================================================
+   IMMERSION — the hero's out-of-focus culture (hero-depth.js) and the
+   pinned "Inside one infection" dive (dive.js).
+   ========================================================================== */
+.hero-canvas.hero-depth { opacity: 1; filter: blur(3px); }
+/* a little more shade behind the copy column, so the culture never competes with the words */
+@media (min-width: 1100px) { .hero-overlay { background: linear-gradient(90deg, rgba(18,16,9,.55) 0%, rgba(18,16,9,.25) 45%, transparent 62%), radial-gradient(ellipse at center, transparent 0%, rgba(18,16,9,.74) 82%); } }
+.hero-cue { grid-column: 1 / -1; justify-self: center; align-self: center; display: inline-flex; flex-direction: column; align-items: center; gap: 6px;
+    margin-top: 2.2rem; font: 500 .72rem/1 var(--font-mono); letter-spacing: .16em; text-transform: uppercase; color: var(--gold); text-decoration: none; }
+.hero-cue-arrow { font-size: 1.1rem; animation: cueBob 1.8s ease-in-out infinite; }
+@keyframes cueBob { 0%, 100% { transform: translateY(0); opacity: .6; } 50% { transform: translateY(6px); opacity: 1; } }
+.hero-cue:focus-visible { outline: 2px solid var(--gold); outline-offset: 6px; border-radius: 6px; }
+@media (max-width: 1099px) { .hero-cue { order: 4; align-self: center; } }
+
+.dive { position: relative; height: 520vh; background: #050402;
+    /* always the darkfield, in either theme */
+    --ink: #f5edd8; --ink-2: #d8c98c; --ink-3: #ab9059; --gold: #f4c430; --green-text: #3fbf6e; }
+.dive-stage { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; }
+.dive-canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.dive-top { position: absolute; z-index: 2; top: calc(var(--nav-h, 64px) + 18px); left: max(20px, env(safe-area-inset-left, 0px)); right: max(20px, env(safe-area-inset-right, 0px));
+    display: flex; justify-content: space-between; align-items: baseline; gap: 12px; pointer-events: none; }
+.dive-kicker { margin: 0; font: 500 .74rem/1 var(--font-mono); letter-spacing: .18em; text-transform: uppercase; color: var(--gold); }
+.dive-clock { font: 600 .8rem/1 var(--font-mono); letter-spacing: .06em; color: var(--ink-2); font-variant-numeric: tabular-nums; }
+.dive-beats { list-style: none; margin: 0; padding: 0; position: absolute; z-index: 2; left: max(20px, env(safe-area-inset-left, 0px)); right: max(20px, env(safe-area-inset-right, 0px)); bottom: 13vh; }
+.dive-beat { position: absolute; left: 0; bottom: 0; max-width: 34ch; padding: 18px 22px; border-radius: 16px;
+    background: rgba(12, 10, 5, .72); border: 1px solid rgba(244, 196, 48, .22); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+    font: 400 clamp(1.05rem, 2vw, 1.4rem)/1.45 var(--font-display); color: var(--ink);
+    opacity: 0; transform: translateY(18px); transition: opacity .45s ease, transform .6s cubic-bezier(.2, .8, .2, 1); }
+.dive-beat b { color: var(--gold); font-weight: 600; }
+.dive-beat a { color: var(--gold); text-decoration: underline; text-underline-offset: 3px; font-family: var(--font-body); font-size: .85em; white-space: nowrap; }
+.dive-beat.on, .dive-beat:focus-within { opacity: 1; transform: none; }
+.dive-beat.past { transform: translateY(-14px); }
+.dive-note { position: absolute; z-index: 2; right: max(20px, env(safe-area-inset-right, 0px)); bottom: calc(13vh + 4px); margin: 0;
+    font: 500 .64rem/1.4 var(--font-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3); max-width: 16ch; text-align: right; }
+.dive-progress { position: absolute; z-index: 2; left: 0; right: 0; bottom: 0; height: 3px; background: rgba(244, 196, 48, .12); }
+.dive-progress span { display: block; height: 100%; background: linear-gradient(90deg, var(--gold), var(--green-text)); transform-origin: 0 50%; transform: scaleX(0); }
+@media (max-width: 700px) {
+    .dive { height: 460vh; }
+    .dive-beats { bottom: 9vh; }
+    .dive-beat { max-width: none; right: 0; padding: 14px 16px; }
+    .dive-note { display: none; }
+}
+/* reduced motion: no pinning, one still frame, every caption in order */
+.dive.dive-static { height: auto; padding: 5rem 0 3rem; }
+.dive.dive-static .dive-stage { position: relative; height: auto; overflow: visible; display: grid; gap: 1.5rem;
+    padding: 0 max(20px, env(safe-area-inset-left, 0px)); max-width: 1100px; margin: 0 auto; }
+.dive.dive-static .dive-canvas { position: relative; height: auto; aspect-ratio: 16 / 9; border-radius: 18px; }
+.dive.dive-static .dive-top { position: static; order: -1; }
+.dive.dive-static .dive-clock { display: none; }
+.dive.dive-static .dive-kicker { font-size: .9rem; }
+.dive.dive-static .dive-beats { position: static; display: grid; gap: .8rem; counter-reset: beat; }
+.dive.dive-static .dive-beat { position: static; opacity: 1; transform: none; max-width: 62ch; }
+.dive.dive-static .dive-note, .dive.dive-static .dive-progress { display: none; }
