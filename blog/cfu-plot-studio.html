@@ -17,7 +17,7 @@
       --paper-3:    #ede6d6;
       --ink:        #201d17;
       --ink-soft:   #4a4638;
-      --ink-muted:  #837c6b;
+      --ink-muted:  #6a6456;
       --forest:     #1b5e3f;
       --forest-deep:#123f2b;
       --forest-lt:  #e7efe8;
@@ -363,7 +363,7 @@
       font-size: 0.68rem;
       line-height: 1.5;
       letter-spacing: 0.03em;
-      color: rgba(243,240,230,0.72);
+      color: rgba(243,240,230,0.84);
     }
     @media (max-width: 760px) {
       .specs-inner { grid-template-columns: repeat(2, 1fr); }
@@ -637,6 +637,8 @@
     </script>
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><polygon points='16,5 25,10 25,18 16,23 7,18 7,10' fill='%23f4c430' stroke='%23f4c430' stroke-width='1.5'/><line x1='16' y1='23' x2='16' y2='28' stroke='%23f4c430' stroke-width='2' stroke-linecap='round'/><line x1='13' y1='28' x2='19' y2='28' stroke='%23f4c430' stroke-width='2' stroke-linecap='round'/></svg>">
   <link rel="stylesheet" href="../assets/css/search.css">
+  <link rel="stylesheet" href="../assets/css/post-anim.css">
+  <style>.pa,.pa-show{--pa-ink:var(--ink);--pa-ink-2:var(--ink-soft);--pa-ink-3:#6b6455;--pa-line:var(--rule);--pa-card:#fffdf8;--pa-hot:var(--forest);--pa-good:var(--forest);--pa-bad:#a4402a;--pa-mono:var(--mono);}</style>
 </head>
 <body>
 <a href="#main" class="skip-link">Skip to main content</a>
@@ -650,7 +652,7 @@
       <span class="brand-mark">CFU Plot Studio</span>
       <span class="brand-vol">R / Shiny · v0.1.0</span>
     </a>
-    <nav class="nav">
+    <nav class="nav" aria-label="Sections">
       <a href="#methods" class="hide-sm">Methods</a>
       <a href="#story" class="hide-sm">Notes</a>
       <a href="#protocol" class="hide-sm">Protocol</a>
@@ -1013,6 +1015,9 @@
         </div>
       </div>
     </div>
+    <figure class="pa" data-anim="csvplot">
+      <figcaption><b>From the CSV to the figure, and the script.</b> Replicate-level counts are mapped to sample, timepoint, replicate and CFU, plotted on a log<sub>10</sub> axis with SD error bars and an adjusted p-value, and exported with the R script that rebuilds the figure. Counts are illustrative; the script is abbreviated.</figcaption>
+    </figure>
   </div>
 </section>
 
@@ -1085,7 +1090,7 @@
 <footer>
   <div class="footer-inner">
     <p>CFU Plot Studio v0.1.0 · © 2026 Michael Baffour Awuah · MIT License</p>
-    <nav>
+    <nav aria-label="Footer">
       <a href="https://mbaffour.github.io/cfu-plot-studio/">Download &amp; run</a>
       <a href="https://github.com/mbaffour/cfu-plot-studio">GitHub</a>
       <a href="https://mbaffour.github.io/">← Back to site</a>
@@ -1112,5 +1117,6 @@
 <script defer src="../assets/js/posts-data.js"></script>
 <script defer src="../assets/js/post.js"></script>
 <script defer src="../assets/js/search.js"></script>
+<script defer src="../assets/js/post-anim.js"></script>
 </body>
 </html>

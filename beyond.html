@@ -46,8 +46,10 @@
         .skip-link{position:absolute;left:1rem;top:-3rem;z-index:2000;padding:.7rem 1.15rem;background:#f4c430;color:#121009;font-family:var(--font-mono);font-size:.82rem;font-weight:700;border-radius:0 0 10px 10px;text-decoration:none;transition:top .18s ease}
         .skip-link:focus{top:0}
         footer.page-footer { border-top: 1px solid var(--border); padding: 32px 24px; text-align: center; color: var(--ink-3); font-size: 0.85rem; }
-        footer.page-footer a { color: var(--gold); text-decoration: none; }
-    </style>
+        footer.page-footer a { color: var(--gold); text-decoration: underline; text-underline-offset: 3px; }
+            /* links in sentences and footers are underlined, not told apart by colour alone */
+        footer a, .lede a, p > a:not([class]) { text-decoration: underline; text-underline-offset: 3px; }
+</style>
     <script>(function(){var r=document.documentElement;r.classList.remove('no-js');var t=null;try{t=localStorage.getItem('theme')}catch(e){}
     if(t!=='dark'&&t!=='light'){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}
     r.setAttribute('data-theme',t)})()</script>
@@ -55,7 +57,7 @@
 </head>
 <body>
 <a href="#main" class="skip-link">Skip to main content</a>
-<div class="topbar">
+<header class="topbar">
     <div class="wrap">
         <a href="index.html" class="back">&larr; Back to research site</a>
         <span class="brand">Michael Baffour Awuah</span>
@@ -64,7 +66,7 @@
             <svg class="ti-moon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
         </button>
     </div>
-</div>
+</header>
 <main id="main">
     <header class="page-hero">
         <span class="eyebrow">Off the clock</span>
@@ -97,7 +99,7 @@
 
             <!-- Interactive: the eleven things I lean on, as a starting XI. -->
             <div class="pitch-widget" id="pitchWidget">
-                <h3 class="pitch-h3">My starting XI</h3>
+                <h2 class="pitch-h3">My starting XI</h2>
                 <p class="pitch-hint">Every skill this PhD runs on, in a 4&#8209;3&#8209;3. Pick a shirt.</p>
 
                 <svg class="pitch-svg" viewBox="0 0 100 100" role="group"

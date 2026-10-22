@@ -518,7 +518,7 @@
     border-top: 1px solid var(--line-navy);
   }
   .foot-bar p { font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.04em; color: var(--slate-lt); }
-  .foot-bar a { color: var(--cyan-soft); }
+  .foot-bar a { color: var(--cyan-soft); text-decoration: underline; text-underline-offset: 3px; }
   .foot-bar a:hover { color: var(--cyan); }
 
   /* ───────────────── RESPONSIVE ───────────────── */
@@ -629,7 +629,7 @@
 <!-- ─────────── NAV ─────────── -->
 <nav>
   <div class="nav-inner">
-    <a href="#top" class="nav-logo" aria-label="Gibson Assembly Calculator, home">
+    <a href="#top" class="nav-logo">
       <svg class="glyph" viewBox="0 0 32 32" fill="none" aria-hidden="true">
         <rect x="1.5" y="1.5" width="29" height="29" rx="2" stroke="#38bdf8" stroke-width="1.4"/>
         <line x1="6" y1="12" x2="26" y2="12" stroke="#38bdf8" stroke-width="1.4"/>
@@ -639,7 +639,7 @@
       </svg>
       <span>
         <span class="name">Gibson Assembly Calculator</span>
-        <span class="rev">DWG · CLONING / MOLAR-RATIO</span>
+        <span class="rev" aria-hidden="true">DWG · CLONING / MOLAR-RATIO</span>
       </span>
     </a>
     <div class="nav-links">

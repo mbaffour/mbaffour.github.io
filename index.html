@@ -190,7 +190,7 @@
                     <svg class="theme-icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
                     <svg class="theme-icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
                 </button></li>
-                <li><button class="nav-cmdk" id="cmdkOpen" aria-label="Search the site">
+                <li><button class="nav-cmdk" id="cmdkOpen" aria-label="Search ⌘K">
                     <span>Search</span> <kbd>⌘K</kbd>
                 </button></li>
             </ul>
@@ -462,7 +462,7 @@
         </figure>
 
         <div class="research-grid">
-            <div class="research-card" tabindex="0" role="button" aria-expanded="false">
+            <div class="research-card">
                 <span class="research-icon" aria-hidden="true">
                     <svg viewBox="0 0 32 32" width="28" height="28" xmlns="http://www.w3.org/2000/svg">
                         <polygon points="16,1 18.5,8 25,4 21,11 31,12 22,15 28,21 20,18 17,31 15,19 5,23 11,15 1,14 11,11 4,4 13,9"
@@ -487,10 +487,10 @@
                     <span class="research-tag">N4</span>
                     <span class="research-tag">Host–Pathogen</span>
                 </div>
-                <span class="research-more"><span class="chev">›</span> what this means</span>
+                <button type="button" class="research-more" aria-expanded="false"><span class="chev" aria-hidden="true">›</span> what this means</button>
                 <div class="research-detail"><p>This is my thesis. The published half: N4 lyses through a <em>SAR endolysin–holin</em> system, with genomic regions in and beyond the lysis cassette involved in delaying it (<a href="https://doi.org/10.1101/2025.11.12.688109" target="_blank" rel="noopener">preprint</a>). The half still in preparation: a novel regulator of that timing decision — the work the Patterson Fellowship recognised. Together they reframe the question from <em>when</em> a phage kills to <em>whether it gives up the cell</em>.</p></div>
             </div>
-            <div class="research-card" tabindex="0" role="button" aria-expanded="false">
+            <div class="research-card">
                 
                 <h3>Molecular Engineering</h3>
                 <p>Cloning, targeted knockouts and complementation to test which N4 genes gate lysis timing. <em>Future direction:</em> programmable microbial biofactories built from reverse-engineered viral machinery.</p>
@@ -499,10 +499,10 @@
                     <span class="research-tag">Gene Knockouts</span>
                     <span class="research-tag">Protein Expression</span>
                 </div>
-                <span class="research-more"><span class="chev">›</span> what this means</span>
+                <button type="button" class="research-more" aria-expanded="false"><span class="chev" aria-hidden="true">›</span> what this means</button>
                 <div class="research-detail"><p>Cloning, targeted knockouts, complementation and protein expression to test which N4 genes gate lysis timing. Lysis timing sets burst size, so the same genes are the knobs a production process would turn — <em>that translation is the goal, not yet a result</em>.</p></div>
             </div>
-            <div class="research-card" tabindex="0" role="button" aria-expanded="false">
+            <div class="research-card">
                 
                 <h3>Computational &amp; ML Analysis</h3>
                 <p>RNA-seq and differential expression to read the transcriptomic landscape of phage–host interactions, plus trained models where counting by eye does not scale.</p>
@@ -512,10 +512,10 @@
                     <span class="research-tag">ResNet-18</span>
                     <span class="research-tag">AlphaFold 3</span>
                 </div>
-                <span class="research-more"><span class="chev">›</span> what this means</span>
+                <button type="button" class="research-more" aria-expanded="false"><span class="chev" aria-hidden="true">›</span> what this means</button>
                 <div class="research-detail"><p>Mapping the N4 infection transcriptome with RNA-seq and DESeq2, wrapped in <em>reproducible pipelines</em> I package as tools so the analysis runs the same way every time. Where the bottleneck is counting rather than sequencing, I train and evaluate the model myself: the plaque-vs-texture classifier in Plaque Toolkit is a ResNet-18 trained on 15,659 boxes, scoring <em>F1&nbsp;≈&nbsp;0.95</em> leave-one-plate-out, and validated against hand-labelled plates (<em>r&nbsp;≥&nbsp;0.99</em> on diameter, ICC&nbsp;0.97 versus independent Fiji tracing). PooledPPI designs pooled AlphaFold&nbsp;3 screens — predictions are hypotheses, and the top candidates are what I go back to the bench to test.</p></div>
             </div>
-            <div class="research-card" tabindex="0" role="button" aria-expanded="false">
+            <div class="research-card">
                 
                 <h3>Phage Discovery</h3>
                 <p>Isolating and characterizing novel bacteriophages from the environment with classical microbiology, TEM, host-range profiling, and full genomics.</p>
@@ -524,7 +524,7 @@
                     <span class="research-tag">TEM</span>
                     <span class="research-tag">Host Range</span>
                 </div>
-                <span class="research-more"><span class="chev">›</span> what this means</span>
+                <button type="button" class="research-more" aria-expanded="false"><span class="chev" aria-hidden="true">›</span> what this means</button>
                 <div class="research-detail"><p>From plaque to TEM to full genome. This is how I isolated and characterized <em>Serwaa</em>, the novel phage behind my first paper, named after my grandmother. My undergraduate mentee Annie Koh joined the work and carried much of it with me.</p></div>
             </div>
         </div>
@@ -724,7 +724,7 @@
         <div class="teach-grid">
             <div class="teach-block">
                 <h3 class="teach-heading">Courses taught</h3>
-                <div class="teach-table-wrap">
+                <div class="teach-table-wrap" tabindex="0" role="region" aria-label="Courses taught (scrolls sideways on small screens)">
                     <table class="teach-table">
                         <caption class="sr-only">Courses taught, with enrolment, term and institution</caption>
                         <thead>
@@ -908,7 +908,7 @@
                         <button class="toggle-btn" id="presetNormal">Normal phage</button>
                         <button class="toggle-btn active" id="presetN4">N4 (inhibited)</button>
                     </div>
-                    <button class="pg-play" id="pgPlay" aria-label="Play the infection animation">▶ Play infection</button>
+                    <button class="pg-play" id="pgPlay"><span aria-hidden="true">▶ </span>Play infection</button>
                 </div>
             </div>
         </div>
@@ -917,7 +917,7 @@
              builds-data.js so this and builds.html cannot drift apart. Capped
              at three: the full grid is what crowded these off the homepage in
              the first place. -->
-        <a class="tf-callout" href="builds.html#next" aria-label="Play TailFiber, the phage arcade game, on the other tools page">
+        <a class="tf-callout" href="builds.html#next">
             <span class="tf-callout-art" aria-hidden="true">
                 <svg viewBox="0 0 120 120" width="120" height="120" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
                     <polygon points="60,10 88,26 88,58 60,74 32,58 32,26"/>

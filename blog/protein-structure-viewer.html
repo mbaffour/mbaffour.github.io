@@ -169,6 +169,7 @@ td:first-child { color: var(--ink); font-weight: 500; white-space: nowrap; }
 .btn:hover { border-color: var(--gold); }
 .btn-primary { background: var(--gold); border-color: var(--gold); color: #16130a; font-weight: 600; }
 html[data-theme="light"] .btn-primary { color: #fffdf6; }
+@media (prefers-color-scheme: light) { html:not([data-theme]) .btn-primary { color: #fffdf6; } }
 
 footer { border-top: 1px solid var(--border); padding: 28px 0 48px; color: var(--ink-3); font-size: 0.85rem; }
 footer .wrap { max-width: 1080px; }
@@ -202,6 +203,7 @@ figure.shot-fig { padding: 10px; }
     (function () { try { var t = localStorage.getItem('theme'); if (t) document.documentElement.setAttribute('data-theme', t); } catch (e) {} })();
 </script>
   <link rel="stylesheet" href="../assets/css/search.css">
+  <link rel="stylesheet" href="../assets/css/post-anim.css">
 </head>
 <body>
 <a href="#main" class="skip-link">Skip to main content</a>
@@ -415,6 +417,12 @@ figure.shot-fig { padding: 10px; }
             pLDDT across a predicted dimer tells you the two chains are each individually well-folded. It tells you
             approximately nothing about whether they actually touch the way the picture shows.
         </p>
+
+        <figure class="pa" data-anim="plddt">
+            <figcaption><b>pLDDT and PAE, side by side.</b> Both domains score above 90, so coloured by pLDDT the model looks
+            confident. The PAE map says what pLDDT cannot: each domain is well predicted internally, but the error between
+            them is high, so where they sit relative to each other is unknown. An illustrative model, not a real prediction.</figcaption>
+        </figure>
 
         <figure>
             <div class="bands">
@@ -881,7 +889,7 @@ viewport on phones.
         </p>
 
         <h2>What it loads</h2>
-        <div class="table-scroll">
+        <div class="table-scroll" tabindex="0" role="region" aria-label="Table (scrolls sideways on small screens)">
         <table>
             <thead><tr><th>Input</th><th>What happens</th><th>Needs network?</th></tr></thead>
             <tbody>
@@ -963,5 +971,6 @@ viewport on phones.
 <script defer src="../assets/js/posts-data.js"></script>
 <script defer src="../assets/js/post.js"></script>
 <script defer src="../assets/js/search.js"></script>
+<script defer src="../assets/js/post-anim.js"></script>
 </body>
 </html>

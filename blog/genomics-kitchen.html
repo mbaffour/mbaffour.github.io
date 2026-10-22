@@ -20,11 +20,11 @@
     --border-2:   #e2cba6;
     --ink:        #2b2118;
     --ink-soft:   #4f4234;
-    --clay:       #8a7768;
-    --tomato:     #e04a2f;
-    --tomato-d:   #c33b23;
+    --clay:       #766559;
+    --tomato:     #c8381e;
+    --tomato-d:   #a12c15;
     --tomato-lt:  #fdece7;
-    --herb:       #4a7c59;
+    --herb:       #467654;
     --herb-d:     #3a6347;
     --herb-lt:    #e9f2ea;
     --mustard:    #d99a2b;
@@ -259,7 +259,7 @@
   .rcard.c-mustard .rcard-ribbon { background: var(--mustard); color: #3a2c10; }
   .rcard-no {
     font-family: var(--mono); font-weight: 700; font-size: 0.72rem;
-    letter-spacing: 0.08em; opacity: 0.9;
+    letter-spacing: 0.08em;
     border: 1.5px solid rgba(255,255,255,0.5); border-radius: 6px;
     padding: 2px 7px;
   }
@@ -512,6 +512,8 @@
     </script>
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><polygon points='16,5 25,10 25,18 16,23 7,18 7,10' fill='%23f4c430' stroke='%23f4c430' stroke-width='1.5'/><line x1='16' y1='23' x2='16' y2='28' stroke='%23f4c430' stroke-width='2' stroke-linecap='round'/><line x1='13' y1='28' x2='19' y2='28' stroke='%23f4c430' stroke-width='2' stroke-linecap='round'/></svg>">
   <link rel="stylesheet" href="../assets/css/search.css">
+  <link rel="stylesheet" href="../assets/css/post-anim.css">
+  <style>.pa,.pa-show{--pa-ink:var(--ink);--pa-ink-2:var(--ink-soft);--pa-ink-3:#6f5d4f;--pa-line:var(--border-2);--pa-card:var(--card);--pa-hot:var(--tomato-d);--pa-good:var(--herb-d);--pa-bad:var(--tomato-d);--pa-mono:var(--mono);}</style>
 </head>
 <body class="dotgrid">
 <a href="#main" class="skip-link">Skip to main content</a>
@@ -698,6 +700,9 @@
         </div>
       </div>
     </div>
+    <figure class="pa" data-anim="kitchen">
+      <figcaption><b>The prep line.</b> SeqSieve collapses exact duplicates and keeps the mapping, ReadLens profiles length and GC and surfaces bad characters instead of swallowing them, ORFScout scans all six reading frames, and everything exports as tables or FASTA. All of it in the browser; nothing is uploaded. Sequences are illustrative.</figcaption>
+    </figure>
   </div>
 </section>
 
@@ -842,5 +847,6 @@
 <script defer src="../assets/js/posts-data.js"></script>
 <script defer src="../assets/js/post.js"></script>
 <script defer src="../assets/js/search.js"></script>
+<script defer src="../assets/js/post-anim.js"></script>
 </body>
 </html>

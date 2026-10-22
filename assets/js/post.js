@@ -13,7 +13,7 @@
     if (!main) return;
     /* Anchor to the text column: the parent of the first h2 inside main. Some posts lay
        .wrap out as a grid or flex row, and a block appended there lands in a new column. */
-    const contentHeadings = [...main.querySelectorAll('h2')].filter(h => !h.closest('.finale, footer, nav'));
+    const contentHeadings = [...main.querySelectorAll('h2')].filter(h => !h.closest('.finale, footer, nav, [role="img"], [aria-hidden="true"]'));
     const fallback = main.querySelector('article') || main.querySelector('.wrap') || main;
     const columnOf = heading => {
         let node = (heading && heading.parentElement) || fallback;
@@ -29,15 +29,25 @@
     const index = list.findIndex(p => slug(p.url) === here);
     const post = index >= 0 ? list[index] : null;
 
+    /* The accent for the contents and post links: the page's own --gold when it has one,
+       otherwise a gold that clears 4.5:1 on this page's background, light or dark. */
+    (function () {
+        const root = document.documentElement;
+        if (getComputedStyle(root).getPropertyValue('--gold').trim()) { root.style.setProperty('--post-accent', 'var(--gold)'); return; }
+        const m = (getComputedStyle(document.body).backgroundColor.match(/[\d.]+/g) || [255, 255, 255]).map(Number);
+        const lin = v => { v /= 255; return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4); };
+        const L = 0.2126 * lin(m[0]) + 0.7152 * lin(m[1]) + 0.0722 * lin(m[2]);
+        root.style.setProperty('--post-accent', L > 0.4 ? '#7a5807' : '#d9a520');
+    })();
     const css = `
 .post-meta-bar,.post-toc,.post-nav,.post-nav-all{text-align:left;box-sizing:border-box;width:auto;max-width:100%;margin-left:0;margin-right:0;padding-left:0;padding-right:0;text-indent:0;float:none;columns:auto}
 .post-meta-bar{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem 1.1rem;margin:0 0 1.6rem;padding:.7rem 0;border-top:1px solid var(--border,rgba(128,128,128,.25));border-bottom:1px solid var(--border,rgba(128,128,128,.25));font-family:var(--font-mono,ui-monospace,Menlo,monospace);font-size:.78rem;color:var(--ink-3,inherit);letter-spacing:.01em}
 .post-meta-bar a{color:inherit;text-decoration:none}
-.post-meta-bar a:hover,.post-meta-bar button:hover{color:var(--gold,#b8860b)}
+.post-meta-bar a:hover,.post-meta-bar button:hover{color:var(--post-accent)}
 .post-meta-bar .sep{opacity:.45}
 .post-meta-bar button{font:inherit;color:inherit;background:none;border:1px solid var(--border-strong,rgba(128,128,128,.4));border-radius:999px;padding:.2rem .7rem;cursor:pointer;margin-left:auto}
 .post-toc{margin:0 0 2rem;border:1px solid var(--border,rgba(128,128,128,.25));border-radius:12px;background:var(--bg-card,transparent)}
-.post-toc summary{cursor:pointer;padding:.8rem 1rem;font-family:var(--font-mono,ui-monospace,Menlo,monospace);font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold,#b8860b);list-style:none;display:flex;justify-content:space-between;align-items:center}
+.post-toc summary{cursor:pointer;padding:.8rem 1rem;font-family:var(--font-mono,ui-monospace,Menlo,monospace);font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--post-accent);list-style:none;display:flex;justify-content:space-between;align-items:center}
 .post-toc summary::-webkit-details-marker{display:none}
 .post-toc summary::after{content:'+';font-size:1rem;opacity:.7}
 .post-toc[open] summary::after{content:'–'}
@@ -45,18 +55,18 @@
 @media (min-width:760px){.post-toc ol{columns:2;column-gap:2rem}}
 .post-toc li{break-inside:avoid;margin:0;padding:.22rem 0;font-size:.92rem;line-height:1.45}
 .post-toc a{color:var(--ink-2,inherit);text-decoration:none;border-left:2px solid transparent;padding-left:.6rem;display:inline-block;transition:color .15s,border-color .15s}
-.post-toc a:hover{color:var(--gold,#b8860b)}
-.post-toc li.current a{color:var(--gold,#b8860b);border-left-color:var(--gold,#b8860b)}
+.post-toc a:hover{color:var(--post-accent)}
+.post-toc li.current a{color:var(--post-accent);border-left-color:var(--post-accent)}
 .post-nav{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:3rem 0 1rem}
 @media (max-width:640px){.post-nav{grid-template-columns:1fr}}
 .post-nav a{display:block;padding:1rem 1.1rem;border:1px solid var(--border,rgba(128,128,128,.25));border-radius:12px;text-decoration:none;color:inherit;background:var(--bg-card,transparent);transition:border-color .15s,transform .15s}
-.post-nav a:hover{border-color:var(--gold,#b8860b);transform:translateY(-2px)}
+.post-nav a:hover{border-color:var(--post-accent);transform:translateY(-2px)}
 .post-nav a.next{text-align:right}
-.post-nav .kicker{display:block;background:none;padding:0;border:0;font-family:var(--font-mono,ui-monospace,Menlo,monospace);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold,#b8860b);margin-bottom:.35rem}
+.post-nav .kicker{display:block;background:none;padding:0;border:0;font-family:var(--font-mono,ui-monospace,Menlo,monospace);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--post-accent);margin-bottom:.35rem}
 .post-nav .title{display:block;font-family:var(--font-display,Georgia,serif);font-size:1.05rem;line-height:1.35;color:var(--ink,inherit)}
 .post-nav-all{text-align:center;margin:0 0 2rem;font-family:var(--font-mono,ui-monospace,Menlo,monospace);font-size:.8rem}
 .post-nav-all a{color:var(--ink-3,inherit);text-decoration:none}
-.post-nav-all a:hover{color:var(--gold,#b8860b)}
+.post-nav-all a:hover{color:var(--post-accent)}
 main svg[width]{max-width:100%;height:auto}
 @media print{.post-meta-bar button,.post-toc,.post-nav,.post-nav-all{display:none}}`;
     const style = document.createElement('style'); style.textContent = css; document.head.append(style);

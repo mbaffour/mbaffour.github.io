@@ -23,7 +23,7 @@
     --indigo-d:   #4338ca;
     --indigo-lt:  #eef0ff;
     --coral:      #fb7185;
-    --coral-d:    #f43f6e;
+    --coral-d:    #d30c41;
     --coral-lt:   #fff1f4;
     --mint:       #10b981;
     --mint-lt:    #e7f8f1;
@@ -301,6 +301,7 @@
     background: #fff; border: 1px solid var(--line); border-radius: var(--r-md);
     padding: 26px 24px; box-shadow: var(--shadow-sm); position: relative;
   }
+  .how .step-n::before { content: attr(data-n); }
   .how .step-n {
     position: absolute; top: 22px; right: 22px;
     font-size: 2.1rem; font-weight: 800; color: var(--panel-2); letter-spacing: -0.04em;
@@ -571,7 +572,7 @@
         <h2>Five stages, one clear path forward</h2>
         <p>Each stage hands off to the next automatically. You watch it flow — you don't stitch the tools together by hand.</p>
       </div>
-      <div class="pipe" role="list" aria-label="Discovery pipeline stages">
+      <div class="pipe" role="list" aria-label="Discovery pipeline stages" tabindex="0">
         <div class="pipe-node" role="listitem">
           <div class="n" aria-hidden="true">🧬</div>
           <h3>Align</h3>
@@ -713,19 +714,19 @@
     </div>
     <div class="how-grid">
       <div class="how">
-        <span class="step-n" aria-hidden="true">01</span>
+        <span class="step-n" aria-hidden="true" data-n="01"></span>
         <div class="step-pip" aria-hidden="true">1</div>
         <h3>Launch &amp; open a project</h3>
         <p>Install with conda, one <code>docker run</code>, or the launcher script, then open <code>127.0.0.1:8081</code>. Create a project folder — everything for the run lives there.</p>
       </div>
       <div class="how">
-        <span class="step-n" aria-hidden="true">02</span>
+        <span class="step-n" aria-hidden="true" data-n="02"></span>
         <div class="step-pip" aria-hidden="true">2</div>
         <h3>Load seeds, align, build</h3>
         <p>Use the native file picker to point at your seed FASTA — no path typing. Run MAFFT and trimAl, build the HMM, and confirm seed self-recovery before scaling up.</p>
       </div>
       <div class="how">
-        <span class="step-n" aria-hidden="true">03</span>
+        <span class="step-n" aria-hidden="true" data-n="03"></span>
         <div class="step-pip" aria-hidden="true">3</div>
         <h3>Search, classify, export</h3>
         <p>Pick your databases and search, review hits by confidence tier, recover synteny, build a tree — then export the ZIP with the methods text included.</p>

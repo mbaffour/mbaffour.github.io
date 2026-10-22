@@ -60,7 +60,7 @@
         selected = p.n;
         panel.innerHTML =
             '<span class="pd-role">' + p.role + ' &middot; #' + p.n + '</span>' +
-            '<h4 class="pd-name">' + p.name + '</h4>' +
+            '<h3 class="pd-name">' + p.name + '</h3>' +
             '<p class="pd-note">' + p.note + '</p>';
         Array.prototype.forEach.call(pitch.querySelectorAll('.shirt'), function (g) {
             var on = g.getAttribute('data-n') === String(p.n);
@@ -78,7 +78,8 @@
         g.setAttribute('aria-pressed', 'false');
         // The accessible name carries the content, so a screen reader gets the
         // squad without having to interpret a drawing.
-        g.setAttribute('aria-label', p.role + ', number ' + p.n + ': ' + p.name);
+        // starts with what the shirt shows (number and position), as the label must contain it
+        g.setAttribute('aria-label', p.n + ' ' + p.pos + ' · ' + p.role + ': ' + p.name);
 
         // Invisible, larger hit area. The visible disc is ~32 px across on a
         // phone, under the 44 px touch-target minimum; widening the disc itself
@@ -91,20 +92,22 @@
         c.setAttribute('cx', p.x); c.setAttribute('cy', p.y); c.setAttribute('r', '5.4');
         c.setAttribute('class', 'shirt-disc');
 
+        // number and position in one <text>, so the visible label reads "1 GK",
+        // which the accessible name starts with
         var t = document.createElementNS(NS, 'text');
-        t.setAttribute('x', p.x); t.setAttribute('y', p.y);
-        t.setAttribute('class', 'shirt-num');
         t.setAttribute('text-anchor', 'middle');
-        t.setAttribute('dominant-baseline', 'central');
-        t.textContent = String(p.n);
-
-        var l = document.createElementNS(NS, 'text');
+        var tn = document.createElementNS(NS, 'tspan');
+        tn.setAttribute('x', p.x); tn.setAttribute('y', p.y);
+        tn.setAttribute('class', 'shirt-num');
+        tn.setAttribute('dominant-baseline', 'central');
+        tn.textContent = String(p.n);
+        var l = document.createElementNS(NS, 'tspan');
         l.setAttribute('x', p.x); l.setAttribute('y', p.y + 9.6);
         l.setAttribute('class', 'shirt-pos');
-        l.setAttribute('text-anchor', 'middle');
-        l.textContent = p.pos;
+        l.textContent = ' ' + p.pos;
+        t.appendChild(tn); t.appendChild(l);
 
-        g.appendChild(hit); g.appendChild(c); g.appendChild(t); g.appendChild(l);
+        g.appendChild(hit); g.appendChild(c); g.appendChild(t);
         g.addEventListener('click', function () { show(p); });
         g.addEventListener('keydown', function (e) {
             if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); show(p); }

@@ -26,7 +26,7 @@
       --text:       #e6edf3;   /* body on dark */
       --text-2:     #adbac7;   /* secondary */
       --muted:      #7d8da3;   /* tertiary, slate-blue-grey */
-      --muted-2:    #6b7688;   /* dimmest */
+      --muted-2:    #7b8597;   /* dimmest */
       --mono:       'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
       --sans:       'Inter', system-ui, -apple-system, sans-serif;
     }
@@ -489,7 +489,7 @@
           <span class="term-dot r"></span><span class="term-dot y"></span><span class="term-dot g"></span>
           <span class="term-title">hmm-discovery — run.sh</span>
         </div>
-        <div class="term-body">
+        <div class="term-body" tabindex="0" role="region" aria-label="Terminal output">
 <div class="ln cmd"><span class="p">$</span> bash run.sh <span class="flag">--seeds</span> <span class="val">terminase.fasta</span> <span class="flag">--iterate</span></div>
 <div class="ln log"><span class="dim">[00:00]</span> <span class="lv info">env</span>   locked · HMMER 3.4 · MAFFT · IQ-TREE</div>
 <div class="ln log"><span class="dim">[00:03]</span> <span class="lv">build</span> profile HMM from <span class="num">6</span> seeds  <span class="lv">ok</span></div>
@@ -550,7 +550,7 @@
         <span><span class="g">&gt;</span> profile alignment · conserved columns weighted heavily, floppy loops loosely</span>
         <span class="g">~18% identity · twilight zone</span>
       </div>
-      <div class="align-scroll">
+      <div class="align-scroll" tabindex="0" role="region" aria-label="Alignment (scrolls sideways)">
         <div class="align-rows">
           <div class="align-row">
             <span class="label seed">seed·terminase</span>
@@ -763,7 +763,7 @@
   <div class="cta-glow" aria-hidden="true"></div>
   <div class="wrap">
     <div class="cta-inner">
-      <div class="cta-cmd"><span class="p">$</span> bash run.sh <span class="flag">--seeds</span> your_family.fasta <span class="flag">--iterate</span></div>
+      <div class="cta-cmd" tabindex="0" role="region" aria-label="Command (scrolls sideways)"><span class="p">$</span> bash run.sh <span class="flag">--seeds</span> your_family.fasta <span class="flag">--iterate</span></div>
       <h2>Go find the ones<br>everyone else <span class="g">missed.</span></h2>
       <p>Free, open source, and reproducible. Clone it, point it at a seed FASTA, and get the same answer every time.</p>
       <div class="cta-btns">

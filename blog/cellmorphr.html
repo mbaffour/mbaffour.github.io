@@ -95,11 +95,11 @@
     .nav-cta {
       display: inline-flex; align-items: center; gap: 7px;
       font-size: 0.85rem; font-weight: 600; color: #fff;
-      background: var(--teal); padding: 9px 16px; border-radius: 8px;
+      background: var(--teal-deep); padding: 9px 16px; border-radius: 8px;
       transition: background .15s, transform .12s;
       margin-left: 6px;
     }
-    .nav-cta:hover { background: var(--teal-deep); transform: translateY(-1px); }
+    .nav-cta:hover { background: #0a675e; transform: translateY(-1px); }
     .nav-menu { display: flex; align-items: center; gap: 4px; }
 
     /* ── HERO ────────────────────────────────────── */
@@ -478,6 +478,8 @@
     </script>
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><polygon points='16,5 25,10 25,18 16,23 7,18 7,10' fill='%23f4c430' stroke='%23f4c430' stroke-width='1.5'/><line x1='16' y1='23' x2='16' y2='28' stroke='%23f4c430' stroke-width='2' stroke-linecap='round'/><line x1='13' y1='28' x2='19' y2='28' stroke='%23f4c430' stroke-width='2' stroke-linecap='round'/></svg>">
   <link rel="stylesheet" href="../assets/css/search.css">
+  <link rel="stylesheet" href="../assets/css/post-anim.css">
+  <style>.pa,.pa-show{--pa-ink:var(--ink);--pa-ink-2:var(--ink-soft);--pa-ink-3:var(--ink-mute);--pa-line:var(--line);--pa-card:var(--surface);--pa-hot:var(--teal-deep);--pa-good:var(--teal-deep);--pa-bad:#b42318;--pa-mono:var(--mono);}</style>
 </head>
 <body>
 <a href="#main" class="skip-link">Skip to main content</a>
@@ -645,6 +647,9 @@
         </div>
       </div>
     </div>
+    <figure class="pa" data-anim="superplot">
+      <figcaption><b>The SuperPlot, built up.</b> Six cells from each of three dishes in two conditions are segmented and measured. Plotted together they look like 36 data points; they are 3, because cells from one dish share a culture and an imaging session. Each dish collapses to its median, and the test runs on those, paired by dish. Values are illustrative.</figcaption>
+    </figure>
   </div>
 </section>
 
@@ -919,5 +924,6 @@
 <script defer src="../assets/js/posts-data.js"></script>
 <script defer src="../assets/js/post.js"></script>
 <script defer src="../assets/js/search.js"></script>
+<script defer src="../assets/js/post-anim.js"></script>
 </body>
 </html>

@@ -3,15 +3,16 @@
 =============================================================== */
 (function() {
     // Research focus cards: click / keyboard to expand detail
+    // The "what this means" button carries the state; a click anywhere on the card
+    // (outside its links) toggles it too, for pointer users.
     document.querySelectorAll('.research-card').forEach(card => {
+        const btn = card.querySelector('.research-more');
+        if (!btn) return;
         const toggle = () => {
             const open = card.classList.toggle('open');
-            card.setAttribute('aria-expanded', open ? 'true' : 'false');
+            btn.setAttribute('aria-expanded', open ? 'true' : 'false');
         };
-        card.addEventListener('click', toggle);
-        card.addEventListener('keydown', e => {
-            if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
-        });
+        card.addEventListener('click', e => { if (!e.target.closest('a')) toggle(); });
     });
 
     // Hero stat count-up on first view
