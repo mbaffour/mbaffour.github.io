@@ -90,6 +90,126 @@
         'Level up every 30s — more receptor variety, faster antibodies.'
     ];
 
+    /* ===== Sound and touch =====
+       Every sound is synthesised with Web Audio (no files to load), and the
+       context is only created inside the Play click, so nothing plays before
+       the visitor asks. Haptics use navigator.vibrate (Android), or on iOS,
+       which has no vibrate, the tap a native switch control gives when it
+       toggles (iOS 18+). Both can be switched off; the choice is remembered. */
+    function pref(k, d) { try { const v = localStorage.getItem(k); return v === null ? d : v === '1'; } catch (e) { return d; } }
+    function savePref(k, v) { try { localStorage.setItem(k, v ? '1' : '0'); } catch (e) {} }
+    const isIOS = /iP(hone|ad|od)/.test(navigator.platform) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+    const canVibrate = typeof navigator.vibrate === 'function';
+    // desktop Chrome has navigator.vibrate but nothing to vibrate, so only offer haptics on touch screens
+    const canHaptic = (canVibrate && matchMedia('(pointer: coarse)').matches) || isIOS;
+    let soundOn = pref('tf-sound', true);
+    let hapticsOn = pref('tf-haptics', true);
+
+    const sfx = (function () {
+        let ac = null, out = null, noiseBuf = null;
+        function ensure() {
+            if (ac) { if (ac.state === 'suspended') ac.resume(); return true; }
+            const AC = window.AudioContext || window.webkitAudioContext;
+            if (!AC) return false;
+            ac = new AC();
+            const comp = ac.createDynamicsCompressor();
+            comp.threshold.value = -14; comp.ratio.value = 4;
+            out = ac.createGain(); out.gain.value = 0.55;
+            out.connect(comp); comp.connect(ac.destination);
+            noiseBuf = ac.createBuffer(1, ac.sampleRate * 0.6, ac.sampleRate);
+            const d = noiseBuf.getChannelData(0);
+            for (let i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1;
+            return true;
+        }
+        function live() { return soundOn && ac && ac.state === 'running'; }
+        // one enveloped oscillator, optionally gliding to another pitch
+        function tone(freq, dur, opt = {}) {
+            if (!live()) return;
+            const t = ac.currentTime + (opt.at || 0);
+            const o = ac.createOscillator(), g = ac.createGain();
+            o.type = opt.type || 'sine';
+            o.frequency.setValueAtTime(freq, t);
+            if (opt.to) o.frequency.exponentialRampToValueAtTime(opt.to, t + dur);
+            const v = opt.vol ?? 0.3;
+            g.gain.setValueAtTime(0.0001, t);
+            g.gain.exponentialRampToValueAtTime(v, t + (opt.attack || 0.006));
+            g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+            o.connect(g); g.connect(out);
+            o.start(t); o.stop(t + dur + 0.02);
+        }
+        // a burst of filtered noise: splashes, thuds, whooshes
+        function noise(dur, opt = {}) {
+            if (!live()) return;
+            const t = ac.currentTime + (opt.at || 0);
+            const s = ac.createBufferSource(), f = ac.createBiquadFilter(), g = ac.createGain();
+            s.buffer = noiseBuf;
+            f.type = opt.filter || 'bandpass';
+            f.frequency.setValueAtTime(opt.freq || 1200, t);
+            if (opt.to) f.frequency.exponentialRampToValueAtTime(opt.to, t + dur);
+            f.Q.value = opt.q || 1.2;
+            g.gain.setValueAtTime(opt.vol ?? 0.25, t);
+            g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+            s.connect(f); f.connect(g); g.connect(out);
+            s.start(t); s.stop(t + dur + 0.02);
+        }
+        // a major pentatonic, so a long combo climbs and never sours
+        const PENTA = [0, 2, 4, 7, 9];
+        function note(step) { const o = Math.floor(step / 5), n = PENTA[step % 5]; return 392 * Math.pow(2, o + n / 12); }
+        return {
+            unlock: ensure,
+            start()  { noise(0.5, { freq: 300, to: 2400, q: 0.8, vol: 0.18 }); tone(392, 0.12, { type: 'triangle', vol: 0.2, at: 0.18 }); tone(587, 0.18, { type: 'triangle', vol: 0.2, at: 0.28 }); },
+            dock(combo) {
+                const f = note(Math.min(combo, 14));
+                tone(f, 0.16, { type: 'triangle', vol: 0.32 });
+                tone(f * 2, 0.1, { type: 'sine', vol: 0.12, at: 0.03 });
+                // the lysis: a wet splash, then progeny popping out
+                noise(0.35, { freq: 2600, to: 500, q: 0.9, vol: 0.2, at: 0.05 });
+                for (let i = 0; i < 6; i++) tone(900 + Math.random() * 1400, 0.05, { vol: 0.07, at: 0.1 + i * 0.035 + Math.random() * 0.02 });
+            },
+            wrong()  { tone(180, 0.18, { type: 'square', to: 90, vol: 0.13 }); noise(0.08, { freq: 400, q: 2, vol: 0.12 }); },
+            hurt()   { tone(220, 0.22, { type: 'sawtooth', to: 70, vol: 0.16 }); noise(0.18, { freq: 900, to: 200, vol: 0.2 }); },
+            engulf() { tone(90, 0.4, { type: 'sine', to: 45, vol: 0.45 }); noise(0.35, { filter: 'lowpass', freq: 500, to: 120, vol: 0.3 }); },
+            warn()   { tone(660, 0.12, { type: 'square', vol: 0.09 }); tone(494, 0.16, { type: 'square', vol: 0.09, at: 0.15 }); },
+            fiber(i) { tone(1100 + i * 180, 0.045, { type: 'sine', vol: 0.14 }); },
+            level()  { [523, 659, 784, 1047].forEach((f, i) => tone(f, 0.16, { type: 'triangle', vol: 0.22, at: i * 0.08 })); },
+            beat()   { tone(70, 0.12, { vol: 0.35 }); tone(62, 0.12, { vol: 0.28, at: 0.16 }); },
+            pause()  { tone(523, 0.08, { vol: 0.12 }); tone(392, 0.1, { vol: 0.12, at: 0.07 }); },
+            resume() { tone(392, 0.08, { vol: 0.12 }); tone(523, 0.1, { vol: 0.12, at: 0.07 }); },
+            win()    { [523, 659, 784, 1047, 1319].forEach((f, i) => tone(f, 0.3, { type: 'triangle', vol: 0.2, at: i * 0.09 })); },
+            lose()   { [392, 330, 262, 196].forEach((f, i) => tone(f, 0.28, { type: 'triangle', vol: 0.2, at: i * 0.13 })); },
+            best()   { [784, 988, 1175, 1568].forEach((f, i) => tone(f, 0.12, { type: 'sine', vol: 0.16, at: 0.55 + i * 0.06 })); }
+        };
+    })();
+
+    const haptic = (function () {
+        let label = null;
+        function iosTap() {
+            if (!label) {
+                label = document.createElement('label');
+                label.setAttribute('aria-hidden', 'true');
+                label.style.cssText = 'position:fixed;left:-200px;top:0;width:1px;height:1px;overflow:hidden;opacity:0;pointer-events:none';
+                const sw = document.createElement('input');
+                sw.type = 'checkbox'; sw.setAttribute('switch', ''); sw.tabIndex = -1;
+                label.appendChild(sw); document.body.appendChild(label);
+            }
+            const had = document.activeElement;
+            label.click();
+            // clicking a label focuses its control; hand focus straight back to the game
+            if (had && had !== document.activeElement && had.focus) had.focus({ preventScroll: true });
+        }
+        return function (pattern) {
+            if (!hapticsOn) return;
+            if (!canHaptic) return;
+            if (canVibrate) { try { navigator.vibrate(pattern); } catch (e) {} return; }
+            if (!isIOS) return;
+            // iOS gives one fixed tick per toggle: play each "on" segment of the pattern as a tick
+            const arr = Array.isArray(pattern) ? pattern : [pattern];
+            let t = 0;
+            for (let i = 0; i < arr.length; i += 2) { setTimeout(iosTap, t); t += arr[i] + (arr[i + 1] || 0); }
+        };
+    })();
+    const BUZZ = { dock: 18, combo: [14, 30, 22], wrong: 45, hurt: [70, 40, 70], engulf: [160, 60, 90], fiber: 8, level: [20, 50, 20, 50, 40], warn: [30, 80, 30], beat: [35, 120, 25], over: [120, 70, 220] };
+
     let W, H, dpr;
     let state = 'setup'; // setup | playing | paused | over
     let player, bacteria, antibodies, macrophages, particles;
@@ -104,6 +224,9 @@
     const joy = { active: false, dx: 0, dy: 0, cx: 0, cy: 0 };
     let currentFiber = 'lps';
     let shakeT = 0;
+    let combo = 0, comboT = 0, bestCombo = 0, beatT = 0, floats = [];
+    const soundBtn = document.getElementById('tfSoundBtn');
+    const hapticBtn = document.getElementById('tfHapticBtn');
 
     function resize() {
         dpr = devicePixelRatio || 1;
@@ -190,6 +313,7 @@
         showToast._t = setTimeout(() => toast.classList.remove('show'), ms);
     }
     function setFiber(key) {
+        if (key !== currentFiber) { sfx.fiber(Object.keys(RECEPTORS).indexOf(key)); haptic(BUZZ.fiber); }
         currentFiber = key;
         fiberBtns.forEach(b => b.classList.toggle('active', b.dataset.fiber === currentFiber));
         showToast(`Tail fiber: ${RECEPTORS[key].name}`, 1200);
@@ -205,6 +329,7 @@
         level = n;
         levelEl.textContent = `LVL ${n}`;
         levelEl.classList.add('bump');
+        sfx.level(); haptic(BUZZ.level);
         setTimeout(() => levelEl.classList.remove('bump'), 600);
         const msgs = {
             2: 'Level 2 — Type IV pili emerge. Faster antibodies.',
@@ -246,8 +371,14 @@
 
                 <div class="tf-overlay-keys">
                     <span><kbd>↑↓←→</kbd> move</span>
-                    <span><kbd>1</kbd><kbd>2</kbd><kbd>3</kbd><kbd>4</kbd> fiber</span>
+                    <span><kbd>1</kbd>–<kbd>5</kbd> fiber</span>
                     <span><kbd>P</kbd> pause</span>
+                    <span><kbd>M</kbd> sound</span>
+                </div>
+
+                <div class="tf-feel">
+                    <button type="button" class="tf-feel-opt" data-feel="sound" aria-pressed="${soundOn}">${soundOn ? '🔊' : '🔇'} Sound</button>
+                    ${canHaptic ? `<button type="button" class="tf-feel-opt" data-feel="haptics" aria-pressed="${hapticsOn}">📳 Haptics</button>` : ''}
                 </div>
 
                 <button class="tf-btn-play" id="tfPlay">▶ Play</button>
@@ -268,7 +399,31 @@
                 overlayCard.querySelectorAll('.tf-dur-opt').forEach(b => b.classList.toggle('active', parseInt(b.dataset.dur, 10) === chosenDuration));
             });
         });
+        overlayCard.querySelectorAll('.tf-feel-opt').forEach(btn => {
+            btn.addEventListener('click', () => { btn.dataset.feel === 'sound' ? toggleSound() : toggleHaptics(); });
+        });
         document.getElementById('tfPlay').addEventListener('click', startGame);
+    }
+
+    /* the toggles live in two places (the HUD and the setup card); keep them in step */
+    function syncFeel() {
+        if (soundBtn) { soundBtn.textContent = soundOn ? '🔊' : '🔇'; soundBtn.setAttribute('aria-pressed', soundOn); soundBtn.setAttribute('aria-label', soundOn ? 'Sound on' : 'Sound off'); }
+        if (hapticBtn) { hapticBtn.hidden = !canHaptic; hapticBtn.setAttribute('aria-pressed', hapticsOn); hapticBtn.classList.toggle('off', !hapticsOn); hapticBtn.setAttribute('aria-label', hapticsOn ? 'Haptics on' : 'Haptics off'); }
+        overlayCard.querySelectorAll('.tf-feel-opt').forEach(b => {
+            const on = b.dataset.feel === 'sound' ? soundOn : hapticsOn;
+            b.setAttribute('aria-pressed', on);
+            if (b.dataset.feel === 'sound') b.textContent = (on ? '🔊' : '🔇') + ' Sound';
+        });
+    }
+    function toggleSound() {
+        soundOn = !soundOn; savePref('tf-sound', soundOn); syncFeel();
+        if (soundOn) { sfx.unlock(); sfx.fiber(2); }
+        showToast(soundOn ? 'Sound on' : 'Sound off', 1000);
+    }
+    function toggleHaptics() {
+        hapticsOn = !hapticsOn; savePref('tf-haptics', hapticsOn); syncFeel();
+        if (hapticsOn) haptic(BUZZ.dock);
+        showToast(hapticsOn ? 'Haptics on' : 'Haptics off', 1000);
     }
 
     function renderPaused() {
@@ -291,6 +446,10 @@
             ? `${Math.floor(elapsed)}s survived`
             : `${chosenDuration - Math.ceil(timeLeft)}s of ${chosenDuration}s`;
         const p = PHAGES[chosenPhage];
+        const bestKey = `tf-best-${chosenPhage}-${chosenDuration}`;
+        let best = 0; try { best = parseInt(localStorage.getItem(bestKey), 10) || 0; } catch (e) {}
+        const isBest = score > 0 && score > best;
+        if (isBest) { try { localStorage.setItem(bestKey, score); } catch (e) {} }
 
         // Educational explanation tuned to playstyle
         let bio;
@@ -309,6 +468,7 @@
         overlayCard.innerHTML = `
             <h4 class="tf-overlay-title">${lyses >= 15 ? 'Phage Therapy Success' : lyses >= 8 ? 'Productive Infection' : 'Run Complete'}</h4>
             <p class="tf-overlay-text">${p.short} · ${timePlayed}</p>
+            <p class="tf-best ${isBest ? 'new' : ''}">${isBest ? '★ New best score!' : `Best with ${p.short} at this length: ${best}`}</p>
 
             <div class="tf-results-grid">
                 <div class="tf-result-cell"><span class="tf-result-key">Score</span><span class="tf-result-val">${score}</span></div>
@@ -317,6 +477,7 @@
                 <div class="tf-result-cell"><span class="tf-result-key">Mismatched docks</span><span class="tf-result-val">${missed}</span></div>
                 <div class="tf-result-cell"><span class="tf-result-key">Antibody hits</span><span class="tf-result-val">${neutralized}</span></div>
                 <div class="tf-result-cell"><span class="tf-result-key">Macrophage hits</span><span class="tf-result-val">${macHits}</span></div>
+                <div class="tf-result-cell"><span class="tf-result-key">Best chain</span><span class="tf-result-val">×${bestCombo}</span></div>
             </div>
 
             <div class="tf-bio-explain">${bio}</div>
@@ -327,6 +488,7 @@
             </div>
         `;
         document.getElementById('tfReplay').addEventListener('click', startGame);
+        if (isBest) sfx.best();
         document.getElementById('tfChange').addEventListener('click', () => {
             state = 'setup';
             renderSetup();
@@ -335,6 +497,7 @@
 
     // ===== Game lifecycle =====
     function startGame() {
+        sfx.unlock(); sfx.start(); haptic(BUZZ.dock);
         player = makePlayer();
         const p = PHAGES[chosenPhage];
         bacteria = []; antibodies = []; macrophages = []; particles = [];
@@ -342,6 +505,7 @@
         missed = 0; neutralized = 0; macHits = 0; dockAttempts = 0;
         timeLeft = chosenDuration; elapsed = 0;
         level = 1;
+        combo = 0; comboT = 0; bestCombo = 0; beatT = 0; floats = [];
         spawnT = 0; abSpawnT = 2; macSpawnT = 28;
         tipT = 5; tipIdx = 0; levelT = 30;
         currentFiber = p.preferred;
@@ -362,17 +526,21 @@
     }
     function endGame() {
         state = 'over';
+        if (lyses >= 8) sfx.win(); else sfx.lose();
+        haptic(BUZZ.over);
         renderResults();
         overlay.classList.remove('hidden');
     }
     function pauseGame() {
         if (state !== 'playing') return;
         state = 'paused';
+        sfx.pause();
         renderPaused();
         overlay.classList.remove('hidden');
     }
     function resumeGame() {
         state = 'playing';
+        sfx.resume();
         overlay.classList.add('hidden');
         lastT = performance.now();
         tick(lastT);
@@ -387,8 +555,10 @@
         wrap.classList.add('hurt');
         shakeT = 0.25;
         setTimeout(() => wrap.classList.remove('hurt'), 320);
-        if (source === 'antibody') neutralized++;
-        else if (source === 'macrophage') macHits++;
+        if (source === 'antibody') { neutralized++; sfx.hurt(); haptic(BUZZ.hurt); }
+        else if (source === 'macrophage') { macHits++; sfx.engulf(); haptic(BUZZ.engulf); }
+        if (combo >= 3) showToast(`Chain broken at ×${combo}`, 1200);
+        combo = 0; comboT = 0;
         updateHP();
         if (hp <= 0) endGame();
     }
@@ -467,7 +637,16 @@
                 if (b.receptor === currentFiber) {
                     const p = PHAGES[chosenPhage];
                     const burstBase = 100;
-                    score += burstBase + p.burstBonus;
+                    // docks in quick succession build a chain; a longer chain multiplies the burst
+                    combo = comboT > 0 ? combo + 1 : 1; comboT = 3.2;
+                    bestCombo = Math.max(bestCombo, combo);
+                    const mult = combo >= 6 ? 3 : combo >= 3 ? 2 : 1;
+                    const gain = (burstBase + p.burstBonus) * mult;
+                    score += gain;
+                    floats.push({ x: b.x, y: b.y - 14, text: '+' + gain, sub: mult > 1 ? `×${mult} chain` : '', color: RECEPTORS[b.receptor].color, age: 0, life: 1.1 });
+                    sfx.dock(combo); haptic(combo >= 3 ? BUZZ.combo : BUZZ.dock);
+                    if (combo === 3) showToast('Chain ×2: keep docking!', 1400);
+                    if (combo === 6) showToast('Chain ×3: burst frenzy!', 1600);
                     lyses++;
                     scoreEl.textContent = score;
                     lysesEl.textContent = lyses;
@@ -489,6 +668,8 @@
                     if (player.invuln <= 0) {
                         showToast(`Wrong fiber — need ${RECEPTORS[b.receptor].name}`, 1400);
                         player.invuln = 0.25;
+                        sfx.wrong(); haptic(BUZZ.wrong);
+                        combo = 0; comboT = 0;
                     }
                 }
             }
@@ -534,6 +715,7 @@
             macrophages.push(makeMacrophage());
             macSpawnT = rand(22, 34) - (level - 1) * 2;
             showToast('⚠ Macrophage incoming!', 2200);
+            sfx.warn(); haptic(BUZZ.warn);
         }
         macrophages.forEach(mac => {
             const px = player.x - mac.x, py = player.y - mac.y;
@@ -562,6 +744,16 @@
         }
 
         shakeT = Math.max(0, shakeT - dt);
+
+        // the chain lapses if you stop docking
+        if (comboT > 0) { comboT -= dt; if (comboT <= 0) combo = 0; }
+        // a heartbeat, felt and heard, when HP is critical
+        if (hp / PHAGES[chosenPhage].hpMax < 0.25) {
+            beatT -= dt;
+            if (beatT <= 0) { sfx.beat(); haptic(BUZZ.beat); beatT = 0.95; }
+        } else beatT = 0;
+        floats.forEach(f => { f.age += dt; f.y -= 22 * dt; });
+        floats = floats.filter(f => f.age < f.life);
     }
 
     // ===== Render =====
@@ -752,6 +944,29 @@
         antibodies.forEach(drawAntibody);
         particles.forEach(drawParticle);
         drawPlayer();
+        floats.forEach(drawFloat);
+        if (combo >= 2 && comboT > 0) drawChain();
+    }
+    function drawFloat(f) {
+        const t = f.age / f.life, a = t < 0.15 ? t / 0.15 : 1 - Math.max(0, (t - 0.55) / 0.45);
+        ctx.save();
+        ctx.globalAlpha = Math.max(0, a);
+        ctx.textAlign = 'center';
+        ctx.font = '700 15px JetBrains Mono, monospace';
+        ctx.lineWidth = 3; ctx.strokeStyle = 'rgba(8, 12, 6, 0.85)';
+        ctx.strokeText(f.text, f.x, f.y); ctx.fillStyle = f.color; ctx.fillText(f.text, f.x, f.y);
+        if (f.sub) { ctx.font = '600 10px JetBrains Mono, monospace'; ctx.strokeText(f.sub, f.x, f.y + 14); ctx.fillStyle = '#fff3c4'; ctx.fillText(f.sub, f.x, f.y + 14); }
+        ctx.restore();
+    }
+    // the live chain, under the player: a count and a draining ring
+    function drawChain() {
+        const k = Math.max(0, comboT / 3.2), c = RECEPTORS[currentFiber].color;
+        ctx.save();
+        ctx.strokeStyle = c; ctx.globalAlpha = 0.75; ctx.lineWidth = 2;
+        ctx.beginPath(); ctx.arc(player.x, player.y, player.size * 2.4, -Math.PI / 2, -Math.PI / 2 + k * Math.PI * 2); ctx.stroke();
+        ctx.globalAlpha = 1; ctx.font = '700 11px JetBrains Mono, monospace'; ctx.textAlign = 'center';
+        ctx.fillStyle = c; ctx.fillText('×' + combo, player.x, player.y - player.size * 2.4 - 6);
+        ctx.restore();
     }
 
     function tick(t) {
@@ -784,6 +999,8 @@
     function onKeyDown(e) {
         if (!gameShouldHandle(e)) return;
         const k = e.key;
+        if (k === 'm' || k === 'M') { toggleSound(); return; }
+        if ((k === 'h' || k === 'H') && canHaptic) { toggleHaptics(); return; }
         if (state === 'playing') {
             if (['ArrowUp','ArrowDown','ArrowLeft','ArrowRight','w','a','s','d','W','A','S','D'].includes(k)) {
                 keys[k] = true; e.preventDefault(); return;
@@ -826,7 +1043,7 @@
     }
     wrap.addEventListener('mousedown', (e) => {
         if (state !== 'playing') return;
-        if (e.target.closest('.tf-pause-btn, .tf-fiber-btn, .tf-joystick')) return;
+        if (e.target.closest('.tf-pause-btn, .tf-fiber-btn, .tf-joystick, .tf-feel-btn')) return;
         pointer.active = true; updatePointer(e); e.preventDefault();
     });
     wrap.addEventListener('mousemove', (e) => { if (pointer.active) updatePointer(e); });
@@ -874,7 +1091,7 @@
     // Non-joystick touch on the play field for drag-to-move
     wrap.addEventListener('touchstart', (e) => {
         if (state !== 'playing') return;
-        if (e.target.closest('.tf-pause-btn, .tf-fiber-btn, .tf-joystick')) return;
+        if (e.target.closest('.tf-pause-btn, .tf-fiber-btn, .tf-joystick, .tf-feel-btn')) return;
         pointer.active = true; updatePointer(e); e.preventDefault();
     }, { passive: false });
     wrap.addEventListener('touchmove', (e) => {
@@ -887,6 +1104,10 @@
     fiberBtns.forEach(b => b.addEventListener('click', () => {
         if (state === 'playing') setFiber(b.dataset.fiber);
     }));
+
+    // Sound / haptics buttons in the HUD
+    if (soundBtn) soundBtn.addEventListener('click', (e) => { e.stopPropagation(); toggleSound(); });
+    if (hapticBtn) hapticBtn.addEventListener('click', (e) => { e.stopPropagation(); toggleHaptics(); });
 
     // Pause button
     pauseBtn.addEventListener('click', (e) => {
@@ -933,6 +1154,9 @@
         }
     });
 
+    // read-only peek for the site's automated play-through test
+    wrap.tfPeek = () => ({ state, score, combo, lyses, hp, currentFiber, player, bacteria });
+
     // Resize
     const ro = new ResizeObserver(resize);
     ro.observe(canvas);
@@ -945,6 +1169,7 @@
     timeEl.textContent = chosenDuration === 0 ? '0' : chosenDuration;
     levelEl.textContent = 'LVL 1';
     renderSetup();
+    syncFeel();
 
     // Decorative idle render so the canvas isn't blank
     function idleFrame() {

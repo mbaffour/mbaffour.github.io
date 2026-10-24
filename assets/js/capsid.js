@@ -32,12 +32,12 @@
     var camera = new THREE.PerspectiveCamera(28, 1, 0.1, 50);
     camera.position.set(0, -0.15, 8.4);
 
-    /* ---------- light: a warm key, a gold rim, a cool fill ---------- */
-    scene.add(new THREE.HemisphereLight(0x8a7a66, 0x120c08, 0.35));
-    var key = new THREE.DirectionalLight(0xfff1d6, 1.35); key.position.set(-3, 4, 5); scene.add(key);
-    var rim = new THREE.DirectionalLight(0xf4c430, 2.6); rim.position.set(4, 1.5, -3); scene.add(rim);
-    var rim2 = new THREE.DirectionalLight(0xd4324b, 1.2); rim2.position.set(-4, -2.5, -2); scene.add(rim2);
-    var fill = new THREE.PointLight(0x6f8fb0, 0.6, 20); fill.position.set(2, -3, 4); scene.add(fill);
+    /* ---------- light: a warm key, then the three Kente colours as rims ---------- */
+    scene.add(new THREE.HemisphereLight(0x8a7a66, 0x120c08, 0.4));
+    var key = new THREE.DirectionalLight(0xfff1d6, 1.3); key.position.set(-3, 4, 5); scene.add(key);
+    var rim = new THREE.DirectionalLight(0xf7c52b, 3.0); rim.position.set(4, 1.5, -3); scene.add(rim);
+    var rim2 = new THREE.DirectionalLight(0xe8304e, 2.4); rim2.position.set(-4, 2.5, -2); scene.add(rim2);
+    var fill = new THREE.PointLight(0x19b85a, 1.6, 20); fill.position.set(-2.5, -3, 3); scene.add(fill);
 
     /* ---------- geometry: capsomer positions on the 20 flat faces ---------- */
     var ico = new THREE.IcosahedronGeometry(1, 0), pos = ico.attributes.position, N = 6;
@@ -68,12 +68,22 @@
     hexGeo.rotateX(Math.PI / 2);   // axis along +z, so lookAt points it outward
     var pentGeo = new THREE.CylinderGeometry(0.078, 0.09, 0.085, 5, 1);
     pentGeo.rotateX(Math.PI / 2);
-    var hexMat = new THREE.MeshStandardMaterial({ color: 0x241e17, roughness: 0.6, metalness: 0.3 });
+    var hexMat = new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 0.55, metalness: 0.35 });
     var pentMat = new THREE.MeshStandardMaterial({ color: 0xf4c430, roughness: 0.3, metalness: 0.75, emissive: 0x4a3200, emissiveIntensity: 0.35 });
     var hexes = pts.filter(function (q) { return !q.five; }), pents = pts.filter(function (q) { return q.five; });
     var hexMesh = new THREE.InstancedMesh(hexGeo, hexMat, hexes.length);
     var pentMesh = new THREE.InstancedMesh(pentGeo, pentMat, pents.length);
     head.add(hexMesh); head.add(pentMesh);
+    // Kente weave: a dark head with three woven bands, green, gold and red,
+    // running round it by latitude, so the colours turn with the spin.
+    // (Colours are converted to linear, as the renderer outputs sRGB.)
+    function lin(h) { return new THREE.Color(h).convertSRGBToLinear(); }
+    var DARK = lin(0x2a2119), HOT = lin(0xffd23f), col = new THREE.Color();
+    var BANDS = [[-0.5, lin(0x16a352)], [0.0, lin(0xe0a91c)], [0.5, lin(0xd42a45)]];
+    hexes.forEach(function (q) {
+        q.col = DARK;
+        BANDS.forEach(function (b) { if (Math.abs(q.dir.y - b[0]) < 0.1) q.col = b[1]; });
+    });
     // the shell under the capsomers, so the gaps read as depth, not holes
     var core = new THREE.Mesh(new THREE.IcosahedronGeometry(0.85, 3), new THREE.MeshStandardMaterial({ color: 0x0e0a07, roughness: 0.9, metalness: 0.1 }));
     head.add(core);
@@ -104,10 +114,12 @@
     var m4 = new THREE.Matrix4(), q4 = new THREE.Quaternion(), s3 = new THREE.Vector3(), p3 = new THREE.Vector3(), up = new THREE.Vector3(0, 0, 1);
     var touch = new THREE.Vector3(9, 9, 9), touchK = 0;
     function place(mesh, list, t) {
+        var tint = mesh === hexMesh;
         for (var n = 0; n < list.length; n++) {
             var q = list[n];
             var wave = Math.sin(t * 1.3 + q.base.y * 5 + q.ph * 0.3) * 0.012;
             var d2 = q.base.distanceToSquared(touch), lift = touchK * Math.exp(-d2 / 0.09);
+            if (tint) { col.copy(q.col).lerp(HOT, Math.min(1, lift * 1.3)); mesh.setColorAt(n, col); }
             p3.copy(q.base).addScaledVector(q.dir, wave + lift * 0.22);
             q4.setFromUnitVectors(up, q.dir);
             s3.set(1 + lift * 0.25, 1 + lift * 0.25, 1 + lift * 2.2);
@@ -115,6 +127,7 @@
             mesh.setMatrixAt(n, m4);
         }
         mesh.instanceMatrix.needsUpdate = true;
+        if (tint && mesh.instanceColor) mesh.instanceColor.needsUpdate = true;
     }
 
     /* ---------- sizing, pointer, scroll ---------- */
@@ -134,6 +147,19 @@
         ndc.set((e.clientX - b.left) / b.width * 2 - 1, -((e.clientY - b.top) / b.height) * 2 + 1);
         over = Math.abs(ndc.x) <= 1 && Math.abs(ndc.y) <= 1;
     }, { passive: true });
+    // a tap (or click) on the head lifts the capsomers under it for a moment,
+    // with a light tick on phones that can give one
+    var poke = 0;
+    host.addEventListener('pointerdown', function (e) {
+        var b = canvas.getBoundingClientRect();
+        ndc.set((e.clientX - b.left) / b.width * 2 - 1, -((e.clientY - b.top) / b.height) * 2 + 1);
+        ray.setFromCamera(ndc, camera);
+        sphere.center.copy(head.position);
+        if (!ray.ray.intersectSphere(sphere, hit)) return;
+        poke = 0.7;
+        if (e.pointerType === 'touch' && navigator.vibrate) { try { navigator.vibrate(12); } catch (err) {} }
+        if (!running) { touchK = 1; inv.copy(head.matrixWorld).invert(); touch.copy(hit).applyMatrix4(inv); place(hexMesh, hexes, 0); place(pentMesh, pents, 0); renderer.render(scene, camera); }
+    });
     var scrollP = 0;
     window.capsid = { scroll: function (p) { scrollP = p; } };
 
@@ -151,7 +177,8 @@
         head.scale.set(sc, sc, sc);
         // where the pointer meets the shell, in the head's own frame
         var hitNow = false;
-        if (over) {
+        poke = Math.max(0, poke - dt);
+        if (over || poke > 0) {
             ray.setFromCamera(ndc, camera);
             sphere.center.copy(head.position); sphere.radius = 1.02 * sc;
             if (ray.ray.intersectSphere(sphere, hit)) {
