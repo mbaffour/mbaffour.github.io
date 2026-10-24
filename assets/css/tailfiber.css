@@ -13,7 +13,13 @@
             outline-offset: 3px;
         }
 
+/* The play field is a dark microscope slide in both themes, so it keeps the
+   dark theme's inks; otherwise light mode's brown text lands on near-black. */
 .tf-wrap {
+            --gold: #f4c430; --gold-dim: rgba(244, 196, 48, 0.18);
+            --ink: #f5edd8; --ink-2: #d8c98c; --ink-3: #c2a66a; --ink-4: #c2a66a;
+            --green-text: #3fbf6e; --red-text: #f4697f;
+            color: var(--ink);
             position: relative;
             width: 100%;
             min-height: 460px;
@@ -752,4 +758,29 @@ body.tf-locked { overflow: hidden; }
 
 @media (max-width: 480px) {
 .concept-card { padding: 1.4rem 1.2rem 1.6rem; }
+}
+
+/* Sound + haptics: HUD toggles, the setup card's switches, the best-score line */
+.tf-pause-btn[hidden] { display: none; }
+.tf-pause-btn.off { opacity: .45; filter: grayscale(1); }
+.tf-feel { display: flex; justify-content: center; gap: .5rem; margin: .2rem 0 .9rem; }
+.tf-feel-opt { background: rgba(10, 8, 2, 0.55); border: 1px solid rgba(244, 196, 48, 0.18); border-radius: 999px; padding: .4rem .85rem;
+    font: 500 .7rem/1 var(--font-mono); color: var(--ink-2); cursor: pointer; transition: all .15s ease; }
+.tf-feel-opt[aria-pressed="true"] { border-color: #19b85a; color: #7fe3a5; background: rgba(25, 184, 90, 0.14); }
+.tf-feel-opt[aria-pressed="false"] { opacity: .7; text-decoration: line-through; }
+.tf-feel-opt:hover { border-color: var(--gold); }
+.tf-feel-opt:focus-visible, .tf-pause-btn:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+.tf-best { margin: -.2rem 0 .5rem; font: 500 .7rem/1.3 var(--font-mono); letter-spacing: .06em; color: var(--ink-3); }
+.tf-best.new { color: #f7c52b; font-weight: 700; animation: tfBest 1.2s ease-in-out infinite alternate; }
+@keyframes tfBest { to { text-shadow: 0 0 14px rgba(247, 197, 43, .7); } }
+@media (prefers-reduced-motion: reduce) { .tf-best.new { animation: none; } }
+@media (max-width: 480px) { .tf-hud-row .tf-pause-btn { width: 28px; height: 28px; font-size: .78rem; } }
+
+/* Small screens: the setup card is taller than the play field. Touch screens
+   have no keys to hint at, and the overlay scrolls (centred while it fits,
+   via margin:auto) so Play can never sit out of reach below the field. */
+.tf-overlay { overflow-y: auto; overscroll-behavior: contain; }
+.tf-overlay-card { margin: auto; }
+@media (hover: none) and (pointer: coarse) {
+    .tf-overlay-keys { display: none; }
 }

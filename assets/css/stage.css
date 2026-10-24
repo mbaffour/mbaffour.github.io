@@ -132,7 +132,7 @@ body.stage .to-top { background: rgba(18, 13, 9, .88); color: #f4c430; border: 1
 .capsid.is-live .capsid-still { display: none; }
 .stage-hero-copy { position: absolute; z-index: 2; left: max(24px, 5vw); bottom: 17vh; max-width: min(46rem, 58vw);
     transform: translateY(calc(var(--cov) * -70px)); opacity: calc(1 - var(--cov) * 1.4); }
-.lbl-stage { color: var(--stage-ink-3); display: flex; align-items: center; gap: 10px; margin-bottom: 1.4rem; }
+.lbl-stage { color: #e3cf98; display: flex; align-items: center; gap: 10px; margin-bottom: 1.4rem; }
 .lbl-stage .live-dot { width: 7px; height: 7px; border-radius: 50%; background: #1f9249; box-shadow: 0 0 10px #1f9249; }
 .stage-name { margin: 0; font: 300 clamp(3rem, 8.2vw, 8.4rem)/.92 var(--serif); letter-spacing: -.04em; color: var(--stage-ink); }
 .stage-name .ln { display: block; overflow: hidden; padding-bottom: .06em; }
@@ -299,6 +299,103 @@ body.stage footer a { color: var(--ink-2); }
 .cur.big { width: 74px; height: 74px; margin: -37px 0 0 -37px; background: rgba(244, 196, 48, .9); border-color: transparent; }
 .cur span { font: 600 .58rem/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: #120b08; opacity: 0; transition: opacity .2s; }
 .cur.big span { opacity: 1; }
+
+/* ---------------------------------------------------------------------
+   KENTE COLOUR
+   Every section carries one of the three Kente accents. --acc is the
+   saturated colour, for fills, rules and glows; --acc-t is the same hue at
+   a shade that reads as text on the theme's background.
+   --------------------------------------------------------------------- */
+body.stage { --k-gold: #f7c52b; --k-green: #19b85a; --k-red: #e8304e;
+    --acc: var(--k-gold); --acc-t: var(--gold); --acc-soft: rgba(247, 197, 43, .16);
+    --kente-swatch: linear-gradient(90deg, var(--k-red) 0 30%, transparent 30% 35%, var(--k-gold) 35% 65%, transparent 65% 70%, var(--k-green) 70%); }
+.k-green, body.stage #about, body.stage #publications, body.stage #tools, body.stage #recognition, body.stage #gallery, .pro-row:first-child, .step:nth-child(2), .step:nth-child(5) {
+    --acc: var(--k-green); --acc-t: var(--green-text); --acc-soft: rgba(25, 184, 90, .15); }
+.k-red, body.stage #tour, body.stage #talks, body.stage #teaching, body.stage #blog, .pro-row:nth-child(2), .step:nth-child(3) {
+    --acc: var(--k-red); --acc-t: var(--red-text); --acc-soft: rgba(232, 48, 78, .14); }
+
+/* the stage: near-black, lit gold behind the specimen, green and crimson at the wings */
+.stage-hero { background:
+    radial-gradient(42% 52% at 70% 46%, rgba(247, 197, 43, .30), transparent 70%),
+    radial-gradient(55% 60% at 4% 104%, rgba(25, 184, 90, .30), transparent 70%),
+    radial-gradient(48% 55% at 100% 0%, rgba(232, 48, 78, .34), transparent 72%),
+    radial-gradient(90% 90% at 60% 50%, #1a0f0b 0%, #0b0705 100%); }
+.stage-name .ln:last-child > span { background: linear-gradient(100deg, #ffd54a 0%, #f4a62a 38%, #ffe27a 55%, #f7c52b 75%, #ff9d3c 100%);
+    background-size: 220% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; animation: goldRun 9s ease-in-out infinite alternate; }
+@keyframes goldRun { to { background-position: 100% 0; } }
+.lbl-stage .live-dot { background: var(--k-green); box-shadow: 0 0 0 3px rgba(25, 184, 90, .25), 0 0 14px var(--k-green); }
+.stage-bar { border-top: 0; }
+.stage-bar::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 2px; background: var(--kente-swatch); opacity: .85; }
+.sb-acts span:nth-child(1) b { color: var(--k-gold); }
+.sb-acts span:nth-child(2) b { color: #3fdc7e; }
+.sb-acts span:nth-child(3) b { color: #ff6b82; }
+.stage-ctas .pillbtn { background: var(--k-gold); color: #120b08; box-shadow: 0 8px 30px rgba(247, 197, 43, .35); }
+.stage-ctas .pillbtn:hover { background: #ffe07a; }
+.sb-begin:hover { border-color: var(--k-gold); }
+
+/* the preloader is a sheet of Kente gold */
+.pre { background: var(--k-gold); color: #120b08; }
+.pre-bar i { background: linear-gradient(90deg, #120b08 0 33%, var(--k-red) 33% 66%, var(--k-green) 66%); }
+
+/* pill and menu */
+body.stage .pill { border-color: rgba(247, 197, 43, .3); }
+body.stage .pill::after { content: ""; position: absolute; left: 22px; right: 22px; bottom: -1px; height: 2px; border-radius: 2px; background: var(--kente-swatch); }
+body.stage .nav-links.menu { background:
+    radial-gradient(50% 60% at 100% 0%, rgba(232, 48, 78, .22), transparent 70%),
+    radial-gradient(50% 60% at 0% 100%, rgba(25, 184, 90, .22), transparent 70%), #0e0906; }
+body.stage .nav-links.menu li:nth-child(3n+1) .mn { color: var(--k-gold); }
+body.stage .nav-links.menu li:nth-child(3n+2) .mn { color: #3fdc7e; }
+body.stage .nav-links.menu li:nth-child(3n) .mn { color: #ff6b82; }
+
+/* labels: a woven swatch, then the section's accent */
+/* the swatch sits on the first line whatever the top padding: positioned in the content box, nudged back into the left padding */
+.lbl, body.stage .section-label { padding-left: 30px; background: var(--kente-swatch) no-repeat -30px .5em / 20px 4px; background-origin: content-box; color: var(--acc-t); }
+.lbl-stage, .lbl-inline { padding-left: 0; background: none; }
+body.stage .section-label::before, body.stage .section-label::after, .lbl::before, .lbl::after { color: var(--ink-3); }
+body.stage .section-title .highlight { color: var(--acc-t); -webkit-text-fill-color: currentColor; background: none; }
+html[data-theme="light"] body.stage .section-title .highlight { background: linear-gradient(transparent 62%, var(--acc-soft) 62% 92%, transparent 92%); }
+
+/* prologue */
+.chip { text-decoration-color: var(--acc); text-decoration-thickness: 2px; }
+.chip img { box-shadow: 0 0 0 1.5px var(--acc); }
+.chip-link:hover { color: var(--acc-t); }
+.prologue { background: radial-gradient(60% 50% at 100% 0%, var(--acc-soft), transparent 70%), var(--bg); }
+body.stage .programme .hero-stat:nth-child(1) .hero-stat-value { color: var(--acc-t); }
+body.stage .programme .hero-stat:nth-child(2) .hero-stat-value { color: var(--green-text); }
+body.stage .programme .hero-stat:nth-child(3) .hero-stat-value { color: var(--red-text); }
+body.stage .programme .hero-stat { border-top: 3px solid var(--k-gold); padding-top: .9rem; }
+body.stage .programme .hero-stat:nth-child(2) { border-top-color: var(--k-green); }
+body.stage .programme .hero-stat:nth-child(3) { border-top-color: var(--k-red); }
+
+/* Act II: each card is taped down with a strip of Kente colour */
+.ring-card a { position: relative; }
+.ring-card a::before { content: ""; position: absolute; left: 50%; top: -7px; width: 42%; height: 13px; transform: translateX(-50%) rotate(-3deg);
+    background: var(--k-gold); opacity: .92; box-shadow: 0 1px 2px rgba(0, 0, 0, .2); }
+.ring-card:nth-child(3n+2) a::before { background: var(--k-green); transform: translateX(-50%) rotate(2deg); }
+.ring-card:nth-child(3n) a::before { background: var(--k-red); transform: translateX(-50%) rotate(-1deg); }
+.act-ring { background: radial-gradient(40% 45% at 50% 50%, var(--acc-soft), transparent 75%), var(--bg); }
+.ring-title em { color: var(--acc-t); }
+
+/* Act III: the lit step takes its accent, with a bar that draws in */
+.step { position: relative; }
+.step::before { content: ""; position: absolute; left: 0; top: -1px; height: 3px; width: 100%; background: var(--acc);
+    transform: scaleX(0); transform-origin: 0 50%; transition: transform .9s cubic-bezier(.2, .8, .2, 1); }
+.step.on::before, .step.seen::before { transform: scaleX(1); }
+.step.seen:not(.on)::before { opacity: .45; }
+.step-n { display: inline-grid; place-items: center; width: 2.4em; height: 2.4em; border-radius: 50%; border: 1.5px solid var(--acc); color: var(--acc-t); letter-spacing: .04em; }
+html.js .step.on .step-w { color: var(--acc-t); }
+html.js .step.on .step-n { background: var(--acc); color: #120b08; }
+
+/* Lysis: a saturated crimson, lit gold from above */
+body.stage { --wine: #84122a; --wine-2: #5e0b1d; }
+body.stage #contact { background: radial-gradient(60% 45% at 50% 0%, rgba(247, 197, 43, .22), transparent 70%), radial-gradient(50% 60% at 0% 100%, rgba(25, 184, 90, .16), transparent 70%), var(--wine); }
+body.stage #contact, body.stage footer { --ink-2: #f3dfb8; --ink-3: #ecd2a6; --ink-4: #ecd2a6; --acc: var(--k-gold); --acc-t: #f7c52b; --acc-soft: transparent; }
+body.stage footer { background: var(--wine-2); }
+body.stage footer::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 6px; background: var(--kente); }
+body.stage footer { position: relative; }
+
+/* the peeks need a pointer that hovers */
+@media (hover: none) { .pro-hint { display: none; } }
 
 /* ---------------------------------------------------------------------
    PHONES (and portrait tablets, where the head sits above the name)
