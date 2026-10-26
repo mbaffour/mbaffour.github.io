@@ -6,7 +6,8 @@ A 30-second vertical launch video for the site, built with
 | | |
 |---|---|
 | File | `mbaffour-launch-1080x1920.mp4` |
-| Format | 1080×1920 (9:16), 30 fps, H.264, 30.0 s, silent |
+| Format | 1080×1920 (9:16), 30 fps, H.264, 30.0 s, AAC stereo soundtrack |
+| Music | Original big-beat cue, synthesised by `source/music/compose.py` (no samples); free to publish anywhere |
 | For | X and Instagram Reels |
 
 ## Scenes
@@ -33,7 +34,17 @@ A 30-second vertical launch video for the site, built with
 cd launch-video/source
 npx hyperframes@0.8.149 lint && npx hyperframes@0.8.149 check
 npx hyperframes@0.8.149 render --quality high --output renders/video.mp4
+
+# the soundtrack: render it, set it to -14 LUFS, and lay it under the picture
+python3 music/compose.py raw.wav
+ffmpeg -i raw.wav -af "loudnorm=I=-14:TP=-1.5:LRA=11,volume=-1.5dB" -ar 44100 music.wav
+ffmpeg -i renders/video.mp4 -i music.wav -map 0:v -map 1:a -c:v copy -c:a aac -b:a 192k \
+       -shortest -movflags +faststart ../mbaffour-launch-1080x1920.mp4
 ```
+
+The music is cut to the picture: 120 BPM with bars every 2 s from 1.2 s, so downbeats land
+on the cuts at 3.2, 13.2, 18.2 and 23.2 s, and the drop lands on the cell burst at 11.2 s.
+If the edit changes, move `T0` or the arrangement in `compose.py` to match.
 
 The screenshots in `source/assets/` were taken from mbaffour.github.io in October 2026. If the
 site changes, re-capture them before re-rendering, or the video will show the old pages.

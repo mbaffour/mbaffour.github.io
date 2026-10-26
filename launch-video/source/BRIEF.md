@@ -38,4 +38,4 @@ research site. User's structure, verbatim intent:
 - CTA (inferred from the site's own availability line): defending 2027, open to
   postdoc roles; URL mbaffour.github.io.
 - Logo: the site's favicon mark (gold hexagon-head phage).
-- Silent: no narration, no music (none requested).
+- No narration. Music: an original big-beat cue (`music/compose.py`), cut to the picture; the drop lands on the cell burst.
