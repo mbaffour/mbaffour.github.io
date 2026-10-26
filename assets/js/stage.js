@@ -67,10 +67,18 @@
         if (menu) mo.observe(menu, { attributes: true, attributeFilter: ['class'] });
         if (lb) mo.observe(lb, { attributes: true, attributeFilter: ['class'] });
     }
+    // scroll work runs at most once a frame, however many scroll events
+    // (native and Lenis's own) arrive in it
     function onScroll(fn) {
-        if (lenis) lenis.on('scroll', fn);
-        window.addEventListener('scroll', fn, { passive: true });
-        window.addEventListener('resize', fn);
+        var queued = false;
+        function tick() {
+            if (queued) return;
+            queued = true;
+            requestAnimationFrame(function () { queued = false; fn(); });
+        }
+        if (lenis) lenis.on('scroll', tick);
+        window.addEventListener('scroll', tick, { passive: true });
+        window.addEventListener('resize', tick);
         fn();
     }
 
@@ -112,6 +120,41 @@
             c.addEventListener('pointerleave', hide);
             c.addEventListener('focus', function () { var r = c.getBoundingClientRect(); show(c, r.left, r.top - 210); });
             c.addEventListener('blur', hide);
+        });
+    }
+
+    /* ---------- the tagline: words light up in reading order ----------
+       Split into word spans here (the markup stays plain text, so without
+       the script, or with reduced motion, it simply reads at full colour).
+       Progress through the section maps to a count of lit words, so they
+       turn on one at a time as the block crosses the middle of the screen. */
+    var tagText = document.querySelector('.tagline-text');
+    if (tagText && !reduce) {
+        var words = [];
+        (function split(node) {
+            [].slice.call(node.childNodes).forEach(function (n) {
+                if (n.nodeType === 3) {
+                    var frag = document.createDocumentFragment();
+                    n.textContent.split(/(\s+)/).forEach(function (w) {
+                        if (!w) return;
+                        if (/^\s+$/.test(w)) { frag.appendChild(document.createTextNode(w)); return; }
+                        var sp = document.createElement('span'); sp.className = 'tw'; sp.textContent = w;
+                        words.push(sp); frag.appendChild(sp);
+                    });
+                    node.replaceChild(frag, n);
+                } else if (n.nodeType === 1) split(n);
+            });
+        })(tagText);
+        html.classList.add('tag-live');
+        var lit = -1;
+        onScroll(function () {
+            var r = tagText.getBoundingClientRect(), vh = window.innerHeight;
+            // 0 when the block's top reaches 85% of the screen, 1 as its centre reaches the middle
+            var p = clamp((vh * 0.85 - r.top) / Math.max(1, vh * 0.35 + r.height / 2), 0, 1);
+            var n = Math.round(p * words.length);
+            if (n === lit) return;
+            lit = n;
+            words.forEach(function (w, i) { w.classList.toggle('on', i < n); });
         });
     }
 

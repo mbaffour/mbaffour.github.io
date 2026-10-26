@@ -20,6 +20,8 @@ body.stage {
     --wine-2: #3a0f13;
     --mono: var(--font-mono, 'JetBrains Mono', ui-monospace, monospace);
     --serif: var(--font-display, 'Fraunces', Georgia, serif);
+    /* the one motion curve: weighted, decelerating into place */
+    --ease: cubic-bezier(.22, 1, .36, 1);
 }
 
 /* smooth scrolling is Lenis's job once it runs */
@@ -93,13 +95,20 @@ body.stage .nav-links.menu li { list-style: none; border-top: 1px solid rgba(244
 body.stage .nav-links.menu li:not(.menu-foot) a {
     display: flex; align-items: baseline; gap: 1.2rem; padding: .35em 0; text-decoration: none; color: #f2ead8;
     font: 300 clamp(1.7rem, 4.6vh, 3.2rem)/1.08 var(--serif); letter-spacing: -.02em; text-transform: none; background: none;
-    transform: translateY(40%); opacity: 0; transition: transform .7s cubic-bezier(.2, .8, .2, 1), opacity .5s, color .2s; }
+    transform: translateY(24px); opacity: 0; transition: transform .5s var(--ease), opacity .5s var(--ease), color .3s var(--ease); }
 body.stage .nav-links.menu.open li a { transform: none; opacity: 1; }
-body.stage .nav-links.menu.open li:nth-child(2) a { transition-delay: .03s; } body.stage .nav-links.menu.open li:nth-child(3) a { transition-delay: .06s; }
-body.stage .nav-links.menu.open li:nth-child(4) a { transition-delay: .09s; } body.stage .nav-links.menu.open li:nth-child(5) a { transition-delay: .12s; }
-body.stage .nav-links.menu.open li:nth-child(6) a { transition-delay: .15s; } body.stage .nav-links.menu.open li:nth-child(7) a { transition-delay: .18s; }
-body.stage .nav-links.menu.open li:nth-child(8) a { transition-delay: .21s; } body.stage .nav-links.menu.open li:nth-child(9) a { transition-delay: .24s; }
-body.stage .nav-links.menu.open li:nth-child(10) a { transition-delay: .27s; }
+/* links arrive in reading order, 36ms apart, so even eleven of them land inside 400ms */
+body.stage .nav-links.menu.open li:nth-child(2) a { transition-delay: 36ms; }
+body.stage .nav-links.menu.open li:nth-child(3) a { transition-delay: 72ms; }
+body.stage .nav-links.menu.open li:nth-child(4) a { transition-delay: 108ms; }
+body.stage .nav-links.menu.open li:nth-child(5) a { transition-delay: 144ms; }
+body.stage .nav-links.menu.open li:nth-child(6) a { transition-delay: 180ms; }
+body.stage .nav-links.menu.open li:nth-child(7) a { transition-delay: 216ms; }
+body.stage .nav-links.menu.open li:nth-child(8) a { transition-delay: 252ms; }
+body.stage .nav-links.menu.open li:nth-child(9) a { transition-delay: 288ms; }
+body.stage .nav-links.menu.open li:nth-child(10) a { transition-delay: 324ms; }
+body.stage .nav-links.menu.open li:nth-child(11) a { transition-delay: 360ms; }
+body.stage .nav-links.menu.open li:nth-child(12) a { transition-delay: 396ms; }
 body.stage .nav-links.menu li a:hover, body.stage .nav-links.menu li a.active { color: #f4c430; }
 body.stage .nav-links.menu li a::after { display: none; }
 body.stage .nav-links.menu .mn { font: 500 .7rem/1 var(--mono); letter-spacing: .16em; color: #9c8a62; min-width: 2.2em; }
@@ -141,6 +150,11 @@ body.stage .to-top { background: rgba(18, 13, 9, .88); color: #f4c430; border: 1
 .stage-lede { margin: 1.6rem 0 0; max-width: 34rem; font: 400 clamp(1.02rem, 1.35vw, 1.2rem)/1.6 var(--font-body, Inter, sans-serif); color: var(--stage-ink-2); }
 .stage-lede em { color: #f2ead8; font-style: italic; font-family: var(--serif); font-size: 1.08em; }
 .stage-ctas { display: flex; flex-wrap: wrap; align-items: center; gap: 22px; margin-top: 2rem; }
+/* one line of proof beside the call to action */
+.stage-proof { display: flex; flex-wrap: wrap; gap: 6px 18px; margin: 1.25rem 0 0; font: 500 .75rem/1rem var(--mono); letter-spacing: .08em; color: var(--stage-ink-2); }
+.stage-proof span::before { content: ""; display: inline-block; width: 6px; height: 6px; margin: 0 8px 1px 0; border-radius: 1px; background: var(--k-gold); }
+.stage-proof span:nth-child(2)::before { background: var(--k-green); }
+.stage-proof span:nth-child(3)::before { background: var(--k-red); }
 .pillbtn { display: inline-flex; align-items: center; gap: 12px; padding: 13px 22px; border-radius: 999px; text-decoration: none;
     font: 500 .74rem/1 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: #120b08; background: #f2ead8;
     transition: background .25s, transform .25s; }
@@ -165,8 +179,8 @@ body.stage .to-top { background: rgba(18, 13, 9, .88); color: #f4c430; border: 1
 html.js .stage-name .ln > span { transform: translateY(105%); transition: transform 1.2s cubic-bezier(.2, .8, .2, 1); }
 html.js .stage-name .ln:last-child > span { transition-delay: .12s; }
 html.ready .stage-name .ln > span { transform: none; }
-html.js .stage-hero .lbl-stage, html.js .stage-lede, html.js .stage-ctas, html.js .stage-bar > * { opacity: 0; transform: translateY(16px); transition: opacity .9s .45s, transform .9s .45s cubic-bezier(.2, .8, .2, 1); }
-html.ready .stage-hero .lbl-stage, html.ready .stage-lede, html.ready .stage-ctas, html.ready .stage-bar > * { opacity: 1; transform: none; }
+html.js .stage-hero .lbl-stage, html.js .stage-lede, html.js .stage-ctas, html.js .stage-proof, html.js .stage-bar > * { opacity: 0; transform: translateY(16px); transition: opacity .9s .45s, transform .9s .45s cubic-bezier(.2, .8, .2, 1); }
+html.ready .stage-hero .lbl-stage, html.ready .stage-lede, html.ready .stage-ctas, html.ready .stage-proof, html.ready .stage-bar > * { opacity: 1; transform: none; }
 html.js .capsid { opacity: 0; transform: scale(.92); transition: opacity 1.6s .2s, transform 1.8s .2s cubic-bezier(.2, .8, .2, 1); }
 html.ready .capsid { opacity: 1; transform: none; }
 
@@ -246,6 +260,21 @@ html:not(.ring-live) .ring-card { position: static; transform: none; width: auto
 html:not(.ring-live) .ring-center { position: static; transform: none; width: auto; margin: 0 auto; }
 
 /* ---------------------------------------------------------------------
+   THE TAGLINE: one large statement, lit word by word on scroll
+   --------------------------------------------------------------------- */
+/* full bleed paper, with the content held to the same 1240px column as every other section */
+.tagline { display: grid; grid-template-columns: minmax(140px, 22%) minmax(0, 1fr); column-gap: 2rem;
+    padding: 22vh max(24px, calc((100% - 1240px) / 2)) 24vh; }
+.tagline .lbl { padding-top: 1.2em; }
+.tagline-text { margin: 0; max-width: 680px; font: 300 3rem/1.08 var(--serif); letter-spacing: -.025em; color: var(--ink); }
+.tagline-text em { font-style: italic; color: var(--acc-t); }
+/* unlit words sit at about 30% of the ink, then take their full colour in reading order */
+html.tag-live .tagline-text .tw { color: color-mix(in srgb, var(--ink) 28%, transparent); transition: color .6s var(--ease); }
+html.tag-live .tagline-text em .tw { color: color-mix(in srgb, var(--acc-t) 30%, transparent); }
+html.tag-live .tagline-text .tw.on { color: var(--ink); }
+html.tag-live .tagline-text em .tw.on { color: var(--acc-t); }
+
+/* ---------------------------------------------------------------------
    ACT III: the bench, step by step
    --------------------------------------------------------------------- */
 .act-steps { padding: 16vh max(24px, 5vw) 14vh; }
@@ -264,6 +293,36 @@ html.js .step .step-w, html.js .step .step-d { transition: color .6s ease, trans
 html.js .step:not(.on) .step-w { color: var(--ink-3); transform: translateX(-.25em); }
 html.js .step:not(.on) .step-d { color: var(--ink-3); }
 html.js .step.seen:not(.on) .step-w { color: var(--ink-2); transform: none; }
+
+/* ---------------------------------------------------------------------
+   RESEARCH LEAD: the headline finding (was inline styles), on the type
+   scale and spacing steps
+   --------------------------------------------------------------------- */
+.research-lead { max-width: 880px; margin: 0 auto 32px; padding: 24px 32px; border: 1px solid var(--border-strong); border-radius: 16px;
+    background: linear-gradient(135deg, rgba(244, 196, 48, .07), rgba(26, 128, 64, .04)); }
+.rl-kicker { margin: 0 0 8px; font: 500 .75rem/1rem var(--mono); letter-spacing: .16em; text-transform: uppercase; color: var(--gold); }
+.rl-kicker-2 { margin-top: 24px; }
+.rl-lead { margin: 0 0 12px; font-size: 1rem; line-height: 1.5rem; color: var(--ink); }
+.rl-lead.rl-last { margin-bottom: 0; }
+.rl-next { margin: 0; font-size: .875rem; line-height: 1.25rem; color: var(--ink-2); }
+.rl-next-k { color: var(--green-text); font-weight: 600; }
+.rl-link { margin: 16px 0 0; font-size: .875rem; line-height: 1.25rem; }
+.rl-link a { color: var(--gold); }
+
+/* ---------------------------------------------------------------------
+   QUESTIONS: a side by side list, question left and answer right
+   --------------------------------------------------------------------- */
+.faq { max-width: 1240px; margin: 0 auto; display: grid; grid-template-columns: minmax(140px, 22%) minmax(0, 1fr); column-gap: 2rem; }
+.faq-row { grid-column: 2; display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1fr); column-gap: 2rem;
+    padding: 1.5rem 0; border-top: 1px solid var(--border-strong); }
+.faq-row:last-child { border-bottom: 1px solid var(--border-strong); }
+.faq dt { margin: 0; font: 400 1.25rem/1.75rem var(--serif); letter-spacing: -.01em; color: var(--ink); text-wrap: balance; }
+.faq dt::before { content: ""; display: inline-block; width: 8px; height: 8px; margin: 0 .7rem .15rem 0; border-radius: 2px; background: var(--acc); }
+.faq-row:nth-child(3n+2) dt::before { background: var(--k-green); }
+.faq-row:nth-child(3n) dt::before { background: var(--k-red); }
+.faq dd { margin: 0; font-size: 1rem; line-height: 1.5rem; color: var(--ink-2); max-width: 36rem; }
+.faq dd a { color: var(--acc-t); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+.faq dd a:hover { text-decoration-thickness: 2px; }
 
 /* ---------------------------------------------------------------------
    The dive keeps its own stage; only its label changes
@@ -299,6 +358,20 @@ body.stage footer a { color: var(--ink-2); }
 .cur.big { width: 74px; height: 74px; margin: -37px 0 0 -37px; background: rgba(244, 196, 48, .9); border-color: transparent; }
 .cur span { font: 600 .58rem/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: #120b08; opacity: 0; transition: opacity .2s; }
 .cur.big span { opacity: 1; }
+
+/* ---------------------------------------------------------------------
+   MOTION AND STATES
+   No browser default curves on this page: every transition decelerates on
+   --ease. Keyframe loops (grain, the cue bob) keep their own timing.
+   --------------------------------------------------------------------- */
+body.stage *, body.stage *::before, body.stage *::after { transition-timing-function: var(--ease) !important; }
+/* pressed feedback on everything you can press */
+body.stage :is(.pillbtn, .btn, .pill-btn, .pill-mark, .sb-begin, .pa-tab, .research-more, .fig-mode, .fig-act,
+    .contact-email-copy, .toggle-btn, .pg-play, .filter-btn, .faq-q, .tf-callout):active { transform: translateY(1px) scale(.98); }
+body.stage :is(.pillbtn, .btn, .sb-begin, .textlink) { transition-property: background-color, color, border-color, transform, box-shadow; transition-duration: .3s; }
+/* no orphaned last words */
+body.stage :is(h1, h2, h3, .pro-text, .ring-title, .steps-title) { text-wrap: balance; }
+body.stage :is(p, li, dd) { text-wrap: pretty; }
 
 /* ---------------------------------------------------------------------
    KENTE COLOUR
@@ -408,7 +481,8 @@ body.stage footer { position: relative; }
     body.stage .pill { top: max(10px, env(safe-area-inset-top, 0px)); }
     body.stage .pill .nav-cmdk kbd, body.stage .pill-word { display: none; }
     body.stage .pill-btn { padding: 0 12px; }
-    .capsid { top: 6vh; bottom: auto; right: -6vw; width: 100vw; height: 46vh; }
+    .capsid { top: 6vh; bottom: auto; right: -6vw; width: 100vw; height: 42vh; }
+    .stage-proof { margin-top: 1rem; gap: 4px 14px; }
     .stage-hero-copy { left: 20px; right: 20px; bottom: 11vh; max-width: none; }
     .stage-name { font-size: clamp(2.6rem, 12vw, 4.2rem); }
     .lbl-stage { margin-bottom: .9rem; }
@@ -419,7 +493,12 @@ body.stage footer { position: relative; }
     .sb-acts, .sb-clock { display: none; }
     .sb-begin { margin-left: auto; }
     .prologue { padding: 12vh 20px 9vh; }
-    .pro-row, .programme, .steps-head, body.stage .section-header { grid-template-columns: 1fr; row-gap: .9rem; }
+    .pro-row, .programme, .steps-head, body.stage .section-header, .tagline { grid-template-columns: 1fr; row-gap: .9rem; }
+    .tagline { padding-top: 14vh; padding-bottom: 16vh; }
+    .faq { grid-template-columns: 1fr; }
+    .faq-row { grid-column: 1; grid-template-columns: 1fr; row-gap: .6rem; }
+    .tagline .lbl { padding-top: 0; }
+    .tagline-text { font-size: 2.25rem; line-height: 2.5rem; }
     .programme > *, .programme > .lbl, body.stage .section-header > *, body.stage .section-label { grid-column: 1; grid-row: auto; }
     .pro-row .lbl, .steps-head .lbl, body.stage .section-label { padding-top: 0; }
     .pro-text { font-size: 1.42rem; }
@@ -437,13 +516,30 @@ body.stage footer { position: relative; }
     body.stage #contact .section-title { font-size: clamp(2.4rem, 12vw, 3.6rem); }
 }
 
+@media (max-width: 760px) and (max-height: 800px) {
+    .capsid { top: 5vh; height: 34vh; }
+    .stage-name { font-size: clamp(2.4rem, 11vw, 3.6rem); }
+    .stage-hero-copy { bottom: 10vh; }
+}
+/* iPhone SE and smaller: everything a step tighter */
+@media (max-width: 760px) and (max-height: 700px) {
+    .capsid { top: 4vh; height: 28vh; right: -10vw; }
+    .stage-hero-copy { bottom: 11.5vh; }
+    .stage-name { font-size: clamp(2.25rem, 10vw, 3rem); }
+    .lbl-stage { margin-bottom: .5rem; }
+    .stage-lede { margin-top: .75rem; font-size: .875rem; line-height: 1.25rem; }
+    .stage-ctas { margin-top: 1rem; gap: 8px 16px; }
+    .stage-ctas .pillbtn { padding: 12px 16px; }
+    .stage-proof { margin-top: .75rem; gap: 2px 12px; }
+}
+
 /* ---------------------------------------------------------------------
    REDUCED MOTION: no preloader, no grain drift, nothing waits to appear
    --------------------------------------------------------------------- */
 @media (prefers-reduced-motion: reduce) {
     .pre { display: none; }
     body.stage::after { animation: none; }
-    html.js .stage-name .ln > span, html.js .stage-hero .lbl-stage, html.js .stage-lede, html.js .stage-ctas, html.js .stage-bar > *, html.js .capsid { opacity: 1; transform: none; }
+    html.js .stage-name .ln > span, html.js .stage-hero .lbl-stage, html.js .stage-lede, html.js .stage-ctas, html.js .stage-proof, html.js .stage-bar > *, html.js .capsid { opacity: 1; transform: none; }
     html.js body.stage .section-title { clip-path: none; transform: none; }
     html.js .step .step-w { transform: none; transition: none; }
     .cur { display: none; }
