@@ -906,8 +906,8 @@
         /* Scroll fade-in */
         .fade-in {
             opacity: 0;
-            transform: translateY(28px);
-            transition: opacity .9s ease, transform .9s ease;
+            transform: translateY(32px);
+            transition: opacity .7s cubic-bezier(.22, 1, .36, 1), transform .8s cubic-bezier(.22, 1, .36, 1);
         }
         /* Nothing clears .fade-in except an IntersectionObserver, so with no
            JavaScript every section below the hero stays invisible — the page

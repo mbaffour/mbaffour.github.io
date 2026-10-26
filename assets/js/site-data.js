@@ -22,7 +22,7 @@ const publications = [
            work this CV already claims as his own. Replace with the manuscript's
            CRediT statement verbatim if the wording there differs. */
         contribution: "Led the lysis genetics — CRISPR-based deletion and complementation series to define the minimal lysis gene set, SAR endolysin–holin characterisation, lysis-phenotype assays, and the RNA-seq comparison of wild-type and rapid-lysis lineages — and wrote the manuscript.",
-        summary: "First-author study of how phage N4 takes its host cell apart, showing it lyses via a SAR endolysin–holin system and mapping genomic regions — inside and outside the lysis cassette — involved in lysis inhibition.",
+        summary: "First author study of how phage N4 takes its host cell apart, showing it lyses via a SAR endolysin–holin system and mapping genomic regions — inside and outside the lysis cassette — involved in lysis inhibition.",
         citation: {
             plain: "Awuah MB, Martin C, Chamblee JS, Tomaszewski AJ, Sullivan TE, Emilia Q, Tran S, Snowden JH, Niemiec KA, Zhu J, Ramsey J. Phage N4 uses a SAR endolysin-holin system for host cell lysis. bioRxiv. 2025. doi:10.1101/2025.11.12.688109",
             bibtex: "@article{awuah2025n4lysis,\n  title   = {Phage {N4} uses a {SAR} endolysin-holin system for host cell lysis},\n  author  = {Awuah, Michael Baffour and Martin, C. and Chamblee, Joel S. and Tomaszewski, A. J. and Sullivan, T. E. and Emilia, Q. and Tran, S. and Snowden, J. H. and Niemiec, K. A. and Zhu, J. and Ramsey, Jolene},\n  journal = {bioRxiv},\n  year    = {2025},\n  doi     = {10.1101/2025.11.12.688109},\n  note    = {Preprint}\n}"
