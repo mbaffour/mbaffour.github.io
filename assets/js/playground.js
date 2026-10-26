@@ -212,15 +212,6 @@
         ctx.closePath(); ctx.fill();
         ctx.restore();
     }
-    function hex(cx, cy, rr) {
-        ctx.beginPath();
-        for (let a = 0; a < 6; a++) {
-            const ang = Math.PI / 6 + a * Math.PI / 3;
-            const px = cx + rr * Math.cos(ang), py = cy + rr * Math.sin(ang);
-            a === 0 ? ctx.moveTo(px, py) : ctx.lineTo(px, py);
-        }
-        ctx.closePath();
-    }
     // Rod-shaped (capsule) E. coli body. Holin puncturing the membrane doesn't
     // change the cell's shape — only endolysin digesting the wall does, right
     // before spanins complete lysis. So only the true burst frame is rounded.
@@ -304,32 +295,31 @@
             if (stage === 3) ctx.setLineDash([3, 3]);
             ctx.stroke(); ctx.setLineDash([]);
         }
-        const gold = '#f4c430';
+        // Every N4 in the icon, whether landing, built inside, released or
+        // superinfecting, is the same virion: one podophage, one size, one colour.
+        const gold = '#f4c430', VS = 3;
+        const top = cy - R * 0.575;                       // the envelope's top edge
+        const virion = (x, y, ang) => podophage(x - Math.cos(ang) * VS * 1.36, y - Math.sin(ang) * VS * 1.36, Math.cos(ang), Math.sin(ang), VS, gold);
+        // packed in one interleaved row, heads alternately up and down, so they never overlap
+        const SLOTS = [0, -6.4, 6.4, -12.8, 12.8, -19.2, 19.2];
+        const packed = n => SLOTS.slice(0, n).forEach(dx => { const up = Math.round(dx / 6.4) % 2 === 0; virion(cx + dx, cy + (up ? 1 : -1), up ? -Math.PI / 2 : Math.PI / 2); });
         if (stage === 0) {                       // N4 docking on the envelope
-            podophage(cx, cy - R - 1, 0, -1, 6, gold);
+            podophage(cx, top - 0.5, 0, -1, VS, gold);
         } else if (stage === 1) {                // DNA squiggle
             ctx.strokeStyle = gold; ctx.lineWidth = 1.6; ctx.beginPath();
             for (let i = 0; i <= 20; i++) { const t = i / 20; const px = cx - 11 + t * 22; const py = cy + Math.sin(t * Math.PI * 4) * 6; i ? ctx.lineTo(px, py) : ctx.moveTo(px, py); }
             ctx.stroke();
         } else if (stage === 2 || stage === 3) {  // virions filling
-            ctx.fillStyle = gold;
-            const n = stage === 2 ? 4 : 8;
-            for (let i = 0; i < n; i++) { const ang = i / n * Math.PI * 2; const rr = stage === 2 ? 7 : 11; hex(cx + Math.cos(ang) * rr, cy + Math.sin(ang) * rr, 3.2); ctx.fill(); }
-        } else if (isBurst) {  // burst: phages spraying out on speed lines, membrane droplets
+            packed(stage === 2 ? 3 : 5);
+        } else if (isBurst) {  // burst: virions spraying out on speed lines, membrane droplets
             const n = 9;
             ctx.strokeStyle = gold; ctx.lineWidth = 1.4; ctx.lineCap = 'round';
-            for (let i = 0; i < n; i++) { const ang = i / n * Math.PI * 2; const rr = R + 10; ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(cx + Math.cos(ang) * rr, cy + Math.sin(ang) * rr); ctx.stroke(); }
-            ctx.fillStyle = gold;
-            for (let i = 0; i < n; i++) { const ang = i / n * Math.PI * 2; const rr = R + 10; hex(cx + Math.cos(ang) * rr, cy + Math.sin(ang) * rr, 3); ctx.fill(); }
+            for (let i = 0; i < n; i++) { const ang = i / n * Math.PI * 2; const rr = R + 4; ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(cx + Math.cos(ang) * rr, cy + Math.sin(ang) * rr); ctx.stroke(); }
+            for (let i = 0; i < n; i++) { const ang = i / n * Math.PI * 2; const rr = R + 10; virion(cx + Math.cos(ang) * rr, cy + Math.sin(ang) * rr, ang); }
             drawBurstDroplets(cx, cy, R);
-        } else if (stage === 4) {                 // N4 held: stuffed + superinfecting phages
-            ctx.fillStyle = gold;
-            for (let i = 0; i < 9; i++) { const ang = i / 9 * Math.PI * 2; hex(cx + Math.cos(ang) * 11, cy + Math.sin(ang) * 11, 3.2); ctx.fill(); }
-            // superinfecting N4, docked on the envelope
-            [-1, 1].forEach(sx => {
-                const ang = -Math.PI / 2 + sx * 0.75, ux = Math.cos(ang), uy = Math.sin(ang);
-                podophage(cx + ux * (R + 1), cy + uy * (R + 1), ux, uy, 6.5, '#d4324b');
-            });
+        } else if (stage === 4) {                 // N4 held: packed with virions, and more of the same virion docked outside
+            packed(7);
+            [-1, 1].forEach(sx => podophage(cx + sx * 12, top - 0.5, 0, -1, VS, gold));
         }
         ctx.restore();
     }

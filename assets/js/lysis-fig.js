@@ -120,7 +120,7 @@
             return m;
         });
         g.sin = marks(T_SIN, function (m) {
-            el('path', { d: 'M8 -14.2 L4 -7.3 L-4 -7.3 L-8 -14.2 L-4 -21.1 L4 -21.1 Z M-3 -7.3 L-2.4 -2.9 L2.4 -2.9 L3 -7.3 M-2.4 -2.9 l-2.8 2.4 M2.4 -2.9 l2.8 2.4', class: 'sar-sinphage' }, m);
+            el('path', { d: 'M6 -10.3 L3 -5.1 L-3 -5.1 L-6 -10.3 L-3 -15.5 L3 -15.5 Z M-2.3 -5.1 L-1.8 -1.8 L1.8 -1.8 L2.3 -5.1 M-1.8 -1.8 l-2.1 1.8 M1.8 -1.8 l2.1 1.8', class: 'sar-sinphage' }, m);
         });
         g.tag = el('text', { class: 'sym sar-stage', x: W / 2, y: H - 10, 'text-anchor': 'middle' }, svg);
         host.appendChild(svg);

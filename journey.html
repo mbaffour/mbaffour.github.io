@@ -205,7 +205,7 @@
         .scene[data-fig="sar"] .sar-pac { fill: var(--gold); stroke: var(--gold); stroke-width: .8; stroke-linejoin: round; }
         .scene[data-fig="sar"] .sar-eye { fill: var(--bg-card); }
         .scene[data-fig="sar"] .sar-phage { fill: none; stroke: var(--ink); stroke-width: 1.6; stroke-linejoin: round; stroke-linecap: round; }
-        .scene[data-fig="sar"] .sar-sinphage { fill: none; stroke: var(--green-text); stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; }
+        .scene[data-fig="sar"] .sar-sinphage { fill: none; stroke: var(--ink); stroke-width: 1.6; stroke-linejoin: round; stroke-linecap: round; }
         .scene[data-fig="sar"] .sar-leader { fill: none; stroke: var(--ink-3); stroke-width: 1; opacity: .6; }
         .scene[data-fig="sar"] .sar-lab { fill: var(--ink-3); font-size: 10px; letter-spacing: .12em; }
         .scene[data-fig="sar"] .sar-stage { fill: var(--green-text); font-size: 12px; letter-spacing: .14em; }
@@ -596,15 +596,15 @@
                   <path d="M388 154 L383 162.7 L373 162.7 L368 154 L373 145.3 L383 145.3 Z M374.2 162.7 L375 168.2 L381 168.2 L381.8 162.7 M375 168.2 l-3.5 3 M381 168.2 l3.5 3"/>
                   <path d="M445 158 L440 166.7 L430 166.7 L425 158 L430 149.3 L440 149.3 Z M431.2 166.7 L432 172.2 L438 172.2 L438.8 166.7 M432 172.2 l-3.5 3 M438 172.2 l3.5 3"/>
                 </g>
-                <!-- superinfecting phages outside: the LIN signal -->
-                <g class="stroke-green">
-                  <path d="M197 71.6 L192.5 79.4 L183.5 79.4 L179 71.6 L183.5 63.8 L192.5 63.8 Z M184.6 79.4 L185.3 84.3 L190.7 84.3 L191.4 79.4 M185.3 84.3 l-3.1 2.7 M190.7 84.3 l3.1 2.7"/>
-                  <path d="M617 63.6 L612.5 71.4 L603.5 71.4 L599 63.6 L603.5 55.8 L612.5 55.8 Z M604.6 71.4 L605.3 76.3 L610.7 76.3 L611.4 71.4 M605.3 76.3 l-3.1 2.7 M610.7 76.3 l3.1 2.7"/>
-                  <path d="M657 201.6 L652.5 209.4 L643.5 209.4 L639 201.6 L643.5 193.8 L652.5 193.8 Z M644.6 209.4 L645.3 214.3 L650.7 214.3 L651.4 209.4 M645.3 214.3 l-3.1 2.7 M650.7 214.3 l3.1 2.7"/>
-                  <path d="M167 191.6 L162.5 199.4 L153.5 199.4 L149 191.6 L153.5 183.8 L162.5 183.8 Z M154.6 199.4 L155.3 204.3 L160.7 204.3 L161.4 199.4 M155.3 204.3 l-3.1 2.7 M160.7 204.3 l3.1 2.7"/>
+                <!-- superinfecting phages outside: the LIN signal. The same N4 virion as the progeny inside. -->
+                <g class="stroke-ink" opacity=".85">
+                  <path d="M198 69.9 L193 78.6 L183 78.6 L178 69.9 L183 61.2 L193 61.2 Z M184.2 78.6 L185 84.1 L191 84.1 L191.8 78.6 M185 84.1 l-3.5 3 M191 84.1 l3.5 3"/>
+                  <path d="M618 61.9 L613 70.6 L603 70.6 L598 61.9 L603 53.2 L613 53.2 Z M604.2 70.6 L605 76.1 L611 76.1 L611.8 70.6 M605 76.1 l-3.5 3 M611 76.1 l3.5 3"/>
+                  <path d="M658 199.9 L653 208.6 L643 208.6 L638 199.9 L643 191.2 L653 191.2 Z M644.2 208.6 L645 214.1 L651 214.1 L651.8 208.6 M645 214.1 l-3.5 3 M651 214.1 l3.5 3"/>
+                  <path d="M168 189.9 L163 198.6 L153 198.6 L148 189.9 L153 181.2 L163 181.2 Z M154.2 198.6 L155 204.1 L161 204.1 L161.8 198.6 M155 204.1 l-3.5 3 M161 204.1 l3.5 3"/>
                 </g>
                 <!-- landing site for phages added by the Fig 4 control -->
-                <g class="stroke-green lin-out"></g>
+                <g class="stroke-ink lin-out" opacity=".85"></g>
                 <!-- a clock face, because the phenotype is TIMING -->
                 <g class="lin-clock" transform="translate(400,130)">
                   <circle class="stroke-ink" r="24" opacity=".9"/>
@@ -1040,7 +1040,7 @@
                 (my - dy * 25).toFixed(1) + ') rotate(' + (Math.atan2(-dx, dy) * 180 / Math.PI).toFixed(1) + ')');
             var inner = document.createElementNS(NS, 'g');
             var p = document.createElementNS(NS, 'path');
-            p.setAttribute('d', 'M9 6.6 L4.5 14.4 L-4.5 14.4 L-9 6.6 L-4.5 -1.2 L4.5 -1.2 Z M-3.4 14.4 L-2.7 19.3 L2.7 19.3 L3.4 14.4 M-2.7 19.3 l-3.1 2.7 M2.7 19.3 l3.1 2.7');
+            p.setAttribute('d', 'M10 4.9 L5 13.6 L-5 13.6 L-10 4.9 L-5 -3.8 L5 -3.8 Z M-3.8 13.6 L-3 19.1 L3 19.1 L3.8 13.6 M-3 19.1 l-3.5 3 M3 19.1 l3.5 3');
             inner.appendChild(p); g.appendChild(inner); out.appendChild(g);
             inner.style.transform = 'translate(0,-34px)'; inner.style.opacity = '0';
             requestAnimationFrame(function () { requestAnimationFrame(function () {

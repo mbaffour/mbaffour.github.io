@@ -3998,7 +3998,7 @@ kbd {
 .lysis-plate .sar-pac { fill: var(--gold); stroke: var(--gold); stroke-width: .8; stroke-linejoin: round; }
 .lysis-plate .sar-eye { fill: var(--bg-card); }
 .lysis-plate .sar-phage { fill: none; stroke: var(--ink); stroke-width: 1.6; stroke-linejoin: round; stroke-linecap: round; }
-.lysis-plate .sar-sinphage { fill: none; stroke: var(--green-text); stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; }
+.lysis-plate .sar-sinphage { fill: none; stroke: var(--ink); stroke-width: 1.6; stroke-linejoin: round; stroke-linecap: round; }
 .lysis-plate .sar-leader { fill: none; stroke: var(--ink-3); stroke-width: 1; opacity: .6; }
 .lysis-plate .sar-lab { fill: var(--ink-3); font-size: 10px; letter-spacing: .12em; }
 .lysis-plate .sar-stage { fill: var(--green-text); font-size: 12px; letter-spacing: .14em; }
