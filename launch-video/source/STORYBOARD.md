@@ -88,7 +88,7 @@ Adapt: keep the cursorless stepwise-flow signature (the screen cycles through a 
 Scene 1 (0.0–0.7s): kicker "01 · INTERACTIVE FIGURE" then title "Watch N4 open the cell." top third.
 Scene 2 (0.7–1.2s): the figure card rises in below (width 1000, y ≈ 620) on state 1, step 1 lights.
 Scene 3 (1.2–3.0s): in place, state 1 → 2 → 3 by quick crossfades ≈0.6s apart, then the burst plays as an 11-frame flipbook of the live animation (≈1s), a four-step list under the card lighting in sync: "gp61 tethered · inactive" → "gp63 pinholes open" → "gp61 released · cutting the wall" → "Cell bursts · phages released".
-Scene 4 (3.0–5.0s): push in on the top of the figure where the released phages land outside the torn envelope; hold.
+Scene 4 (3.0–5.0s): push in on the torn cell and the podophage progeny streaming out of it; hold.
 
 ## Frame 4 — Feature 2: the lysis-curve playground
 

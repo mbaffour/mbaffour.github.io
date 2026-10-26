@@ -116,11 +116,11 @@
         });
         g.progeny = PROGENY.map(function () {
             var m = el('g', {}, svg);
-            el('path', { d: 'M-5 -5 l5 -3 5 3 v6 l-5 3 -5 -3 Z M0 4 v7 M-4 11 h8', class: 'sar-phage' }, m);
+            el('path', { d: 'M-5 -5 l5 -3 5 3 v6 l-5 3 -5 -3 Z M0 4 v3 M0 6 l-3 2 M0 6 l3 2', class: 'sar-phage' }, m);
             return m;
         });
         g.sin = marks(T_SIN, function (m) {
-            el('path', { d: 'M-7 -30 l7 -4 7 4 v8 l-7 4 -7 -4 Z M0 -18 v17 M-7 -1 h14', class: 'sar-sinphage' }, m);
+            el('path', { d: 'M-7 -19 l7 -4 7 4 v8 l-7 4 -7 -4 Z M0 -7 v5 M0 -3 l-4 3 M0 -3 l4 3', class: 'sar-sinphage' }, m);
         });
         g.tag = el('text', { class: 'sym sar-stage', x: W / 2, y: H - 10, 'text-anchor': 'middle' }, svg);
         host.appendChild(svg);
