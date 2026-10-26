@@ -198,6 +198,20 @@
     }
 
     // small hexagon (virion)
+    // N4, a podophage, with its appendage tips at (x, y) and its head along (ux, uy):
+    // flat-based head, short wide tail block, two short appendages
+    function podophage(x, y, ux, uy, r, colour) {
+        ctx.save();
+        ctx.translate(x, y); ctx.rotate(Math.atan2(uy, ux));
+        ctx.fillStyle = ctx.strokeStyle = colour; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+        ctx.beginPath(); ctx.moveTo(r * 0.3, -r * 0.3); ctx.lineTo(r * 0.86, -r * 0.4); ctx.lineTo(r * 0.86, r * 0.4); ctx.lineTo(r * 0.3, r * 0.3); ctx.closePath(); ctx.fill();
+        ctx.lineWidth = Math.max(1, r * 0.2);
+        ctx.beginPath(); ctx.moveTo(r * 0.3, -r * 0.3); ctx.lineTo(0, -r * 0.62); ctx.moveTo(r * 0.3, r * 0.3); ctx.lineTo(0, r * 0.62); ctx.stroke();
+        ctx.beginPath();
+        for (let k = 0; k < 6; k++) { const a = Math.PI / 6 + k * Math.PI / 3; k ? ctx.lineTo(r * 1.72 + r * Math.cos(a), r * Math.sin(a)) : ctx.moveTo(r * 1.72 + r * Math.cos(a), r * Math.sin(a)); }
+        ctx.closePath(); ctx.fill();
+        ctx.restore();
+    }
     function hex(cx, cy, rr) {
         ctx.beginPath();
         for (let a = 0; a < 6; a++) {
@@ -291,15 +305,8 @@
             ctx.stroke(); ctx.setLineDash([]);
         }
         const gold = '#f4c430';
-        if (stage === 0) {                       // phage docking — N4 is a podovirus: short stubby tail, no baseplate
-            ctx.strokeStyle = gold; ctx.lineWidth = 1.8;
-            ctx.beginPath(); ctx.moveTo(cx, cy - R - 11); ctx.lineTo(cx, cy - R - 3); ctx.stroke();
-            ctx.lineWidth = 1.2;
-            ctx.beginPath();
-            ctx.moveTo(cx - 1.5, cy - R - 6); ctx.lineTo(cx - 4, cy - R - 2);
-            ctx.moveTo(cx + 1.5, cy - R - 6); ctx.lineTo(cx + 4, cy - R - 2);
-            ctx.stroke();
-            hex(cx, cy - R - 16, 5); ctx.fillStyle = gold; ctx.fill();
+        if (stage === 0) {                       // N4 docking on the envelope
+            podophage(cx, cy - R - 1, 0, -1, 6, gold);
         } else if (stage === 1) {                // DNA squiggle
             ctx.strokeStyle = gold; ctx.lineWidth = 1.6; ctx.beginPath();
             for (let i = 0; i <= 20; i++) { const t = i / 20; const px = cx - 11 + t * 22; const py = cy + Math.sin(t * Math.PI * 4) * 6; i ? ctx.lineTo(px, py) : ctx.moveTo(px, py); }
@@ -318,13 +325,10 @@
         } else if (stage === 4) {                 // N4 held: stuffed + superinfecting phages
             ctx.fillStyle = gold;
             for (let i = 0; i < 9; i++) { const ang = i / 9 * Math.PI * 2; hex(cx + Math.cos(ang) * 11, cy + Math.sin(ang) * 11, 3.2); ctx.fill(); }
-            // superinfecting N4 docked on the envelope: hexagonal head, short stub, no long tail
-            ctx.strokeStyle = '#d4324b'; ctx.fillStyle = '#d4324b'; ctx.lineCap = 'round';
+            // superinfecting N4, docked on the envelope
             [-1, 1].forEach(sx => {
                 const ang = -Math.PI / 2 + sx * 0.75, ux = Math.cos(ang), uy = Math.sin(ang);
-                const tx = cx + ux * (R + 2), ty = cy + uy * (R + 2);
-                ctx.lineWidth = 2.2; ctx.beginPath(); ctx.moveTo(tx, ty); ctx.lineTo(tx + ux * 4, ty + uy * 4); ctx.stroke();
-                hex(tx + ux * 9, ty + uy * 9, 4.5); ctx.fill();
+                podophage(cx + ux * (R + 1), cy + uy * (R + 1), ux, uy, 6.5, '#d4324b');
             });
         }
         ctx.restore();
