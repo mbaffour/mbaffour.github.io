@@ -27,6 +27,9 @@
     function lerp(a, b, k) { return a + (b - a) * k; }
     function rng(s) { return function () { s = (s * 1664525 + 1013904223) >>> 0; return s / 4294967296; }; }
     var CREAM = [245, 237, 216], GOLD = [244, 196, 48], CORAL = [244, 105, 127], GREEN = [63, 191, 110];
+    // every N4 virion in focus (the first to land, the superinfecting ones, the
+    // progeny built inside and released) is the same particle: one size, one colour
+    var VIRION = 5.5;
     function rgba(c, o) { return 'rgba(' + c[0] + ',' + c[1] + ',' + c[2] + ',' + clamp(o).toFixed(3) + ')'; }
     function mix(a, b, t) { return [0, 1, 2].map(function (i) { return Math.round(a[i] + (b[i] - a[i]) * t); }); }
 
@@ -59,11 +62,6 @@
         ctx.beginPath();
         ctx.arc(h, 0, rr, -Math.PI / 2, Math.PI / 2);
         ctx.arc(-h, 0, rr, Math.PI / 2, Math.PI * 1.5);
-        ctx.closePath();
-    }
-    function hexagon(x, y, s, a) {
-        ctx.beginPath();
-        for (var k = 0; k < 6; k++) { var t = a + k * Math.PI / 3; ctx[k ? 'lineTo' : 'moveTo'](x + Math.cos(t) * s, y + Math.sin(t) * s); }
         ctx.closePath();
     }
     // a phage with its appendage tips at (x, y), its head along (nx, ny).
@@ -158,11 +156,10 @@
                 for (var k = 1; k <= n; k++) { var u = k / 40; ctx.lineTo(sx - u * h * 0.9 + Math.sin(u * 22) * 7 * s, sy + u * rr * 1.3 + Math.cos(u * 17) * 6 * s); }
                 ctx.lineWidth = 2.2 * s; ctx.strokeStyle = rgba(GOLD, 0.9 * dna); ctx.stroke();
             }
-            // progeny assembling
+            // progeny assembling: whole virions, the same particle that lands outside
             for (var j = 0; j < nProg; j++) {
-                var g = prog[j];
-                hexagon(g.fx * (h + rr * 0.45), g.fy * rr * 0.86, 4.6 * s, g.spin);
-                ctx.fillStyle = rgba(GOLD, 0.92); ctx.fill();
+                var g = prog[j], gx = g.fx * (h + rr * 0.45), gy = g.fy * rr * 0.86, ga = g.spin, vs = VIRION * s;
+                phage(gx - Math.cos(ga) * vs * 1.36, gy - Math.sin(ga) * vs * 1.36, Math.cos(ga), Math.sin(ga), vs, GOLD, false, false);
             }
             // pinholes opening in the membrane
             pins.forEach(function (q) {
@@ -205,7 +202,7 @@
                 nx = Math.cos(Math.atan2(dest.ny, dest.nx) + wob); ny = Math.sin(Math.atan2(dest.ny, dest.nx) + wob);
             }
             ctx.globalAlpha = al;
-            phage(x, y, nx, ny, 10 * s, L.main ? GOLD : CREAM, p > L.inj, true);
+            phage(x, y, nx, ny, VIRION * s, GOLD, p > L.inj, true);
             ctx.globalAlpha = 1;
         });
         // the burst: a flash, the envelope in pieces, the progeny released
@@ -227,7 +224,7 @@
                 var px = ox + start[0] + Math.cos(g.dir) * dd + Math.sin(t * 0.6 + g.spin) * 10 * U * bu;
                 var py = oy + start[1] + Math.sin(g.dir) * dd + Math.cos(t * 0.5 + g.spin) * 10 * U * bu;
                 var a2 = g.spin + bu * 4 + t * 0.2;
-                phage(px, py, Math.cos(a2), Math.sin(a2), 7.5 * s, mix(GOLD, CREAM, seg(bu, 0.5, 1)), false, bu < 0.7);
+                phage(px, py, Math.cos(a2), Math.sin(a2), VIRION * s, GOLD, false, bu < 0.7);
             });
         }
         ctx.restore();
