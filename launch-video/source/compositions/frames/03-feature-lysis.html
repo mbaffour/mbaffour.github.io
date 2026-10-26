@@ -12,12 +12,12 @@
     #f03-kicker svg { width: 38px; height: 38px; }
     #f03-title { position: absolute; left: 72px; right: 72px; top: 320px; color: #F5EDD8;
       font-family: "Fraunces", Georgia, serif; font-weight: 400; font-size: 104px; line-height: 1.02; letter-spacing: -0.022em; }
-    #f03-card { position: absolute; left: 40px; top: 600px; width: 1000px; height: 378px; overflow: hidden;
+    #f03-card { position: absolute; left: 40px; top: 600px; width: 1000px; height: 483px; overflow: hidden;
       border-radius: 24px; border: 2px solid rgba(244, 196, 48, 0.26); background: #221C0E;
       box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45); }
     #f03-cam { position: absolute; inset: 0; }
     #f03-cam img { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
-    #f03-steps { position: absolute; left: 72px; right: 72px; top: 1060px; display: flex; flex-direction: column; gap: 26px; }
+    #f03-steps { position: absolute; left: 72px; right: 72px; top: 1150px; display: flex; flex-direction: column; gap: 26px; }
     .f03-step { display: flex; align-items: center; gap: 22px; font-family: "JetBrains Mono", monospace;
       font-weight: 500; font-size: 34px; letter-spacing: 0.04em; color: #AB9059; }
     .f03-dot { flex: none; width: 50px; height: 50px; border-radius: 50%; border: 2px solid rgba(244, 196, 48, 0.4);
@@ -79,11 +79,11 @@
       tl.to("#f03-s1i", { opacity: 1, duration: 0.25, ease: "power2.out" }, 1.45); light(2, 1.5);
       tl.to("#f03-s2i", { opacity: 1, duration: 0.25, ease: "power2.out" }, 2.05); light(3, 2.1);
       // the burst plays as a flipbook of the live figure: spanins reach the outer membrane,
-      // the envelope gives way and the progeny stream out (frames stack, each on top of the last)
+      // the cell gives way and the progeny stream out (frames stack, each on top of the last)
       for (let k = 0; k < 11; k++) tl.set("#f03-b" + String(k).padStart(2, "0"), { opacity: 1 }, 2.55 + k * 0.1);
       light(4, 2.75);
-      // Scene 4 (3.6–5.0s): push in on the top of the figure, where the released phages land
-      tl.fromTo("#f03-cam", { scale: 1 }, { scale: 1.5, duration: 1.2, ease: "power3.inOut", transformOrigin: "45% 12%" }, 3.65);
+      // Scene 4 (3.6–5.0s): push in on the torn cell and the podophages streaming out of it
+      tl.fromTo("#f03-cam", { scale: 1 }, { scale: 1.45, duration: 1.2, ease: "power3.inOut", transformOrigin: "43% 58%" }, 3.65);
       tl.to({}, { duration: 0.01 }, 5.49);
       window.__timelines["03-feature-lysis"] = tl;
     })();

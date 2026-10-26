@@ -88,23 +88,25 @@
     var core = new THREE.Mesh(new THREE.IcosahedronGeometry(0.85, 3), new THREE.MeshStandardMaterial({ color: 0x0e0a07, roughness: 0.9, metalness: 0.1 }));
     head.add(core);
 
-    /* ---------- the tail: N4 is a podovirus, so short and stubby ---------- */
+    /* ---------- the tail: N4 is a podophage, so short and stubby ----------
+       A stub well under the head's radius, a collar, and twelve short
+       appendages folded close round it. No long tail fibres, no baseplate. */
     var tailDir = pents.reduce(function (best, q) { return q.p.y < best.p.y ? q : best; }, pents[0]).dir.clone();
     var tail = new THREE.Group();
-    var neck = new THREE.Mesh(new THREE.CylinderGeometry(0.16, 0.2, 0.34, 12), new THREE.MeshStandardMaterial({ color: 0x2a231b, roughness: 0.5, metalness: 0.5 }));
-    neck.position.y = -1.13;
+    var neck = new THREE.Mesh(new THREE.CylinderGeometry(0.16, 0.19, 0.24, 12), new THREE.MeshStandardMaterial({ color: 0x2a231b, roughness: 0.5, metalness: 0.5 }));
+    neck.position.y = -1.08;
     var plate = new THREE.Mesh(new THREE.CylinderGeometry(0.27, 0.22, 0.09, 12), pentMat);
-    plate.position.y = -1.33;
+    plate.position.y = -1.23;
     tail.add(neck); tail.add(plate);
     var fiberMat = new THREE.MeshStandardMaterial({ color: 0x8a7444, roughness: 0.5, metalness: 0.5 });
-    for (i = 0; i < 6; i++) {
-        var a = i / 6 * Math.PI * 2;
+    for (i = 0; i < 12; i++) {
+        var a = i / 12 * Math.PI * 2;
         var curve = new THREE.CatmullRomCurve3([
-            new THREE.Vector3(Math.cos(a) * 0.22, -1.33, Math.sin(a) * 0.22),
-            new THREE.Vector3(Math.cos(a) * 0.5, -1.45, Math.sin(a) * 0.5),
-            new THREE.Vector3(Math.cos(a) * 0.66, -1.72, Math.sin(a) * 0.66)
+            new THREE.Vector3(Math.cos(a) * 0.2, -1.2, Math.sin(a) * 0.2),
+            new THREE.Vector3(Math.cos(a) * 0.29, -1.26, Math.sin(a) * 0.29),
+            new THREE.Vector3(Math.cos(a) * 0.32, -1.37, Math.sin(a) * 0.32)
         ]);
-        tail.add(new THREE.Mesh(new THREE.TubeGeometry(curve, 12, 0.012, 6, false), fiberMat));
+        tail.add(new THREE.Mesh(new THREE.TubeGeometry(curve, 8, 0.016, 6, false), fiberMat));
     }
     tail.quaternion.setFromUnitVectors(new THREE.Vector3(0, -1, 0), tailDir);
     head.add(tail);

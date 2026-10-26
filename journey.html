@@ -590,18 +590,18 @@
                 </g>
                 <!-- new virions assembling inside -->
                 <g class="stroke-ink lin-in" opacity=".85">
-                  <path d="M340 110 l10 -6 10 6 v12 l-10 6 -10 -6 Z M350 128 v10"/>
-                  <path d="M395 96  l10 -6 10 6 v12 l-10 6 -10 -6 Z M405 114 v10"/>
-                  <path d="M448 118 l10 -6 10 6 v12 l-10 6 -10 -6 Z M458 136 v10"/>
-                  <path d="M368 148 l10 -6 10 6 v12 l-10 6 -10 -6 Z M378 166 v8"/>
-                  <path d="M425 152 l10 -6 10 6 v12 l-10 6 -10 -6 Z M435 170 v8"/>
+                  <path d="M340 110 l10 -6 10 6 v12 l-10 6 -10 -6 Z M350 128 v4 M350 131 l-3 3 M350 131 l3 3"/>
+                  <path d="M395 96  l10 -6 10 6 v12 l-10 6 -10 -6 Z M405 114 v4 M405 117 l-3 3 M405 117 l3 3"/>
+                  <path d="M448 118 l10 -6 10 6 v12 l-10 6 -10 -6 Z M458 136 v4 M458 139 l-3 3 M458 139 l3 3"/>
+                  <path d="M368 148 l10 -6 10 6 v12 l-10 6 -10 -6 Z M378 166 v4 M378 169 l-3 3 M378 169 l3 3"/>
+                  <path d="M425 152 l10 -6 10 6 v12 l-10 6 -10 -6 Z M435 170 v4 M435 173 l-3 3 M435 173 l3 3"/>
                 </g>
                 <!-- superinfecting phages outside: the LIN signal -->
                 <g class="stroke-green">
-                  <path d="M180 60 l8 -5 8 5 v10 l-8 5 -8 -5 Z M188 75 v12 M180 87 h16"/>
-                  <path d="M600 52 l8 -5 8 5 v10 l-8 5 -8 -5 Z M608 67 v12 M600 79 h16"/>
-                  <path d="M640 190 l8 -5 8 5 v10 l-8 5 -8 -5 Z M648 205 v12 M640 217 h16"/>
-                  <path d="M150 180 l8 -5 8 5 v10 l-8 5 -8 -5 Z M158 195 v12 M150 207 h16"/>
+                  <path d="M180 66 l8 -5 8 5 v10 l-8 5 -8 -5 Z M188 81 v4 M188 84 l-4 3 M188 84 l4 3"/>
+                  <path d="M600 58 l8 -5 8 5 v10 l-8 5 -8 -5 Z M608 73 v4 M608 76 l-4 3 M608 76 l4 3"/>
+                  <path d="M640 196 l8 -5 8 5 v10 l-8 5 -8 -5 Z M648 211 v4 M648 214 l-4 3 M648 214 l4 3"/>
+                  <path d="M150 186 l8 -5 8 5 v10 l-8 5 -8 -5 Z M158 201 v4 M158 204 l-4 3 M158 204 l4 3"/>
                 </g>
                 <!-- landing site for phages added by the Fig 4 control -->
                 <g class="stroke-green lin-out"></g>
@@ -1040,7 +1040,7 @@
                 (my - dy * 25).toFixed(1) + ') rotate(' + (Math.atan2(-dx, dy) * 180 / Math.PI).toFixed(1) + ')');
             var inner = document.createElementNS(NS, 'g');
             var p = document.createElementNS(NS, 'path');
-            p.setAttribute('d', 'M-8 -5 l8 -5 8 5 v10 l-8 5 -8 -5 Z M0 10 v12 M-8 22 h16');
+            p.setAttribute('d', 'M-8 1 l8 -5 8 5 v10 l-8 5 -8 -5 Z M0 16 v4 M0 19 l-4 3 M0 19 l4 3');
             inner.appendChild(p); g.appendChild(inner); out.appendChild(g);
             inner.style.transform = 'translate(0,-34px)'; inner.style.opacity = '0';
             requestAnimationFrame(function () { requestAnimationFrame(function () {

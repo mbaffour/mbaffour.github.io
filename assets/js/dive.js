@@ -66,12 +66,22 @@
         for (var k = 0; k < 6; k++) { var t = a + k * Math.PI / 3; ctx[k ? 'lineTo' : 'moveTo'](x + Math.cos(t) * s, y + Math.sin(t) * s); }
         ctx.closePath();
     }
-    // a phage with its tail tip at (x, y), pointing along (nx, ny) away from the tail
+    // a phage with its tail tip at (x, y), pointing along (nx, ny) away from the tail.
+    // N4 is a podophage: a short, stubby, non-contractile tail, well under half the
+    // head's width, with short appendages at its tip; no long tail and no baseplate.
     function phage(x, y, nx, ny, s, tone, hollow, glow) {
-        ctx.lineWidth = 2.6 * s / 9;
+        var stub = s * 0.42, px = -ny, py = nx;
         ctx.strokeStyle = rgba(tone, 0.95);
-        ctx.beginPath(); ctx.moveTo(x, y); ctx.lineTo(x + nx * s, y + ny * s); ctx.stroke();
-        hexagon(x + nx * s * 1.9, y + ny * s * 1.9, s, Math.atan2(ny, nx));
+        ctx.lineCap = 'round';
+        ctx.lineWidth = 4.4 * s / 9;
+        ctx.beginPath(); ctx.moveTo(x + nx * s * 0.1, y + ny * s * 0.1); ctx.lineTo(x + nx * stub, y + ny * stub); ctx.stroke();
+        ctx.lineWidth = 1.8 * s / 9;
+        ctx.beginPath();
+        ctx.moveTo(x + nx * s * 0.16 + px * s * 0.12, y + ny * s * 0.16 + py * s * 0.12); ctx.lineTo(x + px * s * 0.34, y + py * s * 0.34);
+        ctx.moveTo(x + nx * s * 0.16 - px * s * 0.12, y + ny * s * 0.16 - py * s * 0.12); ctx.lineTo(x - px * s * 0.34, y - py * s * 0.34);
+        ctx.stroke();
+        ctx.lineWidth = 2.6 * s / 9;
+        hexagon(x + nx * (stub + s * 0.92), y + ny * (stub + s * 0.92), s, Math.atan2(ny, nx));
         if (hollow) { ctx.stroke(); return; }
         if (glow) { ctx.shadowColor = rgba(tone, 0.8); ctx.shadowBlur = 12 * DPR; }
         ctx.fillStyle = rgba(tone, 0.98); ctx.fill();

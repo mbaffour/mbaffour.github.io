@@ -318,8 +318,14 @@
         } else if (stage === 4) {                 // N4 held: stuffed + superinfecting phages
             ctx.fillStyle = gold;
             for (let i = 0; i < 9; i++) { const ang = i / 9 * Math.PI * 2; hex(cx + Math.cos(ang) * 11, cy + Math.sin(ang) * 11, 3.2); ctx.fill(); }
-            ctx.strokeStyle = '#d4324b'; ctx.lineWidth = 1.6;
-            [[-1, -1], [1, -1]].forEach(([sx, sy]) => { ctx.beginPath(); ctx.moveTo(cx + sx * (R + 14), cy + sy * (R + 10)); ctx.lineTo(cx + sx * (R + 2), cy + sy * (R - 2)); ctx.stroke(); });
+            // superinfecting N4 docked on the envelope: hexagonal head, short stub, no long tail
+            ctx.strokeStyle = '#d4324b'; ctx.fillStyle = '#d4324b'; ctx.lineCap = 'round';
+            [-1, 1].forEach(sx => {
+                const ang = -Math.PI / 2 + sx * 0.75, ux = Math.cos(ang), uy = Math.sin(ang);
+                const tx = cx + ux * (R + 2), ty = cy + uy * (R + 2);
+                ctx.lineWidth = 2.2; ctx.beginPath(); ctx.moveTo(tx, ty); ctx.lineTo(tx + ux * 4, ty + uy * 4); ctx.stroke();
+                hex(tx + ux * 9, ty + uy * 9, 4.5); ctx.fill();
+            });
         }
         ctx.restore();
     }

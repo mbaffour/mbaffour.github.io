@@ -311,11 +311,12 @@
             if (p.die) o = 1 - clamp((now - p.die) / 0.6, 0, 1);
             if (p.st === 'ghost') o = 0.55 * (1 - clamp((now - p.ghost) / 3, 0, 1));
             if (p.st === 'free') o *= clamp((now - p.born) / 0.4, 0.2, 1);
-            var hx = x + nx * 17, hy = y + ny * 17, tone2 = p.gold ? mix(GOLD, CREAM, clamp((now - p.gold) / 2.5, 0, 1)) : CREAM;
+            var hx = x + nx * 12.5, hy = y + ny * 12.5, tone2 = p.gold ? mix(GOLD, CREAM, clamp((now - p.gold) / 2.5, 0, 1)) : CREAM;
             ctx.globalAlpha = o;
-            ctx.lineWidth = 3;
+            ctx.lineWidth = 4.2; ctx.lineCap = 'round';
             ctx.strokeStyle = rgba(tone2, 0.95);
-            ctx.beginPath(); ctx.moveTo(x, y); ctx.lineTo(x + nx * 9, y + ny * 9); ctx.stroke();
+            // a stub, not a tail: well under half the head's width
+            ctx.beginPath(); ctx.moveTo(x + nx, y + ny); ctx.lineTo(x + nx * 4, y + ny * 4); ctx.stroke();
             hexagon(hx, hy, 9, Math.atan2(ny, nx));
             if (p.st === 'empty' || p.st === 'ghost') {
                 ctx.lineWidth = 2.2; ctx.stroke();
