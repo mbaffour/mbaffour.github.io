@@ -311,13 +311,18 @@
             if (p.die) o = 1 - clamp((now - p.die) / 0.6, 0, 1);
             if (p.st === 'ghost') o = 0.55 * (1 - clamp((now - p.ghost) / 3, 0, 1));
             if (p.st === 'free') o *= clamp((now - p.born) / 0.4, 0.2, 1);
-            var hx = x + nx * 12.5, hy = y + ny * 12.5, tone2 = p.gold ? mix(GOLD, CREAM, clamp((now - p.gold) / 2.5, 0, 1)) : CREAM;
+            var hx = x + nx * 15.5, hy = y + ny * 15.5, tone2 = p.gold ? mix(GOLD, CREAM, clamp((now - p.gold) / 2.5, 0, 1)) : CREAM;
             ctx.globalAlpha = o;
-            ctx.lineWidth = 4.2; ctx.lineCap = 'round';
-            ctx.strokeStyle = rgba(tone2, 0.95);
-            // a stub, not a tail: well under half the head's width
-            ctx.beginPath(); ctx.moveTo(x + nx, y + ny); ctx.lineTo(x + nx * 4, y + ny * 4); ctx.stroke();
-            hexagon(hx, hy, 9, Math.atan2(ny, nx));
+            ctx.strokeStyle = ctx.fillStyle = rgba(tone2, 0.95); ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+            // podophage: a short, wide tail block and two small appendages under a flat-based head
+            var px = -ny, py = nx;
+            ctx.beginPath();
+            ctx.moveTo(x + nx * 2.7 + px * 2.7, y + ny * 2.7 + py * 2.7); ctx.lineTo(x + nx * 7.7 + px * 3.6, y + ny * 7.7 + py * 3.6);
+            ctx.lineTo(x + nx * 7.7 - px * 3.6, y + ny * 7.7 - py * 3.6); ctx.lineTo(x + nx * 2.7 - px * 2.7, y + ny * 2.7 - py * 2.7); ctx.closePath(); ctx.fill();
+            ctx.lineWidth = 1.6; ctx.beginPath();
+            ctx.moveTo(x + nx * 2.7 + px * 2.7, y + ny * 2.7 + py * 2.7); ctx.lineTo(x + px * 5.6, y + py * 5.6);
+            ctx.moveTo(x + nx * 2.7 - px * 2.7, y + ny * 2.7 - py * 2.7); ctx.lineTo(x - px * 5.6, y - py * 5.6); ctx.stroke();
+            hexagon(hx, hy, 9, Math.atan2(ny, nx) + Math.PI / 6);
             if (p.st === 'empty' || p.st === 'ghost') {
                 ctx.lineWidth = 2.2; ctx.stroke();
             } else {

@@ -66,26 +66,29 @@
         for (var k = 0; k < 6; k++) { var t = a + k * Math.PI / 3; ctx[k ? 'lineTo' : 'moveTo'](x + Math.cos(t) * s, y + Math.sin(t) * s); }
         ctx.closePath();
     }
-    // a phage with its tail tip at (x, y), pointing along (nx, ny) away from the tail.
-    // N4 is a podophage: a short, stubby, non-contractile tail, well under half the
-    // head's width, with short appendages at its tip; no long tail and no baseplate.
+    // a phage with its appendage tips at (x, y), its head along (nx, ny).
+    // N4 is a podophage: a flat-based head on a short, wide tail block with
+    // small appendages. No long tail, no baseplate, at every size it's drawn.
     function phage(x, y, nx, ny, s, tone, hollow, glow) {
-        var stub = s * 0.42, px = -ny, py = nx;
-        ctx.strokeStyle = rgba(tone, 0.95);
-        ctx.lineCap = 'round';
-        ctx.lineWidth = 4.4 * s / 9;
-        ctx.beginPath(); ctx.moveTo(x + nx * s * 0.1, y + ny * s * 0.1); ctx.lineTo(x + nx * stub, y + ny * stub); ctx.stroke();
+        ctx.save();
+        ctx.translate(x, y); ctx.rotate(Math.atan2(ny, nx));
+        ctx.strokeStyle = ctx.fillStyle = rgba(tone, 0.95);
+        ctx.lineJoin = 'round'; ctx.lineCap = 'round';
+        // the tail block, wider than it is long
+        ctx.beginPath(); ctx.moveTo(s * 0.3, -s * 0.3); ctx.lineTo(s * 0.86, -s * 0.4); ctx.lineTo(s * 0.86, s * 0.4); ctx.lineTo(s * 0.3, s * 0.3); ctx.closePath();
+        if (hollow) { ctx.lineWidth = 2 * s / 9; ctx.stroke(); } else ctx.fill();
+        // two short appendages
         ctx.lineWidth = 1.8 * s / 9;
+        ctx.beginPath(); ctx.moveTo(s * 0.3, -s * 0.3); ctx.lineTo(0, -s * 0.62); ctx.moveTo(s * 0.3, s * 0.3); ctx.lineTo(0, s * 0.62); ctx.stroke();
+        // the head, a flat face sitting on the tail
         ctx.beginPath();
-        ctx.moveTo(x + nx * s * 0.16 + px * s * 0.12, y + ny * s * 0.16 + py * s * 0.12); ctx.lineTo(x + px * s * 0.34, y + py * s * 0.34);
-        ctx.moveTo(x + nx * s * 0.16 - px * s * 0.12, y + ny * s * 0.16 - py * s * 0.12); ctx.lineTo(x - px * s * 0.34, y - py * s * 0.34);
-        ctx.stroke();
+        for (var k = 0; k < 6; k++) { var a = Math.PI / 6 + k * Math.PI / 3; ctx[k ? 'lineTo' : 'moveTo'](s * 1.72 + Math.cos(a) * s, Math.sin(a) * s); }
+        ctx.closePath();
         ctx.lineWidth = 2.6 * s / 9;
-        hexagon(x + nx * (stub + s * 0.92), y + ny * (stub + s * 0.92), s, Math.atan2(ny, nx));
-        if (hollow) { ctx.stroke(); return; }
+        if (hollow) { ctx.stroke(); ctx.restore(); return; }
         if (glow) { ctx.shadowColor = rgba(tone, 0.8); ctx.shadowBlur = 12 * DPR; }
         ctx.fillStyle = rgba(tone, 0.98); ctx.fill();
-        ctx.shadowBlur = 0;
+        ctx.restore();
     }
 
     /* ---------- one frame ---------- */
