@@ -69,7 +69,7 @@
       "name": "Can I use your software?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. All nineteen tools are open source and most run in the browser with nothing to install. FigureLab has been cited by name in another lab’s published paper."
+        "text": "Yes. All nineteen tools are open source and most run in the browser with nothing to install. FigureLab has been cited by name in a lab mate’s published paper."
       }
     },
     {
@@ -317,7 +317,7 @@
                 <span class="chip" tabindex="0" data-img="gallery/gallery-phage-hunt.webp"><img src="gallery/gallery-phage-hunt.webp" alt="" loading="lazy">out of the environment</span>,
                 take them all the way
                 <span class="chip" tabindex="0" data-img="gallery/gallery-tem.webp"><img src="gallery/gallery-tem.webp" alt="" loading="lazy">to the TEM grid</span>,
-                and ask one question of phage&nbsp;N4: how does it decide when to burst its host?</p>
+                and ask one question of phage&nbsp;N4: how does it decide when to lyse its host?</p>
         </div>
         <div class="pro-row">
             <p class="lbl">( The protocol )</p>
@@ -327,7 +327,7 @@
                 <span class="chip" tabindex="0" data-img="assets/og/plaque-toolkit.jpg"><img src="assets/og/plaque-toolkit.jpg" alt="" loading="lazy">the tools the bench needed</span>,
                 and one of them,
                 <a class="chip chip-link" href="#figurelab-quote">FigureLab</a>,
-                is now cited in another lab&rsquo;s published paper.</p>
+                is now cited in a lab mate&rsquo;s published paper.</p>
         </div>
         <p class="pro-hint" aria-hidden="true">( Hover the underlined words )</p>
 
@@ -348,7 +348,7 @@
                 <div class="hero-stat">
                     <a class="hero-stat-link" href="#tools">
                         <div class="hero-stat-value">1</div>
-                        <div class="hero-stat-label">Tool cited by name in another lab's paper</div>
+                        <div class="hero-stat-label">Tool cited by name in a lab mate's paper</div>
                     </a>
                 </div>
                 <div class="hero-stat">
@@ -382,7 +382,7 @@
 
     <!-- ===== INSIDE ONE INFECTION =====
          A pinned, scroll-driven scene (assets/js/dive.js): one cell from landing
-         to burst. Each caption is real text, so the story reads without the canvas. -->
+         to lysis. Each caption is real text, so the story reads without the canvas. -->
     <section class="dive" id="dive" aria-labelledby="diveTitle">
         <div class="dive-stage">
             <canvas class="dive-canvas" aria-hidden="true"></canvas>
@@ -391,13 +391,13 @@
                 <span class="dive-clock" aria-hidden="true"><b>0:00</b><span> after infection</span></span>
             </div>
             <ol class="dive-beats">
-                <li class="dive-beat" data-at="0">Scroll, and follow one <i>E.&nbsp;coli</i> cell from the moment phage&nbsp;N4 arrives to the moment it bursts.</li>
+                <li class="dive-beat" data-at="0">Scroll, and follow one <i>E.&nbsp;coli</i> cell from the moment phage&nbsp;N4 arrives to the moment it lyses.</li>
                 <li class="dive-beat" data-at="0.08"><b>Landing.</b> An N4 particle lands on the cell surface.</li>
                 <li class="dive-beat" data-at="0.18"><b>Injection.</b> It injects its genome. The empty capsid stays outside.</li>
                 <li class="dive-beat" data-at="0.30"><b>A factory.</b> New phages assemble inside, and the infected rod grows longer.</li>
                 <li class="dive-beat" data-at="0.44"><b>Holding on.</b> More phages arrive, and N4 holds lysis off: lysis inhibition. The cell keeps building.</li>
                 <li class="dive-beat" data-at="0.60"><b>The switch.</b> The gp63 pinholin opens holes in the inner membrane, the gp61 endolysin is released to cut the wall, and the rod contracts from the poles into a sphere.</li>
-                <li class="dive-beat" data-at="0.74"><b>Burst.</b> Spanins break the outer membrane and the cell bursts, releasing its progeny: more than 3,000 phages from one cell.</li>
+                <li class="dive-beat" data-at="0.74"><b>Lysis.</b> Spanins break the outer membrane and the cell lyses, releasing its progeny: more than 3,000 phages from one cell.</li>
                 <li class="dive-beat" data-at="0.86"><b>The question.</b> What sets that timer, and how N4 holds it, is what I study. <a href="#research">See the research&nbsp;↓</a></li>
             </ol>
             <p class="dive-note" aria-hidden="true">Simulation · not to scale · a few dozen progeny drawn</p>
@@ -443,7 +443,7 @@
                    Ramsey Lab at the Center for Phage Technology. My project decodes
                    <em>lysis inhibition</em> in bacteriophage&nbsp;N4 — the phenomenon where a phage
                    senses that new hosts are scarce and holds the infected cell together,
-                   turning it into a high-output virus factory instead of bursting it early.
+                   turning it into a high-output virus factory instead of lysing it early.
                    Understanding how that decision is made is the part I can defend; where it
                    could lead — phage preparations made to order, and further out, programmable
                    microbial biofactories — is the part I want to work on next.</p>
@@ -497,7 +497,7 @@
             <div class="tour-text" id="tour-desc">
                 <ol class="tour-scenes">
                     <li><b>The question.</b> How phage N4 decides <em>when to kill its host</em>.</li>
-                    <li><b>The lysis model.</b> The figure below steps through rapid lysis until the cell bursts and its phages stream out.</li>
+                    <li><b>The lysis model.</b> The figure below steps through rapid lysis until the cell lyses and its phages stream out.</li>
                     <li><b>The playground.</b> A run of the lysis-curve simulator, with N4 holding lysis off.</li>
                     <li><b>The tools.</b> Open software, including FigureLab, used in published research.</li>
                 </ol>
@@ -522,7 +522,7 @@
 
         <div class="research-lead">
             <p class="rl-kicker">The headline finding</p>
-            <p class="rl-lead">Bacteriophage&nbsp;N4 deliberately delays lysing its host, turning each infected cell into a high-output virus factory that releases <strong>over 3,000 phage per cell</strong>, bursting asynchronously from about three hours post-infection rather than ending early with a fraction of that — the classic observation of Schito's ultrastructural study of N4 development (<a href="https://doi.org/10.1128/JVI.13.1.186-196.1974" target="_blank" rel="noopener">J&nbsp;Virol 1974</a>), at flask scale in a single host. My first author preprint shows N4 lyses through a <strong>SAR endolysin–holin system</strong> and maps genomic regions — inside and outside the lysis cassette — involved in holding lysis off. Separately, my thesis work identified a novel regulator of that decision — an <strong>essential</strong> gene whose mutation drives the phage into rapid lysis, which is how we know it gates the timing. That manuscript is in preparation, so the gene itself stays unnamed here. The question isn't <em>when</em> a phage kills; it's <em>whether to give up the cell</em> — and N4 keeps choosing to hold on.</p>
+            <p class="rl-lead">Bacteriophage&nbsp;N4 deliberately delays lysing its host, turning each infected cell into a high-output virus factory that releases <strong>over 3,000 phage per cell</strong>, lysing asynchronously from about three hours post-infection rather than ending early with a fraction of that — the classic observation of Schito's ultrastructural study of N4 development (<a href="https://doi.org/10.1128/JVI.13.1.186-196.1974" target="_blank" rel="noopener">J&nbsp;Virol 1974</a>), at flask scale in a single host. My first author preprint shows N4 lyses through a <strong>SAR endolysin–holin system</strong> and maps genomic regions — inside and outside the lysis cassette — involved in holding lysis off. Separately, my thesis work identified a novel regulator of that decision — an <strong>essential</strong> gene whose mutation drives the phage into rapid lysis, which is how we know it gates the timing. That manuscript is in preparation, so the gene itself stays unnamed here. The question isn't <em>when</em> a phage kills; it's <em>whether to give up the cell</em> — and N4 keeps choosing to hold on.</p>
             <p class="rl-next"><span class="rl-next-k">Where I'm taking it →</span> Reverse-engineering this timing switch into a control knob for high-titer phage production and programmable microbial biofactories, while shipping the open analysis tools that make those experiments reproducible for the whole field.</p>
             <!-- Same type size and ink as the ambition above it. A caveat set in
                  smaller, dimmer text reads as a disclaimer; at equal weight it
@@ -755,7 +755,7 @@
             <h2 class="section-title">Research <span class="highlight">software</span></h2>
             <p class="section-subtitle">Every tool here came out of an N4 experiment I needed to finish: lysis curves, plaque scoring, figure assembly, sequence prep. I shared them because other labs hit the same walls. They run in the browser, keep your data private and reproduce by default. The heavier ones are not browser toys: HMM Homologue Finder ships as a command line tool with a pinned environment (HMMER&nbsp;3.4, MAFFT, IQ-TREE) and golden file regression tests, so a result from last year still reproduces today. Eight are shown below; <strong>19 in total</strong>, the rest small utilities that do one job and stay out of the way.</p>
         </div>
-        <!-- The strongest fact in this section leads it: another lab used the
+        <!-- The strongest fact in this section leads it: a lab mate used the
              software in work that got published. The hero's FigureLab chip
              links here. -->
         <figure class="section-quote" id="figurelab-quote">
@@ -785,8 +785,8 @@
                What makes the result trustworthy is the checking:
                HMM&nbsp;Homologue&nbsp;Finder carries golden-file regression tests so last
                year's answer still reproduces today, every tool is validated against
-               experiments whose answers I already knew, and FigureLab was used by another lab
-               in a published paper before I would call it finished.</p>
+               experiments whose answers I already knew, and FigureLab was used in a lab mate&rsquo;s
+               published paper before I would call it finished.</p>
         </aside>
         <!-- What four of the tools do, animated (assets/js/post-anim.js). -->
         <div class="pa-show pa-home" aria-label="Tools, animated">
@@ -975,7 +975,7 @@
         <div class="section-header">
             <span class="section-label">Interactive</span>
             <h2 class="section-title">Lysis curve <span class="highlight">playground</span></h2>
-            <p class="section-subtitle">Run a phage infection and watch it unfold, stage by stage. A normal phage bursts on cue. N4 senses superinfection and holds the cell hostage, keeping the culture cloudy. Drag the controls, then hit play.</p>
+            <p class="section-subtitle">Run a phage infection and watch it unfold, stage by stage. A normal phage lyses its host on cue. N4 senses superinfection and holds the cell hostage, keeping the culture cloudy. Drag the controls, then hit play.</p>
         </div>
 
         <div class="playground">
@@ -1060,7 +1060,7 @@
             </span>
             <span class="tf-callout-text">
                 <span class="tf-callout-kicker">Also interactive · arcade game · 🔊 sound + 📳 haptics</span>
-                <span class="tf-callout-title">TailFiber — dock to the right receptor, dodge the defences, burst.</span>
+                <span class="tf-callout-title">TailFiber — dock to the right receptor, dodge the defences, lyse the host.</span>
                 <span class="tf-callout-body">A browser game built on real phage biology: LPS, OmpC, LamB, type IV pili and NfrA as receptors; antibodies, CRISPR and restriction as the enemies; T4, λ, N4 and ICP1 as playable phages. Arrow keys, WASD or a thumb joystick, with sound, and haptics you can feel on a phone. Chain docks for a multiplier.</span>
                 <span class="tf-callout-cta">Play TailFiber →</span>
             </span>
@@ -1147,7 +1147,7 @@
             </div>
             <div class="faq-row">
                 <dt>Can I use your software?</dt>
-                <dd>Yes. All <a href="#tools">nineteen tools</a> are open source and most run in the browser with nothing to install. FigureLab has been cited by name in another lab&rsquo;s published paper.</dd>
+                <dd>Yes. All <a href="#tools">nineteen tools</a> are open source and most run in the browser with nothing to install. FigureLab has been cited by name in a lab mate&rsquo;s published paper.</dd>
             </div>
             <div class="faq-row">
                 <dt>How do you use AI?</dt>

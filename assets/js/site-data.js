@@ -187,10 +187,9 @@ const tools = [
             plain: "Awuah, M. B. (2026). FigureLab: a browser-based tool for assembling publication-quality scientific figures (Version 3.5) [Computer software]. Zenodo. https://doi.org/10.5281/zenodo.21269456",
             bibtex: "@software{awuah_figurelab_2026,\n  author    = {Awuah, Michael Baffour},\n  title     = {{FigureLab}: a browser-based tool for assembling publication-quality scientific figures},\n  year      = {2026},\n  version   = {3.5},\n  publisher = {Zenodo},\n  doi       = {10.5281/zenodo.21269456},\n  url       = {https://doi.org/10.5281/zenodo.21269456}\n}"
         },
-        /* Independent use of the tool in someone else's published paper. This is
-           the only evidence on the site that the software is used by people who
-           did not build it, which is the thing a hiring committee actually wants
-           from "I build open tools". */
+        /* A lab mate (Ramsey lab) used the tool in their published paper: evidence
+           that the software is used by people who did not build it, which is the
+           thing a hiring committee actually wants from "I build open tools". */
         usedIn: [{
             quote: "use of the FigureLab web-based application developed by Michael Baffour Awuah",
             citation: "Hoxha EM, Brown GD, Niemiec KA, Ramsey J. The complete genome sequence of Caulobacter phages Senya and Shash. Microbiol Resour Announc. 2026;15(8):e00457-26.",

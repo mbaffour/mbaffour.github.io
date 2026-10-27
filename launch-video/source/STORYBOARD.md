@@ -72,7 +72,7 @@ Scene 3 (3.9–5.0s): a thin gold rule draws under the last line; hold still.
 
 ## Frame 3 — Feature 1: the lysis model
 
-- scene: The real "Fig 1 · N4 lysis model" figure steps through rapid lysis, ending as the cell bursts and releases its phages
+- scene: The real "Fig 1 · N4 lysis model" figure steps through rapid lysis, ending as the cell lyses and releases its phages
 - duration: 5s
 - poster: 4.4s
 - transition_in: blur-crossfade 0.5s

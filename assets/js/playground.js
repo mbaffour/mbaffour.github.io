@@ -97,7 +97,7 @@
     function outcomeStage() {
         return state.mode === 'inhibited'
             ? { name: 'Lysis inhibition (N4)', text: 'Extra phage <em>superinfect</em> the already-infected cell, and N4 delays lysis. The cell becomes a long-lived virus factory and the culture stays cloudy for hours — then inhibition finally breaks and the culture clears in a delayed, late crash (here around 3–6 h, versus under an hour for a normal phage).' }
-            : { name: 'Lysis & burst', text: 'The cell ruptures and releases a burst of new phage. Across the flask, turbidity crashes as the population pops.' };
+            : { name: 'Lysis', text: 'The cell lyses and releases its new phage. Across the flask, turbidity crashes as the population pops.' };
     }
     const stageInfo = i => i < 4 ? STAGES[i] : outcomeStage();
     function stageBounds() {
@@ -115,7 +115,7 @@
     const shortLabels = ['Adsorption', 'Early genes', 'Assembly', 'Decision', 'Outcome'];
     function buildStepper() {
         stepper.innerHTML = shortLabels.map((l, i) =>
-            `<button type="button" class="pg-step" data-step="${i}"><span class="pg-step-num">${i + 1}</span><span class="pg-step-label">${i === 4 ? (state.mode === 'inhibited' ? 'Inhibition' : 'Burst') : l}</span></button>`
+            `<button type="button" class="pg-step" data-step="${i}"><span class="pg-step-num">${i + 1}</span><span class="pg-step-label">${i === 4 ? (state.mode === 'inhibited' ? 'Inhibition' : 'Lysis') : l}</span></button>`
         ).join('');
         stepper.querySelectorAll('.pg-step').forEach(el => {
             el.addEventListener('click', () => {
