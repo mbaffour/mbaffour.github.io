@@ -185,10 +185,14 @@
             var a = i / N * 6.283 + rnd() * 0.6;
             return { x: Math.cos(a) * (0.55 + rnd() * 0.25), y: Math.sin(a) * (0.6 + rnd() * 0.3), r: (rnd() - 0.5) * 50, sr: (rnd() - 0.5) * 12 };
         });
+        var lastRing = -1, lastVw = 0;
         var placeRing = function () {
             var b = act.getBoundingClientRect(), vh = window.innerHeight, vw = window.innerWidth;
-            if (b.bottom < -50 || b.top > vh + 50) return;
+            // off screen the clamp settles the cards at their first or last state (a fast
+            // scroll past can't leave them frozen mid-fade); unchanged progress costs nothing
             var p = clamp(-b.top / Math.max(1, b.height - vh), 0, 1);
+            if (p === lastRing && vw === lastVw) return;
+            lastRing = p; lastVw = vw;
             // an ellipse: wide screens get a wider ring, so the cards clear the centre text
             var ph = vw < 760, ry = Math.min(vw * (ph ? 0.4 : 0.34), vh * (ph ? 0.3 : 0.31)), rx = Math.min(vw * (ph ? 0.4 : 0.36), vh * (ph ? 0.3 : 0.5));
             var gather = ease(seg(p, 0.0, 0.22)), fan = ease(seg(p, 0.26, 0.52)), orbit = seg(p, 0.5, 0.88), out = ease(seg(p, 0.86, 1));
