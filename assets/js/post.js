@@ -168,40 +168,30 @@ nav.post-nav{display:grid!important}
         }
 
         /* ---- comments ----
-           giscus keeps each post's comments in a GitHub Discussion on this repository
-           (category below), keyed by the post's slug, so they survive redesigns and URL
-           changes between /blog/x and /blog/x.html. Readers sign in with GitHub to comment;
-           new comments notify the repository owner, who moderates them from the
-           Discussions tab. Nothing renders until categoryId is filled in (see README). */
-        const giscus = {
-            repo: 'mbaffour/mbaffour.github.io',
-            repoId: 'R_kgDOQJVq_A',
-            category: 'Blog comments',
-            categoryId: ''
+           utterances keeps each post's comments in a GitHub Issue on this repository,
+           titled blog/<slug> and labelled "blog comment", so they survive redesigns and
+           URL changes between /blog/x and /blog/x.html. Readers sign in with GitHub to
+           comment; the repository owner is notified of each one and can edit, hide or
+           delete it from the Issues tab. Needs the utterances app installed on the repo. */
+        const section = el('section', 'post-comments'); section.id = 'comments';
+        section.append(el('h2', null, 'Comments'), el('p', 'note', 'Sign in with GitHub to leave a comment. Comments are public and kept with the post.'));
+        const theme = () => {
+            const t = document.documentElement.getAttribute('data-theme');
+            return (t === 'dark' || t === 'light' ? t === 'dark' : dark) ? 'github-dark' : 'github-light';
         };
-        if (giscus.categoryId) {
-            const section = el('section', 'post-comments'); section.id = 'comments';
-            section.append(el('h2', null, 'Comments'), el('p', 'note', 'Sign in with GitHub to leave a comment. Comments are public and kept with the post.'));
-            const theme = () => {
-                const t = document.documentElement.getAttribute('data-theme');
-                if (t === 'dark' || t === 'light') return t;
-                return dark ? 'dark' : 'light';
-            };
-            const s = document.createElement('script');
-            s.src = 'https://giscus.app/client.js'; s.async = true; s.crossOrigin = 'anonymous';
-            Object.entries({
-                repo: giscus.repo, 'repo-id': giscus.repoId, category: giscus.category, 'category-id': giscus.categoryId,
-                mapping: 'specific', term: 'blog/' + here, strict: '1', 'reactions-enabled': '1', 'emit-metadata': '0',
-                'input-position': 'top', theme: theme(), lang: 'en', loading: 'lazy'
-            }).forEach(([k, v]) => s.setAttribute('data-' + k, v));
-            section.append(s);
-            allLine.after(section);
-            if (dark !== pageDark || dark) section.style.setProperty('--pn-ink', dark ? '#f2ecdc' : '#1a1408');
-            /* Follow the page's theme toggle, where a post has one. */
-            new MutationObserver(() => {
-                const frame = document.querySelector('iframe.giscus-frame');
-                if (frame) frame.contentWindow.postMessage({ giscus: { setConfig: { theme: theme() } } }, 'https://giscus.app');
-            }).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
-        }
+        const s = document.createElement('script');
+        s.src = 'https://utteranc.es/client.js'; s.async = true; s.crossOrigin = 'anonymous';
+        s.setAttribute('repo', 'mbaffour/mbaffour.github.io');
+        s.setAttribute('issue-term', 'blog/' + here);
+        s.setAttribute('label', 'blog comment');
+        s.setAttribute('theme', theme());
+        section.append(s);
+        allLine.after(section);
+        if (dark !== pageDark || dark) section.style.setProperty('--pn-ink', dark ? '#f2ecdc' : '#1a1408');
+        /* Follow the page's theme toggle, where a post has one. */
+        new MutationObserver(() => {
+            const frame = section.querySelector('iframe.utterances-frame');
+            if (frame) frame.contentWindow.postMessage({ type: 'set-theme', theme: theme() }, 'https://utteranc.es');
+        }).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
     }
 })();
