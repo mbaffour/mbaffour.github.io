@@ -168,30 +168,48 @@ nav.post-nav{display:grid!important}
         }
 
         /* ---- comments ----
-           utterances keeps each post's comments in a GitHub Issue on this repository,
-           titled blog/<slug> and labelled "blog comment", so they survive redesigns and
-           URL changes between /blog/x and /blog/x.html. Readers sign in with GitHub to
-           comment; the repository owner is notified of each one and can edit, hide or
-           delete it from the Issues tab. Needs the utterances app installed on the repo. */
+           Cusdis (when cusdisAppId is set): anyone can comment with just a name, no
+           account; each comment waits for the owner's approval in the Cusdis dashboard
+           (an email arrives for each one) and then shows on the post with its date.
+           Threads are keyed by blog/<slug>, so /blog/x and /blog/x.html share one.
+           Until the id is set, utterances is used instead: comments are GitHub Issues
+           on this repository and need a GitHub sign-in. */
+        const cusdisAppId = '';
         const section = el('section', 'post-comments'); section.id = 'comments';
-        section.append(el('h2', null, 'Comments'), el('p', 'note', 'Sign in with GitHub to leave a comment. Comments are public and kept with the post.'));
-        const theme = () => {
+        const isDark = () => {
             const t = document.documentElement.getAttribute('data-theme');
-            return (t === 'dark' || t === 'light' ? t === 'dark' : dark) ? 'github-dark' : 'github-light';
+            return t === 'dark' || t === 'light' ? t === 'dark' : dark;
         };
-        const s = document.createElement('script');
-        s.src = 'https://utteranc.es/client.js'; s.async = true; s.crossOrigin = 'anonymous';
-        s.setAttribute('repo', 'mbaffour/mbaffour.github.io');
-        s.setAttribute('issue-term', 'blog/' + here);
-        s.setAttribute('label', 'blog comment');
-        s.setAttribute('theme', theme());
-        section.append(s);
+        let setTheme;
+        if (cusdisAppId) {
+            section.append(el('h2', null, 'Comments'), el('p', 'note', 'No account needed: add your name and comment. Comments appear once approved.'));
+            const thread = el('div'); thread.id = 'cusdis_thread';
+            Object.entries({
+                host: 'https://cusdis.com', 'app-id': cusdisAppId, 'page-id': 'blog/' + here,
+                'page-url': location.origin + '/blog/' + here + '.html', 'page-title': post.title,
+                theme: isDark() ? 'dark' : 'light'
+            }).forEach(([k, v]) => thread.setAttribute('data-' + k, v));
+            const s = document.createElement('script'); s.src = 'https://cusdis.com/js/cusdis.es.js'; s.async = true; s.defer = true;
+            section.append(thread, s);
+            setTheme = () => { if (window.CUSDIS && window.CUSDIS.setTheme) window.CUSDIS.setTheme(isDark() ? 'dark' : 'light'); };
+        } else {
+            section.append(el('h2', null, 'Comments'), el('p', 'note', 'Sign in with GitHub to leave a comment. Comments are public and kept with the post.'));
+            const theme = () => isDark() ? 'github-dark' : 'github-light';
+            const s = document.createElement('script');
+            s.src = 'https://utteranc.es/client.js'; s.async = true; s.crossOrigin = 'anonymous';
+            s.setAttribute('repo', 'mbaffour/mbaffour.github.io');
+            s.setAttribute('issue-term', 'blog/' + here);
+            s.setAttribute('label', 'blog comment');
+            s.setAttribute('theme', theme());
+            section.append(s);
+            setTheme = () => {
+                const frame = section.querySelector('iframe.utterances-frame');
+                if (frame) frame.contentWindow.postMessage({ type: 'set-theme', theme: theme() }, 'https://utteranc.es');
+            };
+        }
         allLine.after(section);
         if (dark !== pageDark || dark) section.style.setProperty('--pn-ink', dark ? '#f2ecdc' : '#1a1408');
         /* Follow the page's theme toggle, where a post has one. */
-        new MutationObserver(() => {
-            const frame = section.querySelector('iframe.utterances-frame');
-            if (frame) frame.contentWindow.postMessage({ type: 'set-theme', theme: theme() }, 'https://utteranc.es');
-        }).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+        new MutationObserver(setTheme).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
     }
 })();
