@@ -31,6 +31,17 @@ generated files honest.
 node scripts/build-site.mjs && node scripts/check-links.mjs
 ```
 
+## Comments
+
+Every post gets a comments section from `assets/js/post.js`, powered by
+[utterances](https://utteranc.es): each post's thread is a GitHub Issue in this repository
+(titled `blog/<slug>`, labelled `blog comment`), so comments are permanent, timestamped,
+and moderated from the **Issues** tab. Readers sign in with GitHub. As the repository
+owner you are notified of new comments by default.
+
+One-time setup: install the utterances app on this repository —
+<https://github.com/apps/utterances> → Install → Only select repositories → `mbaffour.github.io`.
+
 ## Checks before pushing
 
 - `node scripts/check-links.mjs` — no broken internal references.

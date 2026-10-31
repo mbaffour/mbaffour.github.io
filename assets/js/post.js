@@ -76,7 +76,12 @@ main svg[width]{max-width:100%;height:auto}
 nav.post-nav{display:grid!important}
 .post-toc nav{display:block!important}
 @media print{.post-meta-bar button,.post-toc,.post-nav,.post-nav-all{display:none}}`;
-    const style = document.createElement('style'); style.textContent = css; document.head.append(style);
+    const style = document.createElement('style'); style.textContent = css + `
+.post-comments{text-align:left;box-sizing:border-box;max-width:100%;margin:3rem 0 2rem;padding-top:1.4rem;border-top:1px solid var(--border,rgba(128,128,128,.25))}
+.post-comments h2{font-family:var(--font-display,Georgia,serif);font-size:1.4rem;margin:0 0 .4rem;color:var(--pn-ink,inherit)}
+.post-comments .note{font-size:.88rem;opacity:.75;margin:0 0 1.2rem;color:var(--pn-ink,inherit)}
+@media print{.post-comments{display:none}}`;
+    document.head.append(style);
 
     const el = (tag, className, text) => { const node = document.createElement(tag); if (className) node.className = className; if (text !== undefined) node.textContent = text; return node; };
     const fmt = iso => { const d = new Date(iso + 'T12:00:00Z'); return isNaN(d) ? iso : d.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }); };
@@ -161,5 +166,32 @@ nav.post-nav{display:grid!important}
                 n.style.setProperty('--pn-line', dark ? 'rgba(255,255,255,.18)' : 'rgba(0,0,0,.15)');
             });
         }
+
+        /* ---- comments ----
+           utterances keeps each post's comments in a GitHub Issue on this repository,
+           titled blog/<slug> and labelled "blog comment", so they survive redesigns and
+           URL changes between /blog/x and /blog/x.html. Readers sign in with GitHub to
+           comment; the repository owner is notified of each one and can edit, hide or
+           delete it from the Issues tab. Needs the utterances app installed on the repo. */
+        const section = el('section', 'post-comments'); section.id = 'comments';
+        section.append(el('h2', null, 'Comments'), el('p', 'note', 'Sign in with GitHub to leave a comment. Comments are public and kept with the post.'));
+        const theme = () => {
+            const t = document.documentElement.getAttribute('data-theme');
+            return (t === 'dark' || t === 'light' ? t === 'dark' : dark) ? 'github-dark' : 'github-light';
+        };
+        const s = document.createElement('script');
+        s.src = 'https://utteranc.es/client.js'; s.async = true; s.crossOrigin = 'anonymous';
+        s.setAttribute('repo', 'mbaffour/mbaffour.github.io');
+        s.setAttribute('issue-term', 'blog/' + here);
+        s.setAttribute('label', 'blog comment');
+        s.setAttribute('theme', theme());
+        section.append(s);
+        allLine.after(section);
+        if (dark !== pageDark || dark) section.style.setProperty('--pn-ink', dark ? '#f2ecdc' : '#1a1408');
+        /* Follow the page's theme toggle, where a post has one. */
+        new MutationObserver(() => {
+            const frame = section.querySelector('iframe.utterances-frame');
+            if (frame) frame.contentWindow.postMessage({ type: 'set-theme', theme: theme() }, 'https://utteranc.es');
+        }).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
     }
 })();
