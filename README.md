@@ -31,6 +31,25 @@ generated files honest.
 node scripts/build-site.mjs && node scripts/check-links.mjs
 ```
 
+## Comments
+
+Every post gets a comments section from `assets/js/post.js`, powered by
+[giscus](https://giscus.app): each post's thread is a GitHub Discussion in this repository
+(category "Blog comments", titled `blog/<slug>`), so comments are permanent, timestamped
+and moderated from the repository's **Discussions** tab. Readers sign in with GitHub.
+
+One-time setup (the section stays hidden until it is done):
+
+1. Repository **Settings → General → Features**: tick **Discussions**.
+2. In **Discussions**, add a category named `Blog comments`, format **Announcement**
+   (only you and giscus can open threads; anyone can reply).
+3. Install the giscus app on this repository: <https://github.com/apps/giscus>.
+4. On <https://giscus.app>, enter `mbaffour/mbaffour.github.io`, pick the `Blog comments`
+   category, and copy the `data-category-id` value (starts `DIC_`) into `categoryId` in
+   the `giscus` block of `assets/js/post.js`.
+
+To be emailed about new comments, **Watch** the repository (Custom → Discussions).
+
 ## Checks before pushing
 
 - `node scripts/check-links.mjs` — no broken internal references.

@@ -76,7 +76,12 @@ main svg[width]{max-width:100%;height:auto}
 nav.post-nav{display:grid!important}
 .post-toc nav{display:block!important}
 @media print{.post-meta-bar button,.post-toc,.post-nav,.post-nav-all{display:none}}`;
-    const style = document.createElement('style'); style.textContent = css; document.head.append(style);
+    const style = document.createElement('style'); style.textContent = css + `
+.post-comments{text-align:left;box-sizing:border-box;max-width:100%;margin:3rem 0 2rem;padding-top:1.4rem;border-top:1px solid var(--border,rgba(128,128,128,.25))}
+.post-comments h2{font-family:var(--font-display,Georgia,serif);font-size:1.4rem;margin:0 0 .4rem;color:var(--pn-ink,inherit)}
+.post-comments .note{font-size:.88rem;opacity:.75;margin:0 0 1.2rem;color:var(--pn-ink,inherit)}
+@media print{.post-comments{display:none}}`;
+    document.head.append(style);
 
     const el = (tag, className, text) => { const node = document.createElement(tag); if (className) node.className = className; if (text !== undefined) node.textContent = text; return node; };
     const fmt = iso => { const d = new Date(iso + 'T12:00:00Z'); return isNaN(d) ? iso : d.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }); };
@@ -160,6 +165,43 @@ nav.post-nav{display:grid!important}
                 n.style.setProperty('--pn-card', dark ? 'rgba(255,255,255,.04)' : 'rgba(255,255,255,.7)');
                 n.style.setProperty('--pn-line', dark ? 'rgba(255,255,255,.18)' : 'rgba(0,0,0,.15)');
             });
+        }
+
+        /* ---- comments ----
+           giscus keeps each post's comments in a GitHub Discussion on this repository
+           (category below), keyed by the post's slug, so they survive redesigns and URL
+           changes between /blog/x and /blog/x.html. Readers sign in with GitHub to comment;
+           new comments notify the repository owner, who moderates them from the
+           Discussions tab. Nothing renders until categoryId is filled in (see README). */
+        const giscus = {
+            repo: 'mbaffour/mbaffour.github.io',
+            repoId: 'R_kgDOQJVq_A',
+            category: 'Blog comments',
+            categoryId: ''
+        };
+        if (giscus.categoryId) {
+            const section = el('section', 'post-comments'); section.id = 'comments';
+            section.append(el('h2', null, 'Comments'), el('p', 'note', 'Sign in with GitHub to leave a comment. Comments are public and kept with the post.'));
+            const theme = () => {
+                const t = document.documentElement.getAttribute('data-theme');
+                if (t === 'dark' || t === 'light') return t;
+                return dark ? 'dark' : 'light';
+            };
+            const s = document.createElement('script');
+            s.src = 'https://giscus.app/client.js'; s.async = true; s.crossOrigin = 'anonymous';
+            Object.entries({
+                repo: giscus.repo, 'repo-id': giscus.repoId, category: giscus.category, 'category-id': giscus.categoryId,
+                mapping: 'specific', term: 'blog/' + here, strict: '1', 'reactions-enabled': '1', 'emit-metadata': '0',
+                'input-position': 'top', theme: theme(), lang: 'en', loading: 'lazy'
+            }).forEach(([k, v]) => s.setAttribute('data-' + k, v));
+            section.append(s);
+            allLine.after(section);
+            if (dark !== pageDark || dark) section.style.setProperty('--pn-ink', dark ? '#f2ecdc' : '#1a1408');
+            /* Follow the page's theme toggle, where a post has one. */
+            new MutationObserver(() => {
+                const frame = document.querySelector('iframe.giscus-frame');
+                if (frame) frame.contentWindow.postMessage({ giscus: { setConfig: { theme: theme() } } }, 'https://giscus.app');
+            }).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
         }
     }
 })();
