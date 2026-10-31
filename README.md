@@ -33,14 +33,17 @@ node scripts/build-site.mjs && node scripts/check-links.mjs
 
 ## Comments
 
-Every post gets a comments section from `assets/js/post.js`, powered by
-[utterances](https://utteranc.es): each post's thread is a GitHub Issue in this repository
-(titled `blog/<slug>`, labelled `blog comment`), so comments are permanent, timestamped,
-and moderated from the **Issues** tab. Readers sign in with GitHub. As the repository
-owner you are notified of new comments by default.
+Every post gets a comments section from `assets/js/post.js`.
 
-One-time setup: install the utterances app on this repository —
-<https://github.com/apps/utterances> → Install → Only select repositories → `mbaffour.github.io`.
+- **With `cusdisAppId` set** (recommended): [Cusdis](https://cusdis.com). Anyone can
+  comment with just a name — no account. Each comment waits for approval in the Cusdis
+  dashboard (you get an email for each) and then shows on the post, dated. Free tier:
+  one site, 100 approved comments a month.
+  Setup: sign up at <https://cusdis.com>, add a website, open its *Embed Code*, and copy
+  the `data-app-id` value into `cusdisAppId`.
+- **Without it**: [utterances](https://utteranc.es). Comments are GitHub Issues on this
+  repository (titled `blog/<slug>`, labelled `blog comment`) and need a GitHub sign-in.
+  Requires the utterances app: <https://github.com/apps/utterances>.
 
 ## Checks before pushing
 
