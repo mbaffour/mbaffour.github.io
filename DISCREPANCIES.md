@@ -26,6 +26,8 @@ the reasoning is recoverable later.
 | 11 | **"BSL2 Culture (5+ yrs)"** where your history supports about eight. | **Your ruling: 8+ yrs.** You were underselling by three years. |
 | 12 | **Serwaa citation missing its article number; preprint missing PMID.** | **Fixed.** `e01222-25` and PMID 41292803 / PMCID PMC12642591 now render under each citation. |
 | 13 | **Inconsistent AI-authorship disclosure** — six posts credit Claude, four don't. | **Your ruling: leave the current mix.** Deliberate, recorded here so it doesn't get "fixed" by someone later. |
+| 14 | **N4 lysis paper published** (J Bacteriol, doi:10.1128/jb.00538-25, Nov 2026); the site and CV still called it a preprint. | **Fixed** everywhere it was named: homepage, journey, CV (HTML and PDF), publication data, status banner. The preprint DOI stays linked as the earlier version. Title kept as the preprint's and year set to 2026 *unverified* — the journal site was unreachable when this was written; check title, volume and issue against the article. Also fixed: BibTeX had "Joel S." Chamblee (he is Jake S.) and initials-only co-authors; the contribution line now follows the CRediT statement (co-first author with Cody Martin). |
+| 15 | **CV PDF printed blank** below page 1: the scroll fade-in left every card at opacity 0 in print. | **Fixed** with a print rule forcing cards visible; PDF regenerated. |
 
 ## Mooted by removing the résumé PDF
 

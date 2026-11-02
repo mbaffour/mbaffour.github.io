@@ -10,22 +10,25 @@ const publications = [
         kind: "paper",
         title: "Phage N4 uses a SAR endolysin-holin system for host cell lysis",
         authors: "Awuah MB, Martin C, Chamblee JS, Tomaszewski AJ, Sullivan TE, Emilia Q, Tran S, Snowden JH, Niemiec KA, Zhu J, Ramsey J",
-        journal: "bioRxiv [Preprint]",
-        ids: "2025.11.12.688109 · PMID 41292803 · PMCID PMC12642591",
-        year: 2025,
-        doi: "https://doi.org/10.1101/2025.11.12.688109",
-        status: "preprint",
+        journal: "Journal of Bacteriology",
+        ids: "jb.00538-25 · Awuah MB and Martin C contributed equally",
+        year: 2026,
+        doi: "https://doi.org/10.1128/jb.00538-25",
+        status: "published",
         firstAuthor: true,
+        latest: true,
         code: "https://github.com/mbaffour/N4-Lysis-paper-codes",
-        /* Eleven authors: a screener cannot tell what was his without opening the
-           DOI, and three of five recruiter reads stalled here. Drawn only from
-           work this CV already claims as his own. Replace with the manuscript's
-           CRediT statement verbatim if the wording there differs. */
-        contribution: "Led the lysis genetics — CRISPR-based deletion and complementation series to define the minimal lysis gene set, SAR endolysin–holin characterisation, lysis-phenotype assays, and the RNA-seq comparison of wild-type and rapid-lysis lineages — and wrote the manuscript.",
+        /* The preprint stays reachable: it has its own PMID and is what earlier
+           citations point to. */
+        data: [
+            { label: "Preprint", id: "bioRxiv 2025.11.12.688109", url: "https://doi.org/10.1101/2025.11.12.688109" }
+        ],
+        /* From the published CRediT statement. */
+        contribution: "Co-first author. Conceptualization, data curation, formal analysis, investigation, software, supervision, visualization, and writing (original draft, review and editing).",
         summary: "First author study of how phage N4 takes its host cell apart, showing it lyses via a SAR endolysin–holin system and mapping genomic regions — inside and outside the lysis cassette — involved in lysis inhibition.",
         citation: {
-            plain: "Awuah MB, Martin C, Chamblee JS, Tomaszewski AJ, Sullivan TE, Emilia Q, Tran S, Snowden JH, Niemiec KA, Zhu J, Ramsey J. Phage N4 uses a SAR endolysin-holin system for host cell lysis. bioRxiv. 2025. doi:10.1101/2025.11.12.688109",
-            bibtex: "@article{awuah2025n4lysis,\n  title   = {Phage {N4} uses a {SAR} endolysin-holin system for host cell lysis},\n  author  = {Awuah, Michael Baffour and Martin, C. and Chamblee, Joel S. and Tomaszewski, A. J. and Sullivan, T. E. and Emilia, Q. and Tran, S. and Snowden, J. H. and Niemiec, K. A. and Zhu, J. and Ramsey, Jolene},\n  journal = {bioRxiv},\n  year    = {2025},\n  doi     = {10.1101/2025.11.12.688109},\n  note    = {Preprint}\n}"
+            plain: "Awuah MB, Martin C, Chamblee JS, Tomaszewski AJ, Sullivan TE, Emilia Q, Tran S, Snowden JH, Niemiec KA, Zhu J, Ramsey J. Phage N4 uses a SAR endolysin-holin system for host cell lysis. J Bacteriol. 2026. doi:10.1128/jb.00538-25",
+            bibtex: "@article{awuah2026n4lysis,\n  title   = {Phage {N4} uses a {SAR} endolysin-holin system for host cell lysis},\n  author  = {Awuah, Michael Baffour and Martin, Cody and Chamblee, Jake S. and Tomaszewski, Adam J. and Sullivan, Teresa E. and Emilia, Qori and Tran, Steven and Snowden, Jason H. and Niemiec, Kaylyn A. and Zhu, Jiatong and Ramsey, Jolene},\n  journal = {Journal of Bacteriology},\n  year    = {2026},\n  doi     = {10.1128/jb.00538-25}\n}"
         },
         thumbSvg: '<svg viewBox="0 0 96 72" width="96" height="72" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect width="96" height="72" fill="#1a1408"/><path d="M6 62 C26 60 30 30 41 30 C49 30 50 66 92 67" fill="none" stroke="#f4c430" stroke-width="2.4" stroke-linecap="round"/><path d="M6 62 C30 58 41 24 60 18 C76 13 86 12 92 11" fill="none" stroke="#d4324b" stroke-width="2.4" stroke-linecap="round"/></svg>'
     },
@@ -262,7 +265,7 @@ const tools = [
     {
         title: "N4 Lysis Paper Codes",
         repo: "https://github.com/mbaffour/N4-Lysis-paper-codes",
-        blurb: "Shiny apps released alongside the N4 lysis preprint — lysis curve visualization, FASTA reformatting, and reproducibility scaffolding.",
+        blurb: "Shiny apps released alongside the N4 lysis paper — lysis curve visualization, FASTA reformatting, and reproducibility scaffolding.",
         tech: ["R Shiny", "N4", "Reproducibility"],
         stack: "r",
         blog: "https://github.com/mbaffour/N4-Lysis-paper-codes",
