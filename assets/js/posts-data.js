@@ -11,6 +11,16 @@
    assets/js/post-anim.js; listings show a chip for it). */
 const posts = [
     {
+        title: "Our N4 lysis paper is out in the Journal of Bacteriology",
+        date: "November 2, 2026",
+        iso: "2026-11-02",
+        tags: ["Lab Notes", "Phage Biology"],
+        blurb: "My first author paper on how phage N4 lyses its host is published in the Journal of Bacteriology. A short thank-you to the team behind it.",
+        image: "assets/img/n4-lysis-cell.svg",
+        imageAlt: "The N4 lysis model drawn on one infected E. coli cell",
+        url: "blog/n4-lysis-paper.html"
+    },
+    {
         title: "Protein Structure Viewer — what the confidence numbers actually say",
         date: "September 11, 2026",
         iso: "2026-09-11",

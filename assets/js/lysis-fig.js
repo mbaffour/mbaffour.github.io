@@ -2,8 +2,8 @@
    the homepage (Research Focus) and journey.html (Fig 6): wires every
    <figure data-fig="sar">, drawing into its .sar-cell container.
 
-   The model is Fig. 7 of the first-author preprint
-   (doi:10.1101/2025.11.12.688109), shown on one E. coli cell so each lysis
+   The model is Fig. 7 of the first-author paper
+   (doi:10.1128/jb.00538-25; preprint doi:10.1101/2025.11.12.688109), shown on one E. coli cell so each lysis
    protein's effect on the cell is visible:
    - Rapid lysis: gp63 pinholes depolarize the inner membrane; the gp61 SAR
      endolysin is released and degrades the wall evenly, so the rod contracts

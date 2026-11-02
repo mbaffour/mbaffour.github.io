@@ -614,6 +614,9 @@ footer a { color: var(--accent); text-decoration: none; }
     break-inside: avoid; page-break-inside: avoid;
   }
   .card:hover { transform: none; }
+  /* The scroll fade-in sets opacity 0 inline until a card is seen; print never
+     scrolls, so without this every card below the first page printed blank. */
+  .card { opacity: 1 !important; transform: none !important; }
   .card::before { opacity: 1; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   /* Section hue bars keep the gold->green->red rotation on paper. */
   .section-title::before,
@@ -966,19 +969,20 @@ footer a { color: var(--accent); text-decoration: none; }
   <hr class="section-rule">
   <div class="card">
     <p style="font-size:0.88rem;line-height:1.7;">
-      Debrah MA, <strong>Awuah MB</strong>, Koh A, Ramsey J.
-      <em>Complete genome sequence of Escherichia Siphophage Serwaa.</em>
-      <span style="color:var(--text-secondary);">Microbiology Resource Announcements. 2026;e01222-25.
-      doi: <a href="https://doi.org/10.1128/mra.01222-25" target="_blank" rel="noopener" style="color:var(--accent);">10.1128/mra.01222-25</a>.</span>
+      <strong>Awuah MB</strong>&#8224;, Martin C&#8224;, Chamblee JS, Tomaszewski AJ, Sullivan TE, Emilia Q, Tran S, Snowden JH, Niemiec KA, Zhu J, Ramsey J.
+      <em>Phage N4 uses a SAR endolysin-holin system for host cell lysis.</em>
+      <span style="color:var(--text-secondary);">Journal of Bacteriology. 2026.
+      doi: <a href="https://doi.org/10.1128/jb.00538-25" target="_blank" rel="noopener" style="color:var(--accent);">10.1128/jb.00538-25</a>.
+      Preprint: bioRxiv 2025, doi: <a href="https://doi.org/10.1101/2025.11.12.688109" target="_blank" rel="noopener" style="color:var(--accent);">10.1101/2025.11.12.688109</a>.
+      &#8224;Equal contribution.</span>
     </p>
   </div>
   <div class="card">
     <p style="font-size:0.88rem;line-height:1.7;">
-      <strong>Awuah MB</strong>, Martin C, Chamblee JS, Tomaszewski AJ, Sullivan TE, Emilia Q, Tran S, Snowden JH, Niemiec KA, Zhu J, Ramsey J.
-      <em>Phage N4 uses a SAR endolysin-holin system for host cell lysis.</em>
-      <span style="color:var(--text-secondary);">bioRxiv [Preprint]. 2025 Nov 12:2025.11.12.688109.
-      doi: <a href="https://doi.org/10.1101/2025.11.12.688109" target="_blank" rel="noopener" style="color:var(--accent);">10.1101/2025.11.12.688109</a>.
-      PMID: 41292803; PMCID: PMC12642591.</span>
+      Debrah MA, <strong>Awuah MB</strong>, Koh A, Ramsey J.
+      <em>Complete genome sequence of Escherichia Siphophage Serwaa.</em>
+      <span style="color:var(--text-secondary);">Microbiology Resource Announcements. 2026;e01222-25.
+      doi: <a href="https://doi.org/10.1128/mra.01222-25" target="_blank" rel="noopener" style="color:var(--accent);">10.1128/mra.01222-25</a>.</span>
     </p>
   </div>
 </section>
