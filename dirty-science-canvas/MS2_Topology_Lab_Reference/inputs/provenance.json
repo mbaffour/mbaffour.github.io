@@ -1,0 +1,36 @@
+{
+  "accession": "NC_001417.2",
+  "files": [
+    {
+      "file": "inputs/NC_001417.2.gb",
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&id=NC_001417.2&rettype=gbwithparts&retmode=text",
+      "retrieved_utc": "2026-11-06T18:48:13Z",
+      "sha256": "63d96ac84a67011bcfc024c6c619dd086fb568b06711b2ecaa9129fa45a1584d",
+      "bytes": 15450
+    },
+    {
+      "file": "inputs/NC_001417.2.cds_aa.fasta",
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&id=NC_001417.2&rettype=fasta_cds_aa&retmode=text",
+      "retrieved_utc": "2026-11-06T18:48:15Z",
+      "sha256": "feea160a56f2ac49b61654ef3b659835c0adbafe6329ad0bd154d0a4523d1200",
+      "bytes": 2440
+    },
+    {
+      "file": "inputs/NC_001417.2.fna",
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&id=NC_001417.2&rettype=fasta&retmode=text",
+      "retrieved_utc": "2026-11-06T18:48:17Z",
+      "sha256": "5d8a76418415c9cd2448300ce07635a3f3f167deb139ab078bfefe613e4658ad",
+      "bytes": 3651
+    }
+  ],
+  "ncbi_summary": {
+    "accessionversion": "NC_001417.2",
+    "title": "phage MS2 genome",
+    "slen": 3569,
+    "createdate": "1982/06/09",
+    "updatedate": "2023/01/07",
+    "taxid": 12022,
+    "biomol": "genomic",
+    "topology": "linear"
+  }
+}

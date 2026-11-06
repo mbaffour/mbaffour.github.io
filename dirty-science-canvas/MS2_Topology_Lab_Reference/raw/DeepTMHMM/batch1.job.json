@@ -1,0 +1,32 @@
+{
+  "method": "DeepTMHMM",
+  "service": "BioLib app DTU/DeepTMHMM",
+  "client": "pybiolib 1.4.625 CLI: biolib run DTU/DeepTMHMM --fasta in.fasta",
+  "batch": 1,
+  "fasta": "raw/DeepTMHMM/batch1/batch1.fasta",
+  "fasta_sha256": "ddab5bee71393c4b0352e2ad8eddb22a2d456263373a868ffe045c57975c7950",
+  "n_sequences": 4,
+  "submitted_utc": "2026-11-06T18:50 (approx., from CLI log; first log line 18:51:39)",
+  "completed_utc": "2026-11-06T18:54:19Z (CLI log 'Result Ready')",
+  "job_id": null,
+  "job_id_note": "CLI output did not print a BioLib job ID",
+  "app_version": null,
+  "log": "raw/DeepTMHMM/batch1/biolib_cli.log",
+  "note": "Initially run as a connectivity test; it is a complete genuine run of the exact submitted FASTA and is retained as batch 1 (files renamed: in.fasta->batch1.fasta, biolib_results->results).",
+  "outputs": [
+    {
+      "file": "raw/DeepTMHMM/batch1/results/TMRs.gff3",
+      "sha256": "e584ddccbea96cf3e676f354ff44e31e4177a1339d2706f57ccd4aa83b431542"
+    },
+    {
+      "file": "raw/DeepTMHMM/batch1/results/deeptmhmm_results.md",
+      "sha256": "3f3b3cdefd30d31131efec4585ea04885161e36df9ffd6ed8c254a53c158ba46"
+    },
+    {
+      "file": "raw/DeepTMHMM/batch1/results/predicted_topologies.3line",
+      "sha256": "63a4c4792b92f701d6d8a8e332bd5436619be9d1242faa921096bfe0cfb203b1"
+    }
+  ],
+  "status": "complete",
+  "app_version_note": "Not recorded by the CLI run. The phiX174/M13 runs ~5 min later resolved DTU/DeepTMHMM:1.0.57 (published 2026-02-13), but this run's version is not independently confirmed."
+}

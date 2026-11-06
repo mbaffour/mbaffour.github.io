@@ -1,0 +1,36 @@
+{
+  "accession": "NC_001422.1",
+  "files": [
+    {
+      "file": "inputs/NC_001422.1.gb",
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&id=NC_001422.1&rettype=gbwithparts&retmode=text",
+      "retrieved_utc": "2026-11-06T18:47:59Z",
+      "sha256": "0a8099e207633f8c3ba998bfe2a198518e1de356c7956691101b2512324b807c",
+      "bytes": 26238
+    },
+    {
+      "file": "inputs/NC_001422.1.cds_aa.fasta",
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&id=NC_001422.1&rettype=fasta_cds_aa&retmode=text",
+      "retrieved_utc": "2026-11-06T18:48:01Z",
+      "sha256": "94435725b4794e97fa38de43cecb071ec04af0726db7b18f582d71dc4a9cc543",
+      "bytes": 4280
+    },
+    {
+      "file": "inputs/NC_001422.1.fna",
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&id=NC_001422.1&rettype=fasta&retmode=text",
+      "retrieved_utc": "2026-11-06T18:48:03Z",
+      "sha256": "caa155c83967cc080f4f188f14f1f28c18d77448e87c3d00d3579ed348f4de2a",
+      "bytes": 5520
+    }
+  ],
+  "ncbi_summary": {
+    "accessionversion": "NC_001422.1",
+    "title": "Escherichia phage phiX174, complete genome",
+    "slen": 5386,
+    "createdate": "1993/04/28",
+    "updatedate": "2023/01/11",
+    "taxid": 2886930,
+    "biomol": "genomic",
+    "topology": "circular"
+  }
+}

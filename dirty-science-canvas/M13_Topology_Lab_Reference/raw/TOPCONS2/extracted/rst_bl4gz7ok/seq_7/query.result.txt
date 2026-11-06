@@ -1,0 +1,233 @@
+##############################################################################
+TOPCONS2 result file
+Generated from http://161.9.255.192 at 2023-12-06 22:38:56 CET
+Total request time: 10.0 seconds.
+##############################################################################
+Sequence number: 1
+Sequence name: sp|P69531|G6P_BPF1 Head virion protein G6P OS=Enterobacteria phage f1 OX=10863 GN=VI PE=1 SV=1
+Sequence length: 112 aa.
+Sequence:
+MPVLLGIPLLLRFLGFLLVTLFGYLLTFLKKGFGKIAIAISLFLALIIGLNSILVGYLSDISAQLPSDFVQGVQLILPSNALPCFYVILSVKAAIFIFDVKQKIVSYLDWDK
+
+
+TOPCONS predicted topology:
+ooooooMMMMMMMMMMMMMMMMMMMMMiiiiiiiiMMMMMMMMMMMMMMMMMMMMMoooooooooooooooooooooooMMMMMMMMMMMMMMMMMMMMMiiiiiiiiiiii
+
+
+OCTOPUS predicted topology:
+oooMMMMMMMMMMMMMMMMMMMMMiiiiiiiiiiiMMMMMMMMMMMMMMMMMMMMMooooooooooooooooooooooooMMMMMMMMMMMMMMMMMMMMMiiiiiiiiiii
+
+
+Philius predicted topology:
+oooooooMMMMMMMMMMMMMMMMMMMMMiiiiiiiMMMMMMMMMMMMMMMMMMMMMMMooooooooooooooooMMMMMMMMMMMMMMMMMMMMMMiiiiiiiiiiiiiiii
+
+
+PolyPhobius predicted topology:
+oooooMMMMMMMMMMMMMMMMMMMMMMMMiiiiiiMMMMMMMMMMMMMMMMMMMMMMMooooooooooooooooooMMMMMMMMMMMMMMMMMMMMMMiiiiiiiiiiiiii
+
+
+SCAMPI predicted topology:
+ooooooooMMMMMMMMMMMMMMMMMMMMMiiiiiiiiMMMMMMMMMMMMMMMMMMMMMoooooooooooooooooooooMMMMMMMMMMMMMMMMMMMMMiiiiiiiiiiii
+
+
+SPOCTOPUS predicted topology:
+oooMMMMMMMMMMMMMMMMMMMMMiiiiiiiiiiiMMMMMMMMMMMMMMMMMMMMMooooooooooooooooooooooooMMMMMMMMMMMMMMMMMMMMMiiiiiiiiiii
+
+
+Homology:
+No homologous hits found
+
+
+
+Predicted Delta-G-values (kcal/mol) (left column=sequence position; right column=Delta-G)
+
+10 0.488
+11 0.700
+12 0.050
+13 -0.338
+14 0.133
+15 0.067
+16 -0.983
+17 -1.740
+18 -2.385
+19 -2.071
+20 -1.840
+21 -0.952
+22 -0.245
+23 0.798
+24 1.357
+25 2.010
+26 3.176
+27 4.027
+28 4.704
+29 4.826
+30 4.892
+31 5.123
+32 5.626
+33 4.689
+34 4.203
+35 3.630
+36 3.289
+37 2.199
+38 1.722
+39 1.215
+40 0.800
+41 -0.195
+42 -0.173
+43 0.430
+44 -0.047
+45 -0.466
+46 -0.291
+47 0.159
+48 0.279
+49 -0.043
+50 0.548
+51 0.727
+52 1.404
+53 2.343
+54 3.113
+55 3.954
+56 4.493
+57 5.465
+58 6.387
+59 6.673
+60 7.061
+61 6.777
+62 7.097
+63 7.592
+64 7.970
+65 8.705
+66 8.103
+67 8.096
+68 7.804
+69 7.752
+70 7.421
+71 7.746
+72 7.295
+73 6.597
+74 6.160
+75 6.286
+76 5.437
+77 4.708
+78 4.025
+79 4.038
+80 3.726
+81 3.817
+82 3.513
+83 3.722
+84 3.374
+85 3.705
+86 3.594
+87 3.459
+88 2.770
+89 1.814
+90 1.282
+91 1.181
+92 1.853
+93 2.350
+94 3.164
+95 3.979
+96 4.532
+97 5.425
+98 5.835
+99 6.114
+100 6.559
+101 6.631
+102 6.875
+103 7.404
+
+Predicted TOPCONS reliability (left column=sequence position; right column=reliability)
+
+11	90.48
+12	90.48
+13	90.48
+14	90.48
+15	90.48
+16	90.48
+17	91.43
+18	90.48
+19	89.52
+20	89.52
+21	89.52
+22	89.52
+23	89.52
+24	89.52
+25	89.52
+26	88.57
+27	87.62
+28	87.62
+29	87.62
+30	87.62
+31	87.62
+32	87.62
+33	87.62
+34	87.62
+35	87.62
+36	89.52
+37	91.43
+38	93.33
+39	96.19
+40	98.10
+41	98.10
+42	98.10
+43	98.10
+44	98.10
+45	98.10
+46	98.10
+47	96.19
+48	94.29
+49	94.29
+50	94.29
+51	94.29
+52	94.29
+53	94.29
+54	94.29
+55	94.29
+56	94.29
+57	94.29
+58	94.29
+59	94.29
+60	94.29
+61	94.29
+62	94.29
+63	94.29
+64	94.29
+65	93.33
+66	92.38
+67	90.48
+68	91.43
+69	92.38
+70	90.48
+71	90.48
+72	90.48
+73	90.48
+74	90.48
+75	90.48
+76	90.48
+77	90.48
+78	90.48
+79	90.48
+80	90.48
+81	90.48
+82	90.48
+83	90.48
+84	90.48
+85	90.48
+86	91.43
+87	91.43
+88	92.38
+89	92.38
+90	92.38
+91	92.38
+92	92.38
+93	92.38
+94	92.38
+95	92.38
+96	92.38
+97	92.38
+98	92.38
+99	92.38
+100	92.38
+101	92.38
+
+##############################################################################

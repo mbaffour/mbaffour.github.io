@@ -1,0 +1,261 @@
+{
+ "checked_utc": "2026-11-06T19:13:49+00:00",
+ "organism": "Escherichia phage MS2",
+ "accession": "NC_001417.2",
+ "checks": [
+  {
+   "check": "input checksum inputs/NC_001417.2.gb",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "input checksum inputs/NC_001417.2.cds_aa.fasta",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "input checksum inputs/NC_001417.2.fna",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "CDS reconciliation",
+   "pass": true,
+   "detail": "4 CDS = 4 proteins + 0 pseudo/untranslated"
+  },
+  {
+   "check": "all CDS FASTA records matched",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "translations agree with CDS FASTA and coordinate derivation",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "submitted FASTA == inventory (ids, exact sequences)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "Phobius batch1_api.job.json: batch FASTA identical to submitted FASTA",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "Phobius batch1_api.job.json: raw output checksums (7 files)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "Phobius batch1_api.job.json: status complete",
+   "pass": true,
+   "detail": "complete"
+  },
+  {
+   "check": "Phobius batch1_nog.job.json: batch FASTA identical to submitted FASTA",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "Phobius batch1_nog.job.json: raw output checksums (1 files)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "Phobius batch1_nog.job.json: status complete",
+   "pass": true,
+   "detail": "complete"
+  },
+  {
+   "check": "Phobius batch1_short.job.json: batch FASTA identical to submitted FASTA",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "Phobius batch1_short.job.json: raw output checksums (1 files)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "Phobius batch1_short.job.json: status complete",
+   "pass": true,
+   "detail": "complete"
+  },
+  {
+   "check": "DeepTMHMM batch1.job.json: batch FASTA identical to submitted FASTA",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "DeepTMHMM batch1.job.json: raw output checksums (3 files)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "DeepTMHMM batch1.job.json: status complete",
+   "pass": true,
+   "detail": "complete"
+  },
+  {
+   "check": "TOPCONS2 batch1.job.json: batch FASTA identical to submitted FASTA",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "TOPCONS2 batch1.job.json: raw output checksums (1 files)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "TOPCONS2 batch1.job.json: status complete",
+   "pass": true,
+   "detail": "complete"
+  },
+  {
+   "check": "data.json protein set == inventory",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "MS2|MS2g1 sequence/sha",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "MS2|MS2g2 sequence/sha",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "MS2|MS2g3 sequence/sha",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "MS2|MS2g4 sequence/sha",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "all 32 label strings: length, contiguous coverage, segment rebuild, alphabet",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "normalization validation errors empty",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "Phobius coverage complete",
+   "pass": true,
+   "detail": "4/4"
+  },
+  {
+   "check": "DeepTMHMM coverage complete",
+   "pass": true,
+   "detail": "4/4"
+  },
+  {
+   "check": "TOPCONS2 coverage complete",
+   "pass": true,
+   "detail": "4/4"
+  },
+  {
+   "check": "atlas embeds current data.json",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "atlas contains no other organism names",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "atlas has no external script/style dependencies",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "browser: no JS errors (file://, offline)",
+   "pass": true,
+   "detail": "[]"
+  },
+  {
+   "check": "browser: every residue's identity, number and band state verified in full sequence map",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "browser: bead cartoons account for every residue exactly once (drawn + explicitly omitted)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "browser: no bead overlaps (min centre distance >= bead diameter 20 px)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "browser: SVG export is well-formed XML",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "browser: PNG exports produced",
+   "pass": true,
+   "detail": "{\"png2\": [2376, 2374], \"png4\": [4752, 4748]}"
+  },
+  {
+   "check": "browser: no horizontal page overflow at 390 px width",
+   "pass": true,
+   "detail": ""
+  }
+ ],
+ "failures": [],
+ "nonstandard_residue_proteins": [],
+ "beta_state_predictions": [],
+ "browser_check": {
+  "source": "logs/browser_check.json (copied to verification_browser.json)",
+  "checked_utc": "2026-11-06T19:13:39.670Z",
+  "browser": "153.0.8010.12",
+  "ui": {
+   "search_coat": 1,
+   "filter_span": 1,
+   "filter_disagree": 1,
+   "window_5_20_cells": 16,
+   "component_toggle_adds_track": true
+  },
+  "exports": {
+   "svg": {
+    "name": "MS2_MS2g4_rep_Phobius_DeepTMHMM_TOPCONS2_seqcharge_1-545.svg",
+    "bytes": 318037,
+    "xml_ok": true
+   },
+   "png2": {
+    "name": "MS2_MS2g4_rep_Phobius_DeepTMHMM_TOPCONS2_seqcharge_1-545.png",
+    "bytes": 589032,
+    "png_size": [
+     2376,
+     2374
+    ]
+   },
+   "png4": {
+    "name": "MS2_MS2g4_rep_Phobius_DeepTMHMM_TOPCONS2_seqcharge_1-545.png",
+    "bytes": 1441440,
+    "png_size": [
+     4752,
+     4748
+    ]
+   }
+  },
+  "bead_abbreviations": {}
+ },
+ "summary": {
+  "checks": 42,
+  "passed": 42,
+  "failed": 0
+ }
+}

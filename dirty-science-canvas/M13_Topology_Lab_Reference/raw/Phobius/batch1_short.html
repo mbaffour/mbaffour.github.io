@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Phobius &mdash; prediction</title>
+<link rel="icon" href="/static/phobius-16.png" type="image/png">
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<div class="wrap">
+
+<header class="masthead">
+  <div class="titles">
+    <h1>Phobius</h1>
+    <p class="tagline">A combined transmembrane topology and signal peptide predictor</p>
+  </div>
+  <img src="/static/phobius.gif" alt="">
+</header>
+
+<nav class="tabs">
+  <a href="/">Normal prediction</a>
+  <a href="/constrained">Constrained prediction</a>
+  <a href="/poly">PolyPhobius</a>
+  <a href="/instructions">Instructions</a>
+  <a href="/download">Download</a>
+  <a href="/api">API</a>
+</nav>
+
+
+<h2>Prediction</h2>
+
+
+
+
+
+
+<pre>SEQENCE ID                     TM SP PREDICTION
+M13__M13p01                     0  0 i
+M13__M13p02                     0  0 i
+M13__M13p03                     0  0 i
+M13__M13p04                     1  0 o13-31i
+M13__M13p05                     0  Y n3-13c18/19o
+M13__M13p06                     1  Y n5-16c23/24o47-65i
+M13__M13p07                     1  Y n4-14c18/19o394-419i
+M13__M13p08                     3  0 o6-29i36-59o79-98i
+M13__M13p09                     1  0 i251-270o
+M13__M13p10                     0  Y n3-14c21/22o
+</pre>
+
+
+
+<p style="margin-top:2rem">
+  <a href="/">&larr; Make another prediction</a>
+</p>
+
+
+<footer>
+  <p>Phobius predicts transmembrane topology and signal peptides from a single
+  hidden Markov model. Please cite
+  <a href="https://doi.org/10.1016/j.jmb.2004.03.016">K&auml;ll, Krogh &amp; Sonnhammer, J Mol Biol 338:1027-1036 (2004)</a>.</p>
+</footer>
+
+</div>
+</body>
+</html>
