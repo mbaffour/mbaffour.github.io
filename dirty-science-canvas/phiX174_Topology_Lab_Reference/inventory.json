@@ -1,8 +1,13 @@
 {
   "organism": "Escherichia phage phiX174",
   "key": "phiX174",
-  "accession": "NC_001422.1",
-  "record_description": "Escherichia phage phiX174, complete genome",
+  "kind": "phage",
+  "accessions": [
+    "NC_001422.1"
+  ],
+  "gb_files": [
+    "NC_001422.1.gb"
+  ],
   "n_cds_features": 11,
   "n_proteins": 11,
   "n_pseudogenes": 0,
@@ -35,7 +40,22 @@
         "joined_location_spans_circular_origin"
       ],
       "source_record": "inputs/NC_001422.1.gb",
-      "cds_fasta_id": "lcl|NC_001422.1_prot_NP_040703.1_1"
+      "cds_fasta_id": "lcl|NC_001422.1_prot_NP_040703.1_1",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
     },
     {
       "protein_id": "phiX174|phiX174p02",
@@ -63,7 +83,22 @@
         "joined_location_spans_circular_origin"
       ],
       "source_record": "inputs/NC_001422.1.gb",
-      "cds_fasta_id": "lcl|NC_001422.1_prot_NP_040704.1_2"
+      "cds_fasta_id": "lcl|NC_001422.1_prot_NP_040704.1_2",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
     },
     {
       "protein_id": "phiX174|phiX174p03",
@@ -91,7 +126,22 @@
         "joined_location_spans_circular_origin"
       ],
       "source_record": "inputs/NC_001422.1.gb",
-      "cds_fasta_id": "lcl|NC_001422.1_prot_NP_040705.1_3"
+      "cds_fasta_id": "lcl|NC_001422.1_prot_NP_040705.1_3",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
     },
     {
       "protein_id": "phiX174|phiX174p04",
@@ -117,7 +167,22 @@
       "sequence_sha256": "a4d9334470e32f5f4e301b218a931443f885043b5aecac11f6f4b06c4384c811",
       "annotation_flags": [],
       "source_record": "inputs/NC_001422.1.gb",
-      "cds_fasta_id": "lcl|NC_001422.1_prot_NP_040706.1_4"
+      "cds_fasta_id": "lcl|NC_001422.1_prot_NP_040706.1_4",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
     },
     {
       "protein_id": "phiX174|phiX174p05",
@@ -143,7 +208,22 @@
       "sequence_sha256": "d23a7466fdf79868f8c15a78fa8ab123130b00d71d6d9151f35baa2ab3fb98e8",
       "annotation_flags": [],
       "source_record": "inputs/NC_001422.1.gb",
-      "cds_fasta_id": "lcl|NC_001422.1_prot_NP_040707.1_5"
+      "cds_fasta_id": "lcl|NC_001422.1_prot_NP_040707.1_5",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
     },
     {
       "protein_id": "phiX174|phiX174p07",
@@ -169,7 +249,22 @@
       "sequence_sha256": "7fa9d7f45566ec7b1a696c5661a02e4c69d6b70842c5e7838ee23a301587fb58",
       "annotation_flags": [],
       "source_record": "inputs/NC_001422.1.gb",
-      "cds_fasta_id": "lcl|NC_001422.1_prot_NP_040708.1_6"
+      "cds_fasta_id": "lcl|NC_001422.1_prot_NP_040708.1_6",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
     },
     {
       "protein_id": "phiX174|phiX174p08",
@@ -195,7 +290,22 @@
       "sequence_sha256": "293a545b6a40aa0fd160d535766f4953a3e4d0c11e9d014c628b98e03d32c681",
       "annotation_flags": [],
       "source_record": "inputs/NC_001422.1.gb",
-      "cds_fasta_id": "lcl|NC_001422.1_prot_NP_040709.1_7"
+      "cds_fasta_id": "lcl|NC_001422.1_prot_NP_040709.1_7",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
     },
     {
       "protein_id": "phiX174|phiX174p09",
@@ -221,7 +331,22 @@
       "sequence_sha256": "cb7502f8162bfdaa2f631c3c008cbfbdf198e75d8a5674a5662af87f25016e8d",
       "annotation_flags": [],
       "source_record": "inputs/NC_001422.1.gb",
-      "cds_fasta_id": "lcl|NC_001422.1_prot_NP_040710.1_8"
+      "cds_fasta_id": "lcl|NC_001422.1_prot_NP_040710.1_8",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
     },
     {
       "protein_id": "phiX174|phiX174p06",
@@ -247,7 +372,22 @@
       "sequence_sha256": "b1bc9692d269797ae1e7b46d8f626e4ac1da353c8c4e0078fdcfb4ab38f3822e",
       "annotation_flags": [],
       "source_record": "inputs/NC_001422.1.gb",
-      "cds_fasta_id": "lcl|NC_001422.1_prot_NP_040711.1_9"
+      "cds_fasta_id": "lcl|NC_001422.1_prot_NP_040711.1_9",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
     },
     {
       "protein_id": "phiX174|phiX174p10",
@@ -273,7 +413,22 @@
       "sequence_sha256": "8c684bdfbcc4f447c557368b00dc2ebbf0a08ed92ee0fbe7f2823a8c03010a55",
       "annotation_flags": [],
       "source_record": "inputs/NC_001422.1.gb",
-      "cds_fasta_id": "lcl|NC_001422.1_prot_NP_040712.1_10"
+      "cds_fasta_id": "lcl|NC_001422.1_prot_NP_040712.1_10",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
     },
     {
       "protein_id": "phiX174|phiX174p11",
@@ -299,7 +454,22 @@
       "sequence_sha256": "89b67b0df05e21384f69f7ec45b3eb13d02d6079630058e18aa28f113f07b89a",
       "annotation_flags": [],
       "source_record": "inputs/NC_001422.1.gb",
-      "cds_fasta_id": "lcl|NC_001422.1_prot_NP_040713.1_11"
+      "cds_fasta_id": "lcl|NC_001422.1_prot_NP_040713.1_11",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
     }
   ]
 }

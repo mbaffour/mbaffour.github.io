@@ -1,5 +1,8 @@
 {
-  "accession": "NC_003287.2",
+  "organism": "Enterobacteria phage M13",
+  "accessions": [
+    "NC_003287.2"
+  ],
   "files": [
     {
       "file": "inputs/NC_003287.2.gb",
@@ -21,6 +24,18 @@
       "retrieved_utc": "2026-11-06T18:48:10Z",
       "sha256": "a7cc5660b4a76bab5cb2559a6d9f613d590d1af4debcf92b51125571afbf85ad",
       "bytes": 6555
+    }
+  ],
+  "ncbi_summaries": [
+    {
+      "accessionversion": "NC_003287.2",
+      "title": "Enterobacteria phage M13, complete genome",
+      "slen": 6407,
+      "createdate": "1982/06/09",
+      "updatedate": "2018/08/13",
+      "taxid": 1977402,
+      "biomol": "genomic",
+      "topology": "circular"
     }
   ],
   "ncbi_summary": {

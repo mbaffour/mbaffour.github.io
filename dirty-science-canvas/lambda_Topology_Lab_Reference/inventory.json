@@ -1,0 +1,3031 @@
+{
+  "organism": "Enterobacteria phage lambda",
+  "key": "lambda",
+  "kind": "phage",
+  "accessions": [
+    "NC_001416.1"
+  ],
+  "gb_files": [
+    "NC_001416.1.gb"
+  ],
+  "n_cds_features": 73,
+  "n_proteins": 73,
+  "n_pseudogenes": 0,
+  "cds_fasta_records": 73,
+  "cds_fasta_unmatched": [],
+  "proteins": [
+    {
+      "protein_id": "lambda|lambdap01",
+      "gene": "nu1",
+      "locus_tag": "lambdap01",
+      "product": "terminase small subunit",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_001416.1",
+      "start": 191,
+      "stop": 736,
+      "strand": "+",
+      "location": "[190:736](+)",
+      "protein_accession": "NP_040580.1",
+      "db_xref": [
+        "GeneID:2703523"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MEVNKKQLADIFGASIRTIQNWQEQGMPVLRGGGKGNEVLYDSAAVIKWYAERDAEIENEKLRREVEELRQASEADLQPGTIEYERHRLTRAQADAQELKNARDSAEVVETAFCTFVLSRIAGEIASILDGLPLSVQRRFPELENRHVDFLKRDIIKAMNKAAALDELIPGLLSEYIEQSG",
+      "length": 181,
+      "sequence_sha256": "3abba080538885c595a23be408787296047912e2bc736c2dbbec643affd286d4",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_001416.1.gb",
+      "cds_fasta_id": "lcl|NC_001416.1_prot_NP_040580.1_1",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "lambda|lambdap02",
+      "gene": "A",
+      "locus_tag": "lambdap02",
+      "product": "terminase large subunit",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_001416.1",
+      "start": 711,
+      "stop": 2636,
+      "strand": "+",
+      "location": "[710:2636](+)",
+      "protein_accession": "NP_040581.1",
+      "db_xref": [
+        "GeneID:2703524"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MNISNSQVNRLRHFVRAGLRSLFRPEPQTAVEWADANYYLPKESAYQEGRWETLPFQRAIMNAMGSDYIREVNVVKSARVGYSKMLLGVYAYFIEHKQRNTLIWLPTDGDAENFMKTHVEPTIRDIPSLLALAPWYGKKHRDNTLTMKRFTNGRGFWCLGGKAAKNYREKSVDVAGYDELAAFDDDIEQEGSPTFLGDKRIEGSVWPKSIRGSTPKVRGTCQIERAASESPHFMRFHVACPHCGEEQYLKFGDKETPFGLKWTPDDPSSVFYLCEHNACVIRQQELDFTDARYICEKTGIWTRDGILWFSSSGEEIEPPDSVTFHIWTAYSPFTTWVQIVKDWMKTKGDTGKRKTFVNTTLGETWEAKIGERPDAEVMAERKEHYSAPVPDRVAYLTAGIDSQLDRYEMRVWGWGPGEESWLIDRQIIMGRHDDEQTLLRVDEAINKTYTRRNGAEMSISRICWDTGGIDPTIVYERSKKHGLFRVIPIKGASVYGKPVASMPRKRNKNGVYLTEIGTDTAKEQIYNRFTLTPEGDEPLPGAVHFPNNPDIFDLTEAQQLTAEEQVEKWVDGRKKILWDSKKRRNEALDCFVYALAALRISISRWQLDLSALLASLQEEDGAATNKKTLADYARALSGEDE",
+      "length": 641,
+      "sequence_sha256": "b72b13a9ec76abb75043b091459956a7366cc88fbee8ad86c38d7d21785dacec",
+      "annotation_flags": [
+        "alternative_start_codon_read_as_Met"
+      ],
+      "source_record": "inputs/NC_001416.1.gb",
+      "cds_fasta_id": "lcl|NC_001416.1_prot_NP_040581.1_2",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "lambda|lambdap03",
+      "gene": "W",
+      "locus_tag": "lambdap03",
+      "product": "head-tail adaptor Ad1",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_001416.1",
+      "start": 2633,
+      "stop": 2839,
+      "strand": "+",
+      "location": "[2632:2839](+)",
+      "protein_accession": "NP_040582.1",
+      "db_xref": [
+        "GeneID:2703525"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MTRQEELAAARAALHDLMTGKRVATVQKDGRRVEFTATSVSDLKKYIAELEVQTGMTQRRRGPAGFYV",
+      "length": 68,
+      "sequence_sha256": "9f5a716e1e63bdcef77e31879299c2e0183c61768a0f3f0e66d7b61976daa97b",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_001416.1.gb",
+      "cds_fasta_id": "lcl|NC_001416.1_prot_NP_040582.1_3",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "lambda|lambdap04",
+      "gene": "B",
+      "locus_tag": "lambdap04",
+      "product": "portal protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_001416.1",
+      "start": 2836,
+      "stop": 4437,
+      "strand": "+",
+      "location": "[2835:4437](+)",
+      "protein_accession": "NP_040583.1",
+      "db_xref": [
+        "GeneID:2703526"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MKTPTIPTLLGPDGMTSLREYAGYHGGGSGFGGQLRSWNPPSESVDAALLPNFTRGNARADDLVRNNGYAANAIQLHQDHIVGSFFRLSHRPSWRYLGIGEEEARAFSREVEAAWKEFAEDDCCCIDVERKRTFTMMIREGVAMHAFNGELFVQATWDTSSSRLFRTQFRMVSPKRISNPNNTGDSRNCRAGVQINDSGAALGYYVSEDGYPGWMPQKWTWIPRELPGGRASFIHVFEPVEDGQTRGANVFYSVMEQMKMLDTLQNTQLQSAIVKAMYAATIESELDTQSAMDFILGANSQEQRERLTGWIGEIAAYYAAAPVRLGGAKVPHLMPGDSLNLQTAQDTDNGYSVFEQSLLRYIAAGLGVSYEQLSRNYAQMSYSTARASANESWAYFMGRRKFVASRQASQMFLCWLEEAIVRRVVTLPSKARFSFQEARSAWGNCDWIGSGRMAIDGLKEVQEAVMLIEAGLSTYEKECAKRGDDYQEIFAQQVRETMERRAAGLKPPAWAAAAFESGLRQSTEEEKSDSRAA",
+      "length": 533,
+      "sequence_sha256": "e89e5b2ad5a8e1c8ac94f81287aa067f17797bbb516276bb6be709f6a05566ce",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_001416.1.gb",
+      "cds_fasta_id": "lcl|NC_001416.1_prot_NP_040583.1_4",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "lambda|lambdap05",
+      "gene": "C",
+      "locus_tag": "lambdap05",
+      "product": "S49 family peptidase",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_001416.1",
+      "start": 4418,
+      "stop": 5737,
+      "strand": "+",
+      "location": "[4417:5737](+)",
+      "protein_accession": "NP_040584.1",
+      "db_xref": [
+        "GeneID:2703527"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MTAELRNLPHIASMAFNEPLMLEPAYARVFFCALAGQLGISSLTDAVSGDSLTAQEALATLALSGDDDGPRQARSYQVMNGIAVLPVSGTLVSRTRALQPYSGMTGYNGIIARLQQAASDPMVDGILLDMDTPGGMVAGAFDCADIIARVRDIKPVWALANDMNCSAGQLLASAASRRLVTQTARTGSIGVMMAHSNYGAALEKQGVEITLIYSGSHKVDGNPYSHLPDDVRETLQSRMDATRQMFAQKVSAYTGLSVQVVLDTEAAVYSGQEAIDAGLADELVNSTDAITVMRDALDARKSRLSGGRMTKETQSTTVSATASQADVTDVVPATEGENASAAQPDVNAQITAAVAAENSRIMGILNCEEAHGREEQARVLAETPGMTVKTARRILAAAPQSAQARSDTALDRLMQGAPAPLAAGNPASDAVNDLLNTPV",
+      "length": 439,
+      "sequence_sha256": "aa902375037c27191b3e4c2061de0848eb89e0651a60163f52886b8d26d1076c",
+      "annotation_flags": [
+        "alternative_start_codon_read_as_Met"
+      ],
+      "source_record": "inputs/NC_001416.1.gb",
+      "cds_fasta_id": "lcl|NC_001416.1_prot_NP_040584.1_5",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "lambda|lambdap06",
+      "gene": "nu3",
+      "locus_tag": "lambdap06",
+      "product": "capsid assembly protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_001416.1",
+      "start": 5132,
+      "stop": 5737,
+      "strand": "+",
+      "location": "[5131:5737](+)",
+      "protein_accession": "NP_040585.1",
+      "db_xref": [
+        "GeneID:2703528"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MDATRQMFAQKVSAYTGLSVQVVLDTEAAVYSGQEAIDAGLADELVNSTDAITVMRDALDARKSRLSGGRMTKETQSTTVSATASQADVTDVVPATEGENASAAQPDVNAQITAAVAAENSRIMGILNCEEAHGREEQARVLAETPGMTVKTARRILAAAPQSAQARSDTALDRLMQGAPAPLAAGNPASDAVNDLLNTPV",
+      "length": 201,
+      "sequence_sha256": "7cebf060c2b3016ce878d85bde76164a5bf3154f095018f9b8429474772bbe10",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_001416.1.gb",
+      "cds_fasta_id": "lcl|NC_001416.1_prot_NP_040585.1_6",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "lambda|lambdap07",
+      "gene": "D",
+      "locus_tag": "lambdap07",
+      "product": "head decoration",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_001416.1",
+      "start": 5747,
+      "stop": 6079,
+      "strand": "+",
+      "location": "[5746:6079](+)",
+      "protein_accession": "NP_040586.1",
+      "db_xref": [
+        "GeneID:2703529"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MTSKETFTHYQPQGNSDPAHTATAPGGLSAKAPAMTPLMLDTSSRKLVAWDGTTDGAAVGILAVAADQTSTTLTFYKSGTFRYEDVLWPEAASDETKKRTAFAGTAISIV",
+      "length": 110,
+      "sequence_sha256": "ced30a5dc286f41310c7822bc5b76265d332ec76c087d5b16933d175c825fdca",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_001416.1.gb",
+      "cds_fasta_id": "lcl|NC_001416.1_prot_NP_040586.1_7",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "lambda|lambdap08",
+      "gene": "E",
+      "locus_tag": "lambdap08",
+      "product": "major capsid protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_001416.1",
+      "start": 6135,
+      "stop": 7160,
+      "strand": "+",
+      "location": "[6134:7160](+)",
+      "protein_accession": "NP_040587.1",
+      "db_xref": [
+        "GeneID:2703482"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MSMYTTAQLLAANEQKFKFDPLFLRLFFRESYPFTTEKVYLSQIPGLVNMALYVSPIVSGEVIRSRGGSTSEFTPGYVKPKHEVNPQMTLRRLPDEDPQNLADPAYRRRRIIMQNMRDEELAIAQVEEMQAVSAVLKGKYTMTGEAFDPVEVDMGRSEENNITQSGGTEWSKRDKSTYDPTDDIEAYALNASGVVNIIVFDPKGWALFRSFKAVKEKLDTRRGSNSELETAVKDLGKAVSYKGMYGDVAIVVYSGQYVENGVKKNFLPDNTMVLGNTQARGLRTYGCIQDADAQREGINASARYPKNWVTTGDPAREFTMIQSAPLMLLADPDEFVSVQLA",
+      "length": 341,
+      "sequence_sha256": "d34869e68070b782f099724c1170206244eae19c30cc4f471825328f3f1fb8c5",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_001416.1.gb",
+      "cds_fasta_id": "lcl|NC_001416.1_prot_NP_040587.1_8",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "lambda|lambdap09",
+      "gene": "Fi",
+      "locus_tag": "lambdap09",
+      "product": "DNA packaging chaperone FI",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_001416.1",
+      "start": 7202,
+      "stop": 7600,
+      "strand": "+",
+      "location": "[7201:7600](+)",
+      "protein_accession": "NP_040588.1",
+      "db_xref": [
+        "GeneID:2703483"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MTKDELIARLRSLGEQLNRDVSLTGTKEELALRVAELKEELDDTDETAGQDTPLSRENVLTGHENEVGSAQPDTVILDTSELVTVVALVKLHTDALHATRDEPVAFVLPGTAFRVSAGVAAEMTERGLARMQ",
+      "length": 132,
+      "sequence_sha256": "a2ea226cfb3c4063775d3b71311b5b20e5511ea745a09bcfc718d142fd864897",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_001416.1.gb",
+      "cds_fasta_id": "lcl|NC_001416.1_prot_NP_040588.1_9",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "lambda|lambdap10",
+      "gene": "Fii",
+      "locus_tag": "lambdap10",
+      "product": "head closure Hc1",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_001416.1",
+      "start": 7612,
+      "stop": 7965,
+      "strand": "+",
+      "location": "[7611:7965](+)",
+      "protein_accession": "NP_040589.1",
+      "db_xref": [
+        "GeneID:2703484"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MADFDNLFDAAIARADETIRGYMGTSATITSGEQSGAVIRGVFDDPENISYAGQGVRVEGSSPSLFVRTDEVRQLRRGDTLTIGEENFWVDRVSPDDGGSCHLWLGRGVPPAVNRRR",
+      "length": 117,
+      "sequence_sha256": "368f311e89b8190c90105b70b5500ebcc9e166f520d20ba8941fc1062fb5181e",
+      "annotation_flags": [
+        "alternative_start_codon_read_as_Met"
+      ],
+      "source_record": "inputs/NC_001416.1.gb",
+      "cds_fasta_id": "lcl|NC_001416.1_prot_NP_040589.1_10",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "lambda|lambdap11",
+      "gene": "Z",
+      "locus_tag": "lambdap11",
+      "product": "tail protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_001416.1",
+      "start": 7977,
+      "stop": 8555,
+      "strand": "+",
+      "location": "[7976:8555](+)",
+      "protein_accession": "NP_040590.1",
+      "db_xref": [
+        "GeneID:2703485"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MAIKGLEQAVENLSRISKTAVPGAAAMAINRVASSAISQSASQVARETKVRRKLVKERARLKRATVKNPQARIKVNRGDLPVIKLGNARVVLSRRRRRKKGQRSSLKGGGSVLVVGNRRIPGAFIQQLKNGRWHVMQRVAGKNRYPIDVVKIPMAVPLTTAFKQNIERIRRERLPKELGYALQHQLRMVIKR",
+      "length": 192,
+      "sequence_sha256": "13712a37cbbba21af7625f13ac3b9e0121f3a976e7c2784cf6ed960ae92c4b3a",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_001416.1.gb",
+      "cds_fasta_id": "lcl|NC_001416.1_prot_NP_040590.1_11",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "lambda|lambdap12",
+      "gene": "U",
+      "locus_tag": "lambdap12",
+      "product": "tail terminator",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_001416.1",
+      "start": 8552,
+      "stop": 8947,
+      "strand": "+",
+      "location": "[8551:8947](+)",
+      "protein_accession": "NP_040591.1",
+      "db_xref": [
+        "GeneID:2703486"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MKHTELRAAVLDALEKHDTGATFFDGRPAVFDEADFPAVAVYLTGAEYTGEELDSDTWQAELHIEVFLPAQVPDSELDAWMESRIYPVMSDIPALSDLITSMVASGYDYRRDDDAGLWSSADLTYVITYEM",
+      "length": 131,
+      "sequence_sha256": "ebb0c3a000c007316aaa573477ca82c55edc2d071ecb93fa1f674b9c85d56f46",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_001416.1.gb",
+      "cds_fasta_id": "lcl|NC_001416.1_prot_NP_040591.1_12",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "lambda|lambdap13",
+      "gene": "V",
+      "locus_tag": "lambdap13",
+      "product": "major tail protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_001416.1",
+      "start": 8955,
+      "stop": 9695,
+      "strand": "+",
+      "location": "[8954:9695](+)",
+      "protein_accession": "NP_040592.1",
+      "db_xref": [
+        "GeneID:2703487"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MPVPNPTMPVKGAGTTLWVYKGSGDPYANPLSDVDWSRLAKVKDLTPGELTAESYDDSYLDDEDADWTATGQGQKSAGDTSFTLAWMPGEQGQQALLAWFNEGDTRAYKIRFPNGTVDVFRGWVSSIGKAVTAKEVITRTVKVTNVGRPSMAEDRSTVTAATGMTVTPASTSVVKGQSTTLTVAFQPEGVTDKSFRAVSADKTKATVSVSGMTITVNGVAAGKVNIPVVSGNGEFAAVAEITVTAS",
+      "length": 246,
+      "sequence_sha256": "b8bdf9d2135b1bd2170059a321978d5347f21651f03d9796c5ed90ef731d5a58",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_001416.1.gb",
+      "cds_fasta_id": "lcl|NC_001416.1_prot_NP_040592.1_13",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "lambda|lambdap14",
+      "gene": "G",
+      "locus_tag": "lambdap14",
+      "product": "minor tail protein G",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_001416.1",
+      "start": 9711,
+      "stop": 10133,
+      "strand": "+",
+      "location": "[9710:10133](+)",
+      "protein_accession": "NP_040593.1",
+      "db_xref": [
+        "GeneID:2703488"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MFLKTESFEHNGVTVTLSELSALQRIEHLALMKRQAEQAESDSNRKFTVEDAIRTGAFLVAMSLWHNHPQKTQMPSMNEAVKQIEQEVLTTWPTEAISHAENVVYRLSGMYEFVVNNAPEQTEDAGPAEPVSAGKCSTVS",
+      "length": 140,
+      "sequence_sha256": "6d23faaac331bbd99763166aaa27c2a2bd63a8974920af1ce44f841e3234ac71",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_001416.1.gb",
+      "cds_fasta_id": "lcl|NC_001416.1_prot_NP_040593.1_14",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "lambda|lambdap15",
+      "gene": "T",
+      "locus_tag": "lambdap15",
+      "product": "minor tail protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_001416.1",
+      "start": 10115,
+      "stop": 10549,
+      "strand": "+",
+      "location": "[10114:10549](+)",
+      "protein_accession": "NP_040594.1",
+      "db_xref": [
+        "GeneID:2703489"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MFDGELSFALKLAREMGRPDWRAMLAGMSSTEYADWHRFYSTHYFHDVLLDMHFSGLTYTVLSLFFSDPDMHPLDFSLLNRREADEEPEDDVLMQKAAGLAGGVRFGPDGNEVIPASPDVADMTEDDVMLMTVSEGIAGGVRYG",
+      "length": 144,
+      "sequence_sha256": "8392a788096c61228e65b90c961f1ce9bf3d988787795a103cc0403ee5272b4a",
+      "annotation_flags": [
+        "alternative_start_codon_read_as_Met"
+      ],
+      "source_record": "inputs/NC_001416.1.gb",
+      "cds_fasta_id": "lcl|NC_001416.1_prot_NP_040594.1_15",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "lambda|lambdap16",
+      "gene": "H",
+      "locus_tag": "lambdap16",
+      "product": "tail length tape measure protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_001416.1",
+      "start": 10542,
+      "stop": 13103,
+      "strand": "+",
+      "location": "[10541:13103](+)",
+      "protein_accession": "NP_040595.1",
+      "db_xref": [
+        "GeneID:2703511"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MAEPVGDLVVDLSLDAARFDEQMARVRRHFSGTESDAKKTAAVVEQSLSRQALAAQKAGISVGQYKAAMRMLPAQFTDVATQLAGGQSPWLILLQQGGQVKDSFGGMIPMFRGLAGAITLPMVGATSLAVATGALAYAWYQGNSTLSDFNKTLVLSGNQAGLTADRMLVLSRAGQAAGLTFNQTSESLSALVKAGVSGEAQIASISQSVARFSSASGVEVDKVAEAFGKLTTDPTSGLTAMARQFHNVSAEQIAYVAQLQRSGDEAGALQAANEAATKGFDDQTRRLKENMGTLETWADRTARAFKSMWDAVLDIGRPDTAQEMLIKAEAAYKKADDIWNLRKDDYFVNDEARARYWDDREKARLALEAARKKAEQQTQQDKNAQQQSDTEASRLKYTEEAQKAYERLQTPLEKYTARQEELNKALKDGKILQADYNTLMAAAKKDYEATLKKPKQSSVKVSAGDRQEDSAHAALLTLQAELRTLEKHAGANEKISQQRRDLWKAESQFAVLEEAAQRRQLSAQEKSLLAHKDETLEYKRQLAALGDKVTYQERLNALAQQADKFAQQQRAKRAAIDAKSRGLTDRQAEREATEQRLKEQYGDNPLALNNVMSEQKKTWAAEDQLRGNWMAGLKSGWSEWEESATDSMSQVKSAATQTFDGIAQNMAAMLTGSEQNWRSFTRSVLSMMTEILLKQAMVGIVGSIGSAIGGAVGGGASASGGTAIQAAAAKFHFATGGFTGTGGKYEPAGIVHRGEFVFTKEATSRIGVGNLYRLMRGYATGGYVGTPGSMADSRSQASGTFEQNNHVVINNDGTNGQIGPAALKAVYDMARKGARDEIQTQMRDGGLFSGGGR",
+      "length": 853,
+      "sequence_sha256": "e8f81af4dd29d42bf099271e93ed7af69a12736d2f1e3eb5f8760805c977bda0",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_001416.1.gb",
+      "cds_fasta_id": "lcl|NC_001416.1_prot_NP_040595.1_16",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "lambda|lambdap17",
+      "gene": "M",
+      "locus_tag": "lambdap17",
+      "product": "minor tail protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_001416.1",
+      "start": 13100,
+      "stop": 13429,
+      "strand": "+",
+      "location": "[13099:13429](+)",
+      "protein_accession": "NP_040596.1",
+      "db_xref": [
+        "GeneID:2703512"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MKTFRWKVKPGMDVASVPSVRKVRFGDGYSQRAPAGLNANLKTYSVTLSVPREEATVLESFLEEHGGWKSFLWTPPYEWRQIKVTCAKWSSRVSMLRVEFSAEFEQVVN",
+      "length": 109,
+      "sequence_sha256": "4e050cfddaaf08892196b1121744cde68ecd874ead5be8960d5be6b5a3ba630a",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_001416.1.gb",
+      "cds_fasta_id": "lcl|NC_001416.1_prot_NP_040596.1_17",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "lambda|lambdap18",
+      "gene": "L",
+      "locus_tag": "lambdap18",
+      "product": "minor tail protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_001416.1",
+      "start": 13429,
+      "stop": 14127,
+      "strand": "+",
+      "location": "[13428:14127](+)",
+      "protein_accession": "NP_040597.1",
+      "db_xref": [
+        "GeneID:2703513"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MQDIRQETLNECTRAEQSASVVLWEIDLTEVGGERYFFCNEQNEKGEPVTWQGRQYQPYPIQGSGFELNGKGTSTRPTLTVSNLYGMVTGMAEDMQSLVGGTVVRRKVYARFLDAVNFVNGNSYADPEQEVISRWRIEQCSELSAVSASFVLSTPTETDGAVFPGRIMLANTCTWTYRGDECGYSGPAVADEYDQPTSDITKDKCSKCLSGCKFRNNVGNFGGFLSINKLSQ",
+      "length": 232,
+      "sequence_sha256": "abf88ca9d536c3296a6ec9ff9ea604ca65ca81b3cfe97b64ba82167fca98865f",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_001416.1.gb",
+      "cds_fasta_id": "lcl|NC_001416.1_prot_NP_040597.1_18",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "lambda|lambdap19",
+      "gene": "K",
+      "locus_tag": "lambdap19",
+      "product": "C40 family peptidase",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_001416.1",
+      "start": 14276,
+      "stop": 14875,
+      "strand": "+",
+      "location": "[14275:14875](+)",
+      "protein_accession": "NP_040598.1",
+      "db_xref": [
+        "GeneID:2703514"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MSPEDWLQAEMQGEIVALVHSHPGGLPWLSEADRRLQVQSDLPWWLVCRGTIHKFRCVPHLTGRRFEHGVTDCYTLFRDAYHLAGIEMPDFHREDDWWRNGQNLYLDNLEATGLYQVPLSAAQPGDVLLCCFGSSVPNHAAIYCGDGELLHHIPEQLSKRERYTDKWQRRTHSLWRHRAWRASAFTGIYNDLVAASTFV",
+      "length": 199,
+      "sequence_sha256": "5f0c326cfeea735d13c895dc727a258155e208182d28d28e8e46fcb79c72fd58",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_001416.1.gb",
+      "cds_fasta_id": "lcl|NC_001416.1_prot_NP_040598.1_19",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "lambda|lambdap20",
+      "gene": "I",
+      "locus_tag": "lambdap20",
+      "product": "tail assembly protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_001416.1",
+      "start": 14773,
+      "stop": 15444,
+      "strand": "+",
+      "location": "[14772:15444](+)",
+      "protein_accession": "NP_040599.1",
+      "db_xref": [
+        "GeneID:2703515"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MAATHTLPLASPGMARICLYGDLQRFGRRIDLRVKTGAEAIRALATQLPAFRQKLSDGWYQVRIAGRDVSTSGLTAQLHETLPDGAVIHIVPRVAGAKSGGVFQIVLGAAAIAGSFFTAGATLAAWGAAIGAGGMTGILFSLGASMVLGGVAQMLAPKARTPRIQTTDNGKQNTYFSSLDNMVAQGNVLPVLYGEMRVGSRVVSQEISTADEGDGGQVVVIGR",
+      "length": 223,
+      "sequence_sha256": "063af34987cc838c589122f05f6639bd6496dea3ede78d0197a67cb84eb3f791",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_001416.1.gb",
+      "cds_fasta_id": "lcl|NC_001416.1_prot_NP_040599.1_20",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "lambda|lambdap21",
+      "gene": "J",
+      "locus_tag": "lambdap21",
+      "product": "central tail fiber J",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_001416.1",
+      "start": 15505,
+      "stop": 18903,
+      "strand": "+",
+      "location": "[15504:18903](+)",
+      "protein_accession": "NP_040600.1",
+      "db_xref": [
+        "GeneID:2703516"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MGKGSSKGHTPREAKDNLKSTQLLSVIDAISEGPIEGPVDGLKSVLLNSTPVLDTEGNTNISGVTVVFRAGEQEQTPPEGFESSGSETVLGTEVKYDTPITRTITSANIDRLRFTFGVQALVETTSKGDRNPSEVRLLVQIQRNGGWVTEKDITIKGKTTSQYLASVVMGNLPPRPFNIRMRRMTPDSTTDQLQNKTLWSSYTEIIDVKQCYPNTALVGVQVDSEQFGSQQVSRNYHLRGRILQVPSNYNPQTRQYSGIWDGTFKPAYSNNMAWCLWDMLTHPRYGMGKRLGAADVDKWALYVIGQYCDQSVPDGFGGTEPRITCNAYLTTQRKAWDVLSDFCSAMRCMPVWNGQTLTFVQDRPSDKTWTYNRSNVVMPDDGAPFRYSFSALKDRHNAVEVNWIDPNNGWETATELVEDTQAIARYGRNVTKMDAFGCTSRGQAHRAGLWLIKTELLETQTVDFSVGAEGLRHVPGDVIEICDDDYAGISTGGRVLAVNSQTRTLTLDREITLPSSGTALISLVDGSGNPVSVEVQSVTDGVKVKVSRVPDGVAEYSVWELKLPTLRQRLFRCVSIRENDDGTYAITAVQHVPEKEAIVDNGAHFDGEQSGTVNGVTPPAVQHLTAEVTADSGEYQVLARWDTPKVVKGVSFLLRLTVTADDGSERLVSTARTTETTYRFTQLALGNYRLTVRAVNAWGQQGDPASVSFRIAAPAAPSRIELTPGYFQITATPHLAVYDPTVQFEFWFSEKQIADIRQVETSTRYLGTALYWIAASINIKPGHDYYFYIRSVNTVGKSAFVEAVGRASDDAEGYLDFFKGKITESHLGKELLEKVELTEDNASRLEEFSKEWKDASDKWNAMWAVKIEQTKDGKHYVAGIGLSMEDTEEGKLSQFLVAANRIAFIDPANGNETPMFVAQGNQIFMNDVFLKRLTAPTITSGGNPPAFSLTPDGKLTAKNADISGSVNANSGTLSNVTIAENCTINGTLRAEKIVGDIVKAASAAFPRQRESSVDWPSGTRTVTVTDDHPFDRQIVVLPLTFRGSKRTVSGRTTYSMCYLKVLMNGAVIYDGAANEAVQVFSRIVDMPAGRGNVILTFTLTSTRHSADIPPYTFASDVQVMVIKKQALGISVV",
+      "length": 1132,
+      "sequence_sha256": "08ac2d5fc2e1b7633310d801e26ffd4a0dc06e33b66ce7d0d967193eeb7dfe78",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_001416.1.gb",
+      "cds_fasta_id": "lcl|NC_001416.1_prot_NP_040600.1_21",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "lambda|lambdap26",
+      "gene": "lom",
+      "locus_tag": "lambdap26",
+      "product": "Lom outer membrane protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_001416.1",
+      "start": 18965,
+      "stop": 19585,
+      "strand": "+",
+      "location": "[18964:19585](+)",
+      "protein_accession": "NP_040601.1",
+      "db_xref": [
+        "GeneID:2703517"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MRNVCIAVAVFAALAVTVTPARAEGGHGTFTVGYFQVKPGTLPSLSGGDTGVSHLKGINVKYRYELTDSVGVMASLGFAASKKSSTVMTGEDTFHYESLRGRYVSVMAGPVLQISKQVSAYAMAGVAHSRWSGSTMDYRKTEITPGYMKETTTARDESAMRHTSVAWSAGIQINPAASVVVDIAYEGSGSGDWRTDGFIVGVGYKF",
+      "length": 206,
+      "sequence_sha256": "5b3df514f4a69f9cc62dfefffbda7fc3f5c706cc4b2ecd04d14ec7f5a641edb8",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_001416.1.gb",
+      "cds_fasta_id": "lcl|NC_001416.1_prot_NP_040601.1_22",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "lambda|lambdap27",
+      "gene": "orf-401",
+      "locus_tag": "lambdap27",
+      "product": "tail fiber protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_001416.1",
+      "start": 19650,
+      "stop": 20855,
+      "strand": "+",
+      "location": "[19649:20855](+)",
+      "protein_accession": "NP_040602.1",
+      "db_xref": [
+        "GeneID:2703518"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MAVKISGVLKDGTGKPVQNCTIQLKARRNSTTVVVNTVGSENPDEAGRYSMDVEYGQYSVILQVDGFPPSHAGTITVYEDSQPGTLNDFLCAMTEDDARPEVLRRLELMVEEVARNASVVAQSTADAKKSAGDASASAAQVAALVTDATDSARAASTSAGQAASSAQEASSGAEAASAKATEAEKSAAAAESSKNAAATSAGAAKTSETNAAASQQSAATSASTAATKASEAATSARDAVASKEAAKSSETNASSSAGRAASSATAAENSARAAKTSETNARSSETAAERSASAAADAKTAAAGSASTASTKATEAAGSAVSASQSKSAAEAAAIRAKNSAKRAEDIASAVALEDADTTRKGIVQLSSATNSTSETLAATPKAVKVVMDETNRKAHWTVRH",
+      "length": 401,
+      "sequence_sha256": "ac2bd6ea7cfd28dded275aa83bf86237c45335c91eb2e9a4d84235944d847c68",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_001416.1.gb",
+      "cds_fasta_id": "lcl|NC_001416.1_prot_NP_040602.1_23",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "lambda|lambdap90",
+      "gene": "orf206b",
+      "locus_tag": "lambdap90",
+      "product": "hypothetical protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_001416.1",
+      "start": 20147,
+      "stop": 20767,
+      "strand": "-",
+      "location": "[20146:20767](-)",
+      "protein_accession": "NP_040603.1",
+      "db_xref": [
+        "GeneID:3827061"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MLLVALLSCTIPFLVVSASSSATAEAISSARFAEFFARIAAASAALLLCDADTALPAASVAFVDAVDALPAAAVFASAAAEALRSAAVSDDLAFVSDVFAALAEFSAAVAEEAARPALDDAFVSDDFAASFEATASRAEVAASDAFVAAVEADVAADCCDAAAFVSDVFAAPALVAAAFFEDSAAAALFSASVAFADAASAPEDAS",
+      "length": 206,
+      "sequence_sha256": "4723be7ccb15f57baf5bb6d84758f89aad573862463cead92230c146d370a7ad",
+      "annotation_flags": [
+        "alternative_start_codon_read_as_Met"
+      ],
+      "source_record": "inputs/NC_001416.1.gb",
+      "cds_fasta_id": "lcl|NC_001416.1_prot_NP_040603.1_24",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "lambda|lambdap28",
+      "gene": "orf-314",
+      "locus_tag": "lambdap28",
+      "product": "tail fiber protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_001416.1",
+      "start": 21029,
+      "stop": 21973,
+      "strand": "+",
+      "location": "[21028:21973](+)",
+      "protein_accession": "NP_040604.1",
+      "db_xref": [
+        "GeneID:2703519"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MTNALAGKQPKNATLTALAGLSTAKNKLPYFAENDAASLTELTQVGRDILAKNSVADVLEYLGAGENSAFPAGAPIPWPSDIVPSGYVLMQGQAFDKSAYPKLAVAYPSGVLPDMRGWTIKGKPASGRAVLSQEQDGIKSHTHSASASGTDLGTKTTSSFDYGTKTTGSFDYGTKSTNNTGAHAHSLSGSTGAAGAHAHTSGLRMNSSGWSQYGTATITGSLSTVKGTSTQGIAYLSKTDSQGSHSHSLSGTAVSAGAHAHTVGIGAHQHPVVIGAHAHSFSIGSHGHTITVNAAGNAENTVKNIAFNYIVRLA",
+      "length": 314,
+      "sequence_sha256": "49762dfae5f67b7dc8d063930fb6632559d0e61eb829598dfa258dfb4a274479",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_001416.1.gb",
+      "cds_fasta_id": "lcl|NC_001416.1_prot_NP_040604.1_25",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "lambda|lambdap29",
+      "gene": "orf-194",
+      "locus_tag": "lambdap29",
+      "product": "tail fiber assembly",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_001416.1",
+      "start": 21973,
+      "stop": 22557,
+      "strand": "+",
+      "location": "[21972:22557](+)",
+      "protein_accession": "NP_040605.1",
+      "db_xref": [
+        "GeneID:2703503"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MAFRMSEQPRTIKIYNLLAGTNEFIGEGDAYIPPHTGLPANSTDIAPPDIPAGFVAVFNSDEASWHLVEDHRGKTVYDVASGDALFISELGPLPENFTWLSPGGEYQKWNGTAWVKDTEAEKLFRIREAEETKKSLMQVASEHIAPLQDAADLEIATKEETSLLEAWKKYRVLLNRVDTSTAPDIEWPAVPVME",
+      "length": 194,
+      "sequence_sha256": "a50767f0aca28920a62d50218bb34c744bb32ad3d5e1e99ddc4b3b2c1ee24ae7",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_001416.1.gb",
+      "cds_fasta_id": "lcl|NC_001416.1_prot_NP_040605.1_26",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "lambda|lambdap80",
+      "gene": "ea47",
+      "locus_tag": "lambdap80",
+      "product": "ea47",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_001416.1",
+      "start": 22686,
+      "stop": 23918,
+      "strand": "-",
+      "location": "[22685:23918](-)",
+      "protein_accession": "NP_040606.1",
+      "db_xref": [
+        "GeneID:3827051"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MTKKPWERRLKDLSHLLKCCIDTYFDPELFRLNLNQFLQTARTVTFIIQKNKNQIIGYDIWYNNNVIEKWKNDPLMAWAKNSRNTIEKQGDLEMYSEAKATLISSYIEENDIEFITNESMLNIGIKKLVRLAQKKLPSYLTESSIIKSERRWVANTLKDYELLHALAIIYGRMYNCCNSLGIQINNPMGDDVISPTSFDSLFDEARRITYLKLKDYSISKLSFSMIQYDNKIIPEDIKERLKLVDKPKNITSTEELVDYTAKLAETTFLKDGYHIQTLIFYDKQFHPIDLINTTFEDQADKYIFWRYAADRAKITNAYGFIWISELWLRKASIYSNKPIHTMPIIDERLQVIGIDSNNNQKCISWKIVRENEEKKPTLEISTADSKHDEKPYFMRSVLKAIGGDVNTMNN",
+      "length": 410,
+      "sequence_sha256": "4b306f03a5da2aa75adbb6a64992638799755f71ffa71d4e0b5cdc1ac71d30d2",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_001416.1.gb",
+      "cds_fasta_id": "lcl|NC_001416.1_prot_NP_040606.1_27",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "lambda|lambdap81",
+      "gene": "ea31",
+      "locus_tag": "lambdap81",
+      "product": "HNH endonuclease",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_001416.1",
+      "start": 24509,
+      "stop": 25399,
+      "strand": "-",
+      "location": "[24508:25399](-)",
+      "protein_accession": "NP_040607.1",
+      "db_xref": [
+        "GeneID:3827052"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MKKLPLPARTYSEMLNKCSEGMMQINVRNNFITHFPTFLQKEQQYRILSSTGQLFTYDRTHPLEPTTLVVGNLTKVKLEKLYENNLRDKNKPARTYYDDMLVSSGEKCPFCGDIGQTKNIDHFLPIAHYPEFSVMPINLVPSCRDCNMGEKGQVFAVDEVHQAIHPYIDKDIFFREQWVYANFVSGTPGAISFYVECPANWRQEDKHRALHHFKLLNIANRYRLEAGKHLSEVITQRNSFVKVIRKYSSTATFQQLQSEFIEANLKPIIDLNDFPNYWKRVMYQCLANSEDFFRGI",
+      "length": 296,
+      "sequence_sha256": "5ce8194d1db2242884979ba694be4cb83acfe5a86fa1ad99350f14dad76f1f83",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_001416.1.gb",
+      "cds_fasta_id": "lcl|NC_001416.1_prot_NP_040607.1_28",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "lambda|lambdap82",
+      "gene": "ea59",
+      "locus_tag": "lambdap82",
+      "product": "AAA family ATPase",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_001416.1",
+      "start": 25396,
+      "stop": 26973,
+      "strand": "-",
+      "location": "[25395:26973](-)",
+      "protein_accession": "NP_040608.1",
+      "db_xref": [
+        "GeneID:3827053"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MLEFSVIERGGYIPAVEKNKAFLRADGWNDYSFVTMFYLTVFDEHGEKCDIGNVKIGFVGQKEEVSTYSLIDKKFSQLPEMFFSLGESIDYYVNLSKLSDGFKHNLLKAIQDLVVWPNRLADIENESVLNTSLLRGVTLSEIHGQFARVLNGLPELSDFHFSFNRKSAPGFSDLTIPFEVTVNSMPSTNIHAFIGRNGCGKTTILNGMIGAITNPENNEYFFSENNRLIESRIPKGYFRSLVSVSFSAFDPFTPPKEQPDPAKGTQYFYIGLKNAASNSLKSLGDLRLEFISAFIGCMRVDRKRQLWLEAIKKLSSDENFSNMELISLISKYEELRRNEPQIQVDDDKFTKLFYDNIQKYLLRMSSGHAIVLFTITRLVDVVGEKSLVLFDEPEVHLHPPLLSAFLRTLSDLLDARNGVAIIATHSPVVLQEVPKSCMWKVLRSREAINIIRPDIETFGENLGVLTREVFLLEVTNSGYHHLLSQSVDSELSYETILKNYNGQIGLEGRTVLKAMIMNRDEGKVQ",
+      "length": 525,
+      "sequence_sha256": "a96ce38d3319daa482272a35528b8ef82fc5c6afca986d4af06766fec916d4bb",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_001416.1.gb",
+      "cds_fasta_id": "lcl|NC_001416.1_prot_NP_040608.1_29",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "lambda|lambdap33",
+      "gene": "int",
+      "locus_tag": "lambdap33",
+      "product": "integrase",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_001416.1",
+      "start": 27812,
+      "stop": 28882,
+      "strand": "-",
+      "location": "[27811:28882](-)",
+      "protein_accession": "NP_040609.1",
+      "db_xref": [
+        "GeneID:2703470"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MGRRRSHERRDLPPNLYIRNNGYYCYRDPRTGKEFGLGRDRRIAITEAIQANIELFSGHKHKPLTARINSDNSVTLHSWLDRYEKILASRGIKQKTLINYMSKIKAIRRGLPDAPLEDITTKEIAAMLNGYIDEGKAASAKLIRSTLSDAFREAIAEGHITTNHVAATRAAKSEVRRSRLTADEYLKIYQAAESSPCWLRLAMELAVVTGQRVGDLCEMKWSDIVDGYLYVEQSKTGVKIAIPTALHIDALGISMKETLDKCKEILGGETIIASTRREPLSSGTVSRYFMRARKASGLSFEGDPPTFHELRSLSARLYEKQISDKFAQHLLGHKSDTMASQYRDDRGREWDKIEIK",
+      "length": 356,
+      "sequence_sha256": "e19b80755c25e527e32cead08e4b3dca4a8fa78e25072382c023be6640bcb8ea",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_001416.1.gb",
+      "cds_fasta_id": "lcl|NC_001416.1_prot_NP_040609.1_30",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "lambda|lambdap34",
+      "gene": "xis",
+      "locus_tag": "lambdap34",
+      "product": "excisionase",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_001416.1",
+      "start": 28860,
+      "stop": 29078,
+      "strand": "-",
+      "location": "[28859:29078](-)",
+      "protein_accession": "NP_040610.1",
+      "db_xref": [
+        "GeneID:2703504"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MYLTLQEWNARQRRPRSLETVRRWVRECRIFPPPVKDGREYLFHESAVKVDLNRPVTGGLLKRIRNGKKAKS",
+      "length": 72,
+      "sequence_sha256": "07cf6b43d25806ca1e37775b7069281ffca19681287c109d769a5266acc2cf1f",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_001416.1.gb",
+      "cds_fasta_id": "lcl|NC_001416.1_prot_NP_040610.1_31",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "lambda|lambdap35",
+      "gene": "",
+      "locus_tag": "lambdap35",
+      "product": "hypothetical protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "Predicted by GeneMark",
+      "replicon": "NC_001416.1",
+      "start": 29118,
+      "stop": 29285,
+      "strand": "-",
+      "location": "[29117:29285](-)",
+      "protein_accession": "NP_597778.1",
+      "db_xref": [
+        "GeneID:2703530"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MHFRVTGEWNGEPFNRVIEAENINDCYDHWMIWAQIAHADVTNIRIEELKEHQAA",
+      "length": 55,
+      "sequence_sha256": "d825f68456e33d5af2b63ad2419a628ba69b87c02669ee89cebb36135a9aeeec",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_001416.1.gb",
+      "cds_fasta_id": "lcl|NC_001416.1_prot_NP_597778.1_32",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "lambda|lambdap36",
+      "gene": "ea8.5",
+      "locus_tag": "lambdap36",
+      "product": "ea8.5",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_001416.1",
+      "start": 29374,
+      "stop": 29655,
+      "strand": "-",
+      "location": "[29373:29655](-)",
+      "protein_accession": "NP_040611.1",
+      "db_xref": [
+        "GeneID:2703505"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MSINELESEQKDWALSMLCRSGVLSPCRHHEGVYVDEGIDIESAYKYSMKVYKSNEDKSPFCNVREMTDTVQNYYHEYGGNDTCPLCTKHIDD",
+      "length": 93,
+      "sequence_sha256": "b54ce6b3ca4b75634a6a19154ef292edcad241441facdeacbfcb20c86af7397f",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_001416.1.gb",
+      "cds_fasta_id": "lcl|NC_001416.1_prot_NP_040611.1_33",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "lambda|lambdap83",
+      "gene": "ea22",
+      "locus_tag": "lambdap83",
+      "product": "ead/Ea22-like family protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_001416.1",
+      "start": 29847,
+      "stop": 30395,
+      "strand": "-",
+      "location": "[29846:30395](-)",
+      "protein_accession": "NP_040612.1",
+      "db_xref": [
+        "GeneID:3827054"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MSEINSQALREAAEQAMHDDWGFDADLFHELVTPSIVLELLDERERNQQYIKRRDQENEDIALTVGKLRVELETAKSKLNEQREYYEGVISDGSKRIAKLESNEVREDGNQFLVVRHPGKTPVIKHCTGDLEEFLRQLIEQDPLVTIDIITHRYYGVGGQWVQDAGEYLHMMSDAGIRIKGE",
+      "length": 182,
+      "sequence_sha256": "2147d2e9c16a5ea72aea25d16a5da779e79351c351361cfe311403e9981e4ef1",
+      "annotation_flags": [
+        "alternative_start_codon_read_as_Met"
+      ],
+      "source_record": "inputs/NC_001416.1.gb",
+      "cds_fasta_id": "lcl|NC_001416.1_prot_NP_040612.1_34",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "lambda|lambdap37",
+      "gene": "orf61",
+      "locus_tag": "lambdap37",
+      "product": "hypothetical protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_001416.1",
+      "start": 30839,
+      "stop": 31024,
+      "strand": "-",
+      "location": "[30838:31024](-)",
+      "protein_accession": "NP_040613.1",
+      "db_xref": [
+        "GeneID:2703506"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MRETRYDNHGMHFSGSGLHILCAYACRHGTCSMTPQQENALRSIARQANSEIKKSQTAVSG",
+      "length": 61,
+      "sequence_sha256": "2e672d05f0ef4a184ce88230620147163b077f5c8d86abf4bfd04ac9babdf67f",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_001416.1.gb",
+      "cds_fasta_id": "lcl|NC_001416.1_prot_NP_040613.1_35",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "lambda|lambdap38",
+      "gene": "orf63",
+      "locus_tag": "lambdap38",
+      "product": "DUF1382 family protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_001416.1",
+      "start": 31005,
+      "stop": 31196,
+      "strand": "-",
+      "location": "[31004:31196](-)",
+      "protein_accession": "NP_040614.1",
+      "db_xref": [
+        "GeneID:2703507"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MHKASSVELRTSIEMAHSLAQIGIRFVPIPVETDEEFHTLAASLSQKLEMMVAKAEADERNQV",
+      "length": 63,
+      "sequence_sha256": "457950dd904b02db78be642b89f61b566f097be61eae091c5d00394d63998412",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_001416.1.gb",
+      "cds_fasta_id": "lcl|NC_001416.1_prot_NP_040614.1_36",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "lambda|lambdap39",
+      "gene": "orf60a",
+      "locus_tag": "lambdap39",
+      "product": "DUF1317 domain-containing protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_001416.1",
+      "start": 31169,
+      "stop": 31351,
+      "strand": "-",
+      "location": "[31168:31351](-)",
+      "protein_accession": "NP_040615.1",
+      "db_xref": [
+        "GeneID:2703508"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MTHPHDNIRVGAITFVYSVTKRGWVFPGLSVIRNPLKAQRLAEEINNKRGAVCTKHLLLS",
+      "length": 60,
+      "sequence_sha256": "99544edea276edeed278aa99121a0b3b44140b3bd99336701223f6718074c385",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_001416.1.gb",
+      "cds_fasta_id": "lcl|NC_001416.1_prot_NP_040615.1_37",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "lambda|lambdap41",
+      "gene": "exo",
+      "locus_tag": "lambdap41",
+      "product": "exonuclease",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_001416.1",
+      "start": 31348,
+      "stop": 32028,
+      "strand": "-",
+      "location": "[31347:32028](-)",
+      "protein_accession": "NP_040616.1",
+      "db_xref": [
+        "GeneID:2703522"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MTPDIILQRTGIDVRAVEQGDDAWHKLRLGVITASEVHNVIAKPRSGKKWPDMKMSYFHTLLAEVCTGVAPEVNAKALAWGKQYENDARTLFEFTSGVNVTESPIIYRDESMRTACSPDGLCSDGNGLELKCPFTSRDFMKFRLGGFEAIKSAYMAQVQYSMWVTRKNAWYFANYDPRMKREGLHYVVIERDEKYMASFDEIVPEFIEKMDEALAEIGFVFGEQWR",
+      "length": 226,
+      "sequence_sha256": "46daea7aa61dfb1b24034c717d78c50da6d0b71278c4c78d1b9c3ce211d136e7",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_001416.1.gb",
+      "cds_fasta_id": "lcl|NC_001416.1_prot_NP_040616.1_38",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "lambda|lambdap84",
+      "gene": "bet",
+      "locus_tag": "lambdap84",
+      "product": "RecT-like ssDNA annealing protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_001416.1",
+      "start": 32025,
+      "stop": 32810,
+      "strand": "-",
+      "location": "[32024:32810](-)",
+      "protein_accession": "NP_040617.1",
+      "db_xref": [
+        "GeneID:3827055"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MSTALATLAGKLAERVGMDSVDPQELITTLRQTAFKGDASDAQFIALLIVANQYGLNPWTKEIYAFPDKQNGIVPVVGVDGWSRIINENQQFDGMDFEQDNESCTCRIYRKDRNHPICVTEWMDECRREPFKTREGREITGPWQSHPKRMLRHKAMIQCARLAFGFAGIYDKDEAERIVENTAYTAERQPERDITPVNDETMQEINTLLIALDKTWDDDLLPLCSQIFRRDIRASSELTQAEAVKALGFLKQKAAEQKVAA",
+      "length": 261,
+      "sequence_sha256": "e4f39680f5767f7b4b2050e0c9f7b7636fb170445e0ea34fc04b430d135bfae1",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_001416.1.gb",
+      "cds_fasta_id": "lcl|NC_001416.1_prot_NP_040617.1_39",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "lambda|lambdap42",
+      "gene": "gam",
+      "locus_tag": "lambdap42",
+      "product": "gam-like host nuclease inhibitor",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_001416.1",
+      "start": 32816,
+      "stop": 33232,
+      "strand": "-",
+      "location": "[32815:33232](-)",
+      "protein_accession": "NP_040618.1",
+      "db_xref": [
+        "GeneID:2703509"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MDINTETEIKQKHSLTPFPVFLISPAFRGRYFHSYFRSSAMNAYYIQDRLEAQSWARHYQQLAREEKEAELADDMEKGLPQHLFESLCIDHLQRHGASKKSITRAFDDDVEFQERMAEHIRYMVETIAHHQVDIDSEV",
+      "length": 138,
+      "sequence_sha256": "dbd3c82561b83ddd2d747416d2c61c39e597c87be9883c82243a9548d260a455",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_001416.1.gb",
+      "cds_fasta_id": "lcl|NC_001416.1_prot_NP_040618.1_40",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "lambda|lambdap85",
+      "gene": "kil",
+      "locus_tag": "lambdap85",
+      "product": "Kil protein for bacterial septation inhibition",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_001416.1",
+      "start": 33187,
+      "stop": 33330,
+      "strand": "-",
+      "location": "[33186:33330](-)",
+      "protein_accession": "NP_040619.1",
+      "db_xref": [
+        "GeneID:3827057"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MDQTLMAIQTKFTIATFIGDEKMFREAVDAYKKWILILKLRSSKSIH",
+      "length": 47,
+      "sequence_sha256": "b3d2f19f88cc40cdfebab06e39bdb11019607390b78db2afa1082413f2e7e845",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_001416.1.gb",
+      "cds_fasta_id": "lcl|NC_001416.1_prot_NP_040619.1_41",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "lambda|lambdap86",
+      "gene": "cIII",
+      "locus_tag": "lambdap86",
+      "product": "CIII anti-termination",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_001416.1",
+      "start": 33299,
+      "stop": 33463,
+      "strand": "-",
+      "location": "[33298:33463](-)",
+      "protein_accession": "NP_040620.1",
+      "db_xref": [
+        "GeneID:3827056"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MQYAIAGWPVAGCPSESLLERITRKLRDGWKRLIDILNQPGVPKNGSNTYGYPD",
+      "length": 54,
+      "sequence_sha256": "591cca7904e5be8983daa6f7601cbfc00eef54dd6bef658623804a677fbaf9ed",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_001416.1.gb",
+      "cds_fasta_id": "lcl|NC_001416.1_prot_NP_040620.1_42",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "lambda|lambdap45",
+      "gene": "ea10",
+      "locus_tag": "lambdap45",
+      "product": "hypothetical protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_001416.1",
+      "start": 33536,
+      "stop": 33904,
+      "strand": "-",
+      "location": "[33535:33904](-)",
+      "protein_accession": "NP_040621.1",
+      "db_xref": [
+        "GeneID:2703541"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MSNIKKYIIDYDWKASIEIEIDHDVMTEEKLHQINNFWSDSEYRLNKHGSVLNAVLIMLAQHALLIAISSDLNAYGVVCEFDWNDGNGQEGWPPMDGSEGIRITDIDTSGIFDSDDMTIKAA",
+      "length": 122,
+      "sequence_sha256": "27e8822fb188050d234fc8a34c46a8251e6842523121debfdde5d4dc042c0a72",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_001416.1.gb",
+      "cds_fasta_id": "lcl|NC_001416.1_prot_NP_040621.1_43",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "lambda|lambdap46",
+      "gene": "ral",
+      "locus_tag": "lambdap46",
+      "product": "restriction alleviation ral",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_001416.1",
+      "start": 34087,
+      "stop": 34287,
+      "strand": "-",
+      "location": "[34086:34287](-)",
+      "protein_accession": "NP_040622.1",
+      "db_xref": [
+        "GeneID:2703473"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MTTTIDKNQWCGQFKRCNGCKLQSECMVKPEEMFPVMEDGKYVDKWAIRTTAMIARELGKQNNKAA",
+      "length": 66,
+      "sequence_sha256": "c485d5a1d4719a0a397ac058809f544bb6b6613e0437aaa6baa1fbd26ea55729",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_001416.1.gb",
+      "cds_fasta_id": "lcl|NC_001416.1_prot_NP_040622.1_44",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "lambda|lambdap47",
+      "gene": "orf28",
+      "locus_tag": "lambdap47",
+      "product": "hypothetical protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_001416.1",
+      "start": 34271,
+      "stop": 34357,
+      "strand": "-",
+      "location": "[34270:34357](-)",
+      "protein_accession": "NP_040623.1",
+      "db_xref": [
+        "GeneID:2703510"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MEEEFEEFEEHPQDVMEQYQDYPYDYDY",
+      "length": 28,
+      "sequence_sha256": "4acd40b3d344ff30ac828c9b8b887f8207f565249b75c3aa10777644a4bb7b48",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_001416.1.gb",
+      "cds_fasta_id": "lcl|NC_001416.1_prot_NP_040623.1_45",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "lambda|lambdap48",
+      "gene": "",
+      "locus_tag": "lambdap48",
+      "product": "SieB superinfection exclusion",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "Predicted by GeneMark",
+      "replicon": "NC_001416.1",
+      "start": 34482,
+      "stop": 35036,
+      "strand": "+",
+      "location": "[34481:35036](+)",
+      "protein_accession": "NP_597779.1",
+      "db_xref": [
+        "GeneID:2703531"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MMSIEMDPLVILGRVFSNEPLERTMYMIVIWVGLLLLSPDNWPEYVNERIGIPHVWHVFVFALAFSLAINVHRLSAIASARYKRFKLRKRIKMQNDKVRSVIQNLTEEQSMVLCAALNEGRKYVVTSKQFPYISELIELGVLNKTFSRWNGKHILFPIEDIYWTELVASYDPYNIEIKPRPISK",
+      "length": 184,
+      "sequence_sha256": "65b76cbd296033c80da73f10fe98247e198ae08a5225b56079dfc486b3244b5f",
+      "annotation_flags": [
+        "alternative_start_codon_read_as_Met"
+      ],
+      "source_record": "inputs/NC_001416.1.gb",
+      "cds_fasta_id": "lcl|NC_001416.1_prot_NP_597779.1_46",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "lambda|lambdap49",
+      "gene": "N",
+      "locus_tag": "lambdap49",
+      "product": "anti-termination protein N-like",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_001416.1",
+      "start": 35037,
+      "stop": 35438,
+      "strand": "-",
+      "location": "[35036:35438](-)",
+      "protein_accession": "NP_040625.1",
+      "db_xref": [
+        "GeneID:2703540"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MCQSRGVFVQDYNCHTPPKLTDRRIQMDAQTRRRERRAEKQAQWKAANPLLVGVSAKPVNRPILSLNRKPKSRVESALNPIDLTVLAEYHKQIESNLQRIERKNQRTWYSKPGERGITCSGRQKIKGKSIPLI",
+      "length": 133,
+      "sequence_sha256": "56e0ee167dcbc1226e9409e916c7ec5887e129982e22e8f57e350eaa9672313b",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_001416.1.gb",
+      "cds_fasta_id": "lcl|NC_001416.1_prot_NP_040625.1_47",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "lambda|lambdap53",
+      "gene": "rexb",
+      "locus_tag": "lambdap53",
+      "product": "RexB-like exclusion protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_001416.1",
+      "start": 35825,
+      "stop": 36259,
+      "strand": "-",
+      "location": "[35824:36259](-)",
+      "protein_accession": "NP_040626.1",
+      "db_xref": [
+        "GeneID:2703493"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MRNRIMPGVYIVIIPYVIVSICYLLFRHYIPGVSFSAHRDGLGATLSSYAGTMIAILIAALTFLIGSRTRRLAKIREYGYMTSVVIVYALSFVELGALFFCGLLLLSSISGYMIPTIAIGIASASFIHICILVFQLYNLTREQE",
+      "length": 144,
+      "sequence_sha256": "d1e7517f72609dc03b838a2024f6801508a73d10a6289cbb604b86c532822c67",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_001416.1.gb",
+      "cds_fasta_id": "lcl|NC_001416.1_prot_NP_040626.1_48",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "lambda|lambdap87",
+      "gene": "rexa",
+      "locus_tag": "lambdap87",
+      "product": "RexA-like exclusion protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_001416.1",
+      "start": 36275,
+      "stop": 37114,
+      "strand": "-",
+      "location": "[36274:37114](-)",
+      "protein_accession": "NP_040627.1",
+      "db_xref": [
+        "GeneID:3827058"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MKNGFYATYRSKNKGKDKRSINLSVFLNSLLADNHHLQVGSNYLYIHKIDGKTFLFTKTNDKSLVQKINRSKASVEDIKNSLADDESLGFPSFLFVEGDTIGFARTVFGPTTSDLTDFLIGKGMSLSSGERVQIEPLMRGTTKDDVMHMHFIGRTTVKVEAKLPVFGDILKVLGATDIEGELFDSLDIVIKPKFKRDIKKVAKDIIFNPSPQFSDISLRAKDEAGDILTEHYLSEKGHLSAPLNKVTNAEIAEEMAYCYARMKSDILECFKRQVGKVKD",
+      "length": 279,
+      "sequence_sha256": "018890939ac3049339f962a6cc65a2eebd8fab4f9bd5df7b5662eb5617001158",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_001416.1.gb",
+      "cds_fasta_id": "lcl|NC_001416.1_prot_NP_040627.1_49",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "lambda|lambdap88",
+      "gene": "cI",
+      "locus_tag": "lambdap88",
+      "product": "LexA family transcriptional regulator",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_001416.1",
+      "start": 37227,
+      "stop": 37940,
+      "strand": "-",
+      "location": "[37226:37940](-)",
+      "protein_accession": "NP_040628.1",
+      "db_xref": [
+        "GeneID:3827059"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MSTKKKPLTQEQLEDARRLKAIYEKKKNELGLSQESVADKMGMGQSGVGALFNGINALNAYNAALLAKILKVSVEEFSPSIAREIYEMYEAVSMQPSLRSEYEYPVFSHVQAGMFSPELRTFTKGDAERWVSTTKKASDSAFWLEVEGNSMTAPTGSKPSFPDGMLILVDPEQAVEPGDFCIARLGGDEFTFKKLIRDSGQVFLQPLNPQYPMIPCNESCSVVGKVIASQWPEETFG",
+      "length": 237,
+      "sequence_sha256": "ec5d954fd10be8c19c920e78badc5d9e9cc281f6801e2c5fde3803c9f133f580",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_001416.1.gb",
+      "cds_fasta_id": "lcl|NC_001416.1_prot_NP_040628.1_50",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "lambda|lambdap57",
+      "gene": "cro",
+      "locus_tag": "lambdap57",
+      "product": "Cro/CI family transcriptional regulator",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_001416.1",
+      "start": 38041,
+      "stop": 38241,
+      "strand": "+",
+      "location": "[38040:38241](+)",
+      "protein_accession": "NP_040629.1",
+      "db_xref": [
+        "GeneID:2703467"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MEQRITLKDYAMRFGQTKTAKDLGVYQSAINKAIHAGRKIFLTINADGSVYAEEVKPFPSNKKTTA",
+      "length": 66,
+      "sequence_sha256": "11be86de776779ee51231af8f3fef1bdd367a6c2ed8fd4b146e10a7cd59c04f6",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_001416.1.gb",
+      "cds_fasta_id": "lcl|NC_001416.1_prot_NP_040629.1_51",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "lambda|lambdap59",
+      "gene": "cII",
+      "locus_tag": "lambdap59",
+      "product": "CII-like transcriptional activator",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_001416.1",
+      "start": 38360,
+      "stop": 38653,
+      "strand": "+",
+      "location": "[38359:38653](+)",
+      "protein_accession": "NP_040630.1",
+      "db_xref": [
+        "GeneID:2703494"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MVRANKRNEALRIESALLNKIAMLGTEKTAEAVGVDKSQISRWKRDWIPKFSMLLAVLEWGVVDDDMARLARQVAAILTNKKRPAATERSEQIQMEF",
+      "length": 97,
+      "sequence_sha256": "5d9da04014c4886f92a0862d3a0a9fc52173fcdfcb1eda172aeb5464b6624e7b",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_001416.1.gb",
+      "cds_fasta_id": "lcl|NC_001416.1_prot_NP_040630.1_52",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "lambda|lambdap89",
+      "gene": "O",
+      "locus_tag": "lambdap89",
+      "product": "replication initiation O-like",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_001416.1",
+      "start": 38686,
+      "stop": 39585,
+      "strand": "+",
+      "location": "[38685:39585](+)",
+      "protein_accession": "NP_040631.1",
+      "db_xref": [
+        "GeneID:3827060"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MTNTAKILNFGRGNFAGQERNVADLDDGYARLSNMLLEAYSGADLTKRQFKVLLAILRKTYGWNKPMDRITDSQLSEITKLPVKRCNEAKLELVRMNIIKQQGGMFGPNKNISEWCIPQNEGKSPKTRDKTSLKLGDCYPSKQGDTKDTITKEKRKDYSSENSGESSDQPENDLSVVKPDAAIQSGSKWGTAEDLTAAEWMFDMVKTIAPSARKPNFAGWANDIRLMRERDGRNHRDMCVLFRWACQDNFWSGNVLSPAKLRDKWTQLEINRNKQQAGVTASKPKLDLTNTDWIYGVDL",
+      "length": 299,
+      "sequence_sha256": "74c7437611787ae2c7fa33641ebdcda3f740806f74646d02f7aa123aa6325223",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_001416.1.gb",
+      "cds_fasta_id": "lcl|NC_001416.1_prot_NP_040631.1_53",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "lambda|lambdap61",
+      "gene": "P",
+      "locus_tag": "lambdap61",
+      "product": "DNA replication protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_001416.1",
+      "start": 39582,
+      "stop": 40283,
+      "strand": "+",
+      "location": "[39581:40283](+)",
+      "protein_accession": "NP_040632.1",
+      "db_xref": [
+        "GeneID:2703495"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MKNIAAQMVNFDREQMRRIANNMPEQYDEKPQVQQVAQIINGVFSQLLATFPASLANRDQNEVNEIRRQWVLAFRENGITTMEQVNAGMRVARRQNRPFLPSPGQFVAWCREEASVTAGLPNVSELVDMVYEYCRKRGLYPDAESYPWKSNAHYWLVTNLYQNMRANALTDAELRRKAADELVHMTARINRGEAIPEPVKQLPVMGGRPLNRAQALAKIAEIKAKFGLKGASV",
+      "length": 233,
+      "sequence_sha256": "72ce8e52f750170afae5792e5818ee9f03bee8827dc41c7e0337b3918fcbf555",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_001416.1.gb",
+      "cds_fasta_id": "lcl|NC_001416.1_prot_NP_040632.1_54",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "lambda|lambdap62",
+      "gene": "ren",
+      "locus_tag": "lambdap62",
+      "product": "Ren-like exclusion protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_001416.1",
+      "start": 40280,
+      "stop": 40570,
+      "strand": "+",
+      "location": "[40279:40570](+)",
+      "protein_accession": "NP_040633.1",
+      "db_xref": [
+        "GeneID:2703496"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MTGKEAIIHYLGTHNSFCAPDVAALTGATVTSINQAAAKMARAGLLVIEGKVWRTVYYRFATREEREGKMSTNLVFKECRQSAAMKRVLAVYGVKR",
+      "length": 96,
+      "sequence_sha256": "9887a5586c92360f6a9b737a0ff86fde1b68168cca8ecdb36a39d7c9bb4488a4",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_001416.1.gb",
+      "cds_fasta_id": "lcl|NC_001416.1_prot_NP_040633.1_55",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "lambda|lambdap63",
+      "gene": "NinB",
+      "locus_tag": "lambdap63",
+      "product": "NinB/ Orf homologous recombination mediator",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_001416.1",
+      "start": 40644,
+      "stop": 41084,
+      "strand": "+",
+      "location": "[40643:41084](+)",
+      "protein_accession": "NP_040634.1",
+      "db_xref": [
+        "GeneID:2703497"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MKKLTFEIRSPAHQQNAIHAVQQILPDPTKPIVVTIQERNRSLDQNRKLWACLGDVSRQVEWHGRWLDAESWKCVFTAALKQQDVVPNLAGNGFVVIGQSTSRMRVGEFAELLELIQAFGTERGVKWSDEARLALEWKARWGDRAA",
+      "length": 146,
+      "sequence_sha256": "068ba1cf96978d860d29228235894936554700bfe699f9f0c6572e44ead7688b",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_001416.1.gb",
+      "cds_fasta_id": "lcl|NC_001416.1_prot_NP_040634.1_56",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "lambda|lambdap64",
+      "gene": "NinC",
+      "locus_tag": "lambdap64",
+      "product": "phosphoadenosine phosphosulfate reductase",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_001416.1",
+      "start": 41081,
+      "stop": 41953,
+      "strand": "+",
+      "location": "[41080:41953](+)",
+      "protein_accession": "NP_040635.1",
+      "db_xref": [
+        "GeneID:2703498"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MINVVSFSGGRTSAYLLWLMEQKRRAGKDVHYVFMDTGCEHPMTYRFVREVVKFWDIPLTVLQVDINPELGQPNGYTVWEPKDIQTRMPVLKPFIDMVKKYGTPYVGGAFCTDRLKLVPFTKYCDDHFGRGNYTTWIGIRADEPKRLKPKPGIRYLAELSDFEKEDILAWWKQQPFDLQIPEHLGNCIFCIKKSTQKIGLACKDEEGLQRVFNEVITGSHVRDGHRETPKEIMYRGRMSLDGIAKMYSENDYQALYQDMVRAKRFDTGSCSESCEIFGGQLDFDFGREAA",
+      "length": 290,
+      "sequence_sha256": "75011388bc59e48cf0f795b80602f10fcd9922ba0f6620498ea0665b3ad83726",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_001416.1.gb",
+      "cds_fasta_id": "lcl|NC_001416.1_prot_NP_040635.1_57",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "lambda|lambdap65",
+      "gene": "NinD",
+      "locus_tag": "lambdap65",
+      "product": "NinD protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_001416.1",
+      "start": 41950,
+      "stop": 42123,
+      "strand": "+",
+      "location": "[41949:42123](+)",
+      "protein_accession": "NP_040636.1",
+      "db_xref": [
+        "GeneID:2703499"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MMRCYRCGECKEDNRFRPNQPYWNRWCLRCERTPTGVLPLPQEKEDVWRDSDEVSPT",
+      "length": 57,
+      "sequence_sha256": "33874aa34fc9697923498a4f112eca7bf913555c39b71fd10858db1adfd88c2e",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_001416.1.gb",
+      "cds_fasta_id": "lcl|NC_001416.1_prot_NP_040636.1_58",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "lambda|lambdap66",
+      "gene": "NinE",
+      "locus_tag": "lambdap66",
+      "product": "NinE family protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_001416.1",
+      "start": 42090,
+      "stop": 42272,
+      "strand": "+",
+      "location": "[42089:42272](+)",
+      "protein_accession": "NP_040637.1",
+      "db_xref": [
+        "GeneID:2703500"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MARQRRSITDIICENCKYLPTKRTRNKPKPIPKESDVKTFNYTAHLWDIRWLRRRARKTR",
+      "length": 60,
+      "sequence_sha256": "0d15bb21bbf07c888bad7a2acacd0ff4900f9c40310f709297d7617794c9079f",
+      "annotation_flags": [
+        "alternative_start_codon_read_as_Met"
+      ],
+      "source_record": "inputs/NC_001416.1.gb",
+      "cds_fasta_id": "lcl|NC_001416.1_prot_NP_040637.1_59",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "lambda|lambdap67",
+      "gene": "NinF",
+      "locus_tag": "lambdap67",
+      "product": "protein ninF",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_001416.1",
+      "start": 42269,
+      "stop": 42439,
+      "strand": "+",
+      "location": "[42268:42439](+)",
+      "protein_accession": "NP_040638.1",
+      "db_xref": [
+        "GeneID:2703501"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MIDQNRSYEQESVERALTCANCGQKLHVLEVHVCEHCCAELMSDPNSSMHEEEDDG",
+      "length": 56,
+      "sequence_sha256": "886ecc8ab746396f4381c82c574b6fd538aa11140f00dda99565522f34e23100",
+      "annotation_flags": [
+        "alternative_start_codon_read_as_Met"
+      ],
+      "source_record": "inputs/NC_001416.1.gb",
+      "cds_fasta_id": "lcl|NC_001416.1_prot_NP_040638.1_60",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "lambda|lambdap68",
+      "gene": "NinG",
+      "locus_tag": "lambdap68",
+      "product": "NinG/ Rap DNA junction specific endonuclease",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_001416.1",
+      "start": 42429,
+      "stop": 43043,
+      "strand": "+",
+      "location": "[42428:43043](+)",
+      "protein_accession": "NP_040639.1",
+      "db_xref": [
+        "GeneID:2703474"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MMAKPARRRCKNDECREWFHPAFANQWWCSPECGTKIALERRSKEREKAEKAAEKKRRREEQKQKDKLKIRKLALKPRSYWIKQAQQAVNAFIRERDRDLPCISCGTLTSAQWDAGHYRTTAAAPQLRFNERNIHKQCVVCNQHKSGNLVPYRVELISRIGQEAVDEIESNHNRHRWTIEECKAIKAEYQQKLKDLRNSRSEAA",
+      "length": 204,
+      "sequence_sha256": "a5925c9a292675f4318310b2a1350eb7c92b7576df44ddc56caa0976ab5e6954",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_001416.1.gb",
+      "cds_fasta_id": "lcl|NC_001416.1_prot_NP_040639.1_61",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "lambda|lambdap69",
+      "gene": "NinH",
+      "locus_tag": "lambdap69",
+      "product": "NinH family protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_001416.1",
+      "start": 43040,
+      "stop": 43246,
+      "strand": "+",
+      "location": "[43039:43246](+)",
+      "protein_accession": "NP_040640.1",
+      "db_xref": [
+        "GeneID:2703475"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MTFSVKTIPDMLVEAYGNQTEVARRLKCSRGTVRKYVDDKDGKMHAIVNDVLMVHRGWSERDALLRKN",
+      "length": 68,
+      "sequence_sha256": "fc65862538237548a28b3d5dc3ecd9141cacae4fa535338019c263f88bb27e98",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_001416.1.gb",
+      "cds_fasta_id": "lcl|NC_001416.1_prot_NP_040640.1_62",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "lambda|lambdap70",
+      "gene": "NinI",
+      "locus_tag": "lambdap70",
+      "product": "serine/threonine protein phosphatase",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_001416.1",
+      "start": 43224,
+      "stop": 43889,
+      "strand": "+",
+      "location": "[43223:43889](+)",
+      "protein_accession": "NP_040641.1",
+      "db_xref": [
+        "GeneID:2703476"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MRYYEKIDGSKYRNIWVVGDLHGCYTNLMNKLDTIGFDNKKDLLISVGDLVDRGAENVECLELITFPWFRAVRGNHEQMMIDGLSERGNVNHWLLNGGGWFFNLDYDKEILAKALAHKADELPLIIELVSKDKKYVICHADYPFDEYEFGKPVDHQQVIWNRERISNSQNGIVKEIKGADTFIFGHTPAVKPLKFANQMYIDTGAVFCGNLTLIQVQGEGA",
+      "length": 221,
+      "sequence_sha256": "5bf2e1211235ecd45f8eecf52709b19a43ef944c01d6ec2d9adac42a2e8a653c",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_001416.1.gb",
+      "cds_fasta_id": "lcl|NC_001416.1_prot_NP_040641.1_63",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "lambda|lambdap71",
+      "gene": "Q",
+      "locus_tag": "lambdap71",
+      "product": "antitermination protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_001416.1",
+      "start": 43886,
+      "stop": 44509,
+      "strand": "+",
+      "location": "[43885:44509](+)",
+      "protein_accession": "NP_040642.1",
+      "db_xref": [
+        "GeneID:2703477"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MRLESVAKFHSPKSPMMSDSPRATASDSLSGTDVMAAMGMAQSQAGFGMAAFCGKHELSQNDKQKAINYLMQFAHKVSGKYRGVAKLEGNTKAKVLQVLATFAYADYCRSAATPGARCRDCHGTGRAVDIAKTELWGRVVEKECGRCKGVGYSRMPASAAYRAVTMLIPNLTQPTWSRTVKPLYDALVVQCHKEESIADNILNAVTR",
+      "length": 207,
+      "sequence_sha256": "aaf85fc68467e2035b7a2bfabdb455d653073f6de389080588b6518bd2784e10",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_001416.1.gb",
+      "cds_fasta_id": "lcl|NC_001416.1_prot_NP_040642.1_64",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "lambda|lambdap73",
+      "gene": "orf-64",
+      "locus_tag": "lambdap73",
+      "product": "hypothetical protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_001416.1",
+      "start": 44621,
+      "stop": 44815,
+      "strand": "+",
+      "location": "[44620:44815](+)",
+      "protein_accession": "NP_040643.1",
+      "db_xref": [
+        "GeneID:2703478"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MKRGGAYYRFRLVGHFDVSSGTPTIAGREVCKMQSRNSSQVIVRACITVSGFFISAQQVRALSR",
+      "length": 64,
+      "sequence_sha256": "d2dbcceb54eeecee0a698ef7dd3a4d9bb930de93641b1a806a0c921e074fc2ee",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_001416.1.gb",
+      "cds_fasta_id": "lcl|NC_001416.1_prot_NP_040643.1_65",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "lambda|lambdap74",
+      "gene": "S",
+      "locus_tag": "lambdap74",
+      "product": "holin/anti-holin",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_001416.1",
+      "start": 45186,
+      "stop": 45509,
+      "strand": "+",
+      "location": "[45185:45509](+)",
+      "protein_accession": "NP_040644.1",
+      "db_xref": [
+        "GeneID:2703479"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MKMPEKHDLLAAILAAKEQGIGAILAFAMAYLRGRYNGGAFTKTVIDATMCAIIAWFIRDLLDFAGLSSNLAYITSVFIGYIGTDSIGSLIKRFAAKKAGVEDGRNQ",
+      "length": 107,
+      "sequence_sha256": "f19c3b7499dc16c874501edd0d443058b49542cb9aed11aefcb11b26b4a92fbc",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_001416.1.gb",
+      "cds_fasta_id": "lcl|NC_001416.1_prot_NP_040644.1_66",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "lambda|lambdap92",
+      "gene": "S'",
+      "locus_tag": "lambdap92",
+      "product": "holin/anti-holin",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_001416.1",
+      "start": 45192,
+      "stop": 45509,
+      "strand": "+",
+      "location": "[45191:45509](+)",
+      "protein_accession": "YP_001551775.1",
+      "db_xref": [
+        "GeneID:5740919"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MPEKHDLLAAILAAKEQGIGAILAFAMAYLRGRYNGGAFTKTVIDATMCAIIAWFIRDLLDFAGLSSNLAYITSVFIGYIGTDSIGSLIKRFAAKKAGVEDGRNQ",
+      "length": 105,
+      "sequence_sha256": "6bcac5ee5e8fb2c16f5fcf1afa6b45bab09f02bfe9412f2904f9215507d48ff2",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_001416.1.gb",
+      "cds_fasta_id": "lcl|NC_001416.1_prot_YP_001551775.1_67",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "lambda|lambdap75",
+      "gene": "R",
+      "locus_tag": "lambdap75",
+      "product": "endolysin",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_001416.1",
+      "start": 45493,
+      "stop": 45969,
+      "strand": "+",
+      "location": "[45492:45969](+)",
+      "protein_accession": "NP_040645.1",
+      "db_xref": [
+        "GeneID:2703480"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MVEINNQRKAFLDMLAWSEGTDNGRQKTRNHGYDVIVGGELFTDYSDHPRKLVTLNPKLKSTGAGRYQLLSRWWDAYRKQLGLKDFSPKSQDAVALQQIKERGALPMIDRGDIRQAIDRCSNIWASLPGAGYGQFEHKADSLIAKFKEAGGTVREIDV",
+      "length": 158,
+      "sequence_sha256": "04dce6be060876de7c594b54e90d8bd498f9b5b8f0d8ec1877417204dc9023e4",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_001416.1.gb",
+      "cds_fasta_id": "lcl|NC_001416.1_prot_NP_040645.1_68",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "lambda|lambdap76",
+      "gene": "Rz",
+      "locus_tag": "lambdap76",
+      "product": "Rz-like spanin",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_001416.1",
+      "start": 45966,
+      "stop": 46427,
+      "strand": "+",
+      "location": "[45965:46427](+)",
+      "protein_accession": "NP_040646.1",
+      "db_xref": [
+        "GeneID:2703481"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MSRVTAIISALVICIIVCLSWAVNHYRDNAITYKAQRDKNARELKLANAAITDMQMRQRDVAALDAKYTKELADAKAENDALRDDVAAGRRRLHIKAVCQSVREATTASGVDNAASPRLADTAERDYFTLRERLITMQKQLEGTQKYINEQCR",
+      "length": 153,
+      "sequence_sha256": "92cfd6b4efdfd459629b025fae8dc5ab9f32b644fd288df7b23e5660c08dfaf0",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_001416.1.gb",
+      "cds_fasta_id": "lcl|NC_001416.1_prot_NP_040646.1_69",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "lambda|lambdap91",
+      "gene": "Rz1",
+      "locus_tag": "lambdap91",
+      "product": "Rz-like spanin",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_001416.1",
+      "start": 46186,
+      "stop": 46368,
+      "strand": "+",
+      "location": "[46185:46368](+)",
+      "protein_accession": "YP_001551744.1",
+      "db_xref": [
+        "GeneID:5739319"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MLKLKMMLCVMMLPLVVVGCTSKQSVSQCVKPPPPPAWIMQPPPDWQTPLNGIISPSERG",
+      "length": 60,
+      "sequence_sha256": "cdbb9df6570504ca24fc99784bb6600f408536f376f4ecbc77e28f0ba698de0f",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_001416.1.gb",
+      "cds_fasta_id": "lcl|NC_001416.1_prot_YP_001551744.1_70",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "lambda|lambdap77",
+      "gene": "bor",
+      "locus_tag": "lambdap77",
+      "product": "Bor-like outer membrane protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "Predicted by GeneMark",
+      "replicon": "NC_001416.1",
+      "start": 46459,
+      "stop": 46752,
+      "strand": "-",
+      "location": "[46458:46752](-)",
+      "protein_accession": "NP_597780.1",
+      "db_xref": [
+        "GeneID:2703532"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MKKMLLATALALLITGCAQQTFTVQNKPAAVAPKETITHHFFVSGIGQKKTVDAAKICGGAENVVKTETQQTFVNGLLGFITLGIYTPLEARVYCSQ",
+      "length": 97,
+      "sequence_sha256": "ae4440a3814d7e5e119c57a0b5192c167098fd5bdac3c60c5f7281ea0ee6a541",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_001416.1.gb",
+      "cds_fasta_id": "lcl|NC_001416.1_prot_NP_597780.1_71",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "lambda|lambdap78",
+      "gene": "",
+      "locus_tag": "lambdap78",
+      "product": "head protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "Predicted by GeneMark",
+      "replicon": "NC_001416.1",
+      "start": 47042,
+      "stop": 47575,
+      "strand": "-",
+      "location": "[47041:47575](-)",
+      "protein_accession": "NP_597781.1",
+      "db_xref": [
+        "GeneID:2703533"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MKTFLIFDINHQQNTRRSDQIETIKTIMQTTRPRITWKVLPMAQVAIFKEIFDQVRKDLDCELFYSELKRHNVSHYIYYLATDNIHIVLENDNTVLIKGLKKVVNVKFSRNTHLIETSYDRLKSREITFQQYRENLAKAGVFRWVTNIHEHKRYYYTFDNSLLFTESIQNTTQIFPR",
+      "length": 177,
+      "sequence_sha256": "373e64b80d3af08f6299dd0e38806cdcdd6be6f103f8d180082ae77335ae4dba",
+      "annotation_flags": [
+        "alternative_start_codon_read_as_Met"
+      ],
+      "source_record": "inputs/NC_001416.1.gb",
+      "cds_fasta_id": "lcl|NC_001416.1_prot_NP_597781.1_72",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "lambda|lambdap79",
+      "gene": "",
+      "locus_tag": "lambdap79",
+      "product": "hypothetical protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "Predicted by GeneMark",
+      "replicon": "NC_001416.1",
+      "start": 47738,
+      "stop": 47944,
+      "strand": "+",
+      "location": "[47737:47944](+)",
+      "protein_accession": "NP_597782.1",
+      "db_xref": [
+        "GeneID:2703534"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MNKEQSADDPSVDLIRVKNMLNSTISMSYPDVVIACIEHKVSLEAFRAIEAALVKHDNNMKDYSLVVD",
+      "length": 68,
+      "sequence_sha256": "afc66b60d77c4578f0a41d363084e17658e425753071165376cdaa8dc22c130c",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_001416.1.gb",
+      "cds_fasta_id": "lcl|NC_001416.1_prot_NP_597782.1_73",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    }
+  ]
+}

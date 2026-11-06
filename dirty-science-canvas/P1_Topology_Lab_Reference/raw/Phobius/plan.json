@@ -1,0 +1,23 @@
+{
+  "method": "Phobius",
+  "batches": [
+    {
+      "batch": "b001",
+      "fasta": "raw/Phobius/b001.fasta",
+      "fasta_sha256": "04820c67377bf303973b2976c86d60b8659f9224caf5c4bf9e7ba15b14909c1b",
+      "n_sequences": 100,
+      "n_residues": 26126,
+      "planned_utc": "2026-11-06T19:26:03+00:00",
+      "rerun": false
+    },
+    {
+      "batch": "b002",
+      "fasta": "raw/Phobius/b002.fasta",
+      "fasta_sha256": "a17c9ea7d656d32597e99b387de2122f4a54e38372d2b42aa1520fa1dd4be723",
+      "n_sequences": 10,
+      "n_residues": 2000,
+      "planned_utc": "2026-11-06T19:26:03+00:00",
+      "rerun": false
+    }
+  ]
+}

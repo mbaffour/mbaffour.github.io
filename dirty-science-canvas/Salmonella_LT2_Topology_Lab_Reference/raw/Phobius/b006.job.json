@@ -1,0 +1,18 @@
+{
+  "method": "Phobius",
+  "endpoint": "https://phobius.sbc.su.se/api/predict",
+  "batch": "b006",
+  "fasta": "raw/Phobius/b006.fasta",
+  "fasta_sha256": "b9195661df67837c3fec2641681de32c0b3ed7b8d5d8d417a3f277dfa37c4451",
+  "n_sequences": 100,
+  "n_residues": 31512,
+  "planned_utc": "2026-11-06T19:26:03+00:00",
+  "rerun": false,
+  "settings": {
+    "plot": false
+  },
+  "submitted_utc": "2026-11-06T19:47:23+00:00",
+  "outputs": {},
+  "status": "failed",
+  "error": "ProxyError(MaxRetryError(\"HTTPSConnectionPool(host='phobius.sbc.su.se', port=443): Max retries exceeded with url: /api/predict (Caused by ProxyError('Unable to connect to proxy', RemoteDisconnected('Remote end closed connection without response')))\"))"
+}

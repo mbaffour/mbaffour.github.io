@@ -1,0 +1,161 @@
+LOCUS       NC_003714               2948 bp ds-RNA     linear   PHG 13-AUG-2018
+DEFINITION  Pseudomonas phage phi-6 segment S, complete sequence.
+ACCESSION   NC_003714
+VERSION     NC_003714.1
+DBLINK      BioProject: PRJNA485481
+KEYWORDS    RefSeq.
+SOURCE      Pseudomonas phage phi6
+  ORGANISM  Pseudomonas phage phi6
+            Viruses; Riboviria; Orthornavirae; Duplornaviricota;
+            Vidaverviricetes; Mindivirales; Cystoviridae; Orthocystovirus;
+            Orthocystovirus phi6.
+REFERENCE   1  (bases 1 to 2948)
+  AUTHORS   McGraw,T., Mindich,L. and Frangione,B.
+  TITLE     Nucleotide sequence of the small double-stranded RNA segment of
+            bacteriophage phi 6: novel mechanism of natural translational
+            control
+  JOURNAL   J. Virol. 58 (1), 142-151 (1986)
+   PUBMED   3754015
+REFERENCE   2  (bases 1 to 2948)
+  CONSRTM   NCBI Genome Project
+  TITLE     Direct Submission
+  JOURNAL   Submitted (15-FEB-2007) National Center for Biotechnology
+            Information, NIH, Bethesda, MD 20894, USA
+COMMENT     PROVISIONAL REFSEQ: This record has not yet been subject to final
+            NCBI review. The reference sequence was derived from M12921.
+            Draft entry and computer-readable copy of sequence in [1] kindly
+            provided by L.Mindich, 23-OCT-1987.
+            COMPLETENESS: full length.
+FEATURES             Location/Qualifiers
+     source          1..2948
+                     /organism="Pseudomonas phage phi6"
+                     /mol_type="genomic RNA"
+                     /host="Pseudomonas syringae pv. phaseolicola"
+                     /db_xref="taxon:2928686"
+                     /segment="S"
+     gene            305..754
+                     /locus_tag="phi-6S_1"
+                     /db_xref="GeneID:956430"
+     CDS             305..754
+                     /locus_tag="phi-6S_1"
+                     /note="P8 protein"
+                     /codon_start=1
+                     /transl_table=11
+                     /product="hypothetical protein"
+                     /protein_id="NP_620340.1"
+                     /db_xref="GeneID:956430"
+                     /translation="MLLPVVARAAVPAIESAIAATPGLVSRIAAAIGSKVSPSAILAA
+                     VKSNPVVAGLTLAQIGSTGYDAYQQLLENHPEVAEMLKDLSFKADEIQPDFIGNLGQY
+                     REELELVEDAARFVGGMSNLIRLRQALELDIKYYGLKMQLNDMGYRS"
+     gene            754..1341
+                     /locus_tag="phi-6S_2"
+                     /db_xref="GeneID:956431"
+     CDS             754..1341
+                     /locus_tag="phi-6S_2"
+                     /note="P12 protein"
+                     /codon_start=1
+                     /transl_table=11
+                     /product="hypothetical protein"
+                     /protein_id="NP_620341.1"
+                     /db_xref="GeneID:956431"
+                     /translation="MVIGLLKYLTPAVKVQMAARALGLSPAEVAAIDGTLGRVSAMPA
+                     VAVVLGGKPLSLATIASVVSDANPSATVGALMPAVQGMVSSDEGASALAKTVVGFMES
+                     DPNSDVLVQLLHKVSNLPIVGFGDTQYADPADFLAKGVFPLIRKPEVEVQAAPFTCRQ
+                     CDHVDHITDVPQTSTFVHKCTSCGFVQMVHRKDVP"
+     gene            1341..1613
+                     /locus_tag="phi-6S_3"
+                     /db_xref="GeneID:956432"
+     CDS             1341..1613
+                     /locus_tag="phi-6S_3"
+                     /note="P9 protein"
+                     /codon_start=1
+                     /transl_table=11
+                     /product="hypothetical protein"
+                     /protein_id="NP_620342.1"
+                     /db_xref="GeneID:956432"
+                     /translation="MPFPLVKQDPTSKAFTEASERSTGTQILDVVKAPIGLFGDDAKH
+                     EFVTRQEQAVSVVSWAVAAGLIGELIGYRGARSGRKAILANIPFLA"
+     gene            1620..2282
+                     /locus_tag="phi-6S_4"
+                     /db_xref="GeneID:956433"
+     CDS             1620..2282
+                     /locus_tag="phi-6S_4"
+                     /note="P5a (alt., gtg start codon)"
+                     /codon_start=1
+                     /transl_table=11
+                     /product="hypothetical protein"
+                     /protein_id="NP_620343.1"
+                     /db_xref="GeneID:956433"
+                     /translation="MSKDSAFAVQYSLRALGQKVRADGVVGSETRAALDALPENQKKA
+                     IVELQALLPKAQSVGNNRVRFTTAEVDSAVARISQKIGVPASYYQFLIPIENFVVAGG
+                     FETTVSGSFRGLGQFNRQTWDRLRRLGRNLPAFEEGSAQLNASLYAIGFLYLENKRAY
+                     EASFKGRVFTHEIAYLYHNQGAPAAEQYLTSGRLVYPKQSEAAVAAVAAARNQHVKES
+                     WA"
+     gene            1644..2282
+                     /locus_tag="phi-6S_5"
+                     /db_xref="GeneID:956434"
+     CDS             1644..2282
+                     /locus_tag="phi-6S_5"
+                     /note="P5b (alt., gtg start codon)"
+                     /codon_start=1
+                     /transl_table=11
+                     /product="hypothetical protein"
+                     /protein_id="NP_620344.1"
+                     /db_xref="GeneID:956434"
+                     /translation="MQYSLRALGQKVRADGVVGSETRAALDALPENQKKAIVELQALL
+                     PKAQSVGNNRVRFTTAEVDSAVARISQKIGVPASYYQFLIPIENFVVAGGFETTVSGS
+                     FRGLGQFNRQTWDRLRRLGRNLPAFEEGSAQLNASLYAIGFLYLENKRAYEASFKGRV
+                     FTHEIAYLYHNQGAPAAEQYLTSGRLVYPKQSEAAVAAVAAARNQHVKESWA"
+ORIGIN      
+        1 ggaaaaaaac tttatataac tcttatataa gtgcccttag cggggctccc cggctacggt
+       61 cggatcccta cggggaggat agggtgaaaa cccctagtgc aagctgacac tcatacctcc
+      121 caaggtccat gagtcgacgc aaaggtcctc gaaagcatgt tgtcctttcg tacaaccgag
+      181 taggttcgtt gccttaattg gtgacgcttg caggatgagg atggtcccga cgcctaacgg
+      241 accttgctgc cttctttccc tggattggcg gtgttgttcc cactaataat aaaggaatac
+      301 gcacatgttg ctgcctgtag tagcccgtgc ggccgtccct gctattgaga gtgccattgc
+      361 ggctactcct ggcctggttt cccgaatcgc agccgcgatc ggttccaagg tcagcccttc
+      421 cgccattttg gcggcggtca agagcaaccc ggtcgtcgca ggtctgacac tcgctcagat
+      481 cggaagcacc ggttatgacg cctatcagca gcttctggag aatcatccag aggtcgccga
+      541 gatgctgaaa gacctgtctt tcaaagccga cgaaatccag ccggatttca tcggtaacct
+      601 cggtcagtac cgcgaagagc tggaactggt cgaagatgct gcccgcttcg tgggcggcat
+      661 gtcgaacctg attcgcctgc gccaggccct ggagcttgat atcaagtact acggcctgaa
+      721 aatgcagctg aatgacatgg gataccgctc gtaatggtta tcggtctcct gaagtatctc
+      781 acgcctgccg ttaaggtgca gatggctgct cgcgcgttgg gcctgtcccc cgccgaagtc
+      841 gctgcaattg acggcacgtt gggtcgtgtc tctgcgatgc cagcggtcgc ggtcgtgctg
+      901 ggagggaaac ctctctctct ggccacgatc gcgtcagttg tgtctgatgc aaaccccagt
+      961 gccactgttg gcgcgcttat gcctgctgta cagggcatgg tgagttccga cgaaggcgcg
+     1021 agtgcgttgg ctaagaccgt ggtaggcttc atggagtccg accccaacag cgatgtcctg
+     1081 gttcaactgc tccacaaggt gtcaaacttg ccgattgtcg gctttggtga cacgcagtat
+     1141 gcagacccag ctgacttctt ggccaaggga gttttccctc tgatcaggaa gccagaagta
+     1201 gaggttcaag ctgcgccttt cacctgtcgt cagtgtgatc atgttgatca catcactgat
+     1261 gtacctcaaa cttcgacctt tgttcacaaa tgcacttcgt gcggctttgt gcagatggtc
+     1321 caccgtaagg atgttccgta atgccatttc ctctggtaaa gcaagaccca acctcgaagg
+     1381 ctttcactga agccagtgaa cgctccaccg gcacccagat cctggacgtc gtcaaggccc
+     1441 ctatcggcct gttcggcgac gatgccaaac acgagttcgt gacccgtcag gaacaagccg
+     1501 tctccgtcgt cagctgggca gttgctgccg gtctgatcgg cgagctgatc ggctaccgtg
+     1561 gtgcgcgttc gggtcgcaaa gcgatcctgg ccaacatccc ttttctggcc taactcctcg
+     1621 tgtccaagga tagcgccttc gcagtgcaat actcgctgcg cgccctggga caaaaggtgc
+     1681 gggcagacgg ggtagtgggc tctgagaccc gtgccgcgct ggatgcgctg cccgagaatc
+     1741 agaagaaagc gattgtagag ttgcaagcac tcctaccgaa agcacagtcg gtcggcaaca
+     1801 accgtgtgag gttcacaaca gctgaagtcg actcggcggt ggcgcggatc tcgcaaaaga
+     1861 taggtgttcc ggcttcctac taccagttcc tgattccgat cgagaacttc gtggtggccg
+     1921 gtggtttcga aaccaccgtt tctggttcct tccgtgggtt gggccagttc aaccggcaga
+     1981 cgtgggatag actccgtcgt ttaggccgta accttcctgc atttgaggag ggttcggcac
+     2041 aactgaacgc ttctctttat gcaatcgggt tcttgtatct tgagaacaag agagcgtacg
+     2101 aggcgtcgtt caaaggccgc gttttcactc acgaaatcgc gtatttgtat cacaaccaag
+     2161 gcgctccagc tgccgaacag tacctgactt cgggtcggct cgtttacccg aagcaaagcg
+     2221 aggccgctgt cgcggcggtt gcggctgcga gaaaccagca tgtcaaagag agttgggctt
+     2281 agccctgaac tgcatcgtga actgaaaatg ttcccagatg tcacgaaggg tggcacgttc
+     2341 gacataacca tccggtcgac taccgagaac ggtgcttttt gggcgaacta cgaaggtaga
+     2401 acgtccttgg tcaccgtccc ggacgtgaag acagctatcg agtttttgat taaactctgc
+     2461 cgtcgacaca agttgtccaa tcaggtgaac acgcgaacgc ttctccgcga tttgcaacga
+     2521 acgttgcagg aatgtgaatg ccagtctcat catgtgccgt tgtccagccc cttcatgcat
+     2581 ctcagatttg cgtaaagctg atcggaagct atgaaagtaa gctgagcgac acggaagtta
+     2641 ttgaagcagc tatcaagctc tcataggctt ggaaagcccg gcatcgatgt cgttccatgt
+     2701 cgcgccagac gcggccaccg atatgtatct tgatctgatc gaaatctact ccccgtcgtc
+     2761 agtcgggata catctcgtcc tgccataagc gctgtctgta gcgtgcataa acagatagat
+     2821 cgccttttta ggtaaccgcg gattgatcac cgttccgagc ttgcttggat aaacaagtcc
+     2881 ttgtataaca aggcgagact cactatgtga gcgtccaata ggacggcccc ttcgggggct
+     2941 ctctctct
+//
+

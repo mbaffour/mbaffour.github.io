@@ -1,0 +1,115 @@
+{
+  "organism": "Pseudomonas phage phi6",
+  "accessions": [
+    "NC_003715.1",
+    "NC_003716.1",
+    "NC_003714.1"
+  ],
+  "files": [
+    {
+      "file": "inputs/NC_003715.1.gb",
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&id=NC_003715.1&rettype=gbwithparts&retmode=text",
+      "retrieved_utc": "2026-11-06T19:21:57+00:00",
+      "sha256": "2334f55c870f3cb202fd59ef0ad7567cacbe034081546727e9c371533203e954",
+      "bytes": 15475
+    },
+    {
+      "file": "inputs/NC_003715.1.cds_aa.fasta",
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&id=NC_003715.1&rettype=fasta_cds_aa&retmode=text",
+      "retrieved_utc": "2026-11-06T19:21:58+00:00",
+      "sha256": "58df793090ee8b8e8d51fa3f4d6517fd6063b2ec35bfdab4e50737b2e0a0553d",
+      "bytes": 2606
+    },
+    {
+      "file": "inputs/NC_003715.1.fna",
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&id=NC_003715.1&rettype=fasta&retmode=text",
+      "retrieved_utc": "2026-11-06T19:22:00+00:00",
+      "sha256": "62082faaf9f11d3c544af25213b611670323ae97ae1deace9e88d3bf39734911",
+      "bytes": 6533
+    },
+    {
+      "file": "inputs/NC_003716.1.gb",
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&id=NC_003716.1&rettype=gbwithparts&retmode=text",
+      "retrieved_utc": "2026-11-06T19:22:02+00:00",
+      "sha256": "8c20b606610054adcdf0f3e796181f282cadd486b8222b600ede847bdfa053a3",
+      "bytes": 10053
+    },
+    {
+      "file": "inputs/NC_003716.1.cds_aa.fasta",
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&id=NC_003716.1&rettype=fasta_cds_aa&retmode=text",
+      "retrieved_utc": "2026-11-06T19:22:04+00:00",
+      "sha256": "817bc820c0c0eec8f679bc27286e15fdf2fa84569e356966a7cc4b00d5f6f417",
+      "bytes": 1595
+    },
+    {
+      "file": "inputs/NC_003716.1.fna",
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&id=NC_003716.1&rettype=fasta&retmode=text",
+      "retrieved_utc": "2026-11-06T19:22:05+00:00",
+      "sha256": "4e17b115c72419b09dbed56216dc873692dad14ea857908af6aed19eff21c693",
+      "bytes": 4189
+    },
+    {
+      "file": "inputs/NC_003714.1.gb",
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&id=NC_003714.1&rettype=gbwithparts&retmode=text",
+      "retrieved_utc": "2026-11-06T19:22:07+00:00",
+      "sha256": "c9ccb8d8d67e0c6e2d4dad2a8797b26290b9ef2bef6f805528ec24fa7b55b01f",
+      "bytes": 9069
+    },
+    {
+      "file": "inputs/NC_003714.1.cds_aa.fasta",
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&id=NC_003714.1&rettype=fasta_cds_aa&retmode=text",
+      "retrieved_utc": "2026-11-06T19:22:11+00:00",
+      "sha256": "3bb66b64b52e9b8b6129aa5221db4bbf910a374c16741c8f47f6e7a57837bc68",
+      "bytes": 1735
+    },
+    {
+      "file": "inputs/NC_003714.1.fna",
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&id=NC_003714.1&rettype=fasta&retmode=text",
+      "retrieved_utc": "2026-11-06T19:22:12+00:00",
+      "sha256": "9a0fe3db296931cff4eb68fb646988252045b1c61c3bd4005b26c3e1ef57167e",
+      "bytes": 3058
+    }
+  ],
+  "ncbi_summaries": [
+    {
+      "accessionversion": "NC_003715.1",
+      "title": "Pseudomonas phage phi-6 segment L, complete sequence",
+      "slen": 6374,
+      "createdate": "1993/04/28",
+      "updatedate": "2023/01/11",
+      "taxid": 2928686,
+      "biomol": "genomic",
+      "topology": "linear"
+    },
+    {
+      "accessionversion": "NC_003716.1",
+      "title": "Pseudomonas phage phi-6 segment M, complete sequence",
+      "slen": 4063,
+      "createdate": "1993/04/28",
+      "updatedate": "2023/01/11",
+      "taxid": 2928686,
+      "biomol": "genomic",
+      "topology": "linear"
+    },
+    {
+      "accessionversion": "NC_003714.1",
+      "title": "Pseudomonas phage phi-6 segment S, complete sequence",
+      "slen": 2948,
+      "createdate": "1993/04/28",
+      "updatedate": "2018/08/13",
+      "taxid": 2928686,
+      "biomol": "genomic",
+      "topology": "linear"
+    }
+  ],
+  "ncbi_summary": {
+    "accessionversion": "NC_003715.1",
+    "title": "Pseudomonas phage phi-6 segment L, complete sequence",
+    "slen": 6374,
+    "createdate": "1993/04/28",
+    "updatedate": "2023/01/11",
+    "taxid": 2928686,
+    "biomol": "genomic",
+    "topology": "linear"
+  }
+}

@@ -1,0 +1,61 @@
+protein_id,gene,curator_alias,locus_tag,product,length,Phobius_status,Phobius_spans,Phobius_signal_peptide,Phobius_segments,DeepTMHMM_status,DeepTMHMM_spans,DeepTMHMM_signal_peptide,DeepTMHMM_segments,TOPCONS2_status,TOPCONS2_spans,TOPCONS2_signal_peptide,TOPCONS2_segments,OCTOPUS_status,OCTOPUS_spans,OCTOPUS_signal_peptide,OCTOPUS_segments,Philius_status,Philius_spans,Philius_signal_peptide,Philius_segments,PolyPhobius_status,PolyPhobius_spans,PolyPhobius_signal_peptide,PolyPhobius_segments,SCAMPI_status,SCAMPI_spans,SCAMPI_signal_peptide,SCAMPI_segments,SPOCTOPUS_status,SPOCTOPUS_spans,SPOCTOPUS_signal_peptide,SPOCTOPUS_segments,disagreements
+T7|T7p01,,,T7p01,ocr-like anti-restriction,117,complete,,none,O1-117,complete,,none,I1-117,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,
+T7|T7p02,,,T7p02,hypothetical protein,51,complete,,none,O1-51,complete,,none,I1-51,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,
+T7|T7p04,,,T7p04,hypothetical protein,47,complete,27-45,1-17,"S1-17,O18-26,M27-45,I46-47",complete,,1-12,"S1-12,O13-47",pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,span_count;signal_peptide_boundary
+T7|T7p05,,,T7p05,hypothetical protein,111,complete,,none,I1-111,complete,,none,I1-111,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,
+T7|T7p06,,,T7p06,hypothetical protein,53,complete,,none,I1-53,complete,,none,I1-53,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,
+T7|T7p03,,,T7p03,serine-threonine kinase,359,complete,,none,O1-359,complete,,none,I1-359,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,
+T7|T7p07,,,T7p07,RNA polymerase,883,complete,,none,O1-883,complete,,none,I1-883,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,
+T7|T7p09,,,T7p09,hypothetical protein,42,complete,,none,I1-42,complete,,none,I1-42,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,
+T7|T7p08,,,T7p08,dGTPase inhibitor; target for F exclusion,85,complete,,none,O1-85,complete,,none,I1-85,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,
+T7|T7p10,,,T7p10,DNA ligase,359,complete,,none,O1-359,complete,,none,I1-359,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,
+T7|T7p11,,,T7p11,hypothetical protein,51,complete,29-49,1-19,"S1-19,O20-28,M29-49,I50-51",complete,5-23;28-48,none,"I1-4,M5-23,O24-27,M28-48,I49-51",pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,span_count;signal_peptide;n_terminal_side
+T7|T7p12,,,T7p12,hypothetical protein,29,complete,,1-19,"S1-19,O20-29",complete,,1-16,"S1-16,O17-29",pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,signal_peptide_boundary
+T7|T7p13,,,T7p13,hypothetical protein,86,complete,,none,I1-86,complete,,none,I1-86,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,
+T7|T7p14,,,T7p14,nucleotide kinase,196,complete,,none,O1-196,complete,,none,I1-196,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,
+T7|T7p15,,,T7p15,hypothetical protein,48,complete,,none,O1-48,complete,,none,I1-48,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,
+T7|T7p16,,,T7p16,RNA polymerase inhibitor,64,complete,,none,O1-64,complete,,none,I1-64,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,
+T7|T7p17,,,T7p17,Gp2.5-like ssDNA binding protein and ssDNA annealing protein,232,complete,,none,O1-232,complete,,none,I1-232,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,
+T7|T7p18,,,T7p18,endonuclease,139,complete,,none,I1-139,complete,,none,I1-139,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,
+T7|T7p19,,,T7p19,endonuclease,149,complete,,none,O1-149,complete,,none,I1-149,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,
+T7|T7p20,,,T7p20,amidase,151,complete,,none,I1-151,complete,,none,O1-151,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,
+T7|T7p21,,,T7p21,HNH endonuclease,121,complete,,none,I1-121,complete,,none,I1-121,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,
+T7|T7p22,,,T7p22,DNA primase/helicase,566,complete,,none,O1-566,complete,,none,I1-566,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,
+T7|T7p23,,,T7p23,hypothetical protein,40,complete,,none,O1-40,complete,,none,I1-40,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,
+T7|T7p24,,,T7p24,DNA primase/helicase,503,complete,,none,O1-503,complete,,none,I1-503,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,
+T7|T7p25,,,T7p25,hypothetical protein,112,complete,7-31;37-59,none,"I1-6,M7-31,O32-36,M37-59,I60-112",complete,39-54,1-37,"S1-37,O38-38,M39-54,I55-112",pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,span_count;signal_peptide;n_terminal_side
+T7|T7p26,,,T7p26,hypothetical protein,70,complete,,none,I1-70,complete,,none,I1-70,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,
+T7|T7p27,,,T7p27,hypothetical protein,89,complete,,none,O1-89,complete,,none,I1-89,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,
+T7|T7p28,,,T7p28,hypothetical protein,135,complete,,none,O1-135,complete,,none,I1-135,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,
+T7|T7p29,,,T7p29,DNA polymerase I,704,complete,,none,O1-704,complete,,none,I1-704,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,
+T7|T7p30,,,T7p30,hypothetical protein,118,complete,,none,O1-118,complete,,none,I1-118,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,
+T7|T7p31,,,T7p31,hypothetical protein,169,complete,,none,I1-169,complete,,none,I1-169,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,
+T7|T7p32,,,T7p32,DUF2675 domain-containing protein,99,complete,,none,I1-99,complete,,none,I1-99,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,
+T7|T7p33,,,T7p33,hypothetical protein,69,complete,,none,O1-69,complete,,none,I1-69,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,
+T7|T7p34,,,T7p34,Gp5.9-like inihibitor of recBCD nuclease,52,complete,,none,O1-52,complete,,none,I1-52,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,
+T7|T7p35,,,T7p35,exonuclease,300,complete,,none,O1-300,complete,,none,I1-300,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,
+T7|T7p36,,,T7p36,DUF5516 domain-containing protein,37,complete,6-27,none,"O1-5,M6-27,I28-37",complete,7-27,none,"O1-6,M7-27,I28-37",pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,
+T7|T7p37,,,T7p37,DUF2717 domain-containing protein,84,complete,,none,O1-84,complete,,none,I1-84,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,
+T7|T7p38,,,T7p38,DUF5476 family protein,88,complete,,none,O1-88,complete,,none,I1-88,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,
+T7|T7p39,,,T7p39,host range and adsorption protein,133,complete,,none,O1-133,complete,,none,I1-133,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,
+T7|T7p40,,,T7p40,host range and adsorption protein,99,complete,,none,I1-99,complete,,none,I1-99,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,
+T7|T7p41,,,T7p41,HNH endonuclease,130,complete,,none,O1-130,complete,,none,I1-130,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,
+T7|T7p42,,,T7p42,head-tail adaptor,536,complete,,none,O1-536,complete,,none,I1-536,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,
+T7|T7p43,,,T7p43,head assembly,307,complete,,none,O1-307,complete,,none,I1-307,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,
+T7|T7p44,,,T7p44,major head protein,398,complete,,none,O1-398,complete,,none,O1-398,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,
+T7|T7p45,,,T7p45,major head protein,345,complete,,none,O1-345,complete,,none,O1-345,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,
+T7|T7p46,,,T7p46,tail protein,196,complete,,none,O1-196,complete,,none,O1-196,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,
+T7|T7p47,,,T7p47,tail protein,794,complete,,none,O1-794,complete,,none,O1-794,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,
+T7|T7p48,,,T7p48,internal virion protein,138,complete,,none,I1-138,complete,,none,I1-138,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,
+T7|T7p49,,,T7p49,internal virion protein,196,complete,,1-16,"S1-16,O17-196",complete,,none,I1-196,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,signal_peptide
+T7|T7p50,,,T7p50,internal virion protein,747,complete,,none,O1-747,complete,,none,O1-747,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,
+T7|T7p51,,,T7p51,internal virion protein with endolysin domain,1318,complete,1136-1157,none,"O1-1135,M1136-1157,I1158-1318",complete,,none,O1-1318,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,span_count
+T7|T7p52,,,T7p52,tail fiber protein,553,complete,,none,O1-553,complete,,none,O1-553,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,
+T7|T7p53,,,T7p53,holin,67,complete,37-55,none,"O1-36,M37-55,I56-67",complete,13-26;37-55,none,"I1-12,M13-26,O27-36,M37-55,I56-67",pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,span_count;n_terminal_side
+T7|T7p54,,,T7p54,terminase small subunit,89,complete,,none,O1-89,complete,,none,I1-89,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,
+T7|T7p55,,,T7p55,Rz-like spanin,143,complete,6-25,none,"O1-5,M6-25,I26-143",complete,8-21,none,"I1-7,M8-21,O22-143",pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,n_terminal_side
+T7|T7p56,,,T7p56,Rz-like spanin,83,complete,,1-49,"S1-49,O50-83",complete,,1-48,"S1-48,O49-83",pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,signal_peptide_boundary
+T7|T7p57,,,T7p57,terminase large subunit,586,complete,,none,O1-586,complete,,none,I1-586,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,
+T7|T7p58,,,T7p58,hypothetical protein,85,complete,,none,O1-85,complete,,none,I1-85,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,
+T7|T7p59,,,T7p59,hypothetical protein,57,complete,,none,O1-57,complete,,none,I1-57,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,
+T7|T7p60,,,T7p60,hypothetical protein,49,complete,,1-30,"S1-30,O31-49",complete,17-26,none,"I1-16,M17-26,O27-49",pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,span_count;signal_peptide

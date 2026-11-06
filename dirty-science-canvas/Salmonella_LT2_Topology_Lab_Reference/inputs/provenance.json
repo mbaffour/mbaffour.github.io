@@ -1,0 +1,73 @@
+{
+  "organism": "Salmonella enterica serovar Typhimurium LT2",
+  "accessions": [
+    "NC_003197.2",
+    "NC_003277.2"
+  ],
+  "files": [
+    {
+      "file": "inputs/NC_003197.2.gb.gz",
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&id=NC_003197.2&rettype=gbwithparts&retmode=text",
+      "retrieved_utc": "2026-11-06T19:22:49+00:00",
+      "sha256": "a40da7f9431894f99e8df95243d4d78df88e4d64a41f4e22b0451c9bc784b67e",
+      "bytes": 12540424,
+      "sha256_gz": "251f77c8e7a36b37e499890f56da288929342f9def74c39b955fac0c0dce57e3",
+      "note": "stored gzip-compressed; sha256/bytes refer to the uncompressed download"
+    },
+    {
+      "file": "inputs/NC_003197.2.cds_aa.fasta",
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&id=NC_003197.2&rettype=fasta_cds_aa&retmode=text",
+      "retrieved_utc": "2026-11-06T19:22:57+00:00",
+      "sha256": "68c6cb8c85830772035624d9fa5f1d4469e3b35c7cfeec570d36263e6985bca6",
+      "bytes": 2353964
+    },
+    {
+      "file": "inputs/NC_003277.2.gb.gz",
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&id=NC_003277.2&rettype=gbwithparts&retmode=text",
+      "retrieved_utc": "2026-11-06T19:23:00+00:00",
+      "sha256": "d66364fb586aeea1e42883244e0f18d194f6618a35ae5db7f89e3049d8c389c0",
+      "bytes": 212703,
+      "sha256_gz": "81e41934f902fabf0ea2d395e13d39a7f36c885005b017516578f8817fd82b56",
+      "note": "stored gzip-compressed; sha256/bytes refer to the uncompressed download"
+    },
+    {
+      "file": "inputs/NC_003277.2.cds_aa.fasta",
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&id=NC_003277.2&rettype=fasta_cds_aa&retmode=text",
+      "retrieved_utc": "2026-11-06T19:23:01+00:00",
+      "sha256": "17c26c917ce79b44885eb873a829a53ae9e9f6766871af1625f17d4ab9060ca0",
+      "bytes": 45351
+    }
+  ],
+  "ncbi_summaries": [
+    {
+      "accessionversion": "NC_003197.2",
+      "title": "Salmonella enterica subsp. enterica serovar Typhimurium str. LT2, complete genome",
+      "slen": 4857450,
+      "createdate": "2001/11/07",
+      "updatedate": "2022/09/08",
+      "taxid": 99287,
+      "biomol": "genomic",
+      "topology": "circular"
+    },
+    {
+      "accessionversion": "NC_003277.2",
+      "title": "Salmonella enterica subsp. enterica serovar Typhimurium str. LT2 plasmid pSLT, complete sequence",
+      "slen": 93933,
+      "createdate": "2001/10/26",
+      "updatedate": "2016/12/12",
+      "taxid": 99287,
+      "biomol": "genomic",
+      "topology": "circular"
+    }
+  ],
+  "ncbi_summary": {
+    "accessionversion": "NC_003197.2",
+    "title": "Salmonella enterica subsp. enterica serovar Typhimurium str. LT2, complete genome",
+    "slen": 4857450,
+    "createdate": "2001/11/07",
+    "updatedate": "2022/09/08",
+    "taxid": 99287,
+    "biomol": "genomic",
+    "topology": "circular"
+  }
+}

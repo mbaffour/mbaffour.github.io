@@ -1,0 +1,51 @@
+{
+  "organism": "Enterobacteria phage PRD1",
+  "accessions": [
+    "NC_001421.2"
+  ],
+  "files": [
+    {
+      "file": "inputs/NC_001421.2.gb",
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&id=NC_001421.2&rettype=gbwithparts&retmode=text",
+      "retrieved_utc": "2026-11-06T19:21:52+00:00",
+      "sha256": "30be1d6f419ddeaf6150b11b1b4be94991ca619a1cd0bb4483198ef6200f6dbc",
+      "bytes": 45392
+    },
+    {
+      "file": "inputs/NC_001421.2.cds_aa.fasta",
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&id=NC_001421.2&rettype=fasta_cds_aa&retmode=text",
+      "retrieved_utc": "2026-11-06T19:21:53+00:00",
+      "sha256": "b032c0e8b62e72478ec926fb7a05da91a92fd50650ad2b46b857fd04e4d875bc",
+      "bytes": 10908
+    },
+    {
+      "file": "inputs/NC_001421.2.fna",
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&id=NC_001421.2&rettype=fasta&retmode=text",
+      "retrieved_utc": "2026-11-06T19:21:55+00:00",
+      "sha256": "17264a8aed41fc0f491a965c2c5ad93a8cfb88beeb234ae836ab333cc1192925",
+      "bytes": 15198
+    }
+  ],
+  "ncbi_summaries": [
+    {
+      "accessionversion": "NC_001421.2",
+      "title": "Enterobacteria phage PRD1, complete genome",
+      "slen": 14927,
+      "createdate": "1993/04/28",
+      "updatedate": "2023/01/07",
+      "taxid": 10658,
+      "biomol": "genomic",
+      "topology": "linear"
+    }
+  ],
+  "ncbi_summary": {
+    "accessionversion": "NC_001421.2",
+    "title": "Enterobacteria phage PRD1, complete genome",
+    "slen": 14927,
+    "createdate": "1993/04/28",
+    "updatedate": "2023/01/07",
+    "taxid": 10658,
+    "biomol": "genomic",
+    "topology": "linear"
+  }
+}

@@ -1,0 +1,86 @@
+{
+  "method": "DeepTMHMM",
+  "batches": [
+    {
+      "batch": "b001",
+      "fasta": "raw/DeepTMHMM/b001.fasta",
+      "fasta_sha256": "4bb4e77f498747d0229be4af4ec85d4024553b81c7a153ba9529c202ebebf3e1",
+      "n_sequences": 500,
+      "n_residues": 149492,
+      "planned_utc": "2026-11-06T19:26:03+00:00",
+      "rerun": false
+    },
+    {
+      "batch": "b002",
+      "fasta": "raw/DeepTMHMM/b002.fasta",
+      "fasta_sha256": "d2c0a86e181e8d6833c5ecb9a450507c889edd4073dfa326a2204b32ea48f062",
+      "n_sequences": 500,
+      "n_residues": 149231,
+      "planned_utc": "2026-11-06T19:26:03+00:00",
+      "rerun": false
+    },
+    {
+      "batch": "b003",
+      "fasta": "raw/DeepTMHMM/b003.fasta",
+      "fasta_sha256": "ca897f1ecc3f3045a787ab6b08c51d2c9273d7cf7c9a45012d3453f501763f61",
+      "n_sequences": 500,
+      "n_residues": 137657,
+      "planned_utc": "2026-11-06T19:26:03+00:00",
+      "rerun": false
+    },
+    {
+      "batch": "b004",
+      "fasta": "raw/DeepTMHMM/b004.fasta",
+      "fasta_sha256": "cf3b4e0a38d9c9122e091f6521543bd1c4bff0f3c7b619dc56cbd71e34512ea3",
+      "n_sequences": 500,
+      "n_residues": 174864,
+      "planned_utc": "2026-11-06T19:26:03+00:00",
+      "rerun": false
+    },
+    {
+      "batch": "b005",
+      "fasta": "raw/DeepTMHMM/b005.fasta",
+      "fasta_sha256": "2cc9ae61c825a06510fe5cbf386a0606b096d11b9be94e9cc6ba8b8be0753e9f",
+      "n_sequences": 500,
+      "n_residues": 117865,
+      "planned_utc": "2026-11-06T19:26:03+00:00",
+      "rerun": false
+    },
+    {
+      "batch": "b006",
+      "fasta": "raw/DeepTMHMM/b006.fasta",
+      "fasta_sha256": "50f56160e7039386a8566ee8c681133b3a09446348ca74283a56450fa9b69217",
+      "n_sequences": 500,
+      "n_residues": 131804,
+      "planned_utc": "2026-11-06T19:26:03+00:00",
+      "rerun": false
+    },
+    {
+      "batch": "b007",
+      "fasta": "raw/DeepTMHMM/b007.fasta",
+      "fasta_sha256": "089d036a3a714b2f2b7187ff46e531aff749c6b69aeab371373b5e65e0bec338",
+      "n_sequences": 500,
+      "n_residues": 150331,
+      "planned_utc": "2026-11-06T19:26:03+00:00",
+      "rerun": false
+    },
+    {
+      "batch": "b008",
+      "fasta": "raw/DeepTMHMM/b008.fasta",
+      "fasta_sha256": "504edb7a7687799836b214ffc674dbb5c799c88908a6f5484787a5c47c4a87a5",
+      "n_sequences": 500,
+      "n_residues": 151050,
+      "planned_utc": "2026-11-06T19:26:03+00:00",
+      "rerun": false
+    },
+    {
+      "batch": "b009",
+      "fasta": "raw/DeepTMHMM/b009.fasta",
+      "fasta_sha256": "fdfceb8b90f3f4c380b01d680315e2c01ca7c610dde75c24e4b7ea0a0d4e2f64",
+      "n_sequences": 237,
+      "n_residues": 68300,
+      "planned_utc": "2026-11-06T19:26:03+00:00",
+      "rerun": false
+    }
+  ]
+}

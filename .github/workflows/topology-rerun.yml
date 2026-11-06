@@ -1,0 +1,66 @@
+# One-click re-run of the Dirty Science Canvas topology pipeline (dirty-science-canvas/).
+# Actions tab -> "Topology atlas re-run" -> Run workflow. Inputs are passed through environment variables (never interpolated into shell).
+name: Topology atlas re-run
+on:
+  workflow_dispatch:
+    inputs:
+      organism:
+        description: "Organism key(s), comma-separated (e.g. T4 or Ecoli_K12,Salmonella_LT2) — see dirty-science-canvas/scripts/config.py"
+        required: true
+        default: "phiX174"
+      proteins:
+        description: "Protein IDs, comma-separated (e.g. T4|T4p001), or 'all' for every eligible protein"
+        required: false
+        default: "all"
+      methods:
+        description: "Methods to re-run"
+        required: false
+        default: "Phobius,DeepTMHMM,TOPCONS2"
+      rebuild_only:
+        description: "Only normalize, rebuild atlases and validate (no new predictions)"
+        type: boolean
+        default: false
+permissions:
+  contents: write
+concurrency:
+  group: topology-rerun
+  cancel-in-progress: false
+jobs:
+  rerun:
+    runs-on: ubuntu-latest
+    timeout-minutes: 340
+    defaults:
+      run:
+        working-directory: dirty-science-canvas
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Install dependencies
+        run: |
+          pip install biopython==1.88 requests==2.34.2 suds==1.2.0 pybiolib==1.4.625
+          npm install --no-save playwright@1.63.0
+          npx playwright install --with-deps chromium
+      - name: Re-run and rebuild
+        env:
+          ORG: ${{ inputs.organism }}
+          PROTEINS: ${{ inputs.proteins }}
+          METHODS: ${{ inputs.methods }}
+          REBUILD_ONLY: ${{ inputs.rebuild_only }}
+        run: |
+          if [ "$REBUILD_ONLY" = "true" ]; then extra="--rebuild-only"; else extra=""; fi
+          python3 scripts/rerun.py --org "$ORG" --proteins "$PROTEINS" --methods "$METHODS" $extra
+      - name: Commit results
+        env:
+          ORG: ${{ inputs.organism }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A .
+          if git diff --cached --quiet; then echo "No changes"; exit 0; fi
+          git commit -m "dirty-science-canvas: re-run topology predictions for ${ORG}"
+          git push

@@ -1,0 +1,3004 @@
+{
+  "organism": "Salmonella phage P22",
+  "key": "P22",
+  "kind": "phage",
+  "accessions": [
+    "NC_002371.2"
+  ],
+  "gb_files": [
+    "NC_002371.2.gb"
+  ],
+  "n_cds_features": 72,
+  "n_proteins": 72,
+  "n_pseudogenes": 0,
+  "cds_fasta_records": 72,
+  "cds_fasta_unmatched": [],
+  "proteins": [
+    {
+      "protein_id": "P22|P22gp01",
+      "gene": "3",
+      "locus_tag": "P22gp01",
+      "product": "terminase small subunit",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_002371.2",
+      "start": 41461,
+      "stop": 225,
+      "strand": "+",
+      "location": "join{[41460:41724](+), [0:225](+)}",
+      "protein_accession": "YP_063714.1",
+      "db_xref": [
+        "GeneID:2944227"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MAAPKGNRFWEARSSHGRNPKFESPEALWAACCEYFEWVEANPLWEMKAFSYQGEVIQEPIAKMRAMTITGLTLFIDVTLETWRTYRLREDLSEVVTRAEQVIYDQKFSGAAADLLNANIIARDLGLKEQSQVEDVTPDKGDRDKRRSRIKELFNRGTGRDS",
+      "length": 162,
+      "sequence_sha256": "2d7148c613bf3347299bb9c4cf84454b05bad1e5959f5117096c71abd1b79d5c",
+      "annotation_flags": [
+        "joined_location"
+      ],
+      "source_record": "inputs/NC_002371.2.gb",
+      "cds_fasta_id": "lcl|NC_002371.2_prot_YP_063714.1_1",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "P22|P22gp02",
+      "gene": "2",
+      "locus_tag": "P22gp02",
+      "product": "terminase large subunit",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_002371.2",
+      "start": 203,
+      "stop": 1702,
+      "strand": "+",
+      "location": "[202:1702](+)",
+      "protein_accession": "YP_063734.1",
+      "db_xref": [
+        "GeneID:2944239"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MELDAILDNLSDEEQIELLELLEEEENYRNTHLLYEFAPYSKQREFIDAGHDYPERCFMAGNQLGKSFTGAAEVAFHLTGRYPGTKGYPADGKYGGEWKGKRFYEPVVFWIGGETNETVTKTTQRILCGRIEENDEPGYGSIPKEDIISWKKSPFFPNLVDHLLVKHHTADGVEDGISICYFKPYSQGRARWQGDTIHGVWFDEEPPYSIYGEGLTRTNKYGQFSILTFTPLMGMSDVVTKFLKNPSKSQKVVNMTIYDAEHYTDEQKEQIIASYPEHEREARARGIPTMGSGRIFQIPEETIKCQPFECPDHFYVIDAQDFGWNHPQAHIQLWWDKDADVFYLARVWKKSENTAVQAWGAVKSWANKIPVAWPHDGHQHEKGGGEQLKTQYADAGFSMLPDHATFPDGGNSVESGISELRDLMLEGRFKVFNTCEPFFEEFRLYHRDENGKIVKTNDDVLDATRYGYMMRRFARMMRDIRKPKEKKIPAPIRPVRRGR",
+      "length": 499,
+      "sequence_sha256": "8569032f0617540476b5a7f93825219cf760341703d5bcdc43d945b67b9c4738",
+      "annotation_flags": [
+        "alternative_start_codon_read_as_Met"
+      ],
+      "source_record": "inputs/NC_002371.2.gb",
+      "cds_fasta_id": "lcl|NC_002371.2_prot_YP_063734.1_2",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "P22|P22gp03",
+      "gene": "1",
+      "locus_tag": "P22gp03",
+      "product": "portal protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "N-terminal methionine removed",
+      "replicon": "NC_002371.2",
+      "start": 1702,
+      "stop": 3879,
+      "strand": "+",
+      "location": "[1701:3879](+)",
+      "protein_accession": "YP_063735.1",
+      "db_xref": [
+        "GeneID:2944241"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MADNENRLESILSRFDADWTASDEARREAKNDLFFSRVSQWDDWLSQYTTLQYRGQFDVVRPVVRKLVSEMRQNPIDVLYRPKDGARPDAADVLMGMYRTDMRHNTAKIAVNIAVREQIEAGVGAWRLVTDYEDQSPTSNNQVIRREPIHSACSHVIWDSNSKLMDKSDARHCTVIHSMSQNGWEDFAEKYDLDADDIPSFQNPNDWVFPWLTQDTIQIAEFYEVVEKKETAFIYQDPVTGEPVSYFKRDIKDVIDDLADSGFIKIAERQIKRRRVYKSIITCTAVLKDKQLIAGEHIPIVPVFGEWGFVEDKEVYEGVVRLTKDGQRLRNMIMSFNADIVARTPKKKPFFWPEQIAGFEHMYDGNDDYPYYLLNRTDENSGDLPTQPLAYYENPEVPQANAYMLEAATSAVKEVATLGVDTEAVNGGQVAFDTVNQLNMRADLETYVFQDNLATAMRRDGEIYQSIVNDIYDVPRNVTITLEDGSEKDVQLMAEVVDLATGEKQVLNDIRGRYECYTDVGPSFQSMKQQNRAEILELLGKTPQGTPEYQLLLLQYFTLLDGKGVEMMRDYANKQLIQMGVKKPETPEEQQWLVEAQQAKQGQQDPAMVQAQGVLLQGQAELAKAQNQTLSLQIDAAKVEAQNQLNAARIAEIFNNMDLSKQSEFREFLKTVASFQQDRSEDARANAELLLKGDEQTHKQRMDIANILQSQRQNQPSGSVAETPQ",
+      "length": 725,
+      "sequence_sha256": "17a5fe160d8a30d2fa0956218129afd22311c4c48c7e0edc2a00fb881ad4a958",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_002371.2.gb",
+      "cds_fasta_id": "lcl|NC_002371.2_prot_YP_063735.1_3",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "P22|P22gp04",
+      "gene": "8",
+      "locus_tag": "P22gp04",
+      "product": "head scaffolding protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_002371.2",
+      "start": 3893,
+      "stop": 4804,
+      "strand": "+",
+      "location": "[3892:4804](+)",
+      "protein_accession": "YP_063736.1",
+      "db_xref": [
+        "GeneID:2944242"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MEPTTEIQATEDLTLSGDHAAASADSLVVDNANDNAGQEEGFEIVLKDDETAPKQDPAKNAEFARRRIERKRQRELEQQMEAVKRGELPESLRVNPDLPPQPDINAYLSEEGLAKYDYDNSRALAAFNAANTEWLMKAQDARSNAVAEQGRKTQEFTQQSAQYVEAARKHYDAAEKLNIPDYQEKEDAFMQLVPPAVGADIMRLFPEKSAALMYHLGANPEKARQLLAMDGQSALIELTRLSERLTLKPRGKQISSAPPADQPITGDVSAANKDAIRKQMDAAASKGDVETYRKLKAKLKGIR",
+      "length": 303,
+      "sequence_sha256": "bdd293b2a1a0524331491d3c07c4a61a780159d818b5a83cb65d7f36c8595750",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_002371.2.gb",
+      "cds_fasta_id": "lcl|NC_002371.2_prot_YP_063736.1_4",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "P22|P22gp05",
+      "gene": "5",
+      "locus_tag": "P22gp05",
+      "product": "head protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "N-terminal methionine removed",
+      "replicon": "NC_002371.2",
+      "start": 4804,
+      "stop": 6096,
+      "strand": "+",
+      "location": "[4803:6096](+)",
+      "protein_accession": "NP_059630.1",
+      "db_xref": [
+        "GeneID:1262831"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MALNEGQIVTLAVDEIIETISAITPMAQKAKKYTPPAASMQRSSNTIWMPVEQESPTQEGWDLTDKATGLLELNVAVNMGEPDNDFFQLRADDLRDETAYRRRIQSAARKLANNVELKVANMAAEMGSLVITSPDAIGTNTADAWNFVADAEEIMFSRELNRDMGTSYFFNPQDYKKAGYDLTKRDIFGRIPEEAYRDGTIQRQVAGFDDVLRSPKLPVLTKSTATGITVSGAQSFKPVAWQLDNDGNKVNVDNRFATVTLSATTGMKRGDKISFAGVKFLGQMAKNVLAQDATFSVVRVVDGTHVEITPKPVALDDVSLSPEQRAYANVNTSLADAMAVNILNVKDARTNVFWADDAIRIVSQPIPANHELFAGMKTTSFSIPDVGLNGIFATQGDISTLSGLCRIALWYGVNATRPEAIGVGLPGQTA",
+      "length": 430,
+      "sequence_sha256": "5f77a32bc38256cacf05e2cdaedb95b0eea2aa41f47f28b7d9ec03f4d26fd232",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_002371.2.gb",
+      "cds_fasta_id": "lcl|NC_002371.2_prot_NP_059630.1_5",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "P22|P22gp06",
+      "gene": "orf69",
+      "locus_tag": "P22gp06",
+      "product": "hypothetical protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_002371.2",
+      "start": 6135,
+      "stop": 6344,
+      "strand": "+",
+      "location": "[6134:6344](+)",
+      "protein_accession": "NP_059631.1",
+      "db_xref": [
+        "GeneID:1262829"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MKIAIYKPGGSIMVWGVMAQMKVIDSSELPEYVKDGWLDHPSKLLPVEADDVKPRKGRKPKAVSDADKD",
+      "length": 69,
+      "sequence_sha256": "5f05de5511c0dad177a9ecfa1b60228fd657c6624b1a0e69525bd72259a13f60",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_002371.2.gb",
+      "cds_fasta_id": "lcl|NC_002371.2_prot_NP_059631.1_6",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "P22|P22gp07",
+      "gene": "4",
+      "locus_tag": "P22gp07",
+      "product": "head-tail adaptor Ad3",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_002371.2",
+      "start": 6328,
+      "stop": 6828,
+      "strand": "+",
+      "location": "[6327:6828](+)",
+      "protein_accession": "NP_059632.1",
+      "db_xref": [
+        "GeneID:1262828"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MQIKTKGDLVRAALRKLGVASDATLTDVEPQSMQDAVDDLEAMMAEWYQDGKGIITGYVFSDDENPPAEGDDHGLRSSAVSAVFHNLACRIAPDYALEATAKIIATAKYGKELLYKQTAISRAKRAPYPSRMPTGSGNSFANLNEWHYFPGEQNADSTTPHDEGNG",
+      "length": 166,
+      "sequence_sha256": "6525e37828d7050ed8cabf017d023df82b4d89f34bf2338a448f28ac835f8cad",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_002371.2.gb",
+      "cds_fasta_id": "lcl|NC_002371.2_prot_NP_059632.1_7",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "P22|P22gp08",
+      "gene": "10",
+      "locus_tag": "P22gp08",
+      "product": "head closure Hc3",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_002371.2",
+      "start": 6788,
+      "stop": 8206,
+      "strand": "+",
+      "location": "[6787:8206](+)",
+      "protein_accession": "NP_059633.1",
+      "db_xref": [
+        "GeneID:1262840"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MPIQQLPMMKGMGKDFKNADYIDYLPVNMLATPKEILNSSGYLRSFPGITKRYDMNGVSRGVEYNTAQNAVYRVCGGKLYKGESEVGDVAGSGRVSMAHGRTSQAVGVNGQLVEYRYDGTVKTVSNWPADSGFTQYELGSVRDITRLRGRYAWSKDGTDSWFITDLEDESHPDRYSAQYRAESQPDGIIGIGTWRDFIVCFGSSTIEYFSLTGATTAGAALYVAQPSLMVQKGIAGTYCKTPFADSYAFISHPATGAPSVYIIGSGQASPIATASIEKIIRSYTAEEMATGVMETLRFDSHELLIIHLPRHVLVYDASSSQNGPQWCVLKTGLYDDVYRGVDFMYEGNQITCGDKSEAVVGQLQFDISSQYDKQQEHLLFTPLFKADNARCFDLEVESSTGVAQYADRLFLSATTDGINYGREQMIEQNEPFVYDKRVLWKRVGRIRRLIGFKLRVITKSPVTLSGCQIRLE",
+      "length": 472,
+      "sequence_sha256": "d79d9600813a6924d8283cddf7e72a728a4658e56525aeb7f20cbd3c8a5b288e",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_002371.2.gb",
+      "cds_fasta_id": "lcl|NC_002371.2_prot_NP_059633.1_8",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "P22|P22gp09",
+      "gene": "26",
+      "locus_tag": "P22gp09",
+      "product": "tail needle protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_002371.2",
+      "start": 8210,
+      "stop": 8911,
+      "strand": "+",
+      "location": "[8209:8911](+)",
+      "protein_accession": "YP_063715.1",
+      "db_xref": [
+        "GeneID:2944243"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MADPSLNNPVVIQATRLDASILPRNVFSKSYLLYVIAQGTDVGAIAGKANEAGQGAYDAQVKNDEQDVELADHEARIKQLRIDVDDHESRITANTKAITALNVRVTTAEGEIASLQTNVSALDGRVTTAENNISALQADYVSKTATTSQSLASPLNVTTSYSVGGKKVVGARQTGWTAATGTANKGVFDADLTFAVSDTYTQSEIQAIANALITERRRTKALEDALRAHGLID",
+      "length": 233,
+      "sequence_sha256": "72c1fdeb1f935cc6a34b57b78a49875f995ad6966479aaddbf5473c12c2ee868",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_002371.2.gb",
+      "cds_fasta_id": "lcl|NC_002371.2_prot_YP_063715.1_9",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "P22|P22gp10",
+      "gene": "14",
+      "locus_tag": "P22gp10",
+      "product": "head morphogenesis",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_002371.2",
+      "start": 8911,
+      "stop": 9366,
+      "strand": "+",
+      "location": "[8910:9366](+)",
+      "protein_accession": "YP_063716.1",
+      "db_xref": [
+        "GeneID:2944244"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MITFTPTRNIDLIEMVGNHPDIIAGSNNGDGYDYKPECRYFEVNVHGQFGGIVYYNEIQPMTFDCHAMYLPEIRGFSKEIGLAFWRYILTNTTVQCVTSFAARKFRHGQMYCAMIGLKRVGTIKKYFKGVDDVTFYAATREELTELLNNGR",
+      "length": 151,
+      "sequence_sha256": "01a5295ab7eae5d84d19d90fae47d16ed0473e1765550de6f7094a80ffdf0c22",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_002371.2.gb",
+      "cds_fasta_id": "lcl|NC_002371.2_prot_YP_063716.1_10",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "P22|P22gp11",
+      "gene": "7",
+      "locus_tag": "P22gp11",
+      "product": "DNA ejection",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "N-terminal 20 amino acids cleaved by host Salmonella OpdA protease",
+      "replicon": "NC_002371.2",
+      "start": 9369,
+      "stop": 10058,
+      "strand": "+",
+      "location": "[9368:10058](+)",
+      "protein_accession": "YP_063717.1",
+      "db_xref": [
+        "GeneID:2944245"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MLYAFTLGRKLRGEEPSYPEKGGKGGADKSAKYAAEAQKYAADLQNQQFNTIMNNLKPFTPLADKYIGSLEGLSSLEGQGQALNNYYNSQQYQDLAGQARYQNLAAAEATGGLGSTATSNQLSAIAPTLGQQWLSGQMNNYQNLANIGLGALQGQANAGQTYANNMSQISQQSAALAAANANRPSAMQSAIGGGASGAIAGAGLAKLIGSSTPWGAAIGGGIGLLGSLF",
+      "length": 229,
+      "sequence_sha256": "3a1cca7d58555aae84859985e1c0fa72ac00fccc253dc12d7aa68e6a503b21ee",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_002371.2.gb",
+      "cds_fasta_id": "lcl|NC_002371.2_prot_YP_063717.1_11",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "P22|P22gp12",
+      "gene": "20",
+      "locus_tag": "P22gp12",
+      "product": "released from the phage upon host infection",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_002371.2",
+      "start": 10069,
+      "stop": 11484,
+      "strand": "+",
+      "location": "[10068:11484](+)",
+      "protein_accession": "NP_059637.1",
+      "db_xref": [
+        "GeneID:1262812"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MATWQQGINSGGFLAGIGAQNENAPKARDINATLGLIRENNDLARSGANNVALTGLRGLAGVADIYNQEQQQKALNAFNQVHANAWATGDPSGLFKFAQENPAFVAQAQQAFSGLNEQQRNDMGDLAMKANVALSQGPEAYSKFITDNKDRLNRVGANPDWMIQTGVQNPEQLSHMLTTMSLGALGPEKAFAVQDKMVGREIDRGRLAETIRSNKAGEGLQARGQNITMRGQDMSAATARRGQDLATQRANARTISGSEGNRVVQLADGRTVSVGGKLHGAGANAFYEGIDDNGNMVRVPASAIAAPPTSAASAQNYAMKKDIDAIANADASALDFMTGMTGGAGNPAIGADVRSRLTGKEQRQLYNSAQRIQGRMQNQGVAAARDMGASGINTIAEAKMYFQGMPQVDYSSPEAMQQSIREIQEYTNNYNQQYNVNVGNGGLKSPRQQPDTQQSAGGSYTSKSGIKFTVE",
+      "length": 471,
+      "sequence_sha256": "7316a6ee5113e55ba44c743fb972d33c4573091c9c38c83d769185ad43b0fc6d",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_002371.2.gb",
+      "cds_fasta_id": "lcl|NC_002371.2_prot_NP_059637.1_12",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "P22|P22gp13",
+      "gene": "16",
+      "locus_tag": "P22gp13",
+      "product": "head morphogenesis",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_002371.2",
+      "start": 11484,
+      "stop": 13313,
+      "strand": "+",
+      "location": "[11483:13313](+)",
+      "protein_accession": "YP_063718.1",
+      "db_xref": [
+        "GeneID:2944238"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MKVTANGKTFNFPDGTSTEDIGAAVDEYFAGQASAAETQPAEQQEEPQQPEQSLMQRAGDLLTGGQSAGQIAEQAGRGLVNIPFDVLQGGASLINAISQGLGGPKVLDDVYRPVDRPTDPYAQAGESIGGYLIPGAGVAGNMAIGSVAEAANQQGDFAGNVAKNAAVNLGAQGLLSGAAKLVGRGITAARGEIAPEARQLIDTAESMGVKPMTSDMIKPGNAFTRSLMQGGEGALLGTGGKRAEQYAIRSKLLGDYFDRVGGYNPDDIVKSMTSTVGGRKNAAGAVRDEIVNRMGSAPVGTTNSINAIDTNIARLEKLGTSADQRLLTALKNLKGELNSGNVDFDLLQQHRTAFRTNVQGDAMVFPNQAKAATNMVENAMTRDLRNAVGKSLGPQDAAKYLKSNSDFANIYNKVLNKRISNTLNKARSEYTPELINTVVFSRKPSDIKRIWSSLDNKGKDAMRAAYISKIAEKTGDSPAKFITEVNKLKAQSGGEIYNTIFSGRHMKELDALHDVLRQTARSDSANVVTQTGQALANPVRLGAAIPTLGKSLAAEAGYGLAMRVYESKPIRNMLLRLANTKPGTPAYERALNQAATAVRPLLANEATRQ",
+      "length": 609,
+      "sequence_sha256": "24eff9d4dcc9d23c97180239a2f07441dc1fb48453e75f3d268ef59972f5466e",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_002371.2.gb",
+      "cds_fasta_id": "lcl|NC_002371.2_prot_YP_063718.1_13",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "P22|P22gp14",
+      "gene": "sieA",
+      "locus_tag": "P22gp14",
+      "product": "superinfection exclusion SieA-like",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_002371.2",
+      "start": 13336,
+      "stop": 13830,
+      "strand": "-",
+      "location": "[13335:13830](-)",
+      "protein_accession": "NP_059639.1",
+      "db_xref": [
+        "GeneID:1262788"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MSDSMSYAVLVAATLFLGIGLQIAWLFFSNFIKRKRLESRISEVSIAIGKNAKNPENEAYVLNYLKEKFSPERFENRITDALGLIISVIHIPLSLLITVWYFAMIAGRIFGFMNIEPVVLWVPMILQLLLSIAIFIFSVFIKIVFGRYPGEANGFNKEFIKTIK",
+      "length": 164,
+      "sequence_sha256": "c4bc47a0543f8938d690636cc9dee23d7311ea863c808b6fb84bb4ef2088f5d8",
+      "annotation_flags": [
+        "alternative_start_codon_read_as_Met"
+      ],
+      "source_record": "inputs/NC_002371.2.gb",
+      "cds_fasta_id": "lcl|NC_002371.2_prot_NP_059639.1_14",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "P22|P22gp16",
+      "gene": "orf59a",
+      "locus_tag": "P22gp16",
+      "product": "hypothetical protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_002371.2",
+      "start": 14240,
+      "stop": 14419,
+      "strand": "-",
+      "location": "[14239:14419](-)",
+      "protein_accession": "NP_059640.1",
+      "db_xref": [
+        "GeneID:1262839"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MAKKPGENTGKNGGIYQEVGPRGGKKDNFATVKDNERLPPTTKPGNGWVLDKRTPDSKK",
+      "length": 59,
+      "sequence_sha256": "ad00037999c0f2f355bbd77159093fc93722c943864a71dbdd8067b7ebdd140f",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_002371.2.gb",
+      "cds_fasta_id": "lcl|NC_002371.2_prot_NP_059640.1_15",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "P22|P22gp15",
+      "gene": "mnt",
+      "locus_tag": "P22gp15",
+      "product": "partition protein ATPase",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "N-terminal methionine removed",
+      "replicon": "NC_002371.2",
+      "start": 14519,
+      "stop": 14770,
+      "strand": "-",
+      "location": "[14518:14770](-)",
+      "protein_accession": "NP_059641.1",
+      "db_xref": [
+        "GeneID:1262808"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MARDDPHFNFRMPMEVREKLKFRAEANGRSMNSELLQIVQDALSKPSPVTGYRNDAERLADEQSELVKKMVFDTLKDLYKKTT",
+      "length": 83,
+      "sequence_sha256": "39459f0a8c9807268a9071d858a1e6e8b22fa4d10f6a603e7c56efbb1e9ce8f6",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_002371.2.gb",
+      "cds_fasta_id": "lcl|NC_002371.2_prot_NP_059641.1_16",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "P22|P22gp18",
+      "gene": "arc",
+      "locus_tag": "P22gp18",
+      "product": "Arc-like repressor",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_002371.2",
+      "start": 14861,
+      "stop": 15022,
+      "strand": "+",
+      "location": "[14860:15022](+)",
+      "protein_accession": "NP_059642.1",
+      "db_xref": [
+        "GeneID:1262795"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MKGMSKMPQFNLRWPREVLDLVRKVAEENGRSVNSEIYQRVMESFKKEGRIGA",
+      "length": 53,
+      "sequence_sha256": "d9129d0b8c97fbc359fbb68ff42c478f2adb294c4614191d368069dfc031dce0",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_002371.2.gb",
+      "cds_fasta_id": "lcl|NC_002371.2_prot_NP_059642.1_17",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "P22|P22gp17",
+      "gene": "ant",
+      "locus_tag": "P22gp17",
+      "product": "Ant",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "antirepressor",
+      "replicon": "NC_002371.2",
+      "start": 15091,
+      "stop": 15993,
+      "strand": "+",
+      "location": "[15090:15993](+)",
+      "protein_accession": "NP_059643.1",
+      "db_xref": [
+        "GeneID:1262786"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MNSIAILEAVNTSYVPFNGQHVLTAMVAGVAYVAMKPVVDNIGLSWSSQVQKLLKMKDKFNYVDIDMVAGDMKKRLMGCIPLKKLNGWLFSINPEKVRADIRDKLIKYQEECFTVLYDYWTKGKAENPRKKTSVDERTPLRDAVNMLVSKKHLMYPEAYAMIHQRFNVESIEELEASQIPLAVEYIHRVVLEGEFIGKQEKKTNDLSAKEANSLVWLWDYANRSQALFRELYPAMRQIQSNYSGKCYDYGHEFSYIIGIARDVLINHTRDVDINEPDGPTNLSAWMRLKDKELPPSLHRY",
+      "length": 300,
+      "sequence_sha256": "503ef39fc87ccebc7eaa5729fdd2b7c66d65b57dcb6b106378a378f5345ebb76",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_002371.2.gb",
+      "cds_fasta_id": "lcl|NC_002371.2_prot_NP_059643.1_18",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "P22|P22gp19",
+      "gene": "9",
+      "locus_tag": "P22gp19",
+      "product": "tail spike protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_002371.2",
+      "start": 16204,
+      "stop": 18207,
+      "strand": "+",
+      "location": "[16203:18207](+)",
+      "protein_accession": "NP_059644.1",
+      "db_xref": [
+        "GeneID:1262799"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MTDITANVVVSNPRPIFTESRSFKAVANGKIYIGQIDTDPVNPANQIPVYIENEDGSHVQITQPLIINAAGKIVYNGQLVKIVTVQGHSMAIYDANGSQVDYIANVLKYDPDQYSIEADKKFKYSVKLSDYPTLQDAASAAVDGLLIDRDYNFYGGETVDFGGKVLTIECKAKFIGDGNLIFTKLGKGSRIAGVFMESTTTPWVIKPWTDDNQWLTDAAAVVATLKQSKTDGYQPTVSDYVKFPGIETLLPPNAKGQNITSTLEIRECIGVEVHRASGLMAGFLFRGCHFCKMVDANNPSGGKDGIITFENLSGDWGKGNYVIGGRTSYGSVSSAQFLRNNGGFERDGGVIGFTSYRAGESGVKTWQGTVGSTTSRNYNLQFRDSVVIYPVWDGFDLGADTDMNPELDRPGDYPITQYPLHQLPLNHLIDNLLVRGALGVGFGMDGKGMYVSNITVEDCAGSGAYLLTHESVFTNIAIIDTNTKDFQANQIYISGACRVNGLRLIGIRSTDGQGLTIDAPNSTVSGITGMVDPSRINVANLAEEGLGNIRANSFGYDSAAIKLRIHKLSKTLDSGALYSHINGGAGSGSAYTQLTAISGSTPDAVSLKVNHKDCRGAEIPFVPDIASDDFIKDSSCFLPYWENNSTSLKALVKKPNGELVRLTLATL",
+      "length": 667,
+      "sequence_sha256": "5265ffe282eb1bd1994e9cf6866a200bcce5af28064483c061730d974d9e7dc2",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_002371.2.gb",
+      "cds_fasta_id": "lcl|NC_002371.2_prot_NP_059644.1_19",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "P22|P22gp20",
+      "gene": "gtrC",
+      "locus_tag": "P22gp20",
+      "product": "GtrC-like O-antigen conversion translocase",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_002371.2",
+      "start": 18266,
+      "stop": 19726,
+      "strand": "-",
+      "location": "[18265:19726](-)",
+      "protein_accession": "YP_063719.1",
+      "db_xref": [
+        "GeneID:2944240"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MVKFNSNDRIFISIFLGLAIIYTFPLLTHQSFFVDDLGRSLYGGLGWSGNGRPLSDFIFYIINFGTPIIDASPLPLMLGIVILALALSCIREKLFGDDYITASLCFMMILANPFFIENLSYRYDSLTMCMSVAISIISSYVAYQYKPINIIISSILTIAFLSLYQAALNTYAIFLLAFIISDVVKKNSISNITKNTASSVAGLIVGYFAYSYFIAKRLVTGSYNIEHSKIIEINSSLFEGIISNVLSFYRMFSTILNGDNYLIYYSLFFALIISLIVIVLKAIKRDENKKTKLLLVVLILLASMFFIIGPMIFLKSPIYAPRVLIGMGGFMFFCCLCVFYAFEDKQLISRIYFSFILLISTIFSYGAYNAINAQFQLEESIVNRISQDIDYLGFGRDKKNIKFIGTEPYAPINENIVIKHPLMRELIPRIINNDWMWSEVLMQRNVFSRNYRLYDKEVKLENGWKKSGNNVYDIGVVGETIVVRFN",
+      "length": 486,
+      "sequence_sha256": "f283fb55680cff573602d54c77863ddd84697a63b7e26a7b6d76f68f6a31f2c1",
+      "annotation_flags": [
+        "transl_except"
+      ],
+      "source_record": "inputs/NC_002371.2.gb",
+      "cds_fasta_id": "lcl|NC_002371.2_prot_YP_063719.1_20",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "P22|P22gp21",
+      "gene": "gtrB",
+      "locus_tag": "P22gp21",
+      "product": "GtrB glycosyltransferase for O-antigen conversion",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "similar to bactoprenol glucosyl transferases",
+      "replicon": "NC_002371.2",
+      "start": 19713,
+      "stop": 20645,
+      "strand": "-",
+      "location": "[19712:20645](-)",
+      "protein_accession": "NP_059582.1",
+      "db_xref": [
+        "GeneID:1262848"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MKISLVVPVFNEEDTIPIFYKTVREFNELKEYEIEIVFINDGSKDATESIINKIAASDPLVIPLSFTRNFGKEPALFAGLDHATGDAVIPIDVDLQDPIEVIPHLIEKWQAGADMVLAKRSDRSTDGRMKRKTAEWFYKLHNKISNPKIEENVGDFRLMSRAVVENIKQMPERNLFMKGVLSWVGGKTDVVKYARAERVAGDSKFNGWKLWNLALEGITSFSTFPLRIWTYIGLFIAGMSFLYGAWMIIDKLIFGNNVPGYPSLLVSVLFLGGVQLIGIGILGEYIGRIYIETKQRPKYILKRKGFKSEI",
+      "length": 310,
+      "sequence_sha256": "032f6af1766d325a3b7a5c2b02c998db0ffffb8be66e42e88604787aeb951a12",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_002371.2.gb",
+      "cds_fasta_id": "lcl|NC_002371.2_prot_NP_059582.1_21",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "P22|P22gp22",
+      "gene": "gtrA",
+      "locus_tag": "P22gp22",
+      "product": "GtrA-like O-antigen conversion",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "similar to glucosyl undecaprenyl phosphate flipases",
+      "replicon": "NC_002371.2",
+      "start": 20642,
+      "stop": 21004,
+      "strand": "-",
+      "location": "[20641:21004](-)",
+      "protein_accession": "NP_059583.1",
+      "db_xref": [
+        "GeneID:1262849"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MLKLFAKYTSIGVLNTLIHWGVFAFCVYGMHTHQALANFSGFVIAVSFSFYANARFTFNATTTTLRYMMYVGFMGTLSAVVGWMADQCSLPPLITLITFSAISLVCGFIYSRFIVFRDIR",
+      "length": 120,
+      "sequence_sha256": "6bcc9ab98f3f8ad03300cb21d7f82afd134cd37a0c1ad83dfad71d92300e135c",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_002371.2.gb",
+      "cds_fasta_id": "lcl|NC_002371.2_prot_NP_059583.1_22",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "P22|P22gp23",
+      "gene": "int",
+      "locus_tag": "P22gp23",
+      "product": "integrase",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_002371.2",
+      "start": 21353,
+      "stop": 22516,
+      "strand": "-",
+      "location": "[21352:22516](-)",
+      "protein_accession": "NP_059584.1",
+      "db_xref": [
+        "GeneID:1262851"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MSLFRRGETWYASFTLPNGKRFKQSLGTKDKRQATELHDKLKAEAWRVSKLGETPDMTFEGACVRWLEEKAHKKSLDDDKSRIGFWLQHFAGMQLKDITETKIYSAIQKITNRRHEENWKLMDEACRKNGKQPPVFKPKPAAVATKATHLSFIKALLRAAEREWKMLDKAPIIKVPQPKNKRIRWLEPHEAKRLIDECQEPLKSVVEFALSTGLRRSNIINLEWQQIDMQRKVAWIHPEQSKSNHAIGVALNDTACRVLKKQIGNHHKWVFVYKESSTKPDGTKSPVVRKMRYDANTAWRAALKRAGIEDFRFHDLRHTWASWLVQAGVPISVLQEMGGWESIEMVRRYAHLAPNHLTEHARQIDSIFGTSVPNMSHSKNKEGTNNT",
+      "length": 387,
+      "sequence_sha256": "beb023cff2909215d2987d87cca28c2faa61859860e4339bd234584c40e4c7f1",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_002371.2.gb",
+      "cds_fasta_id": "lcl|NC_002371.2_prot_NP_059584.1_23",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "P22|P22gp24",
+      "gene": "xis",
+      "locus_tag": "P22gp24",
+      "product": "excisionase",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_002371.2",
+      "start": 22393,
+      "stop": 22743,
+      "strand": "-",
+      "location": "[22392:22743](-)",
+      "protein_accession": "NP_059585.1",
+      "db_xref": [
+        "GeneID:1262794"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MESHSLTLDEACAFLKISRPTATNWIRTGRLQATRKDPTKPKSPYLTTRQACIAALQSPLHTVQVSAGDDITEELKCHYSAEVKPGTPVSHCRTAKDLSSLLGQRTKGRPQSFMTS",
+      "length": 116,
+      "sequence_sha256": "d0d83ed59d6b670992a5ce63f43bc78d75ce7d7bd2b67b1ce505476d90052464",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_002371.2.gb",
+      "cds_fasta_id": "lcl|NC_002371.2_prot_NP_059585.1_24",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "P22|P22gp25",
+      "gene": "eaC",
+      "locus_tag": "P22gp25",
+      "product": "EaC",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_002371.2",
+      "start": 22746,
+      "stop": 23381,
+      "strand": "-",
+      "location": "[22745:23381](-)",
+      "protein_accession": "YP_063720.1",
+      "db_xref": [
+        "GeneID:2944222"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MSGQSKYYDYYMVEGEDVKELIQSYDTINDQRNSILTTAAEKVGAIAWTTARSWGGEGGLLQSFVWEKGYEFPCQITIKREDFLDGKRVVIARGKGNTKEGRAYNKELDAIMHNANAKLKSLPEWNYYITNHYGIMRTGIGGQSGRGFGFVMLSTYGGKHPQRDDCLIFAIPNNKEERHGVVVIPDAFKKITYGQFYDIANAKEDEEETAE",
+      "length": 211,
+      "sequence_sha256": "a5df2ebb6b84ba67095175990458b7a123d0572937887e234fc27ae3118c652b",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_002371.2.gb",
+      "cds_fasta_id": "lcl|NC_002371.2_prot_YP_063720.1_25",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "P22|P22gp26",
+      "gene": "eaG",
+      "locus_tag": "P22gp26",
+      "product": "EaG",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_002371.2",
+      "start": 23482,
+      "stop": 23661,
+      "strand": "-",
+      "location": "[23481:23661](-)",
+      "protein_accession": "NP_059587.1",
+      "db_xref": [
+        "GeneID:1262797"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MSCPKCGSGNIAKEKTMRGWSDDYVCCDCGYNDSKDAFGERGKNEFVRINKERKGNEKS",
+      "length": 59,
+      "sequence_sha256": "4e921fd2c51c4a63940bd0970d258e948fbee3db27397185102df4fd5f11dab3",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_002371.2.gb",
+      "cds_fasta_id": "lcl|NC_002371.2_prot_NP_059587.1_26",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "P22|P22gp27",
+      "gene": "eaA",
+      "locus_tag": "P22gp27",
+      "product": "EaA",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_002371.2",
+      "start": 23758,
+      "stop": 24711,
+      "strand": "-",
+      "location": "[23757:24711](-)",
+      "protein_accession": "NP_059588.1",
+      "db_xref": [
+        "GeneID:1262801"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MTTITKERIELFVKSPLENGLTRGEQMELARIALASLDAETVRYLNKFSGTCVTLEQQPNAADDVAVYIPLYAAPPVPERERIRREHAEWSDKTFGDVGPVGPLKHLSKEALEAAADPSDPLEWADMQFLLWDAQRRMGISDEFITRAMIEKLEINKTRQWPEPKDGEPRLHIKEQPESVVPEECPAELPYAQVKAVADLYALCWQSGEVVTYTPDPEKATIWINNYSGTCVQEYVKLERLQEALAGNSPVIPGGWISCSERMPDNDESKPIAIFTGKCLGQGMFVATYDDDGFFDYWEGMEIIGVSHWMQLPDPPL",
+      "length": 317,
+      "sequence_sha256": "b1f4581a360a2951505fdd03b899941dae51abfcc3da5d33bfbc5c443f226cff",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_002371.2.gb",
+      "cds_fasta_id": "lcl|NC_002371.2_prot_NP_059588.1_27",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "P22|P22gp28",
+      "gene": "eaI",
+      "locus_tag": "P22gp28",
+      "product": "EaI",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "start site not confirmed",
+      "replicon": "NC_002371.2",
+      "start": 24715,
+      "stop": 24909,
+      "strand": "-",
+      "location": "[24714:24909](-)",
+      "protein_accession": "NP_059589.1",
+      "db_xref": [
+        "GeneID:1262798"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MSMKIGEHMKPVIELLEELNGNDTDAKLKLLALVISEYMLNADVTGFEVSAGRMKVAVDISVED",
+      "length": 64,
+      "sequence_sha256": "6125222db7b1c9fd7826519e80e6d16041fdc0afa14302183105865dacfd45d6",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_002371.2.gb",
+      "cds_fasta_id": "lcl|NC_002371.2_prot_NP_059589.1_28",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "P22|P22gp29",
+      "gene": "eaD",
+      "locus_tag": "P22gp29",
+      "product": "EaD",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_002371.2",
+      "start": 24906,
+      "stop": 25499,
+      "strand": "-",
+      "location": "[24905:25499](-)",
+      "protein_accession": "YP_063721.1",
+      "db_xref": [
+        "GeneID:2944223"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MSNIDKQALREEFQYMQDHYSDPADRARQVIYIAAEALLDELDKKQQYIKLRDQEDEDIALTVGKLRVELEAAKKRMTEQSAIVAAAEKLVRCKGRYHSELNYRALAKLFGVITPDLPPLEHENVHYADAAEVEITALRQRIQELEAKLETDDKLQDGAFRDGLKAGFSYGQTDDQSGFTQCMSAYSTRAGIKVKGE",
+      "length": 197,
+      "sequence_sha256": "dd90456a50047001d8ac2f5f357c815018141808885e7bfb08aa669374548c03",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_002371.2.gb",
+      "cds_fasta_id": "lcl|NC_002371.2_prot_YP_063721.1_29",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "P22|P22gp30",
+      "gene": "eaF",
+      "locus_tag": "P22gp30",
+      "product": "EaF",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_002371.2",
+      "start": 25496,
+      "stop": 25855,
+      "strand": "-",
+      "location": "[25495:25855](-)",
+      "protein_accession": "YP_063722.1",
+      "db_xref": [
+        "GeneID:2944224"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MSNIDKLNDHELVDLKRDIERELKRRAEGPKITTYYVVSCITDAQHFTDMDCALRCLKRVTEDLMEWVAESPENRDYVNRCTGIVGAKLQVEEMNLDHFNMCVAEKYFDDICYPPETAQ",
+      "length": 119,
+      "sequence_sha256": "ce97a24691a953bbcd5dd0e76fc0c7fb0cccb79b780629c40521b4a492e14b30",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_002371.2.gb",
+      "cds_fasta_id": "lcl|NC_002371.2_prot_YP_063722.1_30",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "P22|P22gp31",
+      "gene": "orf45",
+      "locus_tag": "P22gp31",
+      "product": "hypothetical protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_002371.2",
+      "start": 25830,
+      "stop": 25967,
+      "strand": "-",
+      "location": "[25829:25967](-)",
+      "protein_accession": "YP_063723.1",
+      "db_xref": [
+        "GeneID:2944225"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MITGTSNYDEVPTIPCKICGGYFKADDPENHKCEGQPNEQHRQTQ",
+      "length": 45,
+      "sequence_sha256": "5e1f3d8ab8b72245170428a7c3cc7ae3e4b3338244e0c826acc880fd9ad7951c",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_002371.2.gb",
+      "cds_fasta_id": "lcl|NC_002371.2_prot_YP_063723.1_31",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "P22|P22gp32",
+      "gene": "eaE",
+      "locus_tag": "P22gp32",
+      "product": "EaE",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_002371.2",
+      "start": 25964,
+      "stop": 26461,
+      "strand": "-",
+      "location": "[25963:26461](-)",
+      "protein_accession": "NP_059592.1",
+      "db_xref": [
+        "GeneID:1262806"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MQQVKIYTASPSDLSPPVQSESFCVDLVLASDYRELEAKCAALVVENGALKKSEVEFNDYCRHECEDVGDTWVDDFTETPATDAFLAEMRAQAHKEGAYFVANRMLAAWDAGFIDDTAKNAADIARMILTSTEFMADAPEGDFDRSFADGVIEDIAAQLRKGVQS",
+      "length": 165,
+      "sequence_sha256": "4c1076a1345d2b96a7d519b89c2c32f0322d7301caf825e13fc86e9053623a53",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_002371.2.gb",
+      "cds_fasta_id": "lcl|NC_002371.2_prot_NP_059592.1_32",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "P22|P22gp33",
+      "gene": "orf56",
+      "locus_tag": "P22gp33",
+      "product": "hypothetical protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_002371.2",
+      "start": 26449,
+      "stop": 26619,
+      "strand": "-",
+      "location": "[26448:26619](-)",
+      "protein_accession": "NP_059593.1",
+      "db_xref": [
+        "GeneID:1262805"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MRGLAYNPDILPAELIIRHKIKPMPTREELLQRNSFPSINENKYLNAILRKDKCNR",
+      "length": 56,
+      "sequence_sha256": "511f2105db0bddf4f6a7c6266253b1d5a67d0f91c241d5abd557390749c754d5",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_002371.2.gb",
+      "cds_fasta_id": "lcl|NC_002371.2_prot_NP_059593.1_33",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "P22|P22gp34",
+      "gene": "abc2",
+      "locus_tag": "P22gp34",
+      "product": "abc2 anti-RecBCD",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_002371.2",
+      "start": 26630,
+      "stop": 26923,
+      "strand": "-",
+      "location": "[26629:26923](-)",
+      "protein_accession": "NP_059594.1",
+      "db_xref": [
+        "GeneID:1262804"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MPAPLYGADDPRRCSGNSVSEVLDKFRKNYDLIMSLPQETKEEKEFRHCIWLAEKEERERIYQTAIRPFRKATYTKFIEIDPRLRDYRSRYGAISNN",
+      "length": 97,
+      "sequence_sha256": "f075fdaa850279c1270f522db911436cc518410e9ea8e817fa8b6abc85a45d8a",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_002371.2.gb",
+      "cds_fasta_id": "lcl|NC_002371.2_prot_NP_059594.1_34",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "P22|P22gp35",
+      "gene": "abc1",
+      "locus_tag": "P22gp35",
+      "product": "Abc1",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_002371.2",
+      "start": 26970,
+      "stop": 27254,
+      "strand": "-",
+      "location": "[26969:27254](-)",
+      "protein_accession": "NP_059595.1",
+      "db_xref": [
+        "GeneID:1262802"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MRRLNITTAEMESVCGRMVACRAAEHLGLNINQFYYIAKKLSLKTAFIKPRWSDDEDKRMQTLISSGYTQRNVAKILGRSEESVKSRLSRLRKK",
+      "length": 94,
+      "sequence_sha256": "6c91d66a1f77e1b0e920c90276312ce36343464f9dd08bd5b775344ea1307581",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_002371.2.gb",
+      "cds_fasta_id": "lcl|NC_002371.2_prot_NP_059595.1_35",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "P22|P22gp36",
+      "gene": "erf",
+      "locus_tag": "P22gp36",
+      "product": "Erf-like ssDNA annealing protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_002371.2",
+      "start": 27254,
+      "stop": 27871,
+      "strand": "-",
+      "location": "[27253:27871](-)",
+      "protein_accession": "NP_059596.1",
+      "db_xref": [
+        "GeneID:1262800"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MSKEFYARLAEIQEHLNAPKNQYNSFGKYKYRSCEDILEGVKPLLKGLFLSISDEIVLIGDRYYVKATATITDGENSHSASAIAREEENKKGMDAAQVTGATSSYARKYCLNGLFGIDDAKDADTEEHKQQQNAAPAKQTKSSPSSPAPEQVLKAFSEYAATETDKKKLIERYQHDWQLLTGHDDEQTKCVQVMNIRINELKQVA",
+      "length": 205,
+      "sequence_sha256": "1d8258765a7f5edfa50eb1c813a33ba7a746db6db76552a1bc6c6fdcfea7b790",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_002371.2.gb",
+      "cds_fasta_id": "lcl|NC_002371.2_prot_NP_059596.1_36",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "P22|P22gp37",
+      "gene": "arf",
+      "locus_tag": "P22gp37",
+      "product": "Erf recombination cofactor Arf",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_002371.2",
+      "start": 27868,
+      "stop": 28011,
+      "strand": "-",
+      "location": "[27867:28011](-)",
+      "protein_accession": "NP_059597.1",
+      "db_xref": [
+        "GeneID:1262850"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MQHEFSDEEFIALISPEIEEEVEQQINLAAERQNPIIGWDEFAGYYS",
+      "length": 47,
+      "sequence_sha256": "9487bd2e7d46ab47c59c4179fdf69f34875ecee72034970699494288f67cb369",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_002371.2.gb",
+      "cds_fasta_id": "lcl|NC_002371.2_prot_NP_059597.1_37",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "P22|P22gp38",
+      "gene": "kil",
+      "locus_tag": "P22gp38",
+      "product": "Kil protein for bacterial septation inhibition",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_002371.2",
+      "start": 28001,
+      "stop": 28189,
+      "strand": "-",
+      "location": "[28000:28189](-)",
+      "protein_accession": "NP_059598.1",
+      "db_xref": [
+        "GeneID:1262785"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MTIVPVNGTILVQQGNREFNKLYEASFPDTKEGNSAAYAWASSIAMGWEDCQDEDWNRNHAA",
+      "length": 62,
+      "sequence_sha256": "0d42774667e420176d3f4451d2b2d55fafe54a674f627e8bad58b6cfa42b5d22",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_002371.2.gb",
+      "cds_fasta_id": "lcl|NC_002371.2_prot_NP_059598.1_38",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "P22|P22gp39",
+      "gene": "c3",
+      "locus_tag": "P22gp39",
+      "product": "CIII anti-termination",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "required for establishment of lysogeny; putative inhibitor of the host FstH protease, which degrades the P22 c1 protein; similar to phage lambda cIII gene",
+      "replicon": "NC_002371.2",
+      "start": 28170,
+      "stop": 28328,
+      "strand": "-",
+      "location": "[28169:28328](-)",
+      "protein_accession": "NP_059599.1",
+      "db_xref": [
+        "GeneID:1262787"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MIIAIAGSARMGVSQLHESLLDRITRKLRAGWKRLADILNQPGVPSHDYCAC",
+      "length": 52,
+      "sequence_sha256": "067c982a1715d1ee8c0b6fcdf8009e818b16ba8c5c6219ee98f8c9dac60fdd65",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_002371.2.gb",
+      "cds_fasta_id": "lcl|NC_002371.2_prot_NP_059599.1_39",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "P22|P22gp40",
+      "gene": "17",
+      "locus_tag": "P22gp40",
+      "product": "superinfection exclusion",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_002371.2",
+      "start": 28414,
+      "stop": 28725,
+      "strand": "-",
+      "location": "[28413:28725](-)",
+      "protein_accession": "NP_059600.1",
+      "db_xref": [
+        "GeneID:1262789"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MKLRVWHIPQVPMKPFIVEVGSVEEGVRMMDALADYDAFQYDNNIKPDYCNANGLQMFDESLTDQDLEDMELDDRWIDWYSECQCYDDPREYLESLKEETTAA",
+      "length": 103,
+      "sequence_sha256": "0267daeeac4d08b26635a586cb470ed0f25cae6ea8968307c69f52edf49de13e",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_002371.2.gb",
+      "cds_fasta_id": "lcl|NC_002371.2_prot_NP_059600.1_40",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "P22|P22gp41",
+      "gene": "orf87",
+      "locus_tag": "P22gp41",
+      "product": "hypothetical protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_002371.2",
+      "start": 28873,
+      "stop": 29076,
+      "strand": "-",
+      "location": "[28872:29076](-)",
+      "protein_accession": "NP_059601.1",
+      "db_xref": [
+        "GeneID:1262791"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MEWIKCSERMPESGITVLGYCVCNSNFSGIYTMRKPVIEAKNSKQDTRLIKHERVTHWMPLPEPPSE",
+      "length": 67,
+      "sequence_sha256": "34a5a7238c201e47686e5be1dc5029321adaf4ca42a728705e775c52bf167004",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_002371.2.gb",
+      "cds_fasta_id": "lcl|NC_002371.2_prot_NP_059601.1_41",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "P22|P22gp42",
+      "gene": "orf78",
+      "locus_tag": "P22gp42",
+      "product": "hypothetical protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_002371.2",
+      "start": 29076,
+      "stop": 29312,
+      "strand": "-",
+      "location": "[29075:29312](-)",
+      "protein_accession": "NP_059602.1",
+      "db_xref": [
+        "GeneID:1262843"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MKDIPHWDVDEDYIVDVTEGHILFSAENANKQEIKLASAAPELLEALLSIIDMEHDVSEWDAVYATARAAIGKALGKE",
+      "length": 78,
+      "sequence_sha256": "5c293de47d55d9217e6b5bc703fd187570a0ba715ce0a48f39866ee6881a7a87",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_002371.2.gb",
+      "cds_fasta_id": "lcl|NC_002371.2_prot_NP_059602.1_42",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "P22|P22gp43",
+      "gene": "ral",
+      "locus_tag": "P22gp43",
+      "product": "restriction alleviation ral",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_002371.2",
+      "start": 29349,
+      "stop": 29543,
+      "strand": "-",
+      "location": "[29348:29543](-)",
+      "protein_accession": "NP_059603.1",
+      "db_xref": [
+        "GeneID:1262811"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MTTTIDTNQWCSRFVKCKGCKLDAECMVKPEEMALVREDGKIVDKWAIRTTEMIARELEKLKAI",
+      "length": 64,
+      "sequence_sha256": "3619941d7be74649ede60dd467bb2058837f248c6f89b3deb75989c004fc3200",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_002371.2.gb",
+      "cds_fasta_id": "lcl|NC_002371.2_prot_NP_059603.1_43",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "P22|P22gp44",
+      "gene": "sieB",
+      "locus_tag": "P22gp44",
+      "product": "superinfection exclusion; inhibits SieB",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_002371.2",
+      "start": 29758,
+      "stop": 30336,
+      "strand": "+",
+      "location": "[29757:30336](+)",
+      "protein_accession": "NP_059604.1",
+      "db_xref": [
+        "GeneID:1262810"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MNNSWWQELMRFFLQGMTLKQLIHMLIILIVLIIVMPVSVKEWINLHNPEILPHYWMYYILLFCVSYVLNGVVNSVYHAVTERIEASTAQRRKDREEKVVRDLFDSLTLGERAYLAFAVAANNQLKTEKGSPEAISLLKKGIITRLPSAIGYPDIDRFIIPEKYFNECYMRFAGKSDILMNELIVQDEQLKK",
+      "length": 192,
+      "sequence_sha256": "5ca353dc13e3c4fe17a36cecb0273b54bfe9fbb22bd140835094b177edbac5fd",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_002371.2.gb",
+      "cds_fasta_id": "lcl|NC_002371.2_prot_NP_059604.1_44",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "P22|P22gp45",
+      "gene": "esc",
+      "locus_tag": "P22gp45",
+      "product": "superinfection exclusion; inhibits SieB",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_002371.2",
+      "start": 29830,
+      "stop": 30336,
+      "strand": "+",
+      "location": "[29829:30336](+)",
+      "protein_accession": "YP_063724.1",
+      "db_xref": [
+        "GeneID:2944229"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MLIILIVLIIVMPVSVKEWINLHNPEILPHYWMYYILLFCVSYVLNGVVNSVYHAVTERIEASTAQRRKDREEKVVRDLFDSLTLGERAYLAFAVAANNQLKTEKGSPEAISLLKKGIITRLPSAIGYPDIDRFIIPEKYFNECYMRFAGKSDILMNELIVQDEQLKK",
+      "length": 168,
+      "sequence_sha256": "25e10115002bc1a09e6a590a0e9de531b35136a19cf7845101c26a645f984181",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_002371.2.gb",
+      "cds_fasta_id": "lcl|NC_002371.2_prot_YP_063724.1_45",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "P22|P22gp46",
+      "gene": "24",
+      "locus_tag": "P22gp46",
+      "product": "hypothetical protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_002371.2",
+      "start": 30357,
+      "stop": 30659,
+      "strand": "-",
+      "location": "[30356:30659](-)",
+      "protein_accession": "NP_059605.1",
+      "db_xref": [
+        "GeneID:1262841"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MTVITYGKSTFAGNAKTRRHERRRKLAIERDTICNIIDSIFGCDAPDASQEVKAKRIDRVTKAISLAGTRQKEVEGGSVLLPGVALYAAGHRKSKQITAR",
+      "length": 100,
+      "sequence_sha256": "3d49a9cfb7cacf4d784e7214d57cc36ef3aa75c5c8d15a1f2abff03b97f899a9",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_002371.2.gb",
+      "cds_fasta_id": "lcl|NC_002371.2_prot_NP_059605.1_46",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "P22|P22gp47",
+      "gene": "c2",
+      "locus_tag": "P22gp47",
+      "product": "C2",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "prophage repressor",
+      "replicon": "NC_002371.2",
+      "start": 31013,
+      "stop": 31663,
+      "strand": "-",
+      "location": "[31012:31663](-)",
+      "protein_accession": "NP_059606.1",
+      "db_xref": [
+        "GeneID:1262793"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MNTQLMGERIRARRKKLKIRQAALGKMVGVSNVAISQWERSETEPNGENLLALSKALQCSPDYLLKGDLSQTNVAYHSRHEPRGSYPLISWVSAGQWMEAVEPYHKRAIENWHDTTVDCSEDSFWLDVQGDSMTAPAGLSIPEGMIILVDPEVEPRNGKLVVAKLEGENEATFKKLVMDAGRKFLKPLNPQYPMIEINGNCKIIGVVVDAKLANLP",
+      "length": 216,
+      "sequence_sha256": "9386ba9b8ac95b6c6a20aa15469d9bd1034039fca80f5abb02b72c821f4eb98f",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_002371.2.gb",
+      "cds_fasta_id": "lcl|NC_002371.2_prot_NP_059606.1_47",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "P22|P22gp48",
+      "gene": "cro",
+      "locus_tag": "P22gp48",
+      "product": "transcriptional regulator",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_002371.2",
+      "start": 31744,
+      "stop": 31929,
+      "strand": "+",
+      "location": "[31743:31929](+)",
+      "protein_accession": "NP_059607.1",
+      "db_xref": [
+        "GeneID:1262827"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MYKKDVIDHFGTQRAVAKALGISDAAVSQWKEVIPEKDAYRLEIVTAGALKYQENAYRQAA",
+      "length": 61,
+      "sequence_sha256": "14065151e17230d8ca59904227f4c1b2756016e59d03f2d5cdb970c09633f785",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_002371.2.gb",
+      "cds_fasta_id": "lcl|NC_002371.2_prot_NP_059607.1_48",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "P22|P22gp49",
+      "gene": "c1",
+      "locus_tag": "P22gp49",
+      "product": "CII-like transcriptional activator",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_002371.2",
+      "start": 32036,
+      "stop": 32314,
+      "strand": "+",
+      "location": "[32035:32314](+)",
+      "protein_accession": "NP_059608.1",
+      "db_xref": [
+        "GeneID:1262826"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MELTSTRKKANAITSSILNRIAIRGQRKVADALGINESQISRWKGDFIPKMGMLLAVLEWGVEDEELAELAKKVAHLLTKEKPQDCGNSFEA",
+      "length": 92,
+      "sequence_sha256": "86ae6b407a87f76740d19d782438b64156efb7b9b85b5416722edb804db31f10",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_002371.2.gb",
+      "cds_fasta_id": "lcl|NC_002371.2_prot_NP_059608.1_49",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "P22|P22gp50",
+      "gene": "orf48",
+      "locus_tag": "P22gp50",
+      "product": "tail protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_002371.2",
+      "start": 32349,
+      "stop": 32495,
+      "strand": "+",
+      "location": "[32348:32495](+)",
+      "protein_accession": "NP_059609.1",
+      "db_xref": [
+        "GeneID:1262825"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MPKQLSPDQDKLHKNILRDRFLSSFKQPGRFRAELEKVKLILKRKGHE",
+      "length": 48,
+      "sequence_sha256": "9b3af2d782f64ee1e5c10a3f370e0166f5f3acaa21bbbeb579d31fd9a7c6571e",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_002371.2.gb",
+      "cds_fasta_id": "lcl|NC_002371.2_prot_NP_059609.1_50",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "P22|P22gp51",
+      "gene": "18",
+      "locus_tag": "P22gp51",
+      "product": "replication initiation O-like",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "origin recognition by similarity with phage lambda O protein",
+      "replicon": "NC_002371.2",
+      "start": 32488,
+      "stop": 33303,
+      "strand": "+",
+      "location": "[32487:33303](+)",
+      "protein_accession": "NP_059610.1",
+      "db_xref": [
+        "GeneID:1262824"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MSNLATVTPIKPHLEVVEHRVAELDDGYTRTANTLLEAVMLSGLTQHQLLIVMAVWRKTYGYNKKIDWIGNEQFAELTGMAPTKCSTAKNELIRMGVLTQVGRQVGMNKNISEWKTKVNGFGKTFTRSVKLTFTKSVKTNLPNQSNTKDNIQKTINTNTPLPPKGGCDEGSKPEKRKPTKINYSEYLAAYNEIVGDRLPHAVEVNSERQRKLKKLIDSLATKNIDGFRAYVKAFMAAARPFHFGDNDRDWVANFDYLLRPKVLIAIREGTL",
+      "length": 271,
+      "sequence_sha256": "1dd4cc3f658587345f9016efebcc7d4bbb36d13b3d5f7da60471d0bb224283c2",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_002371.2.gb",
+      "cds_fasta_id": "lcl|NC_002371.2_prot_NP_059610.1_51",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "P22|P22gp52",
+      "gene": "12",
+      "locus_tag": "P22gp52",
+      "product": "hypothetical protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "similar to E. coli DnaB helicase",
+      "replicon": "NC_002371.2",
+      "start": 33300,
+      "stop": 34676,
+      "strand": "+",
+      "location": "[33299:34676](+)",
+      "protein_accession": "NP_059611.1",
+      "db_xref": [
+        "GeneID:1262823"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MRQDIEASVIGGLLIGGLTPTASDVLATLEPEAFSIPLYRKAFEVIRKQARNRNLIDGLMVAEECGDEYATAVMMTARSCPSAANLKGYAGMVADSYQRRQVLQLLDEMREPISNGTLDASGRAMDELVKRLSSIRKPRNEVKPVRLGEIINDYTDTLDRRLRNGEESDTLKTGIEELDAITGGMNAEDLVIIAARPGMGKTELALKIAEGVASRVIPGSGVRRGVLIFSMEMSAIQVVERGIAGAGMMSVSVLRNPSRMDDEGWARVASGMKLLAELDVWVVDASRLSVEEIRSISERHKQEHPNLSLIMADYLGLIEKPKAERNDLAIAHISGSLKAMAKDLKTPVISLSQLSRDVEKRPNKRPTNADLRDSGSIEQDADSIIMLYREAVYDENSSAAPFAEIIVTKNRFGSLGTVYQRFCNGHFVACDQDEARQICTASNAPAGRRKRYAQGADV",
+      "length": 458,
+      "sequence_sha256": "6ef2d82d2139233d966e8e8b47c4b8e3ff72c4bf0d763a5cbf454481afcc7df7",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_002371.2.gb",
+      "cds_fasta_id": "lcl|NC_002371.2_prot_NP_059611.1_52",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "P22|P22gp53",
+      "gene": "ninA",
+      "locus_tag": "P22gp53",
+      "product": "hypothetical protein",
+      "synonyms": [
+        "orf26"
+      ],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_002371.2",
+      "start": 34673,
+      "stop": 34753,
+      "strand": "+",
+      "location": "[34672:34753](+)",
+      "protein_accession": "YP_063725.1",
+      "db_xref": [
+        "GeneID:2944230"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MTIYITELVTGLLVIAGLFIWGRGKT",
+      "length": 26,
+      "sequence_sha256": "2af1a64ec81d427cc12ac37291d7fa6fddf4a14974632b14aa1820cb894e8e78",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_002371.2.gb",
+      "cds_fasta_id": "lcl|NC_002371.2_prot_YP_063725.1_53",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "P22|P22gp54",
+      "gene": "ninB",
+      "locus_tag": "P22gp54",
+      "product": "NinB/ Orf homologous recombination mediator",
+      "synonyms": [
+        "orf145"
+      ],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_002371.2",
+      "start": 34750,
+      "stop": 35187,
+      "strand": "+",
+      "location": "[34749:35187](+)",
+      "protein_accession": "NP_059612.1",
+      "db_xref": [
+        "GeneID:1262822"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MKKLTFEIRSPAHQQNAIHAVQQILPDPTKPIVVTIQERNRSLDQNRKLWACLGDVSRQVNWHGRWLDAESWKCVFTAALKQQDVVPNLAGHGFVVIGQSTSRMRVSEFAELLELIQAFGTERGVKWSDEARLALECKARFGDAA",
+      "length": 145,
+      "sequence_sha256": "401666b2f9919c167122bb8937cf861adafbd200a5086c312aadccc81d3886c3",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_002371.2.gb",
+      "cds_fasta_id": "lcl|NC_002371.2_prot_NP_059612.1_54",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "P22|P22gp55",
+      "gene": "ninD",
+      "locus_tag": "P22gp55",
+      "product": "NinD",
+      "synonyms": [
+        "orf57"
+      ],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_002371.2",
+      "start": 35184,
+      "stop": 35357,
+      "strand": "+",
+      "location": "[35183:35357](+)",
+      "protein_accession": "YP_063726.1",
+      "db_xref": [
+        "GeneID:2944231"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MKHCYRCGESKDDYRFRPNQPYWHQWCIRCERSPVGNFPLPETKEDVWHDSDEVSPT",
+      "length": 57,
+      "sequence_sha256": "02bdd01dfd3f934f5112b578367c1595fbec3d1406a40f17445f6e10dfe38677",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_002371.2.gb",
+      "cds_fasta_id": "lcl|NC_002371.2_prot_YP_063726.1_55",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "P22|P22gp56",
+      "gene": "ninE",
+      "locus_tag": "P22gp56",
+      "product": "NinE",
+      "synonyms": [
+        "orf58a"
+      ],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_002371.2",
+      "start": 35324,
+      "stop": 35500,
+      "strand": "+",
+      "location": "[35323:35500](+)",
+      "protein_accession": "NP_059614.1",
+      "db_xref": [
+        "GeneID:1262819"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MARQRRSITDIICENCKYLPTKRSRNKRKPIPKESDVKTFNYTAHLWDIRWLRHRARK",
+      "length": 58,
+      "sequence_sha256": "644d28f7a75757d68ea1bbc1ca1c2b7c9e06320321c29123145740173f176f7d",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_002371.2.gb",
+      "cds_fasta_id": "lcl|NC_002371.2_prot_NP_059614.1_56",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "P22|P22gp57",
+      "gene": "ninX",
+      "locus_tag": "P22gp57",
+      "product": "NinX",
+      "synonyms": [
+        "orf112"
+      ],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_002371.2",
+      "start": 35497,
+      "stop": 35835,
+      "strand": "+",
+      "location": "[35496:35835](+)",
+      "protein_accession": "NP_059615.1",
+      "db_xref": [
+        "GeneID:1262818"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MTMDYSQLSDFEINKRVAIATGHKKFNGLGWQGTQEDSCSAVIVRGPTKIGAFDPCNNPADAWPIIEKYRISFLDQLTEWCVDAKGVSPIFDIRPLRAAMIVFLLMQDANNA",
+      "length": 112,
+      "sequence_sha256": "5ae7143558a111a9ff62940b168b8d2926df68c267597d5bf424a5638196b842",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_002371.2.gb",
+      "cds_fasta_id": "lcl|NC_002371.2_prot_NP_059615.1_57",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "P22|P22gp58",
+      "gene": "ninF",
+      "locus_tag": "P22gp58",
+      "product": "NinF",
+      "synonyms": [
+        "orf58b"
+      ],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_002371.2",
+      "start": 35828,
+      "stop": 36004,
+      "strand": "+",
+      "location": "[35827:36004](+)",
+      "protein_accession": "YP_063727.1",
+      "db_xref": [
+        "GeneID:2944232"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MLSPSQSLQYQKESVERALTCANCGQKLHVLEVHVCEACCAELMSDPNSSMYEEEDDG",
+      "length": 58,
+      "sequence_sha256": "cf7bce81910456814faeb4722eeaf0087ad16536a3ea38dafb85c502384f5521",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_002371.2.gb",
+      "cds_fasta_id": "lcl|NC_002371.2_prot_YP_063727.1_58",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "P22|P22gp59",
+      "gene": "ninG",
+      "locus_tag": "P22gp59",
+      "product": "NinG/ Rap DNA junction specific endonuclease",
+      "synonyms": [
+        "orf203; rap"
+      ],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_002371.2",
+      "start": 35997,
+      "stop": 36608,
+      "strand": "+",
+      "location": "[35996:36608](+)",
+      "protein_accession": "YP_063728.1",
+      "db_xref": [
+        "GeneID:2944233"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MAKSARRRCKNEECREWFHPAFANQWWCSPECGTKIALERRSKEREKAEKAAEKKRRREEQKQKDKLKIRKLALKPRSYWIKQAQQAVNAFIRERDRDLPCISCGTLTSAQWDAGHYRTTAAAPQLRFDERNIHKQCVVCNQHKSGNLVPYRVMLIERIGIAAVDEIESDHKRHRWTTEECKAIKAEYQQKLKDLRDSRSEAA",
+      "length": 203,
+      "sequence_sha256": "4f92f2abcc52615b744cfa5521b33a96fa93ee81c4007c180e48c826dabed183",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_002371.2.gb",
+      "cds_fasta_id": "lcl|NC_002371.2_prot_YP_063728.1_59",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "P22|P22gp60",
+      "gene": "ninY",
+      "locus_tag": "P22gp60",
+      "product": "NinY",
+      "synonyms": [
+        "orf74"
+      ],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_002371.2",
+      "start": 36605,
+      "stop": 36829,
+      "strand": "+",
+      "location": "[36604:36829](+)",
+      "protein_accession": "NP_059618.1",
+      "db_xref": [
+        "GeneID:1262816"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MSKIQYPMTTAAIFDDVVYPLHFDNAGKVRQEMEGAVNWFCRWCNEEKAAVKARLLVSCWGQYLSHEQVIREAA",
+      "length": 74,
+      "sequence_sha256": "0a0e6ac0a7373b7946cd0642ff13addd2cea3fe170cc106adc15e14ccb714390",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_002371.2.gb",
+      "cds_fasta_id": "lcl|NC_002371.2_prot_NP_059618.1_60",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "P22|P22gp61",
+      "gene": "ninH",
+      "locus_tag": "P22gp61",
+      "product": "NinH",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_002371.2",
+      "start": 36826,
+      "stop": 37029,
+      "strand": "+",
+      "location": "[36825:37029](+)",
+      "protein_accession": "NP_059619.1",
+      "db_xref": [
+        "GeneID:1262814"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MTHTVKTIPDMLIETYGNQTEVARRLSCHRNTVRRYLYDKEARYHAIVNGVLMIHQGGRGIYDRNQH",
+      "length": 67,
+      "sequence_sha256": "663fc053685ca455a180d189b6d0a072b922bc1dc295c1808830d83410cf47c2",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_002371.2.gb",
+      "cds_fasta_id": "lcl|NC_002371.2_prot_NP_059619.1_61",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "P22|P22gp62",
+      "gene": "ninZ",
+      "locus_tag": "P22gp62",
+      "product": "NinZ",
+      "synonyms": [
+        "orf59b"
+      ],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_002371.2",
+      "start": 37010,
+      "stop": 37189,
+      "strand": "+",
+      "location": "[37009:37189](+)",
+      "protein_accession": "YP_063729.1",
+      "db_xref": [
+        "GeneID:2944234"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MTVTSINQAKHQRERDEAELRSVREMTEQHQKAMDYLHERERELVNRIGLNKPAGDDAA",
+      "length": 59,
+      "sequence_sha256": "bc88d6af3c88f832e780da7a9456506d219a1d244005154eb229eec2931222d4",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_002371.2.gb",
+      "cds_fasta_id": "lcl|NC_002371.2_prot_YP_063729.1_62",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "P22|P22gp63",
+      "gene": "23",
+      "locus_tag": "P22gp63",
+      "product": "transcription antitermination protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_002371.2",
+      "start": 37186,
+      "stop": 37809,
+      "strand": "+",
+      "location": "[37185:37809](+)",
+      "protein_accession": "YP_063730.1",
+      "db_xref": [
+        "GeneID:2944235"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MRLESVAKFHSPKSPMMSDSPRATASDSLSGTDVMAAMGMAQSQAGFGMAAFCGKHELSQNDKQKAINYLMQFAHKVSGKYPGVAKLEGNTKAKVLQVLATFAYADYCRSAATPGARCRDCHGTGRAVDIAKTEQWGRVVEKVCGRCKGVGYSKVPASAAYRAITMLIPNLTQPTWSRTVKPLYDALVVQCHKEESIADNILNAVTR",
+      "length": 207,
+      "sequence_sha256": "2518c92f23683f3e097af7e793ab321ec137575ee6fb2241efb72fc4d0b7ddea",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_002371.2.gb",
+      "cds_fasta_id": "lcl|NC_002371.2_prot_YP_063730.1_63",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "P22|P22gp64",
+      "gene": "13",
+      "locus_tag": "P22gp64",
+      "product": "holin/anti-holin",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_002371.2",
+      "start": 38244,
+      "stop": 38570,
+      "strand": "+",
+      "location": "[38243:38570](+)",
+      "protein_accession": "NP_059621.1",
+      "db_xref": [
+        "GeneID:1262842"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MKKMPEKHDLLTAMMAAKEQGIGAILAFAMAYLRGRYNGGAFKKTLIDATMCAIIAWFIRDLLVFAGLSSNLAYIASVFIGYIGTDSIGSLIKRFAAKKAGVDDANQQ",
+      "length": 108,
+      "sequence_sha256": "dc45664db1b268224c5f0cf784e72915cf7d3130e46c7e01f8f996388d839ed5",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_002371.2.gb",
+      "cds_fasta_id": "lcl|NC_002371.2_prot_NP_059621.1_64",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "P22|P22gp65",
+      "gene": "13'",
+      "locus_tag": "P22gp65",
+      "product": "holin/anti-holin",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "similar to phage lambda S' (S105)",
+      "replicon": "NC_002371.2",
+      "start": 38253,
+      "stop": 38570,
+      "strand": "+",
+      "location": "[38252:38570](+)",
+      "protein_accession": "YP_063731.1",
+      "db_xref": [
+        "GeneID:2944236"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MPEKHDLLTAMMAAKEQGIGAILAFAMAYLRGRYNGGAFKKTLIDATMCAIIAWFIRDLLVFAGLSSNLAYIASVFIGYIGTDSIGSLIKRFAAKKAGVDDANQQ",
+      "length": 105,
+      "sequence_sha256": "992074dfe9b5cc0f54b813d469237cae2ce6ee60ef0d7bf99055756cf0ad2c8f",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_002371.2.gb",
+      "cds_fasta_id": "lcl|NC_002371.2_prot_YP_063731.1_65",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "P22|P22gp66",
+      "gene": "19",
+      "locus_tag": "P22gp66",
+      "product": "endolysin",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_002371.2",
+      "start": 38551,
+      "stop": 38991,
+      "strand": "+",
+      "location": "[38550:38991](+)",
+      "protein_accession": "NP_059622.1",
+      "db_xref": [
+        "GeneID:1262838"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MMQISSNGITRLKREEGERLKAYSDSRGIPTIGVGHTGKVDGNSVASGMTITAEKSSELLKEDLQWVEDAISSLVRVPLNQNQYDALCSLIFNIGKSAFAGSTVLRQLNLKNYQAAADAFLLWKKAGKDPDILLPRRRRERALFLS",
+      "length": 146,
+      "sequence_sha256": "22d02e377f9f2d093134060003cceddb0a74185ae09dcfbdfd6724d93a26ea74",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_002371.2.gb",
+      "cds_fasta_id": "lcl|NC_002371.2_prot_NP_059622.1_66",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "P22|P22gp67",
+      "gene": "15",
+      "locus_tag": "P22gp67",
+      "product": "Rz-like spanin",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_002371.2",
+      "start": 38988,
+      "stop": 39425,
+      "strand": "+",
+      "location": "[38987:39425](+)",
+      "protein_accession": "YP_010247143.1",
+      "db_xref": [
+        "GeneID:1262837"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MSRIKAIIASVIICIIVCLSWAVNHYRDNAITYKEQRDKATSIIADMQKRQRDVAELDARYTKELADANATIETLRADVSAGRKRLQVSATCPKSTTGASGMGDGESPRLTADAELNYYRLRSGIDRITAQVNYLQEYIRSQCLK",
+      "length": 145,
+      "sequence_sha256": "5ed26cfbf39a6e51f726372610123d0f72df1c0b4ecb893aaef1b4f2d5a1c93b",
+      "annotation_flags": [
+        "alternative_start_codon_read_as_Met"
+      ],
+      "source_record": "inputs/NC_002371.2.gb",
+      "cds_fasta_id": "lcl|NC_002371.2_prot_YP_010247143.1_67",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "P22|P22gp68",
+      "gene": "Rz1",
+      "locus_tag": "P22gp68",
+      "product": "Rz-like spanin",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_002371.2",
+      "start": 39187,
+      "stop": 39372,
+      "strand": "+",
+      "location": "[39186:39372](+)",
+      "protein_accession": "YP_063732.1",
+      "db_xref": [
+        "GeneID:2944226"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MLTRLSKLSALMFLLGVSACKSPPPVQSQRPEPAAWAMEKAQDLQQMLNSIITVSEVESTG",
+      "length": 61,
+      "sequence_sha256": "9a280a4a70e54c121cc5e06babc9223af5c58c653343084cec5b057ec547ccb8",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_002371.2.gb",
+      "cds_fasta_id": "lcl|NC_002371.2_prot_YP_063732.1_68",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "P22|P22gp69",
+      "gene": "rha",
+      "locus_tag": "P22gp69",
+      "product": "anti-repressor",
+      "synonyms": [
+        "orf201"
+      ],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_002371.2",
+      "start": 39575,
+      "stop": 40180,
+      "strand": "+",
+      "location": "[39574:40180](+)",
+      "protein_accession": "NP_059624.1",
+      "db_xref": [
+        "GeneID:1262836"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MLASLGGLVSCAAKVHFKEEGNAMNELIANHDFDFRQLVTAAEGQPVTDTFQIAKAFGKRHADVLRALKNCHCSEDFRRAHFCVSEKINNLGIFDKKQIYYRMDFSGFVMLVMGFNGAKADAVKEAYINAFNWMSAELRKYSESYEAERNAIMLEYMKEKDVASMSGRLLNRWGKIKKPQLLARIGRLEQHGQTVIPGLTN",
+      "length": 201,
+      "sequence_sha256": "7679b692689bbdc6e3fc40e87c0b207dd1e2c5f981542a450f11ea49b5c176a4",
+      "annotation_flags": [
+        "alternative_start_codon_read_as_Met"
+      ],
+      "source_record": "inputs/NC_002371.2.gb",
+      "cds_fasta_id": "lcl|NC_002371.2_prot_NP_059624.1_69",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "P22|P22gp70",
+      "gene": "orf25",
+      "locus_tag": "P22gp70",
+      "product": "hypothetical protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_002371.2",
+      "start": 40329,
+      "stop": 40406,
+      "strand": "+",
+      "location": "[40328:40406](+)",
+      "protein_accession": "YP_063733.1",
+      "db_xref": [
+        "GeneID:2944237"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MSGLDNGLYHRLDIIRFIPSMWGGG",
+      "length": 25,
+      "sequence_sha256": "b09191ce6b0fb4cd3ddff737abc2db2a02b6b88fbfd4b7c26943883ff2b288e0",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_002371.2.gb",
+      "cds_fasta_id": "lcl|NC_002371.2_prot_YP_063733.1_70",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "P22|P22gp71",
+      "gene": "orf80",
+      "locus_tag": "P22gp71",
+      "product": "Orf80",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_002371.2",
+      "start": 41014,
+      "stop": 41256,
+      "strand": "+",
+      "location": "[41013:41256](+)",
+      "protein_accession": "NP_059625.1",
+      "db_xref": [
+        "GeneID:1262844"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MAEIIPMTEEQKFQLEIYKLVMNQNAAAEEAFQFIGTDELKLELFKIHFQSGGANSDITTRTIEAVRKSREALDLFTTGA",
+      "length": 80,
+      "sequence_sha256": "e05b546ba8fbd84c8dd0c1567bfaa519d0f502b2ea138bf33d118b39c48e94a1",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_002371.2.gb",
+      "cds_fasta_id": "lcl|NC_002371.2_prot_NP_059625.1_71",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "P22|P22gp72",
+      "gene": "orf59c",
+      "locus_tag": "P22gp72",
+      "product": "Orf59c",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_002371.2",
+      "start": 41258,
+      "stop": 41437,
+      "strand": "+",
+      "location": "[41257:41437](+)",
+      "protein_accession": "NP_597915.1",
+      "db_xref": [
+        "GeneID:1262792"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MVRVINLGKEKKFPITQELYERLESVIHDYDGEISLCEAIGTLELLKQSLIEGAKESSA",
+      "length": 59,
+      "sequence_sha256": "04501e85fa29c27b7b209c389ab7e42f2a434024943feec2c4c823d1e7274278",
+      "annotation_flags": [
+        "alternative_start_codon_read_as_Met"
+      ],
+      "source_record": "inputs/NC_002371.2.gb",
+      "cds_fasta_id": "lcl|NC_002371.2_prot_NP_597915.1_72",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    }
+  ]
+}

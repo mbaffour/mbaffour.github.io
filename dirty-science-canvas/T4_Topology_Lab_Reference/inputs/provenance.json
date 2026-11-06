@@ -1,0 +1,51 @@
+{
+  "organism": "Enterobacteria phage T4",
+  "accessions": [
+    "NC_000866.4"
+  ],
+  "files": [
+    {
+      "file": "inputs/NC_000866.4.gb",
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&id=NC_000866.4&rettype=gbwithparts&retmode=text",
+      "retrieved_utc": "2026-11-06T19:21:15+00:00",
+      "sha256": "24acc08a8ecaa62d6a7a58b9f59e15b3935a9f787012ea5f24ed7191df552764",
+      "bytes": 527311
+    },
+    {
+      "file": "inputs/NC_000866.4.cds_aa.fasta",
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&id=NC_000866.4&rettype=fasta_cds_aa&retmode=text",
+      "retrieved_utc": "2026-11-06T19:21:16+00:00",
+      "sha256": "0cd255c74e7818602701842f5d1d1b434d757b762ace60bcc1b54b30df2b8ca7",
+      "bytes": 112154
+    },
+    {
+      "file": "inputs/NC_000866.4.fna",
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&id=NC_000866.4&rettype=fasta&retmode=text",
+      "retrieved_utc": "2026-11-06T19:21:18+00:00",
+      "sha256": "f6b1007e7b61656f630f5b392fa0b4118d7d9e02c8c1d981ececefc33a9e5b43",
+      "bytes": 171371
+    }
+  ],
+  "ncbi_summaries": [
+    {
+      "accessionversion": "NC_000866.4",
+      "title": "Enterobacteria phage T4, complete genome",
+      "slen": 168903,
+      "createdate": "1999/07/05",
+      "updatedate": "2023/01/11",
+      "taxid": 2681598,
+      "biomol": "genomic",
+      "topology": "linear"
+    }
+  ],
+  "ncbi_summary": {
+    "accessionversion": "NC_000866.4",
+    "title": "Enterobacteria phage T4, complete genome",
+    "slen": 168903,
+    "createdate": "1999/07/05",
+    "updatedate": "2023/01/11",
+    "taxid": 2681598,
+    "biomol": "genomic",
+    "topology": "linear"
+  }
+}

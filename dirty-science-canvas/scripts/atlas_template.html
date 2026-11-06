@@ -6,39 +6,40 @@
 <meta name="color-scheme" content="light">
 <title>__TITLE__</title>
 <style>
-:root{
-  --bg:#f6f5f1; --panel:#ffffff; --ink:#1b1f24; --muted:#5b6470; --line:#d9dce1; --accent:#1f4e79;
-  --st-I:#0d9488; --st-O:#d97706; --st-M:#334155; --st-S:#db2777; --st-B:#0891b2; --st-P:#65a30d;
-  --pos:#1d4ed8; --neg:#dc2626; --his:#8b5cf6; --hyd:#f3dfb4; --warn:#b45309; --bad:#b91c1c;
-}
+:root{--bg:#f5f4f0;--panel:#fff;--ink:#17202a;--muted:#5b6470;--line:#d9dce1;--accent:#1f4e79;--warn:#b45309;--bad:#b91c1c}
 *{box-sizing:border-box}
-html,body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+html,body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.45 "Helvetica Neue",Helvetica,Arial,system-ui,sans-serif}
 a{color:var(--accent)}
-header.top{padding:14px 20px;background:#14263a;color:#fff;display:flex;flex-wrap:wrap;gap:6px 18px;align-items:baseline}
-header.top h1{margin:0;font-size:20px;letter-spacing:.2px}
+header.top{padding:12px 20px;background:#13263b;color:#fff;display:flex;flex-wrap:wrap;gap:4px 18px;align-items:baseline}
+header.top h1{margin:0;font-size:19px;letter-spacing:.2px}
 header.top .sub{color:#c8d3df;font-size:13px}
-.layout{display:grid;grid-template-columns:320px minmax(0,1fr);min-height:calc(100vh - 54px)}
+.layout{display:grid;grid-template-columns:330px minmax(0,1fr);min-height:calc(100vh - 50px)}
 aside{border-right:1px solid var(--line);background:#fbfaf7;padding:12px;position:sticky;top:0;height:100vh;overflow:auto}
 main{padding:16px 22px 60px;min-width:0}
-@media (max-width:860px){.layout{grid-template-columns:minmax(0,1fr)}aside{position:static;height:auto;max-height:none;border-right:0;border-bottom:1px solid var(--line)}main{padding:12px 16px 40px}}
+@media (max-width:860px){.layout{grid-template-columns:minmax(0,1fr)}aside{position:static;height:auto;border-right:0;border-bottom:1px solid var(--line)}main{padding:12px 16px 40px}}
 input[type=search],select{width:100%;padding:7px 9px;border:1px solid var(--line);border-radius:6px;font:inherit;background:#fff}
-.filters{display:grid;grid-template-columns:1fr;gap:3px;margin:10px 0;font-size:13px}
+.filters{display:grid;gap:3px;margin:10px 0;font-size:13px}
 .filters label{display:flex;gap:6px;align-items:center}
 .count{font-size:12px;color:var(--muted);margin:6px 0}
 ul.plist{list-style:none;margin:0;padding:0}
 ul.plist li{padding:6px 8px;border-radius:6px;cursor:pointer;border:1px solid transparent;font-size:13px}
 ul.plist li:hover{background:#eef2f6}
 ul.plist li.sel{background:#e3ecf6;border-color:#9fb7d3}
-ul.plist .pm{color:var(--muted);font-size:11.5px}
+ul.plist .pm{color:var(--muted);font-size:11.5px;overflow-wrap:anywhere}
+ul.plist .org{color:#13263b;font-size:10.5px;font-weight:700;letter-spacing:.3px;text-transform:uppercase}
 .tag{display:inline-block;font-size:10.5px;padding:0 5px;border-radius:9px;margin-left:3px;border:1px solid;line-height:16px;vertical-align:1px}
-.tag.tm{color:#334155;border-color:#334155}.tag.sp{color:var(--st-S);border-color:var(--st-S)}.tag.dis{color:var(--warn);border-color:var(--warn)}.tag.inc{color:var(--bad);border-color:var(--bad)}.tag.flag{color:#6b21a8;border-color:#6b21a8}
+.tag.tm{color:#1e293b;border-color:#1e293b}.tag.sp{color:#be185d;border-color:#be185d}.tag.dis{color:var(--warn);border-color:var(--warn)}.tag.inc{color:var(--bad);border-color:var(--bad)}.tag.flag{color:#6b21a8;border-color:#6b21a8}.tag.beta{color:#0e7490;border-color:#0e7490}
 .nav{display:flex;gap:6px;margin:8px 0}
-button{font:inherit;font-size:13px;padding:6px 10px;border:1px solid #b9c0c9;background:#fff;border-radius:6px;cursor:pointer;color:var(--ink)}
-button:hover{background:#eef2f6}
+button,.btn{font:inherit;font-size:13px;padding:6px 10px;border:1px solid #b9c0c9;background:#fff;border-radius:6px;cursor:pointer;color:var(--ink);text-decoration:none;display:inline-block}
+button:hover,.btn:hover{background:#eef2f6}
+button:disabled{opacity:.45;cursor:not-allowed}
+button.primary{background:#13263b;color:#fff;border-color:#13263b}
+button.primary:hover{background:#1f3a58}
 .card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin:0 0 16px}
 .card h2{margin:0 0 6px;font-size:18px}
 .card h3{margin:0 0 6px;font-size:16px}
-.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:4px 18px;font-size:13.5px}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:4px 18px;font-size:13.5px}
+.meta div{overflow-wrap:anywhere}
 .meta div span{color:var(--muted)}
 .seqbox{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12.5px;word-break:break-all;background:#f7f7f5;border:1px solid var(--line);border-radius:6px;padding:8px;max-height:140px;overflow:auto}
 table{border-collapse:collapse;font-size:13px;width:100%}
@@ -46,38 +47,43 @@ table{border-collapse:collapse;font-size:13px;width:100%}
 code{word-break:break-all}
 th,td{border-bottom:1px solid #e6e8eb;padding:4px 6px;text-align:left;vertical-align:top}
 th{background:#f3f4f6;font-weight:600}
-.st-complete{color:#166534;font-weight:600}.st-pending{color:var(--warn);font-weight:600}.st-failed,.st-unsupported,.st-no_output_returned{color:var(--bad);font-weight:600}
+.st-complete{color:#166534;font-weight:600}.st-pending{color:var(--warn);font-weight:600}
+.st-failed,.st-unsupported,.st-no_output_returned,.st-too_short,.st-too_long,.st-not_returned,.st-not_submitted{color:var(--bad);font-weight:600}
 .toggles{display:flex;flex-wrap:wrap;gap:6px 16px;align-items:center;font-size:13.5px}
 .toggles fieldset{border:1px solid var(--line);border-radius:8px;padding:6px 10px;margin:0}
 .toggles legend{font-size:12px;color:var(--muted);padding:0 4px}
 .figbar{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:6px 0 8px}
 .figbar .sp{flex:1}
-.figwrap{overflow:auto;border:1px solid #eceef1;border-radius:8px;background:#fff;max-height:none}
+.figwrap{overflow:auto;border:1px solid #eceef1;border-radius:8px;background:#fff}
 .figwrap svg{display:block;max-width:none}
 .figwrap.fit svg{max-width:100%;height:auto}
 .caption{font-size:12.5px;color:#333;background:#f8f8f6;border-left:3px solid #9fb7d3;padding:6px 9px;margin-top:8px}
 .note{font-size:12.5px;color:var(--muted)}
 .warnbox{border-left:4px solid var(--warn);background:#fff7ed;padding:8px 10px;font-size:13px;margin:8px 0;border-radius:4px}
 .badbox{border-left:4px solid var(--bad);background:#fef2f2;padding:8px 10px;font-size:13px;margin:8px 0;border-radius:4px}
-details summary{cursor:pointer;font-weight:600}
-.legend{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:12.5px}
 .sw{display:inline-block;width:13px;height:13px;border-radius:3px;vertical-align:-2px;margin-right:4px;border:1px solid rgba(0,0,0,.25)}
-.toast{position:fixed;bottom:16px;right:16px;background:#14263a;color:#fff;padding:8px 12px;border-radius:6px;font-size:13px;opacity:0;transition:opacity .2s;pointer-events:none;z-index:9}
+.toast{position:fixed;bottom:16px;right:16px;background:#13263b;color:#fff;padding:8px 12px;border-radius:6px;font-size:13px;opacity:0;transition:opacity .2s;pointer-events:none;z-index:9;max-width:80vw}
 .toast.on{opacity:1}
 .tabs{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:10px}
-.tabs button.on{background:#14263a;color:#fff;border-color:#14263a}
+.tabs button.on{background:#13263b;color:#fff;border-color:#13263b}
 .small{font-size:12px;overflow-wrap:anywhere}
+.rerun{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.rerun form{margin:0}
 img.rawplot{max-width:100%;border:1px solid var(--line);border-radius:6px;background:#fff}
+pre.cmd{background:#0f1b2a;color:#e5edf5;padding:8px 10px;border-radius:6px;font-size:12px;white-space:pre-wrap;word-break:break-all;margin:6px 0}
+details summary{cursor:pointer;font-weight:600;margin:6px 0}
 </style>
 </head>
 <body>
 <header class="top"><h1 id="ttl"></h1><span class="sub" id="subttl"></span></header>
 <div class="layout">
 <aside>
+  <select id="orgsel" aria-label="Organism" style="margin-bottom:8px"></select>
   <input type="search" id="q" placeholder="Search gene, locus tag, accession, product…" aria-label="Search proteins">
   <div class="filters" id="filters">
     <label><input type="checkbox" data-f="span"> Membrane span (any main method)</label>
     <label><input type="checkbox" data-f="sp"> Signal peptide (any main method)</label>
+    <label><input type="checkbox" data-f="beta"> β-strand states predicted</label>
     <label><input type="checkbox" data-f="dis"> Main-method disagreement</label>
     <label><input type="checkbox" data-f="flag"> Annotation flags / unsupported</label>
     <label><input type="checkbox" data-f="inc"> Incomplete predictions</label>
@@ -91,7 +97,7 @@ img.rawplot{max-width:100%;border:1px solid var(--line);border-radius:6px;backgr
 <main>
   <div class="tabs" id="maintabs">
     <button data-tab="protein" class="on">Protein</button>
-    <button data-tab="about">Dataset, methods &amp; caveats</button>
+    <button data-tab="about">Dataset, coverage &amp; methods</button>
   </div>
   <div id="tab-protein"></div>
   <div id="tab-about" style="display:none"></div>
@@ -99,500 +105,491 @@ img.rawplot{max-width:100%;border:1px solid var(--line);border-radius:6px;backgr
 </div>
 <div class="toast" id="toast"></div>
 <script id="atlas-data" type="application/json">__DATA__</script>
-<script id="atlas-assets" type="application/json">__ASSETS__</script>
 <script>
 "use strict";
-const D = JSON.parse(document.getElementById('atlas-data').textContent);
-const ASSETS = JSON.parse(document.getElementById('atlas-assets').textContent);
-const P = D.proteins;
-const MAIN = D.main_methods, COMP = D.component_methods;
-const ST_COL = {I:'#0d9488',O:'#d97706',M:'#334155',S:'#db2777',B:'#0891b2',P:'#65a30d'};
+const DATA = JSON.parse(document.getElementById('atlas-data').textContent);
+const ORGS = DATA.organisms, ORDER = DATA.order, P = DATA.proteins;
+const MAIN = DATA.main_methods, COMP = DATA.component_methods, ALLM = MAIN.concat(COMP);
+const REPO = DATA.repo, WF = DATA.workflow;
+// expand compact fields: status ('complete' where a prediction exists; components inherit TOPCONS2's status) and single-replicon accession
+for(const p of P){ const st=p.status||{}; const full={};
+  for(const m of MAIN.concat(COMP)) full[m] = p.pred&&p.pred[m] ? 'complete' : (st[m] || (COMP.includes(m) ? (st.TOPCONS2 || (p.pred&&p.pred.TOPCONS2?'no_output_returned':'pending')) : 'pending'));
+  p.status=full; if(!p.replicon) p.replicon=ORGS[p.org].accession; }
+// ---------------- palette & typography ----------------
+const ST_COL = {I:'#0f8b80',O:'#d97706',M:'#1e293b',S:'#db2777',B:'#0891b2',P:'#65a30d'};
+const ST_TXT = {I:'#0b6b62',O:'#9a4d03',M:'#1e293b',S:'#9d174d',B:'#0e7490',P:'#3f6212'};
 const ST_NAME = {I:'Inside (cytoplasmic side)',O:'Outside (non-cytoplasmic)',M:'Membrane span (α-helix)',S:'Signal peptide (precursor)',B:'Membrane span (β-strand)',P:'Periplasm (β-barrel model)'};
 const ST_SHORT = {I:'Inside',O:'Outside',M:'TM',S:'SP',B:'β-TM',P:'Periplasm'};
-const CH = {pos:'#1d4ed8',neg:'#dc2626',his:'#8b5cf6',hyd:'#f3dfb4',oth:'#ffffff',unk:'#9ca3af'};
-const FONT = 'system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif';
-const MONO = 'ui-monospace,SFMono-Regular,Menlo,Consolas,monospace';
+const CH = {pos:'#1d4ed8',neg:'#dc2626',his:'#8b5cf6',hyd:'#f1dcae',oth:'#ffffff',unk:'#9ca3af'};
+const FONT = 'Helvetica Neue, Helvetica, Arial, sans-serif';
+const MONO = 'Menlo, Consolas, DejaVu Sans Mono, monospace';
 const STD = new Set('ACDEFGHIKLMNPQRSTVWY'.split(''));
 function chClass(a){ if(a==='K'||a==='R')return'pos'; if(a==='D'||a==='E')return'neg'; if(a==='H')return'his'; if('AVILMFWY'.includes(a))return'hyd'; if(STD.has(a))return'oth'; return'unk'; }
-const CH_LABEL = {pos:'K/R — generally positive side chain',neg:'D/E — generally negative side chain',his:'H — variable protonation (not treated as fixed charge)',hyd:'A/V/I/L/M/F/W/Y — declared hydrophobic/aromatic class (not a hydropathy prediction)',oth:'Other standard residues (unmarked)',unk:'Non-standard / unsupported symbol'};
+const CH_LABEL = {pos:'K/R — generally positive side chain',neg:'D/E — generally negative side chain',his:'H — variable protonation (not a fixed charge)',hyd:'A/V/I/L/M/F/W/Y — declared hydrophobic/aromatic class (not a hydropathy prediction)',oth:'Other standard residues (unmarked)',unk:'Non-standard / unsupported symbol'};
 const esc = s => String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const $ = id => document.getElementById(id);
-function toast(t){const e=$('toast');e.textContent=t;e.classList.add('on');clearTimeout(toast._t);toast._t=setTimeout(()=>e.classList.remove('on'),2200);}
+function toast(t){const e=$('toast');e.textContent=t;e.classList.add('on');clearTimeout(toast._t);toast._t=setTimeout(()=>e.classList.remove('on'),2600);}
 function pname(p){ return p.gene || p.curator_alias || p.locus_tag || p.protein_id; }
 function safe(s){ return String(s).replace(/[^A-Za-z0-9._-]+/g,'_').replace(/_+/g,'_').replace(/^_|_$/g,''); }
-
-// ---------- state ----------
-const state = { idx:0, filtered:[], shown:200, methods:new Set(MAIN.filter(m=>P.some(p=>p.method_status[m]==='complete'))), beadModel:null, mapModel:null, hyd:true, rowLen:50, win:null, fit:{figA:true,figB:false,figC:false,figD:true} };
-try{ const s=JSON.parse(localStorage.getItem('dsc-atlas-prefs')||'{}'); if(typeof s.hyd==='boolean')state.hyd=s.hyd; if(s.rowLen)state.rowLen=s.rowLen; }catch(e){}
-function savePrefs(){ try{localStorage.setItem('dsc-atlas-prefs',JSON.stringify({hyd:state.hyd,rowLen:state.rowLen}));}catch(e){} }
-
-// ---------- header ----------
-$('ttl').textContent = D.organism + ' — membrane topology & charge atlas';
-$('subttl').textContent = `${D.accession} · ${P.length} annotated protein translations · predictions, not experimental evidence`;
-document.title = `${D.key} Topology Atlas`;
-
-// ---------- sidebar ----------
-function searchText(p){ return [p.protein_id,p.gene,p.locus_tag,p.protein_accession,p.product,p.curator_alias,p.note,...(p.synonyms||[]),...(p.db_xref||[])].join(' ').toLowerCase(); }
-const ST = P.map(searchText);
-function incomplete(p){ return [...MAIN,...COMP].some(m=>p.method_status[m]!=='complete'); }
-function applyFilters(){
-  const q=$('q').value.trim().toLowerCase();
-  const f={}; document.querySelectorAll('#filters input').forEach(i=>f[i.dataset.f]=i.checked);
-  state.filtered = P.map((p,i)=>i).filter(i=>{
-    const p=P[i];
-    if(q && !q.split(/\s+/).every(t=>ST[i].includes(t))) return false;
-    if(f.span && !p.any_membrane_span) return false;
-    if(f.sp && !p.any_signal_peptide) return false;
-    if(f.dis && !p.disagreements.length) return false;
-    if(f.flag && !(p.annotation_flags.length || [...MAIN].some(m=>p.method_status[m]==='unsupported'))) return false;
-    if(f.inc && !incomplete(p)) return false;
-    return true;
-  });
-  state.shown=200; renderList();
-}
-function renderList(){
-  const ul=$('plist'); const items=state.filtered.slice(0,state.shown);
-  ul.innerHTML = items.map(i=>{const p=P[i];
-    const tags=(p.any_membrane_span?'<span class="tag tm">TM</span>':'')+(p.any_signal_peptide?'<span class="tag sp">SP</span>':'')+(p.disagreements.length?'<span class="tag dis">disagree</span>':'')+(incomplete(p)?'<span class="tag inc">incomplete</span>':'')+(p.annotation_flags.length?'<span class="tag flag">flag</span>':'');
-    return `<li data-i="${i}" class="${i===state.idx?'sel':''}"><b>${esc(pname(p))}</b> ${tags}<div class="pm">${esc(p.locus_tag)} · ${p.length} aa · ${esc(p.product)}</div></li>`;}).join('');
-  $('cnt').textContent = `${state.filtered.length} of ${P.length} proteins match`;
-  $('more').style.display = state.filtered.length>state.shown?'block':'none';
-  const dd=$('dd'); dd.innerHTML = state.filtered.map(i=>`<option value="${i}" ${i===state.idx?'selected':''}>${esc(pname(P[i]))} — ${esc(P[i].locus_tag)} (${P[i].length} aa)</option>`).join('');
-}
-$('plist').addEventListener('click',e=>{const li=e.target.closest('li');if(li)select(+li.dataset.i);});
-$('dd').addEventListener('change',e=>select(+e.target.value));
-$('more').addEventListener('click',()=>{state.shown+=200;renderList();});
-$('q').addEventListener('input',applyFilters);
-document.querySelectorAll('#filters input').forEach(i=>i.addEventListener('change',applyFilters));
-function step(d){ const L=state.filtered; if(!L.length)return; let k=L.indexOf(state.idx); k = k<0?0:(k+d+L.length)%L.length; select(L[k]); }
-$('prev').onclick=()=>step(-1); $('next').onclick=()=>step(1);
-document.querySelectorAll('#maintabs button').forEach(b=>b.onclick=()=>{document.querySelectorAll('#maintabs button').forEach(x=>x.classList.toggle('on',x===b));$('tab-protein').style.display=b.dataset.tab==='protein'?'':'none';$('tab-about').style.display=b.dataset.tab==='about'?'':'none';});
-
-function select(i){ state.idx=i; state.win=null; const p=P[i];
-  const avail=[...MAIN,...COMP].filter(m=>p.method_status[m]==='complete');
-  if(!avail.includes(state.beadModel)) state.beadModel = avail[0]||null;
-  if(!avail.includes(state.mapModel)) state.mapModel = null;
-  try{history.replaceState(null,'','#'+encodeURIComponent(p.protein_id));}catch(e){}
-  renderList(); renderProtein(); }
-
-// ---------- geometry helpers ----------
-function segsOf(pred){ return pred.segments; }
-function svgOpen(w,h,title){ return `<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}" font-family="${FONT}"><title>${esc(title)}</title><rect width="${w}" height="${h}" fill="#ffffff"/>`; }
-let measureCtx=null;
-function textW(t,size,weight){ if(!measureCtx){measureCtx=document.createElement('canvas').getContext('2d');} measureCtx.font=`${weight||400} ${size}px ${FONT}`; return measureCtx.measureText(t).width; }
+function org(p){ return ORGS[p.org]; }
 function rr(n){ return Math.round(n*10)/10; }
-
-// ---------- Figure D: linear method comparison ----------
-function figTracks(p, methods){
-  const L=p.length, left=170, right=40, W=Math.max(900, Math.min(1500, 260+L*2.2)), tw=W-left-right, sc=tw/L;
-  const rowH=34, top=58; const rows=methods.length; const hasRel=methods.includes('TOPCONS2') && p.predictions.TOPCONS2 && p.predictions.TOPCONS2.reliability && p.predictions.TOPCONS2.reliability.length;
-  const H=top+rows*rowH+(hasRel?70:0)+110;
-  const x=pos=>left+(pos-1)*sc;
-  let s=svgOpen(W,H,`${pname(p)} method comparison`);
-  s+=`<text x="${left}" y="26" font-size="20" font-weight="700" fill="#1b1f24">${esc(pname(p))} — predicted topology by method</text>`;
-  s+=`<text x="${left}" y="46" font-size="13" fill="#5b6470">${esc(D.organism)} · ${esc(p.locus_tag)} · residues 1–${L} (1-based precursor numbering) · categorical one-best assignments, not confidence scores</text>`;
-  methods.forEach((m,k)=>{ const y=top+k*rowH; const pr=p.predictions[m]; const isComp=COMP.includes(m);
-    s+=`<text x="${left-10}" y="${y+21}" font-size="${isComp?13:15}" font-weight="${isComp?500:700}" text-anchor="end" fill="${isComp?'#5b6470':'#1b1f24'}">${esc(m)}${isComp?' (component)':''}</text>`;
-    if(!pr){ s+=`<rect x="${left}" y="${y+6}" width="${tw}" height="20" fill="#f3f4f6" stroke="#cbd5e1" stroke-dasharray="4 3"/><text x="${left+8}" y="${y+21}" font-size="13" fill="#b91c1c">${esc(p.method_status[m]||'missing')} — no prediction available</text>`; return; }
-    pr.segments.forEach(g=>{ const h=g.label==='M'||g.label==='B'?24:(g.label==='S'?20:14); const yy=y+16-h/2;
-      s+=`<rect x="${rr(x(g.start))}" y="${yy}" width="${rr(Math.max(0.6,(g.stop-g.start+1)*sc))}" height="${h}" fill="${ST_COL[g.label]}" ${g.label==='S'?'stroke="#831843" stroke-width="1"':''}><title>${m}: ${ST_NAME[g.label]} ${g.start}–${g.stop} (${g.stop-g.start+1} aa)</title></rect>`; });
-  });
-  let yb=top+rows*rowH+8;
-  if(hasRel){ const rel=p.predictions.TOPCONS2.reliability; const h=44;
-    s+=`<text x="${left-10}" y="${yb+20}" font-size="12.5" text-anchor="end" fill="#5b6470">TOPCONS2 reliability</text><text x="${left-10}" y="${yb+35}" font-size="11" text-anchor="end" fill="#5b6470">(tool-provided, 0–1)</text>`;
-    s+=`<rect x="${left}" y="${yb}" width="${tw}" height="${h}" fill="#fafafa" stroke="#e5e7eb"/>`;
-    let d=''; let prev=null; rel.forEach(([pos,v])=>{ const X=rr(x(pos)+sc/2), Y=rr(yb+h-v*h); d+=(prev!==null&&pos===prev+1?'L':'M')+X+' '+Y; prev=pos; });
-    s+=`<path d="${d}" fill="none" stroke="#1f4e79" stroke-width="1.6"/><text x="${left+tw+4}" y="${yb+8}" font-size="10" fill="#5b6470">1</text><text x="${left+tw+4}" y="${yb+h}" font-size="10" fill="#5b6470">0</text>`;
-    s+=`<text x="${left}" y="${yb+h+14}" font-size="11" fill="#5b6470">Reliability reported by TOPCONS2 for positions ${rel[0][0]}–${rel[rel.length-1][0]} only; positions without a value are left blank.</text>`;
-    yb+=h+24; }
-  s+=axis(left,tw,L,yb+4,sc);
-  s+=legendRow(left,yb+48,['I','O','M','S','B','P'].filter(c=>methods.some(m=>p.predictions[m]&&p.predictions[m].labels.includes(c))));
-  s+='</svg>'; return s;
-}
-function niceStep(L,px){ const target=L/(px/70); const c=[1,2,5,10,20,25,50,100,200,250,500,1000]; return c.find(v=>v>=target)||1000; }
-function axis(left,tw,L,y,sc){ const st=niceStep(L,tw); let s=`<line x1="${left}" y1="${y}" x2="${left+tw}" y2="${y}" stroke="#6b7280"/>`;
-  const ticks=[1]; for(let v=st;v<L;v+=st)ticks.push(v); ticks.push(L);
-  ticks.forEach((v,i)=>{ const X=rr(left+(v-0.5)*sc); if(i>0&&i<ticks.length-1&&L-v<st*0.35)return; s+=`<line x1="${X}" y1="${y}" x2="${X}" y2="${y+5}" stroke="#6b7280"/><text x="${X}" y="${y+18}" font-size="12" text-anchor="middle" fill="#374151">${v}</text>`; });
-  s+=`<text x="${left+tw}" y="${y+34}" font-size="11.5" text-anchor="end" fill="#5b6470">residue position (aa)</text>`; return s; }
-function legendRow(x,y,codes){ let s=''; let cx=x; codes.forEach(c=>{ s+=`<rect x="${cx}" y="${y-11}" width="14" height="14" rx="3" fill="${ST_COL[c]}"/><text x="${cx+19}" y="${y}" font-size="12.5" fill="#1b1f24">${esc(ST_NAME[c])}</text>`; cx+=26+textW(ST_NAME[c],12.5); }); return s; }
-
-// ---------- Figure A: presentation orientation cartoon ----------
-function figOrientation(p, methods){
-  const L=p.length, left=80, right=80, W=1240, tw=W-left-right, sc=tw/L;
-  const panels=methods.map(m=>orientationPanel(p,m,left,tw,sc));
-  const top=70; let H=top; panels.forEach(pa=>H+=pa.h+18); H+=58;
-  let s=svgOpen(W,H,`${pname(p)} membrane orientation`);
-  s+=`<defs><pattern id="sphatch" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="7" height="7" fill="#fbcfe8"/><line x1="0" y1="0" x2="0" y2="7" stroke="#db2777" stroke-width="3"/></pattern></defs>`;
-  s+=`<text x="${left}" y="32" font-size="24" font-weight="800" fill="#14263a">${esc(pname(p))} · predicted membrane orientation</text>`;
-  s+=`<text x="${left}" y="54" font-size="14" fill="#5b6470">${esc(D.organism)} · ${esc(p.product)} · ${L} aa · computational predictions</text>`;
-  let y=top; panels.forEach(pa=>{ s+=`<g transform="translate(0,${y})">${pa.svg}</g>`; y+=pa.h+18; });
-  s+=`<text x="${left}" y="${y+10}" font-size="12.5" fill="#374151">Scale: horizontal extent of every loop, tail and span ∝ residue count on one shared axis (1 aa = ${rr(sc)} px). Membrane depth, loop height and path shape are schematic, not physical distances or a 3D fold.</text>`;
-  s+=`<text x="${left}" y="${y+28}" font-size="12.5" fill="#374151">Inside/outside are model-defined sides of a membrane; for a phage protein the relevant host membrane is not assigned here. Signal peptides use precursor numbering; cleavage is predicted, not demonstrated.</text>`;
-  s+='</svg>'; return s;
-}
-function placeLabels(items, minX, maxX){ // items: {cx,text,w} -> assigns lane
-  const lanes=[]; items.sort((a,b)=>a.cx-b.cx);
-  items.forEach(it=>{ let x0=Math.max(minX,Math.min(maxX-it.w,it.cx-it.w/2)); it.x0=x0; let l=0; while(lanes[l]!==undefined && lanes[l]>x0-10) l++; lanes[l]=x0+it.w; it.lane=l; });
-  return lanes.length; }
-function orientationPanel(p,m,left,tw,sc){
-  const pr=p.predictions[m]; const L=p.length; const x=pos=>left+(pos-1)*sc;
-  const head=`<text x="${left-60}" y="25" font-size="21" font-weight="800" fill="#14263a">${esc(m)}${COMP.includes(m)?' <tspan font-size="13" font-weight="500" fill="#5b6470">(TOPCONS2 component)</tspan>':''}</text>`;
-  if(!pr){ return {h:70, svg:head+`<text x="${left}" y="54" font-size="16" fill="#b91c1c">${esc(p.method_status[m]||'missing')} — no prediction available for this method</text>`}; }
-  const segs=pr.segments; const hasSpan=segs.some(g=>g.label==='M'); const hasBeta=segs.some(g=>g.label==='B'||g.label==='P');
-  if(!hasSpan || hasBeta){
-    // linear fallback
-    let s=head; const y=62;
-    const msg = hasBeta ? 'β-barrel-type prediction: linear map (P = periplasm, O = extracellular; no α-helical cartoon)' : (pr.signal_peptide ? 'no membrane span predicted · signal peptide predicted (precursor)' : 'no membrane span predicted');
-    s+=`<text x="${left+tw}" y="26" font-size="17" font-weight="700" text-anchor="end" fill="#374151">${esc(msg)}</text>`;
-    segs.forEach(g=>{ const w=(g.stop-g.start+1)*sc; s+=`<rect x="${rr(x(g.start))}" y="${y-12}" width="${rr(Math.max(1,w))}" height="24" rx="3" fill="${g.label==='S'?'url(#sphatch)':(hasBeta?ST_COL[g.label]:'#cbd5e1')}" stroke="${g.label==='S'?'#db2777':'none'}"><title>${ST_NAME[g.label]} ${g.start}–${g.stop}</title></rect>`; });
-    const items=segs.filter(g=>g.label==='S'||hasBeta).map(g=>{const t=`${hasBeta&&g.label==='O'?'Extracellular':ST_SHORT[g.label]} ${g.start}–${g.stop}`;return {cx:x(g.start)+(g.stop-g.start+1)*sc/2,text:t,w:textW(t,14,600),g};});
-    const nl=placeLabels(items,left,left+tw); items.forEach(it=>{const ly=y+36+it.lane*18; s+=`<line x1="${rr(it.cx)}" y1="${y+12}" x2="${rr(it.cx)}" y2="${ly-12}" stroke="#94a3b8"/><text x="${rr(it.x0)}" y="${ly}" font-size="14" font-weight="600" fill="${ST_COL[it.g.label]}">${esc(it.text)}</text>`;});
-    s+=badge(x(1)-22,y,'N')+badge(x(L+1)+22,y,'C');
-    if(!hasBeta) s+=`<text x="${left}" y="${y+36+(nl?nl*18+6:0)}" font-size="12.5" fill="#5b6470">${pr.signal_peptide?'':'Model reports '+(pr.labels[0]==='I'?'"inside"':'"outside"')+' labels for this chain; without a membrane span these labels do not establish localization.'}</text>`;
-    if(hasBeta) s+=`<text x="${left}" y="${y+36+nl*18+6}" font-size="12.5" fill="#5b6470">${esc(m)} β-type states: B = membrane β-strand, P = periplasm, O = "outside" (extracellular side of an outer membrane, per the model's own output labels). Predicted, not demonstrated.</text>`;
-    return {h: 112 + nl*18 + (hasBeta?18:0), svg:s};
+// ---------------- segments -> per-residue labels ----------------
+function ex(p){ if(p._x) return p; p._x=true;
+  for(const [m,pr] of Object.entries(p.pred||{})){
+    pr.segments = pr.seg.split(',').map(t=>{const r=/^([A-Za-z])(\d+)-(\d+)$/.exec(t); return {label:r[1],start:+r[2],stop:+r[3]};});
+    pr.labels = pr.segments.map(g=>g.label.repeat(g.stop-g.start+1)).join('');
+    if(pr.labels.length!==p.length) console.error('segment expansion length mismatch',p.protein_id,m);
+    const sp=pr.segments.filter(g=>g.label==='S'), spans=pr.segments.filter(g=>g.label==='M'||g.label==='B');
+    pr.spans=spans.map(g=>[g.start,g.stop,g.label]); pr.sp_range=sp.length?[sp[0].start,sp[sp.length-1].stop]:null;
+    if(!pr.nseg) pr.nseg = m==='DeepTMHMM' ? pr.seg : pr.seg.replace(/I(?=\d)/g,'i').replace(/O(?=\d)/g,'o');
+    pr.src = (m==='Phobius') ? `raw/Phobius/${pr.batch}.json` : (m==='DeepTMHMM' ? `raw/DeepTMHMM/${pr.batch}/results/predicted_topologies.3line` : ((p.topcons_meta||{}).src||''));
+  } return p; }
+// ---------------- text measurement & wrapping ----------------
+let mctx=null;
+function textW(t,size,weight){ if(!mctx) mctx=document.createElement('canvas').getContext('2d'); mctx.font=`${weight||400} ${size}px ${FONT}`; return mctx.measureText(String(t)).width; }
+function wrap(text,size,weight,maxW){ const words=String(text).split(' '); const lines=[]; let cur='';
+  for(const w of words){ const t=cur?cur+' '+w:w; if(textW(t,size,weight)<=maxW||!cur) cur=t; else { lines.push(cur); cur=w; } } if(cur) lines.push(cur); return lines; }
+function tblock(x,y,text,size,weight,fill,maxW,lh){ const L=wrap(text,size,weight,maxW); lh=lh||Math.round(size*1.35);
+  return {svg:L.map((l,i)=>`<text class="t" x="${rr(x)}" y="${rr(y+i*lh)}" font-size="${size}" font-weight="${weight||400}" fill="${fill}">${esc(l)}</text>`).join(''), h:L.length*lh}; }
+function svgOpen(w,h,title){ return `<svg xmlns="http://www.w3.org/2000/svg" width="${Math.ceil(w)}" height="${Math.ceil(h)}" viewBox="0 0 ${Math.ceil(w)} ${Math.ceil(h)}" font-family="${FONT}"><title>${esc(title)}</title><rect width="100%" height="100%" fill="#ffffff"/>`; }
+// ---------------- collision-free lane placement ----------------
+// items [{cx,w}] -> lanes used (>=0) or -1. Guarantees: no two label boxes overlap; each label's vertical leader (at cx, crossing all
+// lanes nearer the anchor) never passes through another label box; leaders are >= MIN_LEADER_GAP apart; fixed vertical obstacles
+// (e.g. signal-peptide connectors) never pass through a box.
+const PAD=8, MIN_LEADER_GAP=6;
+function placeLanes(items,o){ if(!items.length) return 0; const placed=[]; const obs=o.obstacles||[];
+  const order=items.map((_,i)=>i).sort((a,b)=>items[a].cx-items[b].cx);
+  for(const i of order){ const it=items[i]; let done=false;
+    for(const q of placed) if(Math.abs(q.cx-it.cx)<MIN_LEADER_GAP) return -1;
+    for(const ox of obs) if(Math.abs(ox-it.cx)<MIN_LEADER_GAP) return -1;
+    const cands=[it.cx-it.w/2, it.cx-6, it.cx-it.w+6].map(x=>Math.max(o.minX,Math.min(o.maxX-it.w,x)));
+    for(let lane=0; lane<o.maxLanes && !done; lane++){
+      for(const x0 of cands){ const x1=x0+it.w; if(it.cx<x0-0.5||it.cx>x1+0.5) continue; let ok=true;
+        for(const q of placed){
+          if(q.lane===lane && x0<q.x1+PAD && x1>q.x0-PAD){ok=false;break;}
+          if(q.lane>lane && q.cx>x0-PAD && q.cx<x1+PAD){ok=false;break;}
+          if(q.lane<lane && it.cx>q.x0-PAD && it.cx<q.x1+PAD){ok=false;break;}
+        }
+        if(ok) for(const ox of obs) if(ox>x0-PAD && ox<x1+PAD){ok=false;break;}
+        if(ok){ it.x0=x0; it.lane=lane; placed.push({x0,x1,lane,cx:it.cx}); done=true; break; }
+      }
+    }
+    if(!done) return -1;
   }
-  // membrane cartoon (α-helical)
+  return Math.max(...placed.map(q=>q.lane))+1; }
+let LID=0;
+function leader(x,y1,y2,id){ return `<line class="ldr" data-for="${id}" x1="${rr(x)}" y1="${rr(y1)}" x2="${rr(x)}" y2="${rr(y2)}" stroke="#8b95a3" stroke-width="1"/>`; }
+function badge(cx,cy,t,r){ r=r||14; return `<g class="badge"><circle cx="${rr(cx)}" cy="${rr(cy)}" r="${r}" fill="#13263b"/><text class="bt" x="${rr(cx)}" y="${rr(cy+r*0.38)}" font-size="${Math.round(r*1.12)}" font-weight="700" text-anchor="middle" fill="#fff">${t}</text></g>`; }
+function segKey(items,x,y,maxW){ if(!items.length) return {svg:'',h:0}; const size=13.5; const cw=Math.max(...items.map(it=>textW(it.text,size,600)))+34; const cols=Math.max(1,Math.floor(maxW/cw));
+  let s=`<text class="t" x="${rr(x)}" y="${rr(y)}" font-size="12.5" font-weight="700" fill="#374151">Segment key (positions on the residue axis below)</text>`;
+  items.forEach((it,i)=>{ const cx=x+(i%cols)*cw, cy=y+21+Math.floor(i/cols)*20; s+=`<rect x="${rr(cx)}" y="${rr(cy-10)}" width="12" height="12" rx="2" fill="${it.fill}"/><text class="t" x="${rr(cx+18)}" y="${rr(cy)}" font-size="${size}" font-weight="600" fill="${it.col}">${esc(it.text)}</text>`; });
+  return {svg:s,h:21+Math.ceil(items.length/cols)*20}; }
+function niceStep(L,px){ const target=L/(px/80); const c=[1,2,5,10,20,25,50,100,200,250,500,1000,2000,5000]; return c.find(v=>v>=target)||5000; }
+function axis(left,tw,L,y,sc){ const st=niceStep(L,tw); const tk=[1]; for(let v=st;v<L;v+=st) tk.push(v);
+  const endX=left+(L-0.5)*sc, endW=textW(String(L),12);
+  while(tk.length>1 && left+(tk[tk.length-1]-0.5)*sc+textW(String(tk[tk.length-1]),12)/2 > endX-endW/2-8) tk.pop();
+  if(L>1) tk.push(L);
+  let s=`<line x1="${left}" y1="${y}" x2="${left+tw}" y2="${y}" stroke="#6b7280"/>`;
+  tk.forEach(v=>{ const X=left+(v-0.5)*sc; s+=`<line x1="${rr(X)}" y1="${y}" x2="${rr(X)}" y2="${y+5}" stroke="#6b7280"/><text class="t" x="${rr(X)}" y="${y+18}" font-size="12" text-anchor="middle" fill="#374151">${v}</text>`; });
+  s+=`<text class="t" x="${left+tw}" y="${y+36}" font-size="11.5" text-anchor="end" fill="#5b6470">residue position (aa)</text>`; return {svg:s,h:42}; }
+
+// ======================= Figure A: orientation =======================
+function figOrientation(p,methods){ ex(p); const L=p.length, left=80, W=1240, tw=W-160, sc=tw/L; LID=0;
+  const panels=methods.map(m=>orientationPanel(p,m,left,tw,sc,W)); const anyKey=panels.some(pa=>pa.keyed);
+  const head1=tblock(20,32,`${pname(p)} · predicted membrane orientation`,24,700,'#13263b',W-40);
+  const head2=tblock(20,32+head1.h,`${org(p).name} · ${p.product} · ${L} aa · computational predictions`,14,400,'#5b6470',W-40);
+  let y=32+head1.h+head2.h+4, body='';
+  panels.forEach(pa=>{ body+=`<g transform="translate(0,${rr(y)})">${pa.svg}</g>`; y+=pa.h+16; });
+  const ax=axis(left,tw,L,y+4,sc); body+=ax.svg; y+=ax.h+16;
+  const n1=tblock(20,y,`Scale: the horizontal extent of every loop, tail and span is proportional to residue count on the shared axis (1 aa = ${rr(sc)} px). Membrane thickness, loop height and path shape are schematic, not physical distances or a 3D fold.`,12.5,400,'#374151',W-40);
+  const n2=tblock(20,y+n1.h+2,`Inside/outside are model-defined sides of a membrane. ${org(p).kind==='phage'?'For a phage protein the relevant host membrane is not assigned. ':''}Signal peptides use precursor numbering; cleavage is predicted, not demonstrated.${anyKey?' Where direct labels would collide, segments are listed in a key.':''}`,12.5,400,'#374151',W-40);
+  const H=y+n1.h+n2.h+10;
+  return svgOpen(W,H,`${pname(p)} membrane orientation`)+`<defs><pattern id="sphatch" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="7" height="7" fill="#fbcfe8"/><line x1="0" y1="0" x2="0" y2="7" stroke="#db2777" stroke-width="3"/></pattern></defs>`+head1.svg+head2.svg+body+n1.svg+n2.svg+'</svg>'; }
+function panelHead(m,W,right){ const isC=COMP.includes(m); const nameW=textW(m,21,700)+(isC?textW(' (TOPCONS2 component)',13,400):0);
+  const s=`<text class="t" x="20" y="24" font-size="21" font-weight="700" fill="#13263b">${esc(m)}${isC?'<tspan font-size="13" font-weight="400" fill="#5b6470"> (TOPCONS2 component)</tspan>':''}</text>`;
+  if(!right) return {svg:s,h:34};
+  if(20+nameW+30+right.w<=W-20) return {svg:s+right.svg(W-20-right.w,24),h:34};
+  return {svg:s+right.svg(20,50),h:60}; }
+function legendRight(){ const t1='outside (non-cytoplasmic)', t2='inside (cytoplasmic)', w1=textW(t1,13,600), w2=textW(t2,13,600);
+  return {w:18+w1+22+18+w2, svg:(x,y)=>`<rect x="${rr(x)}" y="${y-11}" width="13" height="13" rx="3" fill="#fff4e0" stroke="#d97706"/><text class="t" x="${rr(x+18)}" y="${y}" font-size="13" font-weight="600" fill="#9a4d03">${t1}</text><rect x="${rr(x+18+w1+22)}" y="${y-11}" width="13" height="13" rx="3" fill="#e2f4f1" stroke="#0f8b80"/><text class="t" x="${rr(x+18+w1+40)}" y="${y}" font-size="13" font-weight="600" fill="#0b6b62">${t2}</text>`}; }
+function msgRight(msg){ const w=textW(msg,15,600); return {w, svg:(x,y)=>`<text class="t" x="${rr(x)}" y="${y}" font-size="15" font-weight="600" fill="#374151">${esc(msg)}</text>`}; }
+function orientationPanel(p,m,left,tw,sc,W){
+  const pr=p.pred[m], L=p.length, x=pos=>left+(pos-1)*sc, minX=left-40, maxX=left+tw+40;
+  if(!pr){ const h=panelHead(m,W,msgRight(`${(p.status[m]||'missing').replace(/_/g,' ')} — no prediction for this method`)); return {h:h.h+4,svg:h.svg}; }
+  const segs=pr.segments, hasM=segs.some(g=>g.label==='M'), hasB=segs.some(g=>g.label==='B'||g.label==='P');
+  if(!hasM||hasB) return linearPanel(p,m,pr,left,tw,sc,W,hasB);
   const sideOf=g=>g.label==='I'?'in':'out';
-  const items=[]; let tmi=0;
-  segs.forEach(g=>{ const x0=x(g.start), w=(g.stop-g.start+1)*sc, n=g.stop-g.start+1;
-    if(g.label==='M'){ tmi++; items.push({kind:'tm',g,cx:x0+w/2,text:`TM${tmi} ${g.start}–${g.stop}`,col:'#334155'}); }
-    else if(g.label==='S') items.push({kind:'sp',g,cx:x0+w/2,text:`Signal peptide ${g.start}–${g.stop}`,col:'#db2777'});
-    else items.push({kind:sideOf(g),g,cx:x0+w/2,text:`${ST_SHORT[g.label]} ${g.start}–${g.stop} (${n} aa)`,col:ST_COL[g.label]}); });
-  const nonSp=items.filter(i=>i.kind!=='sp'); const dense=nonSp.length>9;
-  const up=items.filter(i=>i.kind==='out'), dn=items.filter(i=>i.kind==='in');
-  let upL=0, dnL=0;
-  if(!dense){ [...up,...dn].forEach(l=>l.w=textW(l.text,14,700)); upL=placeLabels(up,left-40,left+tw+40); dnL=placeLabels(dn,left-40,left+tw+40); }
-  const spItem=items.find(i=>i.kind==='sp');
-  const HEAD=40, SPL=spItem?50:0, UPL=dense?6:Math.max(1,upL)*18+4;
-  const outTop=HEAD+SPL+UPL, outY=outTop+24, mTop=outTop+48, mBot=mTop+54, inY=mBot+46, inBot=inY+24;
-  const lvl={in:inY,out:outY}, face={in:mBot,out:mTop}, mid=(mTop+mBot)/2;
-  let s=head;
-  s+=`<rect x="${left+tw-330}" y="12" width="14" height="14" rx="3" fill="#fff4e0" stroke="#d97706"/><text x="${left+tw-311}" y="24" font-size="13" font-weight="700" fill="#9a5b06">outside (non-cytoplasmic)</text><rect x="${left+tw-140}" y="12" width="14" height="14" rx="3" fill="#e2f4f1" stroke="#0d9488"/><text x="${left+tw-121}" y="24" font-size="13" font-weight="700" fill="#0b6b62">inside (cytoplasmic)</text>`;
-  s+=`<rect x="${left-40}" y="${outTop}" width="${tw+80}" height="${mTop-outTop}" fill="#fff4e0"/><rect x="${left-40}" y="${mBot}" width="${tw+80}" height="${inBot-mBot}" fill="#e2f4f1"/>`;
-  s+=`<rect x="${left-40}" y="${mTop}" width="${tw+80}" height="${mBot-mTop}" fill="#f1e7c9"/>`;
+  const reg=[], tms=[]; let tmi=0, spSeg=null;
+  segs.forEach(g=>{ const n=g.stop-g.start+1, cx=x(g.start)+n*sc/2;
+    if(g.label==='M'){ tmi++; tms.push({g,cx,i:tmi,full:`TM${tmi} ${g.start}–${g.stop}`,short:`TM${tmi}`}); }
+    else if(g.label==='S') spSeg=g;
+    else reg.push({g,side:sideOf(g),cx,full:`${ST_SHORT[g.label]} ${g.start}–${g.stop} (${n} aa)`,short:`${g.start}–${g.stop}`}); });
+  const obstacles = spSeg? [x(spSeg.stop+1)] : [];
+  let regMode=null, upN=0, dnN=0;
+  for(const mode of ['full','short']){ const up=reg.filter(r=>r.side==='out').map(r=>({cx:r.cx,w:textW(r[mode],14,600),r})), dn=reg.filter(r=>r.side==='in').map(r=>({cx:r.cx,w:textW(r[mode],14,600),r}));
+    const a=placeLanes(up,{minX,maxX,maxLanes:3,obstacles}), b=placeLanes(dn,{minX,maxX,maxLanes:3});
+    if(a>=0&&b>=0){ regMode=mode; upN=a; dnN=b; up.concat(dn).forEach(it=>{it.r.x0=it.x0; it.r.lane=it.lane; it.r.text=it.r[mode];}); break; } }
+  let tmMode=null;
+  for(const mode of ['full','short']){ const ws=tms.map(t=>textW(t[mode],13,700)+14); let ok=true;
+    for(let i=0;i<tms.length;i++){ const a0=tms[i].cx-ws[i]/2, a1=tms[i].cx+ws[i]/2; if(a0<minX||a1>maxX) ok=false; if(i>0&&a0<tms[i-1].cx+ws[i-1]/2+6) ok=false; }
+    if(ok){ tmMode=mode; tms.forEach((t,i)=>{t.w=ws[i]; t.text=t[mode];}); break; } }
+  const keyed = regMode!=='full' || tmMode!=='full';
+  const LH=19, ph=panelHead(m,W,legendRight()), HEAD=ph.h+6, spLaneH=spSeg?52:0, upH=regMode?Math.max(1,upN)*LH+6:8;
+  const outTop=HEAD+spLaneH+upH, outY=outTop+24, mTop=outTop+48, mBot=mTop+56, inY=mBot+44, inBot=inY+24, mid=(mTop+mBot)/2;
+  const lvl={in:inY,out:outY}, face={in:mBot,out:mTop};
+  let s=ph.svg;
+  s+=`<rect x="${minX}" y="${outTop}" width="${tw+80}" height="${mTop-outTop}" fill="#fff4e0"/><rect x="${minX}" y="${mBot}" width="${tw+80}" height="${inBot-mBot}" fill="#e2f4f1"/><rect x="${minX}" y="${mTop}" width="${tw+80}" height="${mBot-mTop}" fill="#f2e8cc"/>`;
   const nh=Math.floor((tw+80)/9); let heads='', tails='';
-  for(let k=0;k<nh;k++){ const hx=rr(left-36+k*9); heads+=`<circle cx="${hx}" cy="${mTop+4}" r="3.6"/><circle cx="${hx}" cy="${mBot-4}" r="3.6"/>`; tails+=`M${hx} ${mTop+8}l${k%2?1.5:-1.5} 10l${k%2?-1.5:1.5} 9M${hx} ${mBot-8}l${k%2?1.5:-1.5} -10l${k%2?-1.5:1.5} -9`; }
-  s+=`<path d="${tails}" stroke="#d6bf8a" stroke-width="1" fill="none"/><g fill="#c9a25a" stroke="#9c7a3a" stroke-width=".6">${heads}</g>`;
-  // chain path
-  let path='', bars='', spSvg='', prevSide=null, started=false, first=null, last=null;
+  for(let k=0;k<nh;k++){ const hx=rr(minX+4+k*9); heads+=`<circle cx="${hx}" cy="${mTop+4}" r="3.5"/><circle cx="${hx}" cy="${mBot-4}" r="3.5"/>`; tails+=`M${hx} ${mTop+8}l${k%2?1.4:-1.4} 10l${k%2?-1.4:1.4} 10M${hx} ${mBot-8}l${k%2?1.4:-1.4} -10l${k%2?-1.4:1.4} -10`; }
+  s+=`<path d="${tails}" stroke="#d9c38f" stroke-width="1" fill="none"/><g fill="#c9a25a" stroke="#a07d3c" stroke-width=".5">${heads}</g>`;
+  let path='', bars='', sp='', prevSide=null, started=false, first=null, last=null;
   segs.forEach((g,k)=>{ const x0=x(g.start), x1=x(g.stop+1), w=x1-x0;
-    if(g.label==='S'){ const y=HEAD+14; spSvg+=`<rect x="${rr(x0)}" y="${y}" width="${rr(Math.max(1,w))}" height="16" rx="4" fill="url(#sphatch)" stroke="#db2777" stroke-width="1.5"><title>Signal peptide ${g.start}–${g.stop} (precursor; predicted)</title></rect>`;
-      const t=`Signal peptide ${g.start}–${g.stop} · precursor, predicted · not placed relative to the membrane`; const tw2=textW(t,13.5,700);
-      const tx = (x1+10+tw2 < left+tw+40) ? x1+10 : Math.max(left-40, x0);
-      const ty = (x1+10+tw2 < left+tw+40) ? y+13 : y-6;
-      spSvg+=`<text x="${rr(tx)}" y="${ty}" font-size="13.5" font-weight="700" fill="#db2777">${esc(t)}</text>`;
-      if(!first) first={x:x0,y:y+8}; prevSide='sp'; last={x:x1,y:y+8}; return; }
-    if(g.label==='M'){ const prev=segs[k-1]; const nextReg=segs.slice(k+1).find(h=>h.label==='I'||h.label==='O');
-      let from = prevSide==='in'||prevSide==='out'? prevSide : null; const to = nextReg? sideOf(nextReg) : (from==='in'?'out':'in'); if(!from) from = to==='in'?'out':'in';
+    if(g.label==='S'){ const y=HEAD+8; sp+=`<rect x="${rr(x0)}" y="${y}" width="${rr(Math.max(1,w))}" height="16" rx="4" fill="url(#sphatch)" stroke="#db2777" stroke-width="1.4"><title>Signal peptide ${g.start}–${g.stop}</title></rect>`;
+      const t=`Signal peptide ${g.start}–${g.stop} · precursor, predicted · not placed relative to the membrane`, twt=textW(t,13.5,600);
+      let tx, ty=y+13; if(x1+10+twt<=maxX) tx=x1+10; else if(x0-10-twt>=minX) tx=x0-10-twt; else { tx=minX; ty=y+35; }
+      sp+=`<text class="t" x="${rr(tx)}" y="${ty}" font-size="13.5" font-weight="600" fill="#9d174d">${esc(t)}</text>`;
+      first={x:x0,y:y+8}; prevSide='sp'; return; }
+    if(g.label==='M'){ const nextReg=segs.slice(k+1).find(h=>h.label==='I'||h.label==='O');
+      let from=(prevSide==='in'||prevSide==='out')?prevSide:null; const to=nextReg?sideOf(nextReg):(from==='in'?'out':'in'); if(!from) from=to==='in'?'out':'in';
       const y0=face[from], y1=face[to];
-      if(!started){ if(prevSide==='sp') spSvg+=`<path d="M${rr(x0)} ${HEAD+30} L${rr(x0)} ${y0}" stroke="#db2777" stroke-width="2" stroke-dasharray="5 4" fill="none"/>`; path+=`M${rr(x0)} ${y0}`; started=true; if(!first) first={x:x0,y:y0}; }
+      if(!started){ if(prevSide==='sp') sp+=`<line class="conn" x1="${rr(x0)}" y1="${HEAD+24}" x2="${rr(x0)}" y2="${y0}" stroke="#db2777" stroke-width="2" stroke-dasharray="5 4"/>`; path+=`M${rr(x0)} ${y0}`; started=true; if(!first) first={x:x0,y:y0}; }
       path+=`L${rr(x1)} ${y1}`;
-      bars+=`<line x1="${rr(x0)}" y1="${y0}" x2="${rr(x1)}" y2="${y1}" stroke="#334155" stroke-width="${rr(Math.max(10,Math.min(22,w*0.6)))}" stroke-linecap="round"><title>${esc(m)} membrane span ${g.start}–${g.stop} (${g.stop-g.start+1} aa)</title></line>`;
+      bars+=`<line x1="${rr(x0)}" y1="${y0}" x2="${rr(x1)}" y2="${y1}" stroke="#1e293b" stroke-width="${rr(Math.max(9,Math.min(22,w*0.6)))}" stroke-linecap="round"><title>${esc(m)} membrane span ${g.start}–${g.stop} (${g.stop-g.start+1} aa)</title></line>`;
       prevSide=to; last={x:x1,y:y1}; return; }
-    const sd=sideOf(g), ly=lvl[sd], fy=face[sd]; const isLast=k===segs.length-1;
-    if(!started){ if(prevSide==='sp') spSvg+=`<path d="M${rr(x0)} ${HEAD+30} L${rr(x0)} ${ly}" stroke="#db2777" stroke-width="2" stroke-dasharray="5 4" fill="none"/>`; path+=`M${rr(x0)} ${ly}`; started=true; if(!first) first={x:x0,y:ly}; }
+    const sd=sideOf(g), ly=lvl[sd], fy=face[sd], isLast=k===segs.length-1;
+    if(!started){ if(prevSide==='sp') sp+=`<line class="conn" x1="${rr(x0)}" y1="${HEAD+24}" x2="${rr(x0)}" y2="${ly}" stroke="#db2777" stroke-width="2" stroke-dasharray="5 4"/>`; path+=`M${rr(x0)} ${ly}`; started=true; if(!first) first={x:x0,y:ly}; }
     else path+=`L${rr(x0)} ${ly}`;
     path+=`L${rr(x1)} ${ly}`; if(!isLast) path+=`L${rr(x1)} ${fy}`;
     prevSide=sd; last={x:x1,y:ly}; });
-  s+=`<path d="${path}" fill="none" stroke="#1f2937" stroke-width="4.2" stroke-linejoin="round" stroke-linecap="round"/>`+bars+spSvg;
-  // labels
-  let bottom=inBot;
-  if(dense){
-    nonSp.forEach((lb,i)=>{ const yy = lb.kind==='tm'?mid:lvl[lb.kind]; s+=`<circle cx="${rr(lb.cx)}" cy="${yy}" r="10" fill="#fff" stroke="${lb.col}" stroke-width="2"/><text x="${rr(lb.cx)}" y="${yy+4}" font-size="11" font-weight="800" text-anchor="middle" fill="${lb.col}">${i+1}</text>`; });
-    const cols=3, cw=(tw+80)/cols; nonSp.forEach((lb,i)=>{ const cx=left-40+(i%cols)*cw, yy=inBot+22+Math.floor(i/cols)*20; s+=`<text x="${rr(cx)}" y="${yy}" font-size="14" font-weight="700" fill="${lb.col}">${i+1}. ${esc(lb.text)}</text>`; });
-    bottom=inBot+22+Math.ceil(nonSp.length/cols)*20;
-  } else {
-    up.forEach(l=>{ const ty=outTop-8-l.lane*18; s+=leader(l.cx,outY-3,ty+4)+`<text x="${rr(l.x0)}" y="${ty}" font-size="14" font-weight="700" fill="${l.col}">${esc(l.text)}</text>`; });
-    dn.forEach(l=>{ const ty=inBot+18+l.lane*18; s+=leader(l.cx,inY+3,ty-13)+`<text x="${rr(l.x0)}" y="${ty}" font-size="14" font-weight="700" fill="${l.col}">${esc(l.text)}</text>`; });
-    items.filter(i=>i.kind==='tm').forEach(l=>{ const w=textW(l.text,13,800)+14; s+=`<rect x="${rr(l.cx-w/2)}" y="${mid-11}" width="${rr(w)}" height="22" rx="11" fill="#ffffff" stroke="#334155" stroke-width="1.6"/><text x="${rr(l.cx)}" y="${mid+4.5}" font-size="13" font-weight="800" text-anchor="middle" fill="#1e293b">${esc(l.text)}</text>`; });
-    bottom = inBot + (dnL? dnL*18+6 : 0);
-  }
-  s+=badge(first.x-20, first.y,'N')+badge(last.x+20, last.y,'C');
-  return {h:bottom+6, svg:s};
-}
-function leader(x,y1,y2){ return `<line x1="${rr(x)}" y1="${rr(y1)}" x2="${rr(x)}" y2="${rr(y2)}" stroke="#94a3b8" stroke-width="1"/>`; }
-function badge(cx,cy,t){ return `<circle cx="${rr(cx)}" cy="${rr(cy)}" r="14" fill="#14263a"/><text x="${rr(cx)}" y="${rr(cy+5.5)}" font-size="16" font-weight="800" text-anchor="middle" fill="#fff">${t}</text>`; }
+  s+=`<path d="${path}" fill="none" stroke="#1f2937" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>`+bars+sp;
+  let bottom=inBot+8;
+  if(regMode){ reg.forEach(r=>{ const id='L'+(++LID);
+      if(r.side==='out'){ const ty=outTop-8-r.lane*LH; s+=leader(r.cx,outY-3,ty+4,id)+`<text class="t lbl" id="${id}" x="${rr(r.x0)}" y="${ty}" font-size="14" font-weight="600" fill="${ST_TXT[r.g.label]}">${esc(r.text)}</text>`; }
+      else { const ty=inBot+18+r.lane*LH; s+=leader(r.cx,inY+3,ty-13,id)+`<text class="t lbl" id="${id}" x="${rr(r.x0)}" y="${ty}" font-size="14" font-weight="600" fill="${ST_TXT[r.g.label]}">${esc(r.text)}</text>`; } });
+    bottom=inBot+(dnN?dnN*LH+6:8); }
+  if(tmMode) tms.forEach(t=>{ s+=`<g class="pill"><rect x="${rr(t.cx-t.w/2)}" y="${mid-11}" width="${rr(t.w)}" height="22" rx="11" fill="#fff" stroke="#1e293b" stroke-width="1.5"/><text x="${rr(t.cx)}" y="${mid+4.5}" font-size="13" font-weight="700" text-anchor="middle" fill="#1e293b">${esc(t.text)}</text></g>`; });
+  s+=badge(first.x-20,first.y,'N')+badge(last.x+20,last.y,'C');
+  if(keyed){ const items=segs.map(g=>({text:`${g.label==='M'?'TM'+tms.find(t=>t.g===g).i:ST_SHORT[g.label]} ${g.start}–${g.stop} (${g.stop-g.start+1} aa)`, fill:g.label==='S'?'#f9a8d4':ST_COL[g.label], col:ST_TXT[g.label]}));
+    const k=segKey(items,minX,bottom+18,tw+80); s+=k.svg; bottom+=k.h+22; }
+  return {h:bottom, svg:s, keyed}; }
+function linearPanel(p,m,pr,left,tw,sc,W,hasB){
+  const segs=pr.segments, x=pos=>left+(pos-1)*sc, minX=left-40, maxX=left+tw+40, L=p.length;
+  const msg = hasB ? 'β-barrel-type prediction: linear map (P = periplasm, O = extracellular)' : (pr.sp_range ? 'no membrane span predicted · signal peptide predicted' : 'no membrane span predicted');
+  const ph=panelHead(m,W,msgRight(msg)), y=ph.h+24; let s=ph.svg;
+  segs.forEach(g=>{ const w=(g.stop-g.start+1)*sc; s+=`<rect x="${rr(x(g.start))}" y="${y-12}" width="${rr(Math.max(1,w))}" height="24" fill="${g.label==='S'?'url(#sphatch)':(hasB?ST_COL[g.label]:'#cbd5e1')}" stroke="${g.label==='S'?'#db2777':'none'}"><title>${ST_NAME[g.label]} ${g.start}–${g.stop}</title></rect>`; });
+  s+=badge(x(1)-20,y,'N')+badge(x(L+1)+20,y,'C');
+  const lab=segs.filter(g=>g.label==='S'||hasB).map(g=>({g,cx:x(g.start)+(g.stop-g.start+1)*sc/2,full:`${hasB&&g.label==='O'?'Extracellular':ST_SHORT[g.label]} ${g.start}–${g.stop}`,short:`${g.start}–${g.stop}`}));
+  let n=-1, mode=null;
+  for(const md of ['full','short']){ const it=lab.map(l=>({cx:l.cx,w:textW(l[md],14,600),l})); n=placeLanes(it,{minX,maxX,maxLanes:4}); if(n>=0){ mode=md; it.forEach(i=>{i.l.x0=i.x0; i.l.lane=i.lane; i.l.text=i.l[md];}); break; } }
+  let yb=y+18; const LH=19;
+  if(n>0){ lab.forEach(l=>{ const id='L'+(++LID), ty=y+12+30+l.lane*LH; s+=leader(l.cx,y+13,ty-13,id)+`<text class="t lbl" id="${id}" x="${rr(l.x0)}" y="${ty}" font-size="14" font-weight="600" fill="${ST_TXT[l.g.label]}">${esc(l.text)}</text>`; }); yb=y+12+30+(n-1)*LH+8; }
+  const keyed = lab.length>0 && mode!=='full';
+  if(keyed){ const k=segKey(lab.map(l=>({text:l.full,fill:l.g.label==='S'?'#f9a8d4':ST_COL[l.g.label],col:ST_TXT[l.g.label]})),minX,yb+20,tw+80); s+=k.svg; yb+=20+k.h; }
+  let note='';
+  if(hasB) note=`${m} β-type states: B = membrane β-strand, P = periplasm, O = “outside” (extracellular side of an outer membrane, per the model's own output labels). Predicted, not demonstrated.`;
+  else if(!pr.sp_range) note=`The model reports ${pr.labels[0]==='I'?'“inside”':'“outside”'} labels for this chain; without a membrane span these labels do not establish localization.`;
+  if(note){ const b=tblock(minX,yb+18,note,12.5,400,'#5b6470',tw+80); s+=b.svg; yb+=18+b.h; }
+  return {h:yb+2, svg:s, keyed}; }
 
-// ---------- Figure B: full-length sequence & charge map ----------
-function figSeqMap(p, methods, range){
-  const seq=p.sequence, L=p.length; const a=range?range[0]:1, b=range?range[1]:L;
-  const per=state.rowLen, cw=19, ch=24, gap=6, left=64, bandH=7;
-  const rowW = per*cw + Math.floor((per-1)/10)*gap;
-  const W=Math.max(820,left+rowW+150);
-  const nRows=Math.ceil((b-a+1)/per); const rowH=18+ch+methods.length*(bandH+2)+16;
-  const legH=112; const H=70+legH+nRows*rowH+70;
-  let s=svgOpen(W,H,`${pname(p)} sequence and charge map`);
-  s+=`<text x="${left}" y="28" font-size="20" font-weight="700" fill="#14263a">${esc(pname(p))} · full sequence &amp; side-chain charge classes</text>`;
-  s+=`<text x="${left}" y="48" font-size="13" fill="#5b6470">${esc(D.organism)} · ${esc(p.locus_tag)} · residues ${a}–${b} of ${L} · topology bands: ${esc(methods.join(', ')||'none selected')}</text>`;
-  // legend
-  let lx=left, ly=72; const cls=['pos','neg','his'].concat(state.hyd?['hyd']:[]).concat(['oth']).concat([...seq].some(c=>!STD.has(c))?['unk']:[]);
-  cls.forEach((c,i)=>{ const t=CH_LABEL[c]; const w=26+textW(t,12); if(lx+w>W-20){lx=left;ly+=18;} s+=`<rect x="${lx}" y="${ly-11}" width="14" height="14" rx="2" fill="${CH[c]}" stroke="#6b7280" stroke-width=".6" ${c==='his'?'stroke-dasharray="2 1.5"':''}/><text x="${lx+19}" y="${ly}" font-size="12" fill="#1b1f24">${esc(t)}</text>`; lx+=w+10; });
-  ly+=20; lx=left; ['I','O','M','S','B','P'].filter(c=>methods.some(m=>p.predictions[m]&&p.predictions[m].labels.includes(c))).forEach(c=>{const t='band: '+ST_NAME[c]; s+=`<rect x="${lx}" y="${ly-9}" width="14" height="${bandH}" fill="${ST_COL[c]}"/><text x="${lx+19}" y="${ly}" font-size="12" fill="#1b1f24">${esc(t)}</text>`; lx+=30+textW(t,12);});
-  ly+=18; s+=`<text x="${left}" y="${ly}" font-size="11.5" fill="#5b6470">Approximate side-chain classes near neutral pH — not measured charges, net charge, pI or electrostatics.</text><text x="${left}" y="${ly+15}" font-size="11.5" fill="#5b6470">Local environment and pH shift protonation; termini are not modeled. Charge colouring does not prove orientation.</text>`;
-  const y0=70+legH;
-  for(let r=0;r<nRows;r++){ const rs=a+r*per, re=Math.min(b,rs+per-1); const y=y0+r*rowH;
-    s+=`<text x="${left-8}" y="${y+18+ch/2+5}" font-size="12.5" text-anchor="end" fill="#374151" font-family="${MONO}">${rs}</text>`;
-    for(let pos=rs;pos<=re;pos++){ const k=pos-rs; const X=left+k*cw+Math.floor(k/10)*gap; const aa=seq[pos-1]; const c=chClass(aa); const fill=(c==='hyd'&&!state.hyd)?CH.oth:CH[c];
-      const st=methods.map(m=>p.predictions[m]?`${m}: ${ST_SHORT[p.predictions[m].labels[pos-1]]}`:'').filter(Boolean).join('; ');
-      if(pos%10===0) s+=`<text x="${X+cw/2-1}" y="${y+12}" font-size="10" text-anchor="middle" fill="#6b7280">${pos}</text>`;
-      s+=`<g><title>${aa}${pos} · ${CH_LABEL[c].split(' — ')[0]}${st?' · '+esc(st):''}</title><rect x="${X}" y="${y+18}" width="${cw-2}" height="${ch}" rx="3" fill="${fill}" stroke="${c==='oth'||(c==='hyd'&&!state.hyd)?'#d1d5db':'#6b7280'}" stroke-width="${c==='his'?1.2:.6}" ${c==='his'?'stroke-dasharray="2 1.5"':''}/>`+
-           `<text x="${X+(cw-2)/2}" y="${y+18+ch/2+5}" font-size="14" font-weight="700" text-anchor="middle" font-family="${MONO}" fill="${c==='pos'||c==='neg'||c==='his'?'#ffffff':(c==='unk'?'#111':'#1b1f24')}">${esc(aa)}</text></g>`;
-      methods.forEach((m,j)=>{ const pr=p.predictions[m]; const by=y+18+ch+3+j*(bandH+2); s+= pr? `<rect x="${X}" y="${by}" width="${cw-(k%10===9?2:0)}" height="${bandH}" fill="${ST_COL[pr.labels[pos-1]]}"/>` : `<rect x="${X}" y="${by}" width="${cw-2}" height="${bandH}" fill="#f3f4f6"/>`; });
-    }
-    const endX=left+(re-rs)*cw+Math.floor((re-rs)/10)*gap+cw+6;
-    s+=`<text x="${endX}" y="${y+18+ch/2+5}" font-size="12.5" fill="#374151" font-family="${MONO}">${re}</text>`;
-    methods.forEach((m,j)=>{ const by=y+18+ch+3+j*(bandH+2); s+=`<text x="${endX}" y="${by+bandH}" font-size="9.5" fill="#5b6470">${esc(m)}</text>`; });
-  }
-  s+=`<text x="${left}" y="${H-30}" font-size="11.5" fill="#5b6470">1-based numbering of the annotated precursor translation. Each cell = one residue; every residue in ${a}–${b} is drawn. Bands show each model's categorical state at that residue.</text>`;
-  s+='</svg>'; return s;
-}
+// ======================= Figure D: linear tracks =======================
+function figTracks(p,methods){ ex(p); const L=p.length;
+  const labW=Math.max(140,...methods.map(m=>COMP.includes(m)?textW(m+' (component)',13,400):textW(m,15,700)))+24;
+  const left=labW+20, W=Math.max(900,Math.min(1500,left+40+L*2.2)), tw=W-left-40, sc=tw/L;
+  const h1=tblock(20,30,`${pname(p)} — predicted topology by method`,20,700,'#13263b',W-40);
+  const h2=tblock(20,30+h1.h,`${org(p).name} · ${p.locus_tag} · residues 1–${L} (1-based precursor numbering) · categorical one-best assignments, not confidence scores`,13,400,'#5b6470',W-40);
+  let y=30+h1.h+h2.h+4, s=''; const rowH=34;
+  methods.forEach(m=>{ const pr=p.pred[m], isC=COMP.includes(m);
+    s+=`<text class="t" x="${left-12}" y="${y+21}" font-size="${isC?13:15}" font-weight="${isC?400:700}" text-anchor="end" fill="${isC?'#5b6470':'#17202a'}">${esc(m)}${isC?' (component)':''}</text>`;
+    if(!pr){ s+=`<rect x="${left}" y="${y+6}" width="${tw}" height="20" fill="#f3f4f6" stroke="#cbd5e1" stroke-dasharray="4 3"/><text class="t" x="${left+8}" y="${y+21}" font-size="13" fill="#b91c1c">${esc((p.status[m]||'missing').replace(/_/g,' '))} — no prediction</text>`; y+=rowH; return; }
+    pr.segments.forEach(g=>{ const h=g.label==='M'||g.label==='B'?24:(g.label==='S'?20:14); s+=`<rect x="${rr(left+(g.start-1)*sc)}" y="${y+16-h/2}" width="${rr(Math.max(.6,(g.stop-g.start+1)*sc))}" height="${h}" fill="${ST_COL[g.label]}"><title>${esc(m)}: ${ST_NAME[g.label]} ${g.start}–${g.stop} (${g.stop-g.start+1} aa)</title></rect>`; });
+    y+=rowH; });
+  const rel=methods.includes('TOPCONS2')&&p.pred.TOPCONS2&&p.pred.TOPCONS2.rel;
+  if(rel&&rel.length){ const h=44; y+=8;
+    s+=`<text class="t" x="${left-12}" y="${y+18}" font-size="12.5" text-anchor="end" fill="#5b6470">TOPCONS2 reliability</text><text class="t" x="${left-12}" y="${y+34}" font-size="11" text-anchor="end" fill="#5b6470">(tool-provided, 0–1)</text><rect x="${left}" y="${y}" width="${tw}" height="${h}" fill="#fafafa" stroke="#e5e7eb"/>`;
+    let d='', pv=null; rel.forEach(([pos,v])=>{ d+=(pv!==null&&pos===pv+1?'L':'M')+rr(left+(pos-0.5)*sc)+' '+rr(y+h-v*h); pv=pos; });
+    s+=`<path d="${d}" fill="none" stroke="#1f4e79" stroke-width="1.6"/><text class="t" x="${left+tw+5}" y="${y+9}" font-size="10" fill="#5b6470">1</text><text class="t" x="${left+tw+5}" y="${y+h}" font-size="10" fill="#5b6470">0</text>`;
+    const b=tblock(left,y+h+15,`Reliability is reported by TOPCONS2 for positions ${rel[0][0]}–${rel[rel.length-1][0]} only; other positions are left blank.`,11,400,'#5b6470',tw); s+=b.svg; y+=h+15+b.h-4; }
+  const ax=axis(left,tw,L,y+6,sc); s+=ax.svg; y+=ax.h+20;
+  const codes=['I','O','M','S','B','P'].filter(c=>methods.some(m=>p.pred[m]&&p.pred[m].labels.includes(c)));
+  let lx=left, ly=y; codes.forEach(c=>{ const w=22+textW(ST_NAME[c],12.5); if(lx+w>W-20){lx=left; ly+=20;} s+=`<rect x="${rr(lx)}" y="${ly-11}" width="14" height="14" rx="3" fill="${ST_COL[c]}"/><text class="t" x="${rr(lx+19)}" y="${ly}" font-size="12.5" fill="#17202a">${esc(ST_NAME[c])}</text>`; lx+=w+14; });
+  return svgOpen(W,ly+14,`${pname(p)} method comparison`)+h1.svg+h2.svg+s+'</svg>'; }
 
-// ---------- Figure C: residue-bead membrane cartoon ----------
-const BEAD={d:20, sp:23, depth:9, abbr:90, keep:30};
-function figBeads(p, m){
-  const pr=p.predictions[m]; const seq=p.sequence; const L=p.length;
-  const title=`${pname(p)} · residue-bead view · ${m}`;
-  if(!pr) return {svg:simpleMsg(title,`${m}: ${p.method_status[m]||'missing'} — no prediction to draw.`), note:''};
-  const segs=pr.segments; const hasM=segs.some(g=>g.label==='M'); const hasBeta=segs.some(g=>g.label==='B'||g.label==='P');
-  if(hasBeta) return {svg:beadChainNoMembrane(p,pr,m,'β-type states: no membrane cartoon is drawn; ring colour shows the model state.'), note:'β-state fallback'};
-  if(!hasM) return {svg:beadChainNoMembrane(p,pr,m, pr.signal_peptide?'No membrane span predicted for the chain (signal peptide only). Beads are shown without a membrane.':'No membrane span predicted. Beads are shown without a membrane; no compartment is implied.'), note:'no-TM fallback'};
-  const {sp,depth}=BEAD; const r=BEAD.d/2;
-  // Build ordered layout units: tail/loop columns and TM helices
-  const spSeg=segs.find(g=>g.label==='S'); const body=segs.filter(g=>g.label!=='S');
-  const maxTM=Math.max(...body.filter(g=>g.label==='M').map(g=>g.stop-g.start+1));
-  const tmRows=Math.ceil(maxTM/2); const memH=tmRows*sp+16;
-  const outH=depth*sp+60, inH=depth*sp+60;
-  const top=96 + (spSeg?64:0); const mTop=top+outH, mBot=mTop+memH;
-  const beads=[]; const gaps=[]; let col=0; const colX=c=>70+c*sp;
-  const sideOf=g=>g.label==='I'?'in':'out';
-  const faceY=sd=> sd==='in'? mBot+r+4 : mTop-r-4; const dirY=sd=> sd==='in'? 1 : -1;
-  function abbreviate(pos){ // pos: array of residue numbers in chain order; returns array with null as gap marker
-    if(pos.length<=BEAD.abbr) return pos; const k=BEAD.keep; return pos.slice(0,k).concat([{gap:[pos[k],pos[pos.length-k-1]]}]).concat(pos.slice(pos.length-k)); }
-  function layLoop(posList, sd, mode){ // mode: 'loop' (start&end at face), 'ntail' (ends at face), 'ctail' (starts at face)
-    let items=abbreviate(posList); if(mode==='ntail') items=items.slice().reverse(); // lay from face outward
-    const n=items.length; let ncol=Math.max(1,Math.ceil(n/depth)); if(mode==='loop'&&ncol%2) ncol++; if(mode==='loop'&&ncol<2&&n>1) ncol=2;
-    const per=Math.ceil(n/ncol); const cols=[]; for(let c=0;c<ncol;c++) cols.push(items.slice(c*per,(c+1)*per)); while(cols.length&&!cols[cols.length-1].length) cols.pop();
-    const placed=[]; const order = mode==='ntail' ? cols.map((_,i)=>cols.length-1-i) : cols.map((_,i)=>i);
-    // ntail: column 0 (nearest face, residues closest to TM) should be rightmost
-    cols.forEach((cl,ci)=>{ const cx = mode==='ntail'? col + (cols.length-1-ci) : col+ci; cl.forEach((it,ri)=>{ const down = ci%2===0; const depthIdx = mode==='loop'? (down?ri:(cl.length-1-ri)) : (down?ri:(cl.length-1-ri)); placed.push({it, x:colX(cx), y: faceY(sd)+dirY(sd)*depthIdx*sp}); }); });
-    // vertical alignment: for loop, odd columns climb back; distribute so last bead ends at face
-    if(mode==='loop'){ /* ensured by alternating direction with full columns from face */ }
-    col += cols.length;
-    let seq_ = placed; if(mode==='ntail') seq_=placed.slice().reverse();
-    seq_.forEach(pl=>{ if(pl.it&&pl.it.gap){ gaps.push({x:pl.x,y:pl.y,from:pl.it.gap[0],to:pl.it.gap[1]}); beads.push({gap:pl.it.gap,x:pl.x,y:pl.y}); } else beads.push({pos:pl.it,x:pl.x,y:pl.y,state:pr.labels[pl.it-1]}); });
-  }
-  function layTM(g, fromSide){ const n=g.stop-g.start+1; const rows=Math.ceil(n/2); const y0 = fromSide==='in'? mBot-8 : mTop+8; const dy = fromSide==='in'? -1:1; const off=(tmRows-rows)*sp/2;
-    for(let k=0;k<n;k++){ const pos=g.start+k; const row=Math.floor(k/2); const c=k%2; beads.push({pos,x:colX(col+c)+(row%2?sp*0.0:0), y:y0+dy*(off+row*sp+ (c?sp/2:0) + r), state:'M'}); }
-    col+=2; }
-  if(spSeg){ /* signal peptide drawn separately */ }
-  col=0; if(spSeg) col=0;
-  // determine sides
-  for(let k=0;k<body.length;k++){ const g=body[k]; const posList=[]; for(let q=g.start;q<=g.stop;q++)posList.push(q);
-    if(g.label==='M'){ const prev=body[k-1]; const next=body[k+1]; const from= prev? sideOf(prev) : (next? (sideOf(next)==='in'?'out':'in') : 'in'); layTM(g,from); col+=0.6; }
-    else { const mode = k===0? 'ntail' : (k===body.length-1? 'ctail':'loop'); layLoop(posList, sideOf(g), mode); col+=0.6; }
-  }
-  // signal peptide beads: horizontal run above the outside compartment, labeled, not placed in membrane
-  const spBeads=[]; if(spSeg){ for(let q=spSeg.start;q<=spSeg.stop;q++) spBeads.push(q); }
-  const contentW = colX(col)+60; const spW = spBeads.length? 70+spBeads.length*sp : 0; const gapH = gaps.length*17;
-  const W=Math.max(760, contentW, spW+40); const H=mBot+inH+120+gapH;
-  const shift = 0;
-  let s=svgOpen(W,H,title);
-  s+=`<text x="40" y="30" font-size="20" font-weight="700" fill="#14263a">${esc(title)}</text>`;
-  s+=`<text x="40" y="50" font-size="12.5" fill="#5b6470">${esc(D.organism)} · ${L} aa · residue placement from the model's per-residue states; loop packing is schematic, not a fold.</text>`;
-  // compartments + bilayer
-  s+=`<rect x="20" y="${top}" width="${W-40}" height="${outH}" fill="#fff4e0"/><rect x="20" y="${mBot}" width="${W-40}" height="${inH}" fill="#e2f4f1"/><rect x="20" y="${mTop}" width="${W-40}" height="${memH}" fill="#f1e7c9"/>`;
-  let heads=''; for(let k=0;k<(W-40)/10;k++){heads+=`<circle cx="${25+k*10}" cy="${mTop+4}" r="3.8"/><circle cx="${25+k*10}" cy="${mBot-4}" r="3.8"/>`;} s+=`<g fill="#d4b06a" opacity=".85">${heads}</g>`;
-  s+=`<text x="${W-30}" y="${top+20}" font-size="14" font-weight="700" text-anchor="end" fill="#9a5b06">OUTSIDE · non-cytoplasmic</text><text x="${W-30}" y="${mBot+inH-10}" font-size="14" font-weight="700" text-anchor="end" fill="#0b6b62">INSIDE · cytoplasmic</text>`;
-  // connectors
-  let d=''; let prev=null; beads.forEach(b=>{ if(prev) d+=`M${rr(prev.x)} ${rr(prev.y)}L${rr(b.x)} ${rr(b.y)}`; prev=b; });
-  s+=`<path d="${d}" stroke="#4b5563" stroke-width="2.2" fill="none"/>`;
-  // signal peptide run
-  if(spBeads.length){ const y=top-34; const x0=60; s+=`<text x="${x0-6}" y="${y-18}" font-size="13" font-weight="700" fill="#db2777">Signal peptide ${spSeg.start}–${spSeg.stop} (precursor; predicted) — placement relative to the membrane not modeled</text>`;
-    let dd=''; spBeads.forEach((q,i)=>{ if(i) dd+=`M${x0+(i-1)*sp} ${y}L${x0+i*sp} ${y}`; }); s+=`<path d="${dd}" stroke="#db2777" stroke-width="2"/>`;
-    spBeads.forEach((q,i)=>s+=beadSvg(x0+i*sp,y,seq[q-1],q,'S',m));
-    const fb=beads[0]; s+=`<path d="M${x0+(spBeads.length-1)*sp} ${y}C${x0+(spBeads.length-1)*sp+40} ${y} ${fb.x} ${fb.y-60} ${fb.x} ${fb.y}" stroke="#db2777" stroke-width="2" stroke-dasharray="5 4" fill="none"/>`;
-    s+=termBadge(x0-26,y,'N'); }
-  beads.forEach(b=>{ if(b.gap){ const n=b.gap[1]-b.gap[0]+1; s+=`<g><title>Omitted in this view: residues ${b.gap[0]}–${b.gap[1]} (${n} aa); all are shown in the full sequence map</title><rect x="${rr(b.x-r-4)}" y="${rr(b.y-r)}" width="${BEAD.d+8}" height="${BEAD.d}" rx="10" fill="#fff" stroke="#111827" stroke-dasharray="3 2"/><text x="${rr(b.x)}" y="${rr(b.y+5)}" font-size="14" font-weight="800" text-anchor="middle">…</text></g>`; } else s+=beadSvg(b.x,b.y,seq[b.pos-1],b.pos,b.state,m); });
-  // gap labels
-  // gap explanations are given in the footer (keyed to the dashed '…' bead) to avoid label/bead collisions
-  // termini
-  const first=beads[0], last=beads[beads.length-1];
-  if(!spBeads.length) s+=termBadge(first.x-28, first.y,'N');
-  s+=termBadge(last.x+28, last.y,'C');
-  // charge legend
-  let lx=40; const ly=H-62; ['pos','neg','his'].concat(state.hyd?['hyd']:[]).concat(['oth']).forEach(c=>{const t=CH_LABEL[c].split(' — ')[0]; s+=`<circle cx="${lx+7}" cy="${ly-4}" r="7" fill="${CH[c]}" stroke="#374151" stroke-width=".8" ${c==='his'?'stroke-dasharray="2 1.5"':''}/><text x="${lx+18}" y="${ly}" font-size="12.5">${esc(t)}</text>`; lx+=34+textW(t,12.5);});
-  s+=`<text x="40" y="${H-40}" font-size="11.5" fill="#5b6470">Beads in the membrane band = residues the model assigns to a membrane span (2-column helix packing is illustrative). Charge colours are approximate side-chain classes; they are context, not a topology predictor.</text>`;
-  const shown = beads.filter(b=>!b.gap).length + spBeads.length; const omitted=gaps.reduce((a,g)=>a+g.to-g.from+1,0);
-  gaps.forEach((g,i)=>{ s+=`<text x="40" y="${H-80-(gaps.length-1-i)*17}" font-size="13" font-weight="700" fill="#111827">Dashed “…” bead${gaps.length>1?' '+(i+1):''}: residues ${g.from}–${g.to} omitted in this view (${g.to-g.from+1} aa) — every residue is shown in the full sequence map (B).</text>`; });
-  s+=`<text x="40" y="${H-22}" font-size="11.5" fill="#5b6470">Accounting: ${shown} residues drawn + ${omitted} explicitly omitted = ${shown+omitted} of ${L}.</text>`;
-  s+='</svg>';
-  return {svg:s, note:'', accounting:{shown,omitted,total:L, gaps:gaps.map(g=>[g.from,g.to])}};
-}
-function beadSvg(x,y,aa,pos,st,m){ const c=chClass(aa); const fill=(c==='hyd'&&!state.hyd)?CH.oth:CH[c]; const r=BEAD.d/2;
-  const ring = ST_COL[st]||'#6b7280';
-  return `<g><title>${aa}${pos} · ${ST_NAME[st]||st} (${m}) · ${CH_LABEL[c].split(' — ')[0]}</title><circle cx="${rr(x)}" cy="${rr(y)}" r="${r}" fill="${fill}" stroke="${ring}" stroke-width="${st==='M'?2.6:1.8}" ${c==='his'?'stroke-dasharray="3 2"':''}/><text x="${rr(x)}" y="${rr(y+4.5)}" font-size="12.5" font-weight="700" text-anchor="middle" font-family="${MONO}" fill="${c==='pos'||c==='neg'||c==='his'?'#fff':'#111827'}">${esc(aa)}</text></g>`; }
-function termBadge(x,y,t){ return `<circle cx="${rr(x)}" cy="${rr(y)}" r="12" fill="#14263a"/><text x="${rr(x)}" y="${rr(y+5)}" font-size="14" font-weight="800" text-anchor="middle" fill="#fff">${t}</text>`; }
-function simpleMsg(title,msg){ return svgOpen(760,90,title)+`<text x="20" y="34" font-size="18" font-weight="700">${esc(title)}</text><text x="20" y="64" font-size="15" fill="#b91c1c">${esc(msg)}</text></svg>`; }
-function beadChainNoMembrane(p,pr,m,msg){ const seq=p.sequence, L=p.length, per=25, sp=BEAD.sp; const rows=Math.ceil(L/per); const W=Math.max(760,80+per*sp+40), H=110+rows*sp*1.5+80;
-  let s=svgOpen(W,H,`${pname(p)} residue-bead view (${m})`);
-  s+=`<text x="40" y="30" font-size="20" font-weight="700" fill="#14263a">${esc(pname(p))} · residue-bead view · ${esc(m)}</text><text x="40" y="52" font-size="14" font-weight="600" fill="#b45309">${esc(msg)}</text>`;
-  const pts=[]; for(let i=0;i<L;i++){ const row=Math.floor(i/per), k=i%per; const x=60+(row%2? (per-1-k):k)*sp; const y=96+row*sp*1.5; pts.push([x,y]); }
-  let d=''; pts.forEach((q,i)=>{ d+=(i?'L':'M')+q[0]+' '+q[1]; }); s+=`<path d="${d}" stroke="#4b5563" stroke-width="2" fill="none"/>`;
+// ======================= Figure B: sequence & charge map =======================
+const state = { idx:0, org:'*', filtered:[], shown:200, methods:new Set(MAIN), beadModel:null, mapModel:null, hyd:true, rowLen:50, win:null, fit:{figA:true,figB:false,figC:false,figD:true} };
+try{ const s=JSON.parse(localStorage.getItem('dsc-atlas-prefs')||'{}'); if(typeof s.hyd==='boolean')state.hyd=s.hyd; if(s.rowLen)state.rowLen=s.rowLen; }catch(e){}
+function savePrefs(){ try{localStorage.setItem('dsc-atlas-prefs',JSON.stringify({hyd:state.hyd,rowLen:state.rowLen}));}catch(e){} }
+function figSeqMap(p,methods,range){ ex(p); const seq=p.sequence, L=p.length, a=range?range[0]:1, b=range?range[1]:L;
+  const per=state.rowLen, cw=19, ch=24, gap=6, left=66, bandH=8, bandGap=3;
+  const rowW=per*cw+Math.floor((per-1)/10)*gap, labW=methods.length?Math.max(...methods.map(m=>textW(m,9.5)))+10:0;
+  const W=Math.max(860,left+rowW+50+labW);
+  const h1=tblock(20,30,`${pname(p)} · full sequence & side-chain charge classes`,20,700,'#13263b',W-40);
+  const h2=tblock(20,30+h1.h,`${org(p).name} · ${p.locus_tag} · residues ${a}–${b} of ${L} · topology bands: ${methods.join(', ')||'none selected'}`,13,400,'#5b6470',W-40);
+  let y=30+h1.h+h2.h+10, s='';
+  const cls=['pos','neg','his'].concat(state.hyd?['hyd']:[]).concat(['oth']).concat([...seq].some(c=>!STD.has(c))?['unk']:[]);
+  let lx=20; cls.forEach(c=>{ const t=CH_LABEL[c], w=22+textW(t,12); if(lx+w>W-20){lx=20; y+=19;} s+=`<rect x="${rr(lx)}" y="${y-11}" width="14" height="14" rx="2" fill="${CH[c]}" stroke="#6b7280" stroke-width=".6" ${c==='his'?'stroke-dasharray="2 1.5"':''}/><text class="t" x="${rr(lx+19)}" y="${y}" font-size="12" fill="#17202a">${esc(t)}</text>`; lx+=w+14; });
+  const bc=['I','O','M','S','B','P'].filter(c=>methods.some(m=>p.pred[m]&&p.pred[m].labels.includes(c)));
+  if(bc.length){ y+=21; lx=20; bc.forEach(c=>{ const t='band: '+ST_NAME[c], w=22+textW(t,12); if(lx+w>W-20){lx=20; y+=19;} s+=`<rect x="${rr(lx)}" y="${y-9}" width="14" height="${bandH}" fill="${ST_COL[c]}"/><text class="t" x="${rr(lx+19)}" y="${y}" font-size="12" fill="#17202a">${esc(t)}</text>`; lx+=w+14; }); }
+  const cv=tblock(20,y+22,'Approximate side-chain classes near neutral pH — not measured charges, net charge, pI or electrostatics. Local environment and pH shift protonation; termini are not modeled. Charge colouring does not prove orientation.',11.5,400,'#5b6470',W-40); s+=cv.svg; y+=22+cv.h+4;
+  const rowH=16+ch+methods.length*(bandH+bandGap)+16, nRows=Math.ceil((b-a+1)/per);
+  for(let r=0;r<nRows;r++){ const rs=a+r*per, re=Math.min(b,rs+per-1), yy=y+r*rowH;
+    s+=`<text class="t" x="${left-8}" y="${yy+16+ch/2+5}" font-size="12.5" text-anchor="end" fill="#374151" font-family="${MONO}">${rs}</text>`;
+    for(let pos=rs;pos<=re;pos++){ const k=pos-rs, X=left+k*cw+Math.floor(k/10)*gap, aa=seq[pos-1], c=chClass(aa), fill=(c==='hyd'&&!state.hyd)?CH.oth:CH[c];
+      const st=methods.map(m=>p.pred[m]?`${m}: ${ST_SHORT[p.pred[m].labels[pos-1]]}`:'').filter(Boolean).join('; ');
+      if(pos%10===0) s+=`<text class="t" x="${X+(cw-2)/2}" y="${yy+11}" font-size="10" text-anchor="middle" fill="#6b7280">${pos}</text>`;
+      s+=`<g class="res"><title>${aa}${pos} · ${CH_LABEL[c].split(' — ')[0]}${st?' · '+esc(st):''}</title><rect x="${X}" y="${yy+16}" width="${cw-2}" height="${ch}" rx="3" fill="${fill}" stroke="${c==='oth'||(c==='hyd'&&!state.hyd)?'#d1d5db':'#6b7280'}" stroke-width="${c==='his'?1.2:.6}" ${c==='his'?'stroke-dasharray="2 1.5"':''}/><text class="r" x="${X+(cw-2)/2}" y="${yy+16+ch/2+5}" font-size="14" font-weight="700" text-anchor="middle" font-family="${MONO}" fill="${c==='pos'||c==='neg'||c==='his'?'#fff':'#17202a'}">${esc(aa)}</text></g>`;
+      methods.forEach((m,j)=>{ const pr=p.pred[m], by=yy+16+ch+3+j*(bandH+bandGap); s+=`<rect x="${X}" y="${by}" width="${cw-(k%10===9||pos===re?2:0)}" height="${bandH}" fill="${pr?ST_COL[pr.labels[pos-1]]:'#eef0f2'}"/>`; }); }
+    const endK=re-rs, endX=left+endK*cw+Math.floor(endK/10)*gap+cw+6;
+    s+=`<text class="t" x="${endX}" y="${yy+16+ch/2+5}" font-size="12.5" fill="#374151" font-family="${MONO}">${re}</text>`;
+    const bx=left+rowW+46; methods.forEach((m,j)=>{ const by=yy+16+ch+3+j*(bandH+bandGap); s+=`<text class="t" x="${bx}" y="${by+bandH-0.5}" font-size="9.5" fill="#5b6470">${esc(m)}</text>`; }); }
+  y+=nRows*rowH+8; const ft=tblock(20,y,`1-based numbering of the annotated precursor translation. Each cell is one residue; every residue in ${a}–${b} is drawn. Bands show each model's categorical state at that residue.`,11.5,400,'#5b6470',W-40); s+=ft.svg; y+=ft.h+6;
+  return svgOpen(W,y,`${pname(p)} sequence and charge map`)+h1.svg+h2.svg+s+'</svg>'; }
+
+// ======================= Figure C: residue-bead cartoon =======================
+const BEAD={d:20,sp:23,depth:9,abbr:90,keep:30};
+const BEAD_ROW_TMS=6;  // long multi-pass chains wrap onto a new membrane row after this many spans (break inside a loop)
+function figBeads(p,m){ ex(p); const pr=p.pred[m], seq=p.sequence, L=p.length, title=`${pname(p)} · residue-bead view · ${m}`;
+  if(!pr) return {svg:simpleMsg(title,`${m}: ${(p.status[m]||'missing').replace(/_/g,' ')} — no prediction to draw.`)};
+  const segs=pr.segments, hasM=segs.some(g=>g.label==='M'), hasB=segs.some(g=>g.label==='B'||g.label==='P');
+  if(hasB) return {svg:beadChain(p,pr,m,'β-type states: no membrane cartoon is drawn; ring colour shows the model state.'),accounting:{gaps:[]}};
+  if(!hasM) return {svg:beadChain(p,pr,m,pr.sp_range?'No membrane span predicted (signal peptide only); beads are shown without a membrane.':'No membrane span predicted; beads are shown without a membrane and no compartment is implied.'),accounting:{gaps:[]}};
+  const {sp,depth}=BEAD, r=BEAD.d/2;
+  const spSeg=segs.find(g=>g.label==='S'), body=segs.filter(g=>g.label!=='S');
+  const maxTM=Math.max(...body.filter(g=>g.label==='M').map(g=>g.stop-g.start+1)), tmRows=Math.ceil(maxTM/2), memH=tmRows*sp+16;
+  const outH=depth*sp+56, inH=depth*sp+56, sideOf=g=>g.label==='I'?'in':'out';
+  // split into rows: a row ends after the loop that follows its BEAD_ROW_TMS-th span (only if more spans follow)
+  const rows=[[]]; let tmc=0;
+  body.forEach((g,k)=>{ rows[rows.length-1].push(g); if(g.label==='M') tmc++;
+    if(g.label!=='M' && tmc>=BEAD_ROW_TMS && body.slice(k+1).some(h=>h.label==='M')){ rows.push([]); tmc=0; } });
+  const spBottom = !!spSeg && body[0].label==='I';
+  const head1=tblock(30,30,title,20,700,'#13263b',720), head2=tblock(30,30+head1.h,`${org(p).name} · ${L} aa · residues placed by the model's per-residue states; loop packing is schematic, not a fold.`,12.5,400,'#5b6470',720);
+  const top0=30+head1.h+head2.h+16+(spSeg&&!spBottom?72:0), rowH=outH+memH+inH+34;
+  const rowTop=ri=>top0+ri*rowH+(spBottom&&ri>0?92:0);
+  let mTop=0, mBot=0, col=0, maxCol=0, curRow=0; const rowCols=[];
+  const beads=[], gaps=[], colX=c=>60+c*sp;
+  const faceY=sd=>sd==='in'?mBot+r+4:mTop-r-4, dirY=sd=>sd==='in'?1:-1;
+  const abbreviate=pos=>{ if(pos.length<=BEAD.abbr) return pos; const k=BEAD.keep; return pos.slice(0,k).concat([{gap:[pos[k],pos[pos.length-k-1]]}]).concat(pos.slice(pos.length-k)); };
+  function layLoop(posList,sd,mode){ let items=abbreviate(posList); if(mode==='ntail') items=items.slice().reverse();
+    const n=items.length; let ncol=Math.max(1,Math.ceil(n/depth));
+    if(mode==='loop'&&ncol%2) ncol++; if(mode==='loop'&&ncol<2&&n>1) ncol=2;
+    if(mode==='ntail'&&ncol%2===0) ncol++;
+    const per=Math.ceil(n/ncol), cols=[]; for(let c=0;c<ncol;c++) cols.push(items.slice(c*per,(c+1)*per)); while(cols.length&&!cols[cols.length-1].length) cols.pop();
+    const placed=[]; cols.forEach((cl,ci)=>{ const cx=mode==='ntail'?col+(cols.length-1-ci):col+ci; cl.forEach((it,ri)=>{ const d=ci%2===0?ri:(cl.length-1-ri); placed.push({it,x:colX(cx),y:faceY(sd)+dirY(sd)*d*sp}); }); });
+    col+=cols.length; (mode==='ntail'?placed.slice().reverse():placed).forEach(pl=>{ if(pl.it&&pl.it.gap){ gaps.push({x:pl.x,y:pl.y,from:pl.it.gap[0],to:pl.it.gap[1]}); beads.push({gap:pl.it.gap,x:pl.x,y:pl.y,row:curRow}); } else beads.push({pos:pl.it,x:pl.x,y:pl.y,state:pr.labels[pl.it-1],row:curRow}); }); }
+  function layTM(g,from){ const n=g.stop-g.start+1, nr=Math.ceil(n/2), y0=from==='in'?mBot-8:mTop+8, dy=from==='in'?-1:1, off=(tmRows-nr)*sp/2;
+    for(let k=0;k<n;k++){ const row=Math.floor(k/2), c=(k===n-1&&n%2===1)?1:k%2; beads.push({pos:g.start+k,x:colX(col+c),y:y0+dy*(off+row*sp+(c?sp/2:0)+r),state:'M',row:curRow}); } col+=2; }
+  rows.forEach((rw,ri)=>{ curRow=ri; mTop=rowTop(ri)+outH; mBot=mTop+memH; col=0;
+    rw.forEach((g,k)=>{ const gi=body.indexOf(g), pl=[]; for(let q=g.start;q<=g.stop;q++) pl.push(q);
+      if(g.label==='M'){ const prev=body[gi-1], next=body[gi+1]; layTM(g, prev?sideOf(prev):(next?(sideOf(next)==='in'?'out':'in'):'in')); col+=0.6; }
+      else { const mode = gi===0?'ntail':(k===rw.length-1?'ctail':'loop'); layLoop(pl,sideOf(g),mode); col+=0.6; } });
+    maxCol=Math.max(maxCol,col); rowCols.push(col); });
+  const spB=[]; if(spSeg) for(let q=spSeg.start;q<=spSeg.stop;q++) spB.push(q);
+  const first=beads[0]; let shift=0, spY=0, spX0=0;
+  if(spB.length){ spY=spBottom?rowTop(0)+outH+memH+inH+42:top0-36; spX0=first.x-(spB.length-1)*sp; if(spX0<74) shift=74-spX0; }
+  beads.forEach(b=>{ if(b.row===0) b.x+=shift; }); gaps.forEach(g=>{ if(g.y<rowTop(1)||rows.length===1) g.x+=shift; }); spX0+=shift;  // only row 1 makes room for the signal-peptide run
+  const spLabel=spSeg?`Signal peptide ${spSeg.start}–${spSeg.stop} (precursor; predicted) — placement relative to the membrane is not modeled`:'';
+  const W=Math.max(780, ...rowCols.map((c,i)=>colX(c)+(i===0?shift:0)+70), spB.length?spX0+(spB.length-1)*sp+40:0, spSeg?80+textW(spLabel,13,600):0);
+  let s='';
+  rows.forEach((rw,ri)=>{ const t=rowTop(ri), a=t+outH, b=a+memH;
+    s+=`<rect x="16" y="${t}" width="${W-32}" height="${outH}" fill="#fff4e0"/><rect x="16" y="${b}" width="${W-32}" height="${inH}" fill="#e2f4f1"/><rect x="16" y="${a}" width="${W-32}" height="${memH}" fill="#f2e8cc"/>`;
+    let heads=''; for(let k=0;k<(W-32)/10;k++) heads+=`<circle cx="${21+k*10}" cy="${a+4}" r="3.7"/><circle cx="${21+k*10}" cy="${b-4}" r="3.7"/>`; s+=`<g fill="#d4b06a" opacity=".85">${heads}</g>`;
+    s+=`<text class="t" x="${W-28}" y="${t+20}" font-size="14" font-weight="700" text-anchor="end" fill="#9a4d03">OUTSIDE · non-cytoplasmic</text><text class="t" x="${W-28}" y="${b+inH-12}" font-size="14" font-weight="700" text-anchor="end" fill="#0b6b62">INSIDE · cytoplasmic</text>`;
+    if(rows.length>1) s+=`<text class="t" x="28" y="${t+20}" font-size="13" font-weight="700" fill="#374151">Row ${ri+1} of ${rows.length}</text>`; });
+  let d=''; for(let i=1;i<beads.length;i++) if(beads[i].row===beads[i-1].row) d+=`M${rr(beads[i-1].x)} ${rr(beads[i-1].y)}L${rr(beads[i].x)} ${rr(beads[i].y)}`; s+=`<path class="bonds" d="${d}" stroke="#4b5563" stroke-width="2.2" fill="none"/>`;
+  if(spB.length){ const lastX=spX0+(spB.length-1)*sp; let dd=''; for(let i=1;i<spB.length;i++) dd+=`M${rr(spX0+(i-1)*sp)} ${spY}L${rr(spX0+i*sp)} ${spY}`; s+=`<path class="bonds" d="${dd}" stroke="#db2777" stroke-width="2"/>`;
+    s+=`<line class="conn" x1="${rr(lastX)}" y1="${rr(spY+(spBottom?-r:r))}" x2="${rr(first.x)}" y2="${rr(first.y+(spBottom?r:-r))}" stroke="#db2777" stroke-width="2" stroke-dasharray="5 4"/>`;
+    spB.forEach((q,i)=>s+=beadSvg(spX0+i*sp,spY,seq[q-1],q,'S',m));
+    s+=`<text class="t" x="30" y="${rr(spBottom?spY+36:spY-22)}" font-size="13" font-weight="600" fill="#9d174d">${esc(spLabel)}</text>`;
+    s+=badge(spX0-28,spY,'N',12); }
+  beads.forEach(b=>{ if(b.gap){ const n=b.gap[1]-b.gap[0]+1; s+=`<g class="gap"><title>Omitted in this view: residues ${b.gap[0]}–${b.gap[1]} (${n} aa); all are shown in the full sequence map</title><rect x="${rr(b.x-r-4)}" y="${rr(b.y-r)}" width="${BEAD.d+8}" height="${BEAD.d}" rx="10" fill="#fff" stroke="#111827" stroke-width="1.4" stroke-dasharray="3 2"/><text class="r" x="${rr(b.x)}" y="${rr(b.y+5)}" font-size="14" font-weight="700" text-anchor="middle">…</text></g>`; } else s+=beadSvg(b.x,b.y,seq[b.pos-1],b.pos,b.state,m); });
+  // continuation markers between rows (no connecting line)
+  for(let ri=0; ri<rows.length-1; ri++){ const endB=[...beads].reverse().find(b=>b.row===ri), stB=beads.find(b=>b.row===ri+1);
+    s+=badge(endB.x+28,endB.y,'→',12)+badge(stB.x-28,stB.y,'→',12); }
+  const last=beads[beads.length-1]; if(!spB.length) s+=badge(first.x-28,first.y,'N',12); s+=badge(last.x+28,last.y,'C',12);
+  let y=rowTop(rows.length-1)+outH+memH+inH+(spBottom&&rows.length===1?84:0)+26;
+  if(rows.length>1){ const b=tblock(30,y,`The chain wraps onto ${rows.length} membrane rows after every ${BEAD_ROW_TMS} spans; “→” marks where it continues (residue ${beads.find(b=>b.row===1).pos} starts row 2${rows.length>2?', and so on':''}). No residues are omitted by wrapping.`,13,600,'#111827',W-60); s+=b.svg; y+=b.h+4; }
+  gaps.forEach((g,i)=>{ const b=tblock(30,y,`Dashed “…” bead${gaps.length>1?' '+(i+1):''}: residues ${g.from}–${g.to} omitted in this view (${g.to-g.from+1} aa) — every residue is shown in the full sequence map (B).`,13,600,'#111827',W-60); s+=b.svg; y+=b.h+4; });
+  y+=8; let lx=30; ['pos','neg','his'].concat(state.hyd?['hyd']:[]).concat(['oth']).forEach(c=>{ const t=CH_LABEL[c].split(' — ')[0], w=26+textW(t,12.5); if(lx+w>W-20){lx=30; y+=20;} s+=`<circle cx="${lx+7}" cy="${y-4}" r="7" fill="${CH[c]}" stroke="#374151" stroke-width=".8" ${c==='his'?'stroke-dasharray="2 1.5"':''}/><text class="t" x="${rr(lx+18)}" y="${y}" font-size="12.5">${esc(t)}</text>`; lx+=w+14; });
+  y+=22; const n1=tblock(30,y,'Ring colour = model state; beads in the membrane band are residues assigned to a membrane span (two-column helix packing is illustrative). Charge colours are approximate side-chain classes and are context, not a topology predictor.',11.5,400,'#5b6470',W-60); s+=n1.svg; y+=n1.h;
+  const shown=beads.filter(b=>!b.gap).length+spB.length, omitted=gaps.reduce((a,g)=>a+g.to-g.from+1,0);
+  const n2=tblock(30,y,`Accounting: ${shown} residues drawn + ${omitted} explicitly omitted = ${shown+omitted} of ${L}.`,11.5,400,'#5b6470',W-60); s+=n2.svg; y+=n2.h+8;
+  return {svg:svgOpen(W,y,title)+head1.svg+head2.svg+s+'</svg>', accounting:{shown,omitted,total:L,gaps:gaps.map(g=>[g.from,g.to])}}; }
+function beadSvg(x,y,aa,pos,st,m){ const c=chClass(aa), fill=(c==='hyd'&&!state.hyd)?CH.oth:CH[c], r=BEAD.d/2;
+  return `<g class="bead"><title>${aa}${pos} · ${ST_NAME[st]||st} (${m}) · ${CH_LABEL[c].split(' — ')[0]}</title><circle cx="${rr(x)}" cy="${rr(y)}" r="${r}" fill="${fill}" stroke="${ST_COL[st]||'#6b7280'}" stroke-width="${st==='M'?2.6:1.8}" ${c==='his'?'stroke-dasharray="3 2"':''}/><text class="r" x="${rr(x)}" y="${rr(y+4.5)}" font-size="12.5" font-weight="700" text-anchor="middle" font-family="${MONO}" fill="${c==='pos'||c==='neg'||c==='his'?'#fff':'#111827'}">${esc(aa)}</text></g>`; }
+function simpleMsg(title,msg){ const b=tblock(20,64,msg,15,400,'#b91c1c',720); return svgOpen(760,80+b.h,title)+`<text class="t" x="20" y="34" font-size="18" font-weight="700">${esc(title)}</text>`+b.svg+'</svg>'; }
+function beadChain(p,pr,m,msg){ const seq=p.sequence, L=p.length, per=25, sp=BEAD.sp, W=Math.max(780,90+per*sp+50);
+  const h1=tblock(30,30,`${pname(p)} · residue-bead view · ${m}`,20,700,'#13263b',W-60), h2=tblock(30,30+h1.h,msg,13.5,600,'#b45309',W-60);
+  const y0=30+h1.h+h2.h+26, pts=[]; for(let i=0;i<L;i++){ const row=Math.floor(i/per), k=i%per; pts.push([70+(row%2?(per-1-k):k)*sp, y0+row*sp*1.5]); }
+  let s='', d=''; pts.forEach((q,i)=>d+=(i?'L':'M')+q[0]+' '+q[1]); s+=`<path class="bonds" d="${d}" stroke="#4b5563" stroke-width="2" fill="none"/>`;
   pts.forEach((q,i)=>s+=beadSvg(q[0],q[1],seq[i],i+1,pr.labels[i],m));
-  s+=termBadge(pts[0][0]-26,pts[0][1],'N')+termBadge(pts[L-1][0]+(Math.floor((L-1)/per)%2?-26:26),pts[L-1][1],'C');
-  s+=`<text x="40" y="${H-30}" font-size="11.5" fill="#5b6470">Bead ring colour = model state: ${['I','O','M','S','B','P'].filter(c=>pr.labels.includes(c)).map(c=>ST_NAME[c]).join('; ')}; boustrophedon layout is arbitrary. All ${L} residues drawn.</text></svg>`; return s; }
+  const lastRev=Math.floor((L-1)/per)%2===1; s+=badge(pts[0][0]-28,pts[0][1],'N',12)+badge(pts[L-1][0]+(lastRev?-28:28),pts[L-1][1],'C',12);
+  let y=pts[L-1][1]+40; const states=['I','O','M','S','B','P'].filter(c=>pr.labels.includes(c)).map(c=>ST_NAME[c]).join('; ');
+  const n=tblock(30,y,`Ring colour = model state: ${states}. The boustrophedon layout is arbitrary. All ${L} residues are drawn.`,11.5,400,'#5b6470',W-60); s+=n.svg; y+=n.h+8;
+  return svgOpen(W,y,`${pname(p)} residue-bead view (${m})`)+h1.svg+h2.svg+s+'</svg>'; }
 
-// ---------- charge-by-region table ----------
-function regionTable(p,m){ const pr=p.predictions[m]; if(!pr) return '<p class="note">No prediction.</p>';
-  const rows=pr.segments.map(g=>{ const sub=p.sequence.slice(g.start-1,g.stop); const n=sub.length; const cnt=c=>[...sub].filter(a=>c.includes(a)).length; const kr=cnt('KR'), de=cnt('DE'), h=cnt('H'), hy=cnt('AVILMFWY');
+// ======================= region table =======================
+function regionTable(p,m){ ex(p); const pr=p.pred[m]; if(!pr) return '<p class="note">No prediction.</p>';
+  const rows=pr.segments.map(g=>{ const sub=p.sequence.slice(g.start-1,g.stop), n=sub.length, cnt=c=>[...sub].filter(a=>c.includes(a)).length, kr=cnt('KR'), de=cnt('DE'), h=cnt('H'), hy=cnt('AVILMFWY');
     return `<tr><td><span class="sw" style="background:${ST_COL[g.label]}"></span>${esc(ST_NAME[g.label])}</td><td>${g.start}–${g.stop}</td><td>${n}</td><td>${kr}</td><td>${(kr/n).toFixed(3)}</td><td>${de}</td><td>${(de/n).toFixed(3)}</td><td>${h}</td><td>${(hy/n).toFixed(2)}</td></tr>`; }).join('');
-  let pi='';
-  if(pr.spans.length && pr.spans.every(s=>s[2]==='M')){ const agg=lab=>{ let n=0,kr=0; pr.segments.filter(g=>g.label===lab).forEach(g=>{const sub=p.sequence.slice(g.start-1,g.stop); n+=sub.length; kr+=[...sub].filter(a=>a==='K'||a==='R').length;}); return {n,kr}; };
-    const I=agg('I'), O=agg('O');
+  let pi=''; if(pr.spans.length&&pr.spans.every(s=>s[2]==='M')){ const agg=lab=>{ let n=0,kr=0; pr.segments.filter(g=>g.label===lab).forEach(g=>{const sub=p.sequence.slice(g.start-1,g.stop); n+=sub.length; kr+=[...sub].filter(a=>a==='K'||a==='R').length;}); return {n,kr}; }; const I=agg('I'), O=agg('O');
     pi=`<p class="note">Positive-inside context (${esc(m)}): inside-assigned regions ${I.kr} K/R in ${I.n} aa (${I.n?(I.kr/I.n).toFixed(3):'–'} per residue); outside-assigned regions ${O.kr} K/R in ${O.n} aa (${O.n?(O.kr/O.n).toFixed(3):'–'} per residue). A tendency in helical membrane proteins, not evidence for this protein's orientation; long globular domains dilute densities.</p>`; }
-  return `<table><thead><tr><th>${esc(m)} region</th><th>Range</th><th>Length</th><th>K+R</th><th>K+R / aa</th><th>D+E</th><th>D+E / aa</th><th>H</th><th>Hydrophobic/aromatic fraction</th></tr></thead><tbody>${rows}</tbody></table>${pi}`; }
+  return `<table><thead><tr><th>${esc(m)} region</th><th>Range</th><th>Length</th><th>K+R</th><th>K+R / aa</th><th>D+E</th><th>D+E / aa</th><th>H</th><th>Hydrophobic/aromatic fraction</th></tr></thead><tbody>${rows}</tbody></table><p class="small">Native ${esc(m)} labels: <code>${esc(pr.nseg)}</code></p>${pi}`; }
 
-// ---------- export ----------
-function fname(p,method,fig,range){ return safe(`${D.key}_${p.locus_tag||p.protein_id}_${pname(p)}_${method}_${fig}_${range?range[0]+'-'+range[1]:'1-'+p.length}`); }
-function download(name,blob){ const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=name; document.body.appendChild(a); a.click(); setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove();},500); }
+// ======================= export =======================
+function fname(p,method,fig,range){ return safe(`${p.org}_${p.locus_tag||p.protein_id}_${pname(p)}_${method}_${fig}_${range?range[0]+'-'+range[1]:'1-'+p.length}`); }
+function download(name,blob){ const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=name; document.body.appendChild(a); a.click(); setTimeout(()=>{URL.revokeObjectURL(a.href); a.remove();},500); }
 function svgBlob(svg){ return new Blob(['<?xml version="1.0" encoding="UTF-8"?>\n'+svg],{type:'image/svg+xml'}); }
 const MAX_SIDE=16000, MAX_AREA=120e6;
-function svgToPng(svg, scale){ return new Promise((res,rej)=>{ const m=svg.match(/width="(\d+(?:\.\d+)?)" height="(\d+(?:\.\d+)?)"/); const w=+m[1], h=+m[2];
-  let sc=scale; while(sc>0.25 && (w*sc>MAX_SIDE || h*sc>MAX_SIDE || w*h*sc*sc>MAX_AREA)) sc/=1.25;
-  const img=new Image(); img.onload=()=>{ const c=document.createElement('canvas'); c.width=Math.round(w*sc); c.height=Math.round(h*sc); const ctx=c.getContext('2d'); ctx.fillStyle='#fff'; ctx.fillRect(0,0,c.width,c.height); ctx.drawImage(img,0,0,c.width,c.height); c.toBlob(b=>b?res({blob:b,scale:sc,w:c.width,h:c.height}):rej(new Error('canvas toBlob failed')),'image/png'); };
+function svgToPng(svg,scale){ return new Promise((res,rej)=>{ const m=svg.match(/width="(\d+(?:\.\d+)?)" height="(\d+(?:\.\d+)?)"/), w=+m[1], h=+m[2]; let sc=scale;
+  while(sc>0.25&&(w*sc>MAX_SIDE||h*sc>MAX_SIDE||w*h*sc*sc>MAX_AREA)) sc/=1.25;
+  const img=new Image(); img.onload=()=>{ const c=document.createElement('canvas'); c.width=Math.round(w*sc); c.height=Math.round(h*sc); const x=c.getContext('2d'); x.fillStyle='#fff'; x.fillRect(0,0,c.width,c.height); x.drawImage(img,0,0,c.width,c.height); c.toBlob(b=>b?res({blob:b,scale:sc,w:c.width,h:c.height}):rej(new Error('canvas toBlob failed')),'image/png'); };
   img.onerror=()=>rej(new Error('SVG rasterization failed')); img.src='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(svg); }); }
-async function copyImage(svg,name){ try{ if(!navigator.clipboard||!window.ClipboardItem) throw new Error('no clipboard'); const r=await svgToPng(svg,2); await navigator.clipboard.write([new ClipboardItem({'image/png':r.blob})]); toast('Image copied to clipboard'); }catch(e){ const r=await svgToPng(svg,2); download(name+'.png',r.blob); toast('Clipboard unavailable — downloaded PNG instead'); } }
-function copyText(t){ (navigator.clipboard&&navigator.clipboard.writeText? navigator.clipboard.writeText(t):Promise.reject()).then(()=>toast('Caption copied')).catch(()=>{ download('caption.txt',new Blob([t],{type:'text/plain'})); toast('Clipboard unavailable — caption downloaded'); }); }
-function figBlock(id,title,svg,caption,name,extraBar){
-  return `<div class="card" id="${id}"><h3>${title}</h3><div class="figbar">${extraBar||''}<span class="sp"></span><button data-act="svg">SVG</button><button data-act="png2">PNG 2×</button><button data-act="png4">PNG 4×</button><button data-act="copy">Copy image</button><button data-act="cap">Copy caption</button><label class="small"><input type="checkbox" data-act="fit" ${state.fit[id]?'checked':''}> fit width</label></div><div class="figwrap ${state.fit[id]?'fit':''}">${svg}</div><div class="caption">${esc(caption)}</div></div>`; }
-function wireFig(id,getSvg,caption,name){ const el=$(id); if(!el)return; el.querySelectorAll('.figbar [data-act]').forEach(b=>{ const act=b.dataset.act;
+async function copyImage(svg,name){ try{ if(!navigator.clipboard||!window.ClipboardItem) throw 0; const r=await svgToPng(svg,2); await navigator.clipboard.write([new ClipboardItem({'image/png':r.blob})]); toast('Image copied to clipboard'); }catch(e){ const r=await svgToPng(svg,2); download(name+'.png',r.blob); toast('Clipboard unavailable — downloaded PNG instead'); } }
+function copyText(t,what){ (navigator.clipboard&&navigator.clipboard.writeText?navigator.clipboard.writeText(t):Promise.reject()).then(()=>toast((what||'Text')+' copied')).catch(()=>{ download((what||'text').toLowerCase().replace(/\W+/g,'_')+'.txt',new Blob([t],{type:'text/plain'})); toast('Clipboard unavailable — downloaded instead'); }); }
+function figBlock(id,title,svg,caption,extraBar){ return `<div class="card" id="${id}"><h3>${title}</h3><div class="figbar">${extraBar||''}<span class="sp"></span><button data-act="svg">SVG</button><button data-act="png2">PNG 2×</button><button data-act="png4">PNG 4×</button><button data-act="copy">Copy image</button><button data-act="cap">Copy caption</button><label class="small"><input type="checkbox" data-act="fit" ${state.fit[id]?'checked':''}> fit width</label></div><div class="figwrap ${state.fit[id]?'fit':''}">${svg}</div><div class="caption">${esc(caption)}</div></div>`; }
+function wireFig(id,getSvg,caption,name){ const el=$(id); if(!el) return; el.querySelectorAll('.figbar [data-act]').forEach(b=>{ const act=b.dataset.act;
   if(act==='fit'){ b.onchange=()=>{state.fit[id]=b.checked; el.querySelector('.figwrap').classList.toggle('fit',b.checked);}; return; }
-  b.onclick=async()=>{ const svg=getSvg(); try{
-    if(act==='svg') download(name+'.svg',svgBlob(svg));
-    if(act==='png2'||act==='png4'){ const r=await svgToPng(svg,act==='png2'?2:4); download(name+'.png',r.blob); if(r.scale<(act==='png2'?2:4)) toast(`PNG reduced to ${r.scale.toFixed(2)}× (${r.w}×${r.h}) for browser canvas limits; SVG keeps full detail`); }
-    if(act==='copy') await copyImage(svg,name);
-    if(act==='cap') copyText(caption);
-  }catch(e){ toast('Export failed: '+e.message); } }; }); }
+  b.onclick=async()=>{ const svg=getSvg(); try{ if(act==='svg') download(name+'.svg',svgBlob(svg));
+    if(act==='png2'||act==='png4'){ const want=act==='png2'?2:4, r=await svgToPng(svg,want); download(name+'.png',r.blob); if(r.scale<want) toast(`PNG reduced to ${r.scale.toFixed(2)}× (${r.w}×${r.h}) for browser canvas limits; the SVG keeps full detail`); }
+    if(act==='copy') await copyImage(svg,name); if(act==='cap') copyText(caption,'Caption'); }catch(e){ toast('Export failed: '+e.message); } }; }); }
 
-// ---------- protein view ----------
-function methodsSelected(p){ return [...MAIN,...COMP].filter(m=>state.methods.has(m)); }
-function renderProtein(){
-  const p=P[state.idx]; const el=$('tab-protein'); const sel=methodsSelected(p);
-  const statusRows=[...MAIN,...COMP].map(m=>{ const st=p.method_status[m]||'not run'; const pr=p.predictions[m]; const prov=pr&&pr.provenance;
-    const extra = pr ? `${pr.spans.length?pr.spans.map(s=>`${s[0]}–${s[1]}${s[2]==='B'?' (β)':''}`).join(', '):'no span'}${pr.sp_range?` · SP ${pr.sp_range[0]}–${pr.sp_range[1]}`:''}` : '';
-    const cls = pr&&pr.classification ? esc(pr.classification) : (pr?'<span class="note">—</span>':'');
-    const src = pr ? `<span class="small">${esc(pr.source_output||'')}${prov?` · ${esc(prov.cache_status||'')} result generated ${esc(prov.generated||'?')}`:''}</span>` : '';
-    return `<tr><td>${COMP.includes(m)?'&nbsp;&nbsp;↳ ':''}<b>${esc(m)}</b></td><td class="st-${esc(st)}">${esc(st.replace(/_/g,' '))}</td><td>${extra}</td><td>${cls}</td><td>${src}</td></tr>`; }).join('');
-  const notes=[...MAIN,...COMP].flatMap(m=>(p.predictions[m]&&p.predictions[m].notes||[]).map(n=>`<li><b>${esc(m)}:</b> ${esc(n)}</li>`));
-  const disag = p.disagreements.length? `<div class="warnbox"><b>Main-method disagreement:</b> ${p.disagreements.map(esc).join('; ')}. Methods are shown side by side; no consensus is imposed.</div>`:'';
-  const inc = [...MAIN].filter(m=>p.method_status[m]!=='complete'); const incBox = inc.length?`<div class="badbox"><b>Missing data:</b> ${inc.map(m=>`${esc(m)} (${esc(p.method_status[m]||'not run')})`).join(', ')}. Figures omit unavailable methods; nothing is substituted.</div>`:'';
-  const mt = m=>`<label><input type="checkbox" data-m="${esc(m)}" ${state.methods.has(m)?'checked':''} ${p.method_status[m]==='complete'?'':'disabled'}> ${esc(m)}</label>`;
-  const beadOpts=[...MAIN,...COMP].filter(m=>p.method_status[m]==='complete').map(m=>`<option ${m===state.beadModel?'selected':''}>${esc(m)}</option>`).join('');
-  const regOpts=[...MAIN,...COMP].filter(m=>p.method_status[m]==='complete');
-  const regM = regOpts.includes(state.mapModel)?state.mapModel:regOpts[0];
-  const range = state.win;
-  el.innerHTML = `
-  <div class="card"><h2>${esc(pname(p))} <span class="note" style="font-weight:400">· ${esc(p.product)}</span></h2>
-    <div class="meta">
-      <div><span>Protein ID:</span> ${esc(p.protein_id)}</div><div><span>Locus tag:</span> ${esc(p.locus_tag)}</div>
+// ======================= one-click re-run =======================
+function fastaOf(p){ return `>${p.protein_id.replace(/\|/g,'__')} ${p.product} [${org(p).name}]\n${p.sequence.replace(/(.{60})/g,'$1\n').replace(/\n$/,'')}\n`; }
+function rerunCmd(p){ return `python3 scripts/rerun.py --org ${p.org} --proteins "${p.protein_id}" --methods Phobius,DeepTMHMM,TOPCONS2`; }
+function rerunCard(p){ const fa=fastaOf(p), elig=m=>!(p.ineligible&&p.ineligible[m]), wf=`https://github.com/${REPO}/actions/workflows/${WF}`;
+  return `<div class="card"><h3>Re-run predictions for this protein</h3><div class="rerun">
+    <form method="post" action="https://phobius.sbc.su.se/predict" enctype="multipart/form-data" target="_blank"><textarea name="protseq" hidden>${esc(fa)}</textarea><input type="hidden" name="format" value="plp"><button class="primary" ${elig('Phobius')?'':'disabled title="sequence not supported by Phobius"'}>Phobius ↗</button></form>
+    <form method="post" action="https://services.healthtech.dtu.dk/cgi-bin/webface2.cgi" enctype="multipart/form-data" target="_blank"><input type="hidden" name="configfile" value="/var/www/services/services/DeepTMHMM-1.0/webface.cf"><textarea name="fasta" hidden>${esc(fa)}</textarea><button class="primary" ${elig('DeepTMHMM')?'':'disabled title="sequence not supported by DeepTMHMM"'}>DeepTMHMM ↗ (DTU)</button></form>
+    <button id="tcbtn" ${elig('TOPCONS2')?'':'disabled'}>TOPCONS2 ↗ (copies FASTA)</button>
+    <a class="btn" href="${wf}" target="_blank" rel="noopener">Pipeline re-run ↗ (GitHub Actions)</a>
+    <button id="cmdbtn">Copy pipeline command</button></div>
+   <p class="note">Phobius and DeepTMHMM: one click submits this exact sequence to the official server in a new tab (the DTU DeepTMHMM server may run a different version from the BioLib app used here: ${esc(DATA.deeptmhmm_versions||'')}). TOPCONS2's form requires a session token, so its button copies the FASTA and opens the form for pasting. Pipeline re-run: on GitHub choose <b>Run workflow</b> with organism <code>${esc(p.org)}</code> and protein <code>${esc(p.protein_id)}</code>; it records a new, separately named batch, keeps the earlier result as superseded, and rebuilds the atlas.</p>
+   <pre class="cmd">${esc(rerunCmd(p))}</pre></div>`; }
+
+// ======================= sidebar & selection =======================
+function searchText(p){ return [p.protein_id,p.gene,p.locus_tag,p.protein_accession,p.product,p.curator_alias,p.note,...(p.synonyms||[]),org(p).name,p.org].join(' ').toLowerCase(); }
+const STX=P.map(searchText);
+function incomplete(p){ return MAIN.some(m=>p.status[m]!=='complete'); }
+function hasBeta(p){ return Object.values(p.pred||{}).some(pr=>/(^|,)[BP]\d/.test(pr.seg)); }
+function applyFilters(){ const q=$('q').value.trim().toLowerCase(), f={}; document.querySelectorAll('#filters input').forEach(i=>f[i.dataset.f]=i.checked);
+  state.filtered=P.map((p,i)=>i).filter(i=>{ const p=P[i];
+    if(state.org!=='*'&&p.org!==state.org) return false; if(q&&!q.split(/\s+/).every(t=>STX[i].includes(t))) return false;
+    if(f.span&&!p.any_membrane_span) return false; if(f.sp&&!p.any_signal_peptide) return false; if(f.beta&&!hasBeta(p)) return false;
+    if(f.dis&&!p.disagreements.length) return false; if(f.flag&&!(p.annotation_flags.length||p.ineligible)) return false; if(f.inc&&!incomplete(p)) return false; return true; });
+  state.shown=200; renderList(); }
+function renderList(){ const items=state.filtered.slice(0,state.shown), multi=ORDER.length>1;
+  $('plist').innerHTML=items.map(i=>{ const p=P[i]; const tags=(p.any_membrane_span?'<span class="tag tm">TM</span>':'')+(p.any_signal_peptide?'<span class="tag sp">SP</span>':'')+(hasBeta(p)?'<span class="tag beta">β</span>':'')+(p.disagreements.length?'<span class="tag dis">disagree</span>':'')+(incomplete(p)?'<span class="tag inc">incomplete</span>':'')+(p.annotation_flags.length||p.ineligible?'<span class="tag flag">flag</span>':'');
+    return `<li data-i="${i}" class="${i===state.idx?'sel':''}">${multi&&state.org==='*'?`<div class="org">${esc(org(p).name)}</div>`:''}<b>${esc(pname(p))}</b> ${tags}<div class="pm">${esc(p.locus_tag)} · ${p.length} aa · ${esc(p.product)}</div></li>`; }).join('');
+  $('cnt').textContent=`${state.filtered.length.toLocaleString()} of ${P.length.toLocaleString()} proteins match`;
+  $('more').style.display=state.filtered.length>state.shown?'block':'none';
+  const opts=state.filtered.slice(0,2000); $('dd').innerHTML=opts.map(i=>`<option value="${i}" ${i===state.idx?'selected':''}>${esc(pname(P[i]))} — ${esc(P[i].locus_tag)} (${P[i].length} aa)${multi&&state.org==='*'?' · '+esc(P[i].org):''}</option>`).join('')+(state.filtered.length>2000?`<option disabled>… ${(state.filtered.length-2000).toLocaleString()} more — refine the search</option>`:''); }
+$('plist').addEventListener('click',e=>{const li=e.target.closest('li'); if(li) select(+li.dataset.i);});
+$('dd').addEventListener('change',e=>select(+e.target.value)); $('more').onclick=()=>{state.shown+=200; renderList();};
+$('q').addEventListener('input',applyFilters); document.querySelectorAll('#filters input').forEach(i=>i.addEventListener('change',applyFilters));
+function step(d){ const Lf=state.filtered; if(!Lf.length) return; let k=Lf.indexOf(state.idx); k=k<0?0:(k+d+Lf.length)%Lf.length; select(Lf[k]); }
+$('prev').onclick=()=>step(-1); $('next').onclick=()=>step(1);
+document.querySelectorAll('#maintabs button').forEach(b=>b.onclick=()=>{ document.querySelectorAll('#maintabs button').forEach(x=>x.classList.toggle('on',x===b)); $('tab-protein').style.display=b.dataset.tab==='protein'?'':'none'; $('tab-about').style.display=b.dataset.tab==='about'?'':'none'; if(b.dataset.tab==='about') renderAbout(); });
+$('orgsel').innerHTML=(ORDER.length>1?`<option value="*">All organisms (${ORDER.length})</option>`:'')+['phage','host'].map(k=>{ const ks=ORDER.filter(o=>ORGS[o].kind===k); return ks.length?`<optgroup label="${k==='phage'?'Model phages':'Model hosts'}">${ks.map(o=>`<option value="${o}">${esc(ORGS[o].name)} (${ORGS[o].n.toLocaleString()})</option>`).join('')}</optgroup>`:''; }).join('');
+$('orgsel').onchange=e=>{ state.org=e.target.value; applyFilters(); if(state.filtered.length) select(state.filtered[0]); if($('tab-about').style.display!=='none') renderAbout(); };
+function select(i){ state.idx=i; state.win=null; const p=ex(P[i]), avail=ALLM.filter(m=>p.status[m]==='complete');
+  if(!avail.includes(state.beadModel)) state.beadModel=avail[0]||null; if(!avail.includes(state.mapModel)) state.mapModel=null;
+  try{history.replaceState(null,'','#'+encodeURIComponent(p.protein_id));}catch(e){} renderList(); renderProtein(); }
+
+// ======================= protein view =======================
+function sel(){ return ALLM.filter(m=>state.methods.has(m)); }
+function renderProtein(){ const p=ex(P[state.idx]), o=org(p), el=$('tab-protein'), ms=sel(), used=ms.filter(m=>p.pred[m]);
+  const statusRows=ALLM.map(m=>{ const st=p.status[m]||'not run', pr=p.pred[m], base=COMP.includes(m)?'TOPCONS2':m;
+    const ext=pr?`${pr.spans.length?pr.spans.map(s=>`${s[0]}–${s[1]}${s[2]==='B'?' (β)':''}`).join(', '):'no span'}${pr.sp_range?` · SP ${pr.sp_range[0]}–${pr.sp_range[1]}`:''}`:(p.ineligible&&p.ineligible[base]?esc(p.ineligible[base]):'');
+    const tm=p.topcons_meta, src=pr?`<span class="small">${esc(pr.src||'')} · batch ${esc(pr.batch)}${base==='TOPCONS2'&&tm?` · ${esc(tm.cache||'')} result generated ${esc(tm.generated||'?')}`:''}${p.superseded&&p.superseded[m]?` · supersedes ${p.superseded[m].map(x=>esc(x.batch)).join(', ')}`:''}</span>`:'';
+    return `<tr><td>${COMP.includes(m)?'&nbsp;&nbsp;↳ ':''}<b>${esc(m)}</b></td><td class="st-${esc(st)}">${esc(st.replace(/_/g,' '))}</td><td>${ext}</td><td>${pr&&pr.cls?esc(pr.cls):''}</td><td>${src}</td></tr>`; }).join('');
+  const notes=ALLM.flatMap(m=>(p.pred[m]&&p.pred[m].notes||[]).map(n=>`<li><b>${esc(m)}:</b> ${esc(n)}</li>`));
+  const dis=p.disagreements.length?`<div class="warnbox"><b>Main-method disagreement:</b> ${p.disagreements.map(esc).join('; ')}. Methods are shown side by side; no consensus is imposed.</div>`:'';
+  const inc=MAIN.filter(m=>p.status[m]!=='complete'), incBox=inc.length?`<div class="badbox"><b>Missing data:</b> ${inc.map(m=>`${esc(m)} (${esc((p.status[m]||'not run').replace(/_/g,' '))})`).join(', ')}. Figures omit unavailable methods; nothing is substituted.</div>`:'';
+  const mt=m=>`<label><input type="checkbox" data-m="${esc(m)}" ${state.methods.has(m)?'checked':''} ${p.status[m]==='complete'?'':'disabled'}> ${esc(m)}</label>`;
+  const avail=ALLM.filter(m=>p.status[m]==='complete'), regM=avail.includes(state.mapModel)?state.mapModel:avail[0], range=state.win;
+  el.innerHTML=`<div class="card"><h2>${esc(pname(p))} <span class="note" style="font-weight:400">· ${esc(p.product)}</span></h2>
+    <div class="meta"><div><span>Organism:</span> ${esc(o.name)}</div><div><span>Protein ID:</span> ${esc(p.protein_id)}</div><div><span>Locus tag:</span> ${esc(p.locus_tag)}</div>
       <div><span>Gene (record):</span> ${esc(p.gene||'— (no /gene qualifier)')}</div><div><span>Curator alias:</span> ${esc(p.curator_alias||'—')} ${p.curator_alias?'<span class="note">(not in source record)</span>':''}</div>
       <div><span>Protein accession:</span> ${esc(p.protein_accession)}</div><div><span>Replicon:</span> ${esc(p.replicon)} · ${esc(p.location)} (${esc(p.strand)})</div>
-      <div><span>Length:</span> ${p.length} aa</div><div><span>Genetic code:</span> table ${esc(p.transl_table)}</div>
+      <div><span>Length:</span> ${p.length} aa</div><div><span>Genetic code:</span> table ${esc(p.transl_table||11)}</div>
       <div><span>Annotation flags:</span> ${p.annotation_flags.length?p.annotation_flags.map(esc).join(', '):'none'}</div>
       <div><span>Synonyms / note:</span> ${esc([...(p.synonyms||[]),p.note].filter(Boolean).join('; ')||'—')}</div>
-      ${p.identical_sequence_to.length?`<div><span>Identical sequence to:</span> ${p.identical_sequence_to.map(esc).join(', ')}</div>`:''}
-    </div>
-    <p class="small" style="margin:8px 0 4px">SHA-256: <code>${p.sequence_sha256}</code></p>
-    <div class="seqbox">${esc(p.sequence)}</div>
-    <div class="figbar"><button id="dlfa">Download FASTA</button><button id="dljson">Download protein JSON</button><button id="dlall">Download full dataset (JSON)</button><button id="dlcsv">Download topology summary (CSV)</button></div>
-  </div>
-  <div class="card"><h3>Prediction status &amp; segment calls</h3>${disag}${incBox}
-    <table><thead><tr><th>Method</th><th>Status</th><th>Membrane spans / signal peptide</th><th>Native classification</th><th>Source</th></tr></thead><tbody>${statusRows}</tbody></table>
-    ${notes.length?`<ul class="small">${notes.join('')}</ul>`:''}
-    <p class="note">TOPCONS2 components contribute to the TOPCONS2 consensus; they are not independent votes in addition to it.</p>
-  </div>
-  <div class="card"><h3>Methods shown in figures</h3><div class="toggles">
-    <fieldset><legend>Main methods</legend>${MAIN.map(mt).join(' ')}</fieldset>
-    <fieldset><legend>TOPCONS2 components (optional)</legend>${COMP.map(mt).join(' ')}</fieldset>
-    <label><input type="checkbox" id="hydt" ${state.hyd?'checked':''}> highlight hydrophobic/aromatic class</label>
-  </div></div>
+      ${p.identical_sequence_to&&p.identical_sequence_to.length?`<div><span>Identical sequence to:</span> ${p.identical_sequence_to.map(esc).join(', ')}</div>`:''}</div>
+    <p class="small" style="margin:8px 0 4px">SHA-256: <code>${p.sequence_sha256}</code></p><div class="seqbox">${esc(p.sequence)}</div>
+    <div class="figbar"><button id="dlfa">Download FASTA</button><button id="dljson">Download protein JSON</button><button id="dlorg">Download organism dataset (JSON)</button><button id="dlcsv">Download organism summary (CSV)</button></div></div>
+  ${rerunCard(p)}
+  <div class="card"><h3>Prediction status &amp; segment calls</h3>${dis}${incBox}<table><thead><tr><th>Method</th><th>Status</th><th>Membrane spans / signal peptide</th><th>Native classification</th><th>Source</th></tr></thead><tbody>${statusRows}</tbody></table>
+    ${notes.length?`<ul class="small">${notes.join('')}</ul>`:''}<p class="note">TOPCONS2 components contribute to the TOPCONS2 consensus; they are not independent votes in addition to it.</p></div>
+  <div class="card"><h3>Methods shown in figures</h3><div class="toggles"><fieldset><legend>Main methods</legend>${MAIN.map(mt).join(' ')}</fieldset><fieldset><legend>TOPCONS2 components (optional)</legend>${COMP.map(mt).join(' ')}</fieldset><label><input type="checkbox" id="hydt" ${state.hyd?'checked':''}> highlight hydrophobic/aromatic class</label></div></div>
   <div id="figs"></div>
-  <div class="card"><h3>Segment boundaries &amp; charge by region</h3><div class="figbar"><label>Model: <select id="regm" style="width:auto">${regOpts.map(m=>`<option ${m===regM?'selected':''}>${esc(m)}</option>`).join('')}</select></label></div>
-    <div id="regtab">${regM?regionTable(p,regM):'<p class="note">No completed predictions.</p>'}</div></div>
+  <div class="card"><h3>Segment boundaries &amp; charge by region</h3><div class="figbar"><label>Model: <select id="regm" style="width:auto">${avail.map(m=>`<option ${m===regM?'selected':''}>${esc(m)}</option>`).join('')}</select></label></div><div id="regtab">${regM?regionTable(p,regM):'<p class="note">No completed predictions.</p>'}</div></div>
   <div class="card"><h3>Server-provided plots (raw)</h3><div id="rawplots"></div></div>`;
-  // figures
-  const figs=[]; const selM=sel.filter(m=>p.predictions[m]);
-  const capBase=`${D.organism} (${D.accession}), ${pname(p)} [${p.locus_tag}; ${p.protein_accession}], ${p.length} aa. 1-based inclusive numbering of the annotated precursor translation.`;
-  const fA=figOrientation(p,sel.length?sel:[]); const capA=`Predicted membrane orientation of ${capBase} Methods: ${sel.join(', ')||'none'}. Horizontal extents are proportional to residue count on a shared axis; membrane depth and loop geometry are schematic. Computational predictions, not experimental evidence.`;
-  const fD=figTracks(p,sel); const capD=`Linear comparison of predicted topology for ${capBase} Methods: ${sel.join(', ')||'none'}. Tracks show categorical one-best state assignments on the same full-length axis. Computational predictions.`;
-  const fB=figSeqMap(p,sel,range); const capB=`Sequence and approximate side-chain charge classes for ${capBase} Residues ${range?range[0]+'–'+range[1]:'1–'+p.length}. K/R generally positive, D/E generally negative, H variable; classes are approximate near neutral pH and not measured charges. Topology bands: ${sel.join(', ')||'none'} (predictions).`;
+  const capBase=`${o.name} (${p.replicon}), ${pname(p)} [${p.locus_tag}; ${p.protein_accession}], ${p.length} aa. 1-based inclusive numbering of the annotated precursor translation.`;
+  const capA=`Predicted membrane orientation of ${capBase} Methods: ${ms.join(', ')||'none'}. Horizontal extents are proportional to residue count on a shared axis; membrane thickness and loop geometry are schematic. Computational predictions, not experimental evidence.`;
+  const capD=`Linear comparison of predicted topology for ${capBase} Methods: ${ms.join(', ')||'none'}. Tracks show categorical one-best state assignments on the same full-length axis. Computational predictions.`;
+  const capB=`Sequence and approximate side-chain charge classes for ${capBase} Residues ${range?range[0]+'–'+range[1]:'1–'+p.length}. K/R generally positive, D/E generally negative, H variable; approximate classes near neutral pH, not measured charges. Topology bands: ${used.join(', ')||'none'} (predictions).`;
   const bead=state.beadModel?figBeads(p,state.beadModel):{svg:simpleMsg('Residue-bead view','No completed prediction for this protein.')};
-  const capC=`Residue-bead membrane cartoon for ${capBase} Model: ${state.beadModel||'none'}. Residues placed by the model's per-residue states; loop packing is schematic and not a predicted fold${bead.accounting&&bead.accounting.omitted?`; residues ${bead.accounting.gaps.map(g=>g[0]+'–'+g[1]).join(', ')} are abbreviated in this view and shown in full in the sequence map`:''}. Charge colours are approximate side-chain classes. Computational prediction.`;
-  const nA=fname(p,sel.join('+')||'none','orientation'), nD=fname(p,sel.join('+')||'none','tracks'), nB=fname(p,sel.join('+')||'none','seqcharge',range), nC=fname(p,state.beadModel||'none','beads');
+  const capC=`Residue-bead membrane cartoon for ${capBase} Model: ${state.beadModel||'none'}. Residues placed by the model's per-residue states; loop packing is schematic and not a predicted fold${bead.accounting&&bead.accounting.gaps&&bead.accounting.gaps.length?`; residues ${bead.accounting.gaps.map(g=>g[0]+'–'+g[1]).join(', ')} are abbreviated here and shown in full in the sequence map`:''}. Charge colours are approximate side-chain classes. Computational prediction.`;
+  const tag=ms.join('+')||'none', nA=fname(p,tag,'orientation'), nD=fname(p,tag,'tracks'), nB=fname(p,tag,'seqcharge',range), nC=fname(p,state.beadModel||'none','beads');
   const winBar=`<label class="small">Row length <select id="rowlen" style="width:auto">${[30,40,50,60,80,100].map(v=>`<option ${v===state.rowLen?'selected':''}>${v}</option>`).join('')}</select></label> <label class="small">Window <input id="w0" type="number" min="1" max="${p.length}" value="${range?range[0]:1}" style="width:70px"> – <input id="w1" type="number" min="1" max="${p.length}" value="${range?range[1]:p.length}" style="width:70px"></label> <button id="wapply">Apply window</button> <button id="wfull">Full length</button>`;
-  const beadBar=`<label class="small">Model <select id="beadm" style="width:auto">${beadOpts}</select></label>`;
-  $('figs').innerHTML = figBlock('figA','A · Presentation-ready membrane orientation',fA,capA,nA) + figBlock('figB','B · Full-length sequence &amp; charge map'+(range?` <span class="note">(window ${range[0]}–${range[1]})</span>`:''),fB,capB,nB,winBar) + figBlock('figC','C · Residue-bead membrane cartoon',bead.svg,capC,nC,beadBar) + figBlock('figD','D · Linear method-comparison tracks',fD,capD,nD);
-  wireFig('figA',()=>figOrientation(p,methodsSelected(p)),capA,nA); wireFig('figB',()=>figSeqMap(p,methodsSelected(p),state.win),capB,nB); wireFig('figC',()=>figBeads(p,state.beadModel).svg,capC,nC); wireFig('figD',()=>figTracks(p,methodsSelected(p)),capD,nD);
+  const beadBar=`<label class="small">Model <select id="beadm" style="width:auto">${avail.map(m=>`<option ${m===state.beadModel?'selected':''}>${esc(m)}</option>`).join('')}</select></label>`;
+  $('figs').innerHTML=figBlock('figA','A · Membrane orientation',figOrientation(p,ms),capA)+figBlock('figB','B · Full-length sequence &amp; charge map'+(range?` <span class="note">(window ${range[0]}–${range[1]})</span>`:''),figSeqMap(p,used,range),capB,winBar)+figBlock('figC','C · Residue-bead membrane cartoon',bead.svg,capC,beadBar)+figBlock('figD','D · Linear method-comparison tracks',figTracks(p,ms),capD);
+  wireFig('figA',()=>figOrientation(p,sel()),capA,nA); wireFig('figB',()=>figSeqMap(p,sel().filter(m=>p.pred[m]),state.win),capB,nB); wireFig('figC',()=>figBeads(p,state.beadModel).svg,capC,nC); wireFig('figD',()=>figTracks(p,sel()),capD,nD);
   el.querySelectorAll('[data-m]').forEach(cb=>cb.onchange=()=>{ cb.checked?state.methods.add(cb.dataset.m):state.methods.delete(cb.dataset.m); renderProtein(); });
   $('hydt').onchange=e=>{state.hyd=e.target.checked; savePrefs(); renderProtein();};
   const bm=$('beadm'); if(bm) bm.onchange=e=>{state.beadModel=e.target.value; renderProtein();};
-  const rl=$('rowlen'); if(rl) rl.onchange=e=>{state.rowLen=+e.target.value; savePrefs(); renderProtein();};
+  $('rowlen').onchange=e=>{state.rowLen=+e.target.value; savePrefs(); renderProtein();};
   $('wapply').onclick=()=>{ let a=Math.max(1,Math.min(p.length,+$('w0').value||1)), b=Math.max(1,Math.min(p.length,+$('w1').value||p.length)); if(a>b)[a,b]=[b,a]; state.win=(a===1&&b===p.length)?null:[a,b]; renderProtein(); };
   $('wfull').onclick=()=>{state.win=null; renderProtein();};
   const rm=$('regm'); if(rm) rm.onchange=e=>{state.mapModel=e.target.value; $('regtab').innerHTML=regionTable(p,e.target.value);};
-  $('dlfa').onclick=()=>download(safe(`${D.key}_${p.locus_tag}_${pname(p)}`)+'.fasta',new Blob([`>${p.protein_id} ${p.product} [${D.organism}] ${p.protein_accession} len=${p.length} sha256=${p.sequence_sha256}\n${p.sequence.replace(/(.{60})/g,'$1\n').replace(/\n$/,'')}\n`],{type:'text/plain'}));
-  $('dljson').onclick=()=>download(safe(`${D.key}_${p.locus_tag}_${pname(p)}`)+'.json',new Blob([JSON.stringify(p,null,1)],{type:'application/json'}));
-  $('dlall').onclick=()=>download(safe(`${D.key}_topology_dataset`)+'.json',new Blob([document.getElementById('atlas-data').textContent],{type:'application/json'}));
-  $('dlcsv').onclick=()=>download(safe(`${D.key}_topology_summary`)+'.csv',new Blob([summaryCsv()],{type:'text/csv'}));
-  // raw plots
-  const a=ASSETS[p.submitted_id]||{}; let rp='';
-  if(a.phobius_svg) rp+=`<p class="small"><b>Phobius posterior-probability plot</b> (returned by the Phobius server; ${esc(a.phobius_svg_src)})</p><img class="rawplot" alt="Phobius posterior plot" src="data:image/svg+xml;base64,${a.phobius_svg}">`;
-  if(a.topcons_png) rp+=`<p class="small"><b>TOPCONS2 summary image</b> (returned by the TOPCONS2 server; ${esc(a.topcons_png_src)})</p><img class="rawplot" alt="TOPCONS2 plot" src="data:image/png;base64,${a.topcons_png}">`;
-  $('rawplots').innerHTML = rp || '<p class="note">No server-provided plots for this protein.</p>';
-}
-function summaryCsv(){ const cols=['protein_id','gene','curator_alias','locus_tag','protein_accession','product','length','sequence_sha256']; const ms=[...MAIN,...COMP];
-  const q=v=>{v=String(v??''); return /[",\n]/.test(v)?'"'+v.replace(/"/g,'""')+'"':v;};
-  let out=[...cols,...ms.flatMap(m=>[m+'_status',m+'_spans',m+'_signal_peptide',m+'_segments']),'disagreements'].join(',')+'\n';
-  P.forEach(p=>{ out+= [...cols.map(c=>q(p[c])), ...ms.flatMap(m=>{const pr=p.predictions[m]; return [q(p.method_status[m]), q(pr?pr.spans.map(s=>s[0]+'-'+s[1]+(s[2]==='B'?'(beta)':'')).join(';'):''), q(pr?(pr.sp_range?pr.sp_range.join('-'):'none'):''), q(pr?pr.segments.map(g=>g.label+g.start+'-'+g.stop).join(';'):'')];}), q(p.disagreements.join(';'))].join(',')+'\n'; });
-  return out; }
+  $('tcbtn').onclick=()=>{ copyText(fastaOf(p),'FASTA'); window.open('https://topcons.net/pred/','_blank','noopener'); };
+  $('cmdbtn').onclick=()=>copyText(rerunCmd(p),'Command');
+  const strip=(k,v)=>k==='_x'||k==='labels'||k==='segments'?undefined:v;
+  $('dlfa').onclick=()=>download(safe(`${p.org}_${p.locus_tag}_${pname(p)}`)+'.fasta',new Blob([fastaOf(p)],{type:'text/plain'}));
+  $('dljson').onclick=()=>download(safe(`${p.org}_${p.locus_tag}_${pname(p)}`)+'.json',new Blob([JSON.stringify(p,strip,1)],{type:'application/json'}));
+  $('dlorg').onclick=()=>download(safe(`${p.org}_topology_dataset`)+'.json',new Blob([JSON.stringify({organism:o,segment_encoding:DATA.segment_encoding,state_definitions:DATA.state_definitions,proteins:P.filter(q=>q.org===p.org)},strip)],{type:'application/json'}));
+  $('dlcsv').onclick=()=>download(safe(`${p.org}_topology_summary`)+'.csv',new Blob([summaryCsv(p.org)],{type:'text/csv'}));
+  const plot=p.pred.Phobius&&p.pred.Phobius.plot;
+  $('rawplots').innerHTML = plot ? `<p class="small"><b>Phobius posterior-probability plot</b> returned by the server (<code>${esc(o.base+plot)}</code>; displays when the atlas sits next to its organism folders).</p><img class="rawplot" alt="Phobius posterior plot" src="${esc(o.base+plot)}">` : `<p class="note">${o.kind==='host'?'Per-protein server plots were not requested for proteome-scale batches; all raw text outputs are in the organism folder.':'No server-provided plot for this protein.'}</p>`;
+  const img=$('rawplots').querySelector('img'); if(img) img.onerror=()=>{ img.replaceWith(Object.assign(document.createElement('p'),{className:'note',textContent:'Plot file not found next to this atlas; it is in the organism folder at '+o.base+plot})); }; }
+function summaryCsv(key){ const cols=['protein_id','gene','curator_alias','locus_tag','protein_accession','product','length','sequence_sha256'], q=v=>{v=String(v??''); return /[",\n]/.test(v)?'"'+v.replace(/"/g,'""')+'"':v;};
+  let out=[...cols,...ALLM.flatMap(m=>[m+'_status',m+'_spans',m+'_signal_peptide',m+'_segments']),'disagreements'].join(',')+'\n';
+  P.filter(p=>p.org===key).forEach(p=>{ out+=[...cols.map(c=>q(p[c])),...ALLM.flatMap(m=>{const pr=p.pred[m]; return [q(p.status[m]),q(pr?pr.spans.map(s=>s[0]+'-'+s[1]+(s[2]==='B'?'(beta)':'')).join(';'):''),q(pr?(pr.sp_range?pr.sp_range.join('-'):'none'):''),q(pr?pr.seg:'')];}),q(p.disagreements.join(';'))].join(',')+'\n'; }); return out; }
 
-// ---------- about tab ----------
-function renderAbout(){
-  const cov=D.coverage; const ip=D.input_provenance;
-  const covRows=[...MAIN,...COMP].map(m=>{const c=cov[m]; return `<tr><td>${COMP.includes(m)?'&nbsp;&nbsp;↳ ':''}${esc(m)}</td><td>${c.complete} / ${c.eligible}</td><td>${c.complete} / ${c.inventory}</td><td>${esc(Object.entries(c.status_counts).map(([k,v])=>`${k}: ${v}`).join(', '))}</td></tr>`;}).join('');
-  const jobs=Object.entries(D.jobs).map(([m,js])=>js.map(j=>`<tr><td>${esc(m)}</td><td>${esc(j.batch??'')}${j.format?' ('+esc(j.format)+')':''}</td><td>${esc(j.jobid||j.job_id||'—')}</td><td>${esc(j.status)}</td><td>${esc(j.submitted_utc||'')}</td><td class="small"><code>${esc((j.fasta_sha256||'').slice(0,16))}…</code></td></tr>`).join('')).join('');
-  const allDone = MAIN.every(m=>cov[m].complete===cov[m].inventory);
-  $('tab-about').innerHTML = `
-  <div class="card"><h2>Dataset</h2>
-   <p><b>${esc(D.organism)}</b> · RefSeq <b>${esc(D.accession)}</b> (${esc(ip.ncbi_summary.title)}; ${ip.ncbi_summary.slen} nt, ${esc(ip.ncbi_summary.topology)}; NCBI record updated ${esc(ip.ncbi_summary.updatedate)}). ${esc(D.host_note)}</p>
-   <p>Scope: all ${P.length} CDS features with an annotated <code>/translation</code> (${D.n_cds} CDS features; ${D.pseudogenes.length} pseudogenes or CDSs without translation). Sequences are used exactly as annotated; no trimming, padding or residue substitution.</p>
-   <table><thead><tr><th>Input file</th><th>Source URL</th><th>Retrieved (UTC)</th><th>SHA-256</th></tr></thead><tbody>${ip.files.map(f=>`<tr><td>${esc(f.file)}</td><td class="small">${esc(f.url)}</td><td>${esc(f.retrieved_utc)}</td><td class="small"><code>${esc(f.sha256)}</code></td></tr>`).join('')}</tbody></table>
-   <p class="note">Coordinates: ${esc(D.coordinate_convention)}. Atlas data generated ${esc(D.generated_utc)}.</p>
-   ${allDone?'':'<div class="badbox"><b>Partial atlas:</b> at least one main method has incomplete coverage (see table). Missing predictions are shown as missing, never substituted.</div>'}
-  </div>
-  <div class="card"><h3>Method coverage</h3><table><thead><tr><th>Method</th><th>Complete / eligible</th><th>Complete / full inventory</th><th>Status counts</th></tr></thead><tbody>${covRows}</tbody></table>
-   <h3 style="margin-top:12px">Submission records</h3><table><thead><tr><th>Method</th><th>Batch</th><th>Job ID</th><th>Status</th><th>Submitted</th><th>Batch FASTA SHA-256</th></tr></thead><tbody>${jobs}</tbody></table></div>
+// ======================= about tab =======================
+function renderAbout(){ const keys=state.org==='*'?ORDER:[state.org], wf=`https://github.com/${REPO}/actions/workflows/${WF}`;
+  const ov=ORDER.map(k=>{ const o=ORGS[k]; return `<tr><td>${esc(o.name)}</td><td>${esc(o.kind)}</td><td>${esc(o.accession)}</td><td>${o.n.toLocaleString()}</td>${MAIN.map(m=>`<td>${o.coverage[m].complete.toLocaleString()} / ${o.coverage[m].eligible.toLocaleString()}${o.coverage[m].eligible<o.n?` <span class="note">(${o.n-o.coverage[m].eligible} ineligible)</span>`:''}</td>`).join('')}<td>${o.n_span.toLocaleString()}</td><td>${o.n_sp.toLocaleString()}</td><td>${o.n_beta.toLocaleString()}</td></tr>`; }).join('');
+  const per=keys.map(k=>{ const o=ORGS[k], ip=o.input_provenance;
+    const cov=ALLM.map(m=>{const c=o.coverage[m]; return `<tr><td>${COMP.includes(m)?'&nbsp;&nbsp;↳ ':''}${esc(m)}</td><td>${c.complete} / ${c.eligible}</td><td>${c.complete} / ${c.inventory}</td><td class="small">${esc(Object.entries(c.status_counts).map(([a,b])=>a+': '+b).join(', '))}</td></tr>`;}).join('');
+    const jobs=Object.entries(o.jobs).map(([m,js])=>js.map(j=>`<tr><td>${esc(m)}</td><td>${esc(j.batch||'')}${j.format?' ('+esc(j.format)+')':''}${j.rerun?' · re-run':''}</td><td class="small">${esc(j.jobid||j.job_id||'—')}</td><td>${esc(j.status)}</td><td class="small">${esc(j.submitted_utc||'')}</td><td>${esc(j.n_sequences??'')}</td></tr>`).join('')).join('');
+    const allDone=MAIN.every(m=>o.coverage[m].complete===o.coverage[m].eligible);
+    return `<div class="card"><h2>${esc(o.name)}</h2><p>RefSeq ${ip.ncbi_summaries.map(s=>`<b>${esc(s.accessionversion)}</b> (${esc(s.title)}; ${s.slen.toLocaleString()} nt, ${esc(s.topology)}; NCBI update ${esc(s.updatedate)})`).join('; ')}. ${esc(o.host_note)}</p>
+     <p>Scope: all ${o.n.toLocaleString()} CDS features with a <code>/translation</code> (${o.n_cds.toLocaleString()} CDS features; ${o.n_pseudo} pseudogenes or untranslated CDSs recorded separately). Sequences are used exactly as annotated.</p>
+     ${allDone?'':'<div class="badbox"><b>Partial:</b> at least one main method has not finished for every eligible protein. Missing predictions are shown as pending or failed, never substituted.</div>'}
+     <p class="small">Inputs (retrieved ${esc(ip.files[0].retrieved_utc)}): ${ip.files.map(f=>`<code>${esc(f.file)}</code> sha256 <code>${esc(f.sha256.slice(0,16))}…</code>`).join(' · ')}</p>
+     <p><a class="btn" href="${wf}" target="_blank" rel="noopener">Re-run this organism ↗ (GitHub Actions)</a> <span class="small">or <code>python3 scripts/rerun.py --org ${esc(k)}</code></span></p>
+     <details><summary>Coverage by method</summary><table><thead><tr><th>Method</th><th>Complete / eligible</th><th>Complete / inventory</th><th>Status counts</th></tr></thead><tbody>${cov}</tbody></table></details>
+     <details><summary>Submission records (${Object.values(o.jobs).reduce((a,j)=>a+j.length,0)})</summary><table><thead><tr><th>Method</th><th>Batch</th><th>Job ID</th><th>Status</th><th>Submitted (UTC)</th><th>Seqs</th></tr></thead><tbody>${jobs}</tbody></table></details></div>`; }).join('');
+  $('tab-about').innerHTML=`<div class="card"><h2>Atlas overview</h2><p>${ORDER.length} organism${ORDER.length>1?'s':''} · ${P.length.toLocaleString()} annotated protein translations · built ${esc(DATA.built_utc)}. All calls are computational predictions, not experimental evidence.</p>
+   <table><thead><tr><th>Organism</th><th>Kind</th><th>RefSeq</th><th>Proteins</th>${MAIN.map(m=>`<th>${m} complete / eligible</th>`).join('')}<th>≥1 span</th><th>Signal peptide</th><th>β states</th></tr></thead><tbody>${ov}</tbody></table>
+   <p class="note">Eligibility follows each service's documented alphabet and length limits: Phobius accepts the 20 amino acids plus B/Z/X and removes other characters, so selenocysteine (U) proteins are not submitted; DeepTMHMM accepts the 20 standard amino acids; TOPCONS2 requires 10–10,000 aa. Sequences are never altered to make them eligible.</p></div>${per}
   <div class="card"><h3>Methods</h3><ul>
-   <li><b>Phobius</b> — HMM combining α-helical TM topology and signal-peptide prediction. Run on the Phobius server JSON API (phobius.sbc.su.se). Native labels n/h/c = signal-peptide regions, C = cleavage-boundary marker on the first mature residue (mapped to the following region, never counted as signal peptide), i/o/O = inside/outside, M = membrane. Käll, Krogh &amp; Sonnhammer (2004) <a href="https://doi.org/10.1016/j.jmb.2004.03.016">J Mol Biol 338:1027</a>.</li>
-   <li><b>DeepTMHMM</b> — deep-learning model for α-helical and β-barrel topology plus signal peptides; run as BioLib app DTU/DeepTMHMM. States I, O, M, S, B (β membrane), P (periplasm in β-barrel predictions). No model version is exposed in the output. Hallgren et al. (2022) <a href="https://doi.org/10.1101/2022.04.08.487609">bioRxiv 2022.04.08.487609</a>.</li>
-   <li><b>TOPCONS2</b> — consensus of OCTOPUS, Philius, PolyPhobius, SCAMPI and SPOCTOPUS with signal-peptide and homology handling (topcons.net WSDL API). Component outputs are retained as returned. The server may return cached results computed earlier for an identical sequence; each prediction's generation date and cache status are recorded. Tsirigos et al. (2015) <a href="https://doi.org/10.1093/nar/gkv485">Nucleic Acids Res 43:W401</a>.</li>
-   <li>Components: OCTOPUS (Viklund &amp; Elofsson 2008, <a href="https://doi.org/10.1093/bioinformatics/btn221">Bioinformatics 24:1662</a>), Philius (Reynolds et al. 2008, <a href="https://doi.org/10.1371/journal.pcbi.1000213">PLoS Comput Biol 4:e1000213</a>), PolyPhobius (Käll et al. 2005, <a href="https://doi.org/10.1093/bioinformatics/bti1014">Bioinformatics 21 Suppl 1:i251</a>), SCAMPI (Bernsel et al. 2008, <a href="https://doi.org/10.1110/ps.034470.108">Protein Sci 17:1269</a>), SPOCTOPUS (Viklund et al. 2008, <a href="https://doi.org/10.1093/bioinformatics/btn550">Bioinformatics 24:2928</a>).</li>
-  </ul>
-  <h3>Normalized states</h3><ul>${Object.entries(D.state_definitions).map(([k,v])=>`<li><span class="sw" style="background:${ST_COL[k]}"></span><b>${k}</b> — ${esc(v)}</li>`).join('')}</ul></div>
+   <li><b>Phobius</b> — HMM combining α-helical TM topology and signal-peptide prediction (phobius.sbc.su.se JSON API). Native labels n/h/c = signal-peptide regions; C = cleavage marker on the first mature residue, mapped to the following region and never counted as signal peptide; i/o/O = inside/outside; M = membrane. Käll, Krogh &amp; Sonnhammer (2004) <a href="https://doi.org/10.1016/j.jmb.2004.03.016">J Mol Biol 338:1027</a>.</li>
+   <li><b>DeepTMHMM</b> — deep-learning model for α-helical and β-barrel topology plus signal peptides (BioLib app DTU/DeepTMHMM; ${esc(DATA.deeptmhmm_versions||'')}). States I, O, M, S, B (β membrane), P (periplasm in β-barrel predictions). Hallgren et al. (2022) <a href="https://doi.org/10.1101/2022.04.08.487609">bioRxiv 2022.04.08.487609</a>.</li>
+   <li><b>TOPCONS2</b> — consensus of OCTOPUS, Philius, PolyPhobius, SCAMPI and SPOCTOPUS (topcons.net WSDL API). The server may return cached results for identical sequences; each protein's generation date and cache status are shown. Tsirigos et al. (2015) <a href="https://doi.org/10.1093/nar/gkv485">Nucleic Acids Res 43:W401</a>. Components: OCTOPUS (<a href="https://doi.org/10.1093/bioinformatics/btn221">Viklund &amp; Elofsson 2008</a>), Philius (<a href="https://doi.org/10.1371/journal.pcbi.1000213">Reynolds et al. 2008</a>), PolyPhobius (<a href="https://doi.org/10.1093/bioinformatics/bti1014">Käll et al. 2005</a>), SCAMPI (<a href="https://doi.org/10.1110/ps.034470.108">Bernsel et al. 2008</a>), SPOCTOPUS (<a href="https://doi.org/10.1093/bioinformatics/btn550">Viklund et al. 2008</a>).</li></ul>
+   <h3>Normalized states</h3><ul>${Object.entries(DATA.state_definitions).map(([k,v])=>`<li><span class="sw" style="background:${ST_COL[k]}"></span><b>${k}</b> — ${esc(v)}</li>`).join('')}</ul>
+   <p class="small">${esc(DATA.segment_encoding)}. Coordinates: ${esc(DATA.coordinate_convention)}.</p></div>
   <div class="card"><h3>Reading the figures — cautions</h3><ul>
-   <li>All topology calls are computational predictions. Where experimental topology is known it is not encoded here.</li>
    <li>Inside/outside labels on a protein with no predicted membrane span do not establish localization.</li>
-   <li>A predicted signal peptide is not demonstrated cleavage, lipidation or a permanent anchor. Precursor numbering is kept throughout.</li>
-   <li>For bacteriophage proteins, "inside/outside" refers to a generic membrane context (cytoplasmic vs non-cytoplasmic side); no specific host membrane is assigned and these are not viral-envelope predictions.</li>
-   <li><b>Positive-inside tendency.</b> In α-helical membrane proteins, Lys/Arg are statistically enriched in cytoplasmic loops, especially in bacteria (von Heijne 1986, <a href="https://doi.org/10.1002/j.1460-2075.1986.tb04655.x">EMBO J 5:3021</a>; von Heijne 1992, <a href="https://doi.org/10.1016/0022-2836(92)90934-C">J Mol Biol 225:487</a>). Stretches of ~15–25 hydrophobic residues are consistent with membrane-spanning helices (cf. Hessa et al. 2005, <a href="https://doi.org/10.1038/nature03216">Nature 433:377</a>). These are tendencies, not proofs or sufficient explanations for any one residue's placement, and they do not apply directly to β-barrels. Region tables report densities so regions of different lengths are not compared by raw counts.</li>
-   <li>Charge classes (K/R, D/E, H, hydrophobic/aromatic) are simplified side-chain categories, not measured charges, net charge, pI or electrostatic calculations.</li>
-  </ul></div>`;
-}
+   <li>A predicted signal peptide is not demonstrated cleavage, lipidation or a permanent anchor; precursor numbering is kept.</li>
+   <li>For phages, inside/outside refers to a generic membrane context; no host membrane is assigned and nothing here predicts a viral envelope. For Gram-negative hosts the models do not say which membrane a protein is in.</li>
+   <li><b>Positive-inside tendency.</b> In α-helical membrane proteins Lys/Arg are statistically enriched in cytoplasmic loops (von Heijne 1986, <a href="https://doi.org/10.1002/j.1460-2075.1986.tb04655.x">EMBO J 5:3021</a>; 1992, <a href="https://doi.org/10.1016/0022-2836(92)90934-C">J Mol Biol 225:487</a>), and stretches of ~15–25 hydrophobic residues are consistent with membrane-spanning helices (cf. Hessa et al. 2005, <a href="https://doi.org/10.1038/nature03216">Nature 433:377</a>). These are tendencies, not proofs, and do not apply directly to β-barrels; region tables report densities.</li>
+   <li>Charge classes are simplified side-chain categories, not measured charges, net charge, pI or electrostatics.</li></ul></div>`; }
 
-// ---------- init ----------
-renderAbout(); applyFilters();
-const h=decodeURIComponent(location.hash.slice(1)); const hi=P.findIndex(p=>p.protein_id===h);
+// ======================= init =======================
+$('ttl').textContent=DATA.title; $('subttl').textContent=`${ORDER.length>1?ORDER.length+' organisms · ':''}${P.length.toLocaleString()} annotated protein translations · predictions, not experimental evidence`;
+if(ORDER.length===1){ state.org=ORDER[0]; $('orgsel').style.display='none'; }
+applyFilters();
+const hh=decodeURIComponent(location.hash.slice(1)), hi=P.findIndex(p=>p.protein_id===hh);
 select(hi>=0?hi:(state.filtered[0]??0));
 </script>
 </body>

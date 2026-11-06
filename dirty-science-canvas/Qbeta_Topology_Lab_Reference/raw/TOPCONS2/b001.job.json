@@ -1,0 +1,44 @@
+{
+  "method": "TOPCONS2",
+  "wsdl": "https://topcons.net/pred/api_submitseq/?wsdl",
+  "batch": "b001",
+  "fasta": "raw/TOPCONS2/b001.fasta",
+  "fasta_sha256": "c0da9827c981ffad3857e63a8939eb44a9f846c190c7205a95f963acd9f79071",
+  "n_sequences": 4,
+  "n_residues": 1469,
+  "planned_utc": "2026-11-06T19:26:03+00:00",
+  "rerun": false,
+  "jobname": "dsc_Qbeta_b001",
+  "fixtop": "",
+  "email": "",
+  "submitted_utc": "2026-11-06T19:26:12+00:00",
+  "raw_return": [
+    "rst_e90lg7bt",
+    "https://topcons.net/pred/result/rst_e90lg7bt",
+    "4",
+    "None",
+    "\n"
+  ],
+  "jobid": "rst_e90lg7bt",
+  "result_url": "https://topcons.net/pred/result/rst_e90lg7bt",
+  "numseq_accepted": "4",
+  "error": "None",
+  "warning": "\n",
+  "status": "complete",
+  "checks": [
+    {
+      "utc": "2026-11-06T19:26:15+00:00",
+      "status": "Running"
+    },
+    {
+      "utc": "2026-11-06T19:27:16+00:00",
+      "status": "Finished"
+    }
+  ],
+  "server_status": "Finished",
+  "result_zip_url": "https://topcons.net/static/result/rst_e90lg7bt/rst_e90lg7bt.zip",
+  "result_zip_sha256": "af16c876572fded7be1323e4649880ee7b3f778988d46f6220ecde9512788d92",
+  "result_zip_bytes": 614014,
+  "completed_utc": "2026-11-06T19:27:18+00:00",
+  "result_zip": "raw/TOPCONS2/rst_e90lg7bt.zip"
+}

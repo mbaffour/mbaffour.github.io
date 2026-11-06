@@ -1,0 +1,51 @@
+{
+  "organism": "Enterobacteria phage Qbeta",
+  "accessions": [
+    "NC_001890.1"
+  ],
+  "files": [
+    {
+      "file": "inputs/NC_001890.1.gb",
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&id=NC_001890.1&rettype=gbwithparts&retmode=text",
+      "retrieved_utc": "2026-11-06T19:21:04+00:00",
+      "sha256": "be72fffd216dfa5de888de3112ba15a7c633d9f01cebb659d2e8462e5f4ce61f",
+      "bytes": 13167
+    },
+    {
+      "file": "inputs/NC_001890.1.cds_aa.fasta",
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&id=NC_001890.1&rettype=fasta_cds_aa&retmode=text",
+      "retrieved_utc": "2026-11-06T19:21:06+00:00",
+      "sha256": "fd7442eae64ea6af0a3ae19173642de07edd69bd9914ed6ccd94a34e877e0392",
+      "bytes": 2233
+    },
+    {
+      "file": "inputs/NC_001890.1.fna",
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&id=NC_001890.1&rettype=fasta&retmode=text",
+      "retrieved_utc": "2026-11-06T19:21:07+00:00",
+      "sha256": "a3a7980aee7d9595a71d25fcd1ded485c066797327dcd14f1f9ddcd9760db770",
+      "bytes": 4334
+    }
+  ],
+  "ncbi_summaries": [
+    {
+      "accessionversion": "NC_001890.1",
+      "title": "Enterobacteria phage Qbeta, complete genome",
+      "slen": 4215,
+      "createdate": "1998/04/25",
+      "updatedate": "2023/01/11",
+      "taxid": 2789016,
+      "biomol": "genomic",
+      "topology": "linear"
+    }
+  ],
+  "ncbi_summary": {
+    "accessionversion": "NC_001890.1",
+    "title": "Enterobacteria phage Qbeta, complete genome",
+    "slen": 4215,
+    "createdate": "1998/04/25",
+    "updatedate": "2023/01/11",
+    "taxid": 2789016,
+    "biomol": "genomic",
+    "topology": "linear"
+  }
+}

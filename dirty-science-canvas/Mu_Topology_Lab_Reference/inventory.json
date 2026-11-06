@@ -1,0 +1,2281 @@
+{
+  "organism": "Enterobacteria phage Mu",
+  "key": "Mu",
+  "kind": "phage",
+  "accessions": [
+    "NC_000929.1"
+  ],
+  "gb_files": [
+    "NC_000929.1.gb"
+  ],
+  "n_cds_features": 55,
+  "n_proteins": 55,
+  "n_pseudogenes": 0,
+  "cds_fasta_records": 55,
+  "cds_fasta_unmatched": [],
+  "proteins": [
+    {
+      "protein_id": "Mu|Mup01",
+      "gene": "",
+      "locus_tag": "Mup01",
+      "product": "transcriptional repressor",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_000929.1",
+      "start": 339,
+      "stop": 863,
+      "strand": "-",
+      "location": "[338:863](-)",
+      "protein_accession": "NP_050605.1",
+      "db_xref": [
+        "GeneID:2636266"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MAADGMPGSVAGVHYRANVQGWTKQKKEGVKGGKAVEYDVMSMPTKEREQVIAHLGLSTPDTGAQANEKQDSSELINKLTTTLINMIEELEPDEARKALKLLSKGGLLALMPLVFNEQKLYSFIGFSQQSIQTLMMLDALPEEKRKEILSKYGIHEQESVVVPSQEPQEVKKAV",
+      "length": 174,
+      "sequence_sha256": "b8820e93a65ce7fbd0417a15308e4fd8b0550fe77d7c60b52781a2726729cca3",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_000929.1.gb",
+      "cds_fasta_id": "lcl|NC_000929.1_prot_NP_050605.1_1",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "Mu|Mup02",
+      "gene": "",
+      "locus_tag": "Mup02",
+      "product": "transcriptional repressor",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "negative regulator of early transcription",
+      "replicon": "NC_000929.1",
+      "start": 1099,
+      "stop": 1326,
+      "strand": "+",
+      "location": "[1098:1326](+)",
+      "protein_accession": "NP_050606.1",
+      "db_xref": [
+        "GeneID:2636289"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MCSNEKARDWHRADVIAGLKKRKLSLSALSRQFGYAPTTLANALERHWPKGEQIIANALETKPEVIWPSRYQAGE",
+      "length": 75,
+      "sequence_sha256": "3f7b618f3b06e498fb4245998ae10137ecc627559e5012c4e3818650fbd9722e",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_000929.1.gb",
+      "cds_fasta_id": "lcl|NC_000929.1_prot_NP_050606.1_2",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "Mu|Mup03",
+      "gene": "",
+      "locus_tag": "Mup03",
+      "product": "Mu transposase C-terminal domain-containing protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_000929.1",
+      "start": 1328,
+      "stop": 3319,
+      "strand": "+",
+      "location": "[1327:3319](+)",
+      "protein_accession": "NP_050607.1",
+      "db_xref": [
+        "GeneID:2636292"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MELWVSPKECANLPGLPKTSAGVIYVAKKQGWQNRTRAGVKGGKAIEYNANSLPVEAKAALLLRQGEIETSLGYFEIARPTLEAHDYDREALWSKWDNASDSQRRLAEKWLPAVQAADEMLNQGISTKTAFATVAGHYQVSASTLRDKYYQVQKFAKPDWAAALVDGRGASRRNVHKSEFDEDAWQFLIADYLRPEKPAFRKCYERLELAAREHGWSIPSRATAFRRIQQLDEAMVVACREGEHALMHLIPAQQRTVEHLDAMQWINGDGYLHNVFVRWFNGDVIRPKTWFWQDVKTRKILGWRCDVSENIDSIRLSFMDVVTRYGIPEDFHITIDNTRGAANKWLTGGAPNRYRFKVKEDDPKGLFLLMGAKMHWTSVVAGKGWGQAKPVERAFGVGGLEEYVDKHPALAGAYTGPNPQAKPDNYGDRAVDAELFLKTLAEGVAMFNARTGRETEMCGGKLSFDDVFEREYARTIVRKPTEEQKRMLLLPAEAVNVSRKGEFTLKVGGSLKGAKNVYYNMALMNAGVKKVVVRFDPQQLHSTVYCYTLDGRFICEAECLAPVAFNDAAAGREYRRRQKQLKSATKAAIKAQKQMDALEVAELLPQIAEPAAPESRIVGIFRPSGNTERVKNQERDDEYETERDEYLNHSLDILEQNRRKKAI",
+      "length": 663,
+      "sequence_sha256": "9d67f26685afe77dda8e4e0caaed517d4844758d62a8f66ad29a7a31adb55988",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_000929.1.gb",
+      "cds_fasta_id": "lcl|NC_000929.1_prot_NP_050607.1_3",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "Mu|Mup04",
+      "gene": "",
+      "locus_tag": "Mup04",
+      "product": "DNA transposition protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "involved in transposition",
+      "replicon": "NC_000929.1",
+      "start": 3358,
+      "stop": 4296,
+      "strand": "+",
+      "location": "[3357:4296](+)",
+      "protein_accession": "NP_050608.1",
+      "db_xref": [
+        "GeneID:2636257"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MNISDIRAGLRTLVENEETTFKQIALESGLSTGTISSFINDKYNGDNERVSQMLQRWLEKYHAVAELPEPPRFVETQTVKQIWTSMRFASLTESIAVVCGNPGVGKTEAAREYRRTNNNVWMITITPSCASVLECLTELAFELGMNDAPRRKGPLSRALRRRLEGTQGLVIIDEADHLGAEVLEELRLLQESTRIGLVLMGNHRVYSNMTGGNRTVEFARLFSRIAKRTAINKTKKADVKAIADAWQINGEKELELLQQIAQKPGALRILNHSLRLAAMTAHGKGERVNEDYLRQAFRELDLDVDISTLLRN",
+      "length": 312,
+      "sequence_sha256": "ad5ff2d56914019816730dacabbe81b0960d6d82bc8d0994dbd6b8b5e1856d08",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_000929.1.gb",
+      "cds_fasta_id": "lcl|NC_000929.1_prot_NP_050608.1_4",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "Mu|Mup05",
+      "gene": "",
+      "locus_tag": "Mup05",
+      "product": "Kil protein for bacterial septation inhibition",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_000929.1",
+      "start": 4315,
+      "stop": 4539,
+      "strand": "+",
+      "location": "[4314:4539](+)",
+      "protein_accession": "NP_050609.1",
+      "db_xref": [
+        "GeneID:2636299"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MARNIKMATDAQNWLQARGSHVNESYLGVARPILEITYPPVELVKNAVRIMEHKSGVARSVWTARLNGCQIIWR",
+      "length": 74,
+      "sequence_sha256": "51ffb788abcdfa6fd3c2df75aa68754c764ea074cab81fc22917868dd272b528",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_000929.1.gb",
+      "cds_fasta_id": "lcl|NC_000929.1_prot_NP_050609.1_5",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "Mu|Mup06",
+      "gene": "",
+      "locus_tag": "Mup06",
+      "product": "hypothetical protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gp6; previously called E5",
+      "replicon": "NC_000929.1",
+      "start": 4542,
+      "stop": 4772,
+      "strand": "+",
+      "location": "[4541:4772](+)",
+      "protein_accession": "NP_050610.1",
+      "db_xref": [
+        "GeneID:2636264"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MCIKAEKYIEWVKHCQCHGVPLTTYKCPGCGEQIMTQCSPEKEIRDSLTCCPWCSAVFFKQVKGAKVKASAVIQNQ",
+      "length": 76,
+      "sequence_sha256": "7a7bcc5d2ede6384d74d94a08b2019636845c00803f6c1c54ee6d05c6537aa18",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_000929.1.gb",
+      "cds_fasta_id": "lcl|NC_000929.1_prot_NP_050610.1_6",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "Mu|Mup07",
+      "gene": "",
+      "locus_tag": "Mup07",
+      "product": "hypothetical protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gp7; previously called E6",
+      "replicon": "NC_000929.1",
+      "start": 4784,
+      "stop": 5047,
+      "strand": "+",
+      "location": "[4783:5047](+)",
+      "protein_accession": "NP_050611.1",
+      "db_xref": [
+        "GeneID:2636268"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MAKVIIEIKNTVSGIKGRNLRTSIAVDGSAELDGDEGTLAGMVALLVLNKSQKIINESAHEAIEILKNDGVITSGRVTEMAVEKTCH",
+      "length": 87,
+      "sequence_sha256": "70c3114aa1f96e078dcb88747f5702c91a99a17b75e87966eb36977a0796620c",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_000929.1.gb",
+      "cds_fasta_id": "lcl|NC_000929.1_prot_NP_050611.1_7",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "Mu|Mup08",
+      "gene": "",
+      "locus_tag": "Mup08",
+      "product": "hypothetical protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gp8; previously called E7",
+      "replicon": "NC_000929.1",
+      "start": 5062,
+      "stop": 5481,
+      "strand": "+",
+      "location": "[5061:5481](+)",
+      "protein_accession": "NP_050612.1",
+      "db_xref": [
+        "GeneID:2636279"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MNVKIRNEIQALIRIQERNNNGGELREFICAREVDGYGEKTYLITFDHYSICARYCGESISRAIASGDAFNVDLWEYVMDREYICASDPEAREMWQRIWRDYRLMAKGWARCCYSSLALKAVQLSLRHIPASLREPLLY",
+      "length": 139,
+      "sequence_sha256": "a4b251e24b7b7daf416953c4184a6e2a3f2a77fc3096c9e5a0e67ed4891c7350",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_000929.1.gb",
+      "cds_fasta_id": "lcl|NC_000929.1_prot_NP_050612.1_8",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "Mu|Mup09",
+      "gene": "",
+      "locus_tag": "Mup09",
+      "product": "transcriptional regulator, D5-like",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gp9; previously called E8",
+      "replicon": "NC_000929.1",
+      "start": 5482,
+      "stop": 5781,
+      "strand": "+",
+      "location": "[5481:5781](+)",
+      "protein_accession": "NP_050613.1",
+      "db_xref": [
+        "GeneID:2636278"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MVTDMKCNRKRWSREDREFIEANVGKMTVEEMAEKLKVATTALRAHARRHGISLCVYRISEHDKYLCRELYKEGLDIHVIARKMELSNRAVSSIVYSGY",
+      "length": 99,
+      "sequence_sha256": "fe26c3a8baf99a8dea39c2d6da0cd45f6e891054647e92a1eeadbbcc7bd22071",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_000929.1.gb",
+      "cds_fasta_id": "lcl|NC_000929.1_prot_NP_050613.1_9",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "Mu|Mup10",
+      "gene": "",
+      "locus_tag": "Mup10",
+      "product": "host nuclease inhibitor",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "inhibition of exonuclease digestion of Mu DNA",
+      "replicon": "NC_000929.1",
+      "start": 5801,
+      "stop": 6325,
+      "strand": "+",
+      "location": "[5800:6325](+)",
+      "protein_accession": "NP_050614.1",
+      "db_xref": [
+        "GeneID:2636288"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MAKPAKRIKSAAAAYVPQNRDAVITDIKRIGDLQREASRLETEMNDAIAEITEKFAARIAPIKTDIETLSKGVQGWCEANRDELTNGGKVKTANLVTGDVSWRVRPPSVSIRGMDAVMETLERLGLQRFIRTKQEINKEAILLEPKAVAGVAGITVKSGIEDFSIIPFEQEAGI",
+      "length": 174,
+      "sequence_sha256": "0afb7d906e6aba678f920f10dfd5d0d897cbc8bb405070209c70d8882101ab32",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_000929.1.gb",
+      "cds_fasta_id": "lcl|NC_000929.1_prot_NP_050614.1_10",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "Mu|Mup11",
+      "gene": "",
+      "locus_tag": "Mup11",
+      "product": "hypothetical protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gp11; combines what was previously E10, E11, and E12; those seqeuces either have frameshift sequencing errors or there is strain variation",
+      "replicon": "NC_000929.1",
+      "start": 6424,
+      "stop": 6954,
+      "strand": "+",
+      "location": "[6423:6954](+)",
+      "protein_accession": "NP_050615.1",
+      "db_xref": [
+        "GeneID:2636297"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MVDAKILNGVSTLLRAYGRLTCGVLAEKMNMLPSSMVYFLRDAVDAGVLTECNGFYDVPRPRPTPPVRRNATEQPAVDDAVWCNWRRSLPWVEGNTIPALAKEFATGVLTCESVHIVAEVDNRMCEQGMPRFVMAYIDIRLGRFICSSSVWNITDHVLRYLILDCSPAPAAVQEVA",
+      "length": 176,
+      "sequence_sha256": "d2d213aa481ae9cb7a89de06bfb06a648cbb8a45f93aea6b68fbabfa97c3a2c2",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_000929.1.gb",
+      "cds_fasta_id": "lcl|NC_000929.1_prot_NP_050615.1_11",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "Mu|Mup12",
+      "gene": "",
+      "locus_tag": "Mup12",
+      "product": "hypothetical protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gp12; previously called E13",
+      "replicon": "NC_000929.1",
+      "start": 6954,
+      "stop": 7484,
+      "strand": "+",
+      "location": "[6953:7484](+)",
+      "protein_accession": "NP_050616.1",
+      "db_xref": [
+        "GeneID:2636294"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MFFKTSNPAALLAWDQFMADCLKLREEARHLDKVLGCGCRSVFSTSIGGRYFHGVNFPGNERPFSRELWTVQRPASGNSCRPRTSRIPAHLREQARELAKIWQENIPVTYARTDALLPALGLDFSATIFGPLQWFRVGDVIYVMTGMTPAQGRMTEILSDEFIRAQKQAEVNNGKQ",
+      "length": 176,
+      "sequence_sha256": "d3fc005c2d5b623676b4fba7e30f00756a168c1d117017f3858f0bb6920a9564",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_000929.1.gb",
+      "cds_fasta_id": "lcl|NC_000929.1_prot_NP_050616.1_12",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "Mu|Mup13",
+      "gene": "",
+      "locus_tag": "Mup13",
+      "product": "hypothetical protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gp13; previously called E14",
+      "replicon": "NC_000929.1",
+      "start": 7471,
+      "stop": 7653,
+      "strand": "+",
+      "location": "[7470:7653](+)",
+      "protein_accession": "NP_050617.1",
+      "db_xref": [
+        "GeneID:2636290"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MENNKTSYSWLGKFTTVKQECPTCGNESPEYLKECPHCGGLKCNHCDMGDDTACMNCEGE",
+      "length": 60,
+      "sequence_sha256": "31bb6fdc13d687eecfdab594c1fc37185a15892bf26df232f44344da69699d2f",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_000929.1.gb",
+      "cds_fasta_id": "lcl|NC_000929.1_prot_NP_050617.1_13",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "Mu|Mup14",
+      "gene": "",
+      "locus_tag": "Mup14",
+      "product": "hypothetical protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gp14; previously called E15 which has an different earlier start site",
+      "replicon": "NC_000929.1",
+      "start": 7655,
+      "stop": 7957,
+      "strand": "+",
+      "location": "[7654:7957](+)",
+      "protein_accession": "NP_050618.1",
+      "db_xref": [
+        "GeneID:2636262"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MNNETKFTPLNIDNVMAEKGMLERVRAIVEYGIKHNLTAREVRDIINREMNRLETVVALQNETAREEYIRRRLGLSDQDIVTDAHVFEAFEIRQHLGLTN",
+      "length": 100,
+      "sequence_sha256": "1ebc5685bdff3a1e7def121fab35330618c665c27e84ad6403d39fb9aac61ff9",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_000929.1.gb",
+      "cds_fasta_id": "lcl|NC_000929.1_prot_NP_050618.1_14",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "Mu|Mup15",
+      "gene": "",
+      "locus_tag": "Mup15",
+      "product": "hypothetical protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gp15",
+      "replicon": "NC_000929.1",
+      "start": 7896,
+      "stop": 8162,
+      "strand": "-",
+      "location": "[7895:8162](-)",
+      "protein_accession": "NP_050619.1",
+      "db_xref": [
+        "GeneID:2636284"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MENNVQPYDVAGYAIASALVRLLVKKAIITAEEGKAIFSSSAEILKDAPAMRTSRREKLQLSKIMEDIISSLDPDADGSQKPQTHERQ",
+      "length": 88,
+      "sequence_sha256": "c447c2bb22e6f343ba10d08c4dbb3ce79352e21a5c89b9ec58a154d53570a6da",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_000929.1.gb",
+      "cds_fasta_id": "lcl|NC_000929.1_prot_NP_050619.1_15",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "Mu|Mup16",
+      "gene": "",
+      "locus_tag": "Mup16",
+      "product": "regulatory protein GemA",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gp16; also called E16 and GemA",
+      "replicon": "NC_000929.1",
+      "start": 8233,
+      "stop": 8784,
+      "strand": "+",
+      "location": "[8232:8784](+)",
+      "protein_accession": "NP_050620.1",
+      "db_xref": [
+        "GeneID:2636256"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MSRTSLIKLIHVARRELQLDDDTYRAFLMQKTGKISCRELTVTQLEQVLGAMKERGFKKQNKYPRRRFKGHVTPREKVYKIWQQMAEDGFITDGGDVALDKYVQRLTAKRNGGQGVSTLAWCHGDTLLTVLETLKQWHIRCIREAFSRHGLPLPVSPSGRELRGYDAMTAAYAHARKTRRMAQ",
+      "length": 183,
+      "sequence_sha256": "cf876baf266843af8b3c6a81f500a44155237fc98e9c606a6511c1df088bd042",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_000929.1.gb",
+      "cds_fasta_id": "lcl|NC_000929.1_prot_NP_050620.1_16",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "Mu|Mup17",
+      "gene": "",
+      "locus_tag": "Mup17",
+      "product": "late transcriptional activator",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "positive regulator of the middle operon; also called E17",
+      "replicon": "NC_000929.1",
+      "start": 8781,
+      "stop": 9170,
+      "strand": "+",
+      "location": "[8780:9170](+)",
+      "protein_accession": "NP_050621.1",
+      "db_xref": [
+        "GeneID:2636272"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MTEDLFGDLQDDTILAHLDNPAEDTSRFPALLAELNDLLRGELSRLGVDPAHSLEIVVAICKHLGGGQVYIPRGQALDSLIRDLRIWNDFNGRNVSELTTRYGVTFNTVYKAIRRMRRLKYRQYQPSLL",
+      "length": 129,
+      "sequence_sha256": "cdb777dc9d74ca8abb5e980bd99b3db4053577ab0ae7413610ec0872356f689b",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_000929.1.gb",
+      "cds_fasta_id": "lcl|NC_000929.1_prot_NP_050621.1_17",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "Mu|Mup18",
+      "gene": "",
+      "locus_tag": "Mup18",
+      "product": "hypothetical protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "E18",
+      "replicon": "NC_000929.1",
+      "start": 9248,
+      "stop": 9466,
+      "strand": "+",
+      "location": "[9247:9466](+)",
+      "protein_accession": "NP_050622.1",
+      "db_xref": [
+        "GeneID:2636281"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MGKGWNASFHLGRRERLRQEVLHRVAGGPRPAPRDYTGHDGTHGSYYMKGWQSVDMPEILHHCLLYREKHYV",
+      "length": 72,
+      "sequence_sha256": "aab1dd889d5cf624f95302568dcfc4dc4eca8247710b96c1f3fca693809c73c2",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_000929.1.gb",
+      "cds_fasta_id": "lcl|NC_000929.1_prot_NP_050622.1_18",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "Mu|Mup19",
+      "gene": "",
+      "locus_tag": "Mup19",
+      "product": "hypothetical protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "E19",
+      "replicon": "NC_000929.1",
+      "start": 9459,
+      "stop": 9821,
+      "strand": "+",
+      "location": "[9458:9821](+)",
+      "protein_accession": "NP_050623.1",
+      "db_xref": [
+        "GeneID:2636295"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MSERSARQWPDFLSVVLLALLLWISLFCGWRALMFCCASVFSVALCVAADCLDALIMSCRVPEHFARFVWPLTWLGSLSGLGLAVMATSQLKTGPEHVIWALAGLLTFWLSFRFRARLFG",
+      "length": 120,
+      "sequence_sha256": "9a25fae91d1c05edf053c6567873e28dc03f292283e91481af85d7f9606b0426",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_000929.1.gb",
+      "cds_fasta_id": "lcl|NC_000929.1_prot_NP_050623.1_19",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "Mu|Mup20",
+      "gene": "",
+      "locus_tag": "Mup20",
+      "product": "hypothetical protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gp20",
+      "replicon": "NC_000929.1",
+      "start": 9831,
+      "stop": 9950,
+      "strand": "+",
+      "location": "[9830:9950](+)",
+      "protein_accession": "NP_050624.1",
+      "db_xref": [
+        "GeneID:2636298"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MYRKFSDECFGPSTLINAIKVIALVVLITISAVVYLSVC",
+      "length": 39,
+      "sequence_sha256": "c3f8063eac46a7f01f816273ccc9327c5c990991fec697d5980dd0ad9a944845",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_000929.1.gb",
+      "cds_fasta_id": "lcl|NC_000929.1_prot_NP_050624.1_20",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "Mu|Mup21",
+      "gene": "",
+      "locus_tag": "Mup21",
+      "product": "late transcriptional activator",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "C",
+      "replicon": "NC_000929.1",
+      "start": 9963,
+      "stop": 10385,
+      "strand": "+",
+      "location": "[9962:10385](+)",
+      "protein_accession": "NP_050625.1",
+      "db_xref": [
+        "GeneID:2636301"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MQHDLFEHDPAIRQLIGHIDNIPAPELESRWPRSVVDLIDVLENELKRQNVSNPRELARKQAVALSCFLGGRQFYIPCGDTILTALRDDLLYCQFNGRNMEELRRQYRLSQPQIYQIIARQRKLHTRRHQPDLFSPETPK",
+      "length": 140,
+      "sequence_sha256": "317e5c1e1edb0d5f0cfd730c9b41235edbbe040d665ba221c07eb1514e27d416",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_000929.1.gb",
+      "cds_fasta_id": "lcl|NC_000929.1_prot_NP_050625.1_21",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "Mu|Mup22",
+      "gene": "",
+      "locus_tag": "Mup22",
+      "product": "endolysin",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "host cell lysis",
+      "replicon": "NC_000929.1",
+      "start": 10480,
+      "stop": 10995,
+      "strand": "+",
+      "location": "[10479:10995](+)",
+      "protein_accession": "NP_050626.1",
+      "db_xref": [
+        "GeneID:2636261"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MAGIPKKLKAALLAVTIAGGGVGGYQEMTRQSLIHLENIAYMPYRDIAGVLTVCVGHTGPDIEMRRYSHAECMALLDSDLKPVYAAIDRLVRVPLTPYQKTALATFIFNTGVTAFSKSTLLKKLNAGDYAGARDQMARWVFAAGHKWKGLMNRREVEMAIWNIRGADDLRQ",
+      "length": 171,
+      "sequence_sha256": "78e38dd7f1adf09ad5088ef8639cb189bd3f0379aa825edc9260916f9754b702",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_000929.1.gb",
+      "cds_fasta_id": "lcl|NC_000929.1_prot_NP_050626.1_22",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "Mu|Mup23",
+      "gene": "",
+      "locus_tag": "Mup23",
+      "product": "Rz-like spanin",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gp23",
+      "replicon": "NC_000929.1",
+      "start": 10979,
+      "stop": 11365,
+      "strand": "+",
+      "location": "[10978:11365](+)",
+      "protein_accession": "NP_050627.1",
+      "db_xref": [
+        "GeneID:2636265"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MTFASKSLLLAAVFTAVLSGGLWHRLDSTRHDNQTLRRELQTEQQARHTAEWLLHGQEQTMQVFSAIRAANRAARLADETEHHDAKEKITTAITGDNCSTRPVPAVAADRLRELEKRTRAIGGDPARN",
+      "length": 128,
+      "sequence_sha256": "274ee7cbfaed2706bfdfa15c521c97d21be76913bf06e469ab8f5312d4d84c01",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_000929.1.gb",
+      "cds_fasta_id": "lcl|NC_000929.1_prot_NP_050627.1_23",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "Mu|Mup24",
+      "gene": "",
+      "locus_tag": "Mup24",
+      "product": "hypothetical protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gp24",
+      "replicon": "NC_000929.1",
+      "start": 11524,
+      "stop": 11718,
+      "strand": "+",
+      "location": "[11523:11718](+)",
+      "protein_accession": "NP_050628.1",
+      "db_xref": [
+        "GeneID:2636252"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MNEDQNRAVALLLAELWQGDTRDIPRPAAYDPPVLCAGCGRELRPDVLRQQPMANYCHWCRGAE",
+      "length": 64,
+      "sequence_sha256": "49a9c2d0d2714d8d31c0d9071ee18e088135e70d8250debf2bd7481a13e6185e",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_000929.1.gb",
+      "cds_fasta_id": "lcl|NC_000929.1_prot_NP_050628.1_24",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "Mu|Mup25",
+      "gene": "",
+      "locus_tag": "Mup25",
+      "product": "DUF2730 family protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gp25",
+      "replicon": "NC_000929.1",
+      "start": 11718,
+      "stop": 12017,
+      "strand": "+",
+      "location": "[11717:12017](+)",
+      "protein_accession": "NP_050629.1",
+      "db_xref": [
+        "GeneID:2636263"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MDLISVLALWPYLLPVVAGGAVWAMRRSFASTERVERLENRMTEMETRYASIPGTEDVHEMRLRIAELSGDIRVLSQRVQSFSHQLELLLENAVNRSNS",
+      "length": 99,
+      "sequence_sha256": "d260906adfc11f1fc7c11c4373683aa8d4027bb9a9b2c90455d2386c6a4b9ced",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_000929.1.gb",
+      "cds_fasta_id": "lcl|NC_000929.1_prot_NP_050629.1_25",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "Mu|Mup26",
+      "gene": "",
+      "locus_tag": "Mup26",
+      "product": "hypothetical protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gp26",
+      "replicon": "NC_000929.1",
+      "start": 12014,
+      "stop": 12304,
+      "strand": "+",
+      "location": "[12013:12304](+)",
+      "protein_accession": "NP_050630.1",
+      "db_xref": [
+        "GeneID:2636255"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MINDILTEDRRLVILRSLMDCNNEANESILQDCLDAYGHNVSRDVVRGQIDWLAEQQLVTVENLRGFYVVTLTSRGQDVAEGRARVAGVKRPRPRA",
+      "length": 96,
+      "sequence_sha256": "06c59b9b40f661f515e8854125a4f56b2586e8aed22e1914617f78d699b516d1",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_000929.1.gb",
+      "cds_fasta_id": "lcl|NC_000929.1_prot_NP_050630.1_26",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "Mu|Mup27",
+      "gene": "",
+      "locus_tag": "Mup27",
+      "product": "terminase small subunit",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gp27; Haemophilus influenzae HI1499 homolog",
+      "replicon": "NC_000929.1",
+      "start": 12316,
+      "stop": 12891,
+      "strand": "+",
+      "location": "[12315:12891](+)",
+      "protein_accession": "NP_050631.1",
+      "db_xref": [
+        "GeneID:2636271"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MDRKTRGRASKVDLLPENVRKTLHEMLRDKAIPQARILEEINALIEDAGLPDEMKLSRSGLNRYATNVEQVGHNLRQMREMTSALTAELGDKPMGETTKLILEMARSQLFKAMMRQIENPESDVDIDLLKNAMLAAQRLESTAMSSHRREKEIRQAFAEEAANAVSEELRGQDGISEELEQRIRDVLLGKA",
+      "length": 191,
+      "sequence_sha256": "173630695b061368c39213f22f279cc3e7ff75355f4b6199b51d644e6b476957",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_000929.1.gb",
+      "cds_fasta_id": "lcl|NC_000929.1_prot_NP_050631.1_27",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "Mu|Mup28",
+      "gene": "",
+      "locus_tag": "Mup28",
+      "product": "putative portal protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gp28; Haemophilus influenzae HI1500 homolog",
+      "replicon": "NC_000929.1",
+      "start": 12899,
+      "stop": 14554,
+      "strand": "+",
+      "location": "[12898:14554](+)",
+      "protein_accession": "NP_050632.1",
+      "db_xref": [
+        "GeneID:2636303"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MNTRENNLKALHAPRKINLREEAGLLGVDIVTDIGEAQPRNEPVFLGYQRRWFEDESQICIAEKSRRTGLTWAEAGRNVMTAAKPKRRGGRNVFYVGSRQEMALEYIAACALFARAFNQLAKADVWEQTFWDSDKKEEILTYMIRFPNSGFKIQALSSRPSNLRGLQGDVVIDEAAFHEALDELLKAAFALNMWGASVRIISTHNGVDNLFNQYIQDAREGRKDYSVHRITLDDAIADGLYRRICYVTNQPWSPEAEKAWRDGLYRNAPNKESADEEYGCIPKKSGGAYLSRVLIEAAMTPARDIPVLRFEAPDDFESLTPQMRHGIVQDWCEQELLPLLDALSPLNKHVLGEDFARRGDLTVFVPLAITPDLRKRECFRVELRNVTYDQQRQILLFILSRLPRFTGAAFDATGNGGYLAEAARLIYGPEMIDCISLTPAWYQEWMPKLKGEFEAQNITIARHQTTLDDLLHIKVDKGIPQIDKGRTKDEGGKGRRHGDFAVALCMAVRASYMNGFVIDEDSIQALPPRHRGDDVDNDDFDDYHQFERGGW",
+      "length": 551,
+      "sequence_sha256": "48552f948b6c1bdcff36552eb530d512cabc3ec320aa402a7e661fe6303bde95",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_000929.1.gb",
+      "cds_fasta_id": "lcl|NC_000929.1_prot_NP_050632.1_28",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "Mu|Mup29",
+      "gene": "",
+      "locus_tag": "Mup29",
+      "product": "portal protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gp29; Haemophilus influenzae HI1501 homolog",
+      "replicon": "NC_000929.1",
+      "start": 14554,
+      "stop": 16092,
+      "strand": "+",
+      "location": "[14553:16092](+)",
+      "protein_accession": "NP_050633.1",
+      "db_xref": [
+        "GeneID:2636304"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MGRILDISGQPFDFDDEMQSRSDELAMVMKRTQEHPSSGVTPNRAAQMLRDAERGDLTAQADLAFDMEEKDTHLFSELSKRRLAIQALEWRIAPARDASAQEKKDADMLNEYLHDAAWFEDALFDAGDAILKGYSMQEIEWGWLGKMRVPVALHHRDPALFCANPDNLNELRLRDASYHGLELQPFGWFMHRAKSRTGYVGTNGLVRTLIWPFIFKNYSVRDFAEFLEIYGLPMRVGKYPTGSTNREKATLMQAVMDIGRRAGGIIPMGMTLDFQSAADGQSDPFMAMIGWAEKAISKAILGGTLTTEAGDKGARSLGEVHDEVRREIRNADVGQLARSINRDLIYPLLALNSDSTIDINRLPGIVFDTSEAGDITALSDAIPKLAAGMRIPVSWIQEKLHIPQPVGDEAVFTIQPVVPDNGSQKEAALSAEDIPQEDDIDRMGVSPEDWQRSVDPLLKPVIFSVLKDGPEAAMNKAASLYPQMDDAELIDMLTRAIFVADIWGRLDAAADH",
+      "length": 512,
+      "sequence_sha256": "63ba244a023d6c908f61d59df6e4e351bc77edfff26b9f4bd52d22f86ba9c24b",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_000929.1.gb",
+      "cds_fasta_id": "lcl|NC_000929.1_prot_NP_050633.1_29",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "Mu|Mup30",
+      "gene": "",
+      "locus_tag": "Mup30",
+      "product": "minor head protein and DNA pilot",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gp30; Haemophilus influenzae HI1502 homolog",
+      "replicon": "NC_000929.1",
+      "start": 16073,
+      "stop": 17392,
+      "strand": "+",
+      "location": "[16072:17392](+)",
+      "protein_accession": "NP_050634.1",
+      "db_xref": [
+        "GeneID:2636300"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MPQQTIDLAYAARLPPKEAVAYFRAKGYNITWNWYEQLADAHARAFTVAKATRMDVLTTIREEVERAVSEGITREEFTRTLAPRLQKLGWWGKQIIVDAEGNAKEIELGSPRRLATIYNVNTRTAYGAGRYAQMMNTADLYPYWQYVAVMDGRTRPEHARLHNMVFQYDDIFWQTHYPPNGWNCRCRVRALSAARMKELGLQVSYGASFMNTREVDAGTDESTGEIFRTSSTTFDNGRVKMTPDVGWSYNPGSAAFGTDQALIRKLVEVRDAQLREQVVQTLNNSRERQLAFSLWLKRLAGSRQTGHEIRALGFMTGSVAEAVYQRTGNMPARLLVMNGKSLATTADAALKPEDLQRLPSLMAKPQAVLWDRENHQLLYVVATRDGTARIVVRTSQTVGRQNDRADVLVSISRVSAQSLEAAIADGMIDVLEGHVEVNK",
+      "length": 439,
+      "sequence_sha256": "02ec6af63bbcf7caedaf75a734f91db96c2c550799ae61ed614e05be6bad860f",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_000929.1.gb",
+      "cds_fasta_id": "lcl|NC_000929.1_prot_NP_050634.1_30",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "Mu|Mup31",
+      "gene": "",
+      "locus_tag": "Mup31",
+      "product": "tail completion or Neck1 protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "G; Haemophilus influenzae HI1503 and HI1568 are homologs",
+      "replicon": "NC_000929.1",
+      "start": 17389,
+      "stop": 17859,
+      "strand": "+",
+      "location": "[17388:17859](+)",
+      "protein_accession": "NP_050635.1",
+      "db_xref": [
+        "GeneID:2636282"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MSLDMNVAVDVRRIQLALDELGTVTRDRAIPRVMAAALLSSTEQAFERQADPDTGKGWEAWSDSWLAWRQDHGFVPGSILTLHGDLARSITTDYGQDYALIGSPKIYAAIHQWGGTPDMAPRPAGVPARPYMGLDKTGEQEIFDAIRKRVSAALRQ",
+      "length": 156,
+      "sequence_sha256": "5c4ea03df4e009c8805e7ea846f1a85fe8575fb4758ec05cc8dcf4e77ac169c2",
+      "annotation_flags": [
+        "alternative_start_codon_read_as_Met"
+      ],
+      "source_record": "inputs/NC_000929.1.gb",
+      "cds_fasta_id": "lcl|NC_000929.1_prot_NP_050635.1_31",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "Mu|Mup32",
+      "gene": "",
+      "locus_tag": "Mup32",
+      "product": "head maturation protease",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "I; Haemophilus influenzae HI1504 homolog; potential protease protein; gene has potential internal start site for p20 (Z) the postulated scaffold protein -- a structural feature also found in bacteriophage lambda",
+      "replicon": "NC_000929.1",
+      "start": 18056,
+      "stop": 19141,
+      "strand": "+",
+      "location": "[18055:19141](+)",
+      "protein_accession": "NP_050636.1",
+      "db_xref": [
+        "GeneID:2636253"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MKKHAIGIAALNALSIDDDGWCQLLPAGHFSARDGRPFDVTGGQGWFIDGEIAGRLVEGVRALNQDVLIDYEHNQLRKDKGLPPEQLVAAGWFNADEMQWREGEGLFIHPRWTAAAQQRIDDGEFGYLSAVFPYDTATGAVLQIRLAALTNDPGATGMKKLTALAADLPDILQQENKPMNETLRKLLARLGVTVPENADITDEQATAALTALDTLEINAGKVAALSAELEKAQKAAVDLTKYVPVESYNALRDELAQATAQSATASLSAVLDKAEQEGRIFKSERTYLEQLGGQIGVAALSAQLEKKQPIAALSAMQTTTAKIPSQEKTAVAVLSADEQAAVKALGITEAEYLKMKQEQEK",
+      "length": 361,
+      "sequence_sha256": "c3966c8332de3b85806f6e99fcc6aee7826486a3bb985a63329d1b419f528bd2",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_000929.1.gb",
+      "cds_fasta_id": "lcl|NC_000929.1_prot_NP_050636.1_32",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "Mu|Mup33",
+      "gene": "",
+      "locus_tag": "Mup33",
+      "product": "head maturation protease",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "Z; start site internal to gene I; also called p20",
+      "replicon": "NC_000929.1",
+      "start": 18590,
+      "stop": 19141,
+      "strand": "+",
+      "location": "[18589:19141](+)",
+      "protein_accession": "NP_050637.1",
+      "db_xref": [
+        "GeneID:2636276"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MNETLRKLLARLGVTVPENADITDEQATAALTALDTLEINAGKVAALSAELEKAQKAAVDLTKYVPVESYNALRDELAQATAQSATASLSAVLDKAEQEGRIFKSERTYLEQLGGQIGVAALSAQLEKKQPIAALSAMQTTTAKIPSQEKTAVAVLSADEQAAVKALGITEAEYLKMKQEQEK",
+      "length": 183,
+      "sequence_sha256": "4497403151977b55812829761a072e179498c1dcfb4a3cd0d4e7c6fef98bd87e",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_000929.1.gb",
+      "cds_fasta_id": "lcl|NC_000929.1_prot_NP_050637.1_33",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "Mu|Mup34",
+      "gene": "",
+      "locus_tag": "Mup34",
+      "product": "major head protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "T; Haemophilus influenzae HI1505 homolog; start site confirmed by amino acid sequencing",
+      "replicon": "NC_000929.1",
+      "start": 19138,
+      "stop": 20055,
+      "strand": "+",
+      "location": "[19137:20055](+)",
+      "protein_accession": "NP_050638.1",
+      "db_xref": [
+        "GeneID:2636267"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MIVTPASIKALMTSWRKDFQGGLEDAPSQYNKIAMVVNSSTRSNTYGWLGKFPTLKEWVGKRTIQQMEAHGYSIANKTFEGTVGISRDDFEDDNLGIYAPIFQEMGRSAAVQPDELIFKLLKDGFTQPCYDGQNFFDKEHPVYPNVDGTGSAVNTSNIVEQDSFSGLPFYLLDCSRAVKPLIFQERRKPELVARTRIDDDHVFMDNEFLFGASTRRAAGYGFWQMAVAVKGDLTLDNLWKGWQLMRSFEGDGGKKLGLKPTHIVVPVGLEKAAEQLLNRELFADGNTTVSNEMKGKLQLVVADYL",
+      "length": 305,
+      "sequence_sha256": "69758e5e5d87794dd356d4e1a5b00a61db38c1c022a314bdfa2c29b8c0772c11",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_000929.1.gb",
+      "cds_fasta_id": "lcl|NC_000929.1_prot_NP_050638.1_34",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "Mu|Mup35",
+      "gene": "",
+      "locus_tag": "Mup35",
+      "product": "hypothetical protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gp35; Haemophilus influenzae HI1506 homolog",
+      "replicon": "NC_000929.1",
+      "start": 20122,
+      "stop": 20532,
+      "strand": "+",
+      "location": "[20121:20532](+)",
+      "protein_accession": "NP_050639.1",
+      "db_xref": [
+        "GeneID:2636251"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MSGTSLNSQRLDTSRITCTAIIKCLRPVYRRAGIAFTRGENTVEVTEEQLAIIRADSVLSVVSASSAETLAEAGGLDVLGVGDLNTRIRATVAGLDKANPEHFTAGGEPKVKAVSAALGEPVSSAQIKAALAEADA",
+      "length": 136,
+      "sequence_sha256": "62c55782e72818287911efff1c1d62f58b1db508cf17afaded11caa4a4daaeec",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_000929.1.gb",
+      "cds_fasta_id": "lcl|NC_000929.1_prot_NP_050639.1_35",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "Mu|Mup36",
+      "gene": "",
+      "locus_tag": "Mup36",
+      "product": "head-tail adaptor",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gp36; Haemophilus influenzae HI1508 homolog",
+      "replicon": "NC_000929.1",
+      "start": 20529,
+      "stop": 20954,
+      "strand": "+",
+      "location": "[20528:20954](+)",
+      "protein_accession": "NP_050640.1",
+      "db_xref": [
+        "GeneID:2636296"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MNYATVNDLCARYTRTRLDILTRPKTADGQPDDAVAEQALADASAFIDGYLAARFVLPLTVVPSLLKRQCCVVAWFYLNESQPTEQITATYRDTVRWLEQVRDGKTDPGVESRTAASPEGEDLVQVQSDPPVFSRKQKGFI",
+      "length": 141,
+      "sequence_sha256": "9de729501cb4e70e8aeeec4946c84357400b2716f0db9ac603148dcfb5e396ff",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_000929.1.gb",
+      "cds_fasta_id": "lcl|NC_000929.1_prot_NP_050640.1_36",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "Mu|Mup37",
+      "gene": "",
+      "locus_tag": "Mup37",
+      "product": "portal protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gp37; Haemophilus influenzae HI1509 homolog",
+      "replicon": "NC_000929.1",
+      "start": 20954,
+      "stop": 21502,
+      "strand": "+",
+      "location": "[20953:21502](+)",
+      "protein_accession": "NP_050641.1",
+      "db_xref": [
+        "GeneID:2636286"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MLEETEAALLARVRELFGATLRQVEPLTGTWTNEDVHRLFLAPPSVFLAWMGCGEGRTRREVESRWAFFVVAELLNGEPVNRPGIYQIVERLIAGVNGQTFGPTTGMRLTQVRNLCDDNRINAGVVLYGVLFSGTTPLPSVVDLDSLDDYERHWQTWKFPDETPEFAAHINVNQEKDHDAEN",
+      "length": 182,
+      "sequence_sha256": "eba1c7d5ee8c5bb208a7a0728767a813574fdbd1811bc38ecd8002d9c2781290",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_000929.1.gb",
+      "cds_fasta_id": "lcl|NC_000929.1_prot_NP_050641.1_37",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "Mu|Mup38",
+      "gene": "",
+      "locus_tag": "Mup38",
+      "product": "DUF2635 domain-containing protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gp38; Haemophilus influenzae HI1510 homolog",
+      "replicon": "NC_000929.1",
+      "start": 21489,
+      "stop": 21692,
+      "strand": "+",
+      "location": "[21488:21692](+)",
+      "protein_accession": "NP_050642.1",
+      "db_xref": [
+        "GeneID:2636273"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MLKIKPAAGKAIRDPLTMKLLASEGEEKPRNSFWIRRLAAGDVVEVGSTENTADDTDAAPKKRSKSK",
+      "length": 67,
+      "sequence_sha256": "f8a632206fc16e3ad30de861cdcbff3ea11b12363e7a3b1df8854313f6ae4b26",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_000929.1.gb",
+      "cds_fasta_id": "lcl|NC_000929.1_prot_NP_050642.1_38",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "Mu|Mup39",
+      "gene": "",
+      "locus_tag": "Mup39",
+      "product": "tail sheath",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "L; Haemophilus influenzae HI1511 homolog; start site confirmed by amino acid sequencing",
+      "replicon": "NC_000929.1",
+      "start": 21689,
+      "stop": 23176,
+      "strand": "+",
+      "location": "[21688:23176](+)",
+      "protein_accession": "NP_050643.1",
+      "db_xref": [
+        "GeneID:2636269"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MSDISFNAIPSDVRVPLTYIEFDNSNAVSGTPAPRQRVLMFGQSGSKASAAPNVPVRIRSGSQASAAFGQGSMLALMADAFLNANRVAELWCIPQGNGTGNAAVGEISLSGTAGENGSLVTYIAGQRLAVSVAAGATGAALADLLVARIKGQPDLPVTAEVRADSGDDDTHADVVLSAKFTGALSAVDVRWNYYAGETTPYGIITAFKAASGKNGNPDISASIAGMGDLQYKYIVMPYTDEPNLNLLRTELQERWGPVNQADGFAVTVLSGTYGDISTFGVSRNDHLISCMGIAGAPEPSYLYAATLCAVASQALSIDPARPLQTLTLPGRMPPAVGDRFTWSERNALLFDGISTFNVNDGGEMQIERMITMYRTNKYGDSDPSYLNVNTIATLSYLRYSLRTRITQKFPNYKLASDGTRFATGQAVVTPSVIKTELLALFEEWENAGLVEDFDTFKEELYVARNKDDKDRLDVLCGPNLINQFRIFAAQVQFIL",
+      "length": 495,
+      "sequence_sha256": "8933b6517764282eb744e0cc4b6f61980de3749fab27e2562de64ab856eedb19",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_000929.1.gb",
+      "cds_fasta_id": "lcl|NC_000929.1_prot_NP_050643.1_39",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "Mu|Mup40",
+      "gene": "",
+      "locus_tag": "Mup40",
+      "product": "tail tube protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "M; Haemophilus influenzae HI1512 homolog",
+      "replicon": "NC_000929.1",
+      "start": 23186,
+      "stop": 23542,
+      "strand": "+",
+      "location": "[23185:23542](+)",
+      "protein_accession": "NP_050644.1",
+      "db_xref": [
+        "GeneID:2636260"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MAGNQRQGVAFIRVNGMELESMEGASFTPSGITREEVTGSRVYGWKGKPRAAKVECKIPGGGPIGLDEIIDWENITVEFQADTGETWMLANAWQADEPKNDGGEISLVLMAKQSKRIA",
+      "length": 118,
+      "sequence_sha256": "8857c988a581743e1b8a2047c6ac6823339d4f255d5c54940db1c32076f20f4f",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_000929.1.gb",
+      "cds_fasta_id": "lcl|NC_000929.1_prot_NP_050644.1_40",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "Mu|Mup41",
+      "gene": "",
+      "locus_tag": "Mup41",
+      "product": "tail assembly chaperone",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "Haemophilus influenzae HI1513 homolog; in the structurally homologous position, the protein in bacteriophage P2 (and lambda) contains a programmed translational frameshift",
+      "replicon": "NC_000929.1",
+      "start": 23552,
+      "stop": 23986,
+      "strand": "+",
+      "location": "[23551:23986](+)",
+      "protein_accession": "NP_050645.1",
+      "db_xref": [
+        "GeneID:2636287"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MDEMNLGPEAQELHDSIVAEIQSGVLKLKDGLPFGTGDETEMQYDVTLRELTAGDMIDAQAAAEKLVMSKEGPVLVSSPSRMGLEMLRRQIASVGCIKGPLSMALIRKLSVDDFQRLSLATEMYDMAVAASLTQERGRVAAVPE",
+      "length": 144,
+      "sequence_sha256": "d78f65d7608de384584783dba32d30fcbb4022ef2e182c4c1dc5045f94274e4f",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_000929.1.gb",
+      "cds_fasta_id": "lcl|NC_000929.1_prot_NP_050645.1_41",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "Mu|Mup42",
+      "gene": "",
+      "locus_tag": "Mup42",
+      "product": "tail length tape measure protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gp42; based on position and weak similarity with other tape measure proteins. Haemophilus influenzae HI1514 homolog",
+      "replicon": "NC_000929.1",
+      "start": 24131,
+      "stop": 26203,
+      "strand": "+",
+      "location": "[24130:26203](+)",
+      "protein_accession": "NP_050646.1",
+      "db_xref": [
+        "GeneID:2636275"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MTGKRLKASVIIDLNGNLSRRSRQYSNQINALSRSGQSSLRALRMEVVRVSGAIDRMGSLSTRTFRMLSAGALGIAGVGYTANKLFIGAAAQREQQIIAMNSLYHGDKVRAQAMMAWAKQNAKDTTWGLSGVLDEIRSSKGFGMTDEQTKQFITMLQDQGAMHGWDLPTAQGASLQLKQMFARQQITAADANLLTGYGINVYQALADATGTDVKKIRDLGTKGKLGMKSILTVFRTLSEQSKGAQASAMNSWDGMFAQMEANLLEFRIKVANSGPFEEIKNEMRRVLNWHDMADKSGELDALAENIGQKFLTTFRTVKISAQELWRWLKPGKDALAWVDQNIVSLKKLAAVLVSVWLANKALRAGWAVAKPSWQVASYPFKTGRRMWRWMRNRKRGQAGLPVPDAMTSETLLQGIGIQRVFVINWPRGFGDYGSGGGRRVRSGGRMAPLLPRQPLLLSGPQPLALPAPRPVLALPPPGVPVTARPAPLPLPGKSGLLSRLAGSAAGQLVTGTVGKLADAGRAVGGWFSGIGNKLAGSAIGRVVTKGAGALGWMGKGAGRALSRLGGPVMGALQLAPVLMDEQASTHEKAGAIGSTAGAWLGGAVGSLAGPLGTVAGATLGSVAGEYLGGFVTDLYQKWTATDKEPQEQKVNAEASLRVELGEGLRLTSSRVTEDGMGLNIYAGDNYITGW",
+      "length": 690,
+      "sequence_sha256": "ad611bc76e276f4627e44896ec53ed250cbe9a36d316c27a31740c3d08ed347a",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_000929.1.gb",
+      "cds_fasta_id": "lcl|NC_000929.1_prot_NP_050646.1_42",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "Mu|Mup43",
+      "gene": "",
+      "locus_tag": "Mup43",
+      "product": "DNA circularization N-terminal domain-containing protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "N?; previously published sequence has a frameshift near the N-terminus; Haemophilus influenzae HI1515 homolog",
+      "replicon": "NC_000929.1",
+      "start": 26208,
+      "stop": 27695,
+      "strand": "+",
+      "location": "[26207:27695](+)",
+      "protein_accession": "NP_050647.1",
+      "db_xref": [
+        "GeneID:2636283"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MFEDALNAVNAVRDKTGGGRKTTGKGTFRNVPFLVIEEQKQAGGRRLVKREYPLRDTGGVNDLGKKLRSRTFSACILNSNAETARDEAGALMDALDAPGSGELVHPDFGTVDVMVDSWECRTKADELNYYAFTVTVYPSLQDTAPDAETDTSAAVPAQAVAVTGSLGDTLSSVWQTVKDGTAAATAVMEAVTGVIDDISDAVDNLGVTQTVSGLMGSLSAMKGSVTSLINQPAMLASSLMGALSGVSSLCDTRTAFSTWNRLAQRFERRHAATAGRQGTITTSYNSPVAEKNIATLNYVMLAAAQTYRAEAASQALTAALDFSRRMDNAARAPVLDAPSTTTGTASGASSTSATVTQGQLQLTAITPDGGFSQVSFSDSGTATPPVFESVSDIEKTTAMLGAALDSVILTASEQGFSTDSVQLTQLRLLVVADLEKRGLQLAGSESHHLPETLPAMVALYRFTGNSRNWQRLARRNGISNPLFVPGGVSIEVINE",
+      "length": 495,
+      "sequence_sha256": "65df56ba04a1ea4c58522023462416547fa935794456d1b10daa3d63fb9d1f73",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_000929.1.gb",
+      "cds_fasta_id": "lcl|NC_000929.1_prot_NP_050647.1_43",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "Mu|Mup44",
+      "gene": "",
+      "locus_tag": "Mup44",
+      "product": "baseplate hub",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "P; Haemophilus influenzae HI1516 homolog",
+      "replicon": "NC_000929.1",
+      "start": 27688,
+      "stop": 28827,
+      "strand": "+",
+      "location": "[27687:28827](+)",
+      "protein_accession": "NP_050648.1",
+      "db_xref": [
+        "GeneID:2636285"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MSNTVTLRADGRLFTGWTSVSVTRSIESVAGYFELGVNVPPGTDLSGLAPGKKFTLEIGGQIVCTGYIDSRRRQMTADSMKITVAGRDKTADLIDCAAVYSGGQWKNRTLEQIARDLCAPYGVTVRWELSDKESSAAFPGFTLDHSETVYEALVRASRARGVLMTSNAAGELVFSRAASTATDELVLGENLLTLDFEEDFRDRFSEYTVKGYARANGAEGDDIDAKSIVSRKGTATDSDVTRYRPMIIIADSKITAKDAQARALREQRRRLAKSITFEAEIDGWTRKDGQLWMPNLLVTIDASKYAIKTTELLVSKVTLILNDQDGLKTRVSLAPREGFLVPVESDRKNRKGGDSNGGIDALVEDYYRRHPEKTPPWKE",
+      "length": 379,
+      "sequence_sha256": "9e33a9f57221f21b03461ffe97ffddf0ce9e143515861f1737f1cf532c1c816d",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_000929.1.gb",
+      "cds_fasta_id": "lcl|NC_000929.1_prot_NP_050648.1_44",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "Mu|Mup45",
+      "gene": "",
+      "locus_tag": "Mup45",
+      "product": "baseplate assembly protein V",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gp45; Haemophilus influenzae HI1518 homolog; may be P2 gene V homolog",
+      "replicon": "NC_000929.1",
+      "start": 28815,
+      "stop": 29408,
+      "strand": "+",
+      "location": "[28814:29408](+)",
+      "protein_accession": "NP_050649.1",
+      "db_xref": [
+        "GeneID:2636280"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MERVNDSALNRLLTPLMRRVRLMLARAVVNVINDGRKVQNLQVGLLDDEESDEVERLQNYGHFSVPLPGAEALIACVGAQRDQGIAVVVEDRRYRPTNLEPGDAGIYHHEGHRIRLTKDGRCIITCKTVEVYADESMTVDTPRTTFTGDVEIQKGLGVKGKSQFDSNITAPDAIINGKSTDKHIHRGDSGGTTGPMQ",
+      "length": 197,
+      "sequence_sha256": "70a6b29875b934db6ebe84373b2b2aaaa7676f7c1f6fd84c95d3ca8f7d42eb58",
+      "annotation_flags": [
+        "alternative_start_codon_read_as_Met"
+      ],
+      "source_record": "inputs/NC_000929.1.gb",
+      "cds_fasta_id": "lcl|NC_000929.1_prot_NP_050649.1_45",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "Mu|Mup46",
+      "gene": "",
+      "locus_tag": "Mup46",
+      "product": "baseplate wedge subunit",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gp46; Haemophilus influenzae HI1519 homolog",
+      "replicon": "NC_000929.1",
+      "start": 29405,
+      "stop": 29842,
+      "strand": "+",
+      "location": "[29404:29842](+)",
+      "protein_accession": "NP_050650.1",
+      "db_xref": [
+        "GeneID:2636291"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MTDLAIIWTNGRGDIAQDGIDMLTDDSLTTDVTISLFTDRRALDSDTLPDGSDDRRGWWGDSYRDRPIGSRLWLLSREKATPDTLERARGYAEEALEWLKTAGRVSAINVRAEQLHQGWLYLYIALTLPDGSVIPYEFKAAFNGV",
+      "length": 145,
+      "sequence_sha256": "f50189561bbc4b4abce4b4514286b5d88ef7905e8f5e3fe508ff09147d6cb091",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_000929.1.gb",
+      "cds_fasta_id": "lcl|NC_000929.1_prot_NP_050650.1_46",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "Mu|Mup47",
+      "gene": "",
+      "locus_tag": "Mup47",
+      "product": "baseplate protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gp47; Haemophilus influenzae HI1520 homolog",
+      "replicon": "NC_000929.1",
+      "start": 29843,
+      "stop": 30925,
+      "strand": "+",
+      "location": "[29842:30925](+)",
+      "protein_accession": "NP_050651.1",
+      "db_xref": [
+        "GeneID:2636250"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MAYSPPTLSSLIARTEQNIEQRLPGSWPQAREKTLSAIAYAQAGLAAGCHEHISWVGRQIIPSTADEDELLEHCRFWGVRRKQATAASGPLTVTTSAATTIPAGTRWQRADGVVYSLADTIVIDRAGTTEITVTALAAGEAGNTGENTLLTLITPVACVVSDAITVKGFSGGADIESAAELLSRLEYRVQYPPFGGNQFDYVRWAREVSGVTRAWCFPTWKGGGTVGVTFVMDNRSNIFPQPADVERVADYIAGHTDPITGLIVGQPDGVNVTVFAPKAKPVNPRIYISPKTAELKQAITNAINTMFFNEVMPGGALAPSRIIRAVAGVTGLDDFEVRFPTEIQRSENTELLTAGTIEWL",
+      "length": 360,
+      "sequence_sha256": "52f5169ced37fd0d3be8c1304f6b64da48d2d98394497af3789341e92c4748a5",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_000929.1.gb",
+      "cds_fasta_id": "lcl|NC_000929.1_prot_NP_050651.1_47",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "Mu|Mup48",
+      "gene": "",
+      "locus_tag": "Mup48",
+      "product": "baseplate wedge subunit",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gp48; Haemophilus influenzae HI1521 homolog",
+      "replicon": "NC_000929.1",
+      "start": 30916,
+      "stop": 31458,
+      "strand": "+",
+      "location": "[30915:31458](+)",
+      "protein_accession": "NP_050652.1",
+      "db_xref": [
+        "GeneID:2636277"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MAVTPWQTAFLQLLPSGLAWNKSPDSKLSALAQAISDVIATAADDARQMLRERFPSTSRWYLGEWESFLGLPDCTSENGTLSERQRAAANKMRMTGNLSRRFYEWLAAQYGFTVRLTDSTEGQWVTQVNIYGIKNYRNATVLDNVLTPLRVYESGALECLLEKYKPAHQIYKFVYHDGDN",
+      "length": 180,
+      "sequence_sha256": "80eba6dff6d7f62e2713cd06022885cb9ba50e90d9c4612db7df0c2227b57407",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_000929.1.gb",
+      "cds_fasta_id": "lcl|NC_000929.1_prot_NP_050652.1_48",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "Mu|Mup49",
+      "gene": "",
+      "locus_tag": "Mup49",
+      "product": "tail fiber protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "S; Haemophilus influenzae HI1522 homolog",
+      "replicon": "NC_000929.1",
+      "start": 31458,
+      "stop": 32972,
+      "strand": "+",
+      "location": "[31457:32972](+)",
+      "protein_accession": "NP_050653.1",
+      "db_xref": [
+        "GeneID:2636293"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MFYIDNDSGVTVMPPVSAQRSAIVRWFSEGDGNNVITWPGMDWFNIVQAELLNTLEEAGIQPDKTKLNQLALSIKAIMSNNALLIKNNLSEIKTAGASAQRTARENLDIYDASLNKKGLVQLTSATDSPSETLAATAKAVKIAMDNANARLAKDRNGADIPNKPLFIQNLGLQETVNRARNAVQKNGDTLSGGLTFENDSILAWIRNTDWAKIGFKNDADSDTDSYMWFETGDNGNEYFKWRSKQSTTTKDLMNLKWDALSVLVNAIVNGEVISKSANGLRIAYGNYGFFIRNDGSNTYFMLTNSGDNMGTYNGLRPLWINNATGAVSMGRGLNVSGDTLSDRFAINSSNGMWIQMRDNNAIFGKNIVNTDSAQALLRQNHADRKFMIGGLGNKQFGIYMINNSRTANGTDGQAYMDNNGNWLCGAQVIPGNYANFDSRYVRDVRLGTQSLTGGLSRDYKAPSGHVITGFHTNGDWEMQGGDDKVYIRPVQKNINGTWYNVASA",
+      "length": 504,
+      "sequence_sha256": "2c7604ce43428470eb1cd282f14404d7144e6daea418e1d41e5a3222f6dcc70b",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_000929.1.gb",
+      "cds_fasta_id": "lcl|NC_000929.1_prot_NP_050653.1_49",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "Mu|Mup50",
+      "gene": "",
+      "locus_tag": "Mup50",
+      "product": "tail fiber assembly protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "U",
+      "replicon": "NC_000929.1",
+      "start": 32975,
+      "stop": 33502,
+      "strand": "+",
+      "location": "[32974:33502](+)",
+      "protein_accession": "NP_050654.1",
+      "db_xref": [
+        "GeneID:2636270"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MMHLKNIKSENPKTKEQYQLTKNFDVIWLWSEDGKNWYEEVNNFQDDTIKIVYDENNIIVAITKDASTLNPEGFSVVEIPDITANRRADDSGKWMFKDGAVVKRIYTADEQQQQAESQKAALLSEAESVIQPLERAVRLNMATDEERARLESWERYSVLVSRVDTANPEWPQKPE",
+      "length": 175,
+      "sequence_sha256": "34c51fc18603e2959518fd494da1f7743dba05c52bc1a46235ccd3695830f263",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_000929.1.gb",
+      "cds_fasta_id": "lcl|NC_000929.1_prot_NP_050654.1_50",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "Mu|Mup51",
+      "gene": "",
+      "locus_tag": "Mup51",
+      "product": "tail fiber assembly protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "Predicted by GeneMark",
+      "replicon": "NC_000929.1",
+      "start": 33531,
+      "stop": 34064,
+      "strand": "-",
+      "location": "[33530:34064](-)",
+      "protein_accession": "NP_602302.1",
+      "db_xref": [
+        "GeneID:2636259"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MMHLKNITAGNPKTKEQYQLTKQFNIKWLYTEDGKNWYEEQKNFQPDTLKMVYDHNGVIICIEKDVSAINPEGANVVEVPDITANRRADISGKWMFKDGVVIKRTYTEEEQRQQAENEKQSLLQLVRDKTQLWDSQLRLGIISDENKQKLTEWMLYAQKVESTDTSSLPVTFPEQPE",
+      "length": 177,
+      "sequence_sha256": "5bbc9550a43f28ba6e9a7e573d2c2f3b3dac8fec27d6b3a90b7c96e6a532afe4",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_000929.1.gb",
+      "cds_fasta_id": "lcl|NC_000929.1_prot_NP_602302.1_51",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "Mu|Mup52",
+      "gene": "",
+      "locus_tag": "Mup52",
+      "product": "tail fiber protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "Predicted by GeneMark",
+      "replicon": "NC_000929.1",
+      "start": 34067,
+      "stop": 35053,
+      "strand": "-",
+      "location": "[34066:35053](-)",
+      "protein_accession": "NP_602303.1",
+      "db_xref": [
+        "GeneID:2636274"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MPKSTIIQNLGLQETVNQASGALQQNQNGADIPGKDTFTKNIGACRAYSAWLNIGGDSQVWTTAQFISWLESQGAFNHPYWMCKGSWAYANNKVITDTGCGNICLAGAVVEVIGTRGAMTIRVTTPSTSSGGGITNAQFTYINHGDAYAPGWRRDYNTKNQQPAFALGQTGSTVGNDKAVGWNWNSGVYNANIGGASTLILHFNMNTGSCPAVQFRVNYRNGGIFYRSARDGYGFEADWSEIYTTTRKPSAGDVGAYTQAECNSRFITGIRLGGLSSVQTWNGPGWSDRSGYVVTGSVNGNRDELIDTTQARPIQYCINGTWYNAGSI",
+      "length": 328,
+      "sequence_sha256": "f770edf8e5fc66eeada5dfa761c0c7d46f053c9f37079d13ba62ccc25aebf6bd",
+      "annotation_flags": [
+        "alternative_start_codon_read_as_Met"
+      ],
+      "source_record": "inputs/NC_000929.1.gb",
+      "cds_fasta_id": "lcl|NC_000929.1_prot_NP_602303.1_52",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "Mu|Mup53",
+      "gene": "",
+      "locus_tag": "Mup53",
+      "product": "DNA invertase",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "G-segment invertase",
+      "replicon": "NC_000929.1",
+      "start": 35092,
+      "stop": 35673,
+      "strand": "+",
+      "location": "[35091:35673](+)",
+      "protein_accession": "NP_050655.1",
+      "db_xref": [
+        "GeneID:2636258"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MLIGYVRVSTNDQNTDLQRNALVCAGCEQIFEDKLSGTRTDRPGLKRALKRLQKGDTLVVWKLDRLGRSMKHLISLVGELRERGINFRSLTDSIDTSSPMGRFFFHVMGALAEMERELIIERTMAGLAAARNKGRIGGRPPKLTKAEWEQAGRLLAQGIPRKQVALIYDVALSTLYKKHPAKRAHIENDDRIN",
+      "length": 193,
+      "sequence_sha256": "db628c62efbe1d11ee3cfa9ec3e4942c5444b6dbd4ed59b0e54d4ead441e97c1",
+      "annotation_flags": [
+        "alternative_start_codon_read_as_Met"
+      ],
+      "source_record": "inputs/NC_000929.1.gb",
+      "cds_fasta_id": "lcl|NC_000929.1_prot_NP_050655.1_53",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "Mu|Mup54",
+      "gene": "",
+      "locus_tag": "Mup54",
+      "product": "gpCom control of modification",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "translational regulator of Mom",
+      "replicon": "NC_000929.1",
+      "start": 35768,
+      "stop": 35956,
+      "strand": "+",
+      "location": "[35767:35956](+)",
+      "protein_accession": "NP_050656.1",
+      "db_xref": [
+        "GeneID:2636254"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MKSIRCKNCNKLLFKADSFDHIEIRCPRCKRHIIMLNACEHPTEKHCGKREKITHSDETVRY",
+      "length": 62,
+      "sequence_sha256": "46e2692fb74cdc02f839cbfcae91538abce8bfde974d86c6d8edaaa345991c00",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_000929.1.gb",
+      "cds_fasta_id": "lcl|NC_000929.1_prot_NP_050656.1_54",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "Mu|Mup55",
+      "gene": "",
+      "locus_tag": "Mup55",
+      "product": "Mom-like DNA modification protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "DNA modification",
+      "replicon": "NC_000929.1",
+      "start": 35877,
+      "stop": 36602,
+      "strand": "+",
+      "location": "[35876:36602](+)",
+      "protein_accession": "NP_050657.1",
+      "db_xref": [
+        "GeneID:2636302"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MPASIPRRNIVGKEKKSRILTKPCVIEYEGQIVGYGSKELRVETISCWLARTIIQTKHYSRRFVNNSYLHLGVFSGRDLVGVLQWGYALNPNSGRRVVLETDNRGYMELNRMWLHDDMPRNSESRAISYALKVIRLLYPSVEWVQSFADERCGRAGVVYQASNFDFIGSHESTFYELDGEWYHEITMNAIKRGGQRGVYLRANKERAVVHKFNQYRYIRFLNKRARKRLNTKLFKVQPYPK",
+      "length": 241,
+      "sequence_sha256": "450ac5a4fd4722a57ec847578c5e8a30a98ca64fdc38bd684e29b4312542fa3e",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_000929.1.gb",
+      "cds_fasta_id": "lcl|NC_000929.1_prot_NP_050657.1_55",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    }
+  ]
+}

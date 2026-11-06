@@ -1,131 +1,87 @@
-"""Generate per-organism README.md (all counts/dates pulled from data.json and job records) and the top-level README."""
+"""Generate per-organism README.md (all counts/dates/jobs pulled from data.json, job records and verification.json) and the top-level README."""
 import json, sys
 from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent))
-from config import PHAGES, project_dir, ROOT
-def fmt_spans(pr):
+from config import ORGANISMS, project_dir, ROOT, REPO_SLUG, RERUN_WORKFLOW
+def spans(pr):
     if not pr: return "—"
-    t = []
-    if pr["sp_range"]: t.append(f"SP {pr['sp_range'][0]}–{pr['sp_range'][1]}")
-    t += [f"{'β' if s[2]=='B' else 'TM'} {s[0]}–{s[1]}" for s in pr["spans"]]
+    t = ([f"SP {pr['sp_range'][0]}–{pr['sp_range'][1]}"] if pr["sp_range"] else []) + [f"{'β' if s[2] == 'B' else 'TM'} {s[0]}–{s[1]}" for s in pr["spans"]]
     return ", ".join(t) or "none"
-for key, cfg in PHAGES.items():
-    pd = project_dir(key); d = json.loads((pd / "data.json").read_text()); v = json.loads((pd / "verification.json").read_text())
-    ip = d["input_provenance"]; P = d["proteins"]; M = d["main_methods"]
+REBUILD = """```
+python3 scripts/01_fetch_inputs.py --org {k}     # skips files already present
+python3 scripts/02_inventory.py --org {k}
+python3 scripts/03_run_phobius.py --org {k}      # resumable; plans batches within documented limits
+python3 scripts/05_run_deeptmhmm.py --org {k}    # resumable
+python3 scripts/04_run_topcons.py --org {k}      # submit/poll/collect; never resubmits a batch with a job ID
+python3 scripts/06_normalize.py --org {k} && python3 scripts/08_build_atlas.py --org {k}
+node scripts/09_browser_check.js logs/browser_check.json && python3 scripts/11_validate_package.py --org {k}
+python3 scripts/rerun.py --org {k} [--proteins "ID1,ID2"]   # re-run: new batches, earlier results kept as superseded
+```"""
+rows_top = []
+for k, o in ORGANISMS.items():
+    pd = project_dir(k)
+    if not (pd / "data.json").exists(): continue
+    d = json.loads((pd / "data.json").read_text()); v = json.loads((pd / "verification.json").read_text()) if (pd / "verification.json").exists() else None
+    P = d["proteins"]; M = d["main_methods"]; ip = d["input_provenance"]
+    cov = {m: d["coverage"][m] for m in M}; partial = any(c["complete"] < c["eligible"] for c in cov.values())
     cache = {}
     for p in P:
-        pr = p["predictions"].get("TOPCONS2")
-        if pr: cache[pr["provenance"]["cache_status"]] = cache.get(pr["provenance"]["cache_status"], 0) + 1
-    gens = sorted({p["predictions"]["TOPCONS2"]["provenance"]["generated"][:10] for p in P if "TOPCONS2" in p["predictions"]})
-    jobs = d["jobs"]
-    def jl(m): return "; ".join(f"batch {j.get('batch')}{' ('+j['format']+')' if j.get('format') else ''}: job `{j.get('jobid') or j.get('job_id') or 'n/a'}`, {j.get('status')}, submitted {j.get('submitted_utc')}" for j in jobs[m])
-    dtm_ver = sorted({j.get("app_version") or "not recorded" for j in jobs["DeepTMHMM"]})
-    rows = "\n".join(f"| {p['gene'] or p['curator_alias']} | `{p['locus_tag']}` | {p['protein_accession']} | {p['product']} | {p['length']} | " + " | ".join(fmt_spans(p['predictions'].get(m)) for m in M) + f" | {', '.join(p['disagreements']) or '—'} |" for p in P)
-    lit = "\n".join(f"- `{x['protein_id']}`: experimentally the signal peptide ends at residue {x['experimental_signal_peptide_end']} ({x['reference']}). Predicted ends: " + ", ".join(f"{m} {e}" for m, e in x["predicted_signal_peptide_end"].items()) + "." for x in v.get("literature_comparison", []))
-    beta = "\n".join(f"- `{pid}` — {m} class **{cls}**: periplasm (P), extracellular (O) and β-strand (B) segments, shown as a linear map rather than a helical cartoon." for pid, m, cls in v.get("beta_state_predictions", []))
-    txt = f"""# {cfg['name']} — membrane topology & charge lab reference
-
-Open **`{key}_Topology_Atlas.html`** in any modern browser. It is a single self-contained file that works offline: data, figure code and server plots are all embedded. Links to papers need internet access.
-
-All topology calls here are **computational predictions**, not experimental evidence.
-
-## Source
-- RefSeq **{d['accession']}**, "{ip['ncbi_summary']['title']}", {ip['ncbi_summary']['slen']} nt, {ip['ncbi_summary']['topology']}. The NCBI record was last updated {ip['ncbi_summary']['updatedate']}, taxid {ip['ncbi_summary']['taxid']}.
-- Downloaded from NCBI E-utilities on {ip['files'][0]['retrieved_utc'][:10]} (UTC). URLs and SHA-256 checksums are in `inputs/provenance.json`:
-  - GenBank record: `inputs/{d['accession']}.gb`
-  - NCBI CDS translations: `inputs/{d['accession']}.cds_aa.fasta`
-  - Genome FASTA: `inputs/{d['accession']}.fna`
-- Annotation preference: the current RefSeq annotation is used exactly as published. **Scope:** all {len(P)} CDS features with a `/translation` ({d['n_cds']} CDS features in total; {len(d['pseudogenes'])} pseudogenes or untranslated CDSs).
-- Every translation was cross-checked in two ways:
-  - Against NCBI's CDS FASTA.
-  - Against an independent translation from the coordinates (strand, joins, `codon_start`, genetic code 11). Both agree for all proteins.
-- Flags such as `joined_location_spans_circular_origin` mark CDSs that wrap the circular genome origin. They are informational. No sequence was trimmed, padded or edited.{' Curator gene letters (`curator_alias`) are added only as search aliases; RefSeq ' + d['accession'] + ' has no `/gene` qualifiers.' if any(p['curator_alias'] for p in P) else ''}
-- Host context: {d['host_note']}
-
-## Methods run (all {len(P)} proteins)
-| Method | Coverage | Submission |
-|---|---|---|
-""" + "\n".join(f"| {m} | {d['coverage'][m]['complete']}/{d['coverage'][m]['inventory']} | {jl(m)} |" for m in M) + f"""
-
-- **Phobius**: phobius.sbc.su.se JSON API (`/api/predict`, with `plot: true`). The plain-text long/short formats and the web-form outputs are kept in `raw/Phobius/` as cross-checks. Signal-peptide boundaries were verified against the reported cleavage site, and the `C` cleavage marker is never counted as a signal-peptide residue.
-- **DeepTMHMM**: BioLib app DTU/DeepTMHMM, version(s): {', '.join(dtm_ver)}. Raw `predicted_topologies.3line`, `TMRs.gff3` and `deeptmhmm_results.md` are in `raw/DeepTMHMM/batch1/results/`.
-- **TOPCONS2**: topcons.net WSDL API, with OCTOPUS, Philius, PolyPhobius, SCAMPI and SPOCTOPUS outputs retained.
-  - TOPCONS2 served cached results for identical sequences: {', '.join(f'{k}: {n}' for k, n in sorted(cache.items()))}. The original computation dates are {', '.join(gens)}.
-  - Per-protein generation dates and cache status are in `data.json`.
-  - The original result zip and an extracted copy are in `raw/TOPCONS2/`.
-  - The components feed the TOPCONS2 consensus; they are not independent votes in addition to it.
-
-## Per-protein summary (main methods)
-| Gene | Locus tag | Accession | Product | aa | {' | '.join(M)} | Disagreement |
-|---|---|---|---|---|{'---|' * len(M)}---|
-{rows}
-
-{('### β-type predictions' + chr(10) + beta + chr(10)) if beta else ''}
-{('### Comparison with experimentally known signal-peptide ends (informational)' + chr(10) + lit + chr(10)) if lit else ''}
-## Conventions & cautions
-- {d['coordinate_convention']}. Signal peptides keep precursor numbering.
-- Normalized states: {'; '.join(f'**{k}** {v}' for k, v in d['state_definitions'].items())}. Each method's native label strings are kept alongside (`native_labels`).
-- Inside/outside labels on proteins with no predicted span do not establish localization.
-- For phage proteins, no specific host membrane is assigned, and none of this predicts a viral envelope.
-- Charge classes (K/R, D/E, variable H, declared hydrophobic/aromatic group) are approximate side-chain categories near neutral pH. They are not measured charges, net charge, pI or electrostatics.
-- Disagreements between methods are flagged, never resolved into a consensus.
-
-## Figures
-The atlas draws four views for each protein:
-- **A**: presentation orientation, with residue-proportional horizontal scale.
-- **B**: full-length sequence and charge map. It shows every residue by default; an optional window is available.
-- **C**: switchable residue-bead cartoon. Long loops are abbreviated with explicit omitted ranges.
-- **D**: method-comparison tracks.
-
-Every figure has buttons for SVG, PNG (2×/4×; PNG is automatically down-scaled when it would exceed browser canvas limits), copy-image (falls back to download) and copy-caption. A pre-rendered SVG library is in `figures/`, with 2× PNGs of view A for proteins with a predicted span or signal peptide.
-
-## Files
-`data.json` (normalized, complete) · `protein_inventory.csv` · `topology_summary.csv` · `inventory.json` · `pseudogene_inventory.json` · `inputs/` · `raw/` · `figures/` · `verification.json` + `verification_browser.json` · `SHA256SUMS.txt`. The zip package in `../packages/` also contains `scripts/`.
-
-## Validation
-`verification.json` records {v['summary']['passed']}/{v['summary']['checks']} passing checks (run time recorded in the file). They cover:
-- input checksums and CDS reconciliation;
-- submitted-FASTA identity per batch and raw-output checksums;
-- label length, contiguity and alphabet for every prediction;
-- Phobius signal-peptide boundaries, and β segments against DeepTMHMM's GFF;
-- that the atlas embeds the current data and contains no other organism's names;
-- a headless Chromium pass ({v['browser_check']['browser']}, file://, offline) over every protein. It confirms that each residue's identity, number and band state is correct and that bead cartoons account for every residue exactly once. It also checks bead overlap, search, filters, component toggles, windowing, SVG/PNG export, and the absence of horizontal overflow at phone width.
-
-Clipboard copy was not exercised headlessly.
-
-## Rebuild / resume
-From the project root (`dirty-science-canvas/`), with Python 3 + `biopython requests suds pybiolib` and Node + Playwright:
-```
-python3 scripts/01_fetch_inputs.py        # skips files already present
-python3 scripts/02_inventory.py
-python3 scripts/03b_run_phobius_api.py    # resumable; skips complete batches
-python3 scripts/04_topcons_submit.py      # never resubmits a batch that has a job ID
-python3 scripts/05_topcons_collect.py     # poll + download; exit code 2 while pending
-python3 scripts/07_run_deeptmhmm.py       # resumable
-python3 scripts/06_normalize.py && python3 scripts/08_build_atlas.py
-node scripts/10_export_figures.js && node scripts/09_browser_check.js logs/browser_check.json
-python3 scripts/11_validate_package.py && python3 scripts/12_write_readmes.py
-```
-Web-job links (TOPCONS2 result URLs, BioLib job IDs) may expire; the raw outputs here are the durable record.
-"""
-    (pd / "README.md").write_text(txt)
-# top-level
-lines = []
-for key, cfg in PHAGES.items():
-    d = json.loads((project_dir(key) / "data.json").read_text()); P = d["proteins"]
-    lines.append(f"| [{cfg['name']}]({key}_Topology_Lab_Reference/{key}_Topology_Atlas.html) | {d['accession']} | {len(P)} | {sum(p['any_membrane_span'] for p in P)} | {sum(p['any_signal_peptide'] for p in P)} | {sum(bool(p['disagreements']) for p in P)} | " + " · ".join(f"{m} {d['coverage'][m]['complete']}/{len(P)}" for m in d['main_methods']) + f" | [zip](packages/{key}_Topology_Lab_Reference.zip) |")
+        tm = p.get("topcons_meta")
+        if tm: cache[tm.get("cache")] = cache.get(tm.get("cache"), 0) + 1
+    vers = sorted({j.get("app_version") for j in d["jobs"]["DeepTMHMM"] if j.get("app_version")}) or ["not recorded"]
+    inel = {m: [(p["protein_id"], p["ineligible"][m]) for p in P if p.get("ineligible", {}).get(m)] for m in M}
+    n_span = sum(p["any_membrane_span"] for p in P); n_sp = sum(p["any_signal_peptide"] for p in P); n_dis = sum(bool(p["disagreements"]) for p in P)
+    beta = v.get("beta_state_predictions", []) if v else []
+    rows_top.append(f"| [{o['name']}]({pd.name}/{k}_Topology_Atlas.html) | {o['kind']} | {', '.join(o['accessions'])} | {len(P):,} | {n_span:,} | {n_sp:,} | {len(beta):,} | " + " · ".join(f"{m} {cov[m]['complete']:,}/{cov[m]['eligible']:,}" for m in M) + (" **(partial)**" if partial else "") + " |")
+    lines = [f"# {o['name']} — membrane topology & charge lab reference", "",
+             f"Open **`{k}_Topology_Atlas.html`** (one offline file), or the combined atlas `../Dirty_Science_Canvas_Atlas.html`. All topology calls are **computational predictions**, not experimental evidence.", ""]
+    if partial: lines += ["> **Partial:** at least one predictor has not yet finished every eligible protein (see coverage). Missing results are shown as pending, never substituted. Resume with the commands below.", ""]
+    lines += ["## Source", *[f"- RefSeq **{s['accessionversion']}**: \"{s['title']}\", {s['slen']:,} nt, {s['topology']}; NCBI record updated {s['updatedate']}; taxid {s['taxid']}." for s in ip["ncbi_summaries"]],
+              f"- Downloaded from NCBI E-utilities on {ip['files'][0]['retrieved_utc'][:10]} (UTC); URLs and SHA-256 in `inputs/provenance.json`" + (" (GenBank stored gzip-compressed; checksums of both forms recorded)." if o["kind"] == "host" else "."),
+              f"- Scope: all **{len(P):,}** CDS features with a `/translation` ({d['n_cds']:,} CDS features; {len(d['pseudogenes'])} pseudogenes/untranslated CDSs listed in `pseudogene_inventory.json`). The RefSeq annotation is used exactly; translations were cross-checked against NCBI's CDS FASTA and re-derived from coordinates (strand, joins, `codon_start`, genetic code, `transl_except`). No sequence was trimmed, padded or edited.",
+              f"- Context: {d['host_note']}", "",
+              "## Coverage", "| Method | Complete / eligible | Not eligible (reason) |", "|---|---|---|"]
+    for m in M:
+        c = cov[m]; ie = inel[m]
+        lines.append(f"| {m} | {c['complete']:,} / {c['eligible']:,} ({c['status_counts']}) | " + ("; ".join(f"`{pid}`: {why}" for pid, why in ie[:8]) + (f"; … {len(ie) - 8} more" if len(ie) > 8 else "") if ie else "—") + " |")
+    lines += ["", f"- **Phobius**: phobius.sbc.su.se JSON API; batches ≤100 sequences and ≤50,000 residues. {'Per-protein posterior plots (SVG) in `raw/Phobius/plots/`.' if o['kind'] == 'phage' else 'Plots not requested at proteome scale.'}",
+              f"- **DeepTMHMM**: BioLib app DTU/DeepTMHMM ({', '.join(vers)}); ≤500 sequences per job, one job at a time.",
+              f"- **TOPCONS2**: topcons.net WSDL API; ≤1,000 sequences per job, ≤2 active jobs. Cache status reported by the server: {', '.join(f'{a}: {b:,}' for a, b in sorted(cache.items(), key=str)) or '—'}. Components (OCTOPUS, Philius, PolyPhobius, SCAMPI, SPOCTOPUS) feed the consensus; they are not extra votes.",
+              f"- Job records (exact batch FASTA checksum, job ID, times, status, output checksums) are in `raw/<Method>/*.job.json`; {sum(len(j) for j in d['jobs'].values())} records.", "",
+              "## Summary", f"- {n_span:,} proteins with ≥1 predicted membrane span (any main method); {n_sp:,} with a predicted signal peptide; {len(beta):,} with DeepTMHMM β-type states; {n_dis:,} with main-method disagreement.",
+              "- Per-protein calls for every method: `topology_summary.csv` (segments use `LABELstart-stop` runs, 1-based inclusive) and `data.json`.", ""]
+    if v and v.get("literature_comparison"):
+        lines += ["### Comparison with experimentally known signal-peptide ends (informational)"] + [f"- `{x['protein_id']}`: experimental end {x['experimental_signal_peptide_end']} ({x['reference']}). Predicted: " + ", ".join(f"{m} {e}" for m, e in x["predicted_signal_peptide_end"].items()) + "." for x in v["literature_comparison"]] + [""]
+    if o["kind"] == "phage" and len(P) <= 300:
+        lines += ["### Per-protein calls (main methods)", "| Gene | Locus tag | Product | aa | " + " | ".join(M) + " | Disagreement |", "|---|---|---|---|" + "---|" * len(M) + "---|"]
+        for p in P:
+            pr = {m: p["pred"].get(m) for m in M}
+            lines.append(f"| {p['gene'] or p['curator_alias'] or '—'} | `{p['locus_tag']}` | {p['product']} | {p['length']} | " + " | ".join(spans(pr[m]) if pr[m] else p['status'].get(m, '').replace('_', ' ') for m in M) + f" | {', '.join(p['disagreements']) or '—'} |")
+        lines.append("")
+    lines += ["## Conventions & cautions", f"- {d['coordinate_convention']}; signal peptides keep precursor numbering. {d['segment_encoding']}.",
+              "- Normalized states: " + "; ".join(f"**{a}** {b}" for a, b in d["state_definitions"].items()) + ". Native labels are kept (`nseg`).",
+              "- Inside/outside on proteins without a predicted span does not establish localization. Charge classes are approximate side-chain categories near neutral pH, not measured charges.",
+              "- Disagreements are flagged, never resolved into a consensus.", "",
+              "## Figures", "The atlas renders four views per protein — A presentation orientation (residue-proportional scale), B full-length sequence & charge map, C residue-bead cartoon, D method-comparison tracks — with SVG / PNG 2×·4× / copy-image / copy-caption. Every figure is laid out by a collision-free label engine and audited in a real browser (no overlapping text, no clipped text, no line crossing a label, no crossing leaders or bonds). A figure library for this organism can be regenerated with `node scripts/10_export_figures.js --org " + k + " [--png]`.", "",
+              "## Re-run", f"- In the atlas: per-protein **Phobius ↗** and **DeepTMHMM ↗** buttons submit the exact sequence to the official servers in one click; **TOPCONS2 ↗** copies the FASTA and opens its form (it requires a session token).",
+              f"- Pipeline: GitHub → Actions → *Topology atlas re-run* (`.github/workflows/{RERUN_WORKFLOW}`, https://github.com/{REPO_SLUG}/actions/workflows/{RERUN_WORKFLOW}) with organism `{k}`; or locally `python3 scripts/rerun.py --org {k}`.", ""]
+    if v:
+        s = v["summary"]
+        lines += ["## Validation", f"`verification.json`: {s['passed']} pass, {s['failed']} fail, {s['pending']} pending of {s['checks']} checks. " + (f"Pending: {'; '.join(v['pending'][:4])}." if v["pending"] else "") + (f" Failures: {'; '.join(v['failures'][:4])}." if v["failures"] else ""),
+                  "Checks cover input checksums, CDS reconciliation, batch-FASTA identity, raw-output checksums, segment expansion/contiguity/alphabet for every prediction, Phobius signal-peptide boundaries, DeepTMHMM β segments against its GFF, atlas embedding, and the headless-browser audit.", ""]
+    lines += ["## Rebuild / resume (from `dirty-science-canvas/`; Python 3 with `biopython requests suds pybiolib`, Node with Playwright)", REBUILD.format(k=k),
+              "Web-job links expire; the raw outputs and job records here are the durable record." + (" Large TOPCONS2 result zips (mostly per-sequence images) are not stored; their checksums/URLs are recorded and every text output needed to reproduce the predictions is archived unmodified in `raw/TOPCONS2/*.text.tar.xz`." if any(j.get("result_text_archive") for j in d["jobs"]["TOPCONS2"]) or o["kind"] == "host" else "")]
+    (pd / "README.md").write_text("\n".join(lines) + "\n")
 (ROOT / "README.md").write_text(f"""# Dirty Science Canvas
 
-Protein membrane-topology and charge atlases for small bacteriophage proteomes. Every annotated protein translation was run through **Phobius**, **DeepTMHMM** and **TOPCONS2** (including its OCTOPUS, Philius, PolyPhobius, SCAMPI and SPOCTOPUS components). The results were normalized with provenance, validated, and rendered into self-contained offline HTML atlases.
+Membrane-topology and charge atlases for **model bacteriophages and their hosts**. Every annotated protein translation was run through **Phobius**, **DeepTMHMM** and **TOPCONS2** (with OCTOPUS, Philius, PolyPhobius, SCAMPI and SPOCTOPUS) within each service's documented limits; results are normalized with full provenance, validated, and rendered into self-contained offline HTML atlases. All calls are computational predictions, not experimental evidence.
 
-All calls are computational predictions, not experimental evidence.
+**Start here:** `index.html` → `Dirty_Science_Canvas_Atlas.html` (the combined atlas: every organism in one searchable file). Each organism folder also has its own atlas, README, inputs, untouched raw outputs with job records, normalized `data.json`/CSV and `verification.json`.
 
-| Phage | RefSeq | Proteins | ≥1 span (any main method) | Signal peptide (any main method) | Main-method disagreement | Coverage | Package |
+| Organism | Kind | RefSeq | Proteins | ≥1 span | Signal peptide | β states | Complete / eligible |
 |---|---|---|---|---|---|---|---|
-{chr(10).join(lines)}
+{chr(10).join(rows_top)}
 
-Start at `index.html`, or open a phage's `*_Topology_Atlas.html` directly; each works offline. Each phage folder's `README.md` documents its sources, jobs, coverage, conventions, validation and how to rebuild it.
-
-`scripts/` holds the whole pipeline (fetch → inventory → predictors → normalize → atlas → figures → browser check → validation/package). `scripts/config.py` lists the phages, so adding a phage means adding an entry there and rerunning the pipeline.
+**Figures** are publication-ready SVG/PNG produced by a collision-free label engine and audited in a real browser for overlapping or clipped text and crossing lines. **Re-run:** one-click Phobius and DeepTMHMM submissions per protein from the atlas; pipeline re-runs via the GitHub Actions workflow `{RERUN_WORKFLOW}` or `python3 scripts/rerun.py`. **Pipeline:** `scripts/` (fetch → inventory → predictors → normalize → atlas → browser audit → validation). Add an organism by adding an entry to `scripts/config.py`.
 """)
 print("ok")

@@ -1,0 +1,1289 @@
+{
+  "organism": "Enterobacteria phage PRD1",
+  "key": "PRD1",
+  "kind": "phage",
+  "accessions": [
+    "NC_001421.2"
+  ],
+  "gb_files": [
+    "NC_001421.2.gb"
+  ],
+  "n_cds_features": 31,
+  "n_proteins": 31,
+  "n_pseudogenes": 0,
+  "cds_fasta_records": 31,
+  "cds_fasta_unmatched": [],
+  "proteins": [
+    {
+      "protein_id": "PRD1|PRD1_01",
+      "gene": "XIII",
+      "locus_tag": "PRD1_01",
+      "product": "terminal protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "P8",
+      "replicon": "NC_001421.2",
+      "start": 233,
+      "stop": 1012,
+      "strand": "+",
+      "location": "[232:1012](+)",
+      "protein_accession": "YP_009639955.1",
+      "db_xref": [
+        "GeneID:1260933"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MAKKKPVEKNGLVYKEFQKQVSNLKKAGLIPKTLDVRKVKPTKHYKGLVSKYKDVATGGAKLAAIPNPAVIETLEARGESIIKKGGKAYLKARQQINQRGQIVNPFTVRVTKRGEVVRRYRKTTPEGKPVYITQRELPIKFENMEQWLTELKAAGFQLQPGEQIYFTFNGNYSRRTYTSFDEAFNKFMTYDIIIDAVAGKLKVEDEADLVKSVGFQRISGPEAKAYNRNRIVLPEMQFSQAAKKKYKRRQKRGYGSKGV",
+      "length": 259,
+      "sequence_sha256": "600c5e8fbcb3216996032f2c31311a6a98af1ea20f6b5b8662b8a170a3fcf2c8",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_001421.2.gb",
+      "cds_fasta_id": "lcl|NC_001421.2_prot_YP_009639955.1_1",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "PRD1|PRD1_02",
+      "gene": "I",
+      "locus_tag": "PRD1_02",
+      "product": "DNA polymerase",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "P1",
+      "replicon": "NC_001421.2",
+      "start": 1016,
+      "stop": 2677,
+      "strand": "+",
+      "location": "[1015:2677](+)",
+      "protein_accession": "YP_009639956.1",
+      "db_xref": [
+        "GeneID:1260934"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MPRRSRKKVEYKIAAFDFETDPFKHDRIPKPFSWGFYNGEIYKDYWGDDCIEQFIYWLDTIEEPHVIYAHNGGKFDFLFLMKYFRGKLKIVNGRILEVEHGIHKFRDSYAILPVPLAASDEKIEIDYGKMERETREQHKAEILEYLKGDCVTLHKMVSLFIAEFGMRLTIGGTAMNELKQFHPYDPVRKGFDEAMRPFYFGGRCQAFEKGIIEDDIKVYDVNSMYPHAMRNFRHPFSDEFYEANEITEETYFIEWEGENNGAVPVRTKTGLDFNQRSGIFHTSIHEWRAGIDTGTIKPNRIIRTINFTETTTFGAFIDHFFSKRDAAKKAGDLFHNIFYKLILNSSYGKFAQNPENYKEWCITEGGIYLEGYDGEGCEVQEHLDYILWGRPAEMFNYFNVAVAASITGAARSVLLRALAQAERPLYCDTDSIICRDLKNVPLDAYQLGAWDLEATGDKIAIAGKKLYALYAGDNCVKIASKGASLVPRDIGFLMPPDMEPKAAKKVAQQKAKNIGGEKILKVANGGVYDFVNDAPSFKLNGNVQFIKRTIKGT",
+      "length": 553,
+      "sequence_sha256": "d8de5a1061622d5e1336d192dbf61a36e2478cac6f3d14467b12c59efd5d080a",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_001421.2.gb",
+      "cds_fasta_id": "lcl|NC_001421.2_prot_YP_009639956.1_2",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "PRD1|PRD1_03",
+      "gene": "XV",
+      "locus_tag": "PRD1_03",
+      "product": "endolysin",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "P15",
+      "replicon": "NC_001421.2",
+      "start": 2679,
+      "stop": 3128,
+      "strand": "+",
+      "location": "[2678:3128](+)",
+      "protein_accession": "YP_009639957.1",
+      "db_xref": [
+        "GeneID:1260935"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MQYTLWDIISRVESNGNLKALRFEPEYYQRRMERGDWDNSIIQNIRAANKCSLGTARMIYCSSWGAVQIMGFNLYLNGAFNLSVAHFMENEAYQVNEFRRFLLKNGLTEYTPERLASDKAARVKFAKVYNGAESYADLILQACQFYGVK",
+      "length": 149,
+      "sequence_sha256": "72fb0801591bf5f696a5468ad14e51dbd8d41a8acf7e88027fc863364603c1ad",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_001421.2.gb",
+      "cds_fasta_id": "lcl|NC_001421.2_prot_YP_009639957.1_3",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "PRD1|PRD1_04",
+      "gene": "II",
+      "locus_tag": "PRD1_04",
+      "product": "receptor binding",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "P2",
+      "replicon": "NC_001421.2",
+      "start": 3128,
+      "stop": 4903,
+      "strand": "+",
+      "location": "[3127:4903](+)",
+      "protein_accession": "YP_009639958.1",
+      "db_xref": [
+        "GeneID:1260937"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MANFNVPKLGVFPVAAVFDIDNVPEDSSATGSRWLPSIYQGGNYWGGGPQALHAQVSNFDSSNRLPYNPRTENNPAGNCAFAFNPFGQYISNISSAQSVHRRIYGIDLNDEPLFSPNAASITNGGNPTMSQDTGYHNIGPINTAYKAEIFRPVNPLPMSDTAPDPETLEPGQTEPLIKSDGVYSNSGIASFIFDRPVTEPNPNWPPLPPPVIPIIYPTPALGIGAAAAYGFGYQVTVYRWEEIPVEFIADPETCPAQPTTDKVIIRTTDLNPEGSPCAYEAGIILVRQTSNPMNAVAGRLVPYVEDIAVDIFLTGKFFTLNPPLRITNNYFADDEVKENTVTIGNYTTTLSSAYYAVYKTDGYGGATCFIASGGAGISALVQLQDNSVLDVLYYSLPLSLGGSKAAIDEWVANNCGLFPMSGGLDKTTLLEIPRRQLEAINPQDGPGQYDLFILDDSGAYASFSSFIGYPEAAYYVAGAATFMDVENPDEIIFILRNGAGWYACEIGDALKIADDEFDSVDYFAYRGGVMFIGSARYTEGGDPLPIKYRAIIPGLPRGRLPRVVLEYQAVGMSFIPCQTHCLGKGGIISKV",
+      "length": 591,
+      "sequence_sha256": "345858ab6cf2d780ddd5e29371214be92aada208e9556b943a8718d4ca804445",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_001421.2.gb",
+      "cds_fasta_id": "lcl|NC_001421.2_prot_YP_009639958.1_4",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "PRD1|PRD1_05",
+      "gene": "XXXI",
+      "locus_tag": "PRD1_05",
+      "product": "major spike protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "P31",
+      "replicon": "NC_001421.2",
+      "start": 4907,
+      "stop": 5287,
+      "strand": "+",
+      "location": "[4906:5287](+)",
+      "protein_accession": "YP_009639959.1",
+      "db_xref": [
+        "GeneID:1260938"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MNVNNPNQMTVTPVYNGCDSGEGPQSVRGYFDAVAGENVKYDLTYLADTQGFTGVQCIYIDNAENDGAFEIDVEETGQRIKCPAGKQGYFPLLVPGRAKFVARHLGSGKKSVPLFFLNFTIAQGVW",
+      "length": 126,
+      "sequence_sha256": "9d0342111831b84e32b7f6f7092c18ca6d49fc5611d263a8558814e1dd42aa07",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_001421.2.gb",
+      "cds_fasta_id": "lcl|NC_001421.2_prot_YP_009639959.1_5",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "PRD1|PRD1_06",
+      "gene": "V",
+      "locus_tag": "PRD1_06",
+      "product": "major spike protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "P5",
+      "replicon": "NC_001421.2",
+      "start": 5287,
+      "stop": 6309,
+      "strand": "+",
+      "location": "[5286:6309](+)",
+      "protein_accession": "YP_009639960.1",
+      "db_xref": [
+        "GeneID:1260939"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MANQQIGGSTVTYNGAIPMGGPVAINSVIEIAGTEVLVDLKLDYATGKISGVQTLYIDLRDFLGDVTVTMPDTGQRITARAGTQGYYPVLSTNLMKFIVSATIDGKFPMNFINFPIALGVWPSGIKGDKGDPGAPGPAGGTVVVEDSGASFGESLLDTTSEPGKILVKRISGGSGITVTDYGDQVEIEASGGGGGGGGVTDALSLMYSTSTGGPASIAANALTDFDLSGALTVNSVGTGLTKSAAGIQLAAGKSGLYQITMTVKNNTVTTGNYLLRVKYGSSDFVVACPASSLTAGGTISLLIYCNVLGVPSLDVLKFSLCNDGAALSNYIINITAAKIN",
+      "length": 340,
+      "sequence_sha256": "94db61bc17585d6f9e25bf192deacfd1c55167d101a5ee9ef58d8b4533b7e8cd",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_001421.2.gb",
+      "cds_fasta_id": "lcl|NC_001421.2_prot_YP_009639960.1_6",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "PRD1|PRD1_07",
+      "gene": "XVII",
+      "locus_tag": "PRD1_07",
+      "product": "assembly",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "P17",
+      "replicon": "NC_001421.2",
+      "start": 6328,
+      "stop": 6588,
+      "strand": "+",
+      "location": "[6327:6588](+)",
+      "protein_accession": "YP_009639961.1",
+      "db_xref": [
+        "GeneID:1260940"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MMGKGFEMMVASAIRAAGINPDELMEKANTLVHNLNYQLDRFGQRLDSIDSRLSVIEKALDISPAEKPDNQPELTGITFEGDNNDQ",
+      "length": 86,
+      "sequence_sha256": "332c09993c60c674e088b3f40b96eedf106deb00e3fd3a538106e7ffbca1bbab",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_001421.2.gb",
+      "cds_fasta_id": "lcl|NC_001421.2_prot_YP_009639961.1_7",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "PRD1|PRD1_23",
+      "gene": "XXXIII",
+      "locus_tag": "PRD1_23",
+      "product": "assembly",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "P33",
+      "replicon": "NC_001421.2",
+      "start": 6578,
+      "stop": 6784,
+      "strand": "+",
+      "location": "[6577:6784](+)",
+      "protein_accession": "YP_009639962.1",
+      "db_xref": [
+        "GeneID:5729503"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MTNEEKLIAEIDSAGLSAEMLESMPSPEMFPLIIVNLQGRIAELEARETEMLARVDTLIARLAHLGVA",
+      "length": 68,
+      "sequence_sha256": "f006461e0cb85e605c8e8592bfc761e8117e1ea91f973e185575818a4fce09e6",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_001421.2.gb",
+      "cds_fasta_id": "lcl|NC_001421.2_prot_YP_009639962.1_8",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "PRD1|PRD1_08",
+      "gene": "VI",
+      "locus_tag": "PRD1_08",
+      "product": "minor head protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "P6",
+      "replicon": "NC_001421.2",
+      "start": 6784,
+      "stop": 7284,
+      "strand": "+",
+      "location": "[6783:7284](+)",
+      "protein_accession": "YP_009639963.1",
+      "db_xref": [
+        "GeneID:1260941"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MDTEEIKEEMQEAAEAAIENAVETAELETAAIKAEGAAAAAEQSAEQAAVMAATLAASVEANAAQQIAEHSEQVQTQEEKISWLENQVMAMASNLQMMQEAVTALTVSQSLTPEPSPVPAVEVEAMPEAVTVEILPESAGDQQEAEPVPSVGDQQETAPRKRFRAI",
+      "length": 166,
+      "sequence_sha256": "2ef644e2c5e31c3a3726a32134cbead69aa7d4ce02642211617ff38d427734b7",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_001421.2.gb",
+      "cds_fasta_id": "lcl|NC_001421.2_prot_YP_009639963.1_9",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "PRD1|PRD1_24",
+      "gene": "X",
+      "locus_tag": "PRD1_24",
+      "product": "assembly",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "P10",
+      "replicon": "NC_001421.2",
+      "start": 7029,
+      "stop": 7640,
+      "strand": "+",
+      "location": "[7028:7640](+)",
+      "protein_accession": "YP_009639964.1",
+      "db_xref": [
+        "GeneID:5729509"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MAGKSSNGDGVKFADDAGSGNSIDGIAIIDPGTVTSASGGSGSDAGSGDSGNTPRKRGRPAGSGTGAKRGRPAGNSAAKKVPGNLGVEKILFSLHLMASSALKVEELALDEKEAEALAGAVQEVASHYDITPDPKIMAWAGLFGVCASIYGPRVAAYKMRAAAEKRDKKEAAKPMAQKVQEAKPTEHDPAAPYIEQLPVSNTL",
+      "length": 203,
+      "sequence_sha256": "2b2557b742ab7272af2800b4eab65efd7b774bbf56066c7dd5e5e0495b852934",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_001421.2.gb",
+      "cds_fasta_id": "lcl|NC_001421.2_prot_YP_009639964.1_10",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "PRD1|PRD1_09",
+      "gene": "IX",
+      "locus_tag": "PRD1_09",
+      "product": "terminase large subunit",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "P9",
+      "replicon": "NC_001421.2",
+      "start": 7637,
+      "stop": 8320,
+      "strand": "+",
+      "location": "[7636:8320](+)",
+      "protein_accession": "YP_009639965.1",
+      "db_xref": [
+        "GeneID:1260942"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MTIRMPNDRQRILVLGKTGTGKTCAAVWHLSQKDFKRKAWIVLNHKGDDLIDSIEGANHVDLNFRPKKPGLYIYHPIPDVDDAEVTQLLWDIHAMGDIGVYVDEGYMIPNRDPAFQALLTQGRSKKIPMIILSQRPVWLTRFAISESDFFQIFQLGDQRDRQTVQGFVPVDLEKLMQAPVNTVPALKKFHSIYYDVGANNCVIMTPVPTADAVLARFDLGKKRKQTL",
+      "length": 227,
+      "sequence_sha256": "7929719cc5da9ca8596696c4d32bfc4f2473f578337560c3b835af58ba63e672",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_001421.2.gb",
+      "cds_fasta_id": "lcl|NC_001421.2_prot_YP_009639965.1_11",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "PRD1|PRD1_10",
+      "gene": "ORFi",
+      "locus_tag": "PRD1_10",
+      "product": "hypothetical protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gpi",
+      "replicon": "NC_001421.2",
+      "start": 8332,
+      "stop": 8460,
+      "strand": "+",
+      "location": "[8331:8460](+)",
+      "protein_accession": "YP_009639966.1",
+      "db_xref": [
+        "GeneID:1260944"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MTENIISWNVANWVTVILMALAGYAVLALAAKVINNRAQEPA",
+      "length": 42,
+      "sequence_sha256": "2593a09f0582e08a6e175aa67ba687fd15cb92435fb05b9e51848960350f35dc",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_001421.2.gb",
+      "cds_fasta_id": "lcl|NC_001421.2_prot_YP_009639966.1_12",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "PRD1|PRD1_11",
+      "gene": "XX",
+      "locus_tag": "PRD1_11",
+      "product": "DNA packaging",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "P20",
+      "replicon": "NC_001421.2",
+      "start": 8460,
+      "stop": 8588,
+      "strand": "+",
+      "location": "[8459:8588](+)",
+      "protein_accession": "YP_009639967.1",
+      "db_xref": [
+        "GeneID:1260945"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MVNWELLKNPINWLIVILMLTIAGMAATLVCNHFGKNAVTSE",
+      "length": 42,
+      "sequence_sha256": "05483f916ee7d2e80991f2acc86859296bee45d06808a12ecce4feb36d6c16ac",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_001421.2.gb",
+      "cds_fasta_id": "lcl|NC_001421.2_prot_YP_009639967.1_13",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "PRD1|PRD1_12",
+      "gene": "III",
+      "locus_tag": "PRD1_12",
+      "product": "minor head protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "P3",
+      "replicon": "NC_001421.2",
+      "start": 8595,
+      "stop": 9782,
+      "strand": "+",
+      "location": "[8594:9782](+)",
+      "protein_accession": "YP_009639968.1",
+      "db_xref": [
+        "GeneID:1260932"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MAQVQQLTPAQQAALRNQQAMAANLQARQIVLQQSYPVIQQVETQTFDPANRSVFDVTPANVGIVKGFLVKVTAAITNNHATEAVALTDFGPANLVQRVIYYDPDNQRHTETSGWHLHFVNTAKQGAPFLSSMVTDSPIKYGDVMNVIDAPATIAAGATGELTMYYWVPLAYSETDLTGAVLANVPQSKQRLKLEFANNNTAFAAVGANPLEAIYQGAGAADCEFEEISYTVYQSYLDQLPVGQNGYILPLIDLSTLYNLENSAQAGLTPNVDFVVQYANLYRYLSTIAVFDNGGSFNAGTDINYLSQRTANFSDTRKLDPKTWAAQTRRRIATDFPKGVYYCDNRDKPIYTLQYGNVGFVVNPKTVNQNARLLMGYEYFTSRTELVNAGTISTT",
+      "length": 395,
+      "sequence_sha256": "ecd929f0b9188a273063c4397ea895f856db257917981e73d8bf1139e89668c5",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_001421.2.gb",
+      "cds_fasta_id": "lcl|NC_001421.2_prot_YP_009639968.1_14",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "PRD1|PRD1_14",
+      "gene": "XXII",
+      "locus_tag": "PRD1_14",
+      "product": "DNA packaging",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "P22",
+      "replicon": "NC_001421.2",
+      "start": 9801,
+      "stop": 9944,
+      "strand": "+",
+      "location": "[9800:9944](+)",
+      "protein_accession": "YP_009639969.1",
+      "db_xref": [
+        "GeneID:1260947"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MQLITDMAEWSSKPFRPDMSLTGWLAFVGLIIVAIILWQQIIRFIIE",
+      "length": 47,
+      "sequence_sha256": "6f8a5aae2c00c91a687e5cab9e1d8d2bcc7241d1e43b3d4900f89b105e6b5260",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_001421.2.gb",
+      "cds_fasta_id": "lcl|NC_001421.2_prot_YP_009639969.1_15",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "PRD1|PRD1_25",
+      "gene": "ORFx",
+      "locus_tag": "PRD1_25",
+      "product": "hypothetical protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gpx",
+      "replicon": "NC_001421.2",
+      "start": 9955,
+      "stop": 10038,
+      "strand": "+",
+      "location": "[9954:10038](+)",
+      "protein_accession": "YP_009639970.1",
+      "db_xref": [
+        "GeneID:5729507"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MKIFGISVFTIAIIALAYYLGTKRIIG",
+      "length": 27,
+      "sequence_sha256": "32826c7cc1fa90f5ee44af132213bd8b9e1b2859e2dc09a5375829d11617849e",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_001421.2.gb",
+      "cds_fasta_id": "lcl|NC_001421.2_prot_YP_009639970.1_16",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "PRD1|PRD1_26",
+      "gene": "ORFl",
+      "locus_tag": "PRD1_26",
+      "product": "hypothetical protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gpl",
+      "replicon": "NC_001421.2",
+      "start": 10044,
+      "stop": 10166,
+      "strand": "+",
+      "location": "[10043:10166](+)",
+      "protein_accession": "YP_009639971.1",
+      "db_xref": [
+        "GeneID:5729508"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MRGNLALAMILFGFVVYAANSGAFGRLLYVIGFRDKPEGY",
+      "length": 40,
+      "sequence_sha256": "b7dd9af312c196beeae4569e78fb92c9c87de9e36f4b5cefd420230bfe345d45",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_001421.2.gb",
+      "cds_fasta_id": "lcl|NC_001421.2_prot_YP_009639971.1_17",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "PRD1|PRD1_15",
+      "gene": "XVIII",
+      "locus_tag": "PRD1_15",
+      "product": "DNA delivery",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "P18",
+      "replicon": "NC_001421.2",
+      "start": 10168,
+      "stop": 10440,
+      "strand": "+",
+      "location": "[10167:10440](+)",
+      "protein_accession": "YP_009639972.1",
+      "db_xref": [
+        "GeneID:1260946"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MPFGLIVIGIILAIAAYRDTLGELFSIIKDVSKDAKGFGYWVLAAVILGFAASIKPIKEPVNAFMILLMIVLLIRKRGAIDQISNQLRGS",
+      "length": 90,
+      "sequence_sha256": "f8fe66439997a3e8045e3b7866bbbb663e7c6462e569ed93368d69daa753758d",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_001421.2.gb",
+      "cds_fasta_id": "lcl|NC_001421.2_prot_YP_009639972.1_18",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "PRD1|PRD1_27",
+      "gene": "XXXII",
+      "locus_tag": "PRD1_27",
+      "product": "membrane DNA delivery",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "P32",
+      "replicon": "NC_001421.2",
+      "start": 10440,
+      "stop": 10604,
+      "strand": "+",
+      "location": "[10439:10604](+)",
+      "protein_accession": "YP_009639973.1",
+      "db_xref": [
+        "GeneID:5729501"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MGEFGKTLITIVTAIIGVAIIAVIVSQRSNTAGVIQSATSGFSNILKSALAPII",
+      "length": 54,
+      "sequence_sha256": "568a9b2f472d98f402937754d4603567748c3224ebb27741655498205c0946c7",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_001421.2.gb",
+      "cds_fasta_id": "lcl|NC_001421.2_prot_YP_009639973.1_19",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "PRD1|PRD1_16",
+      "gene": "XXXIV",
+      "locus_tag": "PRD1_16",
+      "product": "membrane DNA delivery",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_001421.2",
+      "start": 10617,
+      "stop": 10823,
+      "strand": "+",
+      "location": "[10616:10823](+)",
+      "protein_accession": "YP_009639974.1",
+      "db_xref": [
+        "GeneID:1260927"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MNDFVGPIVTVLTAIIGVAILAVLVSRNSNTAGVIKAGSGGFSSMLGTALSPVTGGTGFAMTNNYSGF",
+      "length": 68,
+      "sequence_sha256": "dc595c3a8c1759e766dcb572aecc8a05da94e755636187824f4e9f980d3f0e5d",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_001421.2.gb",
+      "cds_fasta_id": "lcl|NC_001421.2_prot_YP_009639974.1_20",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "PRD1|PRD1_17",
+      "gene": "XXX",
+      "locus_tag": "PRD1_17",
+      "product": "minor head protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "P30",
+      "replicon": "NC_001421.2",
+      "start": 10833,
+      "stop": 11087,
+      "strand": "+",
+      "location": "[10832:11087](+)",
+      "protein_accession": "YP_009639975.1",
+      "db_xref": [
+        "GeneID:1260943"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MALINPQFPYAGPVPIPGPAPTETMPLLNYRVEGRIAGIQQARQFMPFLQGPHRAVAEQTYHAIGTGIQMGQTFNQPLINTQEG",
+      "length": 84,
+      "sequence_sha256": "49036a2dec0e895a75f0b0f411b3c0c10f9177c7108caf0e581fcbb11f41aea0",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_001421.2.gb",
+      "cds_fasta_id": "lcl|NC_001421.2_prot_YP_009639975.1_21",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "PRD1|PRD1_28",
+      "gene": "ORFq",
+      "locus_tag": "PRD1_28",
+      "product": "hypothetical protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gpq",
+      "replicon": "NC_001421.2",
+      "start": 11090,
+      "stop": 11200,
+      "strand": "+",
+      "location": "[11089:11200](+)",
+      "protein_accession": "YP_009639976.1",
+      "db_xref": [
+        "GeneID:5729500"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MKTAIFILAVMFAALLWLGREHCILCQWFKRISNGA",
+      "length": 36,
+      "sequence_sha256": "f206d9330c41e86a4304c9ebb5e1c4579bcebefc4373aab07c69f67120fb3452",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_001421.2.gb",
+      "cds_fasta_id": "lcl|NC_001421.2_prot_YP_009639976.1_22",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "PRD1|PRD1_18",
+      "gene": "XI",
+      "locus_tag": "PRD1_18",
+      "product": "DNA delivery",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "P11",
+      "replicon": "NC_001421.2",
+      "start": 11202,
+      "stop": 11825,
+      "strand": "+",
+      "location": "[11201:11825](+)",
+      "protein_accession": "YP_009639977.1",
+      "db_xref": [
+        "GeneID:1260930"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MEKVKAWLIKYKWWIVAAIGGLAAFLLLKNRGGGSGGGGEYMVGSGPVYQQAGSGAVDNTMALAALQANTQLSAQNAQLQAQMDASRLQLETQLNIETLAADNAHYSTQSQLQLGMAQVDLSKYLGDLQSTTSTALAGMQSDTAKYQSNIQLQAENIRANTSLAEIDAQKYIVGKQADIAKYQAKTERRGQDYGFALGLLNFGGKFF",
+      "length": 207,
+      "sequence_sha256": "28d6648f2499e82935f33f261c7904ee260ddcf8356f11a3bd2ca65166f8571f",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_001421.2.gb",
+      "cds_fasta_id": "lcl|NC_001421.2_prot_YP_009639977.1_23",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "PRD1|PRD1_19",
+      "gene": "XVI",
+      "locus_tag": "PRD1_19",
+      "product": "hypothetical protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "P16",
+      "replicon": "NC_001421.2",
+      "start": 11836,
+      "stop": 12189,
+      "strand": "+",
+      "location": "[11835:12189](+)",
+      "protein_accession": "YP_009639978.1",
+      "db_xref": [
+        "GeneID:1260929"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MDKKKLLYWVGGGLVLILIWLWFRNRPAAQVASNWEGPPYMTYNQPQAGSVTLPVAGYTSPSPTLPNRNRSCGCNPAVSAAMAQGADLASKLTDSITSQLNDYASSLNDYLASQAGV",
+      "length": 117,
+      "sequence_sha256": "3952d3c80e031726be0ae1e56fe9f9410abd3b171576366799de92b04506c3fc",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_001421.2.gb",
+      "cds_fasta_id": "lcl|NC_001421.2_prot_YP_009639978.1_24",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "PRD1|PRD1_20",
+      "gene": "VII",
+      "locus_tag": "PRD1_20",
+      "product": "transglycosylase",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "P7",
+      "replicon": "NC_001421.2",
+      "start": 12190,
+      "stop": 12987,
+      "strand": "+",
+      "location": "[12189:12987](+)",
+      "protein_accession": "YP_009639979.1",
+      "db_xref": [
+        "GeneID:1260931"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MSGALQWWETIGAASAQYNLDPRLVAGVVQTESSGNPRTTSGVGAMGLMQLMPATAKSLGVTNAYDPTQNIYGGAALLRENLDRYGDVNTALLAYHGGTNQANWGAKTKSYPGKVMKNINLLFGNSGPVVTPAAGIAPVSGAQEMTAVNISDYTAPDLTGLTMGAGSPDFTGGASGSWGEENIPWYRVDKHVANAAGSAYDAVTDAVSAPVEAAGNYALRGVVIIAAVAIVVVGLYFLFQDEINSAAMKMIPAGKAAGAAAKALA",
+      "length": 265,
+      "sequence_sha256": "c881623835a21ba73fee4bf5f7331bf1ea7b3a029005b410836520a4bb1bb0e7",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_001421.2.gb",
+      "cds_fasta_id": "lcl|NC_001421.2_prot_YP_009639979.1_25",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "PRD1|PRD1_30",
+      "gene": "XIV",
+      "locus_tag": "PRD1_30",
+      "product": "transglycosylase",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "P14",
+      "replicon": "NC_001421.2",
+      "start": 12535,
+      "stop": 12987,
+      "strand": "+",
+      "location": "[12534:12987](+)",
+      "protein_accession": "YP_009639980.1",
+      "db_xref": [
+        "GeneID:5729506"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MKNINLLFGNSGPVVTPAAGIAPVSGAQEMTAVNISDYTAPDLTGLTMGAGSPDFTGGASGSWGEENIPWYRVDKHVANAAGSAYDAVTDAVSAPVEAAGNYALRGVVIIAAVAIVVVGLYFLFQDEINSAAMKMIPAGKAAGAAAKALA",
+      "length": 150,
+      "sequence_sha256": "b5c19b8d243e645a4b82a238ec24e47e7a565e0e708ea917da8a8ad7676e0c23",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_001421.2.gb",
+      "cds_fasta_id": "lcl|NC_001421.2_prot_YP_009639980.1_26",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "PRD1|PRD1_31",
+      "gene": "XXXV",
+      "locus_tag": "PRD1_31",
+      "product": "holin",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "P35",
+      "replicon": "NC_001421.2",
+      "start": 12984,
+      "stop": 13337,
+      "strand": "+",
+      "location": "[12983:13337](+)",
+      "protein_accession": "YP_009639981.1",
+      "db_xref": [
+        "GeneID:5729504"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MMENDEWWKYLIFPLVATLGGIVNYSKRALAMKRFSKLEFAVEAVSAAFVGLMVTLGGAAMDLSPHWLGMAAGMSGWMGADFVKAVFSQFVQSKIAPINQPGPIDSDNDKPGRTFND",
+      "length": 117,
+      "sequence_sha256": "53381bdfa017b8db0c8fa77e32fb27f87a541095a2ef3393b5c2b85977715d78",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_001421.2.gb",
+      "cds_fasta_id": "lcl|NC_001421.2_prot_YP_009639981.1_27",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "PRD1|PRD1_32",
+      "gene": "ORFu",
+      "locus_tag": "PRD1_32",
+      "product": "Rz-like spanin",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gpu",
+      "replicon": "NC_001421.2",
+      "start": 13330,
+      "stop": 13692,
+      "strand": "+",
+      "location": "[13329:13692](+)",
+      "protein_accession": "YP_009639982.1",
+      "db_xref": [
+        "GeneID:5729505"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MIKWVLSNLKSVAAIAVALLMLANFGYSILAAKKITGLQNEIKAIEEKATANAKAVETLQSVRASDAKAIAAIQEGQTIISGKLSRTISGLGRVSDETKQILDSPMPADVRGLFDNSPEN",
+      "length": 120,
+      "sequence_sha256": "9d387814d5b06c15784601450d04412154a4a49f7fe8f947ed639b20969cf718",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_001421.2.gb",
+      "cds_fasta_id": "lcl|NC_001421.2_prot_YP_009639982.1_28",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "PRD1|PRD1_33",
+      "gene": "ORFv",
+      "locus_tag": "PRD1_33",
+      "product": "Rz-like spanin",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gpv",
+      "replicon": "NC_001421.2",
+      "start": 13616,
+      "stop": 13888,
+      "strand": "+",
+      "location": "[13615:13888](+)",
+      "protein_accession": "YP_009639983.1",
+      "db_xref": [
+        "GeneID:5729502"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MKLNKFLIVLCLPMFAACSTTAPKIETVYLVPPSSLLTECAAPVYPFITWRDLVEAYAKEKAARESCGLQIQEIKNWFKETVPSESRKFQ",
+      "length": 90,
+      "sequence_sha256": "a5fa04e50702ac031a9a6a66d256d25b53a1f25192c3d33e03ee3d4e35a64afa",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_001421.2.gb",
+      "cds_fasta_id": "lcl|NC_001421.2_prot_YP_009639983.1_29",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "PRD1|PRD1_21",
+      "gene": "XIX",
+      "locus_tag": "PRD1_21",
+      "product": "single strand DNA binding protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "P19",
+      "replicon": "NC_001421.2",
+      "start": 13848,
+      "stop": 14132,
+      "strand": "-",
+      "location": "[13847:14132](-)",
+      "protein_accession": "YP_009639984.1",
+      "db_xref": [
+        "GeneID:1260936"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MEKQTENTRPECPKAFYFVSIPGDFGQTPFASSLMYGSTALAAVYQVKGAIRVVSEHFDLRFADNGFTPAGVTQAEWLGKLITETFGFRLELFL",
+      "length": 94,
+      "sequence_sha256": "591eda0864cf956daf956430068ecb04d469793a0e0c9ed40e3f74b3a225aab7",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_001421.2.gb",
+      "cds_fasta_id": "lcl|NC_001421.2_prot_YP_009639984.1_30",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "PRD1|PRD1_22",
+      "gene": "XII",
+      "locus_tag": "PRD1_22",
+      "product": "single strand DNA binding protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "P12",
+      "replicon": "NC_001421.2",
+      "start": 14205,
+      "stop": 14687,
+      "strand": "-",
+      "location": "[14204:14687](-)",
+      "protein_accession": "YP_009639985.1",
+      "db_xref": [
+        "GeneID:1260928"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MEIVSKLTLKTIGAQPKPHSVKENTALASIYGRVRGKKVGQSTFGDFIKFEGEFEGVNIATGEVFRSGALILPKVLESLLAGAVDGENTVDFAVEIWAKPSEKGNTGYEYGVKPLIEPAASDELAALRNQVKAALPAPAAAGEAAAEAKPAAKAKAKAEA",
+      "length": 160,
+      "sequence_sha256": "ec894bc8e641ecb943ca2992fd33e873db4a048314dbf0893285975f5d85fea4",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_001421.2.gb",
+      "cds_fasta_id": "lcl|NC_001421.2_prot_YP_009639985.1_31",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    }
+  ]
+}

@@ -1,0 +1,186 @@
+{
+ "checked_utc": "2026-11-06T19:53:08+00:00",
+ "organism": "Bacillus subtilis 168",
+ "accessions": [
+  "NC_000964.3"
+ ],
+ "checks": [
+  {
+   "check": "input checksums inputs/NC_000964.3.gb.gz",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "input checksum inputs/NC_000964.3.cds_aa.fasta",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "CDS reconciliation",
+   "status": "pass",
+   "detail": "4237 CDS = 4237 translated + 0 pseudo/untranslated"
+  },
+  {
+   "check": "every NCBI CDS-FASTA record matched",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "translations agree with CDS FASTA and coordinate re-derivation (incl. transl_except)",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "submitted batch FASTAs are exact inventory sequences (0 job records)",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "raw output checksums (0 files)",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "no failed batches",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "data.json protein set == inventory (order preserved)",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "0 predictions: segment strings expand to exactly one label per residue, contiguous 1..L, allowed alphabet",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "Phobius signal-peptide ends = reported cleavage site; 'C' marker not counted as SP (0 proteins)",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "normalizer: returned sequences match and no label/alphabet errors",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "DeepTMHMM \u03b2-type predictions agree with its GFF (P=periplasm, O=outside, B=beta sheet; 0 proteins)",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "Phobius coverage of eligible proteins",
+   "status": "pending",
+   "detail": "0/4237 eligible (4237 in inventory); {'pending': 4237}"
+  },
+  {
+   "check": "DeepTMHMM coverage of eligible proteins",
+   "status": "pending",
+   "detail": "0/4237 eligible (4237 in inventory); {'pending': 4237}"
+  },
+  {
+   "check": "TOPCONS2 coverage of eligible proteins",
+   "status": "pending",
+   "detail": "0/4237 eligible (4237 in inventory); {'pending': 4237}"
+  },
+  {
+   "check": "organism atlas embeds the current sequences and predictions",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "organism atlas contains no other organism's name",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "atlas loads no external scripts or styles",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "combined atlas embeds the current sequences and predictions for this organism",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "browser (file://, offline): no JavaScript errors",
+   "status": "pass",
+   "detail": "[]"
+  },
+  {
+   "check": "browser layout audit: no text overlaps, no clipped text, no line crossing a label, no crossing leaders/bonds (all figures of every checked protein; 1443 proteins checked atlas-wide, all phage proteins + host sample)",
+   "status": "pass",
+   "detail": "[]"
+  },
+  {
+   "check": "browser: every residue's identity, number and band state verified in the full sequence map; bead cartoons account for every residue exactly once",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "browser: SVG export well-formed; PNG 2x/4x produced; no horizontal overflow at 390 px",
+   "status": "pass",
+   "detail": ""
+  }
+ ],
+ "failures": [],
+ "pending": [
+  "Phobius coverage of eligible proteins: 0/4237 eligible (4237 in inventory); {'pending': 4237}",
+  "DeepTMHMM coverage of eligible proteins: 0/4237 eligible (4237 in inventory); {'pending': 4237}",
+  "TOPCONS2 coverage of eligible proteins: 0/4237 eligible (4237 in inventory); {'pending': 4237}"
+ ],
+ "beta_state_predictions": [],
+ "browser_check": {
+  "checked_utc": "2026-11-06T19:53:00.431Z",
+  "browser": "153.0.8010.12",
+  "proteins_checked": 1443,
+  "phage_proteins": 1068,
+  "host_sample": 375,
+  "ui": {
+   "search_secY": 6,
+   "org_M13": 10,
+   "M13_span": 7,
+   "component_track": true,
+   "window_cells": 16,
+   "rerun_forms": [
+    "https://phobius.sbc.su.se/predict",
+    "https://services.healthtech.dtu.dk/cgi-bin/webface2.cgi"
+   ],
+   "rerun_links": [
+    "https://github.com/mbaffour/mbaffour.github.io/actions/workflows/topology-rerun.yml"
+   ]
+  },
+  "exports": {
+   "svg": {
+    "name": "M13_M13p08_VI_Phobius_DeepTMHMM_TOPCONS2_orientation_1-112.svg",
+    "bytes": 59072,
+    "xml_ok": true
+   },
+   "png2": {
+    "name": "M13_M13p08_VI_Phobius_DeepTMHMM_TOPCONS2_orientation_1-112.png",
+    "bytes": 505141,
+    "png_size": [
+     2480,
+     2114
+    ]
+   },
+   "png4": {
+    "name": "M13_M13p08_VI_Phobius_DeepTMHMM_TOPCONS2_orientation_1-112.png",
+    "bytes": 1268527,
+    "png_size": [
+     4960,
+     4228
+    ]
+   }
+  }
+ },
+ "summary": {
+  "checks": 24,
+  "passed": 21,
+  "failed": 0,
+  "pending": 3
+ }
+}

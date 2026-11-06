@@ -1,0 +1,50 @@
+{
+  "method": "TOPCONS2",
+  "batches": [
+    {
+      "batch": "b001",
+      "fasta": "raw/TOPCONS2/b001.fasta",
+      "fasta_sha256": "ca4e2cf2f14bc476d5d03f78a3afa6638a5160378265833f561e7aa207cfab27",
+      "n_sequences": 1000,
+      "n_residues": 325008,
+      "planned_utc": "2026-11-06T19:26:03+00:00",
+      "rerun": false
+    },
+    {
+      "batch": "b002",
+      "fasta": "raw/TOPCONS2/b002.fasta",
+      "fasta_sha256": "67f164c7acff4cbd1d46f306c10d23aab3dbea0f4f6561c79ed1910de674a87c",
+      "n_sequences": 1000,
+      "n_residues": 290046,
+      "planned_utc": "2026-11-06T19:26:03+00:00",
+      "rerun": false
+    },
+    {
+      "batch": "b003",
+      "fasta": "raw/TOPCONS2/b003.fasta",
+      "fasta_sha256": "724fa86f46783ecbf842c03f8fe30c0ae4fd0e1ed7c3cd9819aefe1cd2ae029b",
+      "n_sequences": 1000,
+      "n_residues": 322746,
+      "planned_utc": "2026-11-06T19:26:03+00:00",
+      "rerun": false
+    },
+    {
+      "batch": "b004",
+      "fasta": "raw/TOPCONS2/b004.fasta",
+      "fasta_sha256": "cbbcb6629aa8ef0a5695195840417e34572f1218671b7e2663207e62b4eb46ec",
+      "n_sequences": 1000,
+      "n_residues": 315878,
+      "planned_utc": "2026-11-06T19:26:03+00:00",
+      "rerun": false
+    },
+    {
+      "batch": "b005",
+      "fasta": "raw/TOPCONS2/b005.fasta",
+      "fasta_sha256": "e9f667383f3de5d696e4e8fcf85e2a2923c1b74f2703562016a8b05f659ac8a3",
+      "n_sequences": 551,
+      "n_residues": 170743,
+      "planned_utc": "2026-11-06T19:26:03+00:00",
+      "rerun": false
+    }
+  ]
+}

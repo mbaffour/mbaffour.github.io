@@ -1,306 +1,187 @@
 {
- "checked_utc": "2026-11-06T19:14:30+00:00",
+ "checked_utc": "2026-11-06T19:53:00+00:00",
  "organism": "Escherichia phage phiX174",
- "accession": "NC_001422.1",
+ "accessions": [
+  "NC_001422.1"
+ ],
  "checks": [
   {
    "check": "input checksum inputs/NC_001422.1.gb",
-   "pass": true,
+   "status": "pass",
    "detail": ""
   },
   {
    "check": "input checksum inputs/NC_001422.1.cds_aa.fasta",
-   "pass": true,
+   "status": "pass",
    "detail": ""
   },
   {
    "check": "input checksum inputs/NC_001422.1.fna",
-   "pass": true,
+   "status": "pass",
    "detail": ""
   },
   {
    "check": "CDS reconciliation",
-   "pass": true,
-   "detail": "11 CDS = 11 proteins + 0 pseudo/untranslated"
+   "status": "pass",
+   "detail": "11 CDS = 11 translated + 0 pseudo/untranslated"
   },
   {
-   "check": "all CDS FASTA records matched",
-   "pass": true,
+   "check": "every NCBI CDS-FASTA record matched",
+   "status": "pass",
    "detail": ""
   },
   {
-   "check": "translations agree with CDS FASTA and coordinate derivation",
-   "pass": true,
+   "check": "translations agree with CDS FASTA and coordinate re-derivation (incl. transl_except)",
+   "status": "pass",
    "detail": ""
   },
   {
-   "check": "submitted FASTA == inventory (ids, exact sequences)",
-   "pass": true,
+   "check": "submitted batch FASTAs are exact inventory sequences (5 job records)",
+   "status": "pass",
    "detail": ""
   },
   {
-   "check": "Phobius batch1_api.job.json: batch FASTA identical to submitted FASTA",
-   "pass": true,
+   "check": "raw output checksums (20 files)",
+   "status": "pass",
    "detail": ""
   },
   {
-   "check": "Phobius batch1_api.job.json: raw output checksums (14 files)",
-   "pass": true,
+   "check": "no failed batches",
+   "status": "pass",
    "detail": ""
   },
   {
-   "check": "Phobius batch1_api.job.json: status complete",
-   "pass": true,
-   "detail": "complete"
-  },
-  {
-   "check": "Phobius batch1_nog.job.json: batch FASTA identical to submitted FASTA",
-   "pass": true,
+   "check": "data.json protein set == inventory (order preserved)",
+   "status": "pass",
    "detail": ""
   },
   {
-   "check": "Phobius batch1_nog.job.json: raw output checksums (1 files)",
-   "pass": true,
+   "check": "88 predictions: segment strings expand to exactly one label per residue, contiguous 1..L, allowed alphabet",
+   "status": "pass",
    "detail": ""
   },
   {
-   "check": "Phobius batch1_nog.job.json: status complete",
-   "pass": true,
-   "detail": "complete"
-  },
-  {
-   "check": "Phobius batch1_short.job.json: batch FASTA identical to submitted FASTA",
-   "pass": true,
+   "check": "Phobius signal-peptide ends = reported cleavage site; 'C' marker not counted as SP (2 proteins)",
+   "status": "pass",
    "detail": ""
   },
   {
-   "check": "Phobius batch1_short.job.json: raw output checksums (1 files)",
-   "pass": true,
+   "check": "normalizer: returned sequences match and no label/alphabet errors",
+   "status": "pass",
    "detail": ""
   },
   {
-   "check": "Phobius batch1_short.job.json: status complete",
-   "pass": true,
-   "detail": "complete"
-  },
-  {
-   "check": "DeepTMHMM batch1.job.json: batch FASTA identical to submitted FASTA",
-   "pass": true,
+   "check": "DeepTMHMM \u03b2-type predictions agree with its GFF (P=periplasm, O=outside, B=beta sheet; 0 proteins)",
+   "status": "pass",
    "detail": ""
   },
   {
-   "check": "DeepTMHMM batch1.job.json: raw output checksums (3 files)",
-   "pass": true,
+   "check": "Phobius coverage of eligible proteins",
+   "status": "pass",
+   "detail": "11/11 eligible (11 in inventory); {'complete': 11}"
+  },
+  {
+   "check": "DeepTMHMM coverage of eligible proteins",
+   "status": "pass",
+   "detail": "11/11 eligible (11 in inventory); {'complete': 11}"
+  },
+  {
+   "check": "TOPCONS2 coverage of eligible proteins",
+   "status": "pass",
+   "detail": "11/11 eligible (11 in inventory); {'complete': 11}"
+  },
+  {
+   "check": "organism atlas embeds the current sequences and predictions",
+   "status": "pass",
    "detail": ""
   },
   {
-   "check": "DeepTMHMM batch1.job.json: status complete",
-   "pass": true,
-   "detail": "complete"
-  },
-  {
-   "check": "TOPCONS2 batch1.job.json: batch FASTA identical to submitted FASTA",
-   "pass": true,
+   "check": "organism atlas contains no other organism's name",
+   "status": "pass",
    "detail": ""
   },
   {
-   "check": "TOPCONS2 batch1.job.json: raw output checksums (1 files)",
-   "pass": true,
+   "check": "atlas loads no external scripts or styles",
+   "status": "pass",
    "detail": ""
   },
   {
-   "check": "TOPCONS2 batch1.job.json: status complete",
-   "pass": true,
-   "detail": "complete"
-  },
-  {
-   "check": "data.json protein set == inventory",
-   "pass": true,
+   "check": "combined atlas embeds the current sequences and predictions for this organism",
+   "status": "pass",
    "detail": ""
   },
   {
-   "check": "phiX174|phiX174p01 sequence/sha",
-   "pass": true,
-   "detail": ""
-  },
-  {
-   "check": "phiX174|phiX174p02 sequence/sha",
-   "pass": true,
-   "detail": ""
-  },
-  {
-   "check": "phiX174|phiX174p03 sequence/sha",
-   "pass": true,
-   "detail": ""
-  },
-  {
-   "check": "phiX174|phiX174p04 sequence/sha",
-   "pass": true,
-   "detail": ""
-  },
-  {
-   "check": "phiX174|phiX174p05 sequence/sha",
-   "pass": true,
-   "detail": ""
-  },
-  {
-   "check": "phiX174|phiX174p07 sequence/sha",
-   "pass": true,
-   "detail": ""
-  },
-  {
-   "check": "phiX174|phiX174p08 sequence/sha",
-   "pass": true,
-   "detail": ""
-  },
-  {
-   "check": "phiX174|phiX174p08 Phobius SP boundary = cleavage site 33",
-   "pass": true,
-   "detail": "SP [1, 33], residue 34 native 'C' -> 'O'"
-  },
-  {
-   "check": "phiX174|phiX174p09 sequence/sha",
-   "pass": true,
-   "detail": ""
-  },
-  {
-   "check": "phiX174|phiX174p06 sequence/sha",
-   "pass": true,
-   "detail": ""
-  },
-  {
-   "check": "phiX174|phiX174p10 sequence/sha",
-   "pass": true,
-   "detail": ""
-  },
-  {
-   "check": "phiX174|phiX174p11 sequence/sha",
-   "pass": true,
-   "detail": ""
-  },
-  {
-   "check": "phiX174|phiX174p11 Phobius SP boundary = cleavage site 19",
-   "pass": true,
-   "detail": "SP [1, 19], residue 20 native 'C' -> 'O'"
-  },
-  {
-   "check": "all 88 label strings: length, contiguous coverage, segment rebuild, alphabet",
-   "pass": true,
-   "detail": ""
-  },
-  {
-   "check": "normalization validation errors empty",
-   "pass": true,
-   "detail": ""
-  },
-  {
-   "check": "Phobius coverage complete",
-   "pass": true,
-   "detail": "11/11"
-  },
-  {
-   "check": "DeepTMHMM coverage complete",
-   "pass": true,
-   "detail": "11/11"
-  },
-  {
-   "check": "TOPCONS2 coverage complete",
-   "pass": true,
-   "detail": "11/11"
-  },
-  {
-   "check": "atlas embeds current data.json",
-   "pass": true,
-   "detail": ""
-  },
-  {
-   "check": "atlas contains no other organism names",
-   "pass": true,
-   "detail": ""
-  },
-  {
-   "check": "atlas has no external script/style dependencies",
-   "pass": true,
-   "detail": ""
-  },
-  {
-   "check": "browser: no JS errors (file://, offline)",
-   "pass": true,
+   "check": "browser (file://, offline): no JavaScript errors",
+   "status": "pass",
    "detail": "[]"
   },
   {
-   "check": "browser: every residue's identity, number and band state verified in full sequence map",
-   "pass": true,
+   "check": "browser layout audit: no text overlaps, no clipped text, no line crossing a label, no crossing leaders/bonds (all figures of every checked protein; 1443 proteins checked atlas-wide, all phage proteins + host sample)",
+   "status": "pass",
+   "detail": "[]"
+  },
+  {
+   "check": "browser: every residue's identity, number and band state verified in the full sequence map; bead cartoons account for every residue exactly once",
+   "status": "pass",
    "detail": ""
   },
   {
-   "check": "browser: bead cartoons account for every residue exactly once (drawn + explicitly omitted)",
-   "pass": true,
-   "detail": ""
-  },
-  {
-   "check": "browser: no bead overlaps (min centre distance >= bead diameter 20 px)",
-   "pass": true,
-   "detail": ""
-  },
-  {
-   "check": "browser: SVG export is well-formed XML",
-   "pass": true,
-   "detail": ""
-  },
-  {
-   "check": "browser: PNG exports produced",
-   "pass": true,
-   "detail": "{\"png2\": [2376, 1694], \"png4\": [4752, 3388]}"
-  },
-  {
-   "check": "browser: no horizontal page overflow at 390 px width",
-   "pass": true,
+   "check": "browser: SVG export well-formed; PNG 2x/4x produced; no horizontal overflow at 390 px",
+   "status": "pass",
    "detail": ""
   }
  ],
  "failures": [],
- "nonstandard_residue_proteins": [],
+ "pending": [],
  "beta_state_predictions": [],
  "browser_check": {
-  "source": "logs/browser_check.json (copied to verification_browser.json)",
-  "checked_utc": "2026-11-06T19:14:20.454Z",
+  "checked_utc": "2026-11-06T19:53:00.431Z",
   "browser": "153.0.8010.12",
+  "proteins_checked": 1443,
+  "phage_proteins": 1068,
+  "host_sample": 375,
   "ui": {
-   "search_coat": 1,
-   "filter_span": 0,
-   "filter_disagree": 4,
-   "window_5_20_cells": 16,
-   "component_toggle_adds_track": true
+   "search_secY": 6,
+   "org_M13": 10,
+   "M13_span": 7,
+   "component_track": true,
+   "window_cells": 16,
+   "rerun_forms": [
+    "https://phobius.sbc.su.se/predict",
+    "https://services.healthtech.dtu.dk/cgi-bin/webface2.cgi"
+   ],
+   "rerun_links": [
+    "https://github.com/mbaffour/mbaffour.github.io/actions/workflows/topology-rerun.yml"
+   ]
   },
   "exports": {
    "svg": {
-    "name": "phiX174_phiX174p11_gene_H_Phobius_DeepTMHMM_TOPCONS2_seqcharge_1-328.svg",
-    "bytes": 192776,
+    "name": "M13_M13p08_VI_Phobius_DeepTMHMM_TOPCONS2_orientation_1-112.svg",
+    "bytes": 59072,
     "xml_ok": true
    },
    "png2": {
-    "name": "phiX174_phiX174p11_gene_H_Phobius_DeepTMHMM_TOPCONS2_seqcharge_1-328.png",
-    "bytes": 426317,
+    "name": "M13_M13p08_VI_Phobius_DeepTMHMM_TOPCONS2_orientation_1-112.png",
+    "bytes": 505141,
     "png_size": [
-     2376,
-     1694
+     2480,
+     2114
     ]
    },
    "png4": {
-    "name": "phiX174_phiX174p11_gene_H_Phobius_DeepTMHMM_TOPCONS2_seqcharge_1-328.png",
-    "bytes": 1048489,
+    "name": "M13_M13p08_VI_Phobius_DeepTMHMM_TOPCONS2_orientation_1-112.png",
+    "bytes": 1268527,
     "png_size": [
-     4752,
-     3388
+     4960,
+     4228
     ]
    }
-  },
-  "bead_abbreviations": {}
+  }
  },
  "summary": {
-  "checks": 51,
-  "passed": 51,
-  "failed": 0
+  "checks": 25,
+  "passed": 25,
+  "failed": 0,
+  "pending": 0
  }
 }

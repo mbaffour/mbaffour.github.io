@@ -1,0 +1,51 @@
+{
+  "organism": "Bacillus phage SPP1",
+  "accessions": [
+    "NC_004166.2"
+  ],
+  "files": [
+    {
+      "file": "inputs/NC_004166.2.gb",
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&id=NC_004166.2&rettype=gbwithparts&retmode=text",
+      "retrieved_utc": "2026-11-06T19:22:19+00:00",
+      "sha256": "bb29d9d7263d662e35e70dd992d7862dc7782507aa6691e4239b26de4efab94a",
+      "bytes": 142072
+    },
+    {
+      "file": "inputs/NC_004166.2.cds_aa.fasta",
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&id=NC_004166.2&rettype=fasta_cds_aa&retmode=text",
+      "retrieved_utc": "2026-11-06T19:22:21+00:00",
+      "sha256": "4955a57c57e926f3a640eee8c98fef07c8d8f8958464918c4ec065ef8dc9dafd",
+      "bytes": 36348
+    },
+    {
+      "file": "inputs/NC_004166.2.fna",
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&id=NC_004166.2&rettype=fasta&retmode=text",
+      "retrieved_utc": "2026-11-06T19:22:22+00:00",
+      "sha256": "61e207ed4b0cf459b5f15448ea267b0d0c56cd9a7617e336d005e54823a11ecc",
+      "bytes": 44701
+    }
+  ],
+  "ncbi_summaries": [
+    {
+      "accessionversion": "NC_004166.2",
+      "title": "Bacteriophage SPP1 complete nucleotide sequence",
+      "slen": 44010,
+      "createdate": "1998/01/08",
+      "updatedate": "2023/01/07",
+      "taxid": 10724,
+      "biomol": "genomic",
+      "topology": "circular"
+    }
+  ],
+  "ncbi_summary": {
+    "accessionversion": "NC_004166.2",
+    "title": "Bacteriophage SPP1 complete nucleotide sequence",
+    "slen": 44010,
+    "createdate": "1998/01/08",
+    "updatedate": "2023/01/07",
+    "taxid": 10724,
+    "biomol": "genomic",
+    "topology": "circular"
+  }
+}

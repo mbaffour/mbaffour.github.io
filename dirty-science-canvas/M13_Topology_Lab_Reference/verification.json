@@ -1,281 +1,146 @@
 {
- "checked_utc": "2026-11-06T19:14:30+00:00",
+ "checked_utc": "2026-11-06T19:53:01+00:00",
  "organism": "Enterobacteria phage M13",
- "accession": "NC_003287.2",
+ "accessions": [
+  "NC_003287.2"
+ ],
  "checks": [
   {
    "check": "input checksum inputs/NC_003287.2.gb",
-   "pass": true,
+   "status": "pass",
    "detail": ""
   },
   {
    "check": "input checksum inputs/NC_003287.2.cds_aa.fasta",
-   "pass": true,
+   "status": "pass",
    "detail": ""
   },
   {
    "check": "input checksum inputs/NC_003287.2.fna",
-   "pass": true,
+   "status": "pass",
    "detail": ""
   },
   {
    "check": "CDS reconciliation",
-   "pass": true,
-   "detail": "10 CDS = 10 proteins + 0 pseudo/untranslated"
+   "status": "pass",
+   "detail": "10 CDS = 10 translated + 0 pseudo/untranslated"
   },
   {
-   "check": "all CDS FASTA records matched",
-   "pass": true,
+   "check": "every NCBI CDS-FASTA record matched",
+   "status": "pass",
    "detail": ""
   },
   {
-   "check": "translations agree with CDS FASTA and coordinate derivation",
-   "pass": true,
+   "check": "translations agree with CDS FASTA and coordinate re-derivation (incl. transl_except)",
+   "status": "pass",
    "detail": ""
   },
   {
-   "check": "submitted FASTA == inventory (ids, exact sequences)",
-   "pass": true,
+   "check": "submitted batch FASTAs are exact inventory sequences (5 job records)",
+   "status": "pass",
    "detail": ""
   },
   {
-   "check": "Phobius batch1_api.job.json: batch FASTA identical to submitted FASTA",
-   "pass": true,
+   "check": "raw output checksums (19 files)",
+   "status": "pass",
    "detail": ""
   },
   {
-   "check": "Phobius batch1_api.job.json: raw output checksums (13 files)",
-   "pass": true,
+   "check": "no failed batches",
+   "status": "pass",
    "detail": ""
   },
   {
-   "check": "Phobius batch1_api.job.json: status complete",
-   "pass": true,
-   "detail": "complete"
-  },
-  {
-   "check": "Phobius batch1_nog.job.json: batch FASTA identical to submitted FASTA",
-   "pass": true,
+   "check": "data.json protein set == inventory (order preserved)",
+   "status": "pass",
    "detail": ""
   },
   {
-   "check": "Phobius batch1_nog.job.json: raw output checksums (1 files)",
-   "pass": true,
+   "check": "80 predictions: segment strings expand to exactly one label per residue, contiguous 1..L, allowed alphabet",
+   "status": "pass",
    "detail": ""
   },
   {
-   "check": "Phobius batch1_nog.job.json: status complete",
-   "pass": true,
-   "detail": "complete"
-  },
-  {
-   "check": "Phobius batch1_short.job.json: batch FASTA identical to submitted FASTA",
-   "pass": true,
+   "check": "Phobius signal-peptide ends = reported cleavage site; 'C' marker not counted as SP (4 proteins)",
+   "status": "pass",
    "detail": ""
   },
   {
-   "check": "Phobius batch1_short.job.json: raw output checksums (1 files)",
-   "pass": true,
+   "check": "normalizer: returned sequences match and no label/alphabet errors",
+   "status": "pass",
    "detail": ""
   },
   {
-   "check": "Phobius batch1_short.job.json: status complete",
-   "pass": true,
-   "detail": "complete"
-  },
-  {
-   "check": "DeepTMHMM batch1.job.json: batch FASTA identical to submitted FASTA",
-   "pass": true,
+   "check": "DeepTMHMM \u03b2-type predictions agree with its GFF (P=periplasm, O=outside, B=beta sheet; 1 proteins)",
+   "status": "pass",
    "detail": ""
   },
   {
-   "check": "DeepTMHMM batch1.job.json: raw output checksums (3 files)",
-   "pass": true,
+   "check": "Phobius coverage of eligible proteins",
+   "status": "pass",
+   "detail": "10/10 eligible (10 in inventory); {'complete': 10}"
+  },
+  {
+   "check": "DeepTMHMM coverage of eligible proteins",
+   "status": "pass",
+   "detail": "10/10 eligible (10 in inventory); {'complete': 10}"
+  },
+  {
+   "check": "TOPCONS2 coverage of eligible proteins",
+   "status": "pass",
+   "detail": "10/10 eligible (10 in inventory); {'complete': 10}"
+  },
+  {
+   "check": "organism atlas embeds the current sequences and predictions",
+   "status": "pass",
    "detail": ""
   },
   {
-   "check": "DeepTMHMM batch1.job.json: status complete",
-   "pass": true,
-   "detail": "complete"
-  },
-  {
-   "check": "TOPCONS2 batch1.job.json: batch FASTA identical to submitted FASTA",
-   "pass": true,
+   "check": "organism atlas contains no other organism's name",
+   "status": "pass",
    "detail": ""
   },
   {
-   "check": "TOPCONS2 batch1.job.json: raw output checksums (1 files)",
-   "pass": true,
+   "check": "atlas loads no external scripts or styles",
+   "status": "pass",
    "detail": ""
   },
   {
-   "check": "TOPCONS2 batch1.job.json: status complete",
-   "pass": true,
-   "detail": "complete"
-  },
-  {
-   "check": "data.json protein set == inventory",
-   "pass": true,
+   "check": "combined atlas embeds the current sequences and predictions for this organism",
+   "status": "pass",
    "detail": ""
   },
   {
-   "check": "M13|M13p01 sequence/sha",
-   "pass": true,
-   "detail": ""
-  },
-  {
-   "check": "M13|M13p02 sequence/sha",
-   "pass": true,
-   "detail": ""
-  },
-  {
-   "check": "M13|M13p03 sequence/sha",
-   "pass": true,
-   "detail": ""
-  },
-  {
-   "check": "M13|M13p04 sequence/sha",
-   "pass": true,
-   "detail": ""
-  },
-  {
-   "check": "M13|M13p05 sequence/sha",
-   "pass": true,
-   "detail": ""
-  },
-  {
-   "check": "M13|M13p05 Phobius SP boundary = cleavage site 18",
-   "pass": true,
-   "detail": "SP [1, 18], residue 19 native 'C' -> 'O'"
-  },
-  {
-   "check": "M13|M13p06 sequence/sha",
-   "pass": true,
-   "detail": ""
-  },
-  {
-   "check": "M13|M13p06 Phobius SP boundary = cleavage site 23",
-   "pass": true,
-   "detail": "SP [1, 23], residue 24 native 'C' -> 'O'"
-  },
-  {
-   "check": "M13|M13p07 sequence/sha",
-   "pass": true,
-   "detail": ""
-  },
-  {
-   "check": "M13|M13p07 Phobius SP boundary = cleavage site 18",
-   "pass": true,
-   "detail": "SP [1, 18], residue 19 native 'C' -> 'O'"
-  },
-  {
-   "check": "M13|M13p08 sequence/sha",
-   "pass": true,
-   "detail": ""
-  },
-  {
-   "check": "M13|M13p09 sequence/sha",
-   "pass": true,
-   "detail": ""
-  },
-  {
-   "check": "M13|M13p10 sequence/sha",
-   "pass": true,
-   "detail": ""
-  },
-  {
-   "check": "M13|M13p10 Phobius SP boundary = cleavage site 21",
-   "pass": true,
-   "detail": "SP [1, 21], residue 22 native 'C' -> 'O'"
-  },
-  {
-   "check": "all 80 label strings: length, contiguous coverage, segment rebuild, alphabet",
-   "pass": true,
-   "detail": ""
-  },
-  {
-   "check": "M13|M13p10 DeepTMHMM: beta-state segments agree with model GFF (P=periplasm, O=outside, B=beta sheet)",
-   "pass": true,
-   "detail": "[[\"S\", 1, 21], [\"P\", 22, 200], [\"B\", 201, 205], [\"O\", 206, 357], [\"B\", 358, 365], [\"P\", 366, 373], [\"B\", 374, 378], [\"O\", 379, 413], [\"B\", 414, 418], [\"P\", 419, 426]]"
-  },
-  {
-   "check": "normalization validation errors empty",
-   "pass": true,
-   "detail": ""
-  },
-  {
-   "check": "Phobius coverage complete",
-   "pass": true,
-   "detail": "10/10"
-  },
-  {
-   "check": "DeepTMHMM coverage complete",
-   "pass": true,
-   "detail": "10/10"
-  },
-  {
-   "check": "TOPCONS2 coverage complete",
-   "pass": true,
-   "detail": "10/10"
-  },
-  {
-   "check": "atlas embeds current data.json",
-   "pass": true,
-   "detail": ""
-  },
-  {
-   "check": "atlas contains no other organism names",
-   "pass": true,
-   "detail": ""
-  },
-  {
-   "check": "atlas has no external script/style dependencies",
-   "pass": true,
-   "detail": ""
-  },
-  {
-   "check": "browser: no JS errors (file://, offline)",
-   "pass": true,
+   "check": "browser (file://, offline): no JavaScript errors",
+   "status": "pass",
    "detail": "[]"
   },
   {
-   "check": "browser: every residue's identity, number and band state verified in full sequence map",
-   "pass": true,
+   "check": "browser layout audit: no text overlaps, no clipped text, no line crossing a label, no crossing leaders/bonds (all figures of every checked protein; 1443 proteins checked atlas-wide, all phage proteins + host sample)",
+   "status": "pass",
+   "detail": "[]"
+  },
+  {
+   "check": "browser: every residue's identity, number and band state verified in the full sequence map; bead cartoons account for every residue exactly once",
+   "status": "pass",
    "detail": ""
   },
   {
-   "check": "browser: bead cartoons account for every residue exactly once (drawn + explicitly omitted)",
-   "pass": true,
-   "detail": ""
-  },
-  {
-   "check": "browser: no bead overlaps (min centre distance >= bead diameter 20 px)",
-   "pass": true,
-   "detail": ""
-  },
-  {
-   "check": "browser: SVG export is well-formed XML",
-   "pass": true,
-   "detail": ""
-  },
-  {
-   "check": "browser: PNG exports produced",
-   "pass": true,
-   "detail": "{\"png2\": [2376, 2034], \"png4\": [4752, 4068]}"
-  },
-  {
-   "check": "browser: no horizontal page overflow at 390 px width",
-   "pass": true,
+   "check": "browser: SVG export well-formed; PNG 2x/4x produced; no horizontal overflow at 390 px",
+   "status": "pass",
    "detail": ""
   }
  ],
  "failures": [],
- "nonstandard_residue_proteins": [],
+ "pending": [],
+ "beta_state_predictions": [
+  "M13|M13p10"
+ ],
  "literature_comparison": [
   {
    "protein_id": "M13|M13p06",
    "experimental_signal_peptide_end": 23,
-   "reference": "pVIII precursor (procoat) 73 aa; mature coat begins at residue 24 (AEGDDP...) \u2014 e.g. Kuhn & Wickner 1985 J Biol Chem 260:15914",
+   "reference": "pVIII precursor (procoat); mature coat begins at residue 24 (AEGDDP...), e.g. Kuhn & Wickner 1985 J Biol Chem 260:15914",
    "predicted_signal_peptide_end": {
     "Phobius": 23,
     "DeepTMHMM": 23,
@@ -285,7 +150,7 @@
   {
    "protein_id": "M13|M13p07",
    "experimental_signal_peptide_end": 18,
-   "reference": "pIII precursor; mature protein begins at residue 19 (AETVES...) \u2014 e.g. van Wezenbeek et al. 1980 Gene 11:129",
+   "reference": "pIII precursor; mature protein begins at residue 19 (AETVES...), e.g. van Wezenbeek et al. 1980 Gene 11:129",
    "predicted_signal_peptide_end": {
     "Phobius": 18,
     "DeepTMHMM": 18,
@@ -293,143 +158,54 @@
    }
   }
  ],
- "beta_state_predictions": [
-  [
-   "M13|M13p10",
-   "DeepTMHMM",
-   "BETA"
-  ]
- ],
  "browser_check": {
-  "source": "logs/browser_check.json (copied to verification_browser.json)",
-  "checked_utc": "2026-11-06T19:14:20.454Z",
+  "checked_utc": "2026-11-06T19:53:00.431Z",
   "browser": "153.0.8010.12",
+  "proteins_checked": 1443,
+  "phage_proteins": 1068,
+  "host_sample": 375,
   "ui": {
-   "search_coat": 5,
-   "filter_span": 7,
-   "filter_disagree": 5,
-   "window_5_20_cells": 16,
-   "component_toggle_adds_track": true
+   "search_secY": 6,
+   "org_M13": 10,
+   "M13_span": 7,
+   "component_track": true,
+   "window_cells": 16,
+   "rerun_forms": [
+    "https://phobius.sbc.su.se/predict",
+    "https://services.healthtech.dtu.dk/cgi-bin/webface2.cgi"
+   ],
+   "rerun_links": [
+    "https://github.com/mbaffour/mbaffour.github.io/actions/workflows/topology-rerun.yml"
+   ]
   },
   "exports": {
    "svg": {
-    "name": "M13_M13p10_IV_Phobius_DeepTMHMM_TOPCONS2_seqcharge_1-426.svg",
-    "bytes": 250742,
+    "name": "M13_M13p08_VI_Phobius_DeepTMHMM_TOPCONS2_orientation_1-112.svg",
+    "bytes": 59072,
     "xml_ok": true
    },
    "png2": {
-    "name": "M13_M13p10_IV_Phobius_DeepTMHMM_TOPCONS2_seqcharge_1-426.png",
-    "bytes": 503105,
+    "name": "M13_M13p08_VI_Phobius_DeepTMHMM_TOPCONS2_orientation_1-112.png",
+    "bytes": 505141,
     "png_size": [
-     2376,
-     2034
+     2480,
+     2114
     ]
    },
    "png4": {
-    "name": "M13_M13p10_IV_Phobius_DeepTMHMM_TOPCONS2_seqcharge_1-426.png",
-    "bytes": 1232772,
+    "name": "M13_M13p08_VI_Phobius_DeepTMHMM_TOPCONS2_orientation_1-112.png",
+    "bytes": 1268527,
     "png_size": [
-     4752,
-     4068
-    ]
-   }
-  },
-  "bead_abbreviations": {
-   "M13|M13p07": {
-    "Phobius": [
-     [
-      49,
-      363
-     ]
-    ],
-    "DeepTMHMM": [
-     [
-      49,
-      367
-     ]
-    ],
-    "TOPCONS2": [
-     [
-      52,
-      366
-     ]
-    ],
-    "OCTOPUS": [
-     [
-      31,
-      365
-     ]
-    ],
-    "Philius": [
-     [
-      49,
-      366
-     ]
-    ],
-    "PolyPhobius": [
-     [
-      49,
-      366
-     ]
-    ],
-    "SCAMPI": [
-     [
-      31,
-      368
-     ]
-    ],
-    "SPOCTOPUS": [
-     [
-      50,
-      365
-     ]
-    ]
-   },
-   "M13|M13p09": {
-    "Phobius": [
-     [
-      31,
-      220
-     ]
-    ],
-    "DeepTMHMM": [
-     [
-      31,
-      222
-     ]
-    ],
-    "PolyPhobius": [
-     [
-      31,
-      220
-     ]
-    ],
-    "SPOCTOPUS": [
-     [
-      31,
-      220
-     ]
-    ]
-   },
-   "M13|M13p10": {
-    "OCTOPUS": [
-     [
-      53,
-      396
-     ]
-    ],
-    "SCAMPI": [
-     [
-      54,
-      396
-     ]
+     4960,
+     4228
     ]
    }
   }
  },
  "summary": {
-  "checks": 53,
-  "passed": 53,
-  "failed": 0
+  "checks": 25,
+  "passed": 25,
+  "failed": 0,
+  "pending": 0
  }
 }

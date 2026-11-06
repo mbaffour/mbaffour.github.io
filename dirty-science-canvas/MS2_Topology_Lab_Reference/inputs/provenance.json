@@ -1,5 +1,8 @@
 {
-  "accession": "NC_001417.2",
+  "organism": "Escherichia phage MS2",
+  "accessions": [
+    "NC_001417.2"
+  ],
   "files": [
     {
       "file": "inputs/NC_001417.2.gb",
@@ -21,6 +24,18 @@
       "retrieved_utc": "2026-11-06T18:48:17Z",
       "sha256": "5d8a76418415c9cd2448300ce07635a3f3f167deb139ab078bfefe613e4658ad",
       "bytes": 3651
+    }
+  ],
+  "ncbi_summaries": [
+    {
+      "accessionversion": "NC_001417.2",
+      "title": "phage MS2 genome",
+      "slen": 3569,
+      "createdate": "1982/06/09",
+      "updatedate": "2023/01/07",
+      "taxid": 12022,
+      "biomol": "genomic",
+      "topology": "linear"
     }
   ],
   "ncbi_summary": {

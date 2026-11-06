@@ -1,5 +1,8 @@
 {
-  "accession": "NC_001422.1",
+  "organism": "Escherichia phage phiX174",
+  "accessions": [
+    "NC_001422.1"
+  ],
   "files": [
     {
       "file": "inputs/NC_001422.1.gb",
@@ -21,6 +24,18 @@
       "retrieved_utc": "2026-11-06T18:48:03Z",
       "sha256": "caa155c83967cc080f4f188f14f1f28c18d77448e87c3d00d3579ed348f4de2a",
       "bytes": 5520
+    }
+  ],
+  "ncbi_summaries": [
+    {
+      "accessionversion": "NC_001422.1",
+      "title": "Escherichia phage phiX174, complete genome",
+      "slen": 5386,
+      "createdate": "1993/04/28",
+      "updatedate": "2023/01/11",
+      "taxid": 2886930,
+      "biomol": "genomic",
+      "topology": "circular"
     }
   ],
   "ncbi_summary": {

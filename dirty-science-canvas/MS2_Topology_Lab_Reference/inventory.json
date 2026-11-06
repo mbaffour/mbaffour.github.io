@@ -1,8 +1,13 @@
 {
   "organism": "Escherichia phage MS2",
   "key": "MS2",
-  "accession": "NC_001417.2",
-  "record_description": "phage MS2 genome",
+  "kind": "phage",
+  "accessions": [
+    "NC_001417.2"
+  ],
+  "gb_files": [
+    "NC_001417.2.gb"
+  ],
   "n_cds_features": 4,
   "n_proteins": 4,
   "n_pseudogenes": 0,
@@ -34,9 +39,26 @@
       "sequence": "MRAFSTLDRENETFVPSVRVYADGETEDNSFSLKYRSNWTPGRFNSTGAKTKQWHYPSPYSRGALSVTSIDQGAYKRSGSSWGRPYEEKAGFGFSLDARSCYSLFPVSQNLTYIEVPQNVANRASTEVLQKVTQGNFNLGVALAEARSTASQLATQTIALVKAYTAARRGNWRQALRYLALNEDRKFRSKHVAGRWLELQFGWLPLMSDIQGAYEMLTKVHLQEFLPMRAVRQVGTNIKLDGRLSYPAANFQTTCNISRRIVIWFYINDARLAWLSSLGILNPLGIVWEKVPFSFVVDWLLPVGNMLEGLTAPVGCSYMSGTVTDVITGESIISVDAPYGWTVERQGTAKAQISAMHRGVQSVWPTTGAYVKSPFSMVHTLDALALIRQRLSR",
       "length": 393,
       "sequence_sha256": "dd5d8c4fe3bb148093313e7c3366d5b0a16fd56b33e7dd195b13f120b9be0bb2",
-      "annotation_flags": [],
+      "annotation_flags": [
+        "alternative_start_codon_read_as_Met"
+      ],
       "source_record": "inputs/NC_001417.2.gb",
-      "cds_fasta_id": "lcl|NC_001417.2_prot_YP_009640124.1_1"
+      "cds_fasta_id": "lcl|NC_001417.2_prot_YP_009640124.1_1",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
     },
     {
       "protein_id": "MS2|MS2g2",
@@ -102,7 +124,22 @@
       "sequence_sha256": "db64f5a5341e29eed7f0ca9243a56fe0942ed7c2e1ea616e8ca2e43d9e8b8683",
       "annotation_flags": [],
       "source_record": "inputs/NC_001417.2.gb",
-      "cds_fasta_id": "lcl|NC_001417.2_prot_YP_009640125.1_2"
+      "cds_fasta_id": "lcl|NC_001417.2_prot_YP_009640125.1_2",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
     },
     {
       "protein_id": "MS2|MS2g3",
@@ -131,7 +168,22 @@
       "sequence_sha256": "d883ba2310c1b06a302a8dddfd9303d58ad9224286fb02435f9ffc70a60f843e",
       "annotation_flags": [],
       "source_record": "inputs/NC_001417.2.gb",
-      "cds_fasta_id": "lcl|NC_001417.2_prot_YP_009640126.1_3"
+      "cds_fasta_id": "lcl|NC_001417.2_prot_YP_009640126.1_3",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
     },
     {
       "protein_id": "MS2|MS2g4",
@@ -161,7 +213,22 @@
       "sequence_sha256": "2b4385222b637dc7fb6b8c057a5811ebcd9470ccd2caeae8d9ebb623e1a5f876",
       "annotation_flags": [],
       "source_record": "inputs/NC_001417.2.gb",
-      "cds_fasta_id": "lcl|NC_001417.2_prot_YP_009640127.1_4"
+      "cds_fasta_id": "lcl|NC_001417.2_prot_YP_009640127.1_4",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
     }
   ]
 }
