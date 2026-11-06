@@ -1,5 +1,5 @@
 {
- "checked_utc": "2026-11-06T20:37:28+00:00",
+ "checked_utc": "2026-11-06T20:40:11+00:00",
  "organism": "Salmonella enterica serovar Typhimurium LT2",
  "accessions": [
   "NC_003197.2",
@@ -123,8 +123,8 @@
   },
   {
    "check": "browser layout audit: no text overlaps, no clipped text, no line crossing a label, no crossing leaders/bonds (all figures of every checked protein; 1568 proteins checked atlas-wide, all phage proteins + host sample)",
-   "status": "fail",
-   "detail": "[[\"Salmonella_LT2|STM0562\", {\"C_Phobius\": [\"conn crosses text \\\"OUTSIDE \\u00b7 non-cytoplasmic\\\"\"]}]]"
+   "status": "pass",
+   "detail": "[]"
   },
   {
    "check": "browser: every residue's identity, number and band state verified in the full sequence map; bead cartoons account for every residue exactly once",
@@ -137,16 +137,14 @@
    "detail": ""
   }
  ],
- "failures": [
-  "browser layout audit: no text overlaps, no clipped text, no line crossing a label, no crossing leaders/bonds (all figures of every checked protein; 1568 proteins checked atlas-wide, all phage proteins + host sample): [[\"Salmonella_LT2|STM0562\", {\"C_Phobius\": [\"conn crosses text \\\"OUTSIDE \\u00b7 non-cytoplasmic\\\"\"]}]]"
- ],
+ "failures": [],
  "pending": [
   "DeepTMHMM coverage of eligible proteins: 0/4551 eligible (4554 in inventory); {'pending': 4551, 'unsupported': 3}",
   "TOPCONS2 coverage of eligible proteins: 0/4551 eligible (4554 in inventory); {'pending': 4551, 'unsupported': 3}"
  ],
  "beta_state_predictions": [],
  "browser_check": {
-  "checked_utc": "2026-11-06T20:37:18.395Z",
+  "checked_utc": "2026-11-06T20:40:02.268Z",
   "browser": "153.0.8010.12",
   "proteins_checked": 1568,
   "phage_proteins": 1068,
@@ -191,8 +189,8 @@
  },
  "summary": {
   "checks": 26,
-  "passed": 23,
-  "failed": 1,
+  "passed": 24,
+  "failed": 0,
   "pending": 2
  }
 }

@@ -41,7 +41,7 @@ The atlas renders four views per protein — A presentation orientation (residue
 - Pipeline: GitHub → Actions → *Topology atlas re-run* (`.github/workflows/topology-rerun.yml`, https://github.com/mbaffour/mbaffour.github.io/actions/workflows/topology-rerun.yml) with organism `Salmonella_LT2`; or locally `python3 scripts/rerun.py --org Salmonella_LT2`.
 
 ## Validation
-`verification.json`: 23 pass, 1 fail, 2 pending of 26 checks. Pending: DeepTMHMM coverage of eligible proteins: 0/4551 eligible (4554 in inventory); {'pending': 4551, 'unsupported': 3}; TOPCONS2 coverage of eligible proteins: 0/4551 eligible (4554 in inventory); {'pending': 4551, 'unsupported': 3}. Failures: browser layout audit: no text overlaps, no clipped text, no line crossing a label, no crossing leaders/bonds (all figures of every checked protein; 1568 proteins checked atlas-wide, all phage proteins + host sample): [["Salmonella_LT2|STM0562", {"C_Phobius": ["conn crosses text \"OUTSIDE \u00b7 non-cytoplasmic\""]}]].
+`verification.json`: 24 pass, 0 fail, 2 pending of 26 checks. Pending: DeepTMHMM coverage of eligible proteins: 0/4551 eligible (4554 in inventory); {'pending': 4551, 'unsupported': 3}; TOPCONS2 coverage of eligible proteins: 0/4551 eligible (4554 in inventory); {'pending': 4551, 'unsupported': 3}.
 Checks cover input checksums, CDS reconciliation, batch-FASTA identity, raw-output checksums, segment expansion/contiguity/alphabet for every prediction, Phobius signal-peptide boundaries, DeepTMHMM β segments against its GFF, atlas embedding, and the headless-browser audit.
 
 ## Rebuild / resume (from `dirty-science-canvas/`; Python 3 with `biopython requests suds pybiolib`, Node with Playwright)

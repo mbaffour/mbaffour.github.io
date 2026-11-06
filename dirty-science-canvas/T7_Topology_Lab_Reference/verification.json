@@ -1,5 +1,5 @@
 {
- "checked_utc": "2026-11-06T20:37:22+00:00",
+ "checked_utc": "2026-11-06T20:40:05+00:00",
  "organism": "Enterobacteria phage T7",
  "accessions": [
   "NC_001604.1"
@@ -117,8 +117,8 @@
   },
   {
    "check": "browser layout audit: no text overlaps, no clipped text, no line crossing a label, no crossing leaders/bonds (all figures of every checked protein; 1568 proteins checked atlas-wide, all phage proteins + host sample)",
-   "status": "fail",
-   "detail": "[[\"T7|T7p11\", {\"C_TOPCONS2\": [\"conn crosses text \\\"OUTSIDE \\u00b7 non-cytoplasmic\\\"\"]}]]"
+   "status": "pass",
+   "detail": "[]"
   },
   {
    "check": "browser: every residue's identity, number and band state verified in the full sequence map; bead cartoons account for every residue exactly once",
@@ -131,13 +131,11 @@
    "detail": ""
   }
  ],
- "failures": [
-  "browser layout audit: no text overlaps, no clipped text, no line crossing a label, no crossing leaders/bonds (all figures of every checked protein; 1568 proteins checked atlas-wide, all phage proteins + host sample): [[\"T7|T7p11\", {\"C_TOPCONS2\": [\"conn crosses text \\\"OUTSIDE \\u00b7 non-cytoplasmic\\\"\"]}]]"
- ],
+ "failures": [],
  "pending": [],
  "beta_state_predictions": [],
  "browser_check": {
-  "checked_utc": "2026-11-06T20:37:18.395Z",
+  "checked_utc": "2026-11-06T20:40:02.268Z",
   "browser": "153.0.8010.12",
   "proteins_checked": 1568,
   "phage_proteins": 1068,
@@ -182,8 +180,8 @@
  },
  "summary": {
   "checks": 25,
-  "passed": 24,
-  "failed": 1,
+  "passed": 25,
+  "failed": 0,
   "pending": 0
  }
 }

@@ -320,7 +320,7 @@ The atlas renders four views per protein — A presentation orientation (residue
 - Pipeline: GitHub → Actions → *Topology atlas re-run* (`.github/workflows/topology-rerun.yml`, https://github.com/mbaffour/mbaffour.github.io/actions/workflows/topology-rerun.yml) with organism `T4`; or locally `python3 scripts/rerun.py --org T4`.
 
 ## Validation
-`verification.json`: 24 pass, 1 fail, 0 pending of 25 checks.  Failures: browser layout audit: no text overlaps, no clipped text, no line crossing a label, no crossing leaders/bonds (all figures of every checked protein; 1568 proteins checked atlas-wide, all phage proteins + host sample): [["T4|T4p263", {"C_TOPCONS2": ["conn crosses text \"OUTSIDE \u00b7 non-cytoplasmic\""]}]].
+`verification.json`: 25 pass, 0 fail, 0 pending of 25 checks. 
 Checks cover input checksums, CDS reconciliation, batch-FASTA identity, raw-output checksums, segment expansion/contiguity/alphabet for every prediction, Phobius signal-peptide boundaries, DeepTMHMM β segments against its GFF, atlas embedding, and the headless-browser audit.
 
 ## Rebuild / resume (from `dirty-science-canvas/`; Python 3 with `biopython requests suds pybiolib`, Node with Playwright)

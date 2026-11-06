@@ -392,8 +392,12 @@ function figBeads(p,m){ ex(p); const pr=p.pred[m], seq=p.sequence, L=p.length, t
   rows.forEach((rw,ri)=>{ const t=rowTop(ri), a=t+outH, b=a+memH;
     s+=`<rect x="16" y="${t}" width="${W-32}" height="${outH}" fill="#fff4e0"/><rect x="16" y="${b}" width="${W-32}" height="${inH}" fill="#e2f4f1"/><rect x="16" y="${a}" width="${W-32}" height="${memH}" fill="#f2e8cc"/>`;
     let heads=''; for(let k=0;k<(W-32)/10;k++) heads+=`<circle cx="${21+k*10}" cy="${a+4}" r="3.7"/><circle cx="${21+k*10}" cy="${b-4}" r="3.7"/>`; s+=`<g fill="#d4b06a" opacity=".85">${heads}</g>`;
-    s+=`<text class="t" x="${W-28}" y="${t+20}" font-size="14" font-weight="700" text-anchor="end" fill="#9a4d03">OUTSIDE · non-cytoplasmic</text><text class="t" x="${W-28}" y="${b+inH-12}" font-size="14" font-weight="700" text-anchor="end" fill="#0b6b62">INSIDE · cytoplasmic</text>`;
-    if(rows.length>1) s+=`<text class="t" x="28" y="${t+20}" font-size="13" font-weight="700" fill="#374151">Row ${ri+1} of ${rows.length}</text>`; });
+    // keep compartment labels clear of the signal-peptide connector: use the corner on the side away from it
+    const ow=textW('OUTSIDE · non-cytoplasmic',14,700), iw=textW('INSIDE · cytoplasmic',14,700), cx=spB.length?first.x:-1e9;
+    const outLeft = ri===0 && !spBottom && cx > W-40-ow-12, inLeft = ri===0 && spBottom && cx > W-40-iw-12;
+    s+= outLeft ? `<text class="t" x="28" y="${t+20}" font-size="14" font-weight="700" fill="#9a4d03">OUTSIDE · non-cytoplasmic</text>` : `<text class="t" x="${W-28}" y="${t+20}" font-size="14" font-weight="700" text-anchor="end" fill="#9a4d03">OUTSIDE · non-cytoplasmic</text>`;
+    s+= inLeft ? `<text class="t" x="28" y="${b+inH-12}" font-size="14" font-weight="700" fill="#0b6b62">INSIDE · cytoplasmic</text>` : `<text class="t" x="${W-28}" y="${b+inH-12}" font-size="14" font-weight="700" text-anchor="end" fill="#0b6b62">INSIDE · cytoplasmic</text>`;
+    if(rows.length>1) s+=`<text class="t" x="28" y="${t+(outLeft?40:20)}" font-size="13" font-weight="700" fill="#374151">Row ${ri+1} of ${rows.length}</text>`; });
   let d=''; for(let i=1;i<beads.length;i++) if(beads[i].row===beads[i-1].row) d+=`M${rr(beads[i-1].x)} ${rr(beads[i-1].y)}L${rr(beads[i].x)} ${rr(beads[i].y)}`; s+=`<path class="bonds" d="${d}" stroke="#4b5563" stroke-width="2.2" fill="none"/>`;
   if(spB.length){ const lastX=spX0+(spB.length-1)*sp; let dd=''; for(let i=1;i<spB.length;i++) dd+=`M${rr(spX0+(i-1)*sp)} ${spY}L${rr(spX0+i*sp)} ${spY}`; s+=`<path class="bonds" d="${dd}" stroke="#db2777" stroke-width="2"/>`;
     s+=`<line class="conn" x1="${rr(lastX)}" y1="${rr(spY+(spBottom?-r:r))}" x2="${rr(first.x)}" y2="${rr(first.y+(spBottom?r:-r))}" stroke="#db2777" stroke-width="2" stroke-dasharray="5 4"/>`;
