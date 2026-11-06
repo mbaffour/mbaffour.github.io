@@ -1,0 +1,39 @@
+{
+  "method": "TOPCONS2",
+  "wsdl": "https://topcons.net/pred/api_submitseq/?wsdl",
+  "batch": "b001",
+  "fasta": "raw/TOPCONS2/b001.fasta",
+  "fasta_sha256": "89236128417a4c446c6725a934b4d5d05e019af01beaf126c6d607a2200c65ad",
+  "n_sequences": 61,
+  "n_residues": 11951,
+  "planned_utc": "2026-11-06T19:26:03+00:00",
+  "rerun": false,
+  "jobname": "dsc_HK97_b001",
+  "fixtop": "",
+  "email": "",
+  "submitted_utc": "2026-11-06T21:04:42+00:00",
+  "raw_return": [
+    "rst_ljt3ocqw",
+    "https://topcons.net/pred/result/rst_ljt3ocqw",
+    "61",
+    "None",
+    "\n"
+  ],
+  "jobid": "rst_ljt3ocqw",
+  "result_url": "https://topcons.net/pred/result/rst_ljt3ocqw",
+  "numseq_accepted": "61",
+  "error": "None",
+  "warning": "\n",
+  "status": "submitted",
+  "checks": [
+    {
+      "utc": "2026-11-06T21:04:43+00:00",
+      "status": "Wait"
+    },
+    {
+      "utc": "2026-11-06T21:05:44+00:00",
+      "status": "Running"
+    }
+  ],
+  "server_status": "Running"
+}

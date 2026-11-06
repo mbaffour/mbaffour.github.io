@@ -20,7 +20,7 @@ Open **`HK97_Topology_Atlas.html`** (one offline file), or the combined atlas `.
 - **Phobius**: phobius.sbc.su.se JSON API; batches ≤100 sequences and ≤50,000 residues. Per-protein posterior plots (SVG) in `raw/Phobius/plots/`.
 - **DeepTMHMM**: BioLib app DTU/DeepTMHMM (DTU/DeepTMHMM:1.0.57); ≤500 sequences per job, one job at a time.
 - **TOPCONS2**: topcons.net WSDL API; ≤1,000 sequences per job, ≤2 active jobs. Cache status reported by the server: —. Components (OCTOPUS, Philius, PolyPhobius, SCAMPI, SPOCTOPUS) feed the consensus; they are not extra votes.
-- Job records (exact batch FASTA checksum, job ID, times, status, output checksums) are in `raw/<Method>/*.job.json`; 2 records.
+- Job records (exact batch FASTA checksum, job ID, times, status, output checksums) are in `raw/<Method>/*.job.json`; 3 records.
 
 ## Summary
 - 7 proteins with ≥1 predicted membrane span (any main method); 4 with a predicted signal peptide; 0 with DeepTMHMM β-type states; 9 with main-method disagreement.
@@ -105,7 +105,7 @@ The atlas renders four views per protein — A presentation orientation (residue
 - Pipeline: GitHub → Actions → *Topology atlas re-run* (`.github/workflows/topology-rerun.yml`, https://github.com/mbaffour/mbaffour.github.io/actions/workflows/topology-rerun.yml) with organism `HK97`; or locally `python3 scripts/rerun.py --org HK97`.
 
 ## Validation
-`verification.json`: 24 pass, 0 fail, 1 pending of 25 checks. Pending: TOPCONS2 coverage of eligible proteins: 0/61 eligible (61 in inventory); {'pending': 61}.
+`verification.json`: 24 pass, 0 fail, 2 pending of 26 checks. Pending: all batches complete: TOPCONS2/b001.job.json:submitted; TOPCONS2 coverage of eligible proteins: 0/61 eligible (61 in inventory); {'pending': 61}.
 Checks cover input checksums, CDS reconciliation, batch-FASTA identity, raw-output checksums, segment expansion/contiguity/alphabet for every prediction, Phobius signal-peptide boundaries, DeepTMHMM β segments against its GFF, atlas embedding, and the headless-browser audit.
 
 ## Rebuild / resume (from `dirty-science-canvas/`; Python 3 with `biopython requests suds pybiolib`, Node with Playwright)

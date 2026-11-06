@@ -1,5 +1,5 @@
 {
- "checked_utc": "2026-11-06T20:40:11+00:00",
+ "checked_utc": "2026-11-06T21:28:31+00:00",
  "organism": "Salmonella enterica serovar Typhimurium LT2",
  "accessions": [
   "NC_003197.2",
@@ -42,12 +42,12 @@
    "detail": ""
   },
   {
-   "check": "submitted batch FASTAs are exact inventory sequences (46 job records)",
+   "check": "submitted batch FASTAs are exact inventory sequences (49 job records)",
    "status": "pass",
    "detail": ""
   },
   {
-   "check": "raw output checksums (46 files)",
+   "check": "raw output checksums (52 files)",
    "status": "pass",
    "detail": ""
   },
@@ -57,12 +57,17 @@
    "detail": ""
   },
   {
+   "check": "all batches complete",
+   "status": "pending",
+   "detail": "DeepTMHMM/b003.job.json:running"
+  },
+  {
    "check": "data.json protein set == inventory (order preserved)",
    "status": "pass",
    "detail": ""
   },
   {
-   "check": "4551 predictions: segment strings expand to exactly one label per residue, contiguous 1..L, allowed alphabet",
+   "check": "5051 predictions: segment strings expand to exactly one label per residue, contiguous 1..L, allowed alphabet",
    "status": "pass",
    "detail": ""
   },
@@ -77,7 +82,7 @@
    "detail": ""
   },
   {
-   "check": "DeepTMHMM \u03b2-type predictions agree with its GFF (P=periplasm, O=outside, B=beta sheet; 0 proteins)",
+   "check": "DeepTMHMM \u03b2-type predictions agree with its GFF (P=periplasm, O=outside, B=beta sheet; 16 proteins)",
    "status": "pass",
    "detail": ""
   },
@@ -89,7 +94,7 @@
   {
    "check": "DeepTMHMM coverage of eligible proteins",
    "status": "pending",
-   "detail": "0/4551 eligible (4554 in inventory); {'pending': 4551, 'unsupported': 3}"
+   "detail": "500/4551 eligible (4554 in inventory); {'complete': 500, 'pending': 4051, 'unsupported': 3}"
   },
   {
    "check": "TOPCONS2 coverage of eligible proteins",
@@ -139,12 +144,30 @@
  ],
  "failures": [],
  "pending": [
-  "DeepTMHMM coverage of eligible proteins: 0/4551 eligible (4554 in inventory); {'pending': 4551, 'unsupported': 3}",
+  "all batches complete: DeepTMHMM/b003.job.json:running",
+  "DeepTMHMM coverage of eligible proteins: 500/4551 eligible (4554 in inventory); {'complete': 500, 'pending': 4051, 'unsupported': 3}",
   "TOPCONS2 coverage of eligible proteins: 0/4551 eligible (4554 in inventory); {'pending': 4551, 'unsupported': 3}"
  ],
- "beta_state_predictions": [],
+ "beta_state_predictions": [
+  "Salmonella_LT2|STM0023",
+  "Salmonella_LT2|STM0034",
+  "Salmonella_LT2|STM0093",
+  "Salmonella_LT2|STM0175",
+  "Salmonella_LT2|STM0191",
+  "Salmonella_LT2|STM0196",
+  "Salmonella_LT2|STM0224",
+  "Salmonella_LT2|STM0301",
+  "Salmonella_LT2|STM0306",
+  "Salmonella_LT2|STM0320",
+  "Salmonella_LT2|STM0338",
+  "Salmonella_LT2|STM0346",
+  "Salmonella_LT2|STM0364",
+  "Salmonella_LT2|STM0373",
+  "Salmonella_LT2|STM0413",
+  "Salmonella_LT2|STM0509"
+ ],
  "browser_check": {
-  "checked_utc": "2026-11-06T20:40:02.268Z",
+  "checked_utc": "2026-11-06T21:28:19.537Z",
   "browser": "153.0.8010.12",
   "proteins_checked": 1568,
   "phage_proteins": 1068,
@@ -188,9 +211,9 @@
   }
  },
  "summary": {
-  "checks": 26,
+  "checks": 27,
   "passed": 24,
   "failed": 0,
-  "pending": 2
+  "pending": 3
  }
 }

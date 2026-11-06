@@ -14,16 +14,16 @@ Open **`Ecoli_K12_Topology_Atlas.html`** (one offline file), or the combined atl
 | Method | Complete / eligible | Not eligible (reason) |
 |---|---|---|
 | Phobius | 4,297 / 4,297 ({'complete': 4297, 'unsupported': 3}) | `Ecoli_K12|b1474`: unsupported residue(s) U not in the Phobius alphabet (sequence not altered); `Ecoli_K12|b3894`: unsupported residue(s) U not in the Phobius alphabet (sequence not altered); `Ecoli_K12|b4079`: unsupported residue(s) U not in the Phobius alphabet (sequence not altered) |
-| DeepTMHMM | 2,000 / 4,297 ({'complete': 2000, 'pending': 2297, 'unsupported': 3}) | `Ecoli_K12|b1474`: unsupported residue(s) U not in the DeepTMHMM alphabet (sequence not altered); `Ecoli_K12|b3894`: unsupported residue(s) U not in the DeepTMHMM alphabet (sequence not altered); `Ecoli_K12|b4079`: unsupported residue(s) U not in the DeepTMHMM alphabet (sequence not altered) |
+| DeepTMHMM | 4,297 / 4,297 ({'complete': 4297, 'unsupported': 3}) | `Ecoli_K12|b1474`: unsupported residue(s) U not in the DeepTMHMM alphabet (sequence not altered); `Ecoli_K12|b3894`: unsupported residue(s) U not in the DeepTMHMM alphabet (sequence not altered); `Ecoli_K12|b4079`: unsupported residue(s) U not in the DeepTMHMM alphabet (sequence not altered) |
 | TOPCONS2 | 0 / 4,293 ({'pending': 4293, 'too_short': 4, 'unsupported': 3}) | `Ecoli_K12|b4737`: too short (8 aa < 10 aa minimum); `Ecoli_K12|b1474`: unsupported residue(s) U not in the TOPCONS2 alphabet (sequence not altered); `Ecoli_K12|b4781`: too short (9 aa < 10 aa minimum); `Ecoli_K12|b4789`: too short (9 aa < 10 aa minimum); `Ecoli_K12|b4794`: too short (8 aa < 10 aa minimum); `Ecoli_K12|b3894`: unsupported residue(s) U not in the TOPCONS2 alphabet (sequence not altered); `Ecoli_K12|b4079`: unsupported residue(s) U not in the TOPCONS2 alphabet (sequence not altered) |
 
 - **Phobius**: phobius.sbc.su.se JSON API; batches ≤100 sequences and ≤50,000 residues. Plots not requested at proteome scale.
 - **DeepTMHMM**: BioLib app DTU/DeepTMHMM (DTU/DeepTMHMM:1.0.57); ≤500 sequences per job, one job at a time.
 - **TOPCONS2**: topcons.net WSDL API; ≤1,000 sequences per job, ≤2 active jobs. Cache status reported by the server: —. Components (OCTOPUS, Philius, PolyPhobius, SCAMPI, SPOCTOPUS) feed the consensus; they are not extra votes.
-- Job records (exact batch FASTA checksum, job ID, times, status, output checksums) are in `raw/<Method>/*.job.json`; 48 records.
+- Job records (exact batch FASTA checksum, job ID, times, status, output checksums) are in `raw/<Method>/*.job.json`; 52 records.
 
 ## Summary
-- 1,003 proteins with ≥1 predicted membrane span (any main method); 834 with a predicted signal peptide; 41 with DeepTMHMM β-type states; 581 with main-method disagreement.
+- 1,055 proteins with ≥1 predicted membrane span (any main method); 878 with a predicted signal peptide; 71 with DeepTMHMM β-type states; 1,269 with main-method disagreement.
 - Per-protein calls for every method: `topology_summary.csv` (segments use `LABELstart-stop` runs, 1-based inclusive) and `data.json`.
 
 ## Conventions & cautions
@@ -40,7 +40,7 @@ The atlas renders four views per protein — A presentation orientation (residue
 - Pipeline: GitHub → Actions → *Topology atlas re-run* (`.github/workflows/topology-rerun.yml`, https://github.com/mbaffour/mbaffour.github.io/actions/workflows/topology-rerun.yml) with organism `Ecoli_K12`; or locally `python3 scripts/rerun.py --org Ecoli_K12`.
 
 ## Validation
-`verification.json`: 22 pass, 0 fail, 3 pending of 25 checks. Pending: all batches complete: DeepTMHMM/b005.job.json:running; DeepTMHMM coverage of eligible proteins: 2000/4297 eligible (4300 in inventory); {'complete': 2000, 'pending': 2297, 'unsupported': 3}; TOPCONS2 coverage of eligible proteins: 0/4293 eligible (4300 in inventory); {'pending': 4293, 'too_short': 4, 'unsupported': 3}.
+`verification.json`: 23 pass, 0 fail, 1 pending of 24 checks. Pending: TOPCONS2 coverage of eligible proteins: 0/4293 eligible (4300 in inventory); {'pending': 4293, 'too_short': 4, 'unsupported': 3}.
 Checks cover input checksums, CDS reconciliation, batch-FASTA identity, raw-output checksums, segment expansion/contiguity/alphabet for every prediction, Phobius signal-peptide boundaries, DeepTMHMM β segments against its GFF, atlas embedding, and the headless-browser audit.
 
 ## Rebuild / resume (from `dirty-science-canvas/`; Python 3 with `biopython requests suds pybiolib`, Node with Playwright)

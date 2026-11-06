@@ -1,5 +1,5 @@
 {
- "checked_utc": "2026-11-06T20:40:08+00:00",
+ "checked_utc": "2026-11-06T21:28:26+00:00",
  "organism": "Enterobacteria phage HK97",
  "accessions": [
   "NC_002167.1"
@@ -36,7 +36,7 @@
    "detail": ""
   },
   {
-   "check": "submitted batch FASTAs are exact inventory sequences (2 job records)",
+   "check": "submitted batch FASTAs are exact inventory sequences (3 job records)",
    "status": "pass",
    "detail": ""
   },
@@ -49,6 +49,11 @@
    "check": "no failed batches",
    "status": "pass",
    "detail": ""
+  },
+  {
+   "check": "all batches complete",
+   "status": "pending",
+   "detail": "TOPCONS2/b001.job.json:submitted"
   },
   {
    "check": "data.json protein set == inventory (order preserved)",
@@ -133,11 +138,12 @@
  ],
  "failures": [],
  "pending": [
+  "all batches complete: TOPCONS2/b001.job.json:submitted",
   "TOPCONS2 coverage of eligible proteins: 0/61 eligible (61 in inventory); {'pending': 61}"
  ],
  "beta_state_predictions": [],
  "browser_check": {
-  "checked_utc": "2026-11-06T20:40:02.268Z",
+  "checked_utc": "2026-11-06T21:28:19.537Z",
   "browser": "153.0.8010.12",
   "proteins_checked": 1568,
   "phage_proteins": 1068,
@@ -181,9 +187,9 @@
   }
  },
  "summary": {
-  "checks": 25,
+  "checks": 26,
   "passed": 24,
   "failed": 0,
-  "pending": 1
+  "pending": 2
  }
 }

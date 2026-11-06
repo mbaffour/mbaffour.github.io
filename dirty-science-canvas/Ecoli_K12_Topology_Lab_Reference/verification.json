@@ -1,5 +1,5 @@
 {
- "checked_utc": "2026-11-06T20:40:10+00:00",
+ "checked_utc": "2026-11-06T21:28:30+00:00",
  "organism": "Escherichia coli K-12 MG1655",
  "accessions": [
   "NC_000913.3"
@@ -31,12 +31,12 @@
    "detail": ""
   },
   {
-   "check": "submitted batch FASTAs are exact inventory sequences (48 job records)",
+   "check": "submitted batch FASTAs are exact inventory sequences (52 job records)",
    "status": "pass",
    "detail": ""
   },
   {
-   "check": "raw output checksums (55 files)",
+   "check": "raw output checksums (70 files)",
    "status": "pass",
    "detail": ""
   },
@@ -46,17 +46,12 @@
    "detail": ""
   },
   {
-   "check": "all batches complete",
-   "status": "pending",
-   "detail": "DeepTMHMM/b005.job.json:running"
-  },
-  {
    "check": "data.json protein set == inventory (order preserved)",
    "status": "pass",
    "detail": ""
   },
   {
-   "check": "6297 predictions: segment strings expand to exactly one label per residue, contiguous 1..L, allowed alphabet",
+   "check": "8594 predictions: segment strings expand to exactly one label per residue, contiguous 1..L, allowed alphabet",
    "status": "pass",
    "detail": ""
   },
@@ -71,7 +66,7 @@
    "detail": ""
   },
   {
-   "check": "DeepTMHMM \u03b2-type predictions agree with its GFF (P=periplasm, O=outside, B=beta sheet; 41 proteins)",
+   "check": "DeepTMHMM \u03b2-type predictions agree with its GFF (P=periplasm, O=outside, B=beta sheet; 71 proteins)",
    "status": "pass",
    "detail": ""
   },
@@ -82,8 +77,8 @@
   },
   {
    "check": "DeepTMHMM coverage of eligible proteins",
-   "status": "pending",
-   "detail": "2000/4297 eligible (4300 in inventory); {'complete': 2000, 'pending': 2297, 'unsupported': 3}"
+   "status": "pass",
+   "detail": "4297/4297 eligible (4300 in inventory); {'complete': 4297, 'unsupported': 3}"
   },
   {
    "check": "TOPCONS2 coverage of eligible proteins",
@@ -133,8 +128,6 @@
  ],
  "failures": [],
  "pending": [
-  "all batches complete: DeepTMHMM/b005.job.json:running",
-  "DeepTMHMM coverage of eligible proteins: 2000/4297 eligible (4300 in inventory); {'complete': 2000, 'pending': 2297, 'unsupported': 3}",
   "TOPCONS2 coverage of eligible proteins: 0/4293 eligible (4300 in inventory); {'pending': 4293, 'too_short': 4, 'unsupported': 3}"
  ],
  "beta_state_predictions": [
@@ -178,10 +171,40 @@
   "Ecoli_K12|b1722",
   "Ecoli_K12|b1782",
   "Ecoli_K12|b1978",
-  "Ecoli_K12|b2000"
+  "Ecoli_K12|b2000",
+  "Ecoli_K12|b2043",
+  "Ecoli_K12|b2109",
+  "Ecoli_K12|b2155",
+  "Ecoli_K12|b2215",
+  "Ecoli_K12|b2233",
+  "Ecoli_K12|b2250",
+  "Ecoli_K12|b2344",
+  "Ecoli_K12|b4680",
+  "Ecoli_K12|b2408",
+  "Ecoli_K12|b2647",
+  "Ecoli_K12|b3035",
+  "Ecoli_K12|b3079",
+  "Ecoli_K12|b3144",
+  "Ecoli_K12|b3200",
+  "Ecoli_K12|b3216",
+  "Ecoli_K12|b3530",
+  "Ecoli_K12|b3548",
+  "Ecoli_K12|b3584",
+  "Ecoli_K12|b3720",
+  "Ecoli_K12|b3821",
+  "Ecoli_K12|b4686",
+  "Ecoli_K12|b3875",
+  "Ecoli_K12|b3966",
+  "Ecoli_K12|b4029",
+  "Ecoli_K12|b4036",
+  "Ecoli_K12|b4080",
+  "Ecoli_K12|b4220",
+  "Ecoli_K12|b4291",
+  "Ecoli_K12|b4311",
+  "Ecoli_K12|b4317"
  ],
  "browser_check": {
-  "checked_utc": "2026-11-06T20:40:02.268Z",
+  "checked_utc": "2026-11-06T21:28:19.537Z",
   "browser": "153.0.8010.12",
   "proteins_checked": 1568,
   "phage_proteins": 1068,
@@ -225,9 +248,9 @@
   }
  },
  "summary": {
-  "checks": 25,
-  "passed": 22,
+  "checks": 24,
+  "passed": 23,
   "failed": 0,
-  "pending": 3
+  "pending": 1
  }
 }
