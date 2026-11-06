@@ -9,6 +9,6 @@ while True:
         while predictors.topcons_submit_next(k, keys): pass
     pending = sum(predictors.topcons_collect(k) for k in keys)
     unsub = sum(1 for k in keys for b in predictors.plan(k, "TOPCONS2")["batches"] if not (load(project_dir(k) / "raw/TOPCONS2" / f"{b['batch']}.job.json") or {}).get("jobid"))
-    print(time.strftime("%H:%M:%S"), "pending", pending, "unsubmitted", unsub, flush=True)
+    print(time.strftime("%H:%M:%S"), "pending", pending, "unsubmitted", unsub, flush=True) if (pending, unsub) != globals().get("_last") else None; _last = (pending, unsub)
     if "--once" in sys.argv or (pending == 0 and unsub == 0): break
     time.sleep(60)

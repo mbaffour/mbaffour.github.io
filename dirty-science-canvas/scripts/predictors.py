@@ -149,7 +149,8 @@ def topcons_collect(key):
         if rec.get("status") != "submitted": continue
         try: s = [str(x) for x in client().service.checkjob(rec["jobid"])[0]]
         except Exception as e: print("checkjob error", e, flush=True); pending += 1; continue
-        rec.setdefault("checks", []).append({"utc": now(), "status": s[0]}); rec["checks"] = rec["checks"][-20:]; rec["server_status"] = s[0]
+        changed = rec.get("server_status") != s[0]
+        if changed: rec.setdefault("checks", []).append({"utc": now(), "status": s[0]}); rec["checks"] = rec["checks"][-20:]; rec["server_status"] = s[0]
         if s[0] == "Finished":
             r = requests.get(s[1], timeout=1800); r.raise_for_status(); data = r.content
             rec.update({"result_zip_url": s[1], "result_zip_sha256": sha(data), "result_zip_bytes": len(data), "completed_utc": now()})
@@ -170,7 +171,7 @@ def topcons_collect(key):
             rec["status"] = "complete"
         elif s[0] == "Failed": rec.update({"status": "failed", "error": s[2]})
         else: pending += 1
-        save(jp, rec); print(key, "TOPCONS2", jp.name, s[0], flush=True)
+        if changed or rec.get("status") != "submitted": save(jp, rec); print(key, "TOPCONS2", jp.name, s[0], flush=True)
     return pending
 
 def topcons_members(pd, rec):
