@@ -1,5 +1,5 @@
 {
- "checked_utc": "2026-11-06T19:53:04+00:00",
+ "checked_utc": "2026-11-06T20:37:24+00:00",
  "organism": "Enterobacteria phage Mu",
  "accessions": [
   "NC_000929.1"
@@ -41,7 +41,7 @@
    "detail": ""
   },
   {
-   "check": "raw output checksums (1 files)",
+   "check": "raw output checksums (4 files)",
    "status": "pass",
    "detail": ""
   },
@@ -51,17 +51,12 @@
    "detail": ""
   },
   {
-   "check": "all batches complete",
-   "status": "pending",
-   "detail": "DeepTMHMM/b001.job.json:running"
-  },
-  {
    "check": "data.json protein set == inventory (order preserved)",
    "status": "pass",
    "detail": ""
   },
   {
-   "check": "55 predictions: segment strings expand to exactly one label per residue, contiguous 1..L, allowed alphabet",
+   "check": "110 predictions: segment strings expand to exactly one label per residue, contiguous 1..L, allowed alphabet",
    "status": "pass",
    "detail": ""
   },
@@ -87,8 +82,8 @@
   },
   {
    "check": "DeepTMHMM coverage of eligible proteins",
-   "status": "pending",
-   "detail": "0/55 eligible (55 in inventory); {'pending': 55}"
+   "status": "pass",
+   "detail": "55/55 eligible (55 in inventory); {'complete': 55}"
   },
   {
    "check": "TOPCONS2 coverage of eligible proteins",
@@ -121,7 +116,7 @@
    "detail": "[]"
   },
   {
-   "check": "browser layout audit: no text overlaps, no clipped text, no line crossing a label, no crossing leaders/bonds (all figures of every checked protein; 1443 proteins checked atlas-wide, all phage proteins + host sample)",
+   "check": "browser layout audit: no text overlaps, no clipped text, no line crossing a label, no crossing leaders/bonds (all figures of every checked protein; 1568 proteins checked atlas-wide, all phage proteins + host sample)",
    "status": "pass",
    "detail": "[]"
   },
@@ -138,17 +133,15 @@
  ],
  "failures": [],
  "pending": [
-  "all batches complete: DeepTMHMM/b001.job.json:running",
-  "DeepTMHMM coverage of eligible proteins: 0/55 eligible (55 in inventory); {'pending': 55}",
   "TOPCONS2 coverage of eligible proteins: 0/55 eligible (55 in inventory); {'pending': 55}"
  ],
  "beta_state_predictions": [],
  "browser_check": {
-  "checked_utc": "2026-11-06T19:53:00.431Z",
+  "checked_utc": "2026-11-06T20:37:18.395Z",
   "browser": "153.0.8010.12",
-  "proteins_checked": 1443,
+  "proteins_checked": 1568,
   "phage_proteins": 1068,
-  "host_sample": 375,
+  "host_sample": 500,
   "ui": {
    "search_secY": 6,
    "org_M13": 10,
@@ -188,9 +181,9 @@
   }
  },
  "summary": {
-  "checks": 26,
-  "passed": 23,
+  "checks": 25,
+  "passed": 24,
   "failed": 0,
-  "pending": 3
+  "pending": 1
  }
 }

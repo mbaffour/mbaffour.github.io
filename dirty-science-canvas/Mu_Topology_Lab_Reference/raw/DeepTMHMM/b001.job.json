@@ -14,5 +14,23 @@
     "input.fasta"
   ],
   "submitted_utc": "2026-11-06T19:48:17+00:00",
-  "status": "running"
+  "status": "complete",
+  "app_version": "DTU/DeepTMHMM:1.0.57",
+  "app_version_published": "2026-02-13T12:41:32.190915Z",
+  "job_id": "e0e10e07-0891-425c-93f2-89ac1297048b",
+  "outputs": [
+    {
+      "file": "raw/DeepTMHMM/b001/results/TMRs.gff3",
+      "sha256": "722b76c475f58788e90ba5ae83bf1441bd2586b35f644ed2bfc889b3508bcc8a"
+    },
+    {
+      "file": "raw/DeepTMHMM/b001/results/deeptmhmm_results.md",
+      "sha256": "1a5a482e87a1132d6b072a4c86cbf218d9c51572b0d13b698f2bbe9a35d85289"
+    },
+    {
+      "file": "raw/DeepTMHMM/b001/results/predicted_topologies.3line",
+      "sha256": "477ec652daf2bdea4c837272c8b0332823ad48199907c712f00c2aa30c1f947e"
+    }
+  ],
+  "completed_utc": "2026-11-06T19:57:14+00:00"
 }

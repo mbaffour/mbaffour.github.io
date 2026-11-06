@@ -1,0 +1,111 @@
+{
+  "method": "TOPCONS2",
+  "wsdl": "https://topcons.net/pred/api_submitseq/?wsdl",
+  "batch": "b001",
+  "fasta": "raw/TOPCONS2/b001.fasta",
+  "fasta_sha256": "04f37e32cb68554cc811df63c85a19d741b51ac4cfe02cf33c672986f2aaeaba",
+  "n_sequences": 162,
+  "n_residues": 32487,
+  "planned_utc": "2026-11-06T19:26:03+00:00",
+  "rerun": false,
+  "jobname": "dsc_T5_b001",
+  "fixtop": "",
+  "email": "",
+  "submitted_utc": "2026-11-06T19:58:57+00:00",
+  "raw_return": [
+    "rst_za23zgxk",
+    "https://topcons.net/pred/result/rst_za23zgxk",
+    "162",
+    "None",
+    "\n"
+  ],
+  "jobid": "rst_za23zgxk",
+  "result_url": "https://topcons.net/pred/result/rst_za23zgxk",
+  "numseq_accepted": "162",
+  "error": "None",
+  "warning": "\n",
+  "status": "submitted",
+  "checks": [
+    {
+      "utc": "2026-11-06T20:17:16+00:00",
+      "status": "Running"
+    },
+    {
+      "utc": "2026-11-06T20:18:17+00:00",
+      "status": "Running"
+    },
+    {
+      "utc": "2026-11-06T20:19:18+00:00",
+      "status": "Running"
+    },
+    {
+      "utc": "2026-11-06T20:20:19+00:00",
+      "status": "Running"
+    },
+    {
+      "utc": "2026-11-06T20:21:20+00:00",
+      "status": "Running"
+    },
+    {
+      "utc": "2026-11-06T20:22:21+00:00",
+      "status": "Running"
+    },
+    {
+      "utc": "2026-11-06T20:23:22+00:00",
+      "status": "Running"
+    },
+    {
+      "utc": "2026-11-06T20:24:23+00:00",
+      "status": "Running"
+    },
+    {
+      "utc": "2026-11-06T20:25:24+00:00",
+      "status": "Running"
+    },
+    {
+      "utc": "2026-11-06T20:26:25+00:00",
+      "status": "Running"
+    },
+    {
+      "utc": "2026-11-06T20:27:26+00:00",
+      "status": "Running"
+    },
+    {
+      "utc": "2026-11-06T20:28:27+00:00",
+      "status": "Running"
+    },
+    {
+      "utc": "2026-11-06T20:29:28+00:00",
+      "status": "Running"
+    },
+    {
+      "utc": "2026-11-06T20:30:29+00:00",
+      "status": "Running"
+    },
+    {
+      "utc": "2026-11-06T20:31:32+00:00",
+      "status": "Running"
+    },
+    {
+      "utc": "2026-11-06T20:32:34+00:00",
+      "status": "Running"
+    },
+    {
+      "utc": "2026-11-06T20:33:35+00:00",
+      "status": "Running"
+    },
+    {
+      "utc": "2026-11-06T20:34:36+00:00",
+      "status": "Running"
+    },
+    {
+      "utc": "2026-11-06T20:35:37+00:00",
+      "status": "Running"
+    },
+    {
+      "utc": "2026-11-06T20:36:38+00:00",
+      "status": "Running"
+    }
+  ],
+  "server_status": "Running"
+}

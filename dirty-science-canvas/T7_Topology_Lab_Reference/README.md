@@ -2,8 +2,6 @@
 
 Open **`T7_Topology_Atlas.html`** (one offline file), or the combined atlas `../Dirty_Science_Canvas_Atlas.html`. All topology calls are **computational predictions**, not experimental evidence.
 
-> **Partial:** at least one predictor has not yet finished every eligible protein (see coverage). Missing results are shown as pending, never substituted. Resume with the commands below.
-
 ## Source
 - RefSeq **NC_001604.1**: "Enterobacteria phage T7, complete genome", 39,937 nt, linear; NCBI record updated 2023/01/07; taxid 10760.
 - Downloaded from NCBI E-utilities on 2026-11-06 (UTC); URLs and SHA-256 in `inputs/provenance.json`.
@@ -15,80 +13,80 @@ Open **`T7_Topology_Atlas.html`** (one offline file), or the combined atlas `../
 |---|---|---|
 | Phobius | 60 / 60 ({'complete': 60}) | — |
 | DeepTMHMM | 60 / 60 ({'complete': 60}) | — |
-| TOPCONS2 | 0 / 60 ({'pending': 60}) | — |
+| TOPCONS2 | 60 / 60 ({'complete': 60}) | — |
 
 - **Phobius**: phobius.sbc.su.se JSON API; batches ≤100 sequences and ≤50,000 residues. Per-protein posterior plots (SVG) in `raw/Phobius/plots/`.
 - **DeepTMHMM**: BioLib app DTU/DeepTMHMM (DTU/DeepTMHMM:1.0.57); ≤500 sequences per job, one job at a time.
-- **TOPCONS2**: topcons.net WSDL API; ≤1,000 sequences per job, ≤2 active jobs. Cache status reported by the server: —. Components (OCTOPUS, Philius, PolyPhobius, SCAMPI, SPOCTOPUS) feed the consensus; they are not extra votes.
-- Job records (exact batch FASTA checksum, job ID, times, status, output checksums) are in `raw/<Method>/*.job.json`; 2 records.
+- **TOPCONS2**: topcons.net WSDL API; ≤1,000 sequences per job, ≤2 active jobs. Cache status reported by the server: cached: 56, newrun: 4. Components (OCTOPUS, Philius, PolyPhobius, SCAMPI, SPOCTOPUS) feed the consensus; they are not extra votes.
+- Job records (exact batch FASTA checksum, job ID, times, status, output checksums) are in `raw/<Method>/*.job.json`; 3 records.
 
 ## Summary
-- 8 proteins with ≥1 predicted membrane span (any main method); 7 with a predicted signal peptide; 0 with DeepTMHMM β-type states; 10 with main-method disagreement.
+- 9 proteins with ≥1 predicted membrane span (any main method); 7 with a predicted signal peptide; 0 with DeepTMHMM β-type states; 10 with main-method disagreement.
 - Per-protein calls for every method: `topology_summary.csv` (segments use `LABELstart-stop` runs, 1-based inclusive) and `data.json`.
 
 ### Per-protein calls (main methods)
 | Gene | Locus tag | Product | aa | Phobius | DeepTMHMM | TOPCONS2 | Disagreement |
 |---|---|---|---|---|---|---|---|
-| — | `T7p01` | ocr-like anti-restriction | 117 | none | none | pending | — |
-| — | `T7p02` | hypothetical protein | 51 | none | none | pending | — |
-| — | `T7p04` | hypothetical protein | 47 | SP 1–17, TM 27–45 | SP 1–12 | pending | span_count, signal_peptide_boundary |
-| — | `T7p05` | hypothetical protein | 111 | none | none | pending | — |
-| — | `T7p06` | hypothetical protein | 53 | none | none | pending | — |
-| — | `T7p03` | serine-threonine kinase | 359 | none | none | pending | — |
-| — | `T7p07` | RNA polymerase | 883 | none | none | pending | — |
-| — | `T7p09` | hypothetical protein | 42 | none | none | pending | — |
-| — | `T7p08` | dGTPase inhibitor; target for F exclusion | 85 | none | none | pending | — |
-| — | `T7p10` | DNA ligase | 359 | none | none | pending | — |
-| — | `T7p11` | hypothetical protein | 51 | SP 1–19, TM 29–49 | TM 5–23, TM 28–48 | pending | span_count, signal_peptide, n_terminal_side |
-| — | `T7p12` | hypothetical protein | 29 | SP 1–19 | SP 1–16 | pending | signal_peptide_boundary |
-| — | `T7p13` | hypothetical protein | 86 | none | none | pending | — |
-| — | `T7p14` | nucleotide kinase | 196 | none | none | pending | — |
-| — | `T7p15` | hypothetical protein | 48 | none | none | pending | — |
-| — | `T7p16` | RNA polymerase inhibitor | 64 | none | none | pending | — |
-| — | `T7p17` | Gp2.5-like ssDNA binding protein and ssDNA annealing protein | 232 | none | none | pending | — |
-| — | `T7p18` | endonuclease | 139 | none | none | pending | — |
-| — | `T7p19` | endonuclease | 149 | none | none | pending | — |
-| — | `T7p20` | amidase | 151 | none | none | pending | — |
-| — | `T7p21` | HNH endonuclease | 121 | none | none | pending | — |
-| — | `T7p22` | DNA primase/helicase | 566 | none | none | pending | — |
-| — | `T7p23` | hypothetical protein | 40 | none | none | pending | — |
-| — | `T7p24` | DNA primase/helicase | 503 | none | none | pending | — |
-| — | `T7p25` | hypothetical protein | 112 | TM 7–31, TM 37–59 | SP 1–37, TM 39–54 | pending | span_count, signal_peptide, n_terminal_side |
-| — | `T7p26` | hypothetical protein | 70 | none | none | pending | — |
-| — | `T7p27` | hypothetical protein | 89 | none | none | pending | — |
-| — | `T7p28` | hypothetical protein | 135 | none | none | pending | — |
-| — | `T7p29` | DNA polymerase I | 704 | none | none | pending | — |
-| — | `T7p30` | hypothetical protein | 118 | none | none | pending | — |
-| — | `T7p31` | hypothetical protein | 169 | none | none | pending | — |
-| — | `T7p32` | DUF2675 domain-containing protein | 99 | none | none | pending | — |
-| — | `T7p33` | hypothetical protein | 69 | none | none | pending | — |
-| — | `T7p34` | Gp5.9-like inihibitor of recBCD nuclease | 52 | none | none | pending | — |
-| — | `T7p35` | exonuclease | 300 | none | none | pending | — |
-| — | `T7p36` | DUF5516 domain-containing protein | 37 | TM 6–27 | TM 7–27 | pending | — |
-| — | `T7p37` | DUF2717 domain-containing protein | 84 | none | none | pending | — |
-| — | `T7p38` | DUF5476 family protein | 88 | none | none | pending | — |
-| — | `T7p39` | host range and adsorption protein | 133 | none | none | pending | — |
-| — | `T7p40` | host range and adsorption protein | 99 | none | none | pending | — |
-| — | `T7p41` | HNH endonuclease | 130 | none | none | pending | — |
-| — | `T7p42` | head-tail adaptor | 536 | none | none | pending | — |
-| — | `T7p43` | head assembly | 307 | none | none | pending | — |
-| — | `T7p44` | major head protein | 398 | none | none | pending | — |
-| — | `T7p45` | major head protein | 345 | none | none | pending | — |
-| — | `T7p46` | tail protein | 196 | none | none | pending | — |
-| — | `T7p47` | tail protein | 794 | none | none | pending | — |
-| — | `T7p48` | internal virion protein | 138 | none | none | pending | — |
-| — | `T7p49` | internal virion protein | 196 | SP 1–16 | none | pending | signal_peptide |
-| — | `T7p50` | internal virion protein | 747 | none | none | pending | — |
-| — | `T7p51` | internal virion protein with endolysin domain | 1318 | TM 1136–1157 | none | pending | span_count |
-| — | `T7p52` | tail fiber protein | 553 | none | none | pending | — |
-| — | `T7p53` | holin | 67 | TM 37–55 | TM 13–26, TM 37–55 | pending | span_count, n_terminal_side |
-| — | `T7p54` | terminase small subunit | 89 | none | none | pending | — |
-| — | `T7p55` | Rz-like spanin | 143 | TM 6–25 | TM 8–21 | pending | n_terminal_side |
-| — | `T7p56` | Rz-like spanin | 83 | SP 1–49 | SP 1–48 | pending | signal_peptide_boundary |
-| — | `T7p57` | terminase large subunit | 586 | none | none | pending | — |
-| — | `T7p58` | hypothetical protein | 85 | none | none | pending | — |
-| — | `T7p59` | hypothetical protein | 57 | none | none | pending | — |
-| — | `T7p60` | hypothetical protein | 49 | SP 1–30 | TM 17–26 | pending | span_count, signal_peptide |
+| — | `T7p01` | ocr-like anti-restriction | 117 | none | none | none | — |
+| — | `T7p02` | hypothetical protein | 51 | none | none | none | — |
+| — | `T7p04` | hypothetical protein | 47 | SP 1–17, TM 27–45 | SP 1–12 | SP 1–21, TM 24–44 | span_count, signal_peptide_boundary |
+| — | `T7p05` | hypothetical protein | 111 | none | none | none | — |
+| — | `T7p06` | hypothetical protein | 53 | none | none | none | — |
+| — | `T7p03` | serine-threonine kinase | 359 | none | none | none | — |
+| — | `T7p07` | RNA polymerase | 883 | none | none | none | — |
+| — | `T7p09` | hypothetical protein | 42 | none | none | none | — |
+| — | `T7p08` | dGTPase inhibitor; target for F exclusion | 85 | none | none | none | — |
+| — | `T7p10` | DNA ligase | 359 | none | none | none | — |
+| — | `T7p11` | hypothetical protein | 51 | SP 1–19, TM 29–49 | TM 5–23, TM 28–48 | SP 1–24, TM 29–49 | span_count, signal_peptide, n_terminal_side, signal_peptide_boundary |
+| — | `T7p12` | hypothetical protein | 29 | SP 1–19 | SP 1–16 | SP 1–21 | signal_peptide_boundary |
+| — | `T7p13` | hypothetical protein | 86 | none | none | none | — |
+| — | `T7p14` | nucleotide kinase | 196 | none | none | none | — |
+| — | `T7p15` | hypothetical protein | 48 | none | none | none | — |
+| — | `T7p16` | RNA polymerase inhibitor | 64 | none | none | none | — |
+| — | `T7p17` | Gp2.5-like ssDNA binding protein and ssDNA annealing protein | 232 | none | none | none | — |
+| — | `T7p18` | endonuclease | 139 | none | none | none | — |
+| — | `T7p19` | endonuclease | 149 | none | none | none | — |
+| — | `T7p20` | amidase | 151 | none | none | none | — |
+| — | `T7p21` | HNH endonuclease | 121 | none | none | none | — |
+| — | `T7p22` | DNA primase/helicase | 566 | none | none | none | — |
+| — | `T7p23` | hypothetical protein | 40 | none | none | none | — |
+| — | `T7p24` | DNA primase/helicase | 503 | none | none | none | — |
+| — | `T7p25` | hypothetical protein | 112 | TM 7–31, TM 37–59 | SP 1–37, TM 39–54 | SP 1–26, TM 35–55 | span_count, signal_peptide, n_terminal_side, signal_peptide_boundary |
+| — | `T7p26` | hypothetical protein | 70 | none | none | none | — |
+| — | `T7p27` | hypothetical protein | 89 | none | none | none | — |
+| — | `T7p28` | hypothetical protein | 135 | none | none | none | — |
+| — | `T7p29` | DNA polymerase I | 704 | none | none | none | — |
+| — | `T7p30` | hypothetical protein | 118 | none | none | none | — |
+| — | `T7p31` | hypothetical protein | 169 | none | none | none | — |
+| — | `T7p32` | DUF2675 domain-containing protein | 99 | none | none | none | — |
+| — | `T7p33` | hypothetical protein | 69 | none | none | none | — |
+| — | `T7p34` | Gp5.9-like inihibitor of recBCD nuclease | 52 | none | none | none | — |
+| — | `T7p35` | exonuclease | 300 | none | none | none | — |
+| — | `T7p36` | DUF5516 domain-containing protein | 37 | TM 6–27 | TM 7–27 | TM 5–25 | — |
+| — | `T7p37` | DUF2717 domain-containing protein | 84 | none | none | none | — |
+| — | `T7p38` | DUF5476 family protein | 88 | none | none | none | — |
+| — | `T7p39` | host range and adsorption protein | 133 | none | none | none | — |
+| — | `T7p40` | host range and adsorption protein | 99 | none | none | none | — |
+| — | `T7p41` | HNH endonuclease | 130 | none | none | none | — |
+| — | `T7p42` | head-tail adaptor | 536 | none | none | none | — |
+| — | `T7p43` | head assembly | 307 | none | none | none | — |
+| — | `T7p44` | major head protein | 398 | none | none | none | — |
+| — | `T7p45` | major head protein | 345 | none | none | none | — |
+| — | `T7p46` | tail protein | 196 | none | none | none | — |
+| — | `T7p47` | tail protein | 794 | none | none | none | — |
+| — | `T7p48` | internal virion protein | 138 | none | none | none | — |
+| — | `T7p49` | internal virion protein | 196 | SP 1–16 | none | SP 1–22 | signal_peptide, signal_peptide_boundary |
+| — | `T7p50` | internal virion protein | 747 | none | none | none | — |
+| — | `T7p51` | internal virion protein with endolysin domain | 1318 | TM 1136–1157 | none | none | span_count |
+| — | `T7p52` | tail fiber protein | 553 | none | none | none | — |
+| — | `T7p53` | holin | 67 | TM 37–55 | TM 13–26, TM 37–55 | TM 35–55 | span_count, n_terminal_side |
+| — | `T7p54` | terminase small subunit | 89 | none | none | none | — |
+| — | `T7p55` | Rz-like spanin | 143 | TM 6–25 | TM 8–21 | TM 6–26 | n_terminal_side |
+| — | `T7p56` | Rz-like spanin | 83 | SP 1–49 | SP 1–48 | TM 31–51 | span_count, signal_peptide, signal_peptide_boundary |
+| — | `T7p57` | terminase large subunit | 586 | none | none | none | — |
+| — | `T7p58` | hypothetical protein | 85 | none | none | none | — |
+| — | `T7p59` | hypothetical protein | 57 | none | none | none | — |
+| — | `T7p60` | hypothetical protein | 49 | SP 1–30 | TM 17–26 | SP 1–30 | span_count, signal_peptide |
 
 ## Conventions & cautions
 - 1-based inclusive amino-acid positions in the annotated precursor translation; signal peptides keep precursor numbering. comma-separated LABELstart-stop runs (1-based inclusive) covering every residue exactly once; expand to obtain the per-residue label string.
@@ -104,7 +102,7 @@ The atlas renders four views per protein — A presentation orientation (residue
 - Pipeline: GitHub → Actions → *Topology atlas re-run* (`.github/workflows/topology-rerun.yml`, https://github.com/mbaffour/mbaffour.github.io/actions/workflows/topology-rerun.yml) with organism `T7`; or locally `python3 scripts/rerun.py --org T7`.
 
 ## Validation
-`verification.json`: 24 pass, 0 fail, 1 pending of 25 checks. Pending: TOPCONS2 coverage of eligible proteins: 0/60 eligible (60 in inventory); {'pending': 60}.
+`verification.json`: 24 pass, 1 fail, 0 pending of 25 checks.  Failures: browser layout audit: no text overlaps, no clipped text, no line crossing a label, no crossing leaders/bonds (all figures of every checked protein; 1568 proteins checked atlas-wide, all phage proteins + host sample): [["T7|T7p11", {"C_TOPCONS2": ["conn crosses text \"OUTSIDE \u00b7 non-cytoplasmic\""]}]].
 Checks cover input checksums, CDS reconciliation, batch-FASTA identity, raw-output checksums, segment expansion/contiguity/alphabet for every prediction, Phobius signal-peptide boundaries, DeepTMHMM β segments against its GFF, atlas embedding, and the headless-browser audit.
 
 ## Rebuild / resume (from `dirty-science-canvas/`; Python 3 with `biopython requests suds pybiolib`, Node with Playwright)

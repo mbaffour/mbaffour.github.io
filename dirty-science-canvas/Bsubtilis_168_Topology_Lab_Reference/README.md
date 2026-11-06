@@ -13,17 +13,17 @@ Open **`Bsubtilis_168_Topology_Atlas.html`** (one offline file), or the combined
 ## Coverage
 | Method | Complete / eligible | Not eligible (reason) |
 |---|---|---|
-| Phobius | 0 / 4,237 ({'pending': 4237}) | — |
+| Phobius | 4,237 / 4,237 ({'complete': 4237}) | — |
 | DeepTMHMM | 0 / 4,237 ({'pending': 4237}) | — |
 | TOPCONS2 | 0 / 4,237 ({'pending': 4237}) | — |
 
 - **Phobius**: phobius.sbc.su.se JSON API; batches ≤100 sequences and ≤50,000 residues. Plots not requested at proteome scale.
 - **DeepTMHMM**: BioLib app DTU/DeepTMHMM (not recorded); ≤500 sequences per job, one job at a time.
 - **TOPCONS2**: topcons.net WSDL API; ≤1,000 sequences per job, ≤2 active jobs. Cache status reported by the server: —. Components (OCTOPUS, Philius, PolyPhobius, SCAMPI, SPOCTOPUS) feed the consensus; they are not extra votes.
-- Job records (exact batch FASTA checksum, job ID, times, status, output checksums) are in `raw/<Method>/*.job.json`; 0 records.
+- Job records (exact batch FASTA checksum, job ID, times, status, output checksums) are in `raw/<Method>/*.job.json`; 43 records.
 
 ## Summary
-- 0 proteins with ≥1 predicted membrane span (any main method); 0 with a predicted signal peptide; 0 with DeepTMHMM β-type states; 0 with main-method disagreement.
+- 1,043 proteins with ≥1 predicted membrane span (any main method); 549 with a predicted signal peptide; 0 with DeepTMHMM β-type states; 0 with main-method disagreement.
 - Per-protein calls for every method: `topology_summary.csv` (segments use `LABELstart-stop` runs, 1-based inclusive) and `data.json`.
 
 ## Conventions & cautions
@@ -40,7 +40,7 @@ The atlas renders four views per protein — A presentation orientation (residue
 - Pipeline: GitHub → Actions → *Topology atlas re-run* (`.github/workflows/topology-rerun.yml`, https://github.com/mbaffour/mbaffour.github.io/actions/workflows/topology-rerun.yml) with organism `Bsubtilis_168`; or locally `python3 scripts/rerun.py --org Bsubtilis_168`.
 
 ## Validation
-`verification.json`: 21 pass, 0 fail, 3 pending of 24 checks. Pending: Phobius coverage of eligible proteins: 0/4237 eligible (4237 in inventory); {'pending': 4237}; DeepTMHMM coverage of eligible proteins: 0/4237 eligible (4237 in inventory); {'pending': 4237}; TOPCONS2 coverage of eligible proteins: 0/4237 eligible (4237 in inventory); {'pending': 4237}.
+`verification.json`: 22 pass, 0 fail, 2 pending of 24 checks. Pending: DeepTMHMM coverage of eligible proteins: 0/4237 eligible (4237 in inventory); {'pending': 4237}; TOPCONS2 coverage of eligible proteins: 0/4237 eligible (4237 in inventory); {'pending': 4237}.
 Checks cover input checksums, CDS reconciliation, batch-FASTA identity, raw-output checksums, segment expansion/contiguity/alphabet for every prediction, Phobius signal-peptide boundaries, DeepTMHMM β segments against its GFF, atlas embedding, and the headless-browser audit.
 
 ## Rebuild / resume (from `dirty-science-canvas/`; Python 3 with `biopython requests suds pybiolib`, Node with Playwright)

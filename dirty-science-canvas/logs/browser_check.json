@@ -1,15 +1,140 @@
 {
- "checked_utc": "2026-11-06T19:53:00.431Z",
+ "checked_utc": "2026-11-06T20:37:18.395Z",
  "browser": "153.0.8010.12",
  "file": "Dirty_Science_Canvas_Atlas.html",
  "js_errors": [],
- "proteins_checked": 1443,
+ "proteins_checked": 1568,
  "phage_proteins": 1068,
- "host_sample": 375,
- "figures_with_layout_issues": 0,
+ "host_sample": 500,
+ "figures_with_layout_issues": 3,
  "sequence_map_failures": 0,
  "bead_accounting_failures": 0,
- "problems": [],
+ "problems": [
+  {
+   "protein_id": "T4|T4p263",
+   "org": "T4",
+   "length": 49,
+   "issues": {
+    "C_TOPCONS2": [
+     "conn crosses text \"OUTSIDE · non-cytoplasmic\""
+    ]
+   },
+   "seq_ok": true,
+   "beads": {
+    "Phobius": {
+     "drawn": 49,
+     "omitted": 0,
+     "exact": true
+    },
+    "DeepTMHMM": {
+     "drawn": 49,
+     "omitted": 0,
+     "exact": true
+    },
+    "TOPCONS2": {
+     "drawn": 49,
+     "omitted": 0,
+     "exact": true
+    },
+    "OCTOPUS": {
+     "drawn": 49,
+     "omitted": 0,
+     "exact": true
+    },
+    "Philius": {
+     "drawn": 49,
+     "omitted": 0,
+     "exact": true
+    },
+    "PolyPhobius": {
+     "drawn": 49,
+     "omitted": 0,
+     "exact": true
+    },
+    "SCAMPI": {
+     "drawn": 49,
+     "omitted": 0,
+     "exact": true
+    },
+    "SPOCTOPUS": {
+     "drawn": 49,
+     "omitted": 0,
+     "exact": true
+    }
+   }
+  },
+  {
+   "protein_id": "T7|T7p11",
+   "org": "T7",
+   "length": 51,
+   "issues": {
+    "C_TOPCONS2": [
+     "conn crosses text \"OUTSIDE · non-cytoplasmic\""
+    ]
+   },
+   "seq_ok": true,
+   "beads": {
+    "Phobius": {
+     "drawn": 51,
+     "omitted": 0,
+     "exact": true
+    },
+    "DeepTMHMM": {
+     "drawn": 51,
+     "omitted": 0,
+     "exact": true
+    },
+    "TOPCONS2": {
+     "drawn": 51,
+     "omitted": 0,
+     "exact": true
+    },
+    "OCTOPUS": {
+     "drawn": 51,
+     "omitted": 0,
+     "exact": true
+    },
+    "Philius": {
+     "drawn": 51,
+     "omitted": 0,
+     "exact": true
+    },
+    "PolyPhobius": {
+     "drawn": 51,
+     "omitted": 0,
+     "exact": true
+    },
+    "SCAMPI": {
+     "drawn": 51,
+     "omitted": 0,
+     "exact": true
+    },
+    "SPOCTOPUS": {
+     "drawn": 51,
+     "omitted": 0,
+     "exact": true
+    }
+   }
+  },
+  {
+   "protein_id": "Salmonella_LT2|STM0562",
+   "org": "Salmonella_LT2",
+   "length": 59,
+   "issues": {
+    "C_Phobius": [
+     "conn crosses text \"OUTSIDE · non-cytoplasmic\""
+    ]
+   },
+   "seq_ok": true,
+   "beads": {
+    "Phobius": {
+     "drawn": 59,
+     "omitted": 0,
+     "exact": true
+    }
+   }
+  }
+ ],
  "ui": {
   "search_secY": 6,
   "org_M13": 10,

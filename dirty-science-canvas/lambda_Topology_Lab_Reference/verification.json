@@ -1,5 +1,5 @@
 {
- "checked_utc": "2026-11-06T19:53:02+00:00",
+ "checked_utc": "2026-11-06T20:37:20+00:00",
  "organism": "Enterobacteria phage lambda",
  "accessions": [
   "NC_001416.1"
@@ -41,7 +41,7 @@
    "detail": ""
   },
   {
-   "check": "raw output checksums (4 files)",
+   "check": "raw output checksums (5 files)",
    "status": "pass",
    "detail": ""
   },
@@ -51,17 +51,12 @@
    "detail": ""
   },
   {
-   "check": "all batches complete",
-   "status": "pending",
-   "detail": "TOPCONS2/b001.job.json:submitted"
-  },
-  {
    "check": "data.json protein set == inventory (order preserved)",
    "status": "pass",
    "detail": ""
   },
   {
-   "check": "146 predictions: segment strings expand to exactly one label per residue, contiguous 1..L, allowed alphabet",
+   "check": "584 predictions: segment strings expand to exactly one label per residue, contiguous 1..L, allowed alphabet",
    "status": "pass",
    "detail": ""
   },
@@ -92,8 +87,8 @@
   },
   {
    "check": "TOPCONS2 coverage of eligible proteins",
-   "status": "pending",
-   "detail": "0/73 eligible (73 in inventory); {'pending': 73}"
+   "status": "pass",
+   "detail": "73/73 eligible (73 in inventory); {'complete': 73}"
   },
   {
    "check": "organism atlas embeds the current sequences and predictions",
@@ -121,7 +116,7 @@
    "detail": "[]"
   },
   {
-   "check": "browser layout audit: no text overlaps, no clipped text, no line crossing a label, no crossing leaders/bonds (all figures of every checked protein; 1443 proteins checked atlas-wide, all phage proteins + host sample)",
+   "check": "browser layout audit: no text overlaps, no clipped text, no line crossing a label, no crossing leaders/bonds (all figures of every checked protein; 1568 proteins checked atlas-wide, all phage proteins + host sample)",
    "status": "pass",
    "detail": "[]"
   },
@@ -137,19 +132,16 @@
   }
  ],
  "failures": [],
- "pending": [
-  "all batches complete: TOPCONS2/b001.job.json:submitted",
-  "TOPCONS2 coverage of eligible proteins: 0/73 eligible (73 in inventory); {'pending': 73}"
- ],
+ "pending": [],
  "beta_state_predictions": [
   "lambda|lambdap26"
  ],
  "browser_check": {
-  "checked_utc": "2026-11-06T19:53:00.431Z",
+  "checked_utc": "2026-11-06T20:37:18.395Z",
   "browser": "153.0.8010.12",
-  "proteins_checked": 1443,
+  "proteins_checked": 1568,
   "phage_proteins": 1068,
-  "host_sample": 375,
+  "host_sample": 500,
   "ui": {
    "search_secY": 6,
    "org_M13": 10,
@@ -189,9 +181,9 @@
   }
  },
  "summary": {
-  "checks": 26,
-  "passed": 24,
+  "checks": 25,
+  "passed": 25,
   "failed": 0,
-  "pending": 2
+  "pending": 0
  }
 }

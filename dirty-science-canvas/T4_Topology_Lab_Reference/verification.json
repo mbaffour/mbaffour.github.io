@@ -1,5 +1,5 @@
 {
- "checked_utc": "2026-11-06T19:53:02+00:00",
+ "checked_utc": "2026-11-06T20:37:21+00:00",
  "organism": "Enterobacteria phage T4",
  "accessions": [
   "NC_000866.4"
@@ -41,7 +41,7 @@
    "detail": ""
   },
   {
-   "check": "raw output checksums (6 files)",
+   "check": "raw output checksums (7 files)",
    "status": "pass",
    "detail": ""
   },
@@ -51,17 +51,12 @@
    "detail": ""
   },
   {
-   "check": "all batches complete",
-   "status": "pending",
-   "detail": "TOPCONS2/b001.job.json:submitted"
-  },
-  {
    "check": "data.json protein set == inventory (order preserved)",
    "status": "pass",
    "detail": ""
   },
   {
-   "check": "555 predictions: segment strings expand to exactly one label per residue, contiguous 1..L, allowed alphabet",
+   "check": "2217 predictions: segment strings expand to exactly one label per residue, contiguous 1..L, allowed alphabet",
    "status": "pass",
    "detail": ""
   },
@@ -92,8 +87,8 @@
   },
   {
    "check": "TOPCONS2 coverage of eligible proteins",
-   "status": "pending",
-   "detail": "0/277 eligible (278 in inventory); {'pending': 277, 'unsupported': 1}"
+   "status": "pass",
+   "detail": "277/277 eligible (278 in inventory); {'complete': 277, 'unsupported': 1}"
   },
   {
    "check": "organism atlas embeds the current sequences and predictions",
@@ -121,9 +116,9 @@
    "detail": "[]"
   },
   {
-   "check": "browser layout audit: no text overlaps, no clipped text, no line crossing a label, no crossing leaders/bonds (all figures of every checked protein; 1443 proteins checked atlas-wide, all phage proteins + host sample)",
-   "status": "pass",
-   "detail": "[]"
+   "check": "browser layout audit: no text overlaps, no clipped text, no line crossing a label, no crossing leaders/bonds (all figures of every checked protein; 1568 proteins checked atlas-wide, all phage proteins + host sample)",
+   "status": "fail",
+   "detail": "[[\"T4|T4p263\", {\"C_TOPCONS2\": [\"conn crosses text \\\"OUTSIDE \\u00b7 non-cytoplasmic\\\"\"]}]]"
   },
   {
    "check": "browser: every residue's identity, number and band state verified in the full sequence map; bead cartoons account for every residue exactly once",
@@ -136,20 +131,19 @@
    "detail": ""
   }
  ],
- "failures": [],
- "pending": [
-  "all batches complete: TOPCONS2/b001.job.json:submitted",
-  "TOPCONS2 coverage of eligible proteins: 0/277 eligible (278 in inventory); {'pending': 277, 'unsupported': 1}"
+ "failures": [
+  "browser layout audit: no text overlaps, no clipped text, no line crossing a label, no crossing leaders/bonds (all figures of every checked protein; 1568 proteins checked atlas-wide, all phage proteins + host sample): [[\"T4|T4p263\", {\"C_TOPCONS2\": [\"conn crosses text \\\"OUTSIDE \\u00b7 non-cytoplasmic\\\"\"]}]]"
  ],
+ "pending": [],
  "beta_state_predictions": [
   "T4|T4p058"
  ],
  "browser_check": {
-  "checked_utc": "2026-11-06T19:53:00.431Z",
+  "checked_utc": "2026-11-06T20:37:18.395Z",
   "browser": "153.0.8010.12",
-  "proteins_checked": 1443,
+  "proteins_checked": 1568,
   "phage_proteins": 1068,
-  "host_sample": 375,
+  "host_sample": 500,
   "ui": {
    "search_secY": 6,
    "org_M13": 10,
@@ -189,9 +183,9 @@
   }
  },
  "summary": {
-  "checks": 26,
+  "checks": 25,
   "passed": 24,
-  "failed": 0,
-  "pending": 2
+  "failed": 1,
+  "pending": 0
  }
 }

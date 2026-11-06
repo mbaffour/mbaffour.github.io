@@ -14,48 +14,48 @@ Open **`phi29_Topology_Atlas.html`** (one offline file), or the combined atlas `
 | Method | Complete / eligible | Not eligible (reason) |
 |---|---|---|
 | Phobius | 27 / 27 ({'complete': 27}) | — |
-| DeepTMHMM | 0 / 27 ({'pending': 27}) | — |
+| DeepTMHMM | 27 / 27 ({'complete': 27}) | — |
 | TOPCONS2 | 0 / 27 ({'pending': 27}) | — |
 
 - **Phobius**: phobius.sbc.su.se JSON API; batches ≤100 sequences and ≤50,000 residues. Per-protein posterior plots (SVG) in `raw/Phobius/plots/`.
-- **DeepTMHMM**: BioLib app DTU/DeepTMHMM (not recorded); ≤500 sequences per job, one job at a time.
+- **DeepTMHMM**: BioLib app DTU/DeepTMHMM (DTU/DeepTMHMM:1.0.57); ≤500 sequences per job, one job at a time.
 - **TOPCONS2**: topcons.net WSDL API; ≤1,000 sequences per job, ≤2 active jobs. Cache status reported by the server: —. Components (OCTOPUS, Philius, PolyPhobius, SCAMPI, SPOCTOPUS) feed the consensus; they are not extra votes.
-- Job records (exact batch FASTA checksum, job ID, times, status, output checksums) are in `raw/<Method>/*.job.json`; 1 records.
+- Job records (exact batch FASTA checksum, job ID, times, status, output checksums) are in `raw/<Method>/*.job.json`; 2 records.
 
 ## Summary
-- 1 proteins with ≥1 predicted membrane span (any main method); 2 with a predicted signal peptide; 0 with DeepTMHMM β-type states; 0 with main-method disagreement.
+- 2 proteins with ≥1 predicted membrane span (any main method); 4 with a predicted signal peptide; 0 with DeepTMHMM β-type states; 5 with main-method disagreement.
 - Per-protein calls for every method: `topology_summary.csv` (segments use `LABELstart-stop` runs, 1-based inclusive) and `data.json`.
 
 ### Per-protein calls (main methods)
 | Gene | Locus tag | Product | aa | Phobius | DeepTMHMM | TOPCONS2 | Disagreement |
 |---|---|---|---|---|---|---|---|
-| 0.2 | `phi29_gp0.2` | hypothetical protein | 31 | none | pending | pending | — |
-| 0.4 | `phi29_gp0.4` | hypothetical protein | 47 | none | pending | pending | — |
-| 0.6 | `phi29_gp0.6` | hypothetical protein | 58 | none | pending | pending | — |
-| 0.8 | `phi29_gp0.8` | hypothetical protein | 56 | none | pending | pending | — |
-| 1 | `phi29_gp1` | hypothetical protein | 86 | none | pending | pending | — |
-| 2 | `phi29_gp2` | DNA polymerase | 572 | none | pending | pending | — |
-| 3 | `phi29_gp3` | DNA terminal protein | 266 | none | pending | pending | — |
-| 4 | `phi29_gp4` | late transcriptional activator | 125 | none | pending | pending | — |
-| 5 | `phi29_gp5` | single strand DNA binding protein | 124 | none | pending | pending | — |
-| 5.5 | `phi29_gp5.5` | hypothetical protein | 66 | SP 1–21 | pending | pending | — |
-| 6 | `phi29_gp6` | dsDNA binding protein | 104 | none | pending | pending | — |
-| 7 | `phi29_gp7` | head scaffolding protein | 98 | none | pending | pending | — |
-| 8 | `phi29_gp8` | major head protein | 448 | none | pending | pending | — |
-| 8.5 | `phi29_gp8.5` | head fiber protein | 280 | none | pending | pending | — |
-| 9 | `phi29_gp9` | tail protein | 599 | none | pending | pending | — |
-| 10 | `phi29_gp10` | upper collar connector | 309 | none | pending | pending | — |
-| 11 | `phi29_gp11` | adaptor Ad4 | 293 | none | pending | pending | — |
-| 12 | `phi29_gp12` | pre-neck appendage protein | 854 | none | pending | pending | — |
-| 13 | `phi29_gp13` | tail-type lysozyme domain-containing protein | 364 | none | pending | pending | — |
-| 14 | `phi29_gp14` | holin family protein | 131 | TM 20–40, TM 61–79, TM 85–106 | pending | pending | — |
-| 15 | `phi29_gp15` | endolysin | 258 | none | pending | pending | — |
-| 16 | `phi29_gp16` | terminase | 332 | none | pending | pending | — |
-| 16.6 | `phi29_gp16.6` | YgiT-type zinc finger protein | 54 | none | pending | pending | — |
-| 16.7 | `phi29_gp16.7` | GP16.7-like replication protein | 130 | SP 1–20 | pending | pending | — |
-| 16.8 | `phi29_gp16.8` | hypothetical early protein | 105 | none | pending | pending | — |
-| 16.9 | `phi29_gp16.9` | hypothetical early protein | 108 | none | pending | pending | — |
-| 17 | `phi29_gp17` | replication protein | 166 | none | pending | pending | — |
+| 0.2 | `phi29_gp0.2` | hypothetical protein | 31 | none | SP 1–30 | pending | signal_peptide |
+| 0.4 | `phi29_gp0.4` | hypothetical protein | 47 | none | none | pending | — |
+| 0.6 | `phi29_gp0.6` | hypothetical protein | 58 | none | none | pending | — |
+| 0.8 | `phi29_gp0.8` | hypothetical protein | 56 | none | none | pending | — |
+| 1 | `phi29_gp1` | hypothetical protein | 86 | none | none | pending | — |
+| 2 | `phi29_gp2` | DNA polymerase | 572 | none | none | pending | — |
+| 3 | `phi29_gp3` | DNA terminal protein | 266 | none | none | pending | — |
+| 4 | `phi29_gp4` | late transcriptional activator | 125 | none | none | pending | — |
+| 5 | `phi29_gp5` | single strand DNA binding protein | 124 | none | none | pending | — |
+| 5.5 | `phi29_gp5.5` | hypothetical protein | 66 | SP 1–21 | none | pending | signal_peptide |
+| 6 | `phi29_gp6` | dsDNA binding protein | 104 | none | none | pending | — |
+| 7 | `phi29_gp7` | head scaffolding protein | 98 | none | none | pending | — |
+| 8 | `phi29_gp8` | major head protein | 448 | none | none | pending | — |
+| 8.5 | `phi29_gp8.5` | head fiber protein | 280 | none | none | pending | — |
+| 9 | `phi29_gp9` | tail protein | 599 | none | none | pending | — |
+| 10 | `phi29_gp10` | upper collar connector | 309 | none | none | pending | — |
+| 11 | `phi29_gp11` | adaptor Ad4 | 293 | none | none | pending | — |
+| 12 | `phi29_gp12` | pre-neck appendage protein | 854 | none | none | pending | — |
+| 13 | `phi29_gp13` | tail-type lysozyme domain-containing protein | 364 | none | SP 1–10 | pending | signal_peptide |
+| 14 | `phi29_gp14` | holin family protein | 131 | TM 20–40, TM 61–79, TM 85–106 | TM 18–38, TM 53–73, TM 83–100 | pending | span_boundaries(max_shift=8) |
+| 15 | `phi29_gp15` | endolysin | 258 | none | none | pending | — |
+| 16 | `phi29_gp16` | terminase | 332 | none | none | pending | — |
+| 16.6 | `phi29_gp16.6` | YgiT-type zinc finger protein | 54 | none | none | pending | — |
+| 16.7 | `phi29_gp16.7` | GP16.7-like replication protein | 130 | SP 1–20 | TM 3–18 | pending | span_count, signal_peptide |
+| 16.8 | `phi29_gp16.8` | hypothetical early protein | 105 | none | none | pending | — |
+| 16.9 | `phi29_gp16.9` | hypothetical early protein | 108 | none | none | pending | — |
+| 17 | `phi29_gp17` | replication protein | 166 | none | none | pending | — |
 
 ## Conventions & cautions
 - 1-based inclusive amino-acid positions in the annotated precursor translation; signal peptides keep precursor numbering. comma-separated LABELstart-stop runs (1-based inclusive) covering every residue exactly once; expand to obtain the per-residue label string.
@@ -71,7 +71,7 @@ The atlas renders four views per protein — A presentation orientation (residue
 - Pipeline: GitHub → Actions → *Topology atlas re-run* (`.github/workflows/topology-rerun.yml`, https://github.com/mbaffour/mbaffour.github.io/actions/workflows/topology-rerun.yml) with organism `phi29`; or locally `python3 scripts/rerun.py --org phi29`.
 
 ## Validation
-`verification.json`: 23 pass, 0 fail, 2 pending of 25 checks. Pending: DeepTMHMM coverage of eligible proteins: 0/27 eligible (27 in inventory); {'pending': 27}; TOPCONS2 coverage of eligible proteins: 0/27 eligible (27 in inventory); {'pending': 27}.
+`verification.json`: 24 pass, 0 fail, 1 pending of 25 checks. Pending: TOPCONS2 coverage of eligible proteins: 0/27 eligible (27 in inventory); {'pending': 27}.
 Checks cover input checksums, CDS reconciliation, batch-FASTA identity, raw-output checksums, segment expansion/contiguity/alphabet for every prediction, Phobius signal-peptide boundaries, DeepTMHMM β segments against its GFF, atlas embedding, and the headless-browser audit.
 
 ## Rebuild / resume (from `dirty-science-canvas/`; Python 3 with `biopython requests suds pybiolib`, Node with Playwright)

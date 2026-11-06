@@ -1,5 +1,5 @@
 {
- "checked_utc": "2026-11-06T19:53:04+00:00",
+ "checked_utc": "2026-11-06T20:37:23+00:00",
  "organism": "Enterobacteria phage P1",
  "accessions": [
   "NC_005856.1"
@@ -36,7 +36,7 @@
    "detail": ""
   },
   {
-   "check": "submitted batch FASTAs are exact inventory sequences (3 job records)",
+   "check": "submitted batch FASTAs are exact inventory sequences (4 job records)",
    "status": "pass",
    "detail": ""
   },
@@ -49,6 +49,11 @@
    "check": "no failed batches",
    "status": "pass",
    "detail": ""
+  },
+  {
+   "check": "all batches complete",
+   "status": "pending",
+   "detail": "TOPCONS2/b001.job.json:submitted"
   },
   {
    "check": "data.json protein set == inventory (order preserved)",
@@ -116,7 +121,7 @@
    "detail": "[]"
   },
   {
-   "check": "browser layout audit: no text overlaps, no clipped text, no line crossing a label, no crossing leaders/bonds (all figures of every checked protein; 1443 proteins checked atlas-wide, all phage proteins + host sample)",
+   "check": "browser layout audit: no text overlaps, no clipped text, no line crossing a label, no crossing leaders/bonds (all figures of every checked protein; 1568 proteins checked atlas-wide, all phage proteins + host sample)",
    "status": "pass",
    "detail": "[]"
   },
@@ -133,15 +138,16 @@
  ],
  "failures": [],
  "pending": [
+  "all batches complete: TOPCONS2/b001.job.json:submitted",
   "TOPCONS2 coverage of eligible proteins: 0/110 eligible (110 in inventory); {'pending': 110}"
  ],
  "beta_state_predictions": [],
  "browser_check": {
-  "checked_utc": "2026-11-06T19:53:00.431Z",
+  "checked_utc": "2026-11-06T20:37:18.395Z",
   "browser": "153.0.8010.12",
-  "proteins_checked": 1443,
+  "proteins_checked": 1568,
   "phage_proteins": 1068,
-  "host_sample": 375,
+  "host_sample": 500,
   "ui": {
    "search_secY": 6,
    "org_M13": 10,
@@ -181,9 +187,9 @@
   }
  },
  "summary": {
-  "checks": 25,
+  "checks": 26,
   "passed": 24,
   "failed": 0,
-  "pending": 1
+  "pending": 2
  }
 }

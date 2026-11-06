@@ -1,32 +1,32 @@
 protein_id,gene,curator_alias,locus_tag,product,length,Phobius_status,Phobius_spans,Phobius_signal_peptide,Phobius_segments,DeepTMHMM_status,DeepTMHMM_spans,DeepTMHMM_signal_peptide,DeepTMHMM_segments,TOPCONS2_status,TOPCONS2_spans,TOPCONS2_signal_peptide,TOPCONS2_segments,OCTOPUS_status,OCTOPUS_spans,OCTOPUS_signal_peptide,OCTOPUS_segments,Philius_status,Philius_spans,Philius_signal_peptide,Philius_segments,PolyPhobius_status,PolyPhobius_spans,PolyPhobius_signal_peptide,PolyPhobius_segments,SCAMPI_status,SCAMPI_spans,SCAMPI_signal_peptide,SCAMPI_segments,SPOCTOPUS_status,SPOCTOPUS_spans,SPOCTOPUS_signal_peptide,SPOCTOPUS_segments,disagreements
-PRD1|PRD1_01,XIII,,PRD1_01,terminal protein,259,complete,,none,O1-259,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,
-PRD1|PRD1_02,I,,PRD1_02,DNA polymerase,553,complete,,none,I1-553,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,
-PRD1|PRD1_03,XV,,PRD1_03,endolysin,149,complete,,none,O1-149,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,
-PRD1|PRD1_04,II,,PRD1_04,receptor binding,591,complete,,none,O1-591,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,
-PRD1|PRD1_05,XXXI,,PRD1_05,major spike protein,126,complete,,none,O1-126,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,
-PRD1|PRD1_06,V,,PRD1_06,major spike protein,340,complete,,none,O1-340,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,
-PRD1|PRD1_07,XVII,,PRD1_07,assembly,86,complete,,none,I1-86,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,
-PRD1|PRD1_23,XXXIII,,PRD1_23,assembly,68,complete,,none,O1-68,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,
-PRD1|PRD1_08,VI,,PRD1_08,minor head protein,166,complete,,none,O1-166,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,
-PRD1|PRD1_24,X,,PRD1_24,assembly,203,complete,136-156,none,"O1-135,M136-156,I157-203",pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,
-PRD1|PRD1_09,IX,,PRD1_09,terminase large subunit,227,complete,,none,O1-227,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,
-PRD1|PRD1_10,ORFi,,PRD1_10,hypothetical protein,42,complete,12-34,none,"O1-11,M12-34,I35-42",pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,
-PRD1|PRD1_11,XX,,PRD1_11,DNA packaging,42,complete,12-31,none,"O1-11,M12-31,I32-42",pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,
-PRD1|PRD1_12,III,,PRD1_12,minor head protein,395,complete,,none,O1-395,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,
-PRD1|PRD1_14,XXII,,PRD1_14,DNA packaging,47,complete,20-38,none,"O1-19,M20-38,I39-47",pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,
-PRD1|PRD1_25,ORFx,,PRD1_25,hypothetical protein,27,complete,,1-17,"S1-17,O18-27",pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,
-PRD1|PRD1_26,ORFl,,PRD1_26,hypothetical protein,40,complete,,1-21,"S1-21,O22-40",pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,
-PRD1|PRD1_15,XVIII,,PRD1_15,DNA delivery,90,complete,38-54;61-80,1-18,"S1-18,O19-37,M38-54,I55-60,M61-80,O81-90",pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,
-PRD1|PRD1_27,XXXII,,PRD1_27,membrane DNA delivery,54,complete,6-25,none,"O1-5,M6-25,I26-54",pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,
-PRD1|PRD1_16,XXXIV,,PRD1_16,membrane DNA delivery,68,complete,6-26,none,"O1-5,M6-26,I27-68",pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,
-PRD1|PRD1_17,XXX,,PRD1_17,minor head protein,84,complete,,none,O1-84,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,
-PRD1|PRD1_28,ORFq,,PRD1_28,hypothetical protein,36,complete,,1-26,"S1-26,O27-36",pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,
-PRD1|PRD1_18,XI,,PRD1_18,DNA delivery,207,complete,12-28,none,"O1-11,M12-28,I29-207",pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,
-PRD1|PRD1_19,XVI,,PRD1_19,hypothetical protein,117,complete,6-23,none,"O1-5,M6-23,I24-117",pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,
-PRD1|PRD1_20,VII,,PRD1_20,transglycosylase,265,complete,217-239,none,"O1-216,M217-239,I240-265",pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,
-PRD1|PRD1_30,XIV,,PRD1_30,transglycosylase,150,complete,102-124,none,"O1-101,M102-124,I125-150",pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,
-PRD1|PRD1_31,XXXV,,PRD1_31,holin,117,complete,7-26;38-61;67-87,none,"O1-6,M7-26,I27-37,M38-61,O62-66,M67-87,I88-117",pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,
-PRD1|PRD1_32,ORFu,,PRD1_32,Rz-like spanin,120,complete,,1-31,"S1-31,O32-120",pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,
-PRD1|PRD1_33,ORFv,,PRD1_33,Rz-like spanin,90,complete,,1-21,"S1-21,O22-90",pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,
-PRD1|PRD1_21,XIX,,PRD1_21,single strand DNA binding protein,94,complete,,none,O1-94,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,
-PRD1|PRD1_22,XII,,PRD1_22,single strand DNA binding protein,160,complete,,none,O1-160,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,
+PRD1|PRD1_01,XIII,,PRD1_01,terminal protein,259,complete,,none,O1-259,complete,,none,I1-259,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,
+PRD1|PRD1_02,I,,PRD1_02,DNA polymerase,553,complete,,none,I1-553,complete,,none,I1-553,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,
+PRD1|PRD1_03,XV,,PRD1_03,endolysin,149,complete,,none,O1-149,complete,,none,O1-149,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,
+PRD1|PRD1_04,II,,PRD1_04,receptor binding,591,complete,,none,O1-591,complete,,none,O1-591,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,
+PRD1|PRD1_05,XXXI,,PRD1_05,major spike protein,126,complete,,none,O1-126,complete,,none,I1-126,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,
+PRD1|PRD1_06,V,,PRD1_06,major spike protein,340,complete,,none,O1-340,complete,,none,O1-340,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,
+PRD1|PRD1_07,XVII,,PRD1_07,assembly,86,complete,,none,I1-86,complete,,none,I1-86,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,
+PRD1|PRD1_23,XXXIII,,PRD1_23,assembly,68,complete,,none,O1-68,complete,,none,I1-68,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,
+PRD1|PRD1_08,VI,,PRD1_08,minor head protein,166,complete,,none,O1-166,complete,,none,I1-166,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,
+PRD1|PRD1_24,X,,PRD1_24,assembly,203,complete,136-156,none,"O1-135,M136-156,I157-203",complete,,none,I1-203,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,span_count
+PRD1|PRD1_09,IX,,PRD1_09,terminase large subunit,227,complete,,none,O1-227,complete,,none,I1-227,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,
+PRD1|PRD1_10,ORFi,,PRD1_10,hypothetical protein,42,complete,12-34,none,"O1-11,M12-34,I35-42",complete,13-33,none,"O1-12,M13-33,I34-42",pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,
+PRD1|PRD1_11,XX,,PRD1_11,DNA packaging,42,complete,12-31,none,"O1-11,M12-31,I32-42",complete,13-31,1-11,"S1-11,O12-12,M13-31,I32-42",pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,signal_peptide
+PRD1|PRD1_12,III,,PRD1_12,minor head protein,395,complete,,none,O1-395,complete,,none,O1-395,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,
+PRD1|PRD1_14,XXII,,PRD1_14,DNA packaging,47,complete,20-38,none,"O1-19,M20-38,I39-47",complete,21-42,none,"I1-20,M21-42,O43-47",pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,n_terminal_side
+PRD1|PRD1_25,ORFx,,PRD1_25,hypothetical protein,27,complete,,1-17,"S1-17,O18-27",complete,,1-20,"S1-20,O21-27",pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,signal_peptide_boundary
+PRD1|PRD1_26,ORFl,,PRD1_26,hypothetical protein,40,complete,,1-21,"S1-21,O22-40",complete,,1-21,"S1-21,O22-40",pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,
+PRD1|PRD1_15,XVIII,,PRD1_15,DNA delivery,90,complete,38-54;61-80,1-18,"S1-18,O19-37,M38-54,I55-60,M61-80,O81-90",complete,5-16;35-52;63-74,none,"O1-4,M5-16,I17-34,M35-52,O53-62,M63-74,I75-90",pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,span_count;signal_peptide
+PRD1|PRD1_27,XXXII,,PRD1_27,membrane DNA delivery,54,complete,6-25,none,"O1-5,M6-25,I26-54",complete,8-25,none,"I1-7,M8-25,O26-54",pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,n_terminal_side
+PRD1|PRD1_16,XXXIV,,PRD1_16,membrane DNA delivery,68,complete,6-26,none,"O1-5,M6-26,I27-68",complete,,1-26,"S1-26,O27-68",pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,span_count;signal_peptide
+PRD1|PRD1_17,XXX,,PRD1_17,minor head protein,84,complete,,none,O1-84,complete,,none,I1-84,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,
+PRD1|PRD1_28,ORFq,,PRD1_28,hypothetical protein,36,complete,,1-26,"S1-26,O27-36",complete,,1-17,"S1-17,O18-36",pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,signal_peptide_boundary
+PRD1|PRD1_18,XI,,PRD1_18,DNA delivery,207,complete,12-28,none,"O1-11,M12-28,I29-207",complete,,1-26,"S1-26,O27-207",pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,span_count;signal_peptide
+PRD1|PRD1_19,XVI,,PRD1_19,hypothetical protein,117,complete,6-23,none,"O1-5,M6-23,I24-117",complete,,1-24,"S1-24,O25-117",pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,span_count;signal_peptide
+PRD1|PRD1_20,VII,,PRD1_20,transglycosylase,265,complete,217-239,none,"O1-216,M217-239,I240-265",complete,,none,O1-265,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,span_count
+PRD1|PRD1_30,XIV,,PRD1_30,transglycosylase,150,complete,102-124,none,"O1-101,M102-124,I125-150",complete,102-111,none,"I1-101,M102-111,O112-150",pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,n_terminal_side
+PRD1|PRD1_31,XXXV,,PRD1_31,holin,117,complete,7-26;38-61;67-87,none,"O1-6,M7-26,I27-37,M38-61,O62-66,M67-87,I88-117",complete,11-26;40-60;67-87,none,"O1-10,M11-26,I27-39,M40-60,O61-66,M67-87,I88-117",pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,span_boundaries(max_shift=4)
+PRD1|PRD1_32,ORFu,,PRD1_32,Rz-like spanin,120,complete,,1-31,"S1-31,O32-120",complete,12-30,none,"I1-11,M12-30,O31-120",pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,span_count;signal_peptide
+PRD1|PRD1_33,ORFv,,PRD1_33,Rz-like spanin,90,complete,,1-21,"S1-21,O22-90",complete,,1-17,"S1-17,O18-90",pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,signal_peptide_boundary
+PRD1|PRD1_21,XIX,,PRD1_21,single strand DNA binding protein,94,complete,,none,O1-94,complete,,none,I1-94,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,
+PRD1|PRD1_22,XII,,PRD1_22,single strand DNA binding protein,160,complete,,none,O1-160,complete,,none,I1-160,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,pending,,,,

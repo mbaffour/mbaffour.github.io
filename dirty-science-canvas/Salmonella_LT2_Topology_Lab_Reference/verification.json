@@ -1,5 +1,5 @@
 {
- "checked_utc": "2026-11-06T19:53:08+00:00",
+ "checked_utc": "2026-11-06T20:37:28+00:00",
  "organism": "Salmonella enterica serovar Typhimurium LT2",
  "accessions": [
   "NC_003197.2",
@@ -42,19 +42,19 @@
    "detail": ""
   },
   {
-   "check": "submitted batch FASTAs are exact inventory sequences (20 job records)",
+   "check": "submitted batch FASTAs are exact inventory sequences (46 job records)",
    "status": "pass",
    "detail": ""
   },
   {
-   "check": "raw output checksums (19 files)",
+   "check": "raw output checksums (46 files)",
    "status": "pass",
    "detail": ""
   },
   {
    "check": "no failed batches",
-   "status": "fail",
-   "detail": "Phobius/b006.job.json:failed"
+   "status": "pass",
+   "detail": ""
   },
   {
    "check": "data.json protein set == inventory (order preserved)",
@@ -62,12 +62,12 @@
    "detail": ""
   },
   {
-   "check": "1600 predictions: segment strings expand to exactly one label per residue, contiguous 1..L, allowed alphabet",
+   "check": "4551 predictions: segment strings expand to exactly one label per residue, contiguous 1..L, allowed alphabet",
    "status": "pass",
    "detail": ""
   },
   {
-   "check": "Phobius signal-peptide ends = reported cleavage site; 'C' marker not counted as SP (324 proteins)",
+   "check": "Phobius signal-peptide ends = reported cleavage site; 'C' marker not counted as SP (810 proteins)",
    "status": "pass",
    "detail": ""
   },
@@ -83,17 +83,17 @@
   },
   {
    "check": "Phobius coverage of eligible proteins",
-   "status": "fail",
-   "detail": "1600/4551 eligible (4554 in inventory); {'complete': 1600, 'failed': 100, 'pending': 2851, 'unsupported': 3}"
+   "status": "pass",
+   "detail": "4551/4551 eligible (4554 in inventory); {'complete': 4551, 'unsupported': 3}"
   },
   {
    "check": "DeepTMHMM coverage of eligible proteins",
-   "status": "fail",
+   "status": "pending",
    "detail": "0/4551 eligible (4554 in inventory); {'pending': 4551, 'unsupported': 3}"
   },
   {
    "check": "TOPCONS2 coverage of eligible proteins",
-   "status": "fail",
+   "status": "pending",
    "detail": "0/4551 eligible (4554 in inventory); {'pending': 4551, 'unsupported': 3}"
   },
   {
@@ -122,9 +122,9 @@
    "detail": "[]"
   },
   {
-   "check": "browser layout audit: no text overlaps, no clipped text, no line crossing a label, no crossing leaders/bonds (all figures of every checked protein; 1443 proteins checked atlas-wide, all phage proteins + host sample)",
-   "status": "pass",
-   "detail": "[]"
+   "check": "browser layout audit: no text overlaps, no clipped text, no line crossing a label, no crossing leaders/bonds (all figures of every checked protein; 1568 proteins checked atlas-wide, all phage proteins + host sample)",
+   "status": "fail",
+   "detail": "[[\"Salmonella_LT2|STM0562\", {\"C_Phobius\": [\"conn crosses text \\\"OUTSIDE \\u00b7 non-cytoplasmic\\\"\"]}]]"
   },
   {
    "check": "browser: every residue's identity, number and band state verified in the full sequence map; bead cartoons account for every residue exactly once",
@@ -138,19 +138,19 @@
   }
  ],
  "failures": [
-  "no failed batches: Phobius/b006.job.json:failed",
-  "Phobius coverage of eligible proteins: 1600/4551 eligible (4554 in inventory); {'complete': 1600, 'failed': 100, 'pending': 2851, 'unsupported': 3}",
+  "browser layout audit: no text overlaps, no clipped text, no line crossing a label, no crossing leaders/bonds (all figures of every checked protein; 1568 proteins checked atlas-wide, all phage proteins + host sample): [[\"Salmonella_LT2|STM0562\", {\"C_Phobius\": [\"conn crosses text \\\"OUTSIDE \\u00b7 non-cytoplasmic\\\"\"]}]]"
+ ],
+ "pending": [
   "DeepTMHMM coverage of eligible proteins: 0/4551 eligible (4554 in inventory); {'pending': 4551, 'unsupported': 3}",
   "TOPCONS2 coverage of eligible proteins: 0/4551 eligible (4554 in inventory); {'pending': 4551, 'unsupported': 3}"
  ],
- "pending": [],
  "beta_state_predictions": [],
  "browser_check": {
-  "checked_utc": "2026-11-06T19:53:00.431Z",
+  "checked_utc": "2026-11-06T20:37:18.395Z",
   "browser": "153.0.8010.12",
-  "proteins_checked": 1443,
+  "proteins_checked": 1568,
   "phage_proteins": 1068,
-  "host_sample": 375,
+  "host_sample": 500,
   "ui": {
    "search_secY": 6,
    "org_M13": 10,
@@ -191,8 +191,8 @@
  },
  "summary": {
   "checks": 26,
-  "passed": 22,
-  "failed": 4,
-  "pending": 0
+  "passed": 23,
+  "failed": 1,
+  "pending": 2
  }
 }

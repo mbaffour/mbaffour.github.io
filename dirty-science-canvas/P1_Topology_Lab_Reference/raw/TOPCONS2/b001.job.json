@@ -1,0 +1,51 @@
+{
+  "method": "TOPCONS2",
+  "wsdl": "https://topcons.net/pred/api_submitseq/?wsdl",
+  "batch": "b001",
+  "fasta": "raw/TOPCONS2/b001.fasta",
+  "fasta_sha256": "b052104397734bb440055186c0329ca241cf26bb778210ff6d05abfd188efbeb",
+  "n_sequences": 110,
+  "n_residues": 28126,
+  "planned_utc": "2026-11-06T19:26:03+00:00",
+  "rerun": false,
+  "jobname": "dsc_P1_b001",
+  "fixtop": "",
+  "email": "",
+  "submitted_utc": "2026-11-06T20:32:32+00:00",
+  "raw_return": [
+    "rst_u1i52ww3",
+    "https://topcons.net/pred/result/rst_u1i52ww3",
+    "110",
+    "None",
+    "\n"
+  ],
+  "jobid": "rst_u1i52ww3",
+  "result_url": "https://topcons.net/pred/result/rst_u1i52ww3",
+  "numseq_accepted": "110",
+  "error": "None",
+  "warning": "\n",
+  "status": "submitted",
+  "checks": [
+    {
+      "utc": "2026-11-06T20:32:34+00:00",
+      "status": "Wait"
+    },
+    {
+      "utc": "2026-11-06T20:33:35+00:00",
+      "status": "Running"
+    },
+    {
+      "utc": "2026-11-06T20:34:36+00:00",
+      "status": "Running"
+    },
+    {
+      "utc": "2026-11-06T20:35:37+00:00",
+      "status": "Running"
+    },
+    {
+      "utc": "2026-11-06T20:36:38+00:00",
+      "status": "Running"
+    }
+  ],
+  "server_status": "Running"
+}

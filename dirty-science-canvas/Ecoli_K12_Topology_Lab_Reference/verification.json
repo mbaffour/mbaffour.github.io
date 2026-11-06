@@ -1,5 +1,5 @@
 {
- "checked_utc": "2026-11-06T19:53:07+00:00",
+ "checked_utc": "2026-11-06T20:37:27+00:00",
  "organism": "Escherichia coli K-12 MG1655",
  "accessions": [
   "NC_000913.3"
@@ -31,19 +31,24 @@
    "detail": ""
   },
   {
-   "check": "submitted batch FASTAs are exact inventory sequences (43 job records)",
+   "check": "submitted batch FASTAs are exact inventory sequences (48 job records)",
    "status": "pass",
    "detail": ""
   },
   {
-   "check": "raw output checksums (42 files)",
+   "check": "raw output checksums (55 files)",
    "status": "pass",
    "detail": ""
   },
   {
    "check": "no failed batches",
-   "status": "fail",
-   "detail": "Phobius/b034.job.json:failed"
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "all batches complete",
+   "status": "pending",
+   "detail": "DeepTMHMM/b005.job.json:running"
   },
   {
    "check": "data.json protein set == inventory (order preserved)",
@@ -51,12 +56,12 @@
    "detail": ""
   },
   {
-   "check": "4197 predictions: segment strings expand to exactly one label per residue, contiguous 1..L, allowed alphabet",
+   "check": "6297 predictions: segment strings expand to exactly one label per residue, contiguous 1..L, allowed alphabet",
    "status": "pass",
    "detail": ""
   },
   {
-   "check": "Phobius signal-peptide ends = reported cleavage site; 'C' marker not counted as SP (770 proteins)",
+   "check": "Phobius signal-peptide ends = reported cleavage site; 'C' marker not counted as SP (787 proteins)",
    "status": "pass",
    "detail": ""
   },
@@ -66,23 +71,23 @@
    "detail": ""
   },
   {
-   "check": "DeepTMHMM \u03b2-type predictions agree with its GFF (P=periplasm, O=outside, B=beta sheet; 0 proteins)",
+   "check": "DeepTMHMM \u03b2-type predictions agree with its GFF (P=periplasm, O=outside, B=beta sheet; 41 proteins)",
    "status": "pass",
    "detail": ""
   },
   {
    "check": "Phobius coverage of eligible proteins",
-   "status": "fail",
-   "detail": "4197/4297 eligible (4300 in inventory); {'complete': 4197, 'failed': 100, 'unsupported': 3}"
+   "status": "pass",
+   "detail": "4297/4297 eligible (4300 in inventory); {'complete': 4297, 'unsupported': 3}"
   },
   {
    "check": "DeepTMHMM coverage of eligible proteins",
-   "status": "fail",
-   "detail": "0/4297 eligible (4300 in inventory); {'pending': 4297, 'unsupported': 3}"
+   "status": "pending",
+   "detail": "2000/4297 eligible (4300 in inventory); {'complete': 2000, 'pending': 2297, 'unsupported': 3}"
   },
   {
    "check": "TOPCONS2 coverage of eligible proteins",
-   "status": "fail",
+   "status": "pending",
    "detail": "0/4293 eligible (4300 in inventory); {'pending': 4293, 'too_short': 4, 'unsupported': 3}"
   },
   {
@@ -111,7 +116,7 @@
    "detail": "[]"
   },
   {
-   "check": "browser layout audit: no text overlaps, no clipped text, no line crossing a label, no crossing leaders/bonds (all figures of every checked protein; 1443 proteins checked atlas-wide, all phage proteins + host sample)",
+   "check": "browser layout audit: no text overlaps, no clipped text, no line crossing a label, no crossing leaders/bonds (all figures of every checked protein; 1568 proteins checked atlas-wide, all phage proteins + host sample)",
    "status": "pass",
    "detail": "[]"
   },
@@ -126,20 +131,61 @@
    "detail": ""
   }
  ],
- "failures": [
-  "no failed batches: Phobius/b034.job.json:failed",
-  "Phobius coverage of eligible proteins: 4197/4297 eligible (4300 in inventory); {'complete': 4197, 'failed': 100, 'unsupported': 3}",
-  "DeepTMHMM coverage of eligible proteins: 0/4297 eligible (4300 in inventory); {'pending': 4297, 'unsupported': 3}",
+ "failures": [],
+ "pending": [
+  "all batches complete: DeepTMHMM/b005.job.json:running",
+  "DeepTMHMM coverage of eligible proteins: 2000/4297 eligible (4300 in inventory); {'complete': 2000, 'pending': 2297, 'unsupported': 3}",
   "TOPCONS2 coverage of eligible proteins: 0/4293 eligible (4300 in inventory); {'pending': 4293, 'too_short': 4, 'unsupported': 3}"
  ],
- "pending": [],
- "beta_state_predictions": [],
+ "beta_state_predictions": [
+  "Ecoli_K12|b0054",
+  "Ecoli_K12|b0139",
+  "Ecoli_K12|b0150",
+  "Ecoli_K12|b0177",
+  "Ecoli_K12|b0241",
+  "Ecoli_K12|b0291",
+  "Ecoli_K12|b0358",
+  "Ecoli_K12|b0411",
+  "Ecoli_K12|b0532",
+  "Ecoli_K12|b0565",
+  "Ecoli_K12|b0568",
+  "Ecoli_K12|b0584",
+  "Ecoli_K12|b0622",
+  "Ecoli_K12|b0681",
+  "Ecoli_K12|b0718",
+  "Ecoli_K12|b0805",
+  "Ecoli_K12|b0814",
+  "Ecoli_K12|b0929",
+  "Ecoli_K12|b0940",
+  "Ecoli_K12|b0957",
+  "Ecoli_K12|b0984",
+  "Ecoli_K12|b1024",
+  "Ecoli_K12|b1058",
+  "Ecoli_K12|b1102",
+  "Ecoli_K12|b1202",
+  "Ecoli_K12|b1220",
+  "Ecoli_K12|b1256",
+  "Ecoli_K12|b1319",
+  "Ecoli_K12|b1377",
+  "Ecoli_K12|b1381",
+  "Ecoli_K12|b1407",
+  "Ecoli_K12|b1451",
+  "Ecoli_K12|b1472",
+  "Ecoli_K12|b1495",
+  "Ecoli_K12|b1505",
+  "Ecoli_K12|b1615",
+  "Ecoli_K12|b1664",
+  "Ecoli_K12|b1722",
+  "Ecoli_K12|b1782",
+  "Ecoli_K12|b1978",
+  "Ecoli_K12|b2000"
+ ],
  "browser_check": {
-  "checked_utc": "2026-11-06T19:53:00.431Z",
+  "checked_utc": "2026-11-06T20:37:18.395Z",
   "browser": "153.0.8010.12",
-  "proteins_checked": 1443,
+  "proteins_checked": 1568,
   "phage_proteins": 1068,
-  "host_sample": 375,
+  "host_sample": 500,
   "ui": {
    "search_secY": 6,
    "org_M13": 10,
@@ -179,9 +225,9 @@
   }
  },
  "summary": {
-  "checks": 24,
-  "passed": 20,
-  "failed": 4,
-  "pending": 0
+  "checks": 25,
+  "passed": 22,
+  "failed": 0,
+  "pending": 3
  }
 }

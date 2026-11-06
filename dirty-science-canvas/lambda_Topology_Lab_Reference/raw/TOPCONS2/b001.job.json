@@ -24,24 +24,8 @@
   "numseq_accepted": "73",
   "error": "None",
   "warning": "\n",
-  "status": "submitted",
+  "status": "complete",
   "checks": [
-    {
-      "utc": "2026-11-06T19:34:25+00:00",
-      "status": "Running"
-    },
-    {
-      "utc": "2026-11-06T19:35:26+00:00",
-      "status": "Running"
-    },
-    {
-      "utc": "2026-11-06T19:36:27+00:00",
-      "status": "Running"
-    },
-    {
-      "utc": "2026-11-06T19:37:28+00:00",
-      "status": "Running"
-    },
     {
       "utc": "2026-11-06T19:38:29+00:00",
       "status": "Running"
@@ -105,7 +89,28 @@
     {
       "utc": "2026-11-06T19:53:45+00:00",
       "status": "Running"
+    },
+    {
+      "utc": "2026-11-06T19:54:46+00:00",
+      "status": "Running"
+    },
+    {
+      "utc": "2026-11-06T19:55:52+00:00",
+      "status": "Running"
+    },
+    {
+      "utc": "2026-11-06T19:56:53+00:00",
+      "status": "Running"
+    },
+    {
+      "utc": "2026-11-06T19:57:54+00:00",
+      "status": "Finished"
     }
   ],
-  "server_status": "Running"
+  "server_status": "Finished",
+  "result_zip_url": "https://topcons.net/static/result/rst_4mz17kkc/rst_4mz17kkc.zip",
+  "result_zip_sha256": "a7a3e580a66ab0113a42ece88b85f1ef8c65c24a3511256c733a4a5c6b419547",
+  "result_zip_bytes": 9708591,
+  "completed_utc": "2026-11-06T19:57:57+00:00",
+  "result_zip": "raw/TOPCONS2/rst_4mz17kkc.zip"
 }
