@@ -73,7 +73,7 @@ for key, p in PHAGES.items():
     (pd / "inventory.json").write_text(json.dumps(inv, indent=2))
     (pd / "pseudogene_inventory.json").write_text(json.dumps(pseudo, indent=2))
     with open(pd / "protein_inventory.csv", "w", newline="") as fh:
-        w = csv.writer(fh)
+        w = csv.writer(fh, lineterminator="\n")
         w.writerow(["protein_id", "gene", "locus_tag", "product", "synonyms", "replicon", "start", "stop", "strand", "curator_alias", "protein_accession", "length", "sequence_sha256", "annotation_flags", "sequence"])
         for pr in proteins:
             w.writerow([pr["protein_id"], pr["gene"], pr["locus_tag"], pr["product"], ";".join(pr["synonyms"]), pr["replicon"], pr["start"], pr["stop"], pr["strand"], pr["curator_alias"], pr["protein_accession"], pr["length"], pr["sequence_sha256"], ";".join(pr["annotation_flags"]), pr["sequence"]])

@@ -209,7 +209,7 @@ def main():
                 "validation_errors": errors, "proteins": recs}
         (pd / "data.json").write_text(json.dumps(data, indent=1))
         with open(pd / "topology_summary.csv", "w", newline="") as fh:
-            w = csv.writer(fh)
+            w = csv.writer(fh, lineterminator="\n")
             w.writerow(["protein_id", "gene", "curator_alias", "product", "length"] + [f"{m}_{x}" for m in MAIN + COMPONENTS for x in ("status", "spans", "signal_peptide", "topology")] + ["disagreements"])
             for r in recs:
                 row = [r["protein_id"], r["gene"], r["curator_alias"], r["product"], r["length"]]
