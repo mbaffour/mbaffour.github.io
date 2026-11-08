@@ -23,7 +23,10 @@ for k, o in ORGANISMS.items():
     if not (pd / "data.json").exists(): continue
     d = json.loads((pd / "data.json").read_text()); v = json.loads((pd / "verification.json").read_text()) if (pd / "verification.json").exists() else None
     P = d["proteins"]; M = d["main_methods"]; ip = d["input_provenance"]
-    cov = {m: d["coverage"][m] for m in M}; partial = any(c["complete"] < c["eligible"] for c in cov.values())
+    cov = {m: d["coverage"][m] for m in M}
+    # 'no_topology_produced' means the method ran and declined on that sequence, which is terminal: not partial.
+    dec = {m: c["status_counts"].get("no_topology_produced", 0) for m, c in cov.items()}
+    partial = any(c["complete"] + dec[m] < c["eligible"] for m, c in cov.items())
     cache = {}
     for p in P:
         tm = p.get("topcons_meta")
@@ -32,9 +35,15 @@ for k, o in ORGANISMS.items():
     inel = {m: [(p["protein_id"], p["ineligible"][m]) for p in P if p.get("ineligible", {}).get(m)] for m in M}
     n_span = sum(p["any_membrane_span"] for p in P); n_sp = sum(p["any_signal_peptide"] for p in P); n_dis = sum(bool(p["disagreements"]) for p in P)
     beta = v.get("beta_state_predictions", []) if v else []
-    rows_top.append(f"| [{o['name']}]({pd.name}/{k}_Topology_Atlas.html) | {o['kind']} | {', '.join(o['accessions'])} | {len(P):,} | {n_span:,} | {n_sp:,} | {len(beta):,} | " + " · ".join(f"{m} {cov[m]['complete']:,}/{cov[m]['eligible']:,}" for m in M) + (" **(partial)**" if partial else "") + " |")
+    rows_top.append(f"| [{o['name']}]({pd.name}/{k}_Topology_Atlas.html) | {o['kind']} | {', '.join(o['accessions'])} | {len(P):,} | {n_span:,} | {n_sp:,} | {len(beta):,} | " + " · ".join(f"{m} {cov[m]['complete']:,}/{cov[m]['eligible']:,}" + (f" (+{dec[m]} declined)" if dec[m] else "") for m in M) + (" **(partial)**" if partial else "") + " |")
     lines = [f"# {o['name']} — membrane topology & charge lab reference", "",
              f"Open **`{k}_Topology_Atlas.html`** (one offline file), or the combined atlas `../Dirty_Science_Canvas_Atlas.html`. All topology calls are **computational predictions**, not experimental evidence.", ""]
+    if any(dec.values()):
+        lines += ["> **Declined predictions:** " + "; ".join(f"{m}: {dec[m]}" for m in M if dec[m]) +
+                  ". TOPCONS2 reports `***No topology could be produced with this method***` for some sequences "
+                  "(here, soluble proteins where every component returns an all-outside topology). Those are "
+                  "recorded as `no_topology_produced`: a result from the method, not a missing job, and resubmitting "
+                  "reproduces it.", ""]
     if partial: lines += ["> **Partial:** at least one predictor has not yet finished every eligible protein (see coverage). Missing results are shown as pending, never substituted. Resume with the commands below.", ""]
     lines += ["## Source", *[f"- RefSeq **{s['accessionversion']}**: \"{s['title']}\", {s['slen']:,} nt, {s['topology']}; NCBI record updated {s['updatedate']}; taxid {s['taxid']}." for s in ip["ncbi_summaries"]],
               f"- Downloaded from NCBI E-utilities on {ip['files'][0]['retrieved_utc'][:10]} (UTC); URLs and SHA-256 in `inputs/provenance.json`" + (" (GenBank stored gzip-compressed; checksums of both forms recorded)." if o["kind"] == "host" else "."),

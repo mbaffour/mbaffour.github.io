@@ -1,5 +1,5 @@
 {
- "checked_utc": "2026-11-08T04:30:21+00:00",
+ "checked_utc": "2026-11-08T20:21:54+00:00",
  "organism": "Escherichia coli K-12 MG1655",
  "accessions": [
   "NC_000913.3"
@@ -31,12 +31,12 @@
    "detail": ""
   },
   {
-   "check": "submitted batch FASTAs are exact inventory sequences (52 job records)",
+   "check": "submitted batch FASTAs are exact inventory sequences (58 job records)",
    "status": "pass",
    "detail": ""
   },
   {
-   "check": "raw output checksums (70 files)",
+   "check": "raw output checksums (76 files)",
    "status": "pass",
    "detail": ""
   },
@@ -51,7 +51,7 @@
    "detail": ""
   },
   {
-   "check": "8594 predictions: segment strings expand to exactly one label per residue, contiguous 1..L, allowed alphabet",
+   "check": "34350 predictions: segment strings expand to exactly one label per residue, contiguous 1..L, allowed alphabet",
    "status": "pass",
    "detail": ""
   },
@@ -82,8 +82,8 @@
   },
   {
    "check": "TOPCONS2 coverage of eligible proteins",
-   "status": "pending",
-   "detail": "0/4293 eligible (4300 in inventory); {'pending': 4293, 'too_short': 4, 'unsupported': 3}"
+   "status": "pass",
+   "detail": "4292/4293 eligible (4300 in inventory); {'complete': 4292, 'no_topology_produced': 1, 'too_short': 4, 'unsupported': 3}; 1 declined by the method itself, which is a result and not a gap"
   },
   {
    "check": "organism atlas embeds the current sequences and predictions",
@@ -127,9 +127,7 @@
   }
  ],
  "failures": [],
- "pending": [
-  "TOPCONS2 coverage of eligible proteins: 0/4293 eligible (4300 in inventory); {'pending': 4293, 'too_short': 4, 'unsupported': 3}"
- ],
+ "pending": [],
  "beta_state_predictions": [
   "Ecoli_K12|b0054",
   "Ecoli_K12|b0139",
@@ -204,7 +202,7 @@
   "Ecoli_K12|b4317"
  ],
  "browser_check": {
-  "checked_utc": "2026-11-08T04:30:08.966Z",
+  "checked_utc": "2026-11-08T20:21:03.117Z",
   "browser": "153.0.8010.12",
   "proteins_checked": 1568,
   "phage_proteins": 1068,
@@ -249,8 +247,8 @@
  },
  "summary": {
   "checks": 24,
-  "passed": 23,
+  "passed": 24,
   "failed": 0,
-  "pending": 1
+  "pending": 0
  }
 }

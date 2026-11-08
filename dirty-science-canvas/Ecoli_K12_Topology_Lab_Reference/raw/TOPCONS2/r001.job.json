@@ -24,12 +24,21 @@
   "numseq_accepted": "1",
   "error": "None",
   "warning": "\n",
-  "status": "submitted",
+  "status": "complete",
   "checks": [
     {
       "utc": "2026-11-08T20:12:16+00:00",
       "status": "Wait"
+    },
+    {
+      "utc": "2026-11-08T20:13:17+00:00",
+      "status": "Finished"
     }
   ],
-  "server_status": "Wait"
+  "server_status": "Finished",
+  "result_zip_url": "https://topcons.net/static/result/rst_te4pxkua/rst_te4pxkua.zip",
+  "result_zip_sha256": "c05d4f911a814981e8693d9d78893e8e3692e29976f54abd1885fc8af56dbc28",
+  "result_zip_bytes": 86049,
+  "completed_utc": "2026-11-08T20:13:18+00:00",
+  "result_zip": "raw/TOPCONS2/rst_te4pxkua.zip"
 }

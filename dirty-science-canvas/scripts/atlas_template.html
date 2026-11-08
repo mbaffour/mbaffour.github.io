@@ -49,6 +49,8 @@ th,td{border-bottom:1px solid #e6e8eb;padding:4px 6px;text-align:left;vertical-a
 th{background:#f3f4f6;font-weight:600}
 .st-complete{color:#166534;font-weight:600}.st-pending{color:var(--warn);font-weight:600}
 .st-failed,.st-unsupported,.st-no_output_returned,.st-too_short,.st-too_long,.st-not_returned,.st-not_submitted{color:var(--bad);font-weight:600}
+/* the method ran and declined to produce a topology for this sequence: a real result, not a failure */
+.st-no_topology_produced{color:var(--warn);font-weight:600}
 .toggles{display:flex;flex-wrap:wrap;gap:6px 16px;align-items:center;font-size:13.5px}
 .toggles fieldset{border:1px solid var(--line);border-radius:8px;padding:6px 10px;margin:0}
 .toggles legend{font-size:12px;color:var(--muted);padding:0 4px}

@@ -24,12 +24,21 @@
   "numseq_accepted": "3",
   "error": "None",
   "warning": "\n",
-  "status": "submitted",
+  "status": "complete",
   "checks": [
     {
       "utc": "2026-11-08T20:12:17+00:00",
       "status": "Wait"
+    },
+    {
+      "utc": "2026-11-08T20:13:19+00:00",
+      "status": "Finished"
     }
   ],
-  "server_status": "Wait"
+  "server_status": "Finished",
+  "result_zip_url": "https://topcons.net/static/result/rst_ez55rj_f/rst_ez55rj_f.zip",
+  "result_zip_sha256": "889b88bbc6cb1119aa1c37103153024c23a48d44f9f0e47f6e8524f099a08c3b",
+  "result_zip_bytes": 100983,
+  "completed_utc": "2026-11-08T20:13:20+00:00",
+  "result_zip": "raw/TOPCONS2/rst_ez55rj_f.zip"
 }
