@@ -1,4 +1,12 @@
 {
+  "previous_attempts": [
+    {
+      "submitted_utc": "2026-11-06T21:27:05+00:00",
+      "status": "interrupted",
+      "error": "runner process stopped (container restart) while blocking on the BioLib job; results never retrieved. job_id recovered from logs/run_deeptmhmm.log",
+      "job_id": "b500c176-9aef-460c-8f18-c910fb250241"
+    }
+  ],
   "method": "DeepTMHMM",
   "service": "BioLib app DTU/DeepTMHMM",
   "client": "pybiolib",
@@ -13,6 +21,6 @@
     "--fasta",
     "input.fasta"
   ],
-  "submitted_utc": "2026-11-06T21:27:05+00:00",
+  "submitted_utc": "2026-11-08T04:26:43+00:00",
   "status": "running"
 }

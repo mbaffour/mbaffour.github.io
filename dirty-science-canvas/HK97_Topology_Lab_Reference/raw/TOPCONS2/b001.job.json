@@ -24,7 +24,7 @@
   "numseq_accepted": "61",
   "error": "None",
   "warning": "\n",
-  "status": "submitted",
+  "status": "complete",
   "checks": [
     {
       "utc": "2026-11-06T21:04:43+00:00",
@@ -33,7 +33,16 @@
     {
       "utc": "2026-11-06T21:05:44+00:00",
       "status": "Running"
+    },
+    {
+      "utc": "2026-11-06T21:33:14+00:00",
+      "status": "Finished"
     }
   ],
-  "server_status": "Running"
+  "server_status": "Finished",
+  "result_zip_url": "https://topcons.net/static/result/rst_ljt3ocqw/rst_ljt3ocqw.zip",
+  "result_zip_sha256": "25cfd1e3bd9740e0a911b8805f5258cec994e2eb102112f6d7f671b2b754e2b5",
+  "result_zip_bytes": 7990298,
+  "completed_utc": "2026-11-06T21:33:15+00:00",
+  "result_zip": "raw/TOPCONS2/rst_ljt3ocqw.zip"
 }
