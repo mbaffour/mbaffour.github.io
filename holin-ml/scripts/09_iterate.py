@@ -52,6 +52,8 @@ def model():
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--iters", type=int, default=4); ap.add_argument("--add", type=int, default=150, dest="max_add")
+    ap.add_argument("--gold-only", action="store_true", dest="gold_only",
+                    help="write the frozen gold holdout and exit, without embedding the pool")
     a = ap.parse_args()
     data = json.loads((B / "data/processed/dataset.json").read_text())
     pool = json.loads((B / "data/processed/pool.json").read_text())
@@ -77,6 +79,10 @@ def main():
                                   "n": len(gold_ids), "n_holin": sum(1 for r in labelled if r["id"] in gold_ids and r["label"] == "holin"),
                                   "rule": "whole homology clusters, fixed seed; never trained on, never used to accept a candidate",
                                   "ids": sorted(gold_ids)}, indent=1))
+    if a.gold_only:
+        print(json.dumps({"gold_holdout": str((B / "data/processed/gold_holdout.json").relative_to(B)),
+                          "n": len(gold_ids), "n_holin": sum(1 for r in labelled if r["id"] in gold_ids and r["label"] == "holin")}))
+        return
     gold = [r for r in labelled if r["id"] in gold_ids]
     base = [r for r in labelled if r["id"] not in gold_ids]
     hard = [r for r in data if r["label"] == "holin_like"]
