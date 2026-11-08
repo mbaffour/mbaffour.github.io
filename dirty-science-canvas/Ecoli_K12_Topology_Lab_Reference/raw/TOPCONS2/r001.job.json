@@ -1,0 +1,35 @@
+{
+  "method": "TOPCONS2",
+  "wsdl": "https://topcons.net/pred/api_submitseq/?wsdl",
+  "batch": "r001",
+  "fasta": "raw/TOPCONS2/r001.fasta",
+  "fasta_sha256": "41117b89bf39ba6ce93ca77ce863000e3e47009c8b1d82079145295e8beb98c0",
+  "n_sequences": 1,
+  "n_residues": 134,
+  "planned_utc": "2026-11-08T20:12:09+00:00",
+  "rerun": true,
+  "jobname": "dsc_Ecoli_K12_r001",
+  "fixtop": "",
+  "email": "",
+  "submitted_utc": "2026-11-08T20:12:14+00:00",
+  "raw_return": [
+    "rst_te4pxkua",
+    "https://topcons.net/pred/result/rst_te4pxkua",
+    "1",
+    "None",
+    "\n"
+  ],
+  "jobid": "rst_te4pxkua",
+  "result_url": "https://topcons.net/pred/result/rst_te4pxkua",
+  "numseq_accepted": "1",
+  "error": "None",
+  "warning": "\n",
+  "status": "submitted",
+  "checks": [
+    {
+      "utc": "2026-11-08T20:12:16+00:00",
+      "status": "Wait"
+    }
+  ],
+  "server_status": "Wait"
+}
