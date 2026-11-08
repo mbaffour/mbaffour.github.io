@@ -1,0 +1,19 @@
+{
+  "previous_attempts": [],
+  "method": "DeepTMHMM",
+  "service": "BioLib app DTU/DeepTMHMM",
+  "client": "pybiolib",
+  "batch": "b006",
+  "fasta": "raw/DeepTMHMM/b006.fasta",
+  "fasta_sha256": "50f56160e7039386a8566ee8c681133b3a09446348ca74283a56450fa9b69217",
+  "n_sequences": 500,
+  "n_residues": 131804,
+  "planned_utc": "2026-11-06T19:26:03+00:00",
+  "rerun": false,
+  "args": [
+    "--fasta",
+    "input.fasta"
+  ],
+  "submitted_utc": "2026-11-08T05:58:58+00:00",
+  "status": "running"
+}

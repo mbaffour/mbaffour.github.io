@@ -24,7 +24,7 @@
   "numseq_accepted": "1000",
   "error": "None",
   "warning": "\n",
-  "status": "submitted",
+  "status": "complete",
   "checks": [
     {
       "utc": "2026-11-08T05:23:08+00:00",
@@ -33,7 +33,18 @@
     {
       "utc": "2026-11-08T05:24:09+00:00",
       "status": "Running"
+    },
+    {
+      "utc": "2026-11-08T05:49:37+00:00",
+      "status": "Finished"
     }
   ],
-  "server_status": "Running"
+  "server_status": "Finished",
+  "result_zip_url": "https://topcons.net/static/result/rst_iqo3_ru5/rst_iqo3_ru5.zip",
+  "result_zip_sha256": "9db5afbf070aee84db1462d733c226a89c8c7494a5606720acbce4543328c5f7",
+  "result_zip_bytes": 146855238,
+  "completed_utc": "2026-11-08T05:49:45+00:00",
+  "result_text_archive": "raw/TOPCONS2/b002.text.tar.xz",
+  "result_text_archive_sha256": "5c5c1d4ac196d1c3693d389b74aaf0eb14b6ef96af6fa5af4a4eae47728cf93d",
+  "archive_note": "Result zip (146855238 bytes, sha256 above) not stored because of its size (mostly per-sequence images); the text members needed to reproduce every prediction (seq.fa, query.result.txt, reliability.final, finished_seqs.txt, stat.txt) are archived unmodified."
 }
