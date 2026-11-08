@@ -1,0 +1,51 @@
+{
+  "organism": "Enterobacteria phage lambda",
+  "accessions": [
+    "NC_001416.1"
+  ],
+  "files": [
+    {
+      "file": "inputs/NC_001416.1.gb",
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&id=NC_001416.1&rettype=gbwithparts&retmode=text",
+      "retrieved_utc": "2026-11-06T19:21:09+00:00",
+      "sha256": "3c624302adeeb3c00649f549903ab781b9e75bab16069ae655833d536407367f",
+      "bytes": 176721
+    },
+    {
+      "file": "inputs/NC_001416.1.cds_aa.fasta",
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&id=NC_001416.1&rettype=fasta_cds_aa&retmode=text",
+      "retrieved_utc": "2026-11-06T19:21:11+00:00",
+      "sha256": "cbfd0a327d556caae6ce05edc369855963b462258e3192e6d18031cc46f03c64",
+      "bytes": 29109
+    },
+    {
+      "file": "inputs/NC_001416.1.fna",
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&id=NC_001416.1&rettype=fasta&retmode=text",
+      "retrieved_utc": "2026-11-06T19:21:12+00:00",
+      "sha256": "78a78913d3585570fa28b7cec05e4fcf067c1aaa3740d37a377f2babda70618c",
+      "bytes": 49254
+    }
+  ],
+  "ncbi_summaries": [
+    {
+      "accessionversion": "NC_001416.1",
+      "title": "Enterobacteria phage lambda, complete genome",
+      "slen": 48502,
+      "createdate": "1993/04/28",
+      "updatedate": "2023/01/11",
+      "taxid": 2681611,
+      "biomol": "genomic",
+      "topology": "linear"
+    }
+  ],
+  "ncbi_summary": {
+    "accessionversion": "NC_001416.1",
+    "title": "Enterobacteria phage lambda, complete genome",
+    "slen": 48502,
+    "createdate": "1993/04/28",
+    "updatedate": "2023/01/11",
+    "taxid": 2681611,
+    "biomol": "genomic",
+    "topology": "linear"
+  }
+}

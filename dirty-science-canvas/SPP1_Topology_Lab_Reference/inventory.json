@@ -1,0 +1,4226 @@
+{
+  "organism": "Bacillus phage SPP1",
+  "key": "SPP1",
+  "kind": "phage",
+  "accessions": [
+    "NC_004166.2"
+  ],
+  "gb_files": [
+    "NC_004166.2.gb"
+  ],
+  "n_cds_features": 97,
+  "n_proteins": 97,
+  "n_pseudogenes": 0,
+  "cds_fasta_records": 97,
+  "cds_fasta_unmatched": [],
+  "proteins": [
+    {
+      "protein_id": "SPP1|SPP1p001",
+      "gene": "",
+      "locus_tag": "SPP1p001",
+      "product": "terminase small subunit",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gene 1",
+      "replicon": "NC_004166.2",
+      "start": 43878,
+      "stop": 422,
+      "strand": "+",
+      "location": "join{[43877:44010](+), [0:422](+)}",
+      "protein_accession": "NP_690652.1",
+      "db_xref": [
+        "GOA:P54307",
+        "InterPro:IPR005335",
+        "UniProtKB/Swiss-Prot:P54307",
+        "GeneID:955251"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MGEVKGKWTPKLERFVDEYFINGMNATKAAIAAGYSKKSASTIAAENMQKPHVRARIEERLAQMDKKRIMQAEEVLEHLTRIALGQEKEQVLMGIGKGAETKTHVEVSAKDRIKALELLGKLTQCLRTSRRSRLTKSSSLTIAAMQNEESKAFREVYTAFLRGVENGQSRSTPQICIEGRPWFR",
+      "length": 184,
+      "sequence_sha256": "315faedf05ac9617437e8a3a2be5498063b78afd509abb7714178408be30c171",
+      "annotation_flags": [
+        "joined_location_spans_circular_origin"
+      ],
+      "source_record": "inputs/NC_004166.2.gb",
+      "cds_fasta_id": "lcl|NC_004166.2_prot_NP_690652.1_1",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "SPP1|SPP1p002",
+      "gene": "",
+      "locus_tag": "SPP1p002",
+      "product": "hypothetical protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gene 1.1",
+      "replicon": "NC_004166.2",
+      "start": 43979,
+      "stop": 274,
+      "strand": "-",
+      "location": "join{[0:274](-), [43978:44010](-)}",
+      "protein_accession": "NP_690653.1",
+      "db_xref": [
+        "UniProtKB/TrEMBL:O48435",
+        "GeneID:955252"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MVSLDLLLVRKHCVSFPNSSSALILSFADTSTCVFVSAPLPIPMSTCSFSWPSAMRVKCSKTSSACMILFLSICANLSSIRARTCGFCMFSAAIVEADFLL",
+      "length": 101,
+      "sequence_sha256": "c852044eff86a4a0263a261d40850ecb2efc7c9fac260ab2a2b5f9e2583eb2d7",
+      "annotation_flags": [
+        "alternative_start_codon_read_as_Met",
+        "joined_location_spans_circular_origin"
+      ],
+      "source_record": "inputs/NC_004166.2.gb",
+      "cds_fasta_id": "lcl|NC_004166.2_prot_NP_690653.1_2",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "SPP1|SPP1p003",
+      "gene": "",
+      "locus_tag": "SPP1p003",
+      "product": "terminase large subunit",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gene 2",
+      "replicon": "NC_004166.2",
+      "start": 307,
+      "stop": 1575,
+      "strand": "+",
+      "location": "[306:1575](+)",
+      "protein_accession": "NP_690654.1",
+      "db_xref": [
+        "GOA:P54308",
+        "InterPro:IPR006437",
+        "InterPro:IPR006701",
+        "PDB:2WBN",
+        "PDB:2WC9",
+        "UniProtKB/Swiss-Prot:P54308",
+        "GeneID:955254"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MKKVRLSEKFTPHFLEVWRTVKAAQHLKYVLKGGRGSAKSTHIAMWIILLMMMMPITFLVIRRVYNTVEQSVFEQLKEAIDMLEVGHLWKVSKSPLRLTYIPRGNSIIFRGGDDVQKIKSIKASKFPVAGMWIEELAEFKTEEEVSVIEKSVLRAELPPGCRYIFFYSYNPPKRKQSWVNKVFNSSFLPANTFVDHSTYLQNPFLSKAFIEEAEEVKRRNELKYRHEYLGEALGSGVVPFENLQIEEGIITDAEVARFDNIRQGLDFGYGPDPLAFVRWHYDKRKNRIYAIDELVDHKVSLKRTADFVRKNKYESARIIADSSEPRSIDALKLEHGINRIEGAKKGPDSVEHGERWLDELDAIVIDPLRTPNIAREFENIDYQTDKNGDPIPRLEDKDNHTIDATRYAFERDMKKGGVSLWG",
+      "length": 422,
+      "sequence_sha256": "cba0149203116dc0f8b2d776467300e12f4938ca7fc3591a04509107aaadef8b",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_004166.2.gb",
+      "cds_fasta_id": "lcl|NC_004166.2_prot_NP_690654.1_3",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "SPP1|SPP1p004",
+      "gene": "",
+      "locus_tag": "SPP1p004",
+      "product": "hypothetical protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gene 2.1",
+      "replicon": "NC_004166.2",
+      "start": 429,
+      "stop": 725,
+      "strand": "-",
+      "location": "[428:725](-)",
+      "protein_accession": "NP_690655.1",
+      "db_xref": [
+        "UniProtKB/TrEMBL:O48436",
+        "GeneID:955256"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MNSASSSIHMPATGNLLALIDLIFCTSSPPRKIMLFPLGMYVSLSGDLLTFQRWPTSSMSIASLSCSNTDCSTVLYTRLMTKNVIGIIIISKMIHIAI",
+      "length": 98,
+      "sequence_sha256": "169b432be6306598aa503bbf5a70edbba31af7d26acf002a4b59b01e0948e962",
+      "annotation_flags": [
+        "alternative_start_codon_read_as_Met"
+      ],
+      "source_record": "inputs/NC_004166.2.gb",
+      "cds_fasta_id": "lcl|NC_004166.2_prot_NP_690655.1_4",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "SPP1|SPP1p005",
+      "gene": "",
+      "locus_tag": "SPP1p005",
+      "product": "hypothetical protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gene 2.2",
+      "replicon": "NC_004166.2",
+      "start": 804,
+      "stop": 1088,
+      "strand": "-",
+      "location": "[803:1088](-)",
+      "protein_accession": "NP_690656.1",
+      "db_xref": [
+        "UniProtKB/TrEMBL:O48437",
+        "GeneID:955265"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MLSKRATSASVMIPSSICRFSNGTTPLPSASPRYSCRYFNSLRRLTSSASSINAFERKGFCRYVEWSTNVLAGRNDELKTLFTQLCFLFGGLYE",
+      "length": 94,
+      "sequence_sha256": "bae40594c28d573f19db272586a3efa65ba9c67b21804ec989b86318071a1495",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_004166.2.gb",
+      "cds_fasta_id": "lcl|NC_004166.2_prot_NP_690656.1_5",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "SPP1|SPP1p006",
+      "gene": "",
+      "locus_tag": "SPP1p006",
+      "product": "hypothetical protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gene 3",
+      "replicon": "NC_004166.2",
+      "start": 1566,
+      "stop": 1781,
+      "strand": "+",
+      "location": "[1565:1781](+)",
+      "protein_accession": "NP_690657.1",
+      "db_xref": [
+        "UniProtKB/Swiss-Prot:Q38439",
+        "GeneID:955267"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MGIVKKILRMTGLEKHDYVRYMGKNYKCLKCGHDLYIPKHNEFHYTVKEFRGCKGEQRMKKVKRHRNGGYA",
+      "length": 71,
+      "sequence_sha256": "e4f8ba892004f35cb9f3ebea38472be39ac3862b044f1235fa72c48d59ad4bdd",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_004166.2.gb",
+      "cds_fasta_id": "lcl|NC_004166.2_prot_NP_690657.1_6",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "SPP1|SPP1p007",
+      "gene": "",
+      "locus_tag": "SPP1p007",
+      "product": "hypothetical protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gene 4.1",
+      "replicon": "NC_004166.2",
+      "start": 1668,
+      "stop": 1892,
+      "strand": "-",
+      "location": "[1667:1892](-)",
+      "protein_accession": "NP_690658.1",
+      "db_xref": [
+        "UniProtKB/TrEMBL:O48438",
+        "GeneID:955277"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MHASQSPLIARYRLSSSCSSCTRSVVCGSSFSSHSVALCVPPIPVPFYLFHPLFPFAPSEFFYRVMKLIVLWDI",
+      "length": 74,
+      "sequence_sha256": "e72d8efb02721aeab34c46b36cb5740b5dd4e6711d7c37614f7141ff55ecda93",
+      "annotation_flags": [
+        "alternative_start_codon_read_as_Met"
+      ],
+      "source_record": "inputs/NC_004166.2.gb",
+      "cds_fasta_id": "lcl|NC_004166.2_prot_NP_690658.1_7",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "SPP1|SPP1p008",
+      "gene": "",
+      "locus_tag": "SPP1p008",
+      "product": "hypothetical protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gene 4",
+      "replicon": "NC_004166.2",
+      "start": 1781,
+      "stop": 2038,
+      "strand": "+",
+      "location": "[1780:2038](+)",
+      "protein_accession": "NP_690659.1",
+      "db_xref": [
+        "UniProtKB/Swiss-Prot:Q38440",
+        "GeneID:955275"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MRPNDWRKKNRIQQIEYKKNNLTKDDIELLEEIVKRAKRGEFVDFMFAASLNTPDDMVFVGYTDYMSIRNMSSSRQNHYYACMTP",
+      "length": 85,
+      "sequence_sha256": "301ca194438672bde2b30e17e3aca0e7e7e238c6a3f5caab6140d9e4e5960955",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_004166.2.gb",
+      "cds_fasta_id": "lcl|NC_004166.2_prot_NP_690659.1_8",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "SPP1|SPP1p009",
+      "gene": "",
+      "locus_tag": "SPP1p009",
+      "product": "hypothetical protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gene 5",
+      "replicon": "NC_004166.2",
+      "start": 2063,
+      "stop": 2332,
+      "strand": "+",
+      "location": "[2062:2332](+)",
+      "protein_accession": "NP_690660.1",
+      "db_xref": [
+        "UniProtKB/Swiss-Prot:Q38441",
+        "GeneID:955278"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MAKFRKKPVEIEAVQYDGTNAREIERFVNGDIGMIGGTLDYDPIGNDYFIKTLEGKMTIRKDDYIIKGVNGEFYPCKPDIFHKTYEEVK",
+      "length": 89,
+      "sequence_sha256": "6e8b20f3661c9ea621a32953858c7c581478dbb606df47116096846fd14e111d",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_004166.2.gb",
+      "cds_fasta_id": "lcl|NC_004166.2_prot_NP_690660.1_9",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "SPP1|SPP1p010",
+      "gene": "",
+      "locus_tag": "SPP1p010",
+      "product": "portal protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gene 6",
+      "replicon": "NC_004166.2",
+      "start": 2334,
+      "stop": 3845,
+      "strand": "+",
+      "location": "[2333:3845](+)",
+      "protein_accession": "NP_690661.1",
+      "db_xref": [
+        "InterPro:IPR006428",
+        "InterPro:IPR021145",
+        "PDB:2JES",
+        "UniProtKB/Swiss-Prot:P54309",
+        "GeneID:955279"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MADIYPLGKTHTEELNEIIVESAKEIAEPDTTMIQKLIDEHNPEPLLKGVRYYMCENDIEKKRRTYYDAAGQQLVDDTKTNNRTSHAWHKLFVDQKTQYLVGEPVTFTSDNKTLLEYVNELADDDFDDILNETVKNMSNKGIEYWHPFVDEEGEFDYVIFPAEEMIVVYKDNTRRDILFALRYYSYKGIMGEETQKAELYTDTHVYYYEKIDGVYQMDYSYGENNPRPHMTKGGQAIGWGRVPIIPFKNNEEMVSDLKFYKDLIDNYDSITSSTMDSFSDFQQIVYVLKNYDGENPKEFTANLRYHSVIKVSGDGGVDTLRAEIPVDSAAKELERIQDELYKSAQAVDNSPETIGGGATGPALENLYALLDLKANMAERKIRAGLRLFFWFFAEYLRNTGKGDFNPDKELTMTFTRTRIQNDSEIVQSLVQGVTGGIMSKETAVARNPFVQDPEEELARIEEEMNQYAEMQGNLLDDEGGDDDLEEDDPNAGAAESGGAGQVS",
+      "length": 503,
+      "sequence_sha256": "638b16b8a707b97649680a4f6130ab49002c22d05c8824b8803f821cc6e3fae5",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_004166.2.gb",
+      "cds_fasta_id": "lcl|NC_004166.2_prot_NP_690661.1_10",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "SPP1|SPP1p011",
+      "gene": "",
+      "locus_tag": "SPP1p011",
+      "product": "minor head protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gene 7",
+      "replicon": "NC_004166.2",
+      "start": 3802,
+      "stop": 4728,
+      "strand": "+",
+      "location": "[3801:4728](+)",
+      "protein_accession": "NP_690662.1",
+      "db_xref": [
+        "InterPro:IPR006528",
+        "UniProtKB/Swiss-Prot:Q38442",
+        "GeneID:955280"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MPEPQNQEELDKYLDNIITQAEKRLDKVFASRLKEIKAMINKLFEKYSKNGELTYADVVKYNRLEKEMDVIKQNISADYKTVLKMLNELLETQYVDNYLRSAYIYEMYTGRNLGFSVPSADVVQRAVENPIPLLTLPKVLERQRVELINNIAMAIAQGLMAGEGYSQVAQRVHKRMQLSLAKARLTARTEGHRVQVAGRMASAEQAAKKVNMQKMWSAALDTRTRAGHRKLDGKIINMDENFKSIYGGVGKAPGHMHMAKDDCNCRCALIYVIDGEIPSVRRARLSDGSTRVIKYIPYTEWEKQKKAS",
+      "length": 308,
+      "sequence_sha256": "951626ecaff7b932c9980ea778b0548e2ebf6a142d2648f8fda0e1d70d7719e9",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_004166.2.gb",
+      "cds_fasta_id": "lcl|NC_004166.2_prot_NP_690662.1_11",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "SPP1|SPP1p012",
+      "gene": "",
+      "locus_tag": "SPP1p012",
+      "product": "hypothetical protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gene 7.1",
+      "replicon": "NC_004166.2",
+      "start": 4339,
+      "stop": 4572,
+      "strand": "-",
+      "location": "[4338:4572](-)",
+      "protein_accession": "NP_690663.1",
+      "db_xref": [
+        "UniProtKB/TrEMBL:O48439",
+        "GeneID:955283"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MHVTGGLTYPTVDGFKVFVHVDDLAIQFSVSCSGPGIKSGGPHLLHVHFLGGLFCTRHTSSNLNPVPFCPGRQAGFS",
+      "length": 77,
+      "sequence_sha256": "579a495baeb81dcc1accdc0cccccba9cf207d16d56f2e55fdc78c3bb3411d7e8",
+      "annotation_flags": [
+        "alternative_start_codon_read_as_Met"
+      ],
+      "source_record": "inputs/NC_004166.2.gb",
+      "cds_fasta_id": "lcl|NC_004166.2_prot_NP_690663.1_12",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "SPP1|SPP1p013",
+      "gene": "",
+      "locus_tag": "SPP1p013",
+      "product": "hypothetical protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gene 7.2",
+      "replicon": "NC_004166.2",
+      "start": 4657,
+      "stop": 4947,
+      "strand": "-",
+      "location": "[4656:4947](-)",
+      "protein_accession": "NP_690664.1",
+      "db_xref": [
+        "UniProtKB/TrEMBL:O48440",
+        "GeneID:955285"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MFSLFIIVVYIVLCLFCVSFAVFFSDCLCVTNTYVSRVQGVFYPVVFGVAIFNSIFFACFLRSTKKTDAFLRRLTRFFLFFPLCVWDVFYNACGAV",
+      "length": 96,
+      "sequence_sha256": "1f6830848ad2fcd949f13deb30565ec9d68f40f428b5c4254c7d5aaf0833874b",
+      "annotation_flags": [
+        "alternative_start_codon_read_as_Met"
+      ],
+      "source_record": "inputs/NC_004166.2.gb",
+      "cds_fasta_id": "lcl|NC_004166.2_prot_NP_690664.1_13",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "SPP1|SPP1p014",
+      "gene": "",
+      "locus_tag": "SPP1p014",
+      "product": "hypothetical protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gene 8.1",
+      "replicon": "NC_004166.2",
+      "start": 4961,
+      "stop": 5284,
+      "strand": "-",
+      "location": "[4960:5284](-)",
+      "protein_accession": "NP_690665.1",
+      "db_xref": [
+        "UniProtKB/TrEMBL:O48441",
+        "GeneID:955288"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MSLSALSCLFSSLSLSTSRLRSSFSACSCITLFLACKFSSLRRSTHFFCHGSSCSYANGSLSKMSNPLYSGFAILFFAPLTPVFLTNYIFSHSGKMTSRFMTSEHRT",
+      "length": 107,
+      "sequence_sha256": "9775ce783b64541f753af8d4ab9e2086bc6153579dc22228b885b9a4f7968915",
+      "annotation_flags": [
+        "alternative_start_codon_read_as_Met"
+      ],
+      "source_record": "inputs/NC_004166.2.gb",
+      "cds_fasta_id": "lcl|NC_004166.2_prot_NP_690665.1_14",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "SPP1|SPP1p015",
+      "gene": "",
+      "locus_tag": "SPP1p015",
+      "product": "hypothetical protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gene 8",
+      "replicon": "NC_004166.2",
+      "start": 5064,
+      "stop": 6212,
+      "strand": "+",
+      "location": "[5063:6212](+)",
+      "protein_accession": "NP_690666.1",
+      "db_xref": [
+        "UniProtKB/TrEMBL:Q38578",
+        "GeneID:955286"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MAKPEYKGFDIFDREPLAYEQLDPWQKKCVDRLRDENLQARNKVMQLQAENDDLRREVDKLNEENKQLKADNDKLRHLSQTFAGWYVNAVEENEKREQDEPTISIKNACMVLNQWADAYQEEIDELKKENETLKAKKSDKLTVTVNAEHIKSELDDLYQEFKELEKSYDALHDEHDELKERIKGHVERLAYDYDFKEMPNGAGVHYCHDFREIADTVGAKIPNAPFMTARIKAPNVLGDLNNAKIKDIDADKITSGTLKALEIGKKMSEGFEKGVKEAEPFPVMSDKELFGDKLASADLGEAEIINPQTVYFKKAVEQSLKDLDKRIVDALKQALDIKSPTEPTTGPPKATKILTYGDGENDGTESNAQRELNKNQKLKRRN",
+      "length": 382,
+      "sequence_sha256": "ed978f6e17b196844bb2f7032c68d3f6acd399bc0a6e928573b0d18881844062",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_004166.2.gb",
+      "cds_fasta_id": "lcl|NC_004166.2_prot_NP_690666.1_15",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "SPP1|SPP1p016",
+      "gene": "",
+      "locus_tag": "SPP1p016",
+      "product": "hypothetical protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gene 8.2",
+      "replicon": "NC_004166.2",
+      "start": 5295,
+      "stop": 5618,
+      "strand": "-",
+      "location": "[5294:5618](-)",
+      "protein_accession": "NP_690667.1",
+      "db_xref": [
+        "UniProtKB/TrEMBL:O48442",
+        "GeneID:955289"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MPFDALFQFVVFIMKSIIRLLQLFKLLIQVIKLAFDVFGVYGDCELVRLFGFEGFVFFFQFVNFFLVSVCPLIQNHASIFNADCRFVLLALLIFLNGVNVPSCECLR",
+      "length": 107,
+      "sequence_sha256": "d9c6b3a9bf6c966b1de535f3ec667ef0bb2fa4108446eda4f134895885ab461d",
+      "annotation_flags": [
+        "alternative_start_codon_read_as_Met"
+      ],
+      "source_record": "inputs/NC_004166.2.gb",
+      "cds_fasta_id": "lcl|NC_004166.2_prot_NP_690667.1_16",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "SPP1|SPP1p017",
+      "gene": "",
+      "locus_tag": "SPP1p017",
+      "product": "hypothetical protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gene 9",
+      "replicon": "NC_004166.2",
+      "start": 6214,
+      "stop": 6552,
+      "strand": "+",
+      "location": "[6213:6552](+)",
+      "protein_accession": "NP_690668.1",
+      "db_xref": [
+        "UniProtKB/TrEMBL:Q38579",
+        "GeneID:955291"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MASGYGVSANPVKSNFTKGVDASVKVAVKNDNSYIAGPYLRLERLVNGKWVDQGYDSPNPLKPDEKKYDEWDLDYFAKGGTYRFKAEAYRYDSKGNFVKSDGTFYTSTFLIK",
+      "length": 112,
+      "sequence_sha256": "722e5772a4af9cfebc547e9222f07751ff46b3ebb60b55b472cb9ead21dc6d91",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_004166.2.gb",
+      "cds_fasta_id": "lcl|NC_004166.2_prot_NP_690668.1_17",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "SPP1|SPP1p018",
+      "gene": "",
+      "locus_tag": "SPP1p018",
+      "product": "hypothetical protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gene 10; Protein sequence is in conflict with the conceptual translation",
+      "replicon": "NC_004166.2",
+      "start": 6525,
+      "stop": 6734,
+      "strand": "-",
+      "location": "[6524:>6734](-)",
+      "protein_accession": "NP_690669.1",
+      "db_xref": [
+        "UniProtKB/TrEMBL:O48443",
+        "GeneID:955292"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "LACTGFPSVSRSRPCPYRGLLRLPIPPPCFVRAIPEPFATLDHPLCRLCHLMNVTPPVIYNYLIKNVLV",
+      "length": 69,
+      "sequence_sha256": "680d97a12cf97a2479de12ff218dcf208cf320b0a02fb6e2757212cdca4a44b1",
+      "annotation_flags": [
+        "partial"
+      ],
+      "source_record": "inputs/NC_004166.2.gb",
+      "cds_fasta_id": "lcl|NC_004166.2_prot_NP_690669.1_18",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "SPP1|SPP1p019",
+      "gene": "",
+      "locus_tag": "SPP1p019",
+      "product": "hypothetical protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gene 11.1",
+      "replicon": "NC_004166.2",
+      "start": 6877,
+      "stop": 7314,
+      "strand": "-",
+      "location": "[6876:7314](-)",
+      "protein_accession": "NP_690670.1",
+      "db_xref": [
+        "UniProtKB/TrEMBL:O48444",
+        "GeneID:955294"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MSPSSLMDSVSNRAFTAFGFFAPLSRSAVSNACSYLSCCFSASNACFASSFAFCKSAILADSSSWPVAFVLNSCNCWSRSVNCCSKDFFSLLTASNFSFGMKLPSLMSTNLAPSPNLANTWPYNSSPNCSFKLISYTPLCPFYVF",
+      "length": 145,
+      "sequence_sha256": "cf2b1e1cc9b1f030785546698aa575adcd676e825fb83c2dfea4b63974193552",
+      "annotation_flags": [
+        "alternative_start_codon_read_as_Met"
+      ],
+      "source_record": "inputs/NC_004166.2.gb",
+      "cds_fasta_id": "lcl|NC_004166.2_prot_NP_690670.1_19",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "SPP1|SPP1p020",
+      "gene": "",
+      "locus_tag": "SPP1p020",
+      "product": "head scaffolding protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gene 11",
+      "replicon": "NC_004166.2",
+      "start": 6914,
+      "stop": 7558,
+      "strand": "+",
+      "location": "[6913:7558](+)",
+      "protein_accession": "NP_690671.1",
+      "db_xref": [
+        "GOA:Q38580",
+        "InterPro:IPR009636",
+        "UniProtKB/TrEMBL:Q38580",
+        "GeneID:955293"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MSLKEQLGEELYGQVLAKLGEGAKLVDISDGSFIPKEKFDAVNSEKKSLEQQLTDRDQQLQELSTKATGHDELSAKIADLQKANEEAKQAFEAEKQQLKYEHALETALRDSGAKNPKAVKALLDTESIKLDGDKLLGFEDQIKALKEQEDYLFKGTEPNGGVQGTPPPGKGADLGGLPTKKNPFKQGPDFNLTEQGILFRENPELAKKLQAEAQ",
+      "length": 214,
+      "sequence_sha256": "f4d655b34f59f0e7a875237d1291d0d8ef7093d37fb4f0894ad74b960a295ca2",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_004166.2.gb",
+      "cds_fasta_id": "lcl|NC_004166.2_prot_NP_690671.1_20",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "SPP1|SPP1p021",
+      "gene": "",
+      "locus_tag": "SPP1p021",
+      "product": "hypothetical protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gene 12.1",
+      "replicon": "NC_004166.2",
+      "start": 7363,
+      "stop": 7704,
+      "strand": "-",
+      "location": "[7362:7704](-)",
+      "protein_accession": "NP_690672.1",
+      "db_xref": [
+        "UniProtKB/TrEMBL:O48445",
+        "GeneID:955302"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MCFCSKSVCTFCSCITFWPRVAFWPLWPCWQLDISQETRYTLRHLLHPPYCASACSFFANSGFSLNKMPCSVRLKSGPCLNGFFLVGRPPKSAPLPGGGVPCTPPFGSVPLKR",
+      "length": 113,
+      "sequence_sha256": "4f3f972d2a3f0d71f4f956408d2cf199dbc6e69c9940eb1f3ead3ef514fbabdb",
+      "annotation_flags": [
+        "alternative_start_codon_read_as_Met"
+      ],
+      "source_record": "inputs/NC_004166.2.gb",
+      "cds_fasta_id": "lcl|NC_004166.2_prot_NP_690672.1_21",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "SPP1|SPP1p022",
+      "gene": "",
+      "locus_tag": "SPP1p022",
+      "product": "hypothetical protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gene 12",
+      "replicon": "NC_004166.2",
+      "start": 7573,
+      "stop": 7767,
+      "strand": "+",
+      "location": "[7572:7767](+)",
+      "protein_accession": "NP_690673.1",
+      "db_xref": [
+        "UniProtKB/TrEMBL:Q38581",
+        "GeneID:955295"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MSKRIPRFLRNIQLPAGPQGPKGDPGPKGDTGAKGADGFGTEAQYNDIISRLEALEQSSGGGTT",
+      "length": 64,
+      "sequence_sha256": "d01f0cb91716a93caa2a079bd56e667642f9f09305e3d8d6ad72da81d52c9257",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_004166.2.gb",
+      "cds_fasta_id": "lcl|NC_004166.2_prot_NP_690673.1_22",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "SPP1|SPP1p023",
+      "gene": "",
+      "locus_tag": "SPP1p023",
+      "product": "major head protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gene 13",
+      "replicon": "NC_004166.2",
+      "start": 7800,
+      "stop": 8774,
+      "strand": "+",
+      "location": "[7799:8774](+)",
+      "protein_accession": "NP_690674.1",
+      "db_xref": [
+        "GOA:Q38582",
+        "UniProtKB/TrEMBL:Q38582",
+        "GeneID:955303"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MAYTKISDVIVPELFNPYVINTTTQLSAFFQSGIAATDDELNALAKKAGGGSTLNMPYWNDLDGDSQVLNDTDDLVPQKINAGQDKAVLILRGNAWSSHDLAATLSGSDPMQAIGSRVAAYWAREMQKIVFAELAGVFSNDDMKDNKLDISGTADGIYSAETFVDASYKLGDHESLLTAIGMHSATMASAVKQDLIEFVKDSQSGIRFPTYMNKRVIVDDSMPVETLEDGTKVFTSYLFGAGALGYAEGQPEVPTETARNALGSQDILINRKHFVLHPRGVKFTENAMAGTTPTDEELANGANWQRVYDPKKIRIVQFKHRLQA",
+      "length": 324,
+      "sequence_sha256": "48cd224a1364cb7dff555bd714d538ba8ee13ae7907b01b6c007af2c5b4c2283",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_004166.2.gb",
+      "cds_fasta_id": "lcl|NC_004166.2_prot_NP_690674.1_23",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "SPP1|SPP1p024",
+      "gene": "",
+      "locus_tag": "SPP1p024",
+      "product": "hypothetical protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gene 14",
+      "replicon": "NC_004166.2",
+      "start": 8825,
+      "stop": 9001,
+      "strand": "+",
+      "location": "[8824:9001](+)",
+      "protein_accession": "NP_690675.1",
+      "db_xref": [
+        "UniProtKB/TrEMBL:Q38583",
+        "GeneID:955304"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MAVDITTFIIAKQREKEREEAARKAEEEKKASEKRQKGAQKPKKDSEGKSTRKPPKKK",
+      "length": 58,
+      "sequence_sha256": "b6afbe1bb3c17c1f396297e2a31d249e972349cf8db89bfeaf5c288a0795fdd8",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_004166.2.gb",
+      "cds_fasta_id": "lcl|NC_004166.2_prot_NP_690675.1_24",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "SPP1|SPP1p025",
+      "gene": "",
+      "locus_tag": "SPP1p025",
+      "product": "head-tail adaptor",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gene 15",
+      "replicon": "NC_004166.2",
+      "start": 9012,
+      "stop": 9320,
+      "strand": "+",
+      "location": "[9011:9320](+)",
+      "protein_accession": "NP_690676.1",
+      "db_xref": [
+        "InterPro:IPR021146",
+        "PDB:2KBZ",
+        "UniProtKB/TrEMBL:Q38584",
+        "GeneID:955305"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MDIQRVKRLLSITNDKHDEYLTEMVPLLVEFAKDECHNPFIDKDGNESIPSGVLIFVAKAAQFYMTNAGLTGRSMDTVSYNFATEIPSTILKKLNPYRKMAR",
+      "length": 102,
+      "sequence_sha256": "126da50544628289c2963c7809f08a68f435ac9962b7d1783429d58f3142bca5",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_004166.2.gb",
+      "cds_fasta_id": "lcl|NC_004166.2_prot_NP_690676.1_25",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "SPP1|SPP1p026",
+      "gene": "",
+      "locus_tag": "SPP1p026",
+      "product": "head closure Hc1",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gene 16",
+      "replicon": "NC_004166.2",
+      "start": 9322,
+      "stop": 9651,
+      "strand": "+",
+      "location": "[9321:9651](+)",
+      "protein_accession": "NP_690677.1",
+      "db_xref": [
+        "InterPro:IPR008767",
+        "PDB:2KCA",
+        "UniProtKB/TrEMBL:O48446",
+        "GeneID:955315"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MYEEFPDVITFQSYVEQSNGEGGKTYKWVDEFTAAAHVQPISQEEYYKAQQLQTPIGYNIYTPYDDRIDKKMRVIYRGKIVTFIGDPVDLSGLQEITRIKGKEDGAYVG",
+      "length": 109,
+      "sequence_sha256": "2e2ae4faa6e26550201a049e73ac981a967e527a097893135bb214137899edfc",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_004166.2.gb",
+      "cds_fasta_id": "lcl|NC_004166.2_prot_NP_690677.1_26",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "SPP1|SPP1p027",
+      "gene": "",
+      "locus_tag": "SPP1p027",
+      "product": "tail completion or Neck1 protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gene 16.1",
+      "replicon": "NC_004166.2",
+      "start": 9632,
+      "stop": 10066,
+      "strand": "+",
+      "location": "[9631:10066](+)",
+      "protein_accession": "NP_690678.1",
+      "db_xref": [
+        "InterPro:IPR006967",
+        "UniProtKB/TrEMBL:O48447",
+        "GeneID:955318"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MALMSVRIDPSWRRIMSRNVRTFSGHVLTQVEQVIIKTAEKIAGLAASLAPVDEGNLKNSIQIDYKNNGLTAEITVGAEYAIYVEYGTGIYAVDGNGRKTPWTYYSPKLGRYVRTQGAPAQPFFWPAVEEGGEYFEREMRRLRG",
+      "length": 144,
+      "sequence_sha256": "88a575e47a91041fa745cb14302d01cf7651ae16fc177715f787ff92099b5d30",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_004166.2.gb",
+      "cds_fasta_id": "lcl|NC_004166.2_prot_NP_690678.1_27",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "SPP1|SPP1p028",
+      "gene": "",
+      "locus_tag": "SPP1p028",
+      "product": "tail terminator",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gene 17",
+      "replicon": "NC_004166.2",
+      "start": 10063,
+      "stop": 10467,
+      "strand": "+",
+      "location": "[10062:10467](+)",
+      "protein_accession": "NP_690679.1",
+      "db_xref": [
+        "UniProtKB/TrEMBL:O48448",
+        "GeneID:955319"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MTWKLASRALQKATVENLESYQPLMEMVNQVTESPGKDDPYPYVVIGDQSSTPFETKSSFGENITMDFHVWGGTTRAEAQDISSRVLEALTYKPLMFEGFTFVAKKLVLAQVITDTDGVTKHGIIKVRFTINNN",
+      "length": 134,
+      "sequence_sha256": "c271148d5033c009a86923731ad83102905fc5083488e3ac628abf8e23174cff",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_004166.2.gb",
+      "cds_fasta_id": "lcl|NC_004166.2_prot_NP_690679.1_28",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "SPP1|SPP1p107",
+      "gene": "",
+      "locus_tag": "SPP1p107",
+      "product": "major tail protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gene 17.1*",
+      "replicon": "NC_004166.2",
+      "start": 10481,
+      "stop": 11276,
+      "strand": "+",
+      "location": "join{[10480:11002](+), [11003:11276](+)}",
+      "protein_accession": "YP_710298.1",
+      "db_xref": [
+        "InterPro:IPR003961",
+        "InterPro:IPR008957",
+        "InterPro:IPR011855",
+        "InterPro:IPR013783",
+        "UniProtKB/TrEMBL:Q0PDK9",
+        "GeneID:4229189"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MPETPIMGQDVKYLFQSIDAATGSAPLFPAYQTDGSVSGERELFDEQTKNGRILGPGSVADSGEVTYYGKRGDAGQKAIEDAYQNGKQIKFWRVDTVKNENDKYDAQFGFAYIESREYSDGVEGAVEISISLQVIGELKNGEIDTLPEEIVNVSKGGYDFQQPGQTTGEAPGTVPLPNAPQNLTYTATTDSVTVKWDAVEGADSYNVYRGAEKKLDANVTTTSHTLTGIQPDTQLTVNVAAVNAGGESPMSQIVTKTLPAESTG",
+      "length": 264,
+      "sequence_sha256": "c4b3346479ec42b7f295a4eb1ed0e408ae2ff65845bcf131c1095936b58af59c",
+      "annotation_flags": [
+        "joined_location",
+        "exception:reasons_given_in_citation"
+      ],
+      "source_record": "inputs/NC_004166.2.gb",
+      "cds_fasta_id": "lcl|NC_004166.2_prot_YP_710298.1_29",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "SPP1|SPP1p029",
+      "gene": "",
+      "locus_tag": "SPP1p029",
+      "product": "major tail protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gene 17.1",
+      "replicon": "NC_004166.2",
+      "start": 10481,
+      "stop": 11014,
+      "strand": "+",
+      "location": "[10480:11014](+)",
+      "protein_accession": "NP_690680.1",
+      "db_xref": [
+        "InterPro:IPR011855",
+        "UniProtKB/TrEMBL:O48449",
+        "GeneID:955320"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MPETPIMGQDVKYLFQSIDAATGSAPLFPAYQTDGSVSGERELFDEQTKNGRILGPGSVADSGEVTYYGKRGDAGQKAIEDAYQNGKQIKFWRVDTVKNENDKYDAQFGFAYIESREYSDGVEGAVEISISLQVIGELKNGEIDTLPEEIVNVSKGGYDFQQPGQTTGEAPGTVPAP",
+      "length": 177,
+      "sequence_sha256": "113dd045796541b08c3f55b52377a5b625d9531e70454bc3e92aca985774a743",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_004166.2.gb",
+      "cds_fasta_id": "lcl|NC_004166.2_prot_NP_690680.1_30",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "SPP1|SPP1p030",
+      "gene": "",
+      "locus_tag": "SPP1p030",
+      "product": "hypothetical protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gene 17.4",
+      "replicon": "NC_004166.2",
+      "start": 10640,
+      "stop": 11194,
+      "strand": "-",
+      "location": "[10639:11194](-)",
+      "protein_accession": "NP_690681.1",
+      "db_xref": [
+        "UniProtKB/TrEMBL:O48452",
+        "GeneID:955324"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MTVNCVSGWIPVNVCDVVVTFASNFFSAPLYTLYESAPSTASHFTVTLSVVAVYVRFWGALGSGNSSRCFTCSLSRLLEVVTAFRYINDLFWQCVDLPVFKLSNNLKGNRDFHSSLDSVAVLAAFDISKTKLCIIFVIFIFHSVNTPKFNLLSVLVSVLDSFLACIAAFPIVSNLSRISDRTRT",
+      "length": 184,
+      "sequence_sha256": "aeb484b56c461c94ef01792edf8ea4881519409297968c5c647e20f1b92de743",
+      "annotation_flags": [
+        "alternative_start_codon_read_as_Met"
+      ],
+      "source_record": "inputs/NC_004166.2.gb",
+      "cds_fasta_id": "lcl|NC_004166.2_prot_NP_690681.1_31",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "SPP1|SPP1p108",
+      "gene": "",
+      "locus_tag": "SPP1p108",
+      "product": "tail assembly chaperone",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gene 17.5*",
+      "replicon": "NC_004166.2",
+      "start": 11342,
+      "stop": 12252,
+      "strand": "+",
+      "location": "join{[11341:11695](+), [11694:12252](+)}",
+      "protein_accession": "YP_710299.1",
+      "db_xref": [
+        "UniProtKB/TrEMBL:Q0PDK8",
+        "GeneID:4229190"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MRGVKHMLELRIGDKILTGKVDFAFMKKAKEKYEKVKEQEYEVKGRTIKEEDRTPGYEVIYEGLLRDDYDALLYFWDCAFAGYEQVPSLDDIGQALSDMDIDEAFNQAFQALDNSGFFQTSCAGLLEEERFHHQSAGIPSENDRGRGREGASVAGYGAIQGNKENPGGNEPGGQEKRKEINFKEIIRNAQQYLKVTDIKTIMSWDWNEYEALIQGATMRQIDELDRAAQVALFNRFAQHKKGRLKKKQIFDAEKARKMFIDGNGEWKKARTDEDINKKAERAAKEQQAWNEFMASGGLKFTPK",
+      "length": 303,
+      "sequence_sha256": "6dec8ce1f5de20804d5429ed0ac2e17920ea45a1ced267b5b8be8c2425952015",
+      "annotation_flags": [
+        "joined_location",
+        "exception:reasons_given_in_citation"
+      ],
+      "source_record": "inputs/NC_004166.2.gb",
+      "cds_fasta_id": "lcl|NC_004166.2_prot_YP_710299.1_32",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "SPP1|SPP1p033",
+      "gene": "",
+      "locus_tag": "SPP1p033",
+      "product": "tail chaperone protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gene 17.5",
+      "replicon": "NC_004166.2",
+      "start": 11342,
+      "stop": 11881,
+      "strand": "+",
+      "location": "[11341:11881](+)",
+      "protein_accession": "NP_690684.1",
+      "db_xref": [
+        "InterPro:IPR016826",
+        "UniProtKB/TrEMBL:O48453",
+        "GeneID:955325"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MRGVKHMLELRIGDKILTGKVDFAFMKKAKEKYEKVKEQEYEVKGRTIKEEDRTPGYEVIYEGLLRDDYDALLYFWDCAFAGYEQVPSLDDIGQALSDMDIDEAFNQAFQALDNSGFFKRAVRAYWKKNDSIIKALESQAKTIEDVEEKELVLRGMEQYKEIKKIREEMNPEAKKKGKK",
+      "length": 179,
+      "sequence_sha256": "564fb51f60a8f7a5a20e378fda0b7864bf7c9bf0f4dbbe13a0960f00f1ae0385",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_004166.2.gb",
+      "cds_fasta_id": "lcl|NC_004166.2_prot_NP_690684.1_33",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "SPP1|SPP1p035",
+      "gene": "",
+      "locus_tag": "SPP1p035",
+      "product": "tail length tape measure protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gene 18",
+      "replicon": "NC_004166.2",
+      "start": 12264,
+      "stop": 15362,
+      "strand": "+",
+      "location": "[12263:15362](+)",
+      "protein_accession": "YP_009268705.1",
+      "db_xref": [
+        "UniProtKB/TrEMBL:Q0PDK7",
+        "GeneID:955328"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MEGARLQAVVTANIREFQRKMAAVNRIVRTTANRVTVTVDSRTEKFENAMNRLARITGSLSTVIGGALRGALMSAFPAAVPAAASLVGVVGSLGPMLGVAAGGAAGLGSAFATAGAGAVAYGALAATSIGGVIKASQDLDKLQAKLDDATDAKERAKIMEQIKNLQASLGKEERKALDTLEDFKSNWQDIAKSVQKPILRTFTTSLNTFKSVLNQLQPMFRGLARGGESLAKSMQNAFKAPDMKNFINYLNTEAPGAFVSFGKISGNIIRTVMNLMVAFGPLGKNMTKSIEGATAAWVKWSASLGSSVKFQKFIAYVQTNGPKLLKIIGNLSSGITSLFTGFAPLSADMMTSLVNLTARFKEWAASAKDSKEFKSFIDYIRTNGPIVWDSLGKIAKTLINLAVAMAPVGSEVLKMVNSFAQWTAATTKAHPEIGKFMAVAISLGGALRALTPVIISFQTLFGGFSSIGKAIDLIKKFKTSAAGIKLAAAIADMKLFTKTNALMAAQMAKTKFTNMITQLGLFGTKLRLQMSIMAAYLKQLVVAAAQQTAFAVKMAASYAQMKITSFITALKNGIIQMGLWIKNMAIMAAQSAANAVKMAAAWTAARISAFASMLAAGIKQMIAFGVRLAALAAAAAANAARMAASWVIAMGPIGWITAAVIALVALIIANWDKIKEYTVKIWGAVSKWLSDAWNKIKQAASVVWQALVTLIKKNFEMQKKIVTTVWNTIKSVSSKVWNGIKSFLSSVWNGIVNAGKTVWNGLKTFFTAWLNFQKKTWSTIWNAVKTAVTKVWKGIVSVGKTVWNGLKSFFTSWLNGQKKLFSTVWNAVKTAVTNVWNKLKSAASSTFNALKSSVTNIMNKVKDKIKSIWNSVMSFFKGINLGSIGRNIMQGLINGVTSMWGRVTSTFSRLTNAIPKTIKKILGIHSPSRLMRDEIGYHIGTGLVKGITGTEGMVTKAAASLAKSAVPEVPTVPELAVNSSYSGGMVEQSVNASLENFDLPEKNIIIQMDKREVGRAVEEPVREFTGRKRKRR",
+      "length": 1032,
+      "sequence_sha256": "fa1d88426c909be07f06a12a2509b1117584620d9da16d928c41f3d1a17887a0",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_004166.2.gb",
+      "cds_fasta_id": "lcl|NC_004166.2_prot_YP_009268705.1_34",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "SPP1|SPP1p038",
+      "gene": "",
+      "locus_tag": "SPP1p038",
+      "product": "hypothetical protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gene 19",
+      "replicon": "NC_004166.2",
+      "start": 14579,
+      "stop": 15034,
+      "strand": "-",
+      "location": "[14578:15034](-)",
+      "protein_accession": "NP_690689.1",
+      "db_xref": [
+        "UniProtKB/TrEMBL:O48458",
+        "GeneID:955333"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MPRIFLIVFGMAFVKRENVLVTLPHMLVTPLISPCIMFLPIEPRLMPLKNDITLFQILFILSLTLFMMFVTDDFRALNVLDAADFNLFQTFVTAVLTAFHTVEKSFFCPFSQEVKNDFKPFQTVFPTETIPFHTLVTAVLTAFQMVDHVFF",
+      "length": 151,
+      "sequence_sha256": "963f75de8917480cadeb26ab49278c8e16854a2d4009788d8f3bddd8f55e20b1",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_004166.2.gb",
+      "cds_fasta_id": "lcl|NC_004166.2_prot_NP_690689.1_35",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "SPP1|SPP1p039",
+      "gene": "",
+      "locus_tag": "SPP1p039",
+      "product": "distal tail protein Dit",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gene 19.1",
+      "replicon": "NC_004166.2",
+      "start": 15359,
+      "stop": 16120,
+      "strand": "+",
+      "location": "[15358:16120](+)",
+      "protein_accession": "NP_690690.1",
+      "db_xref": [
+        "InterPro:IPR006520",
+        "InterPro:IPR008841",
+        "PDB:2X8K",
+        "UniProtKB/TrEMBL:O48459",
+        "GeneID:955334"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MNIYDILDKVFTMMYDGQDLTDYFLVQEVRGRSVYSIEMGKRTIAGVDGGVITTESLPARELEVDAIVFGDGTETDLRRRIEYLNFLLHRDTDVPITFSDEPSRTYYGRYEFATEGDEKGGFHKVTLNFYCQDPLKYGPEVTTDVTTASTPVKNTGLAVTNPTIRCVFSTSATEYEMQLLDGSTVVKFLKVKYGFNTGDTLVIDCHERSVTLNGQDIMPALLIQSDWIQLKPQVNTYLKATQPSTIVFTEKFL",
+      "length": 253,
+      "sequence_sha256": "18411bd62deb9e666cb53ba082659492926051b3620e4fe1a64c70385f3f9518",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_004166.2.gb",
+      "cds_fasta_id": "lcl|NC_004166.2_prot_NP_690690.1_36",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "SPP1|SPP1p040",
+      "gene": "",
+      "locus_tag": "SPP1p040",
+      "product": "hypothetical protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gene 20",
+      "replicon": "NC_004166.2",
+      "start": 15424,
+      "stop": 15648,
+      "strand": "-",
+      "location": "[15423:15648](-)",
+      "protein_accession": "NP_690691.1",
+      "db_xref": [
+        "UniProtKB/TrEMBL:O48460",
+        "GeneID:955335"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MIGTSVSRCRRKFKYSIRRRKSVSVPSPNTIASTSNSRAGKLSVVITPPSTPAIVLFPISIEYTERPLTSWTKK",
+      "length": 74,
+      "sequence_sha256": "2f6e3149573d0217fb3a61a71ae117f4e95052294bf72d641a2fcafd015e7c21",
+      "annotation_flags": [
+        "alternative_start_codon_read_as_Met"
+      ],
+      "source_record": "inputs/NC_004166.2.gb",
+      "cds_fasta_id": "lcl|NC_004166.2_prot_NP_690691.1_37",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "SPP1|SPP1p043",
+      "gene": "",
+      "locus_tag": "SPP1p043",
+      "product": "tail tip protein Tal",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gene 21",
+      "replicon": "NC_004166.2",
+      "start": 16125,
+      "stop": 19460,
+      "strand": "+",
+      "location": "[16124:19460](+)",
+      "protein_accession": "YP_009268706.1",
+      "db_xref": [
+        "InterPro:IPR003961",
+        "InterPro:IPR007119",
+        "UniProtKB/TrEMBL:Q0PDK6",
+        "GeneID:955339"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MRSLSKNIWIMSNFEVLLTTLTGDRDAGGCRYWNGSFEEPLSPGETATYQFYADASHPNSKYVINDNKVIFKEPEQFGGDYRMFTIIDTELGRSEQDGRYIIATCEPAWYELDDDFIENKRPTDKTPQEALDLLLEGTRYEGEVDPDLQMRASDSFYQVSVKEAVIQFFQTWGGYFKDTIEFDGNEITRRVIKSLKRRGAANGVRFEHDKDITSIRRNITGYPKTALYPYGASLEMTDEDGNATGGYTRYIDIKDVVWSKAAGDPVDKPAGQAWIGDPDLLKVFGRPMPDGSLRHRWTRWQNEDITTPEELIEAAYYDLINNVSKAIVNYNVEVAPKNVKLGDTCIILDREFATPIELEADVIKMTYFTDRPEEGATIELGEYLNLDDIERQIGAINDRFKKNEGKWNTGGGITEVTDGAFPDKKPPKPSNITVKSMFQSIFLSWNYDPSSYIAGYRVYASKTPGFTPTDNDIIFEGKMSGYEHKVGNNETWYYRLSTVNYHKTESDMSDQYSAQSERIMNDDILFGAITADKLANLAVTADKISRSFDEGNIFPGSLLKPSQFYDYPNTKHSVTDKTFNELTITQVIDDSTRLRFGISGQNKAPNNIQRMPLEQGQIYTLSFEVKRNNTTDLSYIHLKKPDNTFMLLSSSLKDISAYPSDEFVRVDLQFTAPETSSKFTLGFGGYNRNGNVTPCSFVIRKVQVRKGTEIKDYGYSPYDIMLVDGAIYSDYIQSAAINSAHIADAAIGSAAIQNAAIKNAHLGTAIVDTANIKDAAITSAKIKELSADLITSGTINAINITGSLIRGGRFEPLNESSAYTSYIEGDKIYQRVNTINYGGTPKKTYNDLTITSGGVTMVYGGRDTGTDEPLREMTLRDGSLYMSGNKNDTGYSEIQMYCNDDDVVNAPKSIFRQKLGGVNRMSLHSYYNSVPGSYNVQMDTRNTSIYSHFANGWQLTADGKIMIMSKNGQGIYLDPSNDNVAGQVTMHVGNAGQAGGLIQPVIAGAPHYSITDIHGALQTNMSVMLYQYNFVMPSKGDAYASKYNDIPPPFECENIFMVVPTVFGGYSDHVHATITSQSSSGFRCYVRGTGSSTGILGRTFQVRFLIFYEVN",
+      "length": 1111,
+      "sequence_sha256": "b8e0d5698939124dc5ecec53e8a9394afacde60bb2de87e31b4a90455b765769",
+      "annotation_flags": [
+        "alternative_start_codon_read_as_Met"
+      ],
+      "source_record": "inputs/NC_004166.2.gb",
+      "cds_fasta_id": "lcl|NC_004166.2_prot_YP_009268706.1_38",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "SPP1|SPP1p044",
+      "gene": "",
+      "locus_tag": "SPP1p044",
+      "product": "hypothetical protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gene 21.1",
+      "replicon": "NC_004166.2",
+      "start": 17111,
+      "stop": 17419,
+      "strand": "-",
+      "location": "[17110:17419](-)",
+      "protein_accession": "NP_690695.1",
+      "db_xref": [
+        "UniProtKB/TrEMBL:O48464",
+        "GeneID:955341"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MLDGLGGFLSGKAPSVTSVIPPPVFHLPSFFLKRSLMAPICLSISSKLRYSPNSIVAPSSGLSVKYVILMTSASNSIGVANSRSRIIQVSPSFTFLGATSTL",
+      "length": 102,
+      "sequence_sha256": "dbccc282660fb672e268a45bc27b196c6970ade169f17bf1a70970e36eabc206",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_004166.2.gb",
+      "cds_fasta_id": "lcl|NC_004166.2_prot_NP_690695.1_39",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "SPP1|SPP1p045",
+      "gene": "",
+      "locus_tag": "SPP1p045",
+      "product": "hypothetical protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gene 22",
+      "replicon": "NC_004166.2",
+      "start": 19473,
+      "stop": 19913,
+      "strand": "+",
+      "location": "[19472:19913](+)",
+      "protein_accession": "NP_690696.1",
+      "db_xref": [
+        "PDB:2XC8",
+        "UniProtKB/TrEMBL:O48465",
+        "GeneID:955342"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MIEIVNRKAVWYLTSEIKETETGIEVSAGELHKGDEEVFPVEEVSFDLTPDDTYPVEYMLYLHMNVQTKKVSWSLCKAYLDGEGYCDYQGNERLIMYPVSVTVFPNGTREGTIFLYEKEDREPDRKPPVIVEPQPVGEIGTPDIDE",
+      "length": 146,
+      "sequence_sha256": "a0217eaeb1e048f5198f953d9f5b2253aba0acda34290091bafac2dcbc9d7a56",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_004166.2.gb",
+      "cds_fasta_id": "lcl|NC_004166.2_prot_NP_690696.1_40",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "SPP1|SPP1p046",
+      "gene": "",
+      "locus_tag": "SPP1p046",
+      "product": "hypothetical protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gene 22.1",
+      "replicon": "NC_004166.2",
+      "start": 19733,
+      "stop": 20029,
+      "strand": "-",
+      "location": "[19732:20029](-)",
+      "protein_accession": "NP_690697.1",
+      "db_xref": [
+        "UniProtKB/TrEMBL:O48467",
+        "GeneID:955345"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MLTRVLNFFNCCSGDVSRTLSLTSGLIISGSNFIYFTSSYSSISGVPISPTGCGSTITGGFLSGSLSSFSYKNIVPSLVPFGNTVTDTGYIMRRSFPW",
+      "length": 98,
+      "sequence_sha256": "b9b41cf0242e21d12c8bb3d09011120666c63619982a1b27a3bc642217556822",
+      "annotation_flags": [
+        "alternative_start_codon_read_as_Met"
+      ],
+      "source_record": "inputs/NC_004166.2.gb",
+      "cds_fasta_id": "lcl|NC_004166.2_prot_NP_690697.1_41",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "SPP1|SPP1p047",
+      "gene": "",
+      "locus_tag": "SPP1p047",
+      "product": "hypothetical protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gene 23",
+      "replicon": "NC_004166.2",
+      "start": 19929,
+      "stop": 20093,
+      "strand": "+",
+      "location": "[19928:20093](+)",
+      "protein_accession": "NP_690698.1",
+      "db_xref": [
+        "UniProtKB/TrEMBL:O48466",
+        "GeneID:955344"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MKLEPEIINPEVKDKVLETSPEQQLKKLRTLVNKMYLEQRSSSSVGSEGSGTNE",
+      "length": 54,
+      "sequence_sha256": "90479dbe306cd6d612ac4a7b126f42a86634ffa9270259f60163393f7e1b7c5e",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_004166.2.gb",
+      "cds_fasta_id": "lcl|NC_004166.2_prot_NP_690698.1_42",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "SPP1|SPP1p048",
+      "gene": "",
+      "locus_tag": "SPP1p048",
+      "product": "hypothetical protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gene 23.1",
+      "replicon": "NC_004166.2",
+      "start": 20086,
+      "stop": 20241,
+      "strand": "+",
+      "location": "[20085:20241](+)",
+      "protein_accession": "NP_690699.1",
+      "db_xref": [
+        "PDB:2XF5",
+        "PDB:2XF6",
+        "PDB:2XF7",
+        "UniProtKB/TrEMBL:O48468",
+        "GeneID:955348"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MSESLLYGYFLDSWLDGTASEELLRVAVNAGDLTQEEADKIMSYPWGAWND",
+      "length": 51,
+      "sequence_sha256": "1defd53fd8226c507a2db902f7b96306f0e5c0de97a49dd2b760f79fda5685d6",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_004166.2.gb",
+      "cds_fasta_id": "lcl|NC_004166.2_prot_NP_690699.1_43",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "SPP1|SPP1p049",
+      "gene": "",
+      "locus_tag": "SPP1p049",
+      "product": "hypothetical protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gene 24",
+      "replicon": "NC_004166.2",
+      "start": 20234,
+      "stop": 20464,
+      "strand": "+",
+      "location": "[20233:20464](+)",
+      "protein_accession": "NP_690700.1",
+      "db_xref": [
+        "UniProtKB/TrEMBL:O48469",
+        "GeneID:955349"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MTKLTENEELYNRKASALNTMLGQANDQIAHLQAMYAMSQNENDQLKARITELENKLAAAGMPDDLAAEVGEPQPE",
+      "length": 76,
+      "sequence_sha256": "a27cc3a17417d567ddf166d00d50e27b9db6bc2608f3ae07af001c66c78c2f49",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_004166.2.gb",
+      "cds_fasta_id": "lcl|NC_004166.2_prot_NP_690700.1_44",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "SPP1|SPP1p050",
+      "gene": "",
+      "locus_tag": "SPP1p050",
+      "product": "hypothetical protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gene 24.1",
+      "replicon": "NC_004166.2",
+      "start": 20571,
+      "stop": 20822,
+      "strand": "+",
+      "location": "[20570:20822](+)",
+      "protein_accession": "NP_690701.2",
+      "db_xref": [
+        "InterPro:IPR019715",
+        "UniProtKB/TrEMBL:O48470",
+        "GeneID:955351"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MEQMRQDIIELKQNDKSQEQRISLLERTSDRHDQQIQAVTESLSKIHENTTWIKRTITGAIISTLSTVVVGGILTIVWNLVKN",
+      "length": 83,
+      "sequence_sha256": "dab1474f3b365f06988fbaed65146add1010cd84cf8f2e0365e7cc330edee9f9",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_004166.2.gb",
+      "cds_fasta_id": "lcl|NC_004166.2_prot_NP_690701.2_45",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "SPP1|SPP1p051",
+      "gene": "",
+      "locus_tag": "SPP1p051",
+      "product": "endolysin",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gene 25",
+      "replicon": "NC_004166.2",
+      "start": 20842,
+      "stop": 21657,
+      "strand": "+",
+      "location": "[20841:21657](+)",
+      "protein_accession": "NP_690702.1",
+      "db_xref": [
+        "GOA:O48471",
+        "InterPro:IPR002508",
+        "UniProtKB/TrEMBL:O48471",
+        "GeneID:955352"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MSKLVWLDAGHGGKDSGAAANGIKEKDIVLKIVKKVKSILTSRYEVAVKLTRDSDVFYELIDRARKANAAKADLFVSVHINATPGGKGFETYRYVKTSASSSTGQQQKVLHDAIYKRIKKYGIKDRGEKAADLSVLRNTSMPAVLTENLFIDNKDEAALLKKDSFLNDVAEGHAEGIAEILNLKKKSGGSAPKKEDKPSSGKTKMVIVKDNPDGFLWVYNKADWNARYKKVKPDEAFTIDKTVTVNGSKMYKLKSGLYITAASKYVTVKEK",
+      "length": 271,
+      "sequence_sha256": "c2ad0fb92ca86f51bbace41c370d82a8fa2d12a1919e008c0a32c1ca62322fdc",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_004166.2.gb",
+      "cds_fasta_id": "lcl|NC_004166.2_prot_NP_690702.1_46",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "SPP1|SPP1p052",
+      "gene": "",
+      "locus_tag": "SPP1p052",
+      "product": "hypothetical protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gene 25.1",
+      "replicon": "NC_004166.2",
+      "start": 21357,
+      "stop": 21710,
+      "strand": "-",
+      "location": "[21356:21710](-)",
+      "protein_accession": "NP_690703.1",
+      "db_xref": [
+        "UniProtKB/TrEMBL:O48473",
+        "GeneID:955306"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MRLEKESSVLLYLYPFSFYFSFTVTYLLAAVMYRPDLSLYIFEPFTVTVLSMVKASSGLTFLYRAFQSALLYTHKNPSGLSFTITIFVFPLDGLSSFLGAEPPLFFFRLRISAIPSA",
+      "length": 117,
+      "sequence_sha256": "308ad024b438cf554e60cce74868c07f58576e408b07d359a9919722616ea393",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_004166.2.gb",
+      "cds_fasta_id": "lcl|NC_004166.2_prot_NP_690703.1_47",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "SPP1|SPP1p053",
+      "gene": "",
+      "locus_tag": "SPP1p053",
+      "product": "holin",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gene 26",
+      "replicon": "NC_004166.2",
+      "start": 21659,
+      "stop": 21907,
+      "strand": "+",
+      "location": "[21658:21907](+)",
+      "protein_accession": "NP_690704.1",
+      "db_xref": [
+        "InterPro:IPR006479",
+        "UniProtKB/TrEMBL:O48472",
+        "GeneID:955250"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MKMDTGTKVRTILFLIAWVNQLLSFDNLEPIPVDETTAQQVYDAVSVLFTIVVTVWTSFKNNYLTLKGRKQREALKKNGLTK",
+      "length": 82,
+      "sequence_sha256": "9e0c16fa5c5616b0692f47ea44b8d8adb0af2f818f4995399485435e6ad9ee26",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_004166.2.gb",
+      "cds_fasta_id": "lcl|NC_004166.2_prot_NP_690704.1_48",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "SPP1|SPP1p054",
+      "gene": "",
+      "locus_tag": "SPP1p054",
+      "product": "hypothetical protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gene 27",
+      "replicon": "NC_004166.2",
+      "start": 22274,
+      "stop": 22828,
+      "strand": "+",
+      "location": "[22273:22828](+)",
+      "protein_accession": "NP_690705.1",
+      "db_xref": [
+        "UniProtKB/TrEMBL:O48474",
+        "GeneID:955355"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MEIGQSVMIKTPDIEGRGKIVHIAPGEIWPIQVELENPVDGYSMHRVAAAEVEPEESGGLYVAEVVHFKGGYRIGDRYLVGPAKNSDFFNVYLLNGKLIGTFKTMFLQKVDSKPSREVSEPENINIPEVEEKPHREPEKPQKRHVTITYTTKKEKPKKEKPKKKTFAESMEEEGQLTIFDLLEG",
+      "length": 184,
+      "sequence_sha256": "68b268573f05bab99217bc2df77d4e99e73259bc3345a43dda00a3527783c7da",
+      "annotation_flags": [
+        "alternative_start_codon_read_as_Met"
+      ],
+      "source_record": "inputs/NC_004166.2.gb",
+      "cds_fasta_id": "lcl|NC_004166.2_prot_NP_690705.1_49",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "SPP1|SPP1p055",
+      "gene": "",
+      "locus_tag": "SPP1p055",
+      "product": "hypothetical protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gene 28",
+      "replicon": "NC_004166.2",
+      "start": 22831,
+      "stop": 23118,
+      "strand": "+",
+      "location": "[22830:23118](+)",
+      "protein_accession": "NP_690706.1",
+      "db_xref": [
+        "UniProtKB/TrEMBL:O48475",
+        "GeneID:955327"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MALVPLTQYRSTQGLVGMNVVLFLKSKPELYFGIDFYVTGAGDDYIFGHDDEGMNIHVEVSDIEKILGPFDKRGGYIHHGELQKQFNRKGKRKRI",
+      "length": 95,
+      "sequence_sha256": "b80200860ad9582321d65decc77608d64a7fc1d8bb4cfb1f98aaecd87d773d0b",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_004166.2.gb",
+      "cds_fasta_id": "lcl|NC_004166.2_prot_NP_690706.1_50",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "SPP1|SPP1p056",
+      "gene": "",
+      "locus_tag": "SPP1p056",
+      "product": "hypothetical protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gene 29",
+      "replicon": "NC_004166.2",
+      "start": 23066,
+      "stop": 23368,
+      "strand": "+",
+      "location": "[23065:23368](+)",
+      "protein_accession": "NP_690707.1",
+      "db_xref": [
+        "UniProtKB/TrEMBL:O48476",
+        "GeneID:955296"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MENYKSNLIEKESANEFEFNAGQILNAHLDEKFFPLQTIQSMAERWGRRKQFVYRKYRTDLEFPKPVEGIITETAMTPKLFAMHDVERYEKLRGYKREEG",
+      "length": 100,
+      "sequence_sha256": "86c2fd31c9f152dcea2abb74a55bda53267707d07e04782f0b9c9bbcda8a39a5",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_004166.2.gb",
+      "cds_fasta_id": "lcl|NC_004166.2_prot_NP_690707.1_51",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "SPP1|SPP1p057",
+      "gene": "",
+      "locus_tag": "SPP1p057",
+      "product": "hypothetical protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gene 29.1",
+      "replicon": "NC_004166.2",
+      "start": 23355,
+      "stop": 23672,
+      "strand": "+",
+      "location": "[23354:23672](+)",
+      "protein_accession": "NP_690708.1",
+      "db_xref": [
+        "UniProtKB/TrEMBL:O48477",
+        "GeneID:955347"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MKKVDSDTLIEMIDPVILVQFDGKRDRILVPVDNFSYNFDGVEHPVPHLSLYQIWKQVMKMFGLNEGTTAITIDVWEELDLHGTIYRYRGENYSWYKHGETRGYA",
+      "length": 105,
+      "sequence_sha256": "698249033f9aeaa13c2f3f878ad1f609978e5e1dd655979609c747454aae42a0",
+      "annotation_flags": [
+        "alternative_start_codon_read_as_Met"
+      ],
+      "source_record": "inputs/NC_004166.2.gb",
+      "cds_fasta_id": "lcl|NC_004166.2_prot_NP_690708.1_52",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "SPP1|SPP1p058",
+      "gene": "",
+      "locus_tag": "SPP1p058",
+      "product": "hypothetical protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gene 30",
+      "replicon": "NC_004166.2",
+      "start": 23672,
+      "stop": 23836,
+      "strand": "+",
+      "location": "[23671:23836](+)",
+      "protein_accession": "NP_690709.1",
+      "db_xref": [
+        "UniProtKB/TrEMBL:O48478",
+        "GeneID:955310"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MFENHLQEENAELRRRNEELGKEIERQNEVIKSQNWRLLYLLSYDDRRRSIHVY",
+      "length": 54,
+      "sequence_sha256": "87e319864f435b791670086181059ecba3702e95936a9c83a8339e46d3458c43",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_004166.2.gb",
+      "cds_fasta_id": "lcl|NC_004166.2_prot_NP_690709.1_53",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "SPP1|SPP1p059",
+      "gene": "",
+      "locus_tag": "SPP1p059",
+      "product": "hypothetical protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gene 30.1",
+      "replicon": "NC_004166.2",
+      "start": 23857,
+      "stop": 24027,
+      "strand": "+",
+      "location": "[23856:24027](+)",
+      "protein_accession": "NP_690710.1",
+      "db_xref": [
+        "UniProtKB/TrEMBL:O48479",
+        "GeneID:955308"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MKGISMGKVVKMCDGCNVNPVDFFIESEQKQRLNLCNSCGLKLHDVLCERYKKIKR",
+      "length": 56,
+      "sequence_sha256": "3878635d7dc837a8c869f74694c6c5ce372b1e09a01797bf4a6eff4ca7c6abed",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_004166.2.gb",
+      "cds_fasta_id": "lcl|NC_004166.2_prot_NP_690710.1_54",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "SPP1|SPP1p060",
+      "gene": "",
+      "locus_tag": "SPP1p060",
+      "product": "hypothetical protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gene 31",
+      "replicon": "NC_004166.2",
+      "start": 24207,
+      "stop": 24491,
+      "strand": "+",
+      "location": "[24206:24491](+)",
+      "protein_accession": "NP_690711.1",
+      "db_xref": [
+        "UniProtKB/TrEMBL:O48480",
+        "GeneID:955316"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MSEKNRFNKPVAFNKKNVDDQLILKHVSRRNFSGYVKKLILADIESRKGLKPVREAEKVQKTASDRMEEMKRRAKPSRRPPGGIFTPTPQQYNR",
+      "length": 94,
+      "sequence_sha256": "35d1c47e4ace86dd1bead8327f0f2dc029ebd63204bdb8a78e78e98dcd170c7e",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_004166.2.gb",
+      "cds_fasta_id": "lcl|NC_004166.2_prot_NP_690711.1_55",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "SPP1|SPP1p061",
+      "gene": "",
+      "locus_tag": "SPP1p061",
+      "product": "hypothetical protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gene 31.1",
+      "replicon": "NC_004166.2",
+      "start": 24569,
+      "stop": 24949,
+      "strand": "+",
+      "location": "[24568:24949](+)",
+      "protein_accession": "NP_690712.1",
+      "db_xref": [
+        "UniProtKB/TrEMBL:O48481",
+        "GeneID:955290"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MRGMVEMAKIESMTIKEFMNRGKANVTVDDVVNFPVKKRTFIKASLPFLLILPKSALAAGIDSTFGNVHGAIMNAFDAGVVLVIIFAGAAWGLGNRTQAIEILIGVCCGYILARHAVDVRDFLRGI",
+      "length": 126,
+      "sequence_sha256": "3f004e2a365260bdd8d4f9fe8599bf3f82c0aeaa489543b7d8ba7290ee3728ba",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_004166.2.gb",
+      "cds_fasta_id": "lcl|NC_004166.2_prot_NP_690712.1_56",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "SPP1|SPP1p062",
+      "gene": "",
+      "locus_tag": "SPP1p062",
+      "product": "hypothetical protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gene 31.2",
+      "replicon": "NC_004166.2",
+      "start": 24962,
+      "stop": 25279,
+      "strand": "+",
+      "location": "[24961:25279](+)",
+      "protein_accession": "NP_690713.1",
+      "db_xref": [
+        "UniProtKB/TrEMBL:O48482",
+        "GeneID:955253"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MDIKINGQKIGEWFIERGRVDQYNPKASDNPGWFWEWVGGCISDSFSNLGHWFIMNLPDIIGYGAILSGVLIILGSMIGRGGMFKPLAYFAGAFILALCILGGVK",
+      "length": 105,
+      "sequence_sha256": "1b5734d354735e9925eb5c5f0ff76c3dfbefb021dc5daac158aeb84c892fdb34",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_004166.2.gb",
+      "cds_fasta_id": "lcl|NC_004166.2_prot_NP_690713.1_57",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "SPP1|SPP1p063",
+      "gene": "",
+      "locus_tag": "SPP1p063",
+      "product": "hypothetical protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gene 32",
+      "replicon": "NC_004166.2",
+      "start": 25276,
+      "stop": 27786,
+      "strand": "+",
+      "location": "[25275:27786](+)",
+      "protein_accession": "NP_690714.1",
+      "db_xref": [
+        "UniProtKB/TrEMBL:O48483",
+        "GeneID:955332"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MKNLPVLYNGGLPAEFKETKRKRKEKKIETIKWSDFFQYKKNEYVTYRIIPHADVTNNNKRLWKAIHKMYELYDSPFSRIEKSGMKFTYREKDYFWYDIIFRMKNGRKSVEFYVSTTRYQADKLKKKIENKVHATITEASVKELAVPLENTILQEMRYLKHDIFTLNTNSNDVKTPISNLLNVVDELQDDGDFARFSVCNESESRQKWVKNAHWAYEKVKRGKVPQRPALTAKKLTTGGKNVIAGCINEVNSLLSDALQALSNSFFKTEKTMKKEKVIKKGHAIQDEIGATRFSHEKGNLPVFKSRIRVAAHSKNRLTRDTMAESLALSLTDLSESNELQGVKVRFKKRREEILNEMNTLSVSARTKTDGNVNLISTDEMNKLAMMMPPKDLQRKYADTLSVKKQVEVEIPAVMRDESGIYLGESEIKGEKIPVYMPVTNPDNFYRGYTFIGGQGAGKDTAIKNWVVDCNLKHNISFIIPDAIVEEGGRGMADGIRDALPPERIIDLNMNDDDFIPPLDLTEVISKLGRNGASRFADEMIDFIQLDGLSRSEKYLTDAAKASRGSLFNIKRIIEDEDYRADRIEELLNEGNNRLANELLQWGDNEQLGSKCDPILHRLNRFFGNERLYDIFAQDPLKELDFAKWMQEGKVIIIRVPNGRGLGELAVKTLVHWITLKTFMTRLLMTKEEQKNGCFIVFNEPEQYESEGLTKLMGRIGTEGRKERLGSIYAFHHWNKLQPSLQENLQGGGVQQFLFMNDHTKTFEMSKHRFEDTVPLEEAYKIPAHHAIISVRAAGEMQPAFICKMQKPPKKSYDNSFLTKRHARIYGRAWQDLQQVL",
+      "length": 836,
+      "sequence_sha256": "4b534d05cdf0a00dc8625393f707f1f30ebc3828ec5ec0c5ee1860338393f5b2",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_004166.2.gb",
+      "cds_fasta_id": "lcl|NC_004166.2_prot_NP_690714.1_58",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "SPP1|SPP1p064",
+      "gene": "",
+      "locus_tag": "SPP1p064",
+      "product": "hypothetical protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gene 32.1",
+      "replicon": "NC_004166.2",
+      "start": 25285,
+      "stop": 25758,
+      "strand": "-",
+      "location": "[25284:25758](-)",
+      "protein_accession": "NP_690715.1",
+      "db_xref": [
+        "UniProtKB/TrEMBL:O48484",
+        "GeneID:955317"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MFQVSHFLQNCILQRDGQLFHACFCYSGVYFIFDFLFEFIGLITGCGYIKLNTFTAVFHSENDIVPKIIFLPVREFHTALFYAAEWRIVQLIHFMNRFPKPLIVIRHISMRNDPICHILILFVLEEVRPFYCFDFLLFPFPLRLFKFCGQTAIVQHG",
+      "length": 157,
+      "sequence_sha256": "de6e7ba101dda153ccbf4020c5bcf82f952adab73759f9e44300576ae782268d",
+      "annotation_flags": [
+        "alternative_start_codon_read_as_Met"
+      ],
+      "source_record": "inputs/NC_004166.2.gb",
+      "cds_fasta_id": "lcl|NC_004166.2_prot_NP_690715.1_59",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "SPP1|SPP1p065",
+      "gene": "",
+      "locus_tag": "SPP1p065",
+      "product": "hypothetical protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gene 32.2",
+      "replicon": "NC_004166.2",
+      "start": 26208,
+      "stop": 26603,
+      "strand": "-",
+      "location": "[26207:26603](-)",
+      "protein_accession": "NP_690716.1",
+      "db_xref": [
+        "UniProtKB/TrEMBL:O48485",
+        "GeneID:955311"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MSGLVTGMYTGIFSPLISDSPRYMPLSSLMTAGISTSTCFLTLNVSAYLRCKSFGGIIIASLFISSVLIKLTFPSVFVRALTESVFISFNISSRRFLNRTLTPCNSFDSDKSVKLNANDSAIVSRVNLFFE",
+      "length": 131,
+      "sequence_sha256": "0cbe6a352d1bddb8a2ba1e2d3c07572eccddea71d2231d18e233fb1e588e3bb2",
+      "annotation_flags": [
+        "alternative_start_codon_read_as_Met"
+      ],
+      "source_record": "inputs/NC_004166.2.gb",
+      "cds_fasta_id": "lcl|NC_004166.2_prot_NP_690716.1_60",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "SPP1|SPP1p066",
+      "gene": "",
+      "locus_tag": "SPP1p066",
+      "product": "hypothetical protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gene 32.3",
+      "replicon": "NC_004166.2",
+      "start": 26607,
+      "stop": 26993,
+      "strand": "-",
+      "location": "[26606:26993](-)",
+      "protein_accession": "NP_690717.1",
+      "db_xref": [
+        "UniProtKB/TrEMBL:O48486",
+        "GeneID:955309"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MIRLILNKLPLDAFAASVKYFSDRERPSSCMKSIISSAKRLAPFRPSLLITSVKSRGGIKSSSFMFRSMILSGGRASRIPSAMPRPPSSTIASGMIKLILCFKLQSTTQFFIAVSFPAPCPPMNVYPL",
+      "length": 128,
+      "sequence_sha256": "4b95e46e21b3f25da5d278abb6b8db0a2f9f2b07aa5cac8604cbe1e9889f564a",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_004166.2.gb",
+      "cds_fasta_id": "lcl|NC_004166.2_prot_NP_690717.1_61",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "SPP1|SPP1p067",
+      "gene": "",
+      "locus_tag": "SPP1p067",
+      "product": "hypothetical protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gene 32.4",
+      "replicon": "NC_004166.2",
+      "start": 27006,
+      "stop": 27419,
+      "strand": "-",
+      "location": "[27005:27419](-)",
+      "protein_accession": "NP_690718.1",
+      "db_xref": [
+        "UniProtKB/TrEMBL:O48487",
+        "GeneID:955264"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MRPINFVNPSLSYCSGSLKTMKQPFFCSSFVMSNRVINVFSVIQWTRVFTANSPRPLPFGTRIIITLPSCIHLAKSSSLRGSCANMSYRRSLPKKRFKRCKIGSHLLPNCSLSPHCNNSLARRLLPSFKSSSILSAL",
+      "length": 137,
+      "sequence_sha256": "4dd91ef6e34610d7de79108108297dd69d833ab113648a8864c7a32450dd4f8c",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_004166.2.gb",
+      "cds_fasta_id": "lcl|NC_004166.2_prot_NP_690718.1_62",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "SPP1|SPP1p068",
+      "gene": "",
+      "locus_tag": "SPP1p068",
+      "product": "tail spike protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gene 33",
+      "replicon": "NC_004166.2",
+      "start": 28194,
+      "stop": 29993,
+      "strand": "+",
+      "location": "[28193:29993](+)",
+      "protein_accession": "NP_690719.1",
+      "db_xref": [
+        "InterPro:IPR006626",
+        "InterPro:IPR011050",
+        "UniProtKB/TrEMBL:O48488",
+        "GeneID:955270"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MTNSKKGLSNMGLEILVPHVYPVNLEEWGINKDFQEPEATTEAFNKAFTYAKNMGYFEVWVPPGNFLIDGVNESNVYATENGGGIHLHSNTHYKLNPESVFKINANDAQGYSVFYIGLAYNVTLEGGQLIGDRHEHDYSTVTQNRNTHEFGFGVNVHGSERVNIINVRSRDMTGDNILITNKGNMNYPGQTYIPSKNVTVDNCYLETARRNNLSAVGCDGVLINNCDFIAAGGDVIGPQLGIDFEGYAENGIKYAHPYNLQLKNSRFRDNGRGCFTAHAVGKAIISENFFDDRVSYGFGTDISIVDNHIINDGEVRDLAIDSIQPPSYDNANRVKIAGNKIKGFKKGMTIRGKEIDVTDNDLNNITETGIHVYLAEEITLNENRVNSDCVPLNIQISKKVNVSDNTFKGGAEKYGVIVSGEVEDISFKDNHIEAGGGINAGSAKNVRILSKNEIFVKGKLNALRNNPGSTVKVNGLNIYDPAAYPMELDGSAGTLDIKNVSIYGCKAFIAINIKNGRRHKIKNNDIVFEREKNGGYGVYLSGTERTKLTDNDVSTSNDFAIEAPFHTEGSMYSTIMYNYYDSGVIKNNGTDRVEANDLI",
+      "length": 599,
+      "sequence_sha256": "641612441a64da12aaacf1b271733059d98091b47fc08973b1d23c3bc663533f",
+      "annotation_flags": [
+        "alternative_start_codon_read_as_Met"
+      ],
+      "source_record": "inputs/NC_004166.2.gb",
+      "cds_fasta_id": "lcl|NC_004166.2_prot_NP_690719.1_63",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "SPP1|SPP1p069",
+      "gene": "",
+      "locus_tag": "SPP1p069",
+      "product": "hypothetical protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gene 33.1",
+      "replicon": "NC_004166.2",
+      "start": 30009,
+      "stop": 30227,
+      "strand": "+",
+      "location": "[30008:30227](+)",
+      "protein_accession": "NP_690720.1",
+      "db_xref": [
+        "UniProtKB/TrEMBL:O48489",
+        "GeneID:955257"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MSEQKFNIGDLVAFNGDVGIVHRYNKKFNEYAVWIDNYMIMVEEHWIRPATKKDIAKAGGRKYIQTLKGTVL",
+      "length": 72,
+      "sequence_sha256": "8d1320a3501d78d67b4da43573b7f29b43eeb7b2be5fc2d69f4fcfab6bd49659",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_004166.2.gb",
+      "cds_fasta_id": "lcl|NC_004166.2_prot_NP_690720.1_64",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "SPP1|SPP1p070",
+      "gene": "",
+      "locus_tag": "SPP1p070",
+      "product": "hypothetical protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gene 34",
+      "replicon": "NC_004166.2",
+      "start": 30362,
+      "stop": 30520,
+      "strand": "+",
+      "location": "[30361:30520](+)",
+      "protein_accession": "NP_690721.1",
+      "db_xref": [
+        "UniProtKB/TrEMBL:Q38138",
+        "GeneID:955281"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MNEQKRVKKNLEVSPTVWKKAHIMKADTGKKLYEILEEAINEMYERHEPKHF",
+      "length": 52,
+      "sequence_sha256": "e11f792d634b132aefad2ec557797b4b6dc417bd3cc017cddd0d1750dea46eed",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_004166.2.gb",
+      "cds_fasta_id": "lcl|NC_004166.2_prot_NP_690721.1_65",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "SPP1|SPP1p071",
+      "gene": "",
+      "locus_tag": "SPP1p071",
+      "product": "RecE-like recombination exonuclease",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gene 34.1",
+      "replicon": "NC_004166.2",
+      "start": 30532,
+      "stop": 31467,
+      "strand": "+",
+      "location": "[30531:31467](+)",
+      "protein_accession": "NP_690722.1",
+      "db_xref": [
+        "GOA:O48490",
+        "InterPro:IPR011335",
+        "InterPro:IPR011604",
+        "InterPro:IPR017482",
+        "InterPro:IPR019080",
+        "UniProtKB/TrEMBL:O48490",
+        "GeneID:955287"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MARVVANTKDMPHEEWLALRKHGIGGSDAAKVLGVSKYGSPLTAYMEKKGMYTPKVSEATEEAARWGTIMEPVLRDEFRKRINEERAEQGLPPVRVEERHFLYAHEQFDFMRTNLDGVVLDHENGSGILEIKTASEYLKEEWEGEDIPNQYMIQVQHNIKVVEADFAYVVALIGGNKYKHYYIERDDELISHIVQGEHYFWNNHFSANIPPTASDSDAETEMMKILYPRSYDDPVLELPLEFKELAERYEDYKEQQKTLKKLETDAKNKLMAAMQESGIAFAGPHQITWRANKNGVKSFRVKLNKREEQKA",
+      "length": 311,
+      "sequence_sha256": "43e9ed8e206186043e70d7d43f26548249cae8d726cf38eb7386c4484a667aa4",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_004166.2.gb",
+      "cds_fasta_id": "lcl|NC_004166.2_prot_NP_690722.1_66",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "SPP1|SPP1p072",
+      "gene": "",
+      "locus_tag": "SPP1p072",
+      "product": "hypothetical protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gene 34.2",
+      "replicon": "NC_004166.2",
+      "start": 31464,
+      "stop": 31637,
+      "strand": "+",
+      "location": "[31463:31637](+)",
+      "protein_accession": "NP_690723.1",
+      "db_xref": [
+        "UniProtKB/TrEMBL:Q38140",
+        "GeneID:955298"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MTLYRYLCTECDTVNYISWIINASAPCCSECGQDDRRKYRFEGYLVGDFSIETKEEE",
+      "length": 57,
+      "sequence_sha256": "022732afc24d7e55b4ee675922d39ff16c6217ba5844649c2f7b85c9b8a29344",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_004166.2.gb",
+      "cds_fasta_id": "lcl|NC_004166.2_prot_NP_690723.1_67",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "SPP1|SPP1p073",
+      "gene": "",
+      "locus_tag": "SPP1p073",
+      "product": "hypothetical protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gene 34.5",
+      "replicon": "NC_004166.2",
+      "start": 31611,
+      "stop": 31904,
+      "strand": "-",
+      "location": "[31610:31904](-)",
+      "protein_accession": "NP_690724.1",
+      "db_xref": [
+        "UniProtKB/TrEMBL:O48491",
+        "GeneID:955340"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MNPFYFSSLTTILNSTSWTWDIFTKLILFLSRPSFNIINSASFISCSILYIISSIVCGVSSDTPLSSCLSLPITLGPAPHNIFSINTFILFFLLGFD",
+      "length": 97,
+      "sequence_sha256": "517635b5fc00de5b08cee211ff5c7d3e1ddf9a13ca759bc4745499fec30e438c",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_004166.2.gb",
+      "cds_fasta_id": "lcl|NC_004166.2_prot_NP_690724.1_68",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "SPP1|SPP1p074",
+      "gene": "",
+      "locus_tag": "SPP1p074",
+      "product": "hypothetical protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gene 34.3",
+      "replicon": "NC_004166.2",
+      "start": 31639,
+      "stop": 31893,
+      "strand": "+",
+      "location": "[31638:31893](+)",
+      "protein_accession": "NP_690725.1",
+      "db_xref": [
+        "UniProtKB/TrEMBL:Q38141",
+        "GeneID:955321"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MKVFIEKILWGAGPRVIGKDRQLLKGVSELTPQTIEDIMYSIEQEMKDAEFMILKDGRDKNKISFVNMSHVQEVEFNIVVREEK",
+      "length": 84,
+      "sequence_sha256": "faefc3973cdacc65eec0a9d47d49ccf8ac9929dcb45205f45d32a8fcf7173b79",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_004166.2.gb",
+      "cds_fasta_id": "lcl|NC_004166.2_prot_NP_690725.1_69",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "SPP1|SPP1p075",
+      "gene": "",
+      "locus_tag": "SPP1p075",
+      "product": "hypothetical protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gene 34.4",
+      "replicon": "NC_004166.2",
+      "start": 31895,
+      "stop": 32185,
+      "strand": "+",
+      "location": "[31894:32185](+)",
+      "protein_accession": "NP_690726.1",
+      "db_xref": [
+        "UniProtKB/TrEMBL:Q38142",
+        "GeneID:955336"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MDSLKSAKQLTVTFFEKGHPHPSQITLFDELESNFDDVTSPRAIEYKLQVYTEYMNHLQTQDFIMVEAKGNSVRMLPKELITEIILEVTEVENNGN",
+      "length": 96,
+      "sequence_sha256": "5f57f78155ac56e0353d2963c5e90ec6bb864e5ab746237710daaea1fd463a21",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_004166.2.gb",
+      "cds_fasta_id": "lcl|NC_004166.2_prot_NP_690726.1_70",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "SPP1|SPP1p076",
+      "gene": "",
+      "locus_tag": "SPP1p076",
+      "product": "RecT-like ssDNA annealing protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gene 35",
+      "replicon": "NC_004166.2",
+      "start": 32175,
+      "stop": 33038,
+      "strand": "+",
+      "location": "[32174:33038](+)",
+      "protein_accession": "NP_690727.1",
+      "db_xref": [
+        "GOA:Q38143",
+        "InterPro:IPR004590",
+        "InterPro:IPR018330",
+        "UniProtKB/TrEMBL:Q38143",
+        "GeneID:955314"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MATKKQEELKNALAQQNGAVPQTPVKPQDKVKGYLERMMPAIKDVLPKHLDADRLSRIAMNVIRTNPKLLECDTASLMGAVLESAKLGVEPGLLGQAYILPYTNYKKKTVEAQFILGYKGLLDLVRRSGHVSTISAQTVYKNDTFEYEYGLDDKLVHRPAPFGTDRGEPVGYYAVAKMKDGGYNFLVMSKQDVEKHRDAFSKSKNREGVVYGPWADHFDAMAKKTVLRQLINYLPISVEQLSGVAADERTGSELHNQFADDDNIINVDINTGEIIDHQEKLGGETNE",
+      "length": 287,
+      "sequence_sha256": "2a77047ffc5ae43709b762bf72068a40f138b28d2fd47bd0f45ecd913b5222ab",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_004166.2.gb",
+      "cds_fasta_id": "lcl|NC_004166.2_prot_NP_690727.1_71",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "SPP1|SPP1p077",
+      "gene": "",
+      "locus_tag": "SPP1p077",
+      "product": "hypothetical protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gene 35.1",
+      "replicon": "NC_004166.2",
+      "start": 33015,
+      "stop": 33485,
+      "strand": "-",
+      "location": "[33014:33485](-)",
+      "protein_accession": "NP_690728.1",
+      "db_xref": [
+        "UniProtKB/TrEMBL:O48492",
+        "GeneID:955258"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MSIVLPSFAKGSLLYPPCPPEPFCEPPKVFVLLDPCELSGELESLLFGSTNVMFSTTQSFVYTLFPSWPSKAPVRHEPETPIMRPVPKLLAITSAIPRQAWQRMKSASYCPVVGSFLLRLTAIIKFTTAVPLFVCLSSGSAASLPTKLTLFICFPS",
+      "length": 156,
+      "sequence_sha256": "3d4bbfa0d36da74f60128b2ea6e3ab7d33788b64645f9ed858aa99dec7ccd46b",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_004166.2.gb",
+      "cds_fasta_id": "lcl|NC_004166.2_prot_NP_690728.1_72",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "SPP1|SPP1p078",
+      "gene": "",
+      "locus_tag": "SPP1p078",
+      "product": "hypothetical protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gene 36",
+      "replicon": "NC_004166.2",
+      "start": 33031,
+      "stop": 33510,
+      "strand": "+",
+      "location": "[33030:33510](+)",
+      "protein_accession": "NP_690729.1",
+      "db_xref": [
+        "GOA:Q38144",
+        "HSSP:1UE7",
+        "InterPro:IPR000424",
+        "InterPro:IPR011344",
+        "InterPro:IPR012340",
+        "InterPro:IPR016027",
+        "UniProtKB/TrEMBL:Q38144",
+        "GeneID:955299"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MNSVNLVGRLAADPELRHTNNGTAVVNFIMAVRRNRKDPTTGQYEADFIRCQAWRGIAEVIANNFGTGRMIGVSGSWRTGAFEGQDGKRVYTNDCVVENITFVDPNKSDSSSPDNSQGSSNTNTFGGSQNGSGGQGGYNNDPFANDGKTIDINESDLPF",
+      "length": 159,
+      "sequence_sha256": "b52e00e76aec2ed74535058ce3c7b1f96ef827084dd767279b2a941092b8515c",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_004166.2.gb",
+      "cds_fasta_id": "lcl|NC_004166.2_prot_NP_690729.1_73",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "SPP1|SPP1p083",
+      "gene": "",
+      "locus_tag": "SPP1p083",
+      "product": "excisionase and transcriptional regulator",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gene 37.3",
+      "replicon": "NC_004166.2",
+      "start": 35398,
+      "stop": 35571,
+      "strand": "+",
+      "location": "[35397:35571](+)",
+      "protein_accession": "NP_690730.1",
+      "db_xref": [
+        "GOA:Q38149",
+        "InterPro:IPR009061",
+        "InterPro:IPR010093",
+        "InterPro:IPR010260",
+        "InterPro:IPR011991",
+        "UniProtKB/TrEMBL:Q38149",
+        "GeneID:955255"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MSELKKIQEVIKFLGVSRATVYNLMKKKELPYKKIGGSTRFDMKEVAEWMNSQNKED",
+      "length": 57,
+      "sequence_sha256": "49ee9f5c522de2ffe07be8abf5898afe05e2c27df80ed0babb720f65506df3de",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_004166.2.gb",
+      "cds_fasta_id": "lcl|NC_004166.2_prot_NP_690730.1_74",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "SPP1|SPP1p084",
+      "gene": "",
+      "locus_tag": "SPP1p084",
+      "product": "DnaD-like helicase loader",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gene 38",
+      "replicon": "NC_004166.2",
+      "start": 35578,
+      "stop": 36348,
+      "strand": "+",
+      "location": "[35577:36348](+)",
+      "protein_accession": "NP_690731.1",
+      "db_xref": [
+        "InterPro:IPR011741",
+        "UniProtKB/TrEMBL:Q38150",
+        "GeneID:955260"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MSSKGFILLHRTIQDHWIYDEKRTFSRYEAWLDLLMMVNHSDNKVMMDGELVTVKRGERITSIRELMNRWGWSNTKVNNFLKLCQKENMIECVVQPKKKTVIKIVNYEKWQGFGHSGQSEETTEKRHEKDTKKTQKRINNNDNNENNDNKTNIVREVVEYLNEKTGSKFKHSAAAHKKPISARINEGYSLEEFKLVIDYCVSAWAGKDFGNGKKGDDYLRPSTLFNQKFDERLNAAHKNGTTPQKDKWAELEEAFE",
+      "length": 256,
+      "sequence_sha256": "b439a5ae9ff4badad81d62b53ac39f97bca8c7a1ae052a5d52c97e6bff785109",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_004166.2.gb",
+      "cds_fasta_id": "lcl|NC_004166.2_prot_NP_690731.1_75",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "SPP1|SPP1p085",
+      "gene": "",
+      "locus_tag": "SPP1p085",
+      "product": "helicase loader",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gene 39",
+      "replicon": "NC_004166.2",
+      "start": 36345,
+      "stop": 36725,
+      "strand": "+",
+      "location": "[36344:36725](+)",
+      "protein_accession": "NP_690732.1",
+      "db_xref": [
+        "PDB:1NO1",
+        "UniProtKB/TrEMBL:Q38151",
+        "GeneID:955268"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MIEKDVVQILKAVSEFYPGRFQPDDLKGTVKAWHRVLAEYELEEIMNNLTDYAKVNKFPPTVSDLLKAQSEQRDRFIPSYEETQRILKEQAEAEEAARNDPDLQAAQEENMRKIREMLGINRGGAR",
+      "length": 126,
+      "sequence_sha256": "d6b8f58ee870f6f7d31257553d298284ede5951380fd31e5acb55d59ad105369",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_004166.2.gb",
+      "cds_fasta_id": "lcl|NC_004166.2_prot_NP_690732.1_76",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "SPP1|SPP1p086",
+      "gene": "",
+      "locus_tag": "SPP1p086",
+      "product": "DnaB-like replicative helicase",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gene 40",
+      "replicon": "NC_004166.2",
+      "start": 36722,
+      "stop": 38050,
+      "strand": "+",
+      "location": "[36721:38050](+)",
+      "protein_accession": "NP_690733.1",
+      "db_xref": [
+        "GOA:Q38152",
+        "InterPro:IPR007692",
+        "InterPro:IPR007693",
+        "InterPro:IPR007694",
+        "InterPro:IPR016136",
+        "PDB:3BGW",
+        "PDB:3BH0",
+        "UniProtKB/TrEMBL:Q38152",
+        "GeneID:955307"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MNPEEKTVMLYNEYAEQAVLGSILTEPELIKECPLTPEHFSPGKHFNIYFTMQDLDRKGQSVDFTSIAARVGEKLPQLGGFGYLTELAASVASTTTFKQHCQTVSEYFQKRKAISIAQQIIENVNESDDGPVKPIQEAVSELMEIEASGTDDDDGSIDEALVTVYEEIESADGNITGVPSGFTELDRMTYGYKRRNFVLIAARPSMGKTAFALKQAKNMSDNDDVVNLHSLEMGKKENIKRLIVTAGSINAQKIKAARRDFASEDWGKLSMAIGEISNSNINIFDKAGQSVNYIWSKTRQTKRKNPGKRVIVMIDYLQLLEPAKANDSRTNQISQISRDLKKMARELDVVVIALSQLSRQVEQRQDKRPMLSDLRESGQLEQDADIIEFLYRDDYYDKESESKNIVEVIIAKHRDGPVGTVSLAFIKEYGNFVNLERRFDDR",
+      "length": 442,
+      "sequence_sha256": "60dcbcfd4a26d1b6a56b8a55d3df4260ffe955a8a5d710936417cb84eaaea295",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_004166.2.gb",
+      "cds_fasta_id": "lcl|NC_004166.2_prot_NP_690733.1_77",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "SPP1|SPP1p087",
+      "gene": "",
+      "locus_tag": "SPP1p087",
+      "product": "DnaB-like replicative helicase",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gene 40.1",
+      "replicon": "NC_004166.2",
+      "start": 37148,
+      "stop": 38050,
+      "strand": "+",
+      "location": "[37147:38050](+)",
+      "protein_accession": "NP_690734.1",
+      "db_xref": [
+        "GOA:Q76QF4",
+        "InterPro:IPR007694",
+        "UniProtKB/TrEMBL:Q76QF4",
+        "GeneID:955266"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MEIEASGTDDDDGSIDEALVTVYEEIESADGNITGVPSGFTELDRMTYGYKRRNFVLIAARPSMGKTAFALKQAKNMSDNDDVVNLHSLEMGKKENIKRLIVTAGSINAQKIKAARRDFASEDWGKLSMAIGEISNSNINIFDKAGQSVNYIWSKTRQTKRKNPGKRVIVMIDYLQLLEPAKANDSRTNQISQISRDLKKMARELDVVVIALSQLSRQVEQRQDKRPMLSDLRESGQLEQDADIIEFLYRDDYYDKESESKNIVEVIIAKHRDGPVGTVSLAFIKEYGNFVNLERRFDDR",
+      "length": 300,
+      "sequence_sha256": "24c88d1a12ec284849d2f510f8fb74f458548e739bf406310eb120669961d296",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_004166.2.gb",
+      "cds_fasta_id": "lcl|NC_004166.2_prot_NP_690734.1_78",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "SPP1|SPP1p088",
+      "gene": "",
+      "locus_tag": "SPP1p088",
+      "product": "hypothetical protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gene 40.2",
+      "replicon": "NC_004166.2",
+      "start": 37294,
+      "stop": 37569,
+      "strand": "-",
+      "location": "[37293:37569](-)",
+      "protein_accession": "NP_690735.1",
+      "db_xref": [
+        "UniProtKB/TrEMBL:O48493",
+        "GeneID:955350"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MFMLLFEISPIAIESLPQSSEAKSLLAAFIFWALILPAVTINLLMFSFFPISSEWRLTTSSLSDIFFACFNANAVFPILGRAAIRTKFRRL",
+      "length": 91,
+      "sequence_sha256": "c341b2a9ab8762a7d2a51cd93c70877ded9b2a150316c1c175141f7393635883",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_004166.2.gb",
+      "cds_fasta_id": "lcl|NC_004166.2_prot_NP_690735.1_79",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "SPP1|SPP1p089",
+      "gene": "",
+      "locus_tag": "SPP1p089",
+      "product": "hypothetical protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gene 41.1",
+      "replicon": "NC_004166.2",
+      "start": 37998,
+      "stop": 38324,
+      "strand": "-",
+      "location": "[37997:38324](-)",
+      "protein_accession": "NP_690736.1",
+      "db_xref": [
+        "UniProtKB/TrEMBL:O48494",
+        "GeneID:955262"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MINTGKTCPCNPIARLESRLRFYLQFQLFSFLRFSGGSFLHFFLSRFLCPYIRFVLRVSHYSVPTETKRRRTMNDARITTVFTFRHSSRPLFNDHQNDVLNLQNCRTL",
+      "length": 108,
+      "sequence_sha256": "08b400790fbee8aca4c7b4aa9ddbc9e6ddbebd7eaa272e90e0d66b2811a693c9",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_004166.2.gb",
+      "cds_fasta_id": "lcl|NC_004166.2_prot_NP_690736.1_80",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "SPP1|SPP1p090",
+      "gene": "",
+      "locus_tag": "SPP1p090",
+      "product": "hypothetical protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gene 41",
+      "replicon": "NC_004166.2",
+      "start": 38040,
+      "stop": 38567,
+      "strand": "+",
+      "location": "[38039:38567](+)",
+      "protein_accession": "NP_690737.1",
+      "db_xref": [
+        "InterPro:IPR014957",
+        "UniProtKB/TrEMBL:Q38153",
+        "GeneID:955331"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MIVKKGAARMAKCKNCGDSGIIHGSASFCFCRNGIMRHTQHKANIRAQEAAKKEVEERAAREAEKAEQLELEVKTEPRFKPGDWVTWTSLASVYHMYGFVISIKNEISAKCRVVWISKDGVKRRVNKDEEFNNIGVHRLQPWKLEPIPNHVAIDLALDTNDREWFEQLTKGVEWK",
+      "length": 175,
+      "sequence_sha256": "dab0a46cc2c2c6b5fde53d5a0ac79c5eebae19ba0aa87cdea01a72ae8c1c2b64",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_004166.2.gb",
+      "cds_fasta_id": "lcl|NC_004166.2_prot_NP_690737.1_81",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "SPP1|SPP1p091",
+      "gene": "",
+      "locus_tag": "SPP1p091",
+      "product": "hypothetical protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gene 42",
+      "replicon": "NC_004166.2",
+      "start": 38564,
+      "stop": 38959,
+      "strand": "+",
+      "location": "[38563:38959](+)",
+      "protein_accession": "NP_690738.1",
+      "db_xref": [
+        "GOA:Q76QF2",
+        "InterPro:IPR015866",
+        "UniProtKB/TrEMBL:Q76QF2",
+        "GeneID:955354"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MRKLTTEEKFEMQLNHPFYKEVDKEGERIKREQLYKAANKYDKPFNPNDWTAEQLKDHFLQENYDQKVYGVALAWKLEEYEDKLKALEEENEDLKNELKEMSERVHDLKFENRNLEDKVEELEDTIEELEG",
+      "length": 131,
+      "sequence_sha256": "94d0fc112a400296107c8fdb7ccdec942675868f75bf188b6f44e04f5ed835de",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_004166.2.gb",
+      "cds_fasta_id": "lcl|NC_004166.2_prot_NP_690738.1_82",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "SPP1|SPP1p092",
+      "gene": "",
+      "locus_tag": "SPP1p092",
+      "product": "hypothetical protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gene 42.1",
+      "replicon": "NC_004166.2",
+      "start": 38962,
+      "stop": 39132,
+      "strand": "+",
+      "location": "[38961:39132](+)",
+      "protein_accession": "NP_690739.1",
+      "db_xref": [
+        "UniProtKB/TrEMBL:O48495",
+        "GeneID:955276"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MEKQTHYTPEEIEYIKKNYLVGKHGNVQMMAYKLNRTVGGLRKKIHALTKSGEMSK",
+      "length": 56,
+      "sequence_sha256": "6eb63868fe654b5008e32597785f9bc77b905613a599a94fd5e68776d4c1adbb",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_004166.2.gb",
+      "cds_fasta_id": "lcl|NC_004166.2_prot_NP_690739.1_83",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "SPP1|SPP1p093",
+      "gene": "",
+      "locus_tag": "SPP1p093",
+      "product": "hypothetical protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gene 42.2",
+      "replicon": "NC_004166.2",
+      "start": 39129,
+      "stop": 39425,
+      "strand": "+",
+      "location": "[39128:39425](+)",
+      "protein_accession": "NP_690740.1",
+      "db_xref": [
+        "UniProtKB/TrEMBL:O48496",
+        "GeneID:955297"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MINHGFMCPNCGPVPVSKKKSINKVEHRACKLCDSIVKPWSRPLNERVGRCSTCGGASFTSAMGKNKLKGHILRKCKDCGEVFDTDTNTVLRKGNTEG",
+      "length": 98,
+      "sequence_sha256": "70e7ead909099ccff6516e45059ecd3f40075b9ef4cae8af61acc9f8b0ff0028",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_004166.2.gb",
+      "cds_fasta_id": "lcl|NC_004166.2_prot_NP_690740.1_84",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "SPP1|SPP1p094",
+      "gene": "",
+      "locus_tag": "SPP1p094",
+      "product": "hypothetical protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gene 43",
+      "replicon": "NC_004166.2",
+      "start": 39429,
+      "stop": 39782,
+      "strand": "+",
+      "location": "[39428:39782](+)",
+      "protein_accession": "NP_690741.1",
+      "db_xref": [
+        "GOA:Q38071",
+        "InterPro:IPR001387",
+        "InterPro:IPR010982",
+        "UniProtKB/TrEMBL:Q38071",
+        "GeneID:955282"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MSKPTEIERLKQRVQDLEAQNRFLRRENERLVKKNERMRRKEEKRLQEIEEEEKQELAYFFIQQRRALGITRAELARVLGVSSSRLLNYEKAEGRIESMREVAARVKELWKERKKNA",
+      "length": 117,
+      "sequence_sha256": "d8800f15e56120100257eace198baa26fe1838f7207a8875b411367e6e12a376",
+      "annotation_flags": [
+        "alternative_start_codon_read_as_Met"
+      ],
+      "source_record": "inputs/NC_004166.2.gb",
+      "cds_fasta_id": "lcl|NC_004166.2_prot_NP_690741.1_85",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "SPP1|SPP1p095",
+      "gene": "",
+      "locus_tag": "SPP1p095",
+      "product": "hypothetical protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gene 44",
+      "replicon": "NC_004166.2",
+      "start": 39775,
+      "stop": 40293,
+      "strand": "+",
+      "location": "[39774:40293](+)",
+      "protein_accession": "NP_690742.1",
+      "db_xref": [
+        "UniProtKB/TrEMBL:Q38072",
+        "GeneID:955313"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MREKTEVEEAYEAYFEEYDSAYEDTGIDPEILVLPLMMFGKVGNKWHEPGVPVRKRIKTGETTYKTGPKKGQVKPVYEWVADLKKKKVVVGHKEITRGKNKGQMKPIYETILSDYESTGFYPSANAIYMNTFGGSRRLTPAAEGKLLEWKNLAASGPSRTIGSRVRKGRKSS",
+      "length": 172,
+      "sequence_sha256": "a41a55549ee488a488263df521b9d918447c0c6d9dbc0042299935d5535b4670",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_004166.2.gb",
+      "cds_fasta_id": "lcl|NC_004166.2_prot_NP_690742.1_86",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "SPP1|SPP1p096",
+      "gene": "",
+      "locus_tag": "SPP1p096",
+      "product": "hypothetical protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gene 45",
+      "replicon": "NC_004166.2",
+      "start": 40296,
+      "stop": 40484,
+      "strand": "+",
+      "location": "[40295:40484](+)",
+      "protein_accession": "NP_690743.1",
+      "db_xref": [
+        "GOA:Q38073",
+        "InterPro:IPR008822",
+        "UniProtKB/TrEMBL:Q38073",
+        "GeneID:955346"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MEFYLPDDGKVRDTHNAKKLLLDALEGVIHENDMWMIDRTIDFHFVKENPRIEIEISKLWWE",
+      "length": 62,
+      "sequence_sha256": "b6ee04b211983d3eba420335bc456e515e031b5642e783b652bd2ccb43be7d50",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_004166.2.gb",
+      "cds_fasta_id": "lcl|NC_004166.2_prot_NP_690743.1_87",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "SPP1|SPP1p097",
+      "gene": "",
+      "locus_tag": "SPP1p097",
+      "product": "hypothetical protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gene 46",
+      "replicon": "NC_004166.2",
+      "start": 40593,
+      "stop": 40895,
+      "strand": "+",
+      "location": "[40592:40895](+)",
+      "protein_accession": "NP_690744.1",
+      "db_xref": [
+        "UniProtKB/TrEMBL:Q38074",
+        "GeneID:955274"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MAKVKFEERGVLAGIISDPEANPYHLLSEIQNIVGYFGVERYNGKSTEYEIVDHWVMENAKEGYCGVYYKEGHSCIVNTSSKGKRFRNGFFKEFLEEEGE",
+      "length": 100,
+      "sequence_sha256": "92bb02e7af8ce2362672a8a02031d6f7807b3545f1fb7be3668ac5727595ab78",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_004166.2.gb",
+      "cds_fasta_id": "lcl|NC_004166.2_prot_NP_690744.1_88",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "SPP1|SPP1p098",
+      "gene": "",
+      "locus_tag": "SPP1p098",
+      "product": "hypothetical protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gene 46.1",
+      "replicon": "NC_004166.2",
+      "start": 40895,
+      "stop": 41206,
+      "strand": "+",
+      "location": "[40894:41206](+)",
+      "protein_accession": "NP_690745.1",
+      "db_xref": [
+        "UniProtKB/TrEMBL:Q38075",
+        "GeneID:955269"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MKPLKIFGWSSMLIGSGAFTYYVMRMNPTGEEILIFALALLGFVFKIVIDELQEVMKRFKERGEETRLHLSFSNKVMIMVLAVFAIYGGLRYAVSTITMIMGA",
+      "length": 103,
+      "sequence_sha256": "041884ee17639ed374a7cf42b0f9af15e2c2b6a171e060f1d1f93e4903b126e9",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_004166.2.gb",
+      "cds_fasta_id": "lcl|NC_004166.2_prot_NP_690745.1_89",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "SPP1|SPP1p099",
+      "gene": "",
+      "locus_tag": "SPP1p099",
+      "product": "hypothetical protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gene 47",
+      "replicon": "NC_004166.2",
+      "start": 41301,
+      "stop": 41660,
+      "strand": "+",
+      "location": "[41300:41660](+)",
+      "protein_accession": "NP_690746.1",
+      "db_xref": [
+        "UniProtKB/TrEMBL:Q38076",
+        "GeneID:955261"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MNIKDVVESAIEAIRAVHEEDLAIELIQFRSDVWDELVEYHKERGMPEPPGNRWEFCGLRAERKELMQNAFRIVTFGTELGGVVQHEIVTGTEITFTYSIVTPIENPFGRDIFKWGAAE",
+      "length": 119,
+      "sequence_sha256": "9474b5f433f1b11c12c2b847b546e7ac6efe35ee1a050e4d58c28cdf09ad9999",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_004166.2.gb",
+      "cds_fasta_id": "lcl|NC_004166.2_prot_NP_690746.1_90",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "SPP1|SPP1p100",
+      "gene": "",
+      "locus_tag": "SPP1p100",
+      "product": "hypothetical protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gene 48",
+      "replicon": "NC_004166.2",
+      "start": 41642,
+      "stop": 42010,
+      "strand": "+",
+      "location": "[41641:42010](+)",
+      "protein_accession": "NP_690747.1",
+      "db_xref": [
+        "UniProtKB/TrEMBL:Q9T0R1",
+        "GeneID:955343"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MGGGGMNHTDNPIISVVQTIKGGRTMKFYEINDPYYALIKAKDVADAEGFTTSIFLTRTITKIFKTMKSEKWNETMRLLSIRKQRVKMESRCLTPIFQGLSTTLKLKSLSWTVRFYEHSIQS",
+      "length": 122,
+      "sequence_sha256": "334ccf55c2973d6b2ab70ab4f3c26ba052fb5dbe8c8216503987b7f1e0793119",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_004166.2.gb",
+      "cds_fasta_id": "lcl|NC_004166.2_prot_NP_690747.1_91",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "SPP1|SPP1p101",
+      "gene": "",
+      "locus_tag": "SPP1p101",
+      "product": "hypothetical protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gene 49",
+      "replicon": "NC_004166.2",
+      "start": 42080,
+      "stop": 42244,
+      "strand": "+",
+      "location": "[42079:42244](+)",
+      "protein_accession": "NP_690748.1",
+      "db_xref": [
+        "UniProtKB/TrEMBL:O48497",
+        "GeneID:955271"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MILQENMIDDNELVIFEAGIPYAVVDNAITNENEITVPLKDIWVDFETVKEGAE",
+      "length": 54,
+      "sequence_sha256": "f995bc60e1c25367b09d065d1c43990f909a3c1dfded7460feb67ea78c1aec69",
+      "annotation_flags": [
+        "alternative_start_codon_read_as_Met"
+      ],
+      "source_record": "inputs/NC_004166.2.gb",
+      "cds_fasta_id": "lcl|NC_004166.2_prot_NP_690748.1_92",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "SPP1|SPP1p102",
+      "gene": "",
+      "locus_tag": "SPP1p102",
+      "product": "hypothetical protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gene 50",
+      "replicon": "NC_004166.2",
+      "start": 42241,
+      "stop": 42414,
+      "strand": "+",
+      "location": "[42240:42414](+)",
+      "protein_accession": "NP_690749.1",
+      "db_xref": [
+        "UniProtKB/TrEMBL:Q38079",
+        "GeneID:955259"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MKQYDKGYLNGQLDSAENELDILYRIKEDSNEIWHDNSILITRIKDTESFLKEHGRL",
+      "length": 57,
+      "sequence_sha256": "b21b47dcb1fe14ba4f40d6f057338ece916b7359a3855779738e588e96b5ec9b",
+      "annotation_flags": [
+        "alternative_start_codon_read_as_Met"
+      ],
+      "source_record": "inputs/NC_004166.2.gb",
+      "cds_fasta_id": "lcl|NC_004166.2_prot_NP_690749.1_93",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "SPP1|SPP1p103",
+      "gene": "",
+      "locus_tag": "SPP1p103",
+      "product": "hypothetical protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gene 50.1",
+      "replicon": "NC_004166.2",
+      "start": 42430,
+      "stop": 42612,
+      "strand": "+",
+      "location": "[42429:42612](+)",
+      "protein_accession": "NP_690750.1",
+      "db_xref": [
+        "InterPro:IPR007359",
+        "UniProtKB/TrEMBL:Q38080",
+        "GeneID:955284"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MKQINRMIIIFLVPMIFTMAGALLSHHYGNGYIKTGFVTSGGFISGYLVNKWIVKKEGAK",
+      "length": 60,
+      "sequence_sha256": "cc6165fd1020022eeb629a4600fa8d61f8cd42e19adae29cf1425323b85f04c2",
+      "annotation_flags": [
+        "alternative_start_codon_read_as_Met"
+      ],
+      "source_record": "inputs/NC_004166.2.gb",
+      "cds_fasta_id": "lcl|NC_004166.2_prot_NP_690750.1_94",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "SPP1|SPP1p104",
+      "gene": "",
+      "locus_tag": "SPP1p104",
+      "product": "hypothetical protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gene 51",
+      "replicon": "NC_004166.2",
+      "start": 42609,
+      "stop": 42764,
+      "strand": "+",
+      "location": "[42608:42764](+)",
+      "protein_accession": "NP_690751.1",
+      "db_xref": [
+        "UniProtKB/TrEMBL:Q38081",
+        "GeneID:955272"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MKKIIFALVAVITLGVMVLPESASAAWSGYQTSKKVRVYTDATSYSKALHL",
+      "length": 51,
+      "sequence_sha256": "1f0545129fe306bab9c91c25b5a3812361674b231c1ea149465b8edd4d178c83",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_004166.2.gb",
+      "cds_fasta_id": "lcl|NC_004166.2_prot_NP_690751.1_95",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "SPP1|SPP1p105",
+      "gene": "",
+      "locus_tag": "SPP1p105",
+      "product": "hypothetical protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gene 52",
+      "replicon": "NC_004166.2",
+      "start": 43173,
+      "stop": 43415,
+      "strand": "+",
+      "location": "[43172:43415](+)",
+      "protein_accession": "NP_690752.1",
+      "db_xref": [
+        "UniProtKB/TrEMBL:Q38082",
+        "GeneID:955301"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MSEFIEFKLKRIEGNIRMAAVKAEDILTIQDDWIPHIGRYVEIRHKHGTIRTDEPFAQVMKKIKDAQRRSKGVKKNEYRI",
+      "length": 80,
+      "sequence_sha256": "34940f880a2ad86c8576e9dc981a4b5e12264d9a063ec2bfda8066411bba6f5c",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_004166.2.gb",
+      "cds_fasta_id": "lcl|NC_004166.2_prot_NP_690752.1_96",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "SPP1|SPP1p106",
+      "gene": "",
+      "locus_tag": "SPP1p106",
+      "product": "hypothetical protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "gene 53",
+      "replicon": "NC_004166.2",
+      "start": 43399,
+      "stop": 43605,
+      "strand": "+",
+      "location": "[43398:43605](+)",
+      "protein_accession": "NP_690753.1",
+      "db_xref": [
+        "UniProtKB/TrEMBL:Q38083",
+        "GeneID:955353"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MNIEFEHALIAVCVILAAVLIFGEMWVYHDCEKSGGKMEGTGSYSTVIAPAGNGVFVPITSEETECRK",
+      "length": 68,
+      "sequence_sha256": "b5e587774ce081f1af3c69e701487d7fa9d3aec817af36620d6e191db89d9d86",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_004166.2.gb",
+      "cds_fasta_id": "lcl|NC_004166.2_prot_NP_690753.1_97",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    }
+  ]
+}

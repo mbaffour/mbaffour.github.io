@@ -1,0 +1,475 @@
+{
+  "organism": "Escherichia phage phiX174",
+  "key": "phiX174",
+  "kind": "phage",
+  "accessions": [
+    "NC_001422.1"
+  ],
+  "gb_files": [
+    "NC_001422.1.gb"
+  ],
+  "n_cds_features": 11,
+  "n_proteins": 11,
+  "n_pseudogenes": 0,
+  "cds_fasta_records": 11,
+  "cds_fasta_unmatched": [],
+  "proteins": [
+    {
+      "protein_id": "phiX174|phiX174p01",
+      "gene": "",
+      "locus_tag": "phiX174p01",
+      "product": "DNA replication initiation",
+      "synonyms": [],
+      "curator_alias": "gene A",
+      "note": "rf replication",
+      "replicon": "NC_001422.1",
+      "start": 3981,
+      "stop": 136,
+      "strand": "+",
+      "location": "join{[3980:5386](+), [0:136](+)}",
+      "protein_accession": "NP_040703.1",
+      "db_xref": [
+        "GeneID:2546398"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MVRSYYPSECHADYFDFERIEALKPAIEACGISTLSQSPMLGFHKQMDNRIKLLEEILSFRMQGVEFDNGDMYVDGHKAASDVRDEFVSVTEKLMDELAQCYNVLPQLDINNTIDHRPEGDEKWFLENEKTVTQFCRKLAAERPLKDIRDEYNYPKKKGIKDECSRLLEASTMKSRRGFAIQRLMNAMRQAHADGWFIVFDTLTLADDRLEAFYDNPNALRDYFRDIGRMVLAAEGRKANDSHADCYQYFCVPEYGTANGRLHFHAVHFMRTLPTGSVDPNFGRRVRNRRQLNSLQNTWPYGYSMPIAVRYTQDAFSRSGWLWPVDAKGEPLKATSYMAVGFYVAKYVNKKSDMDLAAKGLGAKEWNNSLKTKLSLLPKKLFRIRMSRNFGMKMLTMTNLSTECLIQLTKLGYDATPFNQILKQNAKREMRLRLGKVTVADVLAAQPVTTNLLKFMRASIKMIGVSNLQSFIASMTQKLTLSDISDESKNYLDKAGITTACLRIKSKWTAGGK",
+      "length": 513,
+      "sequence_sha256": "babc4114894a0d3e81215d03c086b4fc29df3f44faeb345f6f2be84f88906b5b",
+      "annotation_flags": [
+        "joined_location_spans_circular_origin"
+      ],
+      "source_record": "inputs/NC_001422.1.gb",
+      "cds_fasta_id": "lcl|NC_001422.1_prot_NP_040703.1_1",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "phiX174|phiX174p02",
+      "gene": "",
+      "locus_tag": "phiX174p02",
+      "product": "DNA replication initiation",
+      "synonyms": [],
+      "curator_alias": "gene A*",
+      "note": "",
+      "replicon": "NC_001422.1",
+      "start": 4497,
+      "stop": 136,
+      "strand": "+",
+      "location": "join{[4496:5386](+), [0:136](+)}",
+      "protein_accession": "NP_040704.1",
+      "db_xref": [
+        "GeneID:2546406"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MKSRRGFAIQRLMNAMRQAHADGWFIVFDTLTLADDRLEAFYDNPNALRDYFRDIGRMVLAAEGRKANDSHADCYQYFCVPEYGTANGRLHFHAVHFMRTLPTGSVDPNFGRRVRNRRQLNSLQNTWPYGYSMPIAVRYTQDAFSRSGWLWPVDAKGEPLKATSYMAVGFYVAKYVNKKSDMDLAAKGLGAKEWNNSLKTKLSLLPKKLFRIRMSRNFGMKMLTMTNLSTECLIQLTKLGYDATPFNQILKQNAKREMRLRLGKVTVADVLAAQPVTTNLLKFMRASIKMIGVSNLQSFIASMTQKLTLSDISDESKNYLDKAGITTACLRIKSKWTAGGK",
+      "length": 341,
+      "sequence_sha256": "5fcc23542eb495b2b692e5e1c879e460ccb90d0ba1b25bc56df5600cda9593c5",
+      "annotation_flags": [
+        "joined_location_spans_circular_origin"
+      ],
+      "source_record": "inputs/NC_001422.1.gb",
+      "cds_fasta_id": "lcl|NC_001422.1_prot_NP_040704.1_2",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "phiX174|phiX174p03",
+      "gene": "",
+      "locus_tag": "phiX174p03",
+      "product": "head morphogenesis",
+      "synonyms": [],
+      "curator_alias": "gene B",
+      "note": "",
+      "replicon": "NC_001422.1",
+      "start": 5075,
+      "stop": 51,
+      "strand": "+",
+      "location": "join{[5074:5386](+), [0:51](+)}",
+      "protein_accession": "NP_040705.1",
+      "db_xref": [
+        "GeneID:2546405"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MEQLTKNQAVATSQEAVQNQNEPQLRDENAHNDKSVHGVLNPTYQAGLRRDAVQPDIEAERKKRDEIEAGKSYCSRRFGGATCDDKSAQIYARFDKNDWRIQPAEFYRFHDAEVNTFGYF",
+      "length": 120,
+      "sequence_sha256": "583283331672db7342b455c3f753fe2537079be1fa66b6488fbfdecbf822abae",
+      "annotation_flags": [
+        "joined_location_spans_circular_origin"
+      ],
+      "source_record": "inputs/NC_001422.1.gb",
+      "cds_fasta_id": "lcl|NC_001422.1_prot_NP_040705.1_3",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "phiX174|phiX174p04",
+      "gene": "",
+      "locus_tag": "phiX174p04",
+      "product": "K",
+      "synonyms": [],
+      "curator_alias": "gene K",
+      "note": "",
+      "replicon": "NC_001422.1",
+      "start": 51,
+      "stop": 221,
+      "strand": "+",
+      "location": "[50:221](+)",
+      "protein_accession": "NP_040706.1",
+      "db_xref": [
+        "GeneID:2546403"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MSRKIILIKQELLLLVYELNRSGLLAENEKIRPILAQLEKLLLCDLSPSTNDSVKN",
+      "length": 56,
+      "sequence_sha256": "a4d9334470e32f5f4e301b218a931443f885043b5aecac11f6f4b06c4384c811",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_001422.1.gb",
+      "cds_fasta_id": "lcl|NC_001422.1_prot_NP_040706.1_4",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "phiX174|phiX174p05",
+      "gene": "",
+      "locus_tag": "phiX174p05",
+      "product": "terminase",
+      "synonyms": [],
+      "curator_alias": "gene C",
+      "note": "DNA maturation",
+      "replicon": "NC_001422.1",
+      "start": 133,
+      "stop": 393,
+      "strand": "+",
+      "location": "[132:393](+)",
+      "protein_accession": "NP_040707.1",
+      "db_xref": [
+        "GeneID:2546402"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MRKFDLSLRSSRSSYFATFRHQLTILSKTDALDEEKWLNMLGTFVKDWFRYESHFVHGRDSLVDILKERGLLSESDAVQPLIGKKS",
+      "length": 86,
+      "sequence_sha256": "d23a7466fdf79868f8c15a78fa8ab123130b00d71d6d9151f35baa2ab3fb98e8",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_001422.1.gb",
+      "cds_fasta_id": "lcl|NC_001422.1_prot_NP_040707.1_5",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "phiX174|phiX174p07",
+      "gene": "",
+      "locus_tag": "phiX174p07",
+      "product": "head morphogenesis",
+      "synonyms": [],
+      "curator_alias": "gene D",
+      "note": "",
+      "replicon": "NC_001422.1",
+      "start": 390,
+      "stop": 848,
+      "strand": "+",
+      "location": "[389:848](+)",
+      "protein_accession": "NP_040708.1",
+      "db_xref": [
+        "GeneID:2546399"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MSQVTEQSVRFQTALASIKLIQASAVLDLTEDDFDFLTSNKVWIATDRSRARRCVEACVYGTLDFVGYPRFPAPVEFIAAVIAYYVHPVNIQTACLIMEGAEFTENIINGVERPVKAAELFAFTLRVRAGNTDVLTDAEENVRQKLRAEGVM",
+      "length": 152,
+      "sequence_sha256": "7fa9d7f45566ec7b1a696c5661a02e4c69d6b70842c5e7838ee23a301587fb58",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_001422.1.gb",
+      "cds_fasta_id": "lcl|NC_001422.1_prot_NP_040708.1_6",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "phiX174|phiX174p08",
+      "gene": "",
+      "locus_tag": "phiX174p08",
+      "product": "endolysin",
+      "synonyms": [],
+      "curator_alias": "gene E",
+      "note": "",
+      "replicon": "NC_001422.1",
+      "start": 568,
+      "stop": 843,
+      "strand": "+",
+      "location": "[567:843](+)",
+      "protein_accession": "NP_040709.1",
+      "db_xref": [
+        "GeneID:2546400"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MVRWTLWDTLAFLLLLSLLLPSLLIMFIPSTFKRPVSSWKALNLRKTLLMASSVRLKPLNCSRLPCVYAQETLTFLLTQKKTCVKNYVRKE",
+      "length": 91,
+      "sequence_sha256": "293a545b6a40aa0fd160d535766f4953a3e4d0c11e9d014c628b98e03d32c681",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_001422.1.gb",
+      "cds_fasta_id": "lcl|NC_001422.1_prot_NP_040709.1_7",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "phiX174|phiX174p09",
+      "gene": "",
+      "locus_tag": "phiX174p09",
+      "product": "DNA condensation",
+      "synonyms": [],
+      "curator_alias": "gene J",
+      "note": "core protein",
+      "replicon": "NC_001422.1",
+      "start": 848,
+      "stop": 964,
+      "strand": "+",
+      "location": "[847:964](+)",
+      "protein_accession": "NP_040710.1",
+      "db_xref": [
+        "GeneID:2546404"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MSKGKKRSGARPGRPQPLRGTKGKRKGARLWYVGGQQF",
+      "length": 38,
+      "sequence_sha256": "cb7502f8162bfdaa2f631c3c008cbfbdf198e75d8a5674a5662af87f25016e8d",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_001422.1.gb",
+      "cds_fasta_id": "lcl|NC_001422.1_prot_NP_040710.1_8",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "phiX174|phiX174p06",
+      "gene": "",
+      "locus_tag": "phiX174p06",
+      "product": "major head protein",
+      "synonyms": [],
+      "curator_alias": "gene F",
+      "note": "major coat protein",
+      "replicon": "NC_001422.1",
+      "start": 1001,
+      "stop": 2284,
+      "strand": "+",
+      "location": "[1000:2284](+)",
+      "protein_accession": "NP_040711.1",
+      "db_xref": [
+        "GeneID:2546408"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MSNIQTGAERMPHDLSHLGFLAGQIGRLITISTTPVIAGDSFEMDAVGALRLSPLRRGLAIDSTVDIFTFYVPHRHVYGEQWIKFMKDGVNATPLPTVNTTGYIDHAAFLGTINPDTNKIPKHLFQGYLNIYNNYFKAPWMPDRTEANPNELNQDDARYGFRCCHLKNIWTAPLPPETELSRQMTTSTTSIDIMGLQAAYANLHTDQERDYFMQRYHDVISSFGGKTSYDADNRPLLVMRSNLWASGYDVDGTDQTSLGQFSGRVQQTYKHSVPRFFVPEHGTMFTLALVRFPPTATKEIQYLNAKGALTYTDIAGDPVLYGNLPPREISMKDVFRSGDSSKKFKIAEGQWYRYAPSYVSPAYHLLEGFPFIQEPPSGDLQERVLIRHHDYDQCFQSVQLLQWNSQVKFNVTVYRNLPTTRDSIMTS",
+      "length": 427,
+      "sequence_sha256": "b1bc9692d269797ae1e7b46d8f626e4ac1da353c8c4e0078fdcfb4ab38f3822e",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_001422.1.gb",
+      "cds_fasta_id": "lcl|NC_001422.1_prot_NP_040711.1_9",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "phiX174|phiX174p10",
+      "gene": "",
+      "locus_tag": "phiX174p10",
+      "product": "major spike protein",
+      "synonyms": [],
+      "curator_alias": "gene G",
+      "note": "",
+      "replicon": "NC_001422.1",
+      "start": 2395,
+      "stop": 2922,
+      "strand": "+",
+      "location": "[2394:2922](+)",
+      "protein_accession": "NP_040712.1",
+      "db_xref": [
+        "GeneID:2546401"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MFQTFISRHNSNFFSDKLVLTSVTPASSAPVLQTPKATSSTLYFDSLTVNAGNGGFLHCIQMDTSVNAANQVVSVGADIAFDADPKFFACLVRFESSSVPTTLPTAYDVYPLNGRHDGGYYTVKDCVTIDVLPRTPGNNVYVGFMVWSNFTATKCRGLVSLNQVIKEIICLQPLK",
+      "length": 175,
+      "sequence_sha256": "8c684bdfbcc4f447c557368b00dc2ebbf0a08ed92ee0fbe7f2823a8c03010a55",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_001422.1.gb",
+      "cds_fasta_id": "lcl|NC_001422.1_prot_NP_040712.1_10",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "phiX174|phiX174p11",
+      "gene": "",
+      "locus_tag": "phiX174p11",
+      "product": "pilot protein for DNA ejection",
+      "synonyms": [],
+      "curator_alias": "gene H",
+      "note": "minor spike protein",
+      "replicon": "NC_001422.1",
+      "start": 2931,
+      "stop": 3917,
+      "strand": "+",
+      "location": "[2930:3917](+)",
+      "protein_accession": "NP_040713.1",
+      "db_xref": [
+        "GeneID:2546407"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MFGAIAGGIASALAGGAMSKLFGGGQKAASGGIQGDVLATDNNTVGMGDAGIKSAIQGSNVPNPDEAAPSFVSGAMAKAGKGLLEGTLQAGTSAVSDKLLDLVGLGGKSAADKGKDTRDYLAAAFPELNAWERAGADASSAGMVDAGFENQKELTKMQLDNQKEIAEMQNETQKEIAGIQSATSRQNTKDQVYAQNEMLAYQQKESTARVASIMENTNLSKQQQVSEIMRQMLTQAQTAGQYFTNDQIKEMTRKVSAEVDLVHQQTQNQRYGSSHIGATAKDISNVVTDAASGVVDIFHGIDKAVADTWNNFWKDGKADGIGSNLSRK",
+      "length": 328,
+      "sequence_sha256": "89b67b0df05e21384f69f7ec45b3eb13d02d6079630058e18aa28f113f07b89a",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_001422.1.gb",
+      "cds_fasta_id": "lcl|NC_001422.1_prot_NP_040713.1_11",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    }
+  ]
+}

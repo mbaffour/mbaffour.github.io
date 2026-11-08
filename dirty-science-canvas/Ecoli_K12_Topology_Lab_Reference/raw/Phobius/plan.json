@@ -1,0 +1,392 @@
+{
+  "method": "Phobius",
+  "batches": [
+    {
+      "batch": "b001",
+      "fasta": "raw/Phobius/b001.fasta",
+      "fasta_sha256": "d9fe3884d3433592d564a7422959c0834778d3f19ee8558a6a526611fc71c436",
+      "n_sequences": 100,
+      "n_residues": 33749,
+      "planned_utc": "2026-11-06T19:26:03+00:00",
+      "rerun": false
+    },
+    {
+      "batch": "b002",
+      "fasta": "raw/Phobius/b002.fasta",
+      "fasta_sha256": "fed8a287a4964a6e503aea7a57529a4787b2d928ce85da38e233139127560401",
+      "n_sequences": 100,
+      "n_residues": 34172,
+      "planned_utc": "2026-11-06T19:26:03+00:00",
+      "rerun": false
+    },
+    {
+      "batch": "b003",
+      "fasta": "raw/Phobius/b003.fasta",
+      "fasta_sha256": "02c78b6ff638a2a783b13a8227fa9236e754a571825cba687970f5c486d0b904",
+      "n_sequences": 100,
+      "n_residues": 25212,
+      "planned_utc": "2026-11-06T19:26:03+00:00",
+      "rerun": false
+    },
+    {
+      "batch": "b004",
+      "fasta": "raw/Phobius/b004.fasta",
+      "fasta_sha256": "78b1e6b5f8096c62af0b3a09ba8eb23b344ff8f8a1c640531c726bd84caa134a",
+      "n_sequences": 100,
+      "n_residues": 30657,
+      "planned_utc": "2026-11-06T19:26:03+00:00",
+      "rerun": false
+    },
+    {
+      "batch": "b005",
+      "fasta": "raw/Phobius/b005.fasta",
+      "fasta_sha256": "3d5af34154eddefb05c899188eea5a44faf7e60d759b5d6d96e5d2acd66e3562",
+      "n_sequences": 100,
+      "n_residues": 33158,
+      "planned_utc": "2026-11-06T19:26:03+00:00",
+      "rerun": false
+    },
+    {
+      "batch": "b006",
+      "fasta": "raw/Phobius/b006.fasta",
+      "fasta_sha256": "963a9011b62ae42ba20f54574c92d2f873d25755db5f9ce5bab209f013903be3",
+      "n_sequences": 100,
+      "n_residues": 29438,
+      "planned_utc": "2026-11-06T19:26:03+00:00",
+      "rerun": false
+    },
+    {
+      "batch": "b007",
+      "fasta": "raw/Phobius/b007.fasta",
+      "fasta_sha256": "1c26a435238b0c1940c8beb3315ffd6b54f38632625e410dc1238b834b398df2",
+      "n_sequences": 100,
+      "n_residues": 31691,
+      "planned_utc": "2026-11-06T19:26:03+00:00",
+      "rerun": false
+    },
+    {
+      "batch": "b008",
+      "fasta": "raw/Phobius/b008.fasta",
+      "fasta_sha256": "0bc4f5b9610b44cb4e026577967ae3101398f0f3b9983b59f9fc4661ec5a10d0",
+      "n_sequences": 100,
+      "n_residues": 32593,
+      "planned_utc": "2026-11-06T19:26:03+00:00",
+      "rerun": false
+    },
+    {
+      "batch": "b009",
+      "fasta": "raw/Phobius/b009.fasta",
+      "fasta_sha256": "70a6cbc2676bbf42b6ec0e399602ffaea0614d28c332e0de75e509df71027b39",
+      "n_sequences": 100,
+      "n_residues": 35256,
+      "planned_utc": "2026-11-06T19:26:03+00:00",
+      "rerun": false
+    },
+    {
+      "batch": "b010",
+      "fasta": "raw/Phobius/b010.fasta",
+      "fasta_sha256": "188a1e079044c9dcc3a4f808175748e589e034d3e3d887ae7748814a05674385",
+      "n_sequences": 100,
+      "n_residues": 32427,
+      "planned_utc": "2026-11-06T19:26:03+00:00",
+      "rerun": false
+    },
+    {
+      "batch": "b011",
+      "fasta": "raw/Phobius/b011.fasta",
+      "fasta_sha256": "deeead87f08fa2d7880ef7e0c984ce91973f51b04e922b4a8a037272f225d428",
+      "n_sequences": 100,
+      "n_residues": 28882,
+      "planned_utc": "2026-11-06T19:26:03+00:00",
+      "rerun": false
+    },
+    {
+      "batch": "b012",
+      "fasta": "raw/Phobius/b012.fasta",
+      "fasta_sha256": "5e0ba49157681e6c9ca19afdbdf0c9d29149b3f076b5d264661852b7b2b7d19b",
+      "n_sequences": 100,
+      "n_residues": 25186,
+      "planned_utc": "2026-11-06T19:26:03+00:00",
+      "rerun": false
+    },
+    {
+      "batch": "b013",
+      "fasta": "raw/Phobius/b013.fasta",
+      "fasta_sha256": "498bf5eec8ccf6c33f2d88ab7afe7458a0dab03e96e3b5d6cf8f603e5c959382",
+      "n_sequences": 100,
+      "n_residues": 28527,
+      "planned_utc": "2026-11-06T19:26:03+00:00",
+      "rerun": false
+    },
+    {
+      "batch": "b014",
+      "fasta": "raw/Phobius/b014.fasta",
+      "fasta_sha256": "9cca3ec0153c193f7d1e151c7d753418a652cfa653f19b37044c2400129f75e4",
+      "n_sequences": 100,
+      "n_residues": 29322,
+      "planned_utc": "2026-11-06T19:26:03+00:00",
+      "rerun": false
+    },
+    {
+      "batch": "b015",
+      "fasta": "raw/Phobius/b015.fasta",
+      "fasta_sha256": "381682c65ef7083333fb4cdc8a98d6b08424698e792cb50d2974e6e6ab7017f4",
+      "n_sequences": 100,
+      "n_residues": 31950,
+      "planned_utc": "2026-11-06T19:26:03+00:00",
+      "rerun": false
+    },
+    {
+      "batch": "b016",
+      "fasta": "raw/Phobius/b016.fasta",
+      "fasta_sha256": "66bd3eda95eceacd22782e2ae11ebc333767c2506bc40cc1d9a8d2cf82395bc3",
+      "n_sequences": 100,
+      "n_residues": 22127,
+      "planned_utc": "2026-11-06T19:26:03+00:00",
+      "rerun": false
+    },
+    {
+      "batch": "b017",
+      "fasta": "raw/Phobius/b017.fasta",
+      "fasta_sha256": "fbb0a4e139517852e3b4886aab06d4ec227c50963733637bdf1030577fdb257d",
+      "n_sequences": 100,
+      "n_residues": 30985,
+      "planned_utc": "2026-11-06T19:26:03+00:00",
+      "rerun": false
+    },
+    {
+      "batch": "b018",
+      "fasta": "raw/Phobius/b018.fasta",
+      "fasta_sha256": "85e9ee7f5bde66741b6042cb1ac7520daef6acdeed89deb8c90b265032f80827",
+      "n_sequences": 100,
+      "n_residues": 28637,
+      "planned_utc": "2026-11-06T19:26:03+00:00",
+      "rerun": false
+    },
+    {
+      "batch": "b019",
+      "fasta": "raw/Phobius/b019.fasta",
+      "fasta_sha256": "620d475e62069270c6a8e32e8c4af3f47cb746d07b9e944282dc07a441f7e23c",
+      "n_sequences": 100,
+      "n_residues": 28104,
+      "planned_utc": "2026-11-06T19:26:03+00:00",
+      "rerun": false
+    },
+    {
+      "batch": "b020",
+      "fasta": "raw/Phobius/b020.fasta",
+      "fasta_sha256": "81833c9fc1f49018586f26f53f6abec73699d7d137c1c909fd9f5549622ea3be",
+      "n_sequences": 100,
+      "n_residues": 28058,
+      "planned_utc": "2026-11-06T19:26:03+00:00",
+      "rerun": false
+    },
+    {
+      "batch": "b021",
+      "fasta": "raw/Phobius/b021.fasta",
+      "fasta_sha256": "5d41722a9d276a34e07f562fd6cb7dc7fd21b61f5f1d1cb8e87dca6f7429ca89",
+      "n_sequences": 100,
+      "n_residues": 34984,
+      "planned_utc": "2026-11-06T19:26:03+00:00",
+      "rerun": false
+    },
+    {
+      "batch": "b022",
+      "fasta": "raw/Phobius/b022.fasta",
+      "fasta_sha256": "4ece611769491114fb7dda2c8b40646a2fa8af54804678d6e083717a6b759281",
+      "n_sequences": 100,
+      "n_residues": 35386,
+      "planned_utc": "2026-11-06T19:26:03+00:00",
+      "rerun": false
+    },
+    {
+      "batch": "b023",
+      "fasta": "raw/Phobius/b023.fasta",
+      "fasta_sha256": "cc19e1a162458bd32b77a7bd5c04ddd21eab65806b2b58c5fe415e392b4c6013",
+      "n_sequences": 100,
+      "n_residues": 31539,
+      "planned_utc": "2026-11-06T19:26:03+00:00",
+      "rerun": false
+    },
+    {
+      "batch": "b024",
+      "fasta": "raw/Phobius/b024.fasta",
+      "fasta_sha256": "464bcde0855b1ac0f10401ae739e06a5ec688314c6f8deaee46ef9f2480e22f4",
+      "n_sequences": 100,
+      "n_residues": 29382,
+      "planned_utc": "2026-11-06T19:26:03+00:00",
+      "rerun": false
+    },
+    {
+      "batch": "b025",
+      "fasta": "raw/Phobius/b025.fasta",
+      "fasta_sha256": "193935b2a9857e023a9ba9a0f0450d148b168ab08497cd88e56eb27d1e50d676",
+      "n_sequences": 100,
+      "n_residues": 33238,
+      "planned_utc": "2026-11-06T19:26:03+00:00",
+      "rerun": false
+    },
+    {
+      "batch": "b026",
+      "fasta": "raw/Phobius/b026.fasta",
+      "fasta_sha256": "fd6e8dcce6d987dc0d1fae2cb0a0653644198cfea33d0551b7aab0e123d323a2",
+      "n_sequences": 100,
+      "n_residues": 30538,
+      "planned_utc": "2026-11-06T19:26:03+00:00",
+      "rerun": false
+    },
+    {
+      "batch": "b027",
+      "fasta": "raw/Phobius/b027.fasta",
+      "fasta_sha256": "9b1912f12d60e8af8139ecfd3e3afae4f123c0b1d76ffd85c45f4d4be8b809da",
+      "n_sequences": 100,
+      "n_residues": 29470,
+      "planned_utc": "2026-11-06T19:26:03+00:00",
+      "rerun": false
+    },
+    {
+      "batch": "b028",
+      "fasta": "raw/Phobius/b028.fasta",
+      "fasta_sha256": "1273e75f7a829e0a393a05981eb94e1404a90c58fca5ba3160ed029a8ed3fa3d",
+      "n_sequences": 100,
+      "n_residues": 34257,
+      "planned_utc": "2026-11-06T19:26:03+00:00",
+      "rerun": false
+    },
+    {
+      "batch": "b029",
+      "fasta": "raw/Phobius/b029.fasta",
+      "fasta_sha256": "c38b422f5e6cf13752e50381c72315f7cad7a1cf7fe8e383ad3cc19bf115f276",
+      "n_sequences": 100,
+      "n_residues": 31833,
+      "planned_utc": "2026-11-06T19:26:03+00:00",
+      "rerun": false
+    },
+    {
+      "batch": "b030",
+      "fasta": "raw/Phobius/b030.fasta",
+      "fasta_sha256": "8e45f2f7d6925fc991848cd3e7bd6843c025e4ac938e888e31f1d10a8964ad0e",
+      "n_sequences": 100,
+      "n_residues": 30431,
+      "planned_utc": "2026-11-06T19:26:03+00:00",
+      "rerun": false
+    },
+    {
+      "batch": "b031",
+      "fasta": "raw/Phobius/b031.fasta",
+      "fasta_sha256": "0ce018e0752b5bd0e4bc985ace01e30dce59a0725144cbf83622e891a90e2fc2",
+      "n_sequences": 100,
+      "n_residues": 30995,
+      "planned_utc": "2026-11-06T19:26:03+00:00",
+      "rerun": false
+    },
+    {
+      "batch": "b032",
+      "fasta": "raw/Phobius/b032.fasta",
+      "fasta_sha256": "d2472cd50ec1200009d6c23193b4ba82e79a7c809568e8c99b5322cbf3f5d5cf",
+      "n_sequences": 100,
+      "n_residues": 32399,
+      "planned_utc": "2026-11-06T19:26:03+00:00",
+      "rerun": false
+    },
+    {
+      "batch": "b033",
+      "fasta": "raw/Phobius/b033.fasta",
+      "fasta_sha256": "9613407983783f0353e275e6c472361f4be5f069680f2225141cc0efe7d90ce0",
+      "n_sequences": 100,
+      "n_residues": 24094,
+      "planned_utc": "2026-11-06T19:26:03+00:00",
+      "rerun": false
+    },
+    {
+      "batch": "b034",
+      "fasta": "raw/Phobius/b034.fasta",
+      "fasta_sha256": "6715e19e82b6a4b5e2ce62251dedecdf6221644b1fc97cf4d995f2ea103cb595",
+      "n_sequences": 100,
+      "n_residues": 32912,
+      "planned_utc": "2026-11-06T19:26:03+00:00",
+      "rerun": false
+    },
+    {
+      "batch": "b035",
+      "fasta": "raw/Phobius/b035.fasta",
+      "fasta_sha256": "b1878acdc83880e186c895b01efc1f7d9d5c198a6a05deeeee1b8c3ca4f0f3e0",
+      "n_sequences": 100,
+      "n_residues": 34797,
+      "planned_utc": "2026-11-06T19:26:03+00:00",
+      "rerun": false
+    },
+    {
+      "batch": "b036",
+      "fasta": "raw/Phobius/b036.fasta",
+      "fasta_sha256": "63376ca4297521e4f2e912097ef3833a9fbc787a535346166a356c1c7e986888",
+      "n_sequences": 100,
+      "n_residues": 31743,
+      "planned_utc": "2026-11-06T19:26:03+00:00",
+      "rerun": false
+    },
+    {
+      "batch": "b037",
+      "fasta": "raw/Phobius/b037.fasta",
+      "fasta_sha256": "45dee1db1d0991947d5c9078fc00fd6bb107892d28e31b6e0faa6af5fb7ad32b",
+      "n_sequences": 100,
+      "n_residues": 30229,
+      "planned_utc": "2026-11-06T19:26:03+00:00",
+      "rerun": false
+    },
+    {
+      "batch": "b038",
+      "fasta": "raw/Phobius/b038.fasta",
+      "fasta_sha256": "1b13d31888dccaf534e1c1ff1aba9acc9711037175968f3cc3ebf2a3ebd0abb4",
+      "n_sequences": 100,
+      "n_residues": 33146,
+      "planned_utc": "2026-11-06T19:26:03+00:00",
+      "rerun": false
+    },
+    {
+      "batch": "b039",
+      "fasta": "raw/Phobius/b039.fasta",
+      "fasta_sha256": "6f8f7b511a0f78897ea092fcae08296422756fb5b9619c65b8ed34f30fd177ff",
+      "n_sequences": 100,
+      "n_residues": 32894,
+      "planned_utc": "2026-11-06T19:26:03+00:00",
+      "rerun": false
+    },
+    {
+      "batch": "b040",
+      "fasta": "raw/Phobius/b040.fasta",
+      "fasta_sha256": "a892ee451b4a4a9d5b9285534eecb215446cdc88cc4be55fb73aaa17b5d642c4",
+      "n_sequences": 100,
+      "n_residues": 32758,
+      "planned_utc": "2026-11-06T19:26:03+00:00",
+      "rerun": false
+    },
+    {
+      "batch": "b041",
+      "fasta": "raw/Phobius/b041.fasta",
+      "fasta_sha256": "554c210c3d83aad17c7d6c0345e2d4ec181b5d08bc9a35bf3612c4d0d453a7e9",
+      "n_sequences": 100,
+      "n_residues": 30775,
+      "planned_utc": "2026-11-06T19:26:03+00:00",
+      "rerun": false
+    },
+    {
+      "batch": "b042",
+      "fasta": "raw/Phobius/b042.fasta",
+      "fasta_sha256": "f707bfb4adca70f92de2d61c672dd0d90e647f53e38c60f20408c301aa2fba67",
+      "n_sequences": 100,
+      "n_residues": 29863,
+      "planned_utc": "2026-11-06T19:26:03+00:00",
+      "rerun": false
+    },
+    {
+      "batch": "b043",
+      "fasta": "raw/Phobius/b043.fasta",
+      "fasta_sha256": "8264a05acb3a7af4e0e30a841b7be5b3188081ed34fdeb235a48644dfebf79f7",
+      "n_sequences": 97,
+      "n_residues": 29496,
+      "planned_utc": "2026-11-06T19:26:03+00:00",
+      "rerun": false
+    }
+  ]
+}

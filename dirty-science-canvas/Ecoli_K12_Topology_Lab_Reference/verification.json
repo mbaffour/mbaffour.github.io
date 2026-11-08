@@ -1,0 +1,256 @@
+{
+ "checked_utc": "2026-11-08T04:30:21+00:00",
+ "organism": "Escherichia coli K-12 MG1655",
+ "accessions": [
+  "NC_000913.3"
+ ],
+ "checks": [
+  {
+   "check": "input checksums inputs/NC_000913.3.gb.gz",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "input checksum inputs/NC_000913.3.cds_aa.fasta",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "CDS reconciliation",
+   "status": "pass",
+   "detail": "4318 CDS = 4300 translated + 18 pseudo/untranslated"
+  },
+  {
+   "check": "every NCBI CDS-FASTA record matched",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "translations agree with CDS FASTA and coordinate re-derivation (incl. transl_except)",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "submitted batch FASTAs are exact inventory sequences (52 job records)",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "raw output checksums (70 files)",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "no failed batches",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "data.json protein set == inventory (order preserved)",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "8594 predictions: segment strings expand to exactly one label per residue, contiguous 1..L, allowed alphabet",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "Phobius signal-peptide ends = reported cleavage site; 'C' marker not counted as SP (787 proteins)",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "normalizer: returned sequences match and no label/alphabet errors",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "DeepTMHMM \u03b2-type predictions agree with its GFF (P=periplasm, O=outside, B=beta sheet; 71 proteins)",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "Phobius coverage of eligible proteins",
+   "status": "pass",
+   "detail": "4297/4297 eligible (4300 in inventory); {'complete': 4297, 'unsupported': 3}"
+  },
+  {
+   "check": "DeepTMHMM coverage of eligible proteins",
+   "status": "pass",
+   "detail": "4297/4297 eligible (4300 in inventory); {'complete': 4297, 'unsupported': 3}"
+  },
+  {
+   "check": "TOPCONS2 coverage of eligible proteins",
+   "status": "pending",
+   "detail": "0/4293 eligible (4300 in inventory); {'pending': 4293, 'too_short': 4, 'unsupported': 3}"
+  },
+  {
+   "check": "organism atlas embeds the current sequences and predictions",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "organism atlas contains no other organism's name",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "atlas loads no external scripts or styles",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "combined atlas embeds the current sequences and predictions for this organism",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "browser (file://, offline): no JavaScript errors",
+   "status": "pass",
+   "detail": "[]"
+  },
+  {
+   "check": "browser layout audit: no text overlaps, no clipped text, no line crossing a label, no crossing leaders/bonds (all figures of every checked protein; 1568 proteins checked atlas-wide, all phage proteins + host sample)",
+   "status": "pass",
+   "detail": "[]"
+  },
+  {
+   "check": "browser: every residue's identity, number and band state verified in the full sequence map; bead cartoons account for every residue exactly once",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "browser: SVG export well-formed; PNG 2x/4x produced; no horizontal overflow at 390 px",
+   "status": "pass",
+   "detail": ""
+  }
+ ],
+ "failures": [],
+ "pending": [
+  "TOPCONS2 coverage of eligible proteins: 0/4293 eligible (4300 in inventory); {'pending': 4293, 'too_short': 4, 'unsupported': 3}"
+ ],
+ "beta_state_predictions": [
+  "Ecoli_K12|b0054",
+  "Ecoli_K12|b0139",
+  "Ecoli_K12|b0150",
+  "Ecoli_K12|b0177",
+  "Ecoli_K12|b0241",
+  "Ecoli_K12|b0291",
+  "Ecoli_K12|b0358",
+  "Ecoli_K12|b0411",
+  "Ecoli_K12|b0532",
+  "Ecoli_K12|b0565",
+  "Ecoli_K12|b0568",
+  "Ecoli_K12|b0584",
+  "Ecoli_K12|b0622",
+  "Ecoli_K12|b0681",
+  "Ecoli_K12|b0718",
+  "Ecoli_K12|b0805",
+  "Ecoli_K12|b0814",
+  "Ecoli_K12|b0929",
+  "Ecoli_K12|b0940",
+  "Ecoli_K12|b0957",
+  "Ecoli_K12|b0984",
+  "Ecoli_K12|b1024",
+  "Ecoli_K12|b1058",
+  "Ecoli_K12|b1102",
+  "Ecoli_K12|b1202",
+  "Ecoli_K12|b1220",
+  "Ecoli_K12|b1256",
+  "Ecoli_K12|b1319",
+  "Ecoli_K12|b1377",
+  "Ecoli_K12|b1381",
+  "Ecoli_K12|b1407",
+  "Ecoli_K12|b1451",
+  "Ecoli_K12|b1472",
+  "Ecoli_K12|b1495",
+  "Ecoli_K12|b1505",
+  "Ecoli_K12|b1615",
+  "Ecoli_K12|b1664",
+  "Ecoli_K12|b1722",
+  "Ecoli_K12|b1782",
+  "Ecoli_K12|b1978",
+  "Ecoli_K12|b2000",
+  "Ecoli_K12|b2043",
+  "Ecoli_K12|b2109",
+  "Ecoli_K12|b2155",
+  "Ecoli_K12|b2215",
+  "Ecoli_K12|b2233",
+  "Ecoli_K12|b2250",
+  "Ecoli_K12|b2344",
+  "Ecoli_K12|b4680",
+  "Ecoli_K12|b2408",
+  "Ecoli_K12|b2647",
+  "Ecoli_K12|b3035",
+  "Ecoli_K12|b3079",
+  "Ecoli_K12|b3144",
+  "Ecoli_K12|b3200",
+  "Ecoli_K12|b3216",
+  "Ecoli_K12|b3530",
+  "Ecoli_K12|b3548",
+  "Ecoli_K12|b3584",
+  "Ecoli_K12|b3720",
+  "Ecoli_K12|b3821",
+  "Ecoli_K12|b4686",
+  "Ecoli_K12|b3875",
+  "Ecoli_K12|b3966",
+  "Ecoli_K12|b4029",
+  "Ecoli_K12|b4036",
+  "Ecoli_K12|b4080",
+  "Ecoli_K12|b4220",
+  "Ecoli_K12|b4291",
+  "Ecoli_K12|b4311",
+  "Ecoli_K12|b4317"
+ ],
+ "browser_check": {
+  "checked_utc": "2026-11-08T04:30:08.966Z",
+  "browser": "153.0.8010.12",
+  "proteins_checked": 1568,
+  "phage_proteins": 1068,
+  "host_sample": 500,
+  "ui": {
+   "search_secY": 6,
+   "org_M13": 10,
+   "M13_span": 7,
+   "component_track": true,
+   "window_cells": 16,
+   "rerun_forms": [
+    "https://phobius.sbc.su.se/predict",
+    "https://services.healthtech.dtu.dk/cgi-bin/webface2.cgi"
+   ],
+   "rerun_links": [
+    "https://github.com/mbaffour/mbaffour.github.io/actions/workflows/topology-rerun.yml"
+   ]
+  },
+  "exports": {
+   "svg": {
+    "name": "M13_M13p08_VI_Phobius_DeepTMHMM_TOPCONS2_orientation_1-112.svg",
+    "bytes": 59072,
+    "xml_ok": true
+   },
+   "png2": {
+    "name": "M13_M13p08_VI_Phobius_DeepTMHMM_TOPCONS2_orientation_1-112.png",
+    "bytes": 505141,
+    "png_size": [
+     2480,
+     2114
+    ]
+   },
+   "png4": {
+    "name": "M13_M13p08_VI_Phobius_DeepTMHMM_TOPCONS2_orientation_1-112.png",
+    "bytes": 1268527,
+    "png_size": [
+     4960,
+     4228
+    ]
+   }
+  }
+ },
+ "summary": {
+  "checks": 24,
+  "passed": 23,
+  "failed": 0,
+  "pending": 1
+ }
+}

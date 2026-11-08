@@ -1,0 +1,36 @@
+{
+  "method": "DeepTMHMM",
+  "service": "BioLib app DTU/DeepTMHMM",
+  "client": "pybiolib",
+  "batch": "b008",
+  "fasta": "raw/DeepTMHMM/b008.fasta",
+  "fasta_sha256": "b33df4fa4179a871bb7cd0397bf91479d352b322b3bd14a1266760e3ffeddce8",
+  "n_sequences": 500,
+  "n_residues": 160770,
+  "planned_utc": "2026-11-06T19:26:03+00:00",
+  "rerun": false,
+  "args": [
+    "--fasta",
+    "input.fasta"
+  ],
+  "submitted_utc": "2026-11-06T20:57:20+00:00",
+  "status": "complete",
+  "app_version": "DTU/DeepTMHMM:1.0.57",
+  "app_version_published": "2026-02-13T12:41:32.190915Z",
+  "job_id": "fa537f3c-c7c6-47cf-a2d7-61bccc7aa02d",
+  "outputs": [
+    {
+      "file": "raw/DeepTMHMM/b008/results/TMRs.gff3",
+      "sha256": "973e9e28d1756329236c9105ae467d396b8ccc514fef12ad531ed6c30db0b9c6"
+    },
+    {
+      "file": "raw/DeepTMHMM/b008/results/deeptmhmm_results.md",
+      "sha256": "6d8066a6a3f2089b45d38ab6434d5a74881df3e50418e6498bb37998ed8808f1"
+    },
+    {
+      "file": "raw/DeepTMHMM/b008/results/predicted_topologies.3line",
+      "sha256": "e62d28620671d27cfd6bf39836697b90ebedc821d947c1755a7070ff45087d3e"
+    }
+  ],
+  "completed_utc": "2026-11-06T21:05:02+00:00"
+}

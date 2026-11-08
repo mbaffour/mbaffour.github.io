@@ -1,0 +1,50 @@
+{
+  "method": "TOPCONS2",
+  "wsdl": "https://topcons.net/pred/api_submitseq/?wsdl",
+  "batch": "b001",
+  "fasta": "raw/TOPCONS2/b001.fasta",
+  "fasta_sha256": "f4d25a1b4c4a13d96078551bb482df6bd74fb84ababd27b7ee0c0113b8d975c0",
+  "n_sequences": 1000,
+  "n_residues": 318673,
+  "planned_utc": "2026-11-06T19:26:03+00:00",
+  "rerun": false,
+  "jobname": "dsc_Ecoli_K12_b001",
+  "fixtop": "",
+  "email": "",
+  "submitted_utc": "2026-11-08T04:53:21+00:00",
+  "raw_return": [
+    "rst_o408yqp8",
+    "https://topcons.net/pred/result/rst_o408yqp8",
+    "1000",
+    "None",
+    "\n"
+  ],
+  "jobid": "rst_o408yqp8",
+  "result_url": "https://topcons.net/pred/result/rst_o408yqp8",
+  "numseq_accepted": "1000",
+  "error": "None",
+  "warning": "\n",
+  "status": "complete",
+  "checks": [
+    {
+      "utc": "2026-11-08T04:53:23+00:00",
+      "status": "Wait"
+    },
+    {
+      "utc": "2026-11-08T04:56:26+00:00",
+      "status": "Running"
+    },
+    {
+      "utc": "2026-11-08T05:21:50+00:00",
+      "status": "Finished"
+    }
+  ],
+  "server_status": "Finished",
+  "result_zip_url": "https://topcons.net/static/result/rst_o408yqp8/rst_o408yqp8.zip",
+  "result_zip_sha256": "66503fb420bcdcbfdc3e6d0da7e0ac193e3e6262937505b421b436187ae31053",
+  "result_zip_bytes": 151709183,
+  "completed_utc": "2026-11-08T05:22:00+00:00",
+  "result_text_archive": "raw/TOPCONS2/b001.text.tar.xz",
+  "result_text_archive_sha256": "bdd300801fac46256b34574a3b3abdaae1b0800e8e6804677872831038d1c7e5",
+  "archive_note": "Result zip (151709183 bytes, sha256 above) not stored because of its size (mostly per-sequence images); the text members needed to reproduce every prediction (seq.fa, query.result.txt, reliability.final, finished_seqs.txt, stat.txt) are archived unmodified."
+}

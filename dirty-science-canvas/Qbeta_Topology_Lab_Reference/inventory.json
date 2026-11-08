@@ -1,0 +1,184 @@
+{
+  "organism": "Enterobacteria phage Qbeta",
+  "key": "Qbeta",
+  "kind": "phage",
+  "accessions": [
+    "NC_001890.1"
+  ],
+  "gb_files": [
+    "NC_001890.1.gb"
+  ],
+  "n_cds_features": 4,
+  "n_proteins": 4,
+  "n_pseudogenes": 0,
+  "cds_fasta_records": 4,
+  "cds_fasta_unmatched": [],
+  "proteins": [
+    {
+      "protein_id": "Qbeta|MX1p1",
+      "gene": "mat",
+      "locus_tag": "MX1p1",
+      "product": "head maturation protease",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "A-protein; Icosahedral Leviviridae virions contain 180 molecules of the coat protein and a single copy of the maturation protein, bound to the ssRNA genome. Binding of the maturation protein to genomic RNA may be the first step in assembly. In addition, the maturation protein in virions binds to the sides of host pili. Upon binding, it is cleaved and the RNA genome is released. Naked complexes of maturation protein and genomic RNA are infectious. other names: A protein",
+      "replicon": "NC_001890.1",
+      "start": 56,
+      "stop": 1321,
+      "strand": "+",
+      "location": "[55:1321](+)",
+      "protein_accession": "NP_046749.1",
+      "db_xref": [
+        "GeneID:1261501"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MPRLPRALRFGPNMEVLSDFQELWYPESIIDSDVKYPLYTFRGSIGGSFFDSYGTNNIVREIRRTPHCATVPIASSGLRPCTSVWYDPTSLLFRIPEMRAEWDNGMGDAGDIVYKDFLFSTPAPKEFDFSNSLAPRYSNAFSAFNAKYGVIIGEGHETLKYFALLLRRLHKAVRAVRHGDLRGLRKILDSYNKGRWKPATAGNLWLEFRYGLTPLFHDIKSVMDDWNRINDKIQKLRRFSVGHGEDFKLSIDGLYPGLTHFRLSGEITVQRRHRWGITYANREGYATFDNGSIRPVSDWKELANAFINPGEVAWELTPYSFIVDWFINVGDIIEQQKQWYQNIDIVDGYQRRDIRMRSVSLKGVRNGIPVRVTGSVELVDSFYNRSHTTRIPQATLAIDTSFSSIKHVMDSISLITQRIKR",
+      "length": 421,
+      "sequence_sha256": "849ff618f9b341ede933f8c19e5359c5bbb8d47db49f1148a3085c593b4eacb8",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_001890.1.gb",
+      "cds_fasta_id": "lcl|NC_001890.1_prot_NP_046749.1_1",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "Qbeta|MX1p2",
+      "gene": "",
+      "locus_tag": "MX1p2",
+      "product": "minor head protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "A1-protein; produced by translational readthrough of the leaky stop codon of the major coat protein cistron; 5% chance that stop codon is read as tryptophan",
+      "replicon": "NC_001890.1",
+      "start": 1343,
+      "stop": 2332,
+      "strand": "+",
+      "location": "[1342:2332](+)",
+      "protein_accession": "NP_046750.1",
+      "db_xref": [
+        "GeneID:1261503"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MAKLQAITLSGIGKNGDVTLNLNPRGVNPTNGVAALSEAGAVPALEKRVTISVSQPSRNRKNYKVQVKIQNPTSCTASGTCDPSVTRSAYADVTFSFTQYSTDEERALVRTELKALLADPMLIDAIDNLNPAYWTALLGDGSGPSPVPGPNPDPPLEPPPGTGSYTCPFRIWDLSSIYEAANSSHSWDIYNAVELSPRKFDVTLDDLLGNTDWRDWDGRLRYTTFRGSRGNGYIDLDATSLMQDEYLTSSKYLVREGKRPGAFGSIERFVYLKSINAYCSLSDITAYHSDGVVVGFWRDPSSGGAIPFDFSEFDSNKCPIQAVIVVPRL",
+      "length": 329,
+      "sequence_sha256": "8cd9ff009b5d4dc55e22e7df021342cb1476c0adc35cc047fbc84bd73edb1812",
+      "annotation_flags": [
+        "transl_except"
+      ],
+      "source_record": "inputs/NC_001890.1.gb",
+      "cds_fasta_id": "lcl|NC_001890.1_prot_NP_046750.1_2",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "Qbeta|MX1p3",
+      "gene": "",
+      "locus_tag": "MX1p3",
+      "product": "minor head protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "",
+      "replicon": "NC_001890.1",
+      "start": 1343,
+      "stop": 1744,
+      "strand": "+",
+      "location": "[1342:1744](+)",
+      "protein_accession": "NP_046751.1",
+      "db_xref": [
+        "GeneID:1261502"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MAKLQAITLSGIGKNGDVTLNLNPRGVNPTNGVAALSEAGAVPALEKRVTISVSQPSRNRKNYKVQVKIQNPTSCTASGTCDPSVTRSAYADVTFSFTQYSTDEERALVRTELKALLADPMLIDAIDNLNPAY",
+      "length": 133,
+      "sequence_sha256": "700df011ff37b68d773e99f066e73b08a965fee46c71dc8f1a3990f10bf66725",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_001890.1.gb",
+      "cds_fasta_id": "lcl|NC_001890.1_prot_NP_046751.1_3",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "Qbeta|MX1p4",
+      "gene": "rep",
+      "locus_tag": "MX1p4",
+      "product": "RNA replicase beta subunit",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "The replicase holoenzyme of Leviviridae consists of the phage encoded replicase (the beta subunit), as well as three host encoded proteins (alpha subunit: ribosomal protein S1; gamma subunit: EF-Tu; delta subunit: EF-Ts). The ribosomal protein S1 mediates binding of the holoenzyme to internal sites in the RNA, which allows the replicase to compete with translation for genomic RNA, since S1 also mediates the binding of the ribosome to the coat protein start site.",
+      "replicon": "NC_001890.1",
+      "start": 2351,
+      "stop": 4111,
+      "strand": "+",
+      "location": "[2350:4111](+)",
+      "protein_accession": "NP_046752.1",
+      "db_xref": [
+        "GeneID:1261500"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MSKTLQSRKSLSGKLRRAANTRIVVEGNLALSIANDLLSALDVEPFNSEEDCISRSPKFGISPDQFRNSYLRAEIMSKYDSFSLGINTEAVAWEKFLAAEAECAKTNLRLYRPNYNEDFNFSLGETCIHMARRKIVKLLGDSVPFEAVLRHCRFSGGATTTNSRLYGHPSFKFALAQECTPRAVPYVQALKACTNMDLGITKVSPFNKAVTVPKNSKTDRCIAIEPGWNMFFQLGIGGVIREKLHLWNIDLNDQTINQVRAYSGSCSNELATVDLSSASDTISLALVELLLPPAWFKVLTDLRSRRGMLPDGRIITYEKISSMGNGFTFELESLIFAALARSLCELLNLQPSSVTVYGDDIILPSDACSSLIEVFSYVGFRTNEKKTFFDGPFRESCGKHYFMGVDVTPFYIRHRIVSPSDLILVLNQMYRWATIDGVWDPRVYPVYTKYRRLLPDILRRNVVPDGYGDGALVGSVLTSPFAENRGWVRRVPMIIDKKKDRVRDERGSYLYELWSLQQLECDSEFPFNGSLVVGTNDGVCTYRHRERVSTAISDSVGAYDIVWIPCSSRVLAPYGDFRRHEGSILK",
+      "length": 586,
+      "sequence_sha256": "d6f5cc7298d77548a81649aa853c8240492c049898a7c67ff361db6c48ef451b",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_001890.1.gb",
+      "cds_fasta_id": "lcl|NC_001890.1_prot_NP_046752.1_4",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    }
+  ]
+}

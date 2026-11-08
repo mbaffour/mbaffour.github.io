@@ -1,0 +1,51 @@
+{
+  "organism": "Enterobacteria phage Mu",
+  "accessions": [
+    "NC_000929.1"
+  ],
+  "files": [
+    {
+      "file": "inputs/NC_000929.1.gb",
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&id=NC_000929.1&rettype=gbwithparts&retmode=text",
+      "retrieved_utc": "2026-11-06T19:21:36+00:00",
+      "sha256": "2cc0b062c42850c89de506636a9c6f47597c30336f870954ef0827c77b3357f8",
+      "bytes": 94666
+    },
+    {
+      "file": "inputs/NC_000929.1.cds_aa.fasta",
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&id=NC_000929.1&rettype=fasta_cds_aa&retmode=text",
+      "retrieved_utc": "2026-11-06T19:21:38+00:00",
+      "sha256": "2c1babdbe994b2ebc412ddb566c4e91dfff72b49499b81a3dbdba681afb8f39d",
+      "bytes": 21674
+    },
+    {
+      "file": "inputs/NC_000929.1.fna",
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&id=NC_000929.1&rettype=fasta&retmode=text",
+      "retrieved_utc": "2026-11-06T19:21:39+00:00",
+      "sha256": "86c2bd82815fe8470b3bfd99a008051e2723938540558163627c067ae813dfd6",
+      "bytes": 37297
+    }
+  ],
+  "ncbi_summaries": [
+    {
+      "accessionversion": "NC_000929.1",
+      "title": "Enterobacteria phage Mu, complete genome",
+      "slen": 36717,
+      "createdate": "1999/10/05",
+      "updatedate": "2023/01/11",
+      "taxid": 2681603,
+      "biomol": "genomic",
+      "topology": "linear"
+    }
+  ],
+  "ncbi_summary": {
+    "accessionversion": "NC_000929.1",
+    "title": "Enterobacteria phage Mu, complete genome",
+    "slen": 36717,
+    "createdate": "1999/10/05",
+    "updatedate": "2023/01/11",
+    "taxid": 2681603,
+    "biomol": "genomic",
+    "topology": "linear"
+  }
+}

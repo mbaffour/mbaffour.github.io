@@ -1,0 +1,51 @@
+{
+  "organism": "Enterobacteria phage T5",
+  "accessions": [
+    "NC_005859.1"
+  ],
+  "files": [
+    {
+      "file": "inputs/NC_005859.1.gb",
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&id=NC_005859.1&rettype=gbwithparts&retmode=text",
+      "retrieved_utc": "2026-11-06T19:21:26+00:00",
+      "sha256": "054b6f366f467e05b9a064b298ab54b49e86123db46e2a9a09da5289307e8e25",
+      "bytes": 364763
+    },
+    {
+      "file": "inputs/NC_005859.1.cds_aa.fasta",
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&id=NC_005859.1&rettype=fasta_cds_aa&retmode=text",
+      "retrieved_utc": "2026-11-06T19:21:27+00:00",
+      "sha256": "b1a67dbf802f31fec08ba50659ce63db35e4dcda6316b16eed1cc603f417e932",
+      "bytes": 63359
+    },
+    {
+      "file": "inputs/NC_005859.1.fna",
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&id=NC_005859.1&rettype=fasta&retmode=text",
+      "retrieved_utc": "2026-11-06T19:21:28+00:00",
+      "sha256": "672ca72e328c9e3674181499dd2a9bccd41a989be5c911923435a4ab0ef69713",
+      "bytes": 123545
+    }
+  ],
+  "ncbi_summaries": [
+    {
+      "accessionversion": "NC_005859.1",
+      "title": "Enterobacteria phage T5, complete genome",
+      "slen": 121750,
+      "createdate": "2004/04/17",
+      "updatedate": "2023/05/13",
+      "taxid": 2695836,
+      "biomol": "genomic",
+      "topology": "linear"
+    }
+  ],
+  "ncbi_summary": {
+    "accessionversion": "NC_005859.1",
+    "title": "Enterobacteria phage T5, complete genome",
+    "slen": 121750,
+    "createdate": "2004/04/17",
+    "updatedate": "2023/05/13",
+    "taxid": 2695836,
+    "biomol": "genomic",
+    "topology": "linear"
+  }
+}

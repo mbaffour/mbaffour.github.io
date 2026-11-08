@@ -1,0 +1,116 @@
+{
+  "method": "TOPCONS2",
+  "wsdl": "https://topcons.net/pred/api_submitseq/?wsdl",
+  "batch": "b001",
+  "fasta": "raw/TOPCONS2/b001.fasta",
+  "fasta_sha256": "77ed269cf38ef9732577199176301c3d44de59070144daba02dd9f149b51a333",
+  "n_sequences": 60,
+  "n_residues": 13657,
+  "planned_utc": "2026-11-06T19:26:03+00:00",
+  "rerun": false,
+  "jobname": "dsc_T7_b001",
+  "fixtop": "",
+  "email": "",
+  "submitted_utc": "2026-11-06T19:55:51+00:00",
+  "raw_return": [
+    "rst_q21si35o",
+    "https://topcons.net/pred/result/rst_q21si35o",
+    "60",
+    "None",
+    "\n"
+  ],
+  "jobid": "rst_q21si35o",
+  "result_url": "https://topcons.net/pred/result/rst_q21si35o",
+  "numseq_accepted": "60",
+  "error": "None",
+  "warning": "\n",
+  "status": "complete",
+  "checks": [
+    {
+      "utc": "2026-11-06T20:12:11+00:00",
+      "status": "Running"
+    },
+    {
+      "utc": "2026-11-06T20:13:12+00:00",
+      "status": "Running"
+    },
+    {
+      "utc": "2026-11-06T20:14:13+00:00",
+      "status": "Running"
+    },
+    {
+      "utc": "2026-11-06T20:15:14+00:00",
+      "status": "Running"
+    },
+    {
+      "utc": "2026-11-06T20:16:15+00:00",
+      "status": "Running"
+    },
+    {
+      "utc": "2026-11-06T20:17:16+00:00",
+      "status": "Running"
+    },
+    {
+      "utc": "2026-11-06T20:18:17+00:00",
+      "status": "Running"
+    },
+    {
+      "utc": "2026-11-06T20:19:18+00:00",
+      "status": "Running"
+    },
+    {
+      "utc": "2026-11-06T20:20:19+00:00",
+      "status": "Running"
+    },
+    {
+      "utc": "2026-11-06T20:21:20+00:00",
+      "status": "Running"
+    },
+    {
+      "utc": "2026-11-06T20:22:21+00:00",
+      "status": "Running"
+    },
+    {
+      "utc": "2026-11-06T20:23:22+00:00",
+      "status": "Running"
+    },
+    {
+      "utc": "2026-11-06T20:24:23+00:00",
+      "status": "Running"
+    },
+    {
+      "utc": "2026-11-06T20:25:24+00:00",
+      "status": "Running"
+    },
+    {
+      "utc": "2026-11-06T20:26:25+00:00",
+      "status": "Running"
+    },
+    {
+      "utc": "2026-11-06T20:27:26+00:00",
+      "status": "Running"
+    },
+    {
+      "utc": "2026-11-06T20:28:27+00:00",
+      "status": "Running"
+    },
+    {
+      "utc": "2026-11-06T20:29:27+00:00",
+      "status": "Running"
+    },
+    {
+      "utc": "2026-11-06T20:30:29+00:00",
+      "status": "Running"
+    },
+    {
+      "utc": "2026-11-06T20:31:29+00:00",
+      "status": "Finished"
+    }
+  ],
+  "server_status": "Finished",
+  "result_zip_url": "https://topcons.net/static/result/rst_q21si35o/rst_q21si35o.zip",
+  "result_zip_sha256": "dd5fd91bbbf5758f9e814c1f63c841d134e59d349150be27e91bdd754c2dc40d",
+  "result_zip_bytes": 8049554,
+  "completed_utc": "2026-11-06T20:31:32+00:00",
+  "result_zip": "raw/TOPCONS2/rst_q21si35o.zip"
+}

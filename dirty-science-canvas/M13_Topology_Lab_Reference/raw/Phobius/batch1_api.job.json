@@ -1,0 +1,82 @@
+{
+  "method": "Phobius",
+  "endpoint": "https://phobius.sbc.su.se/api/predict",
+  "batch": 1,
+  "fasta": "raw/Phobius/batch1.fasta",
+  "fasta_sha256": "26abb7d8f1f270fec7ac155fe38e6d76f8af0e55291fc3b80ae9fcba1d960982",
+  "submitted_utc": "2026-11-06T18:50:13+00:00",
+  "settings": {
+    "plot": true
+  },
+  "outputs": {
+    "json": {
+      "file": "raw/Phobius/batch1_api.json",
+      "sha256": "cfe3fadd8d814c453267891404cf9821263554c574ef7153bc8740c71c728f79"
+    },
+    "long": {
+      "file": "raw/Phobius/batch1_api_long.txt",
+      "sha256": "fe0577d5c581c82f15c603b7c132eda837a6306a3fceb11776471ff787175e1c"
+    },
+    "short": {
+      "file": "raw/Phobius/batch1_api_short.txt",
+      "sha256": "e02d9ef63df7aeb966d30aa795dd680d3c1cbf2f17dd16fa96fecb183c2263f1"
+    },
+    "plots": [
+      {
+        "file": "raw/Phobius/plots/M13__M13p01.svg",
+        "sha256": "3f820e7e7b586cd7808c5e3a1a12f96664573f119fb3717e16b14e2c40bff4e3"
+      },
+      {
+        "file": "raw/Phobius/plots/M13__M13p02.svg",
+        "sha256": "0136c77082d650501d6a56c9b0e589eb3f5dbadc970d400abce74b91376e6762"
+      },
+      {
+        "file": "raw/Phobius/plots/M13__M13p03.svg",
+        "sha256": "b264a052ab0c4e3d76bbb8abf68f399700c3e2388181aabbdd81f5e747c09edd"
+      },
+      {
+        "file": "raw/Phobius/plots/M13__M13p04.svg",
+        "sha256": "cc95a15827b5dccb41cd679b99eaa1dcd6f502ee9ce02e1a0ddde653b8808886"
+      },
+      {
+        "file": "raw/Phobius/plots/M13__M13p05.svg",
+        "sha256": "579dafdd1381ca5867339c3e54a76f882db1d00a87ca3e9680cfd4b2259906c8"
+      },
+      {
+        "file": "raw/Phobius/plots/M13__M13p06.svg",
+        "sha256": "0fbbb2b1edfc83905ef5af3b2c6a04f572e32c72d2c38a6dfd4673b2af958be3"
+      },
+      {
+        "file": "raw/Phobius/plots/M13__M13p07.svg",
+        "sha256": "c9e75198e6f4587904e9908fd7b51a71f8b7fb20703f62a056d60409c7793f9f"
+      },
+      {
+        "file": "raw/Phobius/plots/M13__M13p08.svg",
+        "sha256": "07e24d1cb2da6e5fdd853e382cd768a8d9d63346e403c44ffea16ee051ea01fb"
+      },
+      {
+        "file": "raw/Phobius/plots/M13__M13p09.svg",
+        "sha256": "9048241b89244f6e270731011cc2529bf5e10d2df92934c532e8bb11d281b724"
+      },
+      {
+        "file": "raw/Phobius/plots/M13__M13p10.svg",
+        "sha256": "34f8c9cda7866497c3f7e6bb5d7c25ddf7ae8effc0b7c70be511a31c491b770f"
+      }
+    ]
+  },
+  "returned_ids": [
+    "M13__M13p01",
+    "M13__M13p02",
+    "M13__M13p03",
+    "M13__M13p04",
+    "M13__M13p05",
+    "M13__M13p06",
+    "M13__M13p07",
+    "M13__M13p08",
+    "M13__M13p09",
+    "M13__M13p10"
+  ],
+  "status": "complete",
+  "completed_utc": "2026-11-06T18:50:21+00:00",
+  "http_status": 200
+}

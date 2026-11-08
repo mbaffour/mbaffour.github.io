@@ -1,0 +1,51 @@
+{
+ "checked_utc": "2026-11-08T19:17:46.225Z",
+ "browser": "153.0.8010.12",
+ "file": "Dirty_Science_Canvas_Atlas.html",
+ "js_errors": [],
+ "proteins_checked": 1068,
+ "phage_proteins": 1068,
+ "host_sample": 0,
+ "figures_with_layout_issues": 0,
+ "sequence_map_failures": 0,
+ "bead_accounting_failures": 0,
+ "problems": [],
+ "ui": {
+  "search_secY": 0,
+  "org_M13": 10,
+  "M13_span": 7,
+  "component_track": true,
+  "window_cells": 16,
+  "rerun_forms": [
+   "https://phobius.sbc.su.se/predict",
+   "https://services.healthtech.dtu.dk/cgi-bin/webface2.cgi"
+  ],
+  "rerun_links": [
+   "https://github.com/mbaffour/mbaffour.github.io/actions/workflows/topology-rerun.yml"
+  ]
+ },
+ "exports": {
+  "svg": {
+   "name": "M13_M13p08_VI_Phobius_DeepTMHMM_TOPCONS2_orientation_1-112.svg",
+   "bytes": 59072,
+   "xml_ok": true
+  },
+  "png2": {
+   "name": "M13_M13p08_VI_Phobius_DeepTMHMM_TOPCONS2_orientation_1-112.png",
+   "bytes": 505141,
+   "png_size": [
+    2480,
+    2114
+   ]
+  },
+  "png4": {
+   "name": "M13_M13p08_VI_Phobius_DeepTMHMM_TOPCONS2_orientation_1-112.png",
+   "bytes": 1268527,
+   "png_size": [
+    4960,
+    4228
+   ]
+  }
+ },
+ "mobile_horizontal_overflow": false
+}

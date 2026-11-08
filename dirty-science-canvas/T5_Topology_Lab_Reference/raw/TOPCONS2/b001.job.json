@@ -1,0 +1,118 @@
+{
+  "method": "TOPCONS2",
+  "wsdl": "https://topcons.net/pred/api_submitseq/?wsdl",
+  "batch": "b001",
+  "fasta": "raw/TOPCONS2/b001.fasta",
+  "fasta_sha256": "04f37e32cb68554cc811df63c85a19d741b51ac4cfe02cf33c672986f2aaeaba",
+  "n_sequences": 162,
+  "n_residues": 32487,
+  "planned_utc": "2026-11-06T19:26:03+00:00",
+  "rerun": false,
+  "jobname": "dsc_T5_b001",
+  "fixtop": "",
+  "email": "",
+  "submitted_utc": "2026-11-06T19:58:57+00:00",
+  "raw_return": [
+    "rst_za23zgxk",
+    "https://topcons.net/pred/result/rst_za23zgxk",
+    "162",
+    "None",
+    "\n"
+  ],
+  "jobid": "rst_za23zgxk",
+  "result_url": "https://topcons.net/pred/result/rst_za23zgxk",
+  "numseq_accepted": "162",
+  "error": "None",
+  "warning": "\n",
+  "status": "complete",
+  "checks": [
+    {
+      "utc": "2026-11-06T20:22:21+00:00",
+      "status": "Running"
+    },
+    {
+      "utc": "2026-11-06T20:23:22+00:00",
+      "status": "Running"
+    },
+    {
+      "utc": "2026-11-06T20:24:23+00:00",
+      "status": "Running"
+    },
+    {
+      "utc": "2026-11-06T20:25:24+00:00",
+      "status": "Running"
+    },
+    {
+      "utc": "2026-11-06T20:26:25+00:00",
+      "status": "Running"
+    },
+    {
+      "utc": "2026-11-06T20:27:26+00:00",
+      "status": "Running"
+    },
+    {
+      "utc": "2026-11-06T20:28:27+00:00",
+      "status": "Running"
+    },
+    {
+      "utc": "2026-11-06T20:29:28+00:00",
+      "status": "Running"
+    },
+    {
+      "utc": "2026-11-06T20:30:29+00:00",
+      "status": "Running"
+    },
+    {
+      "utc": "2026-11-06T20:31:32+00:00",
+      "status": "Running"
+    },
+    {
+      "utc": "2026-11-06T20:32:34+00:00",
+      "status": "Running"
+    },
+    {
+      "utc": "2026-11-06T20:33:35+00:00",
+      "status": "Running"
+    },
+    {
+      "utc": "2026-11-06T20:34:36+00:00",
+      "status": "Running"
+    },
+    {
+      "utc": "2026-11-06T20:35:37+00:00",
+      "status": "Running"
+    },
+    {
+      "utc": "2026-11-06T20:36:38+00:00",
+      "status": "Running"
+    },
+    {
+      "utc": "2026-11-06T20:37:39+00:00",
+      "status": "Running"
+    },
+    {
+      "utc": "2026-11-06T20:38:40+00:00",
+      "status": "Running"
+    },
+    {
+      "utc": "2026-11-06T20:39:43+00:00",
+      "status": "Running"
+    },
+    {
+      "utc": "2026-11-06T20:40:44+00:00",
+      "status": "Running"
+    },
+    {
+      "utc": "2026-11-06T20:59:31+00:00",
+      "status": "Finished"
+    }
+  ],
+  "server_status": "Finished",
+  "result_zip_url": "https://topcons.net/static/result/rst_za23zgxk/rst_za23zgxk.zip",
+  "result_zip_sha256": "0b6d76669f347f1c0c26f03db8e8ae317baca22f420991294689af9996732fa0",
+  "result_zip_bytes": 21434441,
+  "completed_utc": "2026-11-06T20:59:34+00:00",
+  "result_text_archive": "raw/TOPCONS2/b001.text.tar.xz",
+  "result_text_archive_sha256": "1989a494a186c510163bcc59dd5adb0eedb5a228732fb82e2847cc9148865c9e",
+  "archive_note": "Result zip (21434441 bytes, sha256 above) not stored because of its size (mostly per-sequence images); the text members needed to reproduce every prediction (seq.fa, query.result.txt, reliability.final, finished_seqs.txt, stat.txt) are archived unmodified."
+}

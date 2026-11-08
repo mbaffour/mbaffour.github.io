@@ -1,0 +1,52 @@
+{
+  "method": "Phobius",
+  "endpoint": "https://phobius.sbc.su.se/api/predict",
+  "batch": 1,
+  "fasta": "raw/Phobius/batch1.fasta",
+  "fasta_sha256": "ddab5bee71393c4b0352e2ad8eddb22a2d456263373a868ffe045c57975c7950",
+  "submitted_utc": "2026-11-06T18:50:21+00:00",
+  "settings": {
+    "plot": true
+  },
+  "outputs": {
+    "json": {
+      "file": "raw/Phobius/batch1_api.json",
+      "sha256": "4d216ed617aa265ab9443f72095fad59fe25a9f317f3763a4ad781fc4014ead5"
+    },
+    "long": {
+      "file": "raw/Phobius/batch1_api_long.txt",
+      "sha256": "fe239f7640fc185d6ebc68f15404048567e88ddd31ac04a288cf3dde1d561cb4"
+    },
+    "short": {
+      "file": "raw/Phobius/batch1_api_short.txt",
+      "sha256": "fe8eab43d5a61d65193121e084d35502027e42289c8e844c5a32dda10a4304dd"
+    },
+    "plots": [
+      {
+        "file": "raw/Phobius/plots/MS2__MS2g1.svg",
+        "sha256": "5a375362a02f3e722a0189d4f99949d79c230acbea4b7819cb90600c3fa3b007"
+      },
+      {
+        "file": "raw/Phobius/plots/MS2__MS2g2.svg",
+        "sha256": "7a008ec26985c9659b3203de85461153fb3a241d86a4aa6da4c715b26988b074"
+      },
+      {
+        "file": "raw/Phobius/plots/MS2__MS2g3.svg",
+        "sha256": "6bb4e44b5e79caa30e1266a5c3f89cfbcc13d9a358d5f4c71684d97bdbcd7092"
+      },
+      {
+        "file": "raw/Phobius/plots/MS2__MS2g4.svg",
+        "sha256": "48a02c2612ea9ff80d43f92557df361f6dbabe2ee8fe95f0511db023a8f984d1"
+      }
+    ]
+  },
+  "returned_ids": [
+    "MS2__MS2g1",
+    "MS2__MS2g2",
+    "MS2__MS2g3",
+    "MS2__MS2g4"
+  ],
+  "status": "complete",
+  "completed_utc": "2026-11-06T18:50:27+00:00",
+  "http_status": 200
+}

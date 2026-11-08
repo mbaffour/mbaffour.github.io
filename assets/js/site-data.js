@@ -152,6 +152,18 @@ const publications = [
 =============================================================== */
 const tools = [
     {
+        title: "Phage Topology Atlas",
+        repo: "https://github.com/mbaffour/mbaffour.github.io/tree/main/dirty-science-canvas",
+        featured: true,
+        blurb: "Membrane-topology and charge atlas for 16 model phages \u2014 every annotated protein run through Phobius, DeepTMHMM and TOPCONS2 (plus its five components), with the raw predictor output and job records kept alongside. Four figure views per protein, SVG/PNG export, and a one-click re-run for every call. Predictions, not experiments.",
+        tech: ["Phobius", "DeepTMHMM", "TOPCONS2", "Offline HTML"],
+        stack: "py",
+        app:  "https://mbaffour.github.io/dirty-science-canvas/",
+        label: "Topology Atlas",
+        preview: "structure"
+    },
+
+    {
         title: "Lysis Curve Plotter",
         repo: "https://github.com/mbaffour/lysis-curve-app",
         featured: true,

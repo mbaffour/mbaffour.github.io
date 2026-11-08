@@ -1,0 +1,51 @@
+{
+  "organism": "Enterobacteria phage HK97",
+  "accessions": [
+    "NC_002167.1"
+  ],
+  "files": [
+    {
+      "file": "inputs/NC_002167.1.gb",
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&id=NC_002167.1&rettype=gbwithparts&retmode=text",
+      "retrieved_utc": "2026-11-06T19:21:41+00:00",
+      "sha256": "01cc1c76fa1ebeb2af141d6a6873961cdb0b3410f15b71a090d85512f1bc351e",
+      "bytes": 113377
+    },
+    {
+      "file": "inputs/NC_002167.1.cds_aa.fasta",
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&id=NC_002167.1&rettype=fasta_cds_aa&retmode=text",
+      "retrieved_utc": "2026-11-06T19:21:43+00:00",
+      "sha256": "30c841aa9c5c6b61ab2592548830d615cfa5d5c08809f5f374e931bdd9850686",
+      "bytes": 23031
+    },
+    {
+      "file": "inputs/NC_002167.1.fna",
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&id=NC_002167.1&rettype=fasta&retmode=text",
+      "retrieved_utc": "2026-11-06T19:21:44+00:00",
+      "sha256": "95eb0b2a70cf58ec55848a8b2aeb7acd28d55edd8143d787c2bcb7d5395d80b5",
+      "bytes": 40357
+    }
+  ],
+  "ncbi_summaries": [
+    {
+      "accessionversion": "NC_002167.1",
+      "title": "Enterobacteria phage HK97, complete genome",
+      "slen": 39732,
+      "createdate": "2000/02/05",
+      "updatedate": "2023/01/11",
+      "taxid": 2681617,
+      "biomol": "genomic",
+      "topology": "linear"
+    }
+  ],
+  "ncbi_summary": {
+    "accessionversion": "NC_002167.1",
+    "title": "Enterobacteria phage HK97, complete genome",
+    "slen": 39732,
+    "createdate": "2000/02/05",
+    "updatedate": "2023/01/11",
+    "taxid": 2681617,
+    "biomol": "genomic",
+    "topology": "linear"
+  }
+}

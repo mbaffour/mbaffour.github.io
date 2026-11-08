@@ -1,0 +1,50 @@
+{
+  "method": "TOPCONS2",
+  "wsdl": "https://topcons.net/pred/api_submitseq/?wsdl",
+  "batch": "b002",
+  "fasta": "raw/TOPCONS2/b002.fasta",
+  "fasta_sha256": "88e3411838e22344475bccdf00e3153d3cd5190d85901a88af2093505f5fca94",
+  "n_sequences": 1000,
+  "n_residues": 312521,
+  "planned_utc": "2026-11-06T19:26:03+00:00",
+  "rerun": false,
+  "jobname": "dsc_Bsubtilis_168_b002",
+  "fixtop": "",
+  "email": "",
+  "submitted_utc": "2026-11-08T12:24:19+00:00",
+  "raw_return": [
+    "rst_ezu9yhx2",
+    "https://topcons.net/pred/result/rst_ezu9yhx2",
+    "1000",
+    "None",
+    "\n"
+  ],
+  "jobid": "rst_ezu9yhx2",
+  "result_url": "https://topcons.net/pred/result/rst_ezu9yhx2",
+  "numseq_accepted": "1000",
+  "error": "None",
+  "warning": "\n",
+  "status": "complete",
+  "checks": [
+    {
+      "utc": "2026-11-08T12:24:21+00:00",
+      "status": "Wait"
+    },
+    {
+      "utc": "2026-11-08T12:25:22+00:00",
+      "status": "Running"
+    },
+    {
+      "utc": "2026-11-08T19:13:17+00:00",
+      "status": "Finished"
+    }
+  ],
+  "server_status": "Finished",
+  "result_zip_url": "https://topcons.net/static/result/rst_ezu9yhx2/rst_ezu9yhx2.zip",
+  "result_zip_sha256": "9ec20ebfd5f73e3fef067447480e3f8c086fefc363c3984959f1e5df0dd95443",
+  "result_zip_bytes": 150159853,
+  "completed_utc": "2026-11-08T19:13:30+00:00",
+  "result_text_archive": "raw/TOPCONS2/b002.text.tar.xz",
+  "result_text_archive_sha256": "3781306f0aae5d1ab36be74801cc4aae1e122f7c6f83a9ad05c38dd04431387a",
+  "archive_note": "Result zip (150159853 bytes, sha256 above) not stored because of its size (mostly per-sequence images); the text members needed to reproduce every prediction (seq.fa, query.result.txt, reliability.final, finished_seqs.txt, stat.txt) are archived unmodified."
+}

@@ -1,0 +1,31 @@
+{
+  "method": "Phobius",
+  "endpoint": "https://phobius.sbc.su.se/api/predict",
+  "batch": "b001",
+  "fasta": "raw/Phobius/b001.fasta",
+  "fasta_sha256": "c0da9827c981ffad3857e63a8939eb44a9f846c190c7205a95f963acd9f79071",
+  "n_sequences": 4,
+  "n_residues": 1469,
+  "planned_utc": "2026-11-06T19:26:03+00:00",
+  "rerun": false,
+  "settings": {
+    "plot": true
+  },
+  "submitted_utc": "2026-11-06T19:26:12+00:00",
+  "outputs": {
+    "json": {
+      "file": "raw/Phobius/b001.json",
+      "sha256": "b563141e33d725316b1983a800549f6552dc475597039bb01e57d8c253ef7bb9",
+      "note": "SVG plots split into raw/Phobius/plots/ and replaced by their paths"
+    }
+  },
+  "http_status": 200,
+  "returned_ids": [
+    "Qbeta__MX1p1",
+    "Qbeta__MX1p2",
+    "Qbeta__MX1p3",
+    "Qbeta__MX1p4"
+  ],
+  "status": "complete",
+  "completed_utc": "2026-11-06T19:26:15+00:00"
+}

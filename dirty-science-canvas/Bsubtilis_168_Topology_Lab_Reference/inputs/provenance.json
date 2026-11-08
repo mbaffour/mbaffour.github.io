@@ -1,0 +1,46 @@
+{
+  "organism": "Bacillus subtilis 168",
+  "accessions": [
+    "NC_000964.3"
+  ],
+  "files": [
+    {
+      "file": "inputs/NC_000964.3.gb.gz",
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&id=NC_000964.3&rettype=gbwithparts&retmode=text",
+      "retrieved_utc": "2026-11-06T19:23:12+00:00",
+      "sha256": "ccff5abf1544569c800d7f100ca518c12f591bd768708198ea8b67171f4f058a",
+      "bytes": 13415939,
+      "sha256_gz": "e683301640bde327027caaabc05f04c92bbce34fff729bb743bc63d6459e4af4",
+      "note": "stored gzip-compressed; sha256/bytes refer to the uncompressed download"
+    },
+    {
+      "file": "inputs/NC_000964.3.cds_aa.fasta",
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&id=NC_000964.3&rettype=fasta_cds_aa&retmode=text",
+      "retrieved_utc": "2026-11-06T19:23:19+00:00",
+      "sha256": "aba2cb16e3df9a9e03a7630b466fffb2de3167ec19a5083cb2fc773b5843a2c7",
+      "bytes": 2819873
+    }
+  ],
+  "ncbi_summaries": [
+    {
+      "accessionversion": "NC_000964.3",
+      "title": "Bacillus subtilis subsp. subtilis str. 168 complete genome",
+      "slen": 4215606,
+      "createdate": "1997/11/20",
+      "updatedate": "2021/02/12",
+      "taxid": 224308,
+      "biomol": "genomic",
+      "topology": "circular"
+    }
+  ],
+  "ncbi_summary": {
+    "accessionversion": "NC_000964.3",
+    "title": "Bacillus subtilis subsp. subtilis str. 168 complete genome",
+    "slen": 4215606,
+    "createdate": "1997/11/20",
+    "updatedate": "2021/02/12",
+    "taxid": 224308,
+    "biomol": "genomic",
+    "topology": "circular"
+  }
+}

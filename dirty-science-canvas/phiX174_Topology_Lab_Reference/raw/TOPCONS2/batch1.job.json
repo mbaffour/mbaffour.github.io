@@ -1,0 +1,40 @@
+{
+  "method": "TOPCONS2",
+  "wsdl": "https://topcons.net/pred/api_submitseq/?wsdl",
+  "batch": 1,
+  "fasta": "raw/TOPCONS2/batch1.fasta",
+  "fasta_sha256": "097efd0e94a9dc0931b631004f4c004fe12710e96600e11ab6d26b7e85469ddc",
+  "n_sequences": 11,
+  "jobname": "dsc_phiX174",
+  "fixtop": "",
+  "email": "",
+  "submitted_utc": "2026-11-06T18:53:23+00:00",
+  "raw_return": [
+    "rst_4a1e4x74",
+    "https://topcons.net/pred/result/rst_4a1e4x74",
+    "11",
+    "None",
+    "\n"
+  ],
+  "jobid": "rst_4a1e4x74",
+  "result_url": "https://topcons.net/pred/result/rst_4a1e4x74",
+  "numseq_accepted": "11",
+  "error": "None",
+  "warning": "\n",
+  "status": "complete",
+  "checks": [
+    {
+      "utc": "2026-11-06T18:54:02+00:00",
+      "status": "Running"
+    },
+    {
+      "utc": "2026-11-06T18:55:54+00:00",
+      "status": "Finished"
+    }
+  ],
+  "server_status": "Finished",
+  "result_zip": "raw/TOPCONS2/rst_4a1e4x74.zip",
+  "result_zip_sha256": "97e41cf4de4f7bde7c0a854e7df7ac13c0566c178ba70c11bb3b2a676e108d46",
+  "result_zip_url": "https://topcons.net/static/result/rst_4a1e4x74/rst_4a1e4x74.zip",
+  "completed_utc": "2026-11-06T18:55:56+00:00"
+}

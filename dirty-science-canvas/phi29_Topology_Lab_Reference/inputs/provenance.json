@@ -1,0 +1,51 @@
+{
+  "organism": "Bacillus phage phi29",
+  "accessions": [
+    "NC_011048.1"
+  ],
+  "files": [
+    {
+      "file": "inputs/NC_011048.1.gb",
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&id=NC_011048.1&rettype=gbwithparts&retmode=text",
+      "retrieved_utc": "2026-11-06T19:22:14+00:00",
+      "sha256": "cce728a89fe805ee0f7d40537d96bc520515ebecda00d8cb863b1787905d66bd",
+      "bytes": 55483
+    },
+    {
+      "file": "inputs/NC_011048.1.cds_aa.fasta",
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&id=NC_011048.1&rettype=fasta_cds_aa&retmode=text",
+      "retrieved_utc": "2026-11-06T19:22:16+00:00",
+      "sha256": "d9d9077c83023b86d4dc4eb4263369ba934443dee8f278a63c0403350335b853",
+      "bytes": 11569
+    },
+    {
+      "file": "inputs/NC_011048.1.fna",
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&id=NC_011048.1&rettype=fasta&retmode=text",
+      "retrieved_utc": "2026-11-06T19:22:17+00:00",
+      "sha256": "3588cbb0bb1538de32837260b6cc8a6aaa535218b03d98911af49d11e079c343",
+      "bytes": 19610
+    }
+  ],
+  "ncbi_summaries": [
+    {
+      "accessionversion": "NC_011048.1",
+      "title": "Bacillus phage phi29, complete genome",
+      "slen": 19282,
+      "createdate": "2008/07/11",
+      "updatedate": "2023/01/11",
+      "taxid": 2884424,
+      "biomol": "genomic",
+      "topology": "linear"
+    }
+  ],
+  "ncbi_summary": {
+    "accessionversion": "NC_011048.1",
+    "title": "Bacillus phage phi29, complete genome",
+    "slen": 19282,
+    "createdate": "2008/07/11",
+    "updatedate": "2023/01/11",
+    "taxid": 2884424,
+    "biomol": "genomic",
+    "topology": "linear"
+  }
+}

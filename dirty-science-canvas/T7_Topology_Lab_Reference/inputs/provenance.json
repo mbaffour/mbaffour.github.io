@@ -1,0 +1,51 @@
+{
+  "organism": "Enterobacteria phage T7",
+  "accessions": [
+    "NC_001604.1"
+  ],
+  "files": [
+    {
+      "file": "inputs/NC_001604.1.gb",
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&id=NC_001604.1&rettype=gbwithparts&retmode=text",
+      "retrieved_utc": "2026-11-06T19:21:20+00:00",
+      "sha256": "96d4200c2410f4ac0195dfd43f7daf78456ed61e72600b223cace24123f37273",
+      "bytes": 129057
+    },
+    {
+      "file": "inputs/NC_001604.1.cds_aa.fasta",
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&id=NC_001604.1&rettype=fasta_cds_aa&retmode=text",
+      "retrieved_utc": "2026-11-06T19:21:22+00:00",
+      "sha256": "e1287529963c151f4ab77196bd48d3bb037eb71f7b85740bb059db25931893c9",
+      "bytes": 25348
+    },
+    {
+      "file": "inputs/NC_001604.1.fna",
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&id=NC_001604.1&rettype=fasta&retmode=text",
+      "retrieved_utc": "2026-11-06T19:21:23+00:00",
+      "sha256": "4411e203f3ffac4d85f42d6994714cb86d495440b678ebab9e5a075f5fdc7c7a",
+      "bytes": 40563
+    }
+  ],
+  "ncbi_summaries": [
+    {
+      "accessionversion": "NC_001604.1",
+      "title": "Enterobacteria phage T7, complete genome",
+      "slen": 39937,
+      "createdate": "1982/11/03",
+      "updatedate": "2023/01/07",
+      "taxid": 10760,
+      "biomol": "genomic",
+      "topology": "linear"
+    }
+  ],
+  "ncbi_summary": {
+    "accessionversion": "NC_001604.1",
+    "title": "Enterobacteria phage T7, complete genome",
+    "slen": 39937,
+    "createdate": "1982/11/03",
+    "updatedate": "2023/01/07",
+    "taxid": 10760,
+    "biomol": "genomic",
+    "topology": "linear"
+  }
+}

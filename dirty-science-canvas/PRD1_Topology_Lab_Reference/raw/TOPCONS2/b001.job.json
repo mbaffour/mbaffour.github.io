@@ -1,0 +1,48 @@
+{
+  "method": "TOPCONS2",
+  "wsdl": "https://topcons.net/pred/api_submitseq/?wsdl",
+  "batch": "b001",
+  "fasta": "raw/TOPCONS2/b001.fasta",
+  "fasta_sha256": "b047153b902e73426224605cf077d4c9768f5e6aa0b0925f458c8ff0808f4952",
+  "n_sequences": 31,
+  "n_residues": 5013,
+  "planned_utc": "2026-11-06T19:26:03+00:00",
+  "rerun": false,
+  "jobname": "dsc_PRD1_b001",
+  "fixtop": "",
+  "email": "",
+  "submitted_utc": "2026-11-08T04:26:43+00:00",
+  "raw_return": [
+    "rst_3vpfeey1",
+    "https://topcons.net/pred/result/rst_3vpfeey1",
+    "31",
+    "None",
+    "\n"
+  ],
+  "jobid": "rst_3vpfeey1",
+  "result_url": "https://topcons.net/pred/result/rst_3vpfeey1",
+  "numseq_accepted": "31",
+  "error": "None",
+  "warning": "\n",
+  "status": "complete",
+  "checks": [
+    {
+      "utc": "2026-11-08T04:26:48+00:00",
+      "status": "Wait"
+    },
+    {
+      "utc": "2026-11-08T04:27:50+00:00",
+      "status": "Running"
+    },
+    {
+      "utc": "2026-11-08T04:52:16+00:00",
+      "status": "Finished"
+    }
+  ],
+  "server_status": "Finished",
+  "result_zip_url": "https://topcons.net/static/result/rst_3vpfeey1/rst_3vpfeey1.zip",
+  "result_zip_sha256": "c7d8a2a2052ce54092d0f0c4b9dedc59cee624ab8e69f01128bf452c26d5e23e",
+  "result_zip_bytes": 4029715,
+  "completed_utc": "2026-11-08T04:52:18+00:00",
+  "result_zip": "raw/TOPCONS2/rst_3vpfeey1.zip"
+}

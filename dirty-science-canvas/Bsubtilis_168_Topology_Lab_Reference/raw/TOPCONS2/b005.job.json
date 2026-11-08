@@ -1,0 +1,39 @@
+{
+  "method": "TOPCONS2",
+  "wsdl": "https://topcons.net/pred/api_submitseq/?wsdl",
+  "batch": "b005",
+  "fasta": "raw/TOPCONS2/b005.fasta",
+  "fasta_sha256": "fdfceb8b90f3f4c380b01d680315e2c01ca7c610dde75c24e4b7ea0a0d4e2f64",
+  "n_sequences": 237,
+  "n_residues": 68300,
+  "planned_utc": "2026-11-06T19:26:03+00:00",
+  "rerun": false,
+  "jobname": "dsc_Bsubtilis_168_b005",
+  "fixtop": "",
+  "email": "",
+  "submitted_utc": "2026-11-08T19:14:54+00:00",
+  "raw_return": [
+    "rst_7gsebjtn",
+    "https://topcons.net/pred/result/rst_7gsebjtn",
+    "237",
+    "None",
+    "\n"
+  ],
+  "jobid": "rst_7gsebjtn",
+  "result_url": "https://topcons.net/pred/result/rst_7gsebjtn",
+  "numseq_accepted": "237",
+  "error": "None",
+  "warning": "\n",
+  "status": "submitted",
+  "checks": [
+    {
+      "utc": "2026-11-08T19:14:56+00:00",
+      "status": "Wait"
+    },
+    {
+      "utc": "2026-11-08T19:19:00+00:00",
+      "status": "Running"
+    }
+  ],
+  "server_status": "Running"
+}

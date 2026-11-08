@@ -1,0 +1,18 @@
+{
+  "method": "Phobius",
+  "server": "https://phobius.sbc.su.se/predict",
+  "batch": 1,
+  "format": "short",
+  "fasta": "raw/Phobius/batch1.fasta",
+  "fasta_sha256": "26abb7d8f1f270fec7ac155fe38e6d76f8af0e55291fc3b80ae9fcba1d960982",
+  "n_sequences": 10,
+  "n_residues": 2056,
+  "submitted_utc": "2026-11-06T18:49:33+00:00",
+  "submission": "multipart/form-data POST (protseq file field, format radio)",
+  "http_status": 200,
+  "final_url": "https://phobius.sbc.su.se/predict",
+  "output": "raw/Phobius/batch1_short.html",
+  "output_sha256": "e496a5bb24931b9734cf56b1c72587cb61f8673f7615f5bff5171807048ffac7",
+  "status": "complete",
+  "completed_utc": "2026-11-06T18:49:36+00:00"
+}

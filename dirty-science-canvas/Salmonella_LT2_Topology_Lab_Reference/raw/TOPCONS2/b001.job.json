@@ -1,0 +1,46 @@
+{
+  "method": "TOPCONS2",
+  "wsdl": "https://topcons.net/pred/api_submitseq/?wsdl",
+  "batch": "b001",
+  "fasta": "raw/TOPCONS2/b001.fasta",
+  "fasta_sha256": "ca4e2cf2f14bc476d5d03f78a3afa6638a5160378265833f561e7aa207cfab27",
+  "n_sequences": 1000,
+  "n_residues": 325008,
+  "planned_utc": "2026-11-06T19:26:03+00:00",
+  "rerun": false,
+  "jobname": "dsc_Salmonella_LT2_b001",
+  "fixtop": "",
+  "email": "",
+  "submitted_utc": "2026-11-08T06:21:43+00:00",
+  "raw_return": [
+    "rst_47drcym7",
+    "https://topcons.net/pred/result/rst_47drcym7",
+    "1000",
+    "None",
+    "\n"
+  ],
+  "jobid": "rst_47drcym7",
+  "result_url": "https://topcons.net/pred/result/rst_47drcym7",
+  "numseq_accepted": "1000",
+  "error": "None",
+  "warning": "\n",
+  "status": "complete",
+  "checks": [
+    {
+      "utc": "2026-11-08T06:22:00+00:00",
+      "status": "Running"
+    },
+    {
+      "utc": "2026-11-08T08:00:35+00:00",
+      "status": "Finished"
+    }
+  ],
+  "server_status": "Finished",
+  "result_zip_url": "https://topcons.net/static/result/rst_47drcym7/rst_47drcym7.zip",
+  "result_zip_sha256": "dcda6990df2da3558f3107e2447fdb2b07016c50164aad7371eb9983094ce6a6",
+  "result_zip_bytes": 152990028,
+  "completed_utc": "2026-11-08T08:00:44+00:00",
+  "result_text_archive": "raw/TOPCONS2/b001.text.tar.xz",
+  "result_text_archive_sha256": "eae9eca730e5dce60d05ad496a3e75357748f40c5e1a81f0707ba59b8e703a1e",
+  "archive_note": "Result zip (152990028 bytes, sha256 above) not stored because of its size (mostly per-sequence images); the text members needed to reproduce every prediction (seq.fa, query.result.txt, reliability.final, finished_seqs.txt, stat.txt) are archived unmodified."
+}

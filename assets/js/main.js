@@ -715,8 +715,8 @@ function renderTalks() {
    showed four browser apps and hid the two heaviest pieces of engineering
    (a pooled AlphaFold 3 screen designer and a tested CLI), which inverted
    what a technical reader saw first. */
-const FLAGSHIPS = ['Protein Structure Viewer', 'Plaque Toolkit', 'PooledPPI',
-                   'HMM Homologue Finder', 'FigureLab', 'CFU Plot Studio',
+const FLAGSHIPS = ['Protein Structure Viewer', 'Phage Topology Atlas', 'Plaque Toolkit',
+                   'PooledPPI', 'HMM Homologue Finder', 'FigureLab', 'CFU Plot Studio',
                    'Lysis Curve Plotter', 'HMM Discovery App'];
 function renderTools(filter = 'flagship') {
     const container = document.getElementById('toolsGrid');

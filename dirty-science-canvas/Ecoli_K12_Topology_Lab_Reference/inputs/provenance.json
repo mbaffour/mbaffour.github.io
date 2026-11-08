@@ -1,0 +1,46 @@
+{
+  "organism": "Escherichia coli K-12 MG1655",
+  "accessions": [
+    "NC_000913.3"
+  ],
+  "files": [
+    {
+      "file": "inputs/NC_000913.3.gb.gz",
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&id=NC_000913.3&rettype=gbwithparts&retmode=text",
+      "retrieved_utc": "2026-11-06T19:22:32+00:00",
+      "sha256": "313752bfe10d4aaf04abdb541a1309bce9a6b66f059e75fe215898e736a5a8a5",
+      "bytes": 11450917,
+      "sha256_gz": "a8f499e057db827cc08438e0eafcdce3db49ba151207af20c22cadb3e21c989e",
+      "note": "stored gzip-compressed; sha256/bytes refer to the uncompressed download"
+    },
+    {
+      "file": "inputs/NC_000913.3.cds_aa.fasta",
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&id=NC_000913.3&rettype=fasta_cds_aa&retmode=text",
+      "retrieved_utc": "2026-11-06T19:22:38+00:00",
+      "sha256": "718e69bf9588c121ca4944f1bbff38859bb3f61155da62525a228951bd58fe97",
+      "bytes": 2327260
+    }
+  ],
+  "ncbi_summaries": [
+    {
+      "accessionversion": "NC_000913.3",
+      "title": "Escherichia coli str. K-12 substr. MG1655, complete genome",
+      "slen": 4641652,
+      "createdate": "2001/10/15",
+      "updatedate": "2026/09/02",
+      "taxid": 511145,
+      "biomol": "genomic",
+      "topology": "circular"
+    }
+  ],
+  "ncbi_summary": {
+    "accessionversion": "NC_000913.3",
+    "title": "Escherichia coli str. K-12 substr. MG1655, complete genome",
+    "slen": 4641652,
+    "createdate": "2001/10/15",
+    "updatedate": "2026/09/02",
+    "taxid": 511145,
+    "biomol": "genomic",
+    "topology": "circular"
+  }
+}

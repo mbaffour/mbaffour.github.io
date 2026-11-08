@@ -1,0 +1,1125 @@
+{
+  "organism": "Bacillus phage phi29",
+  "key": "phi29",
+  "kind": "phage",
+  "accessions": [
+    "NC_011048.1"
+  ],
+  "gb_files": [
+    "NC_011048.1.gb"
+  ],
+  "n_cds_features": 27,
+  "n_proteins": 27,
+  "n_pseudogenes": 0,
+  "cds_fasta_records": 27,
+  "cds_fasta_unmatched": [],
+  "proteins": [
+    {
+      "protein_id": "phi29|phi29_gp0.2",
+      "gene": "0.2",
+      "locus_tag": "phi29_gp0.2",
+      "product": "hypothetical protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "similar to CAA24474.1 unnamed protein product Bacillus phage phi29",
+      "replicon": "NC_011048.1",
+      "start": 265,
+      "stop": 360,
+      "strand": "-",
+      "location": "[264:360](-)",
+      "protein_accession": "YP_002004524.1",
+      "db_xref": [
+        "GeneID:6446513"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MFDNYYRVCYNGSINGTVLPLSCVCWGLNPD",
+      "length": 31,
+      "sequence_sha256": "379e23ff2348472839c727b3dfa09df0903f13105226123672b9fbde849c1978",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_011048.1.gb",
+      "cds_fasta_id": "lcl|NC_011048.1_prot_YP_002004524.1_1",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "phi29|phi29_gp0.4",
+      "gene": "0.4",
+      "locus_tag": "phi29_gp0.4",
+      "product": "hypothetical protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "similar to Bacillus phage PZA unknown protein product of ORF0 NP_040723",
+      "replicon": "NC_011048.1",
+      "start": 367,
+      "stop": 510,
+      "strand": "-",
+      "location": "[366:510](-)",
+      "protein_accession": "YP_002004525.1",
+      "db_xref": [
+        "GeneID:6446500"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MKRAELEEHIANMFKDGTIKLQVHPFGTNGVHLIVEINDQIVLEWEN",
+      "length": 47,
+      "sequence_sha256": "28aedd094cd9eebbf151a02fbcf656579507d2b95e11bab2af2d0d472bb20177",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_011048.1.gb",
+      "cds_fasta_id": "lcl|NC_011048.1_prot_YP_002004525.1_2",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "phi29|phi29_gp0.6",
+      "gene": "0.6",
+      "locus_tag": "phi29_gp0.6",
+      "product": "hypothetical protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "similar to NP_040722.1 gene 1A product Bacillus phage PZA",
+      "replicon": "NC_011048.1",
+      "start": 527,
+      "stop": 703,
+      "strand": "-",
+      "location": "[526:703](-)",
+      "protein_accession": "YP_002004526.1",
+      "db_xref": [
+        "GeneID:6446504"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MSYLVTIFSINDNGVVRRYDTTARSRTDAASVLIKYKAPRGYKFDRFELSREKTIFDI",
+      "length": 58,
+      "sequence_sha256": "9eca640fac26cc5fed619a2f281834e364e2d459387021cd8958b1b51b06bd9a",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_011048.1.gb",
+      "cds_fasta_id": "lcl|NC_011048.1_prot_YP_002004526.1_3",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "phi29|phi29_gp0.8",
+      "gene": "0.8",
+      "locus_tag": "phi29_gp0.8",
+      "product": "hypothetical protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "similar to NP_040721.1 gene 1B product Bacillus phage PZA",
+      "replicon": "NC_011048.1",
+      "start": 700,
+      "stop": 870,
+      "strand": "-",
+      "location": "[699:870](-)",
+      "protein_accession": "YP_002004527.1",
+      "db_xref": [
+        "GeneID:6446503"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MVQNDFVDSYDVTMLLQDDDGKQYYEYHKGLSLSDFEVLYGNTADEIIKLRLDKVL",
+      "length": 56,
+      "sequence_sha256": "40a78cee8ca6fab67478e61b371bf42ab1feeccd2ddde25502202aa794db1ebc",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_011048.1.gb",
+      "cds_fasta_id": "lcl|NC_011048.1_prot_YP_002004527.1_4",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "phi29|phi29_gp1",
+      "gene": "1",
+      "locus_tag": "phi29_gp1",
+      "product": "hypothetical protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "similar to NP_040720.1 gene 1C product Bacillus phage PZA; partially dispensible",
+      "replicon": "NC_011048.1",
+      "start": 857,
+      "stop": 1117,
+      "strand": "-",
+      "location": "[856:1117](-)",
+      "protein_accession": "YP_002004528.1",
+      "db_xref": [
+        "GeneID:6446501"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MGKIFDQEKRLEGTWKNSKWGNQGIIAPVDGDLKMIDLELEKKMTKLEHENKLMKNALYELSRMENNDYATWVIKVLFGGAPHGAK",
+      "length": 86,
+      "sequence_sha256": "2ef4ce1a26791f99b68d94b4fb6ca436ad0e0ce7132aa701009cf0be90efe021",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_011048.1.gb",
+      "cds_fasta_id": "lcl|NC_011048.1_prot_YP_002004528.1_5",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "phi29|phi29_gp2",
+      "gene": "2",
+      "locus_tag": "phi29_gp2",
+      "product": "DNA polymerase",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "N-terminus contains 3'to 5' ssDNA exonuclease activity and C-terminus contains DNA polymerase activity; requires a protein (terminal protein) to prime DNA synthesis; belongs to the DNA polymerase type-B family.",
+      "replicon": "NC_011048.1",
+      "start": 1145,
+      "stop": 2863,
+      "strand": "-",
+      "location": "[1144:2863](-)",
+      "protein_accession": "YP_002004529.1",
+      "db_xref": [
+        "GeneID:6446511"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MPRKMYSCDFETTTKVEDCRVWAYGYMNIEDHSEYKIGNSLDEFMAWVLKVQADLYFHNLKFDGAFIINWLERNGFKWSADGLPNTYNTIISRMGQWYMIDICLGYKGKRKIHTVIYDSLKKLPFPVKKIAKDFKLTVLKGDIDYHKERPVGYKITPEEYAYIKNDIQIIAEALLIQFKQGLDRMTAGSDSLKGFKDIITTKKFKKVFPTLSLGLDKEVRYAYRGGFTWLNDRFKEKEIGEGMVFDVNSLYPAQMYSRLLPYGEPIVFEGKYVWDEDYPLHIQHIRCEFELKEGYIPTIQIKRSRFYKGNEYLKSSGGEIADLWLSNVDLELMKEHYDLYNVEYISGLKFKATTGLFKDFIDKWTYIKTTSEGAIKQLAKLMLNSLYGKFASNPDVTGKVPYLKENGALGFRLGEEETKDPVYTPMGVFITAWARYTTITAAQACYDRIIYCDTDSIHLTGTEIPDVIKDIVDPKKLGYWAHESTFKRAKYLRQKTYIQDIYMKEVDGKLVEGSPDDYTDIKFSVKCAGMTDKIKKEVTFENFKVGFSRKMKPKPVQVPGGVVLVDDTFTIK",
+      "length": 572,
+      "sequence_sha256": "9cbfd1e1dacd31baf1daa8f886e466eefbef66b759b4368544aaa402ffdde0dc",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_011048.1.gb",
+      "cds_fasta_id": "lcl|NC_011048.1_prot_YP_002004529.1_6",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "phi29|phi29_gp3",
+      "gene": "3",
+      "locus_tag": "phi29_gp3",
+      "product": "DNA terminal protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "The terminal protein of phi29-like viruses is linked to the linear genome termini and serves as a primer for the initiation of DNA replication. Other names: gp3, TP",
+      "replicon": "NC_011048.1",
+      "start": 2886,
+      "stop": 3686,
+      "strand": "-",
+      "location": "[2885:3686](-)",
+      "protein_accession": "YP_002004530.1",
+      "db_xref": [
+        "GeneID:6446514"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MARSPRIRIKDNDKAEYARLVKNTKAKIARTKKKYGVDLTAEIDIPDLDSFETRAQFNKWKEQASSFTNRANMRYQFEKNAYGVVASKAKIAEIERNTKEVQRLVDEKIKAMKDKEYYAGGKPQGTIEQRIAMTSPAHVTGINRPHDFDFSKVRSYSRLRTLEESMEMRTDPQYYEKKMIQLQLNFIKSVEGSFNSFDAADELIEELKKIPPDDFYELFLRISEISFEEFDSEGNTVENVEGNVYKILSYLEQYRRGDFDLSLKGF",
+      "length": 266,
+      "sequence_sha256": "4e09c114ccff87fee4d5b3f5a06ef89a21fd38ad648336c3a29d2863bcc962c7",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_011048.1.gb",
+      "cds_fasta_id": "lcl|NC_011048.1_prot_YP_002004530.1_7",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "phi29|phi29_gp4",
+      "gene": "4",
+      "locus_tag": "phi29_gp4",
+      "product": "late transcriptional activator",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "phi29 protein 4, together with protein 6, functions as a transcriptional activator for late promoter A3 and as a repressor for early promoters A2c and A2b. Therefore p4 and p6 regulate the switch from early to late expression. Other names: gp4, p4",
+      "replicon": "NC_011048.1",
+      "start": 3575,
+      "stop": 3952,
+      "strand": "-",
+      "location": "[3574:3952](-)",
+      "protein_accession": "YP_002004531.1",
+      "db_xref": [
+        "GeneID:6446523"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MPKTQRGIYHNLKESEYVASNTDVTFFFSSELYLNKFLDGYQEYRKKFNKKIERVAVTPWNMDMLADITFYSEVEKRGFHAWLKGDNATWREVHVYALRIMTKPNTLDWSRIQKPRLRERRKSMV",
+      "length": 125,
+      "sequence_sha256": "981136e7ac52f855817d79f9876dc8f33874f3aa82bee01e6edfdd7a6129da6b",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_011048.1.gb",
+      "cds_fasta_id": "lcl|NC_011048.1_prot_YP_002004531.1_8",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "phi29|phi29_gp5",
+      "gene": "5",
+      "locus_tag": "phi29_gp5",
+      "product": "single strand DNA binding protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "SSB; similar to NP_040716.1 gene 5A product Bacillus phage PZA, NP_690638.1 SSB Bacillus phage B103",
+      "replicon": "NC_011048.1",
+      "start": 3971,
+      "stop": 4345,
+      "strand": "-",
+      "location": "[3970:4345](-)",
+      "protein_accession": "YP_002004532.1",
+      "db_xref": [
+        "GeneID:6446522"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MENTNIVKATFDTETLEGQIKIFNAQTGGGQSFKNLPDGTIIEANAIAQYKQVSDTYGDAKEETVTTIFAADGSLYSAISKTVAEAASDLIDLVTRHKLETFKVKVVQGTSSKGNVFFSLQLSL",
+      "length": 124,
+      "sequence_sha256": "4d18ae6ebbf78f38a12423202b717b8faf46768f329ac56d6aa568c2453d5c53",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_011048.1.gb",
+      "cds_fasta_id": "lcl|NC_011048.1_prot_YP_002004532.1_9",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "phi29|phi29_gp5.5",
+      "gene": "5.5",
+      "locus_tag": "phi29_gp5.5",
+      "product": "hypothetical protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "similar to NP_040715.1 unknown protein Bacillus phage PZA",
+      "replicon": "NC_011048.1",
+      "start": 4410,
+      "stop": 4610,
+      "strand": "-",
+      "location": "[4409:4610](-)",
+      "protein_accession": "YP_002004533.1",
+      "db_xref": [
+        "GeneID:6446524"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MMETQEKVLVLVGALFINTFNLNYKSIDLTHDSEQAYGFKDKWEAQKVAANVGGQVVIRTTSFKIV",
+      "length": 66,
+      "sequence_sha256": "6e519db9f5a4a2ca7e87661e0a4816b91100c2e221877c2a8d410d34bd2d419b",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_011048.1.gb",
+      "cds_fasta_id": "lcl|NC_011048.1_prot_YP_002004533.1_10",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "phi29|phi29_gp6",
+      "gene": "6",
+      "locus_tag": "phi29_gp6",
+      "product": "dsDNA binding protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "phi29 protein p6 together with protein p4 is involved in repression of transcription by early promoters A2c and A2b as well as activation of late promoter A3. In addition, p6 alone causes repression of early promoter C2. Thirdly, p6 appears to be involved in the initiation of DNA replication through binding to sites close to the termini of the genome. Other names: p6, DBP",
+      "replicon": "NC_011048.1",
+      "start": 4607,
+      "stop": 4921,
+      "strand": "-",
+      "location": "[4606:4921](-)",
+      "protein_accession": "YP_002004534.1",
+      "db_xref": [
+        "GeneID:6446509"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MAKMMQREITKTTVNVAKMVMVDGEVQVEQLPSETFVGNLTMEQAQWRMKRKYKGEPVQVVSVEPNTEVYELPVEKFLEVATVRVEKDEDQEEQTEAPEEQVAE",
+      "length": 104,
+      "sequence_sha256": "762aa4adbb0c12b92d2b065b009b1dc1fca939d535b7f18122c9d2eae1030515",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_011048.1.gb",
+      "cds_fasta_id": "lcl|NC_011048.1_prot_YP_002004534.1_11",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "phi29|phi29_gp7",
+      "gene": "7",
+      "locus_tag": "phi29_gp7",
+      "product": "head scaffolding protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "Other name: gp7; head morphogenesis protein",
+      "replicon": "NC_011048.1",
+      "start": 5222,
+      "stop": 5518,
+      "strand": "+",
+      "location": "[5221:5518](+)",
+      "protein_accession": "YP_002004535.1",
+      "db_xref": [
+        "GeneID:6446525"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MPLKPEEHEDILNKLLDPELAQSERTEALQQLRVNYGSFVSEYNDLTKSHEKLAAEKDDLIVSNSKLFRQIGLTDKQEEDHKKADISETITIEDLEAK",
+      "length": 98,
+      "sequence_sha256": "37a50fe81d7ab5c266a1606de77dddf5289b1d9b886791164cd2c53d94d27b94",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_011048.1.gb",
+      "cds_fasta_id": "lcl|NC_011048.1_prot_YP_002004535.1_12",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "phi29|phi29_gp8",
+      "gene": "8",
+      "locus_tag": "phi29_gp8",
+      "product": "major head protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "Other names: p8",
+      "replicon": "NC_011048.1",
+      "start": 5549,
+      "stop": 6895,
+      "strand": "+",
+      "location": "[5548:6895](+)",
+      "protein_accession": "YP_002004536.1",
+      "db_xref": [
+        "GeneID:6446510"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MRITFNDVKTSLGITESYDIVNAIRNSQGDNFKSYVPLATANNVAEVGAGILINQTVQNDFITSLVDRIGLVVIRQVSLNNPLKKFKKGQIPLGRTIEEIYTDITKEKQYDAEEAEQKVFEREMPNVKTLFHERNRQGFYHQTIQDDSLKTAFVSWGNFESFVSSIINAIYNSAEVDEYEYMKLLVDNYYSKGLFTTVKIDEPTSSTGALTEFVKKMRATARKLTLPQGSRDWNSMAVRTRSYMEDLHLIIDADLEAELDVDVLAKAFNMNRTDFLGNVTVIDGFASTGLEAVLVDKDWFMVYDNLHKMETVRNPRGLYWNYYYHVWQTLSVSRFANAVAFVSGDVPAVTQVIVSPNIAAVKQGGQQQFTAYVRATDAKDHKVVWSVEGGSTGTAITGDGLLSVSGNEDNQLTVKATVDIGTEDKPKLVVGEAVVSIRPNNASGGAQA",
+      "length": 448,
+      "sequence_sha256": "9a2fe596c6a5c6fd467206cb12e425b3085ea41ce02432994ad1b4cce8491be6",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_011048.1.gb",
+      "cds_fasta_id": "lcl|NC_011048.1_prot_YP_002004536.1_13",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "phi29|phi29_gp8.5",
+      "gene": "8.5",
+      "locus_tag": "phi29_gp8.5",
+      "product": "head fiber protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "similar to NP_040726.1 head fiber protein Bacillus phage PZA",
+      "replicon": "NC_011048.1",
+      "start": 6895,
+      "stop": 7737,
+      "strand": "+",
+      "location": "[6894:7737](+)",
+      "protein_accession": "YP_002004537.1",
+      "db_xref": [
+        "GeneID:6446512"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MMVSFTARAKSNVMAYRLLAYSQGDDIIEISHAAENTIPDYVAVKDVDKGDLTQVNMYPLAAWQVIAGSDIKVGDNLTTGKDGTAVPTDDPSTVFGYAVEEAQEGQLVTLVISRSKEISIEVDDIKDAGDTGKRLLKINTPSGARNIIIENEDAKALINGETTNTNKKNLQDLLFSDGNVKAFLQATTTDENKTALQQLLVSNADVLGLLSGNPTSDNKINLRTMIGAGVPYSLPAATTTTLGGVKKGAAVTASTATDVATAVKDLNSLITVLKNAGIIS",
+      "length": 280,
+      "sequence_sha256": "93a64d7c8d54ab935bc8af3a3cbe639199117d456e59e63fe2d7249e7b6b73fa",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_011048.1.gb",
+      "cds_fasta_id": "lcl|NC_011048.1_prot_YP_002004537.1_14",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "phi29|phi29_gp9",
+      "gene": "9",
+      "locus_tag": "phi29_gp9",
+      "product": "tail protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "Other names: p9",
+      "replicon": "NC_011048.1",
+      "start": 7751,
+      "stop": 9550,
+      "strand": "+",
+      "location": "[7750:9550](+)",
+      "protein_accession": "YP_002004538.1",
+      "db_xref": [
+        "GeneID:6446507"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MAYVPLSGTNVRILADVPFSNDYKNTRWFTSSSNQYNWFNSKSRVYEMSKVTFMGFRENKPYVSVSLPIDKLYSASYIMFQNADYGNKWFYAFVTELEFKNSAVTYVHFEIDVLQTWMFDIKFQESFIVREHVKLWNDDGTPTINTIDEGLSYGSEYDIVSVENHKPYDDMMFLVIISKSIMHGTPGEEESRLNDINASLNGMPQPLCYYIHPFYKDGKVPKTYIGDNNANLSPIVNMLTNIFSQKSAVNDIVNMYVTDYIGLKLDYKNGDKELKLDKDMFEQAGIADDKHGNVDTIFVKKIPDYEALEIDTGDKWGGFTKDQESKLMMYPYCVTEITDFKGNHMNLKTEYINNSKLKIQVRGSLGVSNKVAYSVQDYNADSALSGGNRLTASLDSSLINNNPNDIAILNDYLSAYLQGNKNSLENQKSSILFNGIMGMIGGGISAGASAAGGSALGMASSVTGMTSTAGNAVLQMQAMQAKQADIANIPPQLTKMGGNTAFDYGNGYRGVYVIKKQLKAEYRRSLSSFFHKYGYKINRVKKPNLRTRKAFNYVQTKDCFISGDINNNDLQEIRTIFDNGITLWHTDNIGNYSVENELR",
+      "length": 599,
+      "sequence_sha256": "5ed52177e890b1835194fb7cc5746e2b6e0e874c0493c15eb5ffdf9600563db7",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_011048.1.gb",
+      "cds_fasta_id": "lcl|NC_011048.1_prot_YP_002004538.1_15",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "phi29|phi29_gp10",
+      "gene": "10",
+      "locus_tag": "phi29_gp10",
+      "product": "upper collar connector",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "In phage phi29, 12 copies of the head-tail connector/upper collar protein are a component of the DNA packaging motor that imports DNA into the empty pro-head. Other names: head-tail connector; p10",
+      "replicon": "NC_011048.1",
+      "start": 9555,
+      "stop": 10484,
+      "strand": "+",
+      "location": "[9554:10484](+)",
+      "protein_accession": "YP_002004539.1",
+      "db_xref": [
+        "GeneID:6446518"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MARKRSNTYRSINEIQRQKRNRWFIHYLNYLQSLAYQLFEWENLPPTINPSFLEKSIHQFGYVGFYKDPVISYIACNGALSGQRDVYNQATVFRAASPVYQKEFKLYNYRDMKEEDMGVVIYNNDMAFPTTPTLELFAAELAELKEIISVNQNAQKTPVLIRANDNNQLSLKQVYNQYEGNAPVIFAHEALDSDSIEVFKTDAPYVVDKLNAQKNAVWNEMMTFLGIKNANLEKKERMVTDEVSSNDEQIESSGTVFLKSREEACEKINELYGLNVKVKFRYDIVEQMRRELQQIENVSRGTSDGETNE",
+      "length": 309,
+      "sequence_sha256": "4a393520d2600fcb9460cfbf6e486c0b84bfc3f052b84a986927aa8b3c3dea51",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_011048.1.gb",
+      "cds_fasta_id": "lcl|NC_011048.1_prot_YP_002004539.1_16",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "phi29|phi29_gp11",
+      "gene": "11",
+      "locus_tag": "phi29_gp11",
+      "product": "adaptor Ad4",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "Other names: p11",
+      "replicon": "NC_011048.1",
+      "start": 10477,
+      "stop": 11358,
+      "strand": "+",
+      "location": "[10476:11358](+)",
+      "protein_accession": "YP_002004540.1",
+      "db_xref": [
+        "GeneID:6446508"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MSSYTMQLRTYIEMWSQGETGLSTAEKIEKGRPKLFDFNYPIFDESYRTIFETHFIRNFYMREIGFETEGLFKFHLETWLMINMPYFNKLFESELIKYDPLENTRVGVKSNTKNDTDRNDNRDVKQDLTSNGTSSTDAKQNDTSKTTGNEKSSGSGSITDDNFKRDLNADTADDRLQLTTKDGEGVLEYASQIEEHNENKKRDTKTSNTTDTTSNTTGTSTLDSDSKTSNKANTTSNDKLNSQINSVEDYIEDRVGKIGTQSYARLVMDYREALLRIEQRIFNEMQELFMLVY",
+      "length": 293,
+      "sequence_sha256": "d3b1da5ac25867bf1e96ded5f70812b3a1978b8ffb54ae71af69417e93cf561f",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_011048.1.gb",
+      "cds_fasta_id": "lcl|NC_011048.1_prot_YP_002004540.1_17",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "phi29|phi29_gp12",
+      "gene": "12",
+      "locus_tag": "phi29_gp12",
+      "product": "pre-neck appendage protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "similar to NP_040730.1 pre-neck appendage protein Bacillus phage PZA, NP_690646.1 pre-neck appendage protein Bacillus phage B103",
+      "replicon": "NC_011048.1",
+      "start": 11371,
+      "stop": 13935,
+      "strand": "+",
+      "location": "[11370:13935](+)",
+      "protein_accession": "YP_002004541.1",
+      "db_xref": [
+        "GeneID:6446499"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MSTKPELKRFEQFGEMMVQLYERYLPTAFDESLTLLEKMNKIIHYLNEIGKVTNELIEEWNKVMEWILNDGLEDLVKETLERWYEEGKFADLVIQVIDELKQFGVSVKTYGAKGDGVTDDIRAFEKAIESGFPVYVPYGTFMVSRGIKLPSNTVLTGAGKRNAVIKFMDSVGRGESLMYNENVTTGNENIFLSSFTLDGNNKRLGQGISGIGGSRESNLSIRACHNVYIRDIEAVDCTLHGIDITCGGLDYPYLGDGTTAPNPSENIWIENCEATGFGDDGITTHHSQYINILNCYSHDPRLTANCNGFEIDDGSRHVVLSNNRSKGCYGGIEIKAHGDAPAAYNISINGHMSVEDVRSYNFRHIGHHAATAPQSVSAKNIVASNLVSIRPNNKRGFQDNATPRVLAVSAYYGVVINGLTGYTDDPNLLTETVVSVQFRARNCSLNGVVLTGFSNSENGIYVIGGSRGGDAVNISNVTLNNSGRYGVSIGSGIENVSITNISGIGDGINSPVALVSTINSNPEISGLSSIGYPTVARVAGTDYNDGLTLFNGAFRASTTSSGKIHSEGFIMGSTSGCEASVSKSGVLTSSSSKTSSERSLIAGSSTSEAKGTYNTILGSLGAVADEKFAALISASQSRASGNHNLILSSYGINTTGSYKVNGGFEKINWELDSLNGRIKARDTVTGGNTWSDFAEYFESLDGQVIETGYLVTLEKGKIRKAEKGEKIIGVISETAGFVLGESSFEWQGAVLKNEFGGIIYEEVTTEDGVKFKRPLPNPDFDPNKNYIPRSQRREWHVVGLLGQIAVRIDETVKQGHGIDAVGGVATDGDNFIVQEITTPYTKEKGYGVAIVLVK",
+      "length": 854,
+      "sequence_sha256": "cb068bede39cd90a31f2cc419024cf1413592cab07b33e930cf9bd09ec61bf15",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_011048.1.gb",
+      "cds_fasta_id": "lcl|NC_011048.1_prot_YP_002004541.1_18",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "phi29|phi29_gp13",
+      "gene": "13",
+      "locus_tag": "phi29_gp13",
+      "product": "tail-type lysozyme domain-containing protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "similar to NP_040731.1 morphogenesis protein A Bacillus phage PZA, NP_690647.1 morphogenesis protein Bacillus phage B103",
+      "replicon": "NC_011048.1",
+      "start": 13947,
+      "stop": 15041,
+      "strand": "+",
+      "location": "[13946:15041](+)",
+      "protein_accession": "YP_002004542.1",
+      "db_xref": [
+        "GeneID:6446506"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MVYVSNKYLTMSEMKVNAQYILNYLSSNGWTKQAICGMLGNMQSESTINPGLWQNLDEGNTSLGFGLVQWTPASNYINWANSQGLPYKNMDSELKRIIWEVNNNAQWINLRDMTFKEYIKSTKTPRELAMIFLASYERPANPNQPERGDQAEYWYKNLSGGGGGGLQLAQFPMDIINISQGENGSFSHKGTLCIDFVGKTEKYPYYAPCDCTCVWRGDASAYLAWTSDKEVMCADGSVRYITWVNVHESPLPFDVGKKLKKGDLMGHTGIGGNVTGDHWHFNVIDGKEYQGWTKKPDSCLAGTELHIYDVFAVNNVEIINGNGYDWKTSDWQDGDGGDGDDNDNNKTKDLITLLLSDALHGWKA",
+      "length": 364,
+      "sequence_sha256": "499a9067b7b37b82d3b19a38020db41d5604fa400304cd27a54887e47d610445",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_011048.1.gb",
+      "cds_fasta_id": "lcl|NC_011048.1_prot_YP_002004542.1_19",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "phi29|phi29_gp14",
+      "gene": "14",
+      "locus_tag": "phi29_gp14",
+      "product": "holin family protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "similar to NP_040732.1 lysis protein Bacillus phage PZA; putative dual start motif",
+      "replicon": "NC_011048.1",
+      "start": 15060,
+      "stop": 15455,
+      "strand": "+",
+      "location": "[15059:15455](+)",
+      "protein_accession": "YP_002004543.1",
+      "db_xref": [
+        "GeneID:6446519"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MKMIAWMQHFLETDETKLIYWLTFLMVCMVVDTVLGVLFAKLNPNIKFSSFKIKTGVLIKVSEMILALLAIPFAVPFPAGLPLLYTVYTALCVSEIYSIFGHLRLVDDKSDFLEILENFFKRTSGKNKEEK",
+      "length": 131,
+      "sequence_sha256": "f460930f089f4028888efb879603371c1cf8ac114b2366287877d475e05197a3",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_011048.1.gb",
+      "cds_fasta_id": "lcl|NC_011048.1_prot_YP_002004543.1_20",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "phi29|phi29_gp15",
+      "gene": "15",
+      "locus_tag": "phi29_gp15",
+      "product": "endolysin",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "similar to NP_040733.1 morphogenesis protein B Bacillus phage PZA, AAK40280.1 endolysin Bacillus amyloliquefaciens phage Morita2001, NP_690649.1 morphogenesis protein Bacillus phage B103; pfam00959, phage_lysozyme",
+      "replicon": "NC_011048.1",
+      "start": 15457,
+      "stop": 16233,
+      "strand": "+",
+      "location": "[15456:16233](+)",
+      "protein_accession": "YP_002004544.1",
+      "db_xref": [
+        "GeneID:6446520"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MQISQAGINLIKSFEGLQLKAYKAVPTEKHYTIGYGHYGSDVSPRQVITAKQAEDMLRDDVQAFVDGVNKALKVSVTQNQFDALVSFAYNVGLGAFRSSSLLEYLNEGRTALAAAEFPKWNKSGGKVYQGLINRRAQEQALFNSGTPKNVSRGTSSTKTTPKYKVKSGDNLTKIAKKHNTTVATLLKLNPSIKDPNMIRVGQTINVTGSGGKTHKVKSGDTLSKIAVDNKTTVSRLMSLNPEITNPNHIKVGQTIRLS",
+      "length": 258,
+      "sequence_sha256": "9ef064fdf85b5cae160d8395212846d4125d4186a9817062415bd14f7535bd90",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_011048.1.gb",
+      "cds_fasta_id": "lcl|NC_011048.1_prot_YP_002004544.1_21",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "phi29|phi29_gp16",
+      "gene": "16",
+      "locus_tag": "phi29_gp16",
+      "product": "terminase",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "the phi 29 protein p16 is a DNA packaging ATPase. Several molecules of p16 along with a hexamer of packaging RNA (pRNA) and 12 molecules of the head-to-tail connector form a packaging motor. Packaging consumes about 1 ATP per 2 bp and can operate against strong loads.",
+      "replicon": "NC_011048.1",
+      "start": 16244,
+      "stop": 17242,
+      "strand": "+",
+      "location": "[16243:17242](+)",
+      "protein_accession": "YP_002004545.1",
+      "db_xref": [
+        "GeneID:6446516"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MDKSLFYNPQKMLSYDRILNFVIGARGIGKSYAMKVYPINRFIKYGEQFIYVRRYKPELAKVSNYFNDVAQEFPDHELVVKGRRFYIDGKLAGWAIPLSVWQSEKSNAYPNVSTIVFDEFIREKDNSNYIPNEVSALLNLMDTVFRNRERVRCICLSNAVSVVNPYFLFFNLVPDVNKRFNVYDDALIEIPDSLDFSSERRKTRFGRLIDGTEYGEMSLDNQFIGDSQVFIEKRSKDSKFVFSIVYNGFTLGVWVDVNQGLMYIDTAHDPSTKNVYTLTTDDLNENMMLITNYKNNYHLRKLASAFMNGYLRFDNQVIRNIAYELFRKMRIQ",
+      "length": 332,
+      "sequence_sha256": "251b290706226515a9a22b1943d5ea65879fe5e6392ad4d1b271b5406c089014",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_011048.1.gb",
+      "cds_fasta_id": "lcl|NC_011048.1_prot_YP_002004545.1_22",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "phi29|phi29_gp16.6",
+      "gene": "16.6",
+      "locus_tag": "phi29_gp16.6",
+      "product": "YgiT-type zinc finger protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "similar to NP_040736.1 gene 16.6 product Bacillus phage PZA",
+      "replicon": "NC_011048.1",
+      "start": 17383,
+      "stop": 17547,
+      "strand": "-",
+      "location": "[17382:17547](-)",
+      "protein_accession": "YP_002004546.1",
+      "db_xref": [
+        "GeneID:6446505"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MKLLTHVCHYCSFSFFTRKFDVFGAITKKDTPVVFCPTCGNQSLSVSHIEEEIR",
+      "length": 54,
+      "sequence_sha256": "2b13d42015578238b00472a8d3e1af27c81da066cfe61aaa573ad63e3e3cdaa7",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_011048.1.gb",
+      "cds_fasta_id": "lcl|NC_011048.1_prot_YP_002004546.1_23",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "phi29|phi29_gp16.7",
+      "gene": "16.7",
+      "locus_tag": "phi29_gp16.7",
+      "product": "GP16.7-like replication protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "similar to NP_040737.1 putative replication organizer protein P16.7 Bacillus phage PZA",
+      "replicon": "NC_011048.1",
+      "start": 17544,
+      "stop": 17936,
+      "strand": "-",
+      "location": "[17543:17936](-)",
+      "protein_accession": "YP_002004547.1",
+      "db_xref": [
+        "GeneID:6446517"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MEAILMIGVLALCVIFLLSGRNNKKKQEARELEDYLEDLNKRVVQRTQILSELNEVISNRSIDKTVNLSACEVAVLDLYEQSNIRIPSDIIEDLVNQRLQSEQEVLNYIETQRTYWKLENQKKLYRGSLK",
+      "length": 130,
+      "sequence_sha256": "1fc274c736d796b1c85ec4af4445fa560fa95e8f0cbb88c4eb2a712fe6a6c778",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_011048.1.gb",
+      "cds_fasta_id": "lcl|NC_011048.1_prot_YP_002004547.1_24",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "phi29|phi29_gp16.8",
+      "gene": "16.8",
+      "locus_tag": "phi29_gp16.8",
+      "product": "hypothetical early protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "similar to NP_040738.1 unknown protein Bacillus phage PZA",
+      "replicon": "NC_011048.1",
+      "start": 17938,
+      "stop": 18255,
+      "strand": "-",
+      "location": "[17937:18255](-)",
+      "protein_accession": "YP_002004548.1",
+      "db_xref": [
+        "GeneID:6446502"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MIDIIVKEDKRLITVQTPEGDEVFYTLSFSDGHKILKRSSARLRNNIYAIGVANIRWMLVDMDNMILSEYIHHVDILKDIDRKMREMGYIVISEWQHANKKGTRR",
+      "length": 105,
+      "sequence_sha256": "73408d73de45031f0b2aa8f2e02f5702b7a5205736ad8315ad1592c67774c15e",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_011048.1.gb",
+      "cds_fasta_id": "lcl|NC_011048.1_prot_YP_002004548.1_25",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "phi29|phi29_gp16.9",
+      "gene": "16.9",
+      "locus_tag": "phi29_gp16.9",
+      "product": "hypothetical early protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "similar to NP_040739.1 gene 16.9 product Bacillus phage PZA",
+      "replicon": "NC_011048.1",
+      "start": 18252,
+      "stop": 18578,
+      "strand": "-",
+      "location": "[18251:18578](-)",
+      "protein_accession": "YP_002004549.1",
+      "db_xref": [
+        "GeneID:6446515"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MSVQLNAFTFILERRGWRMVCYEQLTTNGTRILHFYLKDNPTFFATYSSQFLSDTKMIRRFASWSGQLLEGSNSVFWTNITPFEPIDEETAEDIKNLDKVVEGMNFTL",
+      "length": 108,
+      "sequence_sha256": "71d6e3fe5982d67c82f862e6888a994f1d4e14eb0bea608907a6a31cdf053664",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_011048.1.gb",
+      "cds_fasta_id": "lcl|NC_011048.1_prot_YP_002004549.1_26",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    },
+    {
+      "protein_id": "phi29|phi29_gp17",
+      "gene": "17",
+      "locus_tag": "phi29_gp17",
+      "product": "replication protein",
+      "synonyms": [],
+      "curator_alias": "",
+      "note": "similar to NP_040740.1 gene 17 product Bacillus phage PZA, VG17_BPPH5 early protein GP17 Bacillus phage phi15",
+      "replicon": "NC_011048.1",
+      "start": 18580,
+      "stop": 19080,
+      "strand": "-",
+      "location": "[18579:19080](-)",
+      "protein_accession": "YP_002004550.1",
+      "db_xref": [
+        "GeneID:6446521"
+      ],
+      "transl_table": 11,
+      "codon_start": 1,
+      "sequence": "MNNYQLTINEVIDIINTNTEINKLVAKKENLFPTDLYDLDKQELIAIILNSDFALSSIKRVLLEVTVEELGTQDNDEDDELEDLDGEIDRVDYIDKDGIRFDVPRETSPHVDKSIVTFNDELLDEANKIAKSIQEHDFNDKAIEEAELKIFKNHLPSIYSMKKENK",
+      "length": 166,
+      "sequence_sha256": "113f9a091c8139729341e6bc228e3f084f3a3f9518c374b186765aacdab046c3",
+      "annotation_flags": [],
+      "source_record": "inputs/NC_011048.1.gb",
+      "cds_fasta_id": "lcl|NC_011048.1_prot_YP_002004550.1_27",
+      "eligibility": {
+        "Phobius": [
+          true,
+          ""
+        ],
+        "DeepTMHMM": [
+          true,
+          ""
+        ],
+        "TOPCONS2": [
+          true,
+          ""
+        ]
+      },
+      "identical_sequence_to": []
+    }
+  ]
+}

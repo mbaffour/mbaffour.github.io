@@ -1,0 +1,40 @@
+{
+  "method": "Phobius",
+  "endpoint": "https://phobius.sbc.su.se/api/predict",
+  "batch": "b001",
+  "fasta": "raw/Phobius/b001.fasta",
+  "fasta_sha256": "1df2f008cdc2151d26b23a6adcf48508f0d4483fe9bd95959d54c348e4f375dd",
+  "n_sequences": 13,
+  "n_residues": 3723,
+  "planned_utc": "2026-11-06T19:26:03+00:00",
+  "rerun": false,
+  "settings": {
+    "plot": true
+  },
+  "submitted_utc": "2026-11-06T19:29:02+00:00",
+  "outputs": {
+    "json": {
+      "file": "raw/Phobius/b001.json",
+      "sha256": "c0c6d97390f45b7c75202c21a67e63008ef611447a2e6fe9f648fb798aae2609",
+      "note": "SVG plots split into raw/Phobius/plots/ and replaced by their paths"
+    }
+  },
+  "http_status": 200,
+  "returned_ids": [
+    "phi6__phi-6L_1",
+    "phi6__phi-6L_2",
+    "phi6__phi-6L_3",
+    "phi6__phi-6L_4",
+    "phi6__phi-6M_1",
+    "phi6__phi-6M_2",
+    "phi6__phi-6M_3",
+    "phi6__phi-6M_4",
+    "phi6__phi-6S_1",
+    "phi6__phi-6S_2",
+    "phi6__phi-6S_3",
+    "phi6__phi-6S_4",
+    "phi6__phi-6S_5"
+  ],
+  "status": "complete",
+  "completed_utc": "2026-11-06T19:29:07+00:00"
+}
