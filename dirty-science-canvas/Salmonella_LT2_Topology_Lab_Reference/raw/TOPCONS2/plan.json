@@ -45,6 +45,15 @@
       "n_residues": 170743,
       "planned_utc": "2026-11-06T19:26:03+00:00",
       "rerun": false
+    },
+    {
+      "batch": "r001",
+      "fasta": "raw/TOPCONS2/r001.fasta",
+      "fasta_sha256": "aceebe13cc16c8215547a1b61f6cc8d2107e13058ad5b64328433076c5884825",
+      "n_sequences": 3,
+      "n_residues": 495,
+      "planned_utc": "2026-11-08T20:12:09+00:00",
+      "rerun": true
     }
   ]
 }

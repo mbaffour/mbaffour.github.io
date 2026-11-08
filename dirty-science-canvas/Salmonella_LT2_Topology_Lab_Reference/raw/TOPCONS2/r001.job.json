@@ -1,0 +1,44 @@
+{
+  "method": "TOPCONS2",
+  "wsdl": "https://topcons.net/pred/api_submitseq/?wsdl",
+  "batch": "r001",
+  "fasta": "raw/TOPCONS2/r001.fasta",
+  "fasta_sha256": "aceebe13cc16c8215547a1b61f6cc8d2107e13058ad5b64328433076c5884825",
+  "n_sequences": 3,
+  "n_residues": 495,
+  "planned_utc": "2026-11-08T20:12:09+00:00",
+  "rerun": true,
+  "jobname": "dsc_Salmonella_LT2_r001",
+  "fixtop": "",
+  "email": "",
+  "submitted_utc": "2026-11-08T20:12:15+00:00",
+  "raw_return": [
+    "rst_ez55rj_f",
+    "https://topcons.net/pred/result/rst_ez55rj_f",
+    "3",
+    "None",
+    "\n"
+  ],
+  "jobid": "rst_ez55rj_f",
+  "result_url": "https://topcons.net/pred/result/rst_ez55rj_f",
+  "numseq_accepted": "3",
+  "error": "None",
+  "warning": "\n",
+  "status": "complete",
+  "checks": [
+    {
+      "utc": "2026-11-08T20:12:17+00:00",
+      "status": "Wait"
+    },
+    {
+      "utc": "2026-11-08T20:13:19+00:00",
+      "status": "Finished"
+    }
+  ],
+  "server_status": "Finished",
+  "result_zip_url": "https://topcons.net/static/result/rst_ez55rj_f/rst_ez55rj_f.zip",
+  "result_zip_sha256": "889b88bbc6cb1119aa1c37103153024c23a48d44f9f0e47f6e8524f099a08c3b",
+  "result_zip_bytes": 100983,
+  "completed_utc": "2026-11-08T20:13:20+00:00",
+  "result_zip": "raw/TOPCONS2/rst_ez55rj_f.zip"
+}

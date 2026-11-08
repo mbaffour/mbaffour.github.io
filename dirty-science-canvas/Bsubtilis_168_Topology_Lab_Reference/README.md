@@ -2,7 +2,7 @@
 
 Open **`Bsubtilis_168_Topology_Atlas.html`** (one offline file), or the combined atlas `../Dirty_Science_Canvas_Atlas.html`. All topology calls are **computational predictions**, not experimental evidence.
 
-> **Partial:** at least one predictor has not yet finished every eligible protein (see coverage). Missing results are shown as pending, never substituted. Resume with the commands below.
+> **Declined predictions:** TOPCONS2: 3. TOPCONS2 reports `***No topology could be produced with this method***` for some sequences (here, soluble proteins where every component returns an all-outside topology). Those are recorded as `no_topology_produced`: a result from the method, not a missing job, and resubmitting reproduces it.
 
 ## Source
 - RefSeq **NC_000964.3**: "Bacillus subtilis subsp. subtilis str. 168 complete genome", 4,215,606 nt, circular; NCBI record updated 2021/02/12; taxid 224308.
@@ -15,15 +15,15 @@ Open **`Bsubtilis_168_Topology_Atlas.html`** (one offline file), or the combined
 |---|---|---|
 | Phobius | 4,237 / 4,237 ({'complete': 4237}) | — |
 | DeepTMHMM | 4,237 / 4,237 ({'complete': 4237}) | — |
-| TOPCONS2 | 2,997 / 4,237 ({'complete': 2997, 'no_output_returned': 3, 'pending': 1237}) | — |
+| TOPCONS2 | 4,234 / 4,237 ({'complete': 4234, 'no_topology_produced': 3}) | — |
 
 - **Phobius**: phobius.sbc.su.se JSON API; batches ≤100 sequences and ≤50,000 residues. Plots not requested at proteome scale.
 - **DeepTMHMM**: BioLib app DTU/DeepTMHMM (DTU/DeepTMHMM:1.0.57); ≤500 sequences per job, one job at a time.
-- **TOPCONS2**: topcons.net WSDL API; ≤1,000 sequences per job, ≤2 active jobs. Cache status reported by the server: cached: 2,013, newrun: 987. Components (OCTOPUS, Philius, PolyPhobius, SCAMPI, SPOCTOPUS) feed the consensus; they are not extra votes.
-- Job records (exact batch FASTA checksum, job ID, times, status, output checksums) are in `raw/<Method>/*.job.json`; 57 records.
+- **TOPCONS2**: topcons.net WSDL API; ≤1,000 sequences per job, ≤2 active jobs. Cache status reported by the server: cached: 2,834, newrun: 1,403. Components (OCTOPUS, Philius, PolyPhobius, SCAMPI, SPOCTOPUS) feed the consensus; they are not extra votes.
+- Job records (exact batch FASTA checksum, job ID, times, status, output checksums) are in `raw/<Method>/*.job.json`; 58 records.
 
 ## Summary
-- 1,103 proteins with ≥1 predicted membrane span (any main method); 622 with a predicted signal peptide; 0 with DeepTMHMM β-type states; 1,297 with main-method disagreement.
+- 1,111 proteins with ≥1 predicted membrane span (any main method); 630 with a predicted signal peptide; 3 with DeepTMHMM β-type states; 1,331 with main-method disagreement.
 - Per-protein calls for every method: `topology_summary.csv` (segments use `LABELstart-stop` runs, 1-based inclusive) and `data.json`.
 
 ## Conventions & cautions
@@ -40,7 +40,7 @@ The atlas renders four views per protein — A presentation orientation (residue
 - Pipeline: GitHub → Actions → *Topology atlas re-run* (`.github/workflows/topology-rerun.yml`, https://github.com/mbaffour/mbaffour.github.io/actions/workflows/topology-rerun.yml) with organism `Bsubtilis_168`; or locally `python3 scripts/rerun.py --org Bsubtilis_168`.
 
 ## Validation
-`verification.json`: 22 pass, 0 fail, 2 pending of 24 checks. Pending: DeepTMHMM coverage of eligible proteins: 0/4237 eligible (4237 in inventory); {'pending': 4237}; TOPCONS2 coverage of eligible proteins: 0/4237 eligible (4237 in inventory); {'pending': 4237}.
+`verification.json`: 24 pass, 0 fail, 0 pending of 24 checks. 
 Checks cover input checksums, CDS reconciliation, batch-FASTA identity, raw-output checksums, segment expansion/contiguity/alphabet for every prediction, Phobius signal-peptide boundaries, DeepTMHMM β segments against its GFF, atlas embedding, and the headless-browser audit.
 
 ## Rebuild / resume (from `dirty-science-canvas/`; Python 3 with `biopython requests suds pybiolib`, Node with Playwright)

@@ -1,5 +1,5 @@
 {
- "checked_utc": "2026-11-08T04:30:23+00:00",
+ "checked_utc": "2026-11-08T20:21:56+00:00",
  "organism": "Salmonella enterica serovar Typhimurium LT2",
  "accessions": [
   "NC_003197.2",
@@ -42,12 +42,12 @@
    "detail": ""
   },
   {
-   "check": "submitted batch FASTAs are exact inventory sequences (49 job records)",
+   "check": "submitted batch FASTAs are exact inventory sequences (62 job records)",
    "status": "pass",
    "detail": ""
   },
   {
-   "check": "raw output checksums (52 files)",
+   "check": "raw output checksums (82 files)",
    "status": "pass",
    "detail": ""
   },
@@ -57,17 +57,12 @@
    "detail": ""
   },
   {
-   "check": "all batches complete",
-   "status": "pending",
-   "detail": "DeepTMHMM/b003.job.json:running"
-  },
-  {
    "check": "data.json protein set == inventory (order preserved)",
    "status": "pass",
    "detail": ""
   },
   {
-   "check": "5551 predictions: segment strings expand to exactly one label per residue, contiguous 1..L, allowed alphabet",
+   "check": "36398 predictions: segment strings expand to exactly one label per residue, contiguous 1..L, allowed alphabet",
    "status": "pass",
    "detail": ""
   },
@@ -82,7 +77,7 @@
    "detail": ""
   },
   {
-   "check": "DeepTMHMM \u03b2-type predictions agree with its GFF (P=periplasm, O=outside, B=beta sheet; 24 proteins)",
+   "check": "DeepTMHMM \u03b2-type predictions agree with its GFF (P=periplasm, O=outside, B=beta sheet; 84 proteins)",
    "status": "pass",
    "detail": ""
   },
@@ -93,13 +88,13 @@
   },
   {
    "check": "DeepTMHMM coverage of eligible proteins",
-   "status": "pending",
-   "detail": "1000/4551 eligible (4554 in inventory); {'complete': 1000, 'pending': 3551, 'unsupported': 3}"
+   "status": "pass",
+   "detail": "4551/4551 eligible (4554 in inventory); {'complete': 4551, 'unsupported': 3}"
   },
   {
    "check": "TOPCONS2 coverage of eligible proteins",
-   "status": "pending",
-   "detail": "0/4551 eligible (4554 in inventory); {'pending': 4551, 'unsupported': 3}"
+   "status": "pass",
+   "detail": "4548/4551 eligible (4554 in inventory); {'complete': 4548, 'no_topology_produced': 3, 'unsupported': 3}; 3 declined by the method itself, which is a result and not a gap"
   },
   {
    "check": "organism atlas embeds the current sequences and predictions",
@@ -143,11 +138,7 @@
   }
  ],
  "failures": [],
- "pending": [
-  "all batches complete: DeepTMHMM/b003.job.json:running",
-  "DeepTMHMM coverage of eligible proteins: 1000/4551 eligible (4554 in inventory); {'complete': 1000, 'pending': 3551, 'unsupported': 3}",
-  "TOPCONS2 coverage of eligible proteins: 0/4551 eligible (4554 in inventory); {'pending': 4551, 'unsupported': 3}"
- ],
+ "pending": [],
  "beta_state_predictions": [
   "Salmonella_LT2|STM0023",
   "Salmonella_LT2|STM0034",
@@ -172,10 +163,70 @@
   "Salmonella_LT2|STM0687",
   "Salmonella_LT2|STM0833",
   "Salmonella_LT2|STM0920",
-  "Salmonella_LT2|STM0999"
+  "Salmonella_LT2|STM0999",
+  "Salmonella_LT2|STM1043",
+  "Salmonella_LT2|STM1070",
+  "Salmonella_LT2|STM1131",
+  "Salmonella_LT2|STM1204",
+  "Salmonella_LT2|STM1246",
+  "Salmonella_LT2|STM1286",
+  "Salmonella_LT2|STM1327",
+  "Salmonella_LT2|STM1328",
+  "Salmonella_LT2|STM1394",
+  "Salmonella_LT2|STM1473",
+  "Salmonella_LT2|STM1530",
+  "Salmonella_LT2|STM1572",
+  "Salmonella_LT2|STM1587",
+  "Salmonella_LT2|STM1646",
+  "Salmonella_LT2|STM1669",
+  "Salmonella_LT2|STM1732",
+  "Salmonella_LT2|STM1768",
+  "Salmonella_LT2|STM1995",
+  "Salmonella_LT2|STM2008",
+  "Salmonella_LT2|STM2099",
+  "Salmonella_LT2|STM2150",
+  "Salmonella_LT2|STM2153",
+  "Salmonella_LT2|STM2172",
+  "Salmonella_LT2|STM2199",
+  "Salmonella_LT2|STM2245",
+  "Salmonella_LT2|STM2267",
+  "Salmonella_LT2|STM2294",
+  "Salmonella_LT2|STM2391",
+  "Salmonella_LT2|STM2395",
+  "Salmonella_LT2|STM2423",
+  "Salmonella_LT2|STM2513",
+  "Salmonella_LT2|STM2517",
+  "Salmonella_LT2|STM2690",
+  "Salmonella_LT2|STM2777",
+  "Salmonella_LT2|STM2816",
+  "Salmonella_LT2|STM2898",
+  "Salmonella_LT2|STM3028",
+  "Salmonella_LT2|STM3031",
+  "Salmonella_LT2|STM3052",
+  "Salmonella_LT2|STM3186",
+  "Salmonella_LT2|STM3318",
+  "Salmonella_LT2|STM3478",
+  "Salmonella_LT2|STM3616",
+  "Salmonella_LT2|STM3638",
+  "Salmonella_LT2|STM3641",
+  "Salmonella_LT2|STM3757",
+  "Salmonella_LT2|STM3957",
+  "Salmonella_LT2|STM4016",
+  "Salmonella_LT2|STM4051",
+  "Salmonella_LT2|STM4130",
+  "Salmonella_LT2|STM4225",
+  "Salmonella_LT2|STM4231",
+  "Salmonella_LT2|STM4242",
+  "Salmonella_LT2|STM4259",
+  "Salmonella_LT2|STM4409",
+  "Salmonella_LT2|STM4572",
+  "Salmonella_LT2|STM4593",
+  "Salmonella_LT2|PSLT009",
+  "Salmonella_LT2|PSLT017",
+  "Salmonella_LT2|PSLT034"
  ],
  "browser_check": {
-  "checked_utc": "2026-11-08T04:30:08.966Z",
+  "checked_utc": "2026-11-08T20:21:03.117Z",
   "browser": "153.0.8010.12",
   "proteins_checked": 1568,
   "phage_proteins": 1068,
@@ -219,9 +270,9 @@
   }
  },
  "summary": {
-  "checks": 27,
-  "passed": 24,
+  "checks": 26,
+  "passed": 26,
   "failed": 0,
-  "pending": 3
+  "pending": 0
  }
 }

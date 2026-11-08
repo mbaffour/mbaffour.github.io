@@ -1,5 +1,5 @@
 {
- "checked_utc": "2026-11-08T04:30:24+00:00",
+ "checked_utc": "2026-11-08T20:21:58+00:00",
  "organism": "Bacillus subtilis 168",
  "accessions": [
   "NC_000964.3"
@@ -31,12 +31,12 @@
    "detail": ""
   },
   {
-   "check": "submitted batch FASTAs are exact inventory sequences (43 job records)",
+   "check": "submitted batch FASTAs are exact inventory sequences (58 job records)",
    "status": "pass",
    "detail": ""
   },
   {
-   "check": "raw output checksums (43 files)",
+   "check": "raw output checksums (76 files)",
    "status": "pass",
    "detail": ""
   },
@@ -51,7 +51,7 @@
    "detail": ""
   },
   {
-   "check": "4237 predictions: segment strings expand to exactly one label per residue, contiguous 1..L, allowed alphabet",
+   "check": "33889 predictions: segment strings expand to exactly one label per residue, contiguous 1..L, allowed alphabet",
    "status": "pass",
    "detail": ""
   },
@@ -66,7 +66,7 @@
    "detail": ""
   },
   {
-   "check": "DeepTMHMM \u03b2-type predictions agree with its GFF (P=periplasm, O=outside, B=beta sheet; 0 proteins)",
+   "check": "DeepTMHMM \u03b2-type predictions agree with its GFF (P=periplasm, O=outside, B=beta sheet; 3 proteins)",
    "status": "pass",
    "detail": ""
   },
@@ -77,13 +77,13 @@
   },
   {
    "check": "DeepTMHMM coverage of eligible proteins",
-   "status": "pending",
-   "detail": "0/4237 eligible (4237 in inventory); {'pending': 4237}"
+   "status": "pass",
+   "detail": "4237/4237 eligible (4237 in inventory); {'complete': 4237}"
   },
   {
    "check": "TOPCONS2 coverage of eligible proteins",
-   "status": "pending",
-   "detail": "0/4237 eligible (4237 in inventory); {'pending': 4237}"
+   "status": "pass",
+   "detail": "4234/4237 eligible (4237 in inventory); {'complete': 4234, 'no_topology_produced': 3}; 3 declined by the method itself, which is a result and not a gap"
   },
   {
    "check": "organism atlas embeds the current sequences and predictions",
@@ -127,13 +127,14 @@
   }
  ],
  "failures": [],
- "pending": [
-  "DeepTMHMM coverage of eligible proteins: 0/4237 eligible (4237 in inventory); {'pending': 4237}",
-  "TOPCONS2 coverage of eligible proteins: 0/4237 eligible (4237 in inventory); {'pending': 4237}"
+ "pending": [],
+ "beta_state_predictions": [
+  "Bsubtilis_168|BSU_09959",
+  "Bsubtilis_168|BSU_11990",
+  "Bsubtilis_168|BSU_19030"
  ],
- "beta_state_predictions": [],
  "browser_check": {
-  "checked_utc": "2026-11-08T04:30:08.966Z",
+  "checked_utc": "2026-11-08T20:21:03.117Z",
   "browser": "153.0.8010.12",
   "proteins_checked": 1568,
   "phage_proteins": 1068,
@@ -178,8 +179,8 @@
  },
  "summary": {
   "checks": 24,
-  "passed": 22,
+  "passed": 24,
   "failed": 0,
-  "pending": 2
+  "pending": 0
  }
 }

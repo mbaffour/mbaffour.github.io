@@ -90,8 +90,16 @@ for key in selected(sys.argv):
     ck(f"DeepTMHMM β-type predictions agree with its GFF (P=periplasm, O=outside, B=beta sheet; {len(beta)} proteins)", not bmis, ";".join(bmis[:10]))
     res["beta_state_predictions"] = [pid for pid, _ in beta]
     for m in data["main_methods"]:
-        c = data["coverage"][m]; done = c["complete"] == c["eligible"]
-        ck(f"{m} coverage of eligible proteins", done, f"{c['complete']}/{c['eligible']} eligible ({c['inventory']} in inventory); {c['status_counts']}", pending=not done and not failed)
+        c = data["coverage"][m]
+        # 'no_topology_produced' is a terminal answer -- the method ran and explicitly declined on that sequence
+        # ("***No topology could be produced with this method***"), so waiting longer cannot change it. Counting it
+        # as pending would imply unfinished work; the check passes when every eligible protein has a terminal
+        # outcome, and the declined count is reported in the note.
+        declined = c["status_counts"].get("no_topology_produced", 0)
+        done = c["complete"] + declined == c["eligible"]
+        note = f"{c['complete']}/{c['eligible']} eligible ({c['inventory']} in inventory); {c['status_counts']}"
+        if declined: note += f"; {declined} declined by the method itself, which is a result and not a gap"
+        ck(f"{m} coverage of eligible proteins", done, note, pending=not done and not failed)
     for pid, (end, ref) in LIT.items():
         if pid in invmap:
             p = next(x for x in data["proteins"] if x["protein_id"] == pid)

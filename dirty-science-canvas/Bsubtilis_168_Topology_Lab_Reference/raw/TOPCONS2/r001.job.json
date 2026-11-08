@@ -1,0 +1,44 @@
+{
+  "method": "TOPCONS2",
+  "wsdl": "https://topcons.net/pred/api_submitseq/?wsdl",
+  "batch": "r001",
+  "fasta": "raw/TOPCONS2/r001.fasta",
+  "fasta_sha256": "64c8382ebab97ed9aa134bf7208b75b19199ecdc64db86330fad27c3e38c0e59",
+  "n_sequences": 3,
+  "n_residues": 888,
+  "planned_utc": "2026-11-08T20:12:09+00:00",
+  "rerun": true,
+  "jobname": "dsc_Bsubtilis_168_r001",
+  "fixtop": "",
+  "email": "",
+  "submitted_utc": "2026-11-08T20:14:20+00:00",
+  "raw_return": [
+    "rst_qxennfof",
+    "https://topcons.net/pred/result/rst_qxennfof",
+    "3",
+    "None",
+    "\n"
+  ],
+  "jobid": "rst_qxennfof",
+  "result_url": "https://topcons.net/pred/result/rst_qxennfof",
+  "numseq_accepted": "3",
+  "error": "None",
+  "warning": "\n",
+  "status": "complete",
+  "checks": [
+    {
+      "utc": "2026-11-08T20:14:22+00:00",
+      "status": "Wait"
+    },
+    {
+      "utc": "2026-11-08T20:15:23+00:00",
+      "status": "Finished"
+    }
+  ],
+  "server_status": "Finished",
+  "result_zip_url": "https://topcons.net/static/result/rst_qxennfof/rst_qxennfof.zip",
+  "result_zip_sha256": "dfd8dfa5374cb02018d17eec6acc2b165299402efe69d37e5e5d00703209bfb5",
+  "result_zip_bytes": 263965,
+  "completed_utc": "2026-11-08T20:15:24+00:00",
+  "result_zip": "raw/TOPCONS2/rst_qxennfof.zip"
+}

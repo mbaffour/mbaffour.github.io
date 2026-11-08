@@ -58,8 +58,11 @@ for k in [k for k in selected(sys.argv) if k in avail]:
     build([k], f"{ORGANISMS[k]['name']} — membrane topology & charge atlas", lambda _k: "", project_dir(k) / f"{k}_Topology_Atlas.html")
 orgs = build(avail, "Dirty Science Canvas — membrane topology & charge atlas of model phages and hosts", lambda k: f"{project_dir(k).name}/", ROOT / "Dirty_Science_Canvas_Atlas.html")
 def row(k, o):
-    cov = " · ".join(f"{m} {o['coverage'][m]['complete']:,}/{o['coverage'][m]['eligible']:,}" for m in ("Phobius", "DeepTMHMM", "TOPCONS2"))
-    done = all(o['coverage'][m]['complete'] == o['coverage'][m]['eligible'] for m in ("Phobius", "DeepTMHMM", "TOPCONS2"))
+    # a method that explicitly declined on a sequence is finished with it, so that does not make a row partial
+    dec = {m: o['coverage'][m]['status_counts'].get('no_topology_produced', 0) for m in ("Phobius", "DeepTMHMM", "TOPCONS2")}
+    cov = " · ".join(f"{m} {o['coverage'][m]['complete']:,}/{o['coverage'][m]['eligible']:,}" + (f" (+{dec[m]} declined)" if dec[m] else "")
+                     for m in ("Phobius", "DeepTMHMM", "TOPCONS2"))
+    done = all(o['coverage'][m]['complete'] + dec[m] == o['coverage'][m]['eligible'] for m in ("Phobius", "DeepTMHMM", "TOPCONS2"))
     return (f'<tr><td><a href="{project_dir(k).name}/{k}_Topology_Atlas.html">{html.escape(o["name"])}</a></td><td>{html.escape(o["accession"])}</td><td>{o["n"]:,}</td>'
             f'<td>{o["n_span"]:,}</td><td>{o["n_sp"]:,}</td><td>{o["n_beta"]:,}</td><td class="cov">{cov}{"" if done else " <b>(partial)</b>"}</td></tr>')
 tbl = lambda kind: "".join(row(k, o) for k, o in orgs.items() if o["kind"] == kind)
@@ -67,12 +70,12 @@ combined_mb = (ROOT / "Dirty_Science_Canvas_Atlas.html").stat().st_size / 1e6
 # Only warn about weight when it is actually heavy; a 3 MB page does not need a scare label.
 combined_size = (f"{combined_mb:.0f}&nbsp;MB download, slow on mobile" if combined_mb >= 8
                  else f"{combined_mb:.1f}&nbsp;MB download")
+head = "<tr><th>Organism</th><th>RefSeq</th><th>Proteins</th><th>≥1 span</th><th>Signal peptide</th><th>β states</th><th>Complete / eligible</th></tr>"
 hosts_block = (f"<h2>Model hosts</h2><div class=\"wrap\"><table>{head}{tbl('host')}</table></div>"
                if any(o["kind"] == "host" for o in orgs.values()) else "")
 pending_block = ("<p class=\"note\"><b>Still running:</b> " + ", ".join(html.escape(ORGANISMS[k]["name"]) for k in held_back)
                  + ". Their predictions are not finished, so they are not published yet rather than shown as partial.</p>"
                  if held_back else "")
-head = "<tr><th>Organism</th><th>RefSeq</th><th>Proteins</th><th>≥1 span</th><th>Signal peptide</th><th>β states</th><th>Complete / eligible</th></tr>"
 (ROOT / "index.html").write_text(f"""<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="color-scheme" content="light"><title>Dirty Science Canvas</title>
 <style>body{{margin:0;background:#f5f4f0;color:#17202a;font:16px/1.5 "Helvetica Neue",Helvetica,Arial,sans-serif}}main{{max-width:1100px;margin:0 auto;padding:32px 16px}}h1{{margin:0 0 4px}}h2{{margin:28px 0 8px;font-size:19px}}
 .big{{display:block;background:#13263b;color:#fff;border-radius:10px;padding:16px 20px;text-decoration:none;margin:18px 0}}.big b{{font-size:19px}}.big span{{display:block;color:#c8d3df;font-size:14px}}

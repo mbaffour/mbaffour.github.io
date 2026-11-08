@@ -114,11 +114,14 @@ def parse_topcons(pd, rec):
         if fa is None or txt is None: continue
         hdr, *sq = fa.decode().split("\n"); sid = hdr[1:].strip(); seq_ret = "".join(sq).strip(); txt = txt.decode()
         gen = re.search(r"Generated from (\S+) at (.+)", txt); name = re.search(r"Sequence name: (.+)", txt); sres = re.search(r"Sequence:\n(\S+)", txt)
-        meth = {}
+        meth = {}; declined = set()
         for m, label in [("TOPCONS2", "TOPCONS"), *[(c, c) for c in COMPONENTS]]:
             mm = re.search(rf"^{label} predicted topology:\n(\S*)", txt, re.M)
             v = mm.group(1).strip() if mm else ""
             meth[m] = v if v and not v.startswith("***") else None
+            # TOPCONS2 says "***No topology could be produced with this method***" when a method declines on a
+            # sequence. That is a real result, not a lost job, so it is recorded separately from "nothing came back".
+            if v.startswith("***"): declined.add(m)
         rel = []
         rb = files.get(f"{d}/Topcons/reliability.final")
         if rb:
@@ -126,7 +129,8 @@ def parse_topcons(pd, rec):
                 f = line.split()
                 if len(f) == 2: rel.append([int(f[0]), float(f[1])])
         dn = d.split("/")[-1]
-        out[sid] = {"returned_sequence": seq_ret, "result_sequence": sres.group(1) if sres else None, "methods": meth, "reliability": rel,
+        out[sid] = {"returned_sequence": seq_ret, "result_sequence": sres.group(1) if sres else None, "methods": meth,
+                    "declined": sorted(declined), "reliability": rel,
                     "meta": {"generated": gen.group(2) if gen else None, "backend": gen.group(1) if gen else None, "cache": fin.get(dn, {}).get("run"),
                              "cache_original_name": name.group(1) if name else None, "src": f"{src}::{d}", "jobid": rec.get("jobid")}}
     return out
@@ -196,7 +200,7 @@ def main():
                     r["topcons_meta"] = h["meta"]
                     for mm in ["TOPCONS2"] + COMPONENTS:
                         if h["methods"][mm]: add(mm, h["methods"][mm], {"src": h["meta"]["src"]}, b)
-                        else: r["status"][mm] = "no_output_returned"
+                        else: r["status"][mm] = "no_topology_produced" if mm in (h.get("declined") or ()) else "no_output_returned"
                     if o["kind"] == "phage" and h["reliability"] and "TOPCONS2" in r["pred"]: r["pred"]["TOPCONS2"]["rel"] = h["reliability"]
             done = [m for m in MAIN if r["status"].get(m) == "complete"]; P = r["pred"]; dis = []
             if len(done) >= 2:
