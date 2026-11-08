@@ -7,13 +7,19 @@ Diagnosis (scripts/07 output + composition analysis):
              so the decision boundary in that corner of the space is fitted on almost nothing.
   FAILURE 2  Long multi-domain holins. T4 holin T (218 aa, large C-terminal cytoplasmic domain) ranks 116/278 in its
              own genome. Mean-pooling an ESM embedding over 218 residues dilutes a short membrane domain.
+  FAILURE 3  Both length tails. Recall at 95% precision is 0.75 for 60-90 aa holins but 0.26 below 60 aa and 0.26
+             above 160 aa. Very short peptides give noisy mean-pooled embeddings, and the hydropathy features
+             (window 19, minimum segment 15) barely resolve anything in a 45-aa protein.
 
 Fixes, each accepted only if it earns its place:
   A  WINDOW model - trained on short sequences and on 100-aa windows of long ones; a long protein scores as the best
      window it contains, so a holin-like domain is not averaged away.
   B  ACTINO specialist - trained only on actinobacterial-host holins against actinobacterial negatives, so composition
      cannot act as a shortcut the way it does in the global model.
-  C  STACKER - logistic regression over the three out-of-fold scores, fitted with the same cluster-grouped folds.
+  C  SHORT specialist - trained only on sequences below 90 aa, so the boundary for small peptides is fitted in-domain
+     instead of being dominated by the 60-120 aa bulk.
+  D  STACKER - logistic regression over the four out-of-fold scores plus three domain indicators (is_short, is_long,
+     is_actino_like), so it can gate each specialist to the region it was built for rather than applying it blindly.
 
 Guards (same discipline as scripts/09): the frozen gold holdout is never trained on; every component and the stack are
 judged on gold average precision, leave-one-family-out recall (especially the two failing families) and the held-out
@@ -35,7 +41,7 @@ ACTINO_FAMILIES = {"1.E.32", "1.E.34", "1.E.35", "1.E.36", "1.E.39", "1.E.40", "
 ACTINO_ORG = re.compile(r"mycobacteri|streptomyc|corynebacteri|rhodococc|gordonia|actinomyc|nocardia|propionibacteri|"
                         r"bifidobacteri|arthrobacter|tsukamurella|microbacteri", re.I)
 FAILING = ["1.E.34", "1.E.40"]
-WIN, STRIDE, LONG = 100, 50, 150
+WIN, STRIDE, LONG, SHORT = 100, 50, 150, 90
 NOISE, HARD_TOL = 0.002, 0.05
 
 
@@ -96,34 +102,49 @@ def main():
 
     # ---------- B: actino specialist ----------
     act_idx = [i for i, r in enumerate(train) if is_actino(r)]
-    act_pos = sum(y[i] for i in act_idx)
-    print(f"actino specialist training pool: {len(act_idx)} ({act_pos} holins)", flush=True)
+    print(f"actino specialist pool: {len(act_idx)} ({sum(y[i] for i in act_idx)} holins)", flush=True)
+    sh_idx = [i for i, r in enumerate(train) if r["length"] < SHORT]
+    print(f"short specialist pool: {len(sh_idx)} ({sum(y[i] for i in sh_idx)} holins)", flush=True)
+
+    def gates(records_or_seqs, lengths, actino_flags):
+        return np.column_stack([(np.array(lengths) < SHORT).astype(float), (np.array(lengths) > LONG).astype(float),
+                                np.array(actino_flags, dtype=float)])
+
+    g_train = gates(None, [r["length"] for r in train], [is_actino(r) for r in train])
+    g_gold = gates(None, [r["length"] for r in gold], [is_actino(r) for r in gold])
+    g_hard = gates(None, [r["length"] for r in hard], [is_actino(r) for r in hard])
 
     # ---------- out-of-fold scores for all three ----------
     cv = list(GroupKFold(n_splits=5).split(X, y, g))
-    oof = {"general": np.zeros(len(y)), "window": np.zeros(len(y)), "actino": np.zeros(len(y))}
+    oof = {k: np.zeros(len(y)) for k in ("general", "window", "actino", "short")}
     for k, (tr, te) in enumerate(cv):
         m = hgb(); m.fit(X[tr], y[tr]); oof["general"][te] = m.predict_proba(X[te])[:, 1]
         wsel = np.isin(wg, g[tr])
         mw = hgb(); mw.fit(Xw[wsel], wy[wsel]); oof["window"][te] = window_scores(mw, [seqs[i] for i in te])
-        asel = [i for i in act_idx if i in set(tr.tolist())]
+        trs = set(tr.tolist())
+        asel = [i for i in act_idx if i in trs]
         ma = hgb(); ma.fit(X[asel], y[asel]); oof["actino"][te] = ma.predict_proba(X[te])[:, 1]
+        ssel = [i for i in sh_idx if i in trs]
+        msh = hgb(); msh.fit(X[ssel], y[ssel]); oof["short"][te] = msh.predict_proba(X[te])[:, 1]
         print(f"  fold {k+1}/5 done", flush=True)
-    Z = np.column_stack([oof[k] for k in ("general", "window", "actino")])
+    COLS = ("general", "window", "actino", "short")
+    Z = np.column_stack([oof[k] for k in COLS] + [g_train])
     stack = LogisticRegression(max_iter=4000, class_weight="balanced").fit(Z, y)
-    print("stacker coefficients (general, window, actino):", np.round(stack.coef_[0], 3), flush=True)
+    print("stacker coefficients", dict(zip(COLS + ("is_short", "is_long", "is_actino"), np.round(stack.coef_[0], 3))), flush=True)
 
     # ---------- fit final components on all trainable data ----------
     mg = hgb().fit(X, y)
     mw = hgb().fit(Xw, wy)
     ma = hgb().fit(X[act_idx], y[act_idx])
+    msh = hgb().fit(X[sh_idx], y[sh_idx])
 
-    def combo(sequences, Xmat):
-        z = np.column_stack([mg.predict_proba(Xmat)[:, 1], window_scores(mw, sequences), ma.predict_proba(Xmat)[:, 1]])
+    def combo(sequences, Xmat, gmat):
+        z = np.column_stack([mg.predict_proba(Xmat)[:, 1], window_scores(mw, sequences), ma.predict_proba(Xmat)[:, 1],
+                             msh.predict_proba(Xmat)[:, 1], gmat])
         return stack.predict_proba(z)[:, 1], z
 
-    sg_comb, zg = combo(gseqs, Xg)
-    sh_comb, _ = combo([r["sequence"] for r in hard], Xh)
+    sg_comb, zg = combo(gseqs, Xg, g_gold)
+    sh_comb, _ = combo([r["sequence"] for r in hard], Xh, g_hard)
 
     def report(name, s_gold, s_hard):
         p_, r_, th_ = precision_recall_curve(yg, s_gold)
@@ -137,6 +158,7 @@ def main():
     res = {"general": report("general", mg.predict_proba(Xg)[:, 1], mg.predict_proba(Xh)[:, 1]),
            "window": report("window", window_scores(mw, gseqs), window_scores(mw, [r["sequence"] for r in hard])),
            "actino": report("actino", ma.predict_proba(Xg)[:, 1], ma.predict_proba(Xh)[:, 1]),
+           "short": report("short", msh.predict_proba(Xg)[:, 1], msh.predict_proba(Xh)[:, 1]),
            "stacked": report("stacked", sg_comb, sh_comb)}
     for k, v in res.items(): print(k, json.dumps(v), flush=True)
 
@@ -156,9 +178,12 @@ def main():
         kw = hgb().fit(Xw[wsel], wy[wsel])
         ka_idx = [i for i in act_idx if i in set(keep.tolist())]
         ka = hgb().fit(X[ka_idx], y[ka_idx]) if len(set(y[ka_idx])) > 1 else None
+        ks_idx = [i for i in sh_idx if i in set(keep.tolist())]
+        ks = hgb().fit(X[ks_idx], y[ks_idx]) if len(set(y[ks_idx])) > 1 else None
         mseqs = [seqs[i] for i in mem]; Xm = X[mem]
         s_gen = kg.predict_proba(Xm)[:, 1]
-        z = np.column_stack([s_gen, window_scores(kw, mseqs), ka.predict_proba(Xm)[:, 1] if ka else np.zeros(len(mem))])
+        z = np.column_stack([s_gen, window_scores(kw, mseqs), ka.predict_proba(Xm)[:, 1] if ka else np.zeros(len(mem)),
+                             ks.predict_proba(Xm)[:, 1] if ks else np.zeros(len(mem)), g_train[mem]])
         s_stk = stack.predict_proba(z)[:, 1]
         lofo[f] = {"n": len(mem), "general_recall_at_P95": round(float(np.mean(s_gen >= cut_g)), 3),
                    "stacked_recall_at_P95": round(float(np.mean(s_stk >= cut_s)), 3),
@@ -177,13 +202,13 @@ def main():
     accepted = not verdict
     out = {"diagnosis": {"failure_1": "actinobacterial families 1.E.34/1.E.40 at 0.00 LOFO recall; composition shift and only 474 of 9503 negatives from actinobacteria",
                          "failure_2": "long multi-domain holins (T4 holin T, 218 aa) diluted by mean pooling"},
-           "components": res, "stacker_coefficients": {k: round(float(v), 3) for k, v in zip(("general", "window", "actino"), stack.coef_[0])},
+           "components": res, "stacker_coefficients": {k: round(float(v), 3) for k, v in zip(COLS + ("is_short", "is_long", "is_actino"), stack.coef_[0])},
            "leave_one_family_out": lofo, "accepted": accepted, "rejection_reasons": verdict,
            "guards": "frozen gold holdout never trained on; a component is kept only if it lifts the failing families without lowering gold AP, raising hard-case scores, or costing >0.10 recall on a family that already worked"}
     (B / "reports/specialists_report.json").write_text(json.dumps(out, indent=1))
     if accepted:
-        pickle.dump({"kind": "stacked", "general": mg, "window": mw, "actino": ma, "stacker": stack,
-                     "window_params": {"window": WIN, "stride": STRIDE, "apply_above": LONG},
+        pickle.dump({"kind": "stacked", "general": mg, "window": mw, "actino": ma, "short": msh, "stacker": stack,
+                     "window_params": {"window": WIN, "stride": STRIDE, "apply_above": LONG, "short_below": SHORT},
                      "features": "both", "esm_model": F.ESM.MODEL, "hand_feature_names": F.HAND_NAMES},
                     open(B / "models/holin_model_stacked.pkl", "wb"))
         print("\nACCEPTED: stacked model written to models/holin_model_stacked.pkl", flush=True)
