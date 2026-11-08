@@ -1,0 +1,22 @@
+{
+  "previous_attempts": [],
+  "method": "DeepTMHMM",
+  "service": "BioLib app DTU/DeepTMHMM",
+  "client": "pybiolib",
+  "batch": "b009",
+  "fasta": "raw/DeepTMHMM/b009.fasta",
+  "fasta_sha256": "fdfceb8b90f3f4c380b01d680315e2c01ca7c610dde75c24e4b7ea0a0d4e2f64",
+  "n_sequences": 237,
+  "n_residues": 68300,
+  "planned_utc": "2026-11-06T19:26:03+00:00",
+  "rerun": false,
+  "args": [
+    "--fasta",
+    "input.fasta"
+  ],
+  "submitted_utc": "2026-11-08T06:21:14+00:00",
+  "status": "failed",
+  "app_version": "DTU/DeepTMHMM:1.0.57",
+  "app_version_published": "2026-02-13T12:41:32.190915Z",
+  "error": "ConnectionResetError(104, 'Connection reset by peer')"
+}

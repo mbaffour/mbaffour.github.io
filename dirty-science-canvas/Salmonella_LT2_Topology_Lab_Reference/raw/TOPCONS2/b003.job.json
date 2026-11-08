@@ -1,0 +1,39 @@
+{
+  "method": "TOPCONS2",
+  "wsdl": "https://topcons.net/pred/api_submitseq/?wsdl",
+  "batch": "b003",
+  "fasta": "raw/TOPCONS2/b003.fasta",
+  "fasta_sha256": "724fa86f46783ecbf842c03f8fe30c0ae4fd0e1ed7c3cd9819aefe1cd2ae029b",
+  "n_sequences": 1000,
+  "n_residues": 322746,
+  "planned_utc": "2026-11-06T19:26:03+00:00",
+  "rerun": false,
+  "jobname": "dsc_Salmonella_LT2_b003",
+  "fixtop": "",
+  "email": "",
+  "submitted_utc": "2026-11-08T08:01:51+00:00",
+  "raw_return": [
+    "rst_ov7fe18a",
+    "https://topcons.net/pred/result/rst_ov7fe18a",
+    "1000",
+    "None",
+    "\n"
+  ],
+  "jobid": "rst_ov7fe18a",
+  "result_url": "https://topcons.net/pred/result/rst_ov7fe18a",
+  "numseq_accepted": "1000",
+  "error": "None",
+  "warning": "\n",
+  "status": "submitted",
+  "checks": [
+    {
+      "utc": "2026-11-08T08:01:53+00:00",
+      "status": "Wait"
+    },
+    {
+      "utc": "2026-11-08T08:03:55+00:00",
+      "status": "Running"
+    }
+  ],
+  "server_status": "Running"
+}
