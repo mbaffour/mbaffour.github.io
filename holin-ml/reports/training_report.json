@@ -1,0 +1,182 @@
+{
+  "n_train": 10061,
+  "n_holin": 558,
+  "n_clusters": 1028,
+  "n_holin_like_heldout": 234,
+  "cv": "GroupKFold(5) on homology clusters",
+  "results": {
+    "homology_baseline (max SW identity to fold's training holins)": {
+      "auroc": 0.7357090026654476,
+      "average_precision": 0.3064656183444418,
+      "recall_at_precision_90": 0.14695340501792115,
+      "recall_at_precision_95": 0.13620071684587814,
+      "recall_at_precision_99": 0.025089605734767026,
+      "precision_at_recall_50": 0.16597263533610945
+    },
+    "hand+logreg": {
+      "auroc": 0.8369654630852282,
+      "average_precision": 0.2740198448930932,
+      "recall_at_precision_90": 0.0017921146953405018,
+      "recall_at_precision_95": 0.0017921146953405018,
+      "recall_at_precision_99": 0.0017921146953405018,
+      "precision_at_recall_50": 0.24867724867724866,
+      "seconds": 0.2,
+      "tier_recall_at_precision_95": {
+        "tested": 0.0,
+        "curated": 0.002,
+        "putative": 0.0
+      }
+    },
+    "hand+hgb": {
+      "auroc": 0.955060786312717,
+      "average_precision": 0.758567213064211,
+      "recall_at_precision_90": 0.4283154121863799,
+      "recall_at_precision_95": 0.3727598566308244,
+      "recall_at_precision_99": 0.1917562724014337,
+      "precision_at_recall_50": 0.8805031446540881,
+      "seconds": 37.5,
+      "tier_recall_at_precision_95": {
+        "tested": 0.375,
+        "curated": 0.402,
+        "putative": 0.162
+      }
+    },
+    "esm+logreg": {
+      "auroc": 0.9804221417345287,
+      "average_precision": 0.8718878319955217,
+      "recall_at_precision_90": 0.7043010752688172,
+      "recall_at_precision_95": 0.5197132616487455,
+      "recall_at_precision_99": 0.034050179211469536,
+      "precision_at_recall_50": 0.9508196721311475,
+      "seconds": 12.4,
+      "tier_recall_at_precision_95": {
+        "tested": 0.625,
+        "curated": 0.539,
+        "putative": 0.368
+      }
+    },
+    "esm+hgb": {
+      "auroc": 0.988484866314618,
+      "average_precision": 0.909240338881532,
+      "recall_at_precision_90": 0.7670250896057348,
+      "recall_at_precision_95": 0.6469534050179212,
+      "recall_at_precision_99": 0.24731182795698925,
+      "precision_at_recall_50": 0.979381443298969,
+      "seconds": 592.6,
+      "tier_recall_at_precision_95": {
+        "tested": 0.625,
+        "curated": 0.676,
+        "putative": 0.441
+      }
+    },
+    "both+logreg": {
+      "auroc": 0.979510526198669,
+      "average_precision": 0.8664200538315571,
+      "recall_at_precision_90": 0.6881720430107527,
+      "recall_at_precision_95": 0.4444444444444444,
+      "recall_at_precision_99": 0.03046594982078853,
+      "precision_at_recall_50": 0.9496644295302014,
+      "seconds": 13.4,
+      "tier_recall_at_precision_95": {
+        "tested": 0.5,
+        "curated": 0.461,
+        "putative": 0.324
+      }
+    },
+    "both+hgb": {
+      "auroc": 0.9895550810779618,
+      "average_precision": 0.9150746688502119,
+      "recall_at_precision_90": 0.7921146953405018,
+      "recall_at_precision_95": 0.6559139784946236,
+      "recall_at_precision_99": 0.22939068100358423,
+      "precision_at_recall_50": 0.9793103448275862,
+      "seconds": 559.8,
+      "tier_recall_at_precision_95": {
+        "tested": 0.625,
+        "curated": 0.687,
+        "putative": 0.441
+      }
+    }
+  },
+  "hard_case_scores": {
+    "Bacillus spore morphogenesis/germination holin-like": {
+      "n": 7,
+      "median_score": 0.053,
+      "frac_above_0.5": 0.0
+    },
+    "Brachyspira (GTA-associated) holin": {
+      "n": 11,
+      "median_score": 0.019,
+      "frac_above_0.5": 0.364
+    },
+    "C. difficile TcdE toxin-release holin-like": {
+      "n": 33,
+      "median_score": 0.758,
+      "frac_above_0.5": 0.697
+    },
+    "Flp/Fap pilin putative holin": {
+      "n": 6,
+      "median_score": 0.025,
+      "frac_above_0.5": 0.0
+    },
+    "Hok/Gef toxin": {
+      "n": 15,
+      "median_score": 0.047,
+      "frac_above_0.5": 0.0
+    },
+    "T4 superinfection immunity (not a holin)": {
+      "n": 12,
+      "median_score": 0.018,
+      "frac_above_0.5": 0.0
+    },
+    "antiholin / CidB-LrgB (not a holin)": {
+      "n": 26,
+      "median_score": 0.01,
+      "frac_above_0.5": 0.077
+    },
+    "archaeal putative holin": {
+      "n": 4,
+      "median_score": 0.874,
+      "frac_above_0.5": 1.0
+    },
+    "archaeal/bacterial putative holin": {
+      "n": 7,
+      "median_score": 0.25,
+      "frac_above_0.5": 0.286
+    },
+    "bacterial CidA/LrgA holin-like": {
+      "n": 20,
+      "median_score": 0.011,
+      "frac_above_0.5": 0.0
+    },
+    "bacterial holin-like (CidA/LrgA or non-phage)": {
+      "n": 10,
+      "median_score": 0.01,
+      "frac_above_0.5": 0.0
+    },
+    "gene-transfer-agent release holin": {
+      "n": 20,
+      "median_score": 0.869,
+      "frac_above_0.5": 0.7
+    },
+    "holin-like toxin": {
+      "n": 7,
+      "median_score": 0.285,
+      "frac_above_0.5": 0.143
+    },
+    "phage Mu releasin (holin-like, not a holin)": {
+      "n": 31,
+      "median_score": 0.961,
+      "frac_above_0.5": 1.0
+    },
+    "transglycosylase-associated bacterial holin-like": {
+      "n": 25,
+      "median_score": 0.308,
+      "frac_above_0.5": 0.4
+    }
+  },
+  "best_model": {
+    "features": "both",
+    "algorithm": "hgb"
+  }
+}
