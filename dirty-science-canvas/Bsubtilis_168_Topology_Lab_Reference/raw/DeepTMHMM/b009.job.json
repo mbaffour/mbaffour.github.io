@@ -1,5 +1,12 @@
 {
-  "previous_attempts": [],
+  "previous_attempts": [
+    {
+      "submitted_utc": "2026-11-08T06:21:14+00:00",
+      "status": "failed",
+      "error": "ConnectionResetError(104, 'Connection reset by peer')",
+      "job_id": null
+    }
+  ],
   "method": "DeepTMHMM",
   "service": "BioLib app DTU/DeepTMHMM",
   "client": "pybiolib",
@@ -14,9 +21,6 @@
     "--fasta",
     "input.fasta"
   ],
-  "submitted_utc": "2026-11-08T06:21:14+00:00",
-  "status": "failed",
-  "app_version": "DTU/DeepTMHMM:1.0.57",
-  "app_version_published": "2026-02-13T12:41:32.190915Z",
-  "error": "ConnectionResetError(104, 'Connection reset by peer')"
+  "submitted_utc": "2026-11-08T09:33:33+00:00",
+  "status": "running"
 }
