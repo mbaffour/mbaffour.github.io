@@ -1,0 +1,110 @@
+{
+ "diagnosis": {
+  "failure_1": "actinobacterial families 1.E.34/1.E.40 at 0.00 LOFO recall; composition shift and only 474 of 9503 negatives from actinobacteria",
+  "failure_2": "long multi-domain holins (T4 holin T, 218 aa) diluted by mean pooling"
+ },
+ "components": {
+  "general": {
+   "gold_average_precision": 0.9036,
+   "gold_auroc": 0.9831,
+   "gold_recall_at_P95": 0.6392,
+   "threshold_P95": 0.9597,
+   "hard_case_median": 0.016
+  },
+  "window": {
+   "gold_average_precision": 0.8297,
+   "gold_auroc": 0.9689,
+   "gold_recall_at_P95": 0.433,
+   "threshold_P95": 0.9497,
+   "hard_case_median": 0.1582
+  },
+  "actino": {
+   "gold_average_precision": 0.3289,
+   "gold_auroc": 0.8868,
+   "gold_recall_at_P95": 0.0103,
+   "threshold_P95": 0.9998,
+   "hard_case_median": 0.1589
+  },
+  "short": {
+   "gold_average_precision": 0.7815,
+   "gold_auroc": 0.9485,
+   "gold_recall_at_P95": 0.3969,
+   "threshold_P95": 0.9477,
+   "hard_case_median": 0.0297
+  },
+  "stacked": {
+   "gold_average_precision": 0.8823,
+   "gold_auroc": 0.9744,
+   "gold_recall_at_P95": 0.6031,
+   "threshold_P95": 0.9995,
+   "hard_case_median": 0.2682
+  }
+ },
+ "stacker_coefficients": {
+  "general": 5.486,
+  "window": 3.855,
+  "actino": 0.534,
+  "short": 1.502,
+  "is_short": 0.325,
+  "is_long": -0.806,
+  "is_actino": 0.603
+ },
+ "leave_one_family_out": {
+  "1.E.34": {
+   "n": 19,
+   "general_recall_at_P95": 0.0,
+   "stacked_recall_at_P95": 0.0,
+   "general_median": 0.001,
+   "stacked_median": 0.891
+  },
+  "1.E.40": {
+   "n": 14,
+   "general_recall_at_P95": 0.0,
+   "stacked_recall_at_P95": 0.0,
+   "general_median": 0.001,
+   "stacked_median": 0.883
+  },
+  "1.E.26": {
+   "n": 31,
+   "general_recall_at_P95": 0.129,
+   "stacked_recall_at_P95": 0.161,
+   "general_median": 0.11,
+   "stacked_median": 0.888
+  },
+  "1.E.11": {
+   "n": 21,
+   "general_recall_at_P95": 0.238,
+   "stacked_recall_at_P95": 0.286,
+   "general_median": 0.398,
+   "stacked_median": 0.976
+  },
+  "1.E.31": {
+   "n": 19,
+   "general_recall_at_P95": 0.684,
+   "stacked_recall_at_P95": 0.789,
+   "general_median": 0.999,
+   "stacked_median": 1.0
+  },
+  "1.E.5": {
+   "n": 18,
+   "general_recall_at_P95": 0.444,
+   "stacked_recall_at_P95": 0.611,
+   "general_median": 0.926,
+   "stacked_median": 1.0
+  },
+  "1.E.36": {
+   "n": 18,
+   "general_recall_at_P95": 0.389,
+   "stacked_recall_at_P95": 0.611,
+   "general_median": 0.942,
+   "stacked_median": 1.0
+  }
+ },
+ "accepted": false,
+ "rejection_reasons": [
+  "stack lowers gold AP 0.9036 -> 0.8823",
+  "stack raises hard-case median 0.016 -> 0.2682",
+  "no gain on the failing families"
+ ],
+ "guards": "frozen gold holdout never trained on; a component is kept only if it lifts the failing families without lowering gold AP, raising hard-case scores, or costing >0.10 recall on a family that already worked"
+}
