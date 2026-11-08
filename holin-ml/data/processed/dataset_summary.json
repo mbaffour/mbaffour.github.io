@@ -1,0 +1,27 @@
+{
+  "total": 10295,
+  "by_label": {
+    "holin": 558,
+    "holin_like": 234,
+    "negative": 9503
+  },
+  "holin_tiers": {
+    "tested": 8,
+    "curated": 482,
+    "putative": 68
+  },
+  "holin_families": 61,
+  "negatives_by_pool": {
+    "phage": 1619,
+    "bacterial_tm": 7884
+  },
+  "pool_rows_before_dedup": {
+    "phage": 1679,
+    "bacterial_tm": 10957,
+    "excluded_lysis_related": 2514
+  },
+  "merged_duplicates": 3227,
+  "label_resolved": 11,
+  "conflicts_dropped": 0,
+  "nonstandard_sequences": 10
+}

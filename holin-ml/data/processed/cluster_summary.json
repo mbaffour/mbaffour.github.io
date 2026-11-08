@@ -1,0 +1,47 @@
+{
+  "params": {
+    "min_identity": 0.3,
+    "min_coverage_shorter": 0.5,
+    "min_sw_score": 0,
+    "scoring": "Smith-Waterman, BLOSUM62, gap open 11 / extend 1 (pyopal); exhaustive all-vs-all",
+    "clustering": "greedy set-cover, longest-first (CD-HIT/MMseqs-style)"
+  },
+  "candidate_edges": 3535597,
+  "score_threshold_scan": {
+    "0": {
+      "clusters": 1034,
+      "largest": 735,
+      "holin_clusters": 143,
+      "largest_holin_cluster": 69,
+      "holin_singletons": 78
+    },
+    "50": {
+      "clusters": 1051,
+      "largest": 411,
+      "holin_clusters": 153,
+      "largest_holin_cluster": 58,
+      "holin_singletons": 81
+    },
+    "60": {
+      "clusters": 1184,
+      "largest": 237,
+      "holin_clusters": 231,
+      "largest_holin_cluster": 31,
+      "holin_singletons": 137
+    },
+    "70": {
+      "clusters": 1592,
+      "largest": 143,
+      "holin_clusters": 304,
+      "largest_holin_cluster": 23,
+      "holin_singletons": 202
+    }
+  },
+  "chosen": {
+    "clusters": 1034,
+    "largest": 735,
+    "holin_clusters": 143,
+    "largest_holin_cluster": 69,
+    "holin_singletons": 78
+  }
+}

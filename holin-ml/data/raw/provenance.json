@@ -1,0 +1,56 @@
+{
+  "uniprot_sp_holin.tsv.gz": {
+    "url": "https://rest.uniprot.org/uniprotkb/stream?compressed=true&format=tsv&fields=accession,id,reviewed,protein_name,gene_names,organism_name,organism_id,lineage_ids,virus_hosts,length,protein_existence,protein_families,cc_function,keyword,ft_transmem,xref_pfam,xref_interpro,xref_tcdb,sequence&query=reviewed%3Atrue%20AND%20%28protein_name%3Aholin%20OR%20family%3Aholin%20OR%20protein_name%3Aantiholin%20OR%20protein_name%3Apinholin%29",
+    "retrieved_utc": "2026-11-08T04:34:25+00:00",
+    "sha256": "4e461ca65c6a2536852e86dfe2a324a675a5a9e05aa650d909c3c2cca4a58ff3",
+    "bytes": 21290,
+    "query": "reviewed:true AND (protein_name:holin OR family:holin OR protein_name:antiholin OR protein_name:pinholin)",
+    "uniprot_release": "2026_04",
+    "uniprot_release_date": "04-November-2026"
+  },
+  "uniprot_sp_phage.tsv.gz": {
+    "url": "https://rest.uniprot.org/uniprotkb/stream?compressed=true&format=tsv&fields=accession,id,reviewed,protein_name,gene_names,organism_name,organism_id,lineage_ids,virus_hosts,length,protein_existence,protein_families,cc_function,keyword,ft_transmem,xref_pfam,xref_interpro,xref_tcdb,sequence&query=reviewed%3Atrue%20AND%20taxonomy_id%3A10239%20AND%20virus_host_id%3A2",
+    "retrieved_utc": "2026-11-08T04:35:47+00:00",
+    "sha256": "8eb688b3f670731f1a5a85f1409502c3852deabae78c502c69089b7b56df6168",
+    "bytes": 644535,
+    "query": "reviewed:true AND taxonomy_id:10239 AND virus_host_id:2",
+    "uniprot_release": "2026_04",
+    "uniprot_release_date": "04-November-2026"
+  },
+  "uniprot_sp_bact_small_tm.tsv.gz": {
+    "url": "https://rest.uniprot.org/uniprotkb/stream?compressed=true&format=tsv&fields=accession,id,reviewed,protein_name,gene_names,organism_name,organism_id,lineage_ids,virus_hosts,length,protein_existence,protein_families,cc_function,keyword,ft_transmem,xref_pfam,xref_interpro,xref_tcdb,sequence&query=reviewed%3Atrue%20AND%20taxonomy_id%3A2%20AND%20length%3A%5B30%20TO%20250%5D%20AND%20ft_transmem%3A%2A",
+    "retrieved_utc": "2026-11-08T04:36:12+00:00",
+    "sha256": "ea72933af5024b002e0bc8c033421eb79bccdbf9950aff2d61d5f4b14abe48a3",
+    "bytes": 2566608,
+    "query": "reviewed:true AND taxonomy_id:2 AND length:[30 TO 250] AND ft_transmem:*",
+    "uniprot_release": "2026_04",
+    "uniprot_release_date": "04-November-2026"
+  },
+  "uniprot_tr_holin_family.tsv.gz": {
+    "url": "https://rest.uniprot.org/uniprotkb/stream?compressed=true&format=tsv&fields=accession,id,reviewed,protein_name,gene_names,organism_name,organism_id,lineage_ids,virus_hosts,length,protein_existence,protein_families,cc_function,keyword,ft_transmem,xref_pfam,xref_interpro,xref_tcdb,sequence&query=reviewed%3Afalse%20AND%20family%3Aholin",
+    "retrieved_utc": "2026-11-08T04:36:17+00:00",
+    "sha256": "3af0c27ec8e14d5d1e408f607bdb1dd6f9f42e74b1b6ea9ba645f65420ac2199",
+    "bytes": 229345,
+    "query": "reviewed:false AND family:holin",
+    "uniprot_release": "2026_04",
+    "uniprot_release_date": "04-November-2026"
+  },
+  "tcdb.fasta": {
+    "url": "https://www.tcdb.org/public/tcdb",
+    "retrieved_utc": "2026-11-08T04:36:21+00:00",
+    "sha256": "b0c74f910da3ab4b80180561ef6878ea471dbd4afcb497c1d6fe24dd0b30b360",
+    "bytes": 13590695
+  },
+  "tcdb_families.tsv": {
+    "url": "https://www.tcdb.org/cgi-bin/projectv/public/families.py",
+    "retrieved_utc": "2026-11-08T04:36:22+00:00",
+    "sha256": "efe674ed5bd76b67ba64d017e45ddeecbfb7632c8302e98b4772022f8a6c7d72",
+    "bytes": 142363
+  },
+  "interpro_pfam_holin.json": {
+    "url": "https://www.ebi.ac.uk/interpro/api/entry/pfam/?search=holin&page_size=200",
+    "retrieved_utc": "2026-11-08T04:36:23+00:00",
+    "sha256": "deaaf19e93ffcf7a5d340ec68f4426a0cf0bd3131934636e6512b16fcc8967df",
+    "bytes": 9683
+  }
+}
