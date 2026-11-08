@@ -1,0 +1,750 @@
+{
+ "model": {
+  "features": "both",
+  "algorithm": "hgb",
+  "esm_model": "facebook/esm2_t12_35M_UR50D"
+ },
+ "grouped_cv": {
+  "auroc": 0.9895550810779618,
+  "average_precision": 0.9150746688502119,
+  "score_thresholds": {
+   "P90": 0.5932,
+   "P95": 0.9573
+  }
+ },
+ "by_family_grouped_cv": {
+  "1.E.26": {
+   "name": "The Holin LLH (Holin LLH) Family",
+   "n": 42,
+   "recall_at_P95": 0.762,
+   "recall_at_P90": 0.857,
+   "median_score": 0.997
+  },
+  "1.E.2": {
+   "name": "The \u03bb Holin S (\u03bb Holin) Family",
+   "n": 31,
+   "recall_at_P95": 0.645,
+   "recall_at_P90": 0.742,
+   "median_score": 0.999
+  },
+  "1.E.5": {
+   "name": "The PRD1 Phage P35 Holin (P35 Holin) Family",
+   "n": 30,
+   "recall_at_P95": 0.9,
+   "recall_at_P90": 0.9,
+   "median_score": 0.999
+  },
+  "1.E.11": {
+   "name": "The \u03c611 Holin (\u03c611 Holin) Family",
+   "n": 29,
+   "recall_at_P95": 0.483,
+   "recall_at_P90": 0.69,
+   "median_score": 0.927
+  },
+  "1.E.36": {
+   "name": "The Mycobacterial 2 TMS Phage Holin (M2 Hol) Family",
+   "n": 26,
+   "recall_at_P95": 0.846,
+   "recall_at_P90": 0.962,
+   "median_score": 0.998
+  },
+  "1.E.34": {
+   "name": "The Putative Actinobacterial Holin-X (Hol-X) Family",
+   "n": 24,
+   "recall_at_P95": 0.625,
+   "recall_at_P90": 0.792,
+   "median_score": 0.979
+  },
+  "1.E.31": {
+   "name": "The SPP1 Holin (SPP1 Holin) Family",
+   "n": 24,
+   "recall_at_P95": 1.0,
+   "recall_at_P90": 1.0,
+   "median_score": 1.0
+  },
+  "1.E.40": {
+   "name": "The Mycobacterial 4 TMS Phage Holin (MP4 Holin) Family",
+   "n": 22,
+   "recall_at_P95": 0.091,
+   "recall_at_P90": 0.591,
+   "median_score": 0.677
+  },
+  "1.E.64": {
+   "name": "The P7 Phage Holin LydD (LydD) Family",
+   "n": 22,
+   "recall_at_P95": 0.727,
+   "recall_at_P90": 0.864,
+   "median_score": 0.994
+  },
+  "1.E.6": {
+   "name": "The T7 Holin (T7 Holin) Family",
+   "n": 18,
+   "recall_at_P95": 0.833,
+   "recall_at_P90": 0.833,
+   "median_score": 0.997
+  },
+  "SwissProt-only": {
+   "name": "Swiss-Prot entries without a TCDB family",
+   "n": 16,
+   "recall_at_P95": 0.812,
+   "recall_at_P90": 0.875,
+   "median_score": 0.992
+  },
+  "1.E.29": {
+   "name": "The Holin Hol44 (Hol44) Family",
+   "n": 15,
+   "recall_at_P95": 0.867,
+   "recall_at_P90": 0.933,
+   "median_score": 0.998
+  },
+  "1.E.25": {
+   "name": "The Pseudomonas phage F116 Holin (F116 Holin) Family",
+   "n": 14,
+   "recall_at_P95": 0.929,
+   "recall_at_P90": 0.929,
+   "median_score": 1.0
+  },
+  "1.E.57": {
+   "name": "The Actinobacterial Phage Holin (APH) Family",
+   "n": 14,
+   "recall_at_P95": 0.857,
+   "recall_at_P90": 1.0,
+   "median_score": 0.999
+  },
+  "1.E.18": {
+   "name": "The Lactococcus lactis Phage r1t Holin (r1t Holin) Family",
+   "n": 12,
+   "recall_at_P95": 0.667,
+   "recall_at_P90": 0.917,
+   "median_score": 0.998
+  },
+  "1.E.56": {
+   "name": "The Putative 3 TMS Holin (3-Hol) Family",
+   "n": 12,
+   "recall_at_P95": 0.5,
+   "recall_at_P90": 0.667,
+   "median_score": 0.941
+  },
+  "1.E.7": {
+   "name": "The HP1 Holin (HP1 Holin) Family",
+   "n": 11,
+   "recall_at_P95": 1.0,
+   "recall_at_P90": 1.0,
+   "median_score": 1.0
+  },
+  "1.E.63": {
+   "name": "The Actinobacterial Phage Holin (HolSD) Family",
+   "n": 11,
+   "recall_at_P95": 0.545,
+   "recall_at_P90": 0.909,
+   "median_score": 0.977
+  },
+  "1.E.12": {
+   "name": "The \u03c6Adh Holin (\u03c6Adh Holin) Family",
+   "n": 10,
+   "recall_at_P95": 0.5,
+   "recall_at_P90": 0.7,
+   "median_score": 0.951
+  },
+  "1.E.1": {
+   "name": "The P21 Holin S (P21 Holin) Family",
+   "n": 9,
+   "recall_at_P95": 0.889,
+   "recall_at_P90": 0.889,
+   "median_score": 1.0
+  },
+  "1.E.27": {
+   "name": "The BhlA Holin (BhlA Holin) Family",
+   "n": 8,
+   "recall_at_P95": 1.0,
+   "recall_at_P90": 1.0,
+   "median_score": 0.999
+  },
+  "1.E.3": {
+   "name": "The P2 Holin (P2 Holin) Family",
+   "n": 8,
+   "recall_at_P95": 0.625,
+   "recall_at_P90": 0.625,
+   "median_score": 0.985
+  },
+  "1.E.17": {
+   "name": "The BlyA Holin (BlyA Holin) Family",
+   "n": 8,
+   "recall_at_P95": 0.75,
+   "recall_at_P90": 1.0,
+   "median_score": 0.995
+  },
+  "1.E.62": {
+   "name": "The Putative Firmicute Phage Holin (YvrJ) Family",
+   "n": 8,
+   "recall_at_P95": 1.0,
+   "recall_at_P90": 1.0,
+   "median_score": 0.998
+  },
+  "1.E.24": {
+   "name": "The Bacterophage Dp-1 Holin (Dp-1 Holin) Family",
+   "n": 7,
+   "recall_at_P95": 1.0,
+   "recall_at_P90": 1.0,
+   "median_score": 1.0
+  },
+  "1.E.33": {
+   "name": "The 2 or 3 TMS Putative Holin (2/3 Holin) Family",
+   "n": 7,
+   "recall_at_P95": 0.0,
+   "recall_at_P90": 0.286,
+   "median_score": 0.096
+  },
+  "1.E.65": {
+   "name": "The Firmicute Prophage XhlA Holin (XhlA) Family",
+   "n": 7,
+   "recall_at_P95": 0.714,
+   "recall_at_P90": 0.857,
+   "median_score": 0.99
+  },
+  "1.E.22": {
+   "name": "The Neisserial Phage-associated Holin (NP-Holin) Family",
+   "n": 7,
+   "recall_at_P95": 0.143,
+   "recall_at_P90": 0.143,
+   "median_score": 0.124
+  },
+  "1.E.39": {
+   "name": "The Mycobacterial Phage PBI1 Gp36 Holin (Gp36 Hol) Family",
+   "n": 6,
+   "recall_at_P95": 0.667,
+   "recall_at_P90": 0.833,
+   "median_score": 1.0
+  },
+  "1.E.8": {
+   "name": "The T4 Holin (T4 Holin) Family",
+   "n": 6,
+   "recall_at_P95": 0.0,
+   "recall_at_P90": 0.167,
+   "median_score": 0.009
+  },
+  "1.E.21": {
+   "name": "The Listeria Phage A118 Holin (HolA118) Family",
+   "n": 6,
+   "recall_at_P95": 0.833,
+   "recall_at_P90": 0.833,
+   "median_score": 1.0
+  },
+  "1.E.20": {
+   "name": "The Pseudomonas aeruginosa Hol Holin (Hol Holin) Family",
+   "n": 6,
+   "recall_at_P95": 0.333,
+   "recall_at_P90": 0.833,
+   "median_score": 0.95
+  },
+  "1.E.67": {
+   "name": "The Holin of Pseudomonas phage HZ2201 (HolinPP) Family",
+   "n": 6,
+   "recall_at_P95": 0.333,
+   "recall_at_P90": 0.5,
+   "median_score": 0.529
+  },
+  "1.E.49": {
+   "name": "The Putative Treponema 4 TMS Holin (Tre4Hol) Family",
+   "n": 5,
+   "recall_at_P95": 0.0,
+   "recall_at_P90": 0.2,
+   "median_score": 0.018
+  },
+  "1.E.71": {
+   "name": "The Bacteriophage Holin-2 (BPH2) Family",
+   "n": 5,
+   "recall_at_P95": 0.2,
+   "recall_at_P90": 0.2,
+   "median_score": 0.359
+  },
+  "1.E.10": {
+   "name": "The Bacillus subtilis \u03c629 Holin (\u03c629 Holin) Family",
+   "n": 4,
+   "recall_at_P95": 0.25,
+   "recall_at_P90": 0.75,
+   "median_score": 0.799
+  },
+  "1.E.60": {
+   "name": "The Putative Holin (Pu-Hol) Family",
+   "n": 4,
+   "recall_at_P95": 0.25,
+   "recall_at_P90": 1.0,
+   "median_score": 0.883
+  },
+  "1.E.4": {
+   "name": "The LydA Holin (LydA Holin) Family",
+   "n": 4,
+   "recall_at_P95": 0.75,
+   "recall_at_P90": 0.75,
+   "median_score": 1.0
+  },
+  "1.E.16": {
+   "name": "The Cph1 Holin (Cph1 Holin) Family",
+   "n": 4,
+   "recall_at_P95": 0.25,
+   "recall_at_P90": 0.75,
+   "median_score": 0.952
+  },
+  "1.E.32": {
+   "name": "The Actinobacterial 1 TMS Holin (A-1 Holin) Family",
+   "n": 4,
+   "recall_at_P95": 0.5,
+   "recall_at_P90": 1.0,
+   "median_score": 0.966
+  },
+  "1.E.28": {
+   "name": "The Streptomyces aureofaciens Phage Mu1/6 Holin (Mu1/6 Holin) Family",
+   "n": 4,
+   "recall_at_P95": 1.0,
+   "recall_at_P90": 1.0,
+   "median_score": 0.998
+  },
+  "1.E.13": {
+   "name": "The Firmicute phage \u03c6U53 Holin (\u03c6U53 Holin) Family",
+   "n": 4,
+   "recall_at_P95": 0.75,
+   "recall_at_P90": 0.75,
+   "median_score": 0.979
+  },
+  "1.E.50": {
+   "name": "The Beta-Proteobacterial Holin (BP-Hol) Family",
+   "n": 3,
+   "recall_at_P95": 0.667,
+   "recall_at_P90": 1.0,
+   "median_score": 0.999
+  },
+  "1.E.44": {
+   "name": "The Putative Lactococcus lactis Holin (LLHol) Family",
+   "n": 3,
+   "recall_at_P95": 0.0,
+   "recall_at_P90": 0.0,
+   "median_score": 0.052
+  },
+  "1.E.51": {
+   "name": "The Putative Listeria Phage Holin (LP-Hol) Family",
+   "n": 3,
+   "recall_at_P95": 0.333,
+   "recall_at_P90": 0.667,
+   "median_score": 0.774
+  },
+  "1.E.30": {
+   "name": "The Vibrio Holin (Vibrio Holin) Family",
+   "n": 3,
+   "recall_at_P95": 0.667,
+   "recall_at_P90": 1.0,
+   "median_score": 0.999
+  },
+  "1.E.48": {
+   "name": "The Enterobacterial Holin (EBHol) Family",
+   "n": 3,
+   "recall_at_P95": 1.0,
+   "recall_at_P90": 1.0,
+   "median_score": 0.999
+  },
+  "1.E.37": {
+   "name": "The Phage T1 Holin (T1 Holin) Family",
+   "n": 3,
+   "recall_at_P95": 0.333,
+   "recall_at_P90": 0.667,
+   "median_score": 0.747
+  },
+  "1.E.35": {
+   "name": "The Mycobacterial 1 TMS Phage Holin (M1 Hol) Family",
+   "n": 3,
+   "recall_at_P95": 0.0,
+   "recall_at_P90": 0.333,
+   "median_score": 0.149
+  },
+  "1.E.47": {
+   "name": "The Caulobacter Phage Holin (CauHol) Family",
+   "n": 2,
+   "recall_at_P95": 0.5,
+   "recall_at_P90": 0.5,
+   "median_score": 0.495
+  },
+  "1.E.69": {
+   "name": "The Caudoviricetes Holin (CVH) Family",
+   "n": 2,
+   "recall_at_P95": 0.5,
+   "recall_at_P90": 1.0,
+   "median_score": 0.831
+  },
+  "1.E.59": {
+   "name": "The Putative Acholeplasma Phage L2 Holin (L2 Holin) Family",
+   "n": 2,
+   "recall_at_P95": 0.0,
+   "recall_at_P90": 0.0,
+   "median_score": 0.038
+  },
+  "1.E.61": {
+   "name": "The Pseudomonas phage phiKMV (PpKMV holin) Family",
+   "n": 2,
+   "recall_at_P95": 1.0,
+   "recall_at_P90": 1.0,
+   "median_score": 1.0
+  },
+  "1.E.68": {
+   "name": "The Holin of Phage SGF2 (H-PSGF2) Family",
+   "n": 2,
+   "recall_at_P95": 0.0,
+   "recall_at_P90": 0.0,
+   "median_score": 0.369
+  },
+  "1.E.46": {
+   "name": "The Prophage Hp1 Holin (Hp1Hol) Family",
+   "n": 1,
+   "recall_at_P95": 0.0,
+   "recall_at_P90": 0.0,
+   "median_score": 0.06
+  },
+  "1.E.41": {
+   "name": "The Deinococcus/Thermus Holin (D/T-Hol) Family",
+   "n": 1,
+   "recall_at_P95": 1.0,
+   "recall_at_P90": 1.0,
+   "median_score": 0.97
+  },
+  "1.E.19": {
+   "name": "The Clostridium difficile TcdE Holin (TcdE Holin) Family",
+   "n": 1,
+   "recall_at_P95": 0.0,
+   "recall_at_P90": 0.0,
+   "median_score": 0.008
+  },
+  "1.E.15": {
+   "name": "The ArpQ Holin (ArpQ Holin) Family",
+   "n": 1,
+   "recall_at_P95": 0.0,
+   "recall_at_P90": 0.0,
+   "median_score": 0.006
+  },
+  "1.E.45": {
+   "name": "The Xanthomonas Phage Holin (XanPHol) Family",
+   "n": 1,
+   "recall_at_P95": 1.0,
+   "recall_at_P90": 1.0,
+   "median_score": 0.997
+  },
+  "1.E.38": {
+   "name": "The Staphylococcus phage P68 Putative Holin (P68 Hol) Family",
+   "n": 1,
+   "recall_at_P95": 0.0,
+   "recall_at_P90": 0.0,
+   "median_score": 0.002
+  },
+  "1.E.58": {
+   "name": "The Erwinia Phage Phi-Ea1h Holin (EPPE-Hol) Family",
+   "n": 1,
+   "recall_at_P95": 0.0,
+   "recall_at_P90": 0.0,
+   "median_score": 0.122
+  }
+ },
+ "by_tier": {
+  "tested": {
+   "n": 8,
+   "recall_at_P95": 0.625
+  },
+  "curated": {
+   "n": 482,
+   "recall_at_P95": 0.687
+  },
+  "putative": {
+   "n": 68,
+   "recall_at_P95": 0.441
+  }
+ },
+ "by_length": {
+  "0-60 aa": {
+   "n": 27,
+   "recall_at_P95": 0.259
+  },
+  "60-90 aa": {
+   "n": 206,
+   "recall_at_P95": 0.748
+  },
+  "90-120 aa": {
+   "n": 164,
+   "recall_at_P95": 0.72
+  },
+  "120-160 aa": {
+   "n": 118,
+   "recall_at_P95": 0.644
+  },
+  "160-+ aa": {
+   "n": 43,
+   "recall_at_P95": 0.256
+  }
+ },
+ "leave_one_family_out": {
+  "min_family_size": 6,
+  "families": {
+   "1.E.26": {
+    "name": "The Holin LLH (Holin LLH) Family",
+    "n": 42,
+    "holins_left_in_training": 243,
+    "recall_at_P95": 0.214,
+    "recall_at_P90": 0.405,
+    "median_score": 0.392
+   },
+   "1.E.2": {
+    "name": "The \u03bb Holin S (\u03bb Holin) Family",
+    "n": 31,
+    "holins_left_in_training": 278,
+    "recall_at_P95": 0.581,
+    "recall_at_P90": 0.677,
+    "median_score": 0.993
+   },
+   "1.E.5": {
+    "name": "The PRD1 Phage P35 Holin (P35 Holin) Family",
+    "n": 30,
+    "holins_left_in_training": 332,
+    "recall_at_P95": 0.767,
+    "recall_at_P90": 0.9,
+    "median_score": 0.994
+   },
+   "1.E.11": {
+    "name": "The \u03c611 Holin (\u03c611 Holin) Family",
+    "n": 29,
+    "holins_left_in_training": 276,
+    "recall_at_P95": 0.276,
+    "recall_at_P90": 0.483,
+    "median_score": 0.49
+   },
+   "1.E.36": {
+    "name": "The Mycobacterial 2 TMS Phage Holin (M2 Hol) Family",
+    "n": 26,
+    "holins_left_in_training": 370,
+    "recall_at_P95": 0.615,
+    "recall_at_P90": 0.846,
+    "median_score": 0.982
+   },
+   "1.E.34": {
+    "name": "The Putative Actinobacterial Holin-X (Hol-X) Family",
+    "n": 24,
+    "holins_left_in_training": 346,
+    "recall_at_P95": 0.0,
+    "recall_at_P90": 0.0,
+    "median_score": 0.001
+   },
+   "1.E.31": {
+    "name": "The SPP1 Holin (SPP1 Holin) Family",
+    "n": 24,
+    "holins_left_in_training": 276,
+    "recall_at_P95": 0.75,
+    "recall_at_P90": 0.875,
+    "median_score": 0.999
+   },
+   "1.E.40": {
+    "name": "The Mycobacterial 4 TMS Phage Holin (MP4 Holin) Family",
+    "n": 22,
+    "holins_left_in_training": 429,
+    "recall_at_P95": 0.0,
+    "recall_at_P90": 0.0,
+    "median_score": 0.0
+   },
+   "1.E.64": {
+    "name": "The P7 Phage Holin LydD (LydD) Family",
+    "n": 22,
+    "holins_left_in_training": 292,
+    "recall_at_P95": 0.273,
+    "recall_at_P90": 0.682,
+    "median_score": 0.831
+   },
+   "1.E.6": {
+    "name": "The T7 Holin (T7 Holin) Family",
+    "n": 18,
+    "holins_left_in_training": 336,
+    "recall_at_P95": 0.5,
+    "recall_at_P90": 0.778,
+    "median_score": 0.926
+   },
+   "1.E.29": {
+    "name": "The Holin Hol44 (Hol44) Family",
+    "n": 15,
+    "holins_left_in_training": 383,
+    "recall_at_P95": 0.733,
+    "recall_at_P90": 0.933,
+    "median_score": 0.994
+   },
+   "1.E.25": {
+    "name": "The Pseudomonas phage F116 Holin (F116 Holin) Family",
+    "n": 14,
+    "holins_left_in_training": 333,
+    "recall_at_P95": 0.929,
+    "recall_at_P90": 0.929,
+    "median_score": 0.999
+   },
+   "1.E.57": {
+    "name": "The Actinobacterial Phage Holin (APH) Family",
+    "n": 14,
+    "holins_left_in_training": 463,
+    "recall_at_P95": 0.5,
+    "recall_at_P90": 0.857,
+    "median_score": 0.954
+   },
+   "1.E.18": {
+    "name": "The Lactococcus lactis Phage r1t Holin (r1t Holin) Family",
+    "n": 12,
+    "holins_left_in_training": 401,
+    "recall_at_P95": 0.583,
+    "recall_at_P90": 0.833,
+    "median_score": 0.975
+   },
+   "1.E.56": {
+    "name": "The Putative 3 TMS Holin (3-Hol) Family",
+    "n": 12,
+    "holins_left_in_training": 350,
+    "recall_at_P95": 0.083,
+    "recall_at_P90": 0.25,
+    "median_score": 0.109
+   },
+   "1.E.7": {
+    "name": "The HP1 Holin (HP1 Holin) Family",
+    "n": 11,
+    "holins_left_in_training": 377,
+    "recall_at_P95": 0.909,
+    "recall_at_P90": 0.909,
+    "median_score": 0.999
+   },
+   "1.E.63": {
+    "name": "The Actinobacterial Phage Holin (HolSD) Family",
+    "n": 11,
+    "holins_left_in_training": 343,
+    "recall_at_P95": 0.091,
+    "recall_at_P90": 0.364,
+    "median_score": 0.419
+   },
+   "1.E.12": {
+    "name": "The \u03c6Adh Holin (\u03c6Adh Holin) Family",
+    "n": 10,
+    "holins_left_in_training": 389,
+    "recall_at_P95": 0.3,
+    "recall_at_P90": 0.6,
+    "median_score": 0.898
+   },
+   "1.E.1": {
+    "name": "The P21 Holin S (P21 Holin) Family",
+    "n": 9,
+    "holins_left_in_training": 456,
+    "recall_at_P95": 0.889,
+    "recall_at_P90": 0.889,
+    "median_score": 1.0
+   },
+   "1.E.27": {
+    "name": "The BhlA Holin (BhlA Holin) Family",
+    "n": 8,
+    "holins_left_in_training": 350,
+    "recall_at_P95": 0.125,
+    "recall_at_P90": 0.5,
+    "median_score": 0.55
+   },
+   "1.E.3": {
+    "name": "The P2 Holin (P2 Holin) Family",
+    "n": 8,
+    "holins_left_in_training": 445,
+    "recall_at_P95": 0.625,
+    "recall_at_P90": 0.625,
+    "median_score": 0.993
+   },
+   "1.E.17": {
+    "name": "The BlyA Holin (BlyA Holin) Family",
+    "n": 8,
+    "holins_left_in_training": 433,
+    "recall_at_P95": 0.0,
+    "recall_at_P90": 0.5,
+    "median_score": 0.578
+   },
+   "1.E.62": {
+    "name": "The Putative Firmicute Phage Holin (YvrJ) Family",
+    "n": 8,
+    "holins_left_in_training": 365,
+    "recall_at_P95": 0.125,
+    "recall_at_P90": 0.75,
+    "median_score": 0.738
+   },
+   "1.E.24": {
+    "name": "The Bacterophage Dp-1 Holin (Dp-1 Holin) Family",
+    "n": 7,
+    "holins_left_in_training": 401,
+    "recall_at_P95": 1.0,
+    "recall_at_P90": 1.0,
+    "median_score": 1.0
+   },
+   "1.E.33": {
+    "name": "The 2 or 3 TMS Putative Holin (2/3 Holin) Family",
+    "n": 7,
+    "holins_left_in_training": 415,
+    "recall_at_P95": 0.0,
+    "recall_at_P90": 0.143,
+    "median_score": 0.039
+   },
+   "1.E.65": {
+    "name": "The Firmicute Prophage XhlA Holin (XhlA) Family",
+    "n": 7,
+    "holins_left_in_training": 416,
+    "recall_at_P95": 0.143,
+    "recall_at_P90": 0.857,
+    "median_score": 0.752
+   },
+   "1.E.22": {
+    "name": "The Neisserial Phage-associated Holin (NP-Holin) Family",
+    "n": 7,
+    "holins_left_in_training": 443,
+    "recall_at_P95": 0.0,
+    "recall_at_P90": 0.143,
+    "median_score": 0.016
+   },
+   "1.E.39": {
+    "name": "The Mycobacterial Phage PBI1 Gp36 Holin (Gp36 Hol) Family",
+    "n": 6,
+    "holins_left_in_training": 432,
+    "recall_at_P95": 0.667,
+    "recall_at_P90": 0.667,
+    "median_score": 1.0
+   },
+   "1.E.8": {
+    "name": "The T4 Holin (T4 Holin) Family",
+    "n": 6,
+    "holins_left_in_training": 550,
+    "recall_at_P95": 0.0,
+    "recall_at_P90": 0.0,
+    "median_score": 0.02
+   },
+   "1.E.21": {
+    "name": "The Listeria Phage A118 Holin (HolA118) Family",
+    "n": 6,
+    "holins_left_in_training": 393,
+    "recall_at_P95": 0.833,
+    "recall_at_P90": 0.833,
+    "median_score": 1.0
+   },
+   "1.E.20": {
+    "name": "The Pseudomonas aeruginosa Hol Holin (Hol Holin) Family",
+    "n": 6,
+    "holins_left_in_training": 428,
+    "recall_at_P95": 0.5,
+    "recall_at_P90": 0.667,
+    "median_score": 0.961
+   },
+   "1.E.67": {
+    "name": "The Holin of Pseudomonas phage HZ2201 (HolinPP) Family",
+    "n": 6,
+    "holins_left_in_training": 483,
+    "recall_at_P95": 0.167,
+    "recall_at_P90": 0.167,
+    "median_score": 0.264
+   }
+  },
+  "mean_recall_at_P95_unweighted": 0.412,
+  "recall_at_P95_weighted_by_family_size": 0.421
+ },
+ "missed_families_grouped_cv": [
+  "1.E.33",
+  "1.E.35",
+  "1.E.44",
+  "1.E.49",
+  "1.E.8"
+ ]
+}
