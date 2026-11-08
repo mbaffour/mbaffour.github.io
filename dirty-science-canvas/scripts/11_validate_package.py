@@ -125,12 +125,14 @@ for key in selected(sys.argv):
     (pd / "verification.json").write_text(json.dumps(res, indent=1))
     files = sorted(f for f in pd.rglob("*") if f.is_file() and f.name != "SHA256SUMS.txt")
     (pd / "SHA256SUMS.txt").write_text("".join(f"{sha(f.read_bytes())}  {f.relative_to(pd)}\n" for f in files))
+    # The per-organism zips duplicate bytes already present in the organism folder, so they are not committed
+    # or served: pass --packages to build them locally (e.g. to attach one to a release).
     pk = ROOT / "packages"; pk.mkdir(exist_ok=True); zp = pk / f"{pd.name}.zip"
-    if o["kind"] == "phage":
+    if o["kind"] == "phage" and "--packages" in sys.argv:
         with zipfile.ZipFile(zp, "w", zipfile.ZIP_DEFLATED) as z:
             for f in sorted(pd.rglob("*")):
                 if f.is_file(): z.write(f, f"{pd.name}/{f.relative_to(pd)}")
             for f in sorted((ROOT / "scripts").rglob("*")):
                 if f.is_file() and "__pycache__" not in f.parts: z.write(f, f"{pd.name}/scripts/{f.relative_to(ROOT / 'scripts')}")
-    elif zp.exists(): zp.unlink()
+    elif zp.exists() and "--packages" in sys.argv: zp.unlink()
     print(key, res["summary"], res["failures"][:3], flush=True)

@@ -1,5 +1,5 @@
 {
- "checked_utc": "2026-11-08T04:30:20+00:00",
+ "checked_utc": "2026-11-08T19:18:10+00:00",
  "organism": "Bacillus phage phi29",
  "accessions": [
   "NC_011048.1"
@@ -41,7 +41,7 @@
    "detail": ""
   },
   {
-   "check": "raw output checksums (4 files)",
+   "check": "raw output checksums (5 files)",
    "status": "pass",
    "detail": ""
   },
@@ -51,17 +51,12 @@
    "detail": ""
   },
   {
-   "check": "all batches complete",
-   "status": "pending",
-   "detail": "TOPCONS2/b001.job.json:submitted"
-  },
-  {
    "check": "data.json protein set == inventory (order preserved)",
    "status": "pass",
    "detail": ""
   },
   {
-   "check": "54 predictions: segment strings expand to exactly one label per residue, contiguous 1..L, allowed alphabet",
+   "check": "216 predictions: segment strings expand to exactly one label per residue, contiguous 1..L, allowed alphabet",
    "status": "pass",
    "detail": ""
   },
@@ -92,8 +87,8 @@
   },
   {
    "check": "TOPCONS2 coverage of eligible proteins",
-   "status": "pending",
-   "detail": "0/27 eligible (27 in inventory); {'pending': 27}"
+   "status": "pass",
+   "detail": "27/27 eligible (27 in inventory); {'complete': 27}"
   },
   {
    "check": "organism atlas embeds the current sequences and predictions",
@@ -121,7 +116,7 @@
    "detail": "[]"
   },
   {
-   "check": "browser layout audit: no text overlaps, no clipped text, no line crossing a label, no crossing leaders/bonds (all figures of every checked protein; 1568 proteins checked atlas-wide, all phage proteins + host sample)",
+   "check": "browser layout audit: no text overlaps, no clipped text, no line crossing a label, no crossing leaders/bonds (all figures of every checked protein; 1068 proteins checked atlas-wide, all phage proteins + host sample)",
    "status": "pass",
    "detail": "[]"
   },
@@ -137,19 +132,16 @@
   }
  ],
  "failures": [],
- "pending": [
-  "all batches complete: TOPCONS2/b001.job.json:submitted",
-  "TOPCONS2 coverage of eligible proteins: 0/27 eligible (27 in inventory); {'pending': 27}"
- ],
+ "pending": [],
  "beta_state_predictions": [],
  "browser_check": {
-  "checked_utc": "2026-11-08T04:30:08.966Z",
+  "checked_utc": "2026-11-08T19:17:46.225Z",
   "browser": "153.0.8010.12",
-  "proteins_checked": 1568,
+  "proteins_checked": 1068,
   "phage_proteins": 1068,
-  "host_sample": 500,
+  "host_sample": 0,
   "ui": {
-   "search_secY": 6,
+   "search_secY": 0,
    "org_M13": 10,
    "M13_span": 7,
    "component_track": true,
@@ -187,9 +179,9 @@
   }
  },
  "summary": {
-  "checks": 26,
-  "passed": 24,
+  "checks": 25,
+  "passed": 25,
   "failed": 0,
-  "pending": 2
+  "pending": 0
  }
 }

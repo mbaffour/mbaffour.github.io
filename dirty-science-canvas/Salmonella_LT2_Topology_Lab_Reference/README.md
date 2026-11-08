@@ -15,16 +15,16 @@ Open **`Salmonella_LT2_Topology_Atlas.html`** (one offline file), or the combine
 | Method | Complete / eligible | Not eligible (reason) |
 |---|---|---|
 | Phobius | 4,551 / 4,551 ({'complete': 4551, 'unsupported': 3}) | `Salmonella_LT2|STM1570`: unsupported residue(s) U not in the Phobius alphabet (sequence not altered); `Salmonella_LT2|STM4037`: unsupported residue(s) U not in the Phobius alphabet (sequence not altered); `Salmonella_LT2|STM4285`: unsupported residue(s) U not in the Phobius alphabet (sequence not altered) |
-| DeepTMHMM | 1,000 / 4,551 ({'complete': 1000, 'pending': 3551, 'unsupported': 3}) | `Salmonella_LT2|STM1570`: unsupported residue(s) U not in the DeepTMHMM alphabet (sequence not altered); `Salmonella_LT2|STM4037`: unsupported residue(s) U not in the DeepTMHMM alphabet (sequence not altered); `Salmonella_LT2|STM4285`: unsupported residue(s) U not in the DeepTMHMM alphabet (sequence not altered) |
-| TOPCONS2 | 0 / 4,551 ({'pending': 4551, 'unsupported': 3}) | `Salmonella_LT2|STM1570`: unsupported residue(s) U not in the TOPCONS2 alphabet (sequence not altered); `Salmonella_LT2|STM4037`: unsupported residue(s) U not in the TOPCONS2 alphabet (sequence not altered); `Salmonella_LT2|STM4285`: unsupported residue(s) U not in the TOPCONS2 alphabet (sequence not altered) |
+| DeepTMHMM | 4,551 / 4,551 ({'complete': 4551, 'unsupported': 3}) | `Salmonella_LT2|STM1570`: unsupported residue(s) U not in the DeepTMHMM alphabet (sequence not altered); `Salmonella_LT2|STM4037`: unsupported residue(s) U not in the DeepTMHMM alphabet (sequence not altered); `Salmonella_LT2|STM4285`: unsupported residue(s) U not in the DeepTMHMM alphabet (sequence not altered) |
+| TOPCONS2 | 4,548 / 4,551 ({'complete': 4548, 'no_output_returned': 3, 'unsupported': 3}) | `Salmonella_LT2|STM1570`: unsupported residue(s) U not in the TOPCONS2 alphabet (sequence not altered); `Salmonella_LT2|STM4037`: unsupported residue(s) U not in the TOPCONS2 alphabet (sequence not altered); `Salmonella_LT2|STM4285`: unsupported residue(s) U not in the TOPCONS2 alphabet (sequence not altered) |
 
 - **Phobius**: phobius.sbc.su.se JSON API; batches ≤100 sequences and ≤50,000 residues. Plots not requested at proteome scale.
 - **DeepTMHMM**: BioLib app DTU/DeepTMHMM (DTU/DeepTMHMM:1.0.57); ≤500 sequences per job, one job at a time.
-- **TOPCONS2**: topcons.net WSDL API; ≤1,000 sequences per job, ≤2 active jobs. Cache status reported by the server: —. Components (OCTOPUS, Philius, PolyPhobius, SCAMPI, SPOCTOPUS) feed the consensus; they are not extra votes.
-- Job records (exact batch FASTA checksum, job ID, times, status, output checksums) are in `raw/<Method>/*.job.json`; 49 records.
+- **TOPCONS2**: topcons.net WSDL API; ≤1,000 sequences per job, ≤2 active jobs. Cache status reported by the server: cached: 112, newrun: 4,439. Components (OCTOPUS, Philius, PolyPhobius, SCAMPI, SPOCTOPUS) feed the consensus; they are not extra votes.
+- Job records (exact batch FASTA checksum, job ID, times, status, output checksums) are in `raw/<Method>/*.job.json`; 61 records.
 
 ## Summary
-- 1,052 proteins with ≥1 predicted membrane span (any main method); 824 with a predicted signal peptide; 24 with DeepTMHMM β-type states; 293 with main-method disagreement.
+- 1,189 proteins with ≥1 predicted membrane span (any main method); 925 with a predicted signal peptide; 24 with DeepTMHMM β-type states; 1,560 with main-method disagreement.
 - Per-protein calls for every method: `topology_summary.csv` (segments use `LABELstart-stop` runs, 1-based inclusive) and `data.json`.
 
 ## Conventions & cautions

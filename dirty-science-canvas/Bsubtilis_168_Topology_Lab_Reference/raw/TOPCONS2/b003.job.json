@@ -24,7 +24,7 @@
   "numseq_accepted": "1000",
   "error": "None",
   "warning": "\n",
-  "status": "submitted",
+  "status": "complete",
   "checks": [
     {
       "utc": "2026-11-08T12:50:01+00:00",
@@ -33,7 +33,18 @@
     {
       "utc": "2026-11-08T12:55:06+00:00",
       "status": "Running"
+    },
+    {
+      "utc": "2026-11-08T19:13:35+00:00",
+      "status": "Finished"
     }
   ],
-  "server_status": "Running"
+  "server_status": "Finished",
+  "result_zip_url": "https://topcons.net/static/result/rst_lq1necug/rst_lq1necug.zip",
+  "result_zip_sha256": "9575bfbd1da9574eb2f3779be2dee045f7a6501a722e95177ab91197f045e29f",
+  "result_zip_bytes": 142921693,
+  "completed_utc": "2026-11-08T19:13:48+00:00",
+  "result_text_archive": "raw/TOPCONS2/b003.text.tar.xz",
+  "result_text_archive_sha256": "a5c5180c6bf0aeca3089e2b03fe1fd3750280a7fd299fe3fec36187fcd0f04a5",
+  "archive_note": "Result zip (142921693 bytes, sha256 above) not stored because of its size (mostly per-sequence images); the text members needed to reproduce every prediction (seq.fa, query.result.txt, reliability.final, finished_seqs.txt, stat.txt) are archived unmodified."
 }

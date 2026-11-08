@@ -15,15 +15,15 @@ Open **`Ecoli_K12_Topology_Atlas.html`** (one offline file), or the combined atl
 |---|---|---|
 | Phobius | 4,297 / 4,297 ({'complete': 4297, 'unsupported': 3}) | `Ecoli_K12|b1474`: unsupported residue(s) U not in the Phobius alphabet (sequence not altered); `Ecoli_K12|b3894`: unsupported residue(s) U not in the Phobius alphabet (sequence not altered); `Ecoli_K12|b4079`: unsupported residue(s) U not in the Phobius alphabet (sequence not altered) |
 | DeepTMHMM | 4,297 / 4,297 ({'complete': 4297, 'unsupported': 3}) | `Ecoli_K12|b1474`: unsupported residue(s) U not in the DeepTMHMM alphabet (sequence not altered); `Ecoli_K12|b3894`: unsupported residue(s) U not in the DeepTMHMM alphabet (sequence not altered); `Ecoli_K12|b4079`: unsupported residue(s) U not in the DeepTMHMM alphabet (sequence not altered) |
-| TOPCONS2 | 0 / 4,293 ({'pending': 4293, 'too_short': 4, 'unsupported': 3}) | `Ecoli_K12|b4737`: too short (8 aa < 10 aa minimum); `Ecoli_K12|b1474`: unsupported residue(s) U not in the TOPCONS2 alphabet (sequence not altered); `Ecoli_K12|b4781`: too short (9 aa < 10 aa minimum); `Ecoli_K12|b4789`: too short (9 aa < 10 aa minimum); `Ecoli_K12|b4794`: too short (8 aa < 10 aa minimum); `Ecoli_K12|b3894`: unsupported residue(s) U not in the TOPCONS2 alphabet (sequence not altered); `Ecoli_K12|b4079`: unsupported residue(s) U not in the TOPCONS2 alphabet (sequence not altered) |
+| TOPCONS2 | 4,292 / 4,293 ({'complete': 4292, 'no_output_returned': 1, 'too_short': 4, 'unsupported': 3}) | `Ecoli_K12|b4737`: too short (8 aa < 10 aa minimum); `Ecoli_K12|b1474`: unsupported residue(s) U not in the TOPCONS2 alphabet (sequence not altered); `Ecoli_K12|b4781`: too short (9 aa < 10 aa minimum); `Ecoli_K12|b4789`: too short (9 aa < 10 aa minimum); `Ecoli_K12|b4794`: too short (8 aa < 10 aa minimum); `Ecoli_K12|b3894`: unsupported residue(s) U not in the TOPCONS2 alphabet (sequence not altered); `Ecoli_K12|b4079`: unsupported residue(s) U not in the TOPCONS2 alphabet (sequence not altered) |
 
 - **Phobius**: phobius.sbc.su.se JSON API; batches ≤100 sequences and ≤50,000 residues. Plots not requested at proteome scale.
 - **DeepTMHMM**: BioLib app DTU/DeepTMHMM (DTU/DeepTMHMM:1.0.57); ≤500 sequences per job, one job at a time.
-- **TOPCONS2**: topcons.net WSDL API; ≤1,000 sequences per job, ≤2 active jobs. Cache status reported by the server: —. Components (OCTOPUS, Philius, PolyPhobius, SCAMPI, SPOCTOPUS) feed the consensus; they are not extra votes.
-- Job records (exact batch FASTA checksum, job ID, times, status, output checksums) are in `raw/<Method>/*.job.json`; 52 records.
+- **TOPCONS2**: topcons.net WSDL API; ≤1,000 sequences per job, ≤2 active jobs. Cache status reported by the server: cached: 4,293. Components (OCTOPUS, Philius, PolyPhobius, SCAMPI, SPOCTOPUS) feed the consensus; they are not extra votes.
+- Job records (exact batch FASTA checksum, job ID, times, status, output checksums) are in `raw/<Method>/*.job.json`; 57 records.
 
 ## Summary
-- 1,055 proteins with ≥1 predicted membrane span (any main method); 878 with a predicted signal peptide; 71 with DeepTMHMM β-type states; 1,269 with main-method disagreement.
+- 1,098 proteins with ≥1 predicted membrane span (any main method); 922 with a predicted signal peptide; 71 with DeepTMHMM β-type states; 1,488 with main-method disagreement.
 - Per-protein calls for every method: `topology_summary.csv` (segments use `LABELstart-stop` runs, 1-based inclusive) and `data.json`.
 
 ## Conventions & cautions
