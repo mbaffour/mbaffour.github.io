@@ -1,0 +1,1570 @@
+{
+ "model": {
+  "features": "both",
+  "algorithm": "hgb",
+  "esm_model": "facebook/esm2_t12_35M_UR50D"
+ },
+ "protocol": "leave-one-genome-out: every training holin with >=30% identity, >=50% coverage and Smith-Waterman score >=80 against any protein of the scanned genome was removed before refitting",
+ "holdout_min_sw_score": 80,
+ "ground_truth_rule": ">=95% identity over >=90% coverage to a reference holin, lengths within 15%",
+ "genomes": 12,
+ "genomes_with_ground_truth": 11,
+ "ground_truth_proteins": 14,
+ "rank_1": 10,
+ "top_3": 13,
+ "top_10": 13,
+ "median_rank": 1.0,
+ "ranks": [
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  2,
+  2,
+  2,
+  116
+ ],
+ "results": [
+  {
+   "accession": "NC_008720.1",
+   "organism": "Escherichia phage N4",
+   "expected": "SAR endolysin-holin system defined in Awuah et al. 2026 J Bacteriol doi:10.1128/jb.00538-25",
+   "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&id=NC_008720.1&rettype=gbwithparts&retmode=text",
+   "n_proteins": 71,
+   "holdout_min_sw_score": 80,
+   "training_holins_removed": 12,
+   "training_holins_left": 546,
+   "ground_truth": [],
+   "top": [
+    {
+     "rank": 1,
+     "id": "EPNV4_gp63",
+     "gene": "",
+     "product": "gp63",
+     "length": 110,
+     "n_tm_hydropathy": 1,
+     "score": 0.9735,
+     "is_ground_truth": false
+    },
+    {
+     "rank": 2,
+     "id": "EPNV4_gp23",
+     "gene": "",
+     "product": "gp23",
+     "length": 56,
+     "n_tm_hydropathy": 1,
+     "score": 0.5667,
+     "is_ground_truth": false
+    },
+    {
+     "rank": 3,
+     "id": "EPNV4_gp62",
+     "gene": "",
+     "product": "holin",
+     "length": 87,
+     "n_tm_hydropathy": 2,
+     "score": 0.4192,
+     "is_ground_truth": false
+    },
+    {
+     "rank": 4,
+     "id": "EPNV4_gp01",
+     "gene": "",
+     "product": "gp1",
+     "length": 108,
+     "n_tm_hydropathy": 0,
+     "score": 0.3693,
+     "is_ground_truth": false
+    },
+    {
+     "rank": 5,
+     "id": "EPNV4_gp60",
+     "gene": "",
+     "product": "Rz-like spanin",
+     "length": 167,
+     "n_tm_hydropathy": 1,
+     "score": 0.3123,
+     "is_ground_truth": false
+    },
+    {
+     "rank": 6,
+     "id": "EPNV4_gp19",
+     "gene": "",
+     "product": "membrane protein",
+     "length": 68,
+     "n_tm_hydropathy": 1,
+     "score": 0.1915,
+     "is_ground_truth": false
+    },
+    {
+     "rank": 7,
+     "id": "EPNV4_gp54",
+     "gene": "",
+     "product": "virion structural protein",
+     "length": 299,
+     "n_tm_hydropathy": 0,
+     "score": 0.0876,
+     "is_ground_truth": false
+    },
+    {
+     "rank": 8,
+     "id": "EPNV4_gp27",
+     "gene": "",
+     "product": "gp27",
+     "length": 66,
+     "n_tm_hydropathy": 0,
+     "score": 0.0857,
+     "is_ground_truth": false
+    },
+    {
+     "rank": 9,
+     "id": "EPNV4_gp29",
+     "gene": "",
+     "product": "gp29",
+     "length": 153,
+     "n_tm_hydropathy": 1,
+     "score": 0.0809,
+     "is_ground_truth": false
+    },
+    {
+     "rank": 10,
+     "id": "EPNV4_gp08",
+     "gene": "",
+     "product": "gp8",
+     "length": 71,
+     "n_tm_hydropathy": 0,
+     "score": 0.0647,
+     "is_ground_truth": false
+    }
+   ]
+  },
+  {
+   "accession": "NC_001416.1",
+   "organism": "Enterobacteria phage lambda",
+   "expected": "S105/S107 holin-antiholin, the canonical holin",
+   "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&id=NC_001416.1&rettype=gbwithparts&retmode=text",
+   "n_proteins": 73,
+   "holdout_min_sw_score": 80,
+   "training_holins_removed": 27,
+   "training_holins_left": 531,
+   "ground_truth": [
+    {
+     "protein_index": 65,
+     "id": "lambdap74",
+     "product": "holin/anti-holin",
+     "length": 107,
+     "reference": "P03705",
+     "reference_name": "Holin (gpS protein) [Includes: Lysis protein S; Lysis inhibitor] - Bac",
+     "tier": "curated",
+     "identity": 1.0,
+     "rank": 2,
+     "score": 0.9911
+    },
+    {
+     "protein_index": 66,
+     "id": "lambdap92",
+     "product": "holin/anti-holin",
+     "length": 105,
+     "reference": "P03705",
+     "reference_name": "Holin (gpS protein) [Includes: Lysis protein S; Lysis inhibitor] - Bac",
+     "tier": "curated",
+     "identity": 1.0,
+     "rank": 1,
+     "score": 0.9911
+    }
+   ],
+   "top": [
+    {
+     "rank": 1,
+     "id": "lambdap92",
+     "gene": "S'",
+     "product": "holin/anti-holin",
+     "length": 105,
+     "n_tm_hydropathy": 1,
+     "score": 0.9911,
+     "is_ground_truth": true
+    },
+    {
+     "rank": 2,
+     "id": "lambdap74",
+     "gene": "S",
+     "product": "holin/anti-holin",
+     "length": 107,
+     "n_tm_hydropathy": 1,
+     "score": 0.9911,
+     "is_ground_truth": true
+    },
+    {
+     "rank": 3,
+     "id": "lambdap73",
+     "gene": "orf-64",
+     "product": "hypothetical protein",
+     "length": 64,
+     "n_tm_hydropathy": 0,
+     "score": 0.2632,
+     "is_ground_truth": false
+    },
+    {
+     "rank": 4,
+     "id": "lambdap37",
+     "gene": "orf61",
+     "product": "hypothetical protein",
+     "length": 61,
+     "n_tm_hydropathy": 0,
+     "score": 0.1737,
+     "is_ground_truth": false
+    },
+    {
+     "rank": 5,
+     "id": "lambdap53",
+     "gene": "rexb",
+     "product": "RexB-like exclusion protein",
+     "length": 144,
+     "n_tm_hydropathy": 3,
+     "score": 0.1241,
+     "is_ground_truth": false
+    },
+    {
+     "rank": 6,
+     "id": "lambdap71",
+     "gene": "Q",
+     "product": "antitermination protein",
+     "length": 207,
+     "n_tm_hydropathy": 0,
+     "score": 0.1065,
+     "is_ground_truth": false
+    },
+    {
+     "rank": 7,
+     "id": "lambdap76",
+     "gene": "Rz",
+     "product": "Rz-like spanin",
+     "length": 153,
+     "n_tm_hydropathy": 1,
+     "score": 0.0938,
+     "is_ground_truth": false
+    },
+    {
+     "rank": 8,
+     "id": "lambdap90",
+     "gene": "orf206b",
+     "product": "hypothetical protein",
+     "length": 206,
+     "n_tm_hydropathy": 4,
+     "score": 0.0918,
+     "is_ground_truth": false
+    },
+    {
+     "rank": 9,
+     "id": "lambdap91",
+     "gene": "Rz1",
+     "product": "Rz-like spanin",
+     "length": 60,
+     "n_tm_hydropathy": 1,
+     "score": 0.0892,
+     "is_ground_truth": false
+    },
+    {
+     "rank": 10,
+     "id": "lambdap78",
+     "gene": "",
+     "product": "head protein",
+     "length": 177,
+     "n_tm_hydropathy": 0,
+     "score": 0.0557,
+     "is_ground_truth": false
+    }
+   ]
+  },
+  {
+   "accession": "NC_000866.4",
+   "organism": "Enterobacteria phage T4",
+   "expected": "holin T (gene t), protein-level evidence",
+   "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&id=NC_000866.4&rettype=gbwithparts&retmode=text",
+   "n_proteins": 278,
+   "holdout_min_sw_score": 80,
+   "training_holins_removed": 14,
+   "training_holins_left": 544,
+   "ground_truth": [
+    {
+     "protein_index": 253,
+     "id": "T4p254",
+     "product": "holin",
+     "length": 218,
+     "reference": "P06808",
+     "reference_name": "Lysis protein - Bacteriophage T4.",
+     "tier": "tested",
+     "identity": 1.0,
+     "rank": 116,
+     "score": 0.0229
+    }
+   ],
+   "top": [
+    {
+     "rank": 1,
+     "id": "T4p226",
+     "gene": "pseT.3",
+     "product": "Rz-like spanin",
+     "length": 117,
+     "n_tm_hydropathy": 1,
+     "score": 0.9271,
+     "is_ground_truth": false
+    },
+    {
+     "rank": 2,
+     "id": "T4p135",
+     "gene": "trna.4",
+     "product": "hypothetical protein",
+     "length": 61,
+     "n_tm_hydropathy": 1,
+     "score": 0.909,
+     "is_ground_truth": false
+    },
+    {
+     "rank": 3,
+     "id": "T4p126",
+     "gene": "e.3",
+     "product": "hypothetical protein",
+     "length": 120,
+     "n_tm_hydropathy": 2,
+     "score": 0.597,
+     "is_ground_truth": false
+    },
+    {
+     "rank": 4,
+     "id": "T4p129",
+     "gene": "e.6",
+     "product": "e.6 conserved hypothetical protein",
+     "length": 197,
+     "n_tm_hydropathy": 0,
+     "score": 0.3036,
+     "is_ground_truth": false
+    },
+    {
+     "rank": 5,
+     "id": "T4p158",
+     "gene": "wac",
+     "product": "fibritin neck whisker",
+     "length": 487,
+     "n_tm_hydropathy": 0,
+     "score": 0.2688,
+     "is_ground_truth": false
+    },
+    {
+     "rank": 6,
+     "id": "T4p270",
+     "gene": "ndd.2",
+     "product": "Ndd.2 hypothetical predicted outer membrane protein",
+     "length": 36,
+     "n_tm_hydropathy": 0,
+     "score": 0.2199,
+     "is_ground_truth": false
+    },
+    {
+     "rank": 7,
+     "id": "T4p266",
+     "gene": "ac",
+     "product": "Ac acridine resistance protein",
+     "length": 51,
+     "n_tm_hydropathy": 1,
+     "score": 0.1574,
+     "is_ground_truth": false
+    },
+    {
+     "rank": 8,
+     "id": "T4p149",
+     "gene": "5.3",
+     "product": "gp5.3 conserved hypothetical protein",
+     "length": 56,
+     "n_tm_hydropathy": 0,
+     "score": 0.1535,
+     "is_ground_truth": false
+    },
+    {
+     "rank": 9,
+     "id": "T4p058",
+     "gene": "47.1",
+     "product": "gp47.1 hypothetical predicted membrane protein",
+     "length": 46,
+     "n_tm_hydropathy": 1,
+     "score": 0.1461,
+     "is_ground_truth": false
+    },
+    {
+     "rank": 10,
+     "id": "T4p005",
+     "gene": "mobA",
+     "product": "homing endonuclease",
+     "length": 37,
+     "n_tm_hydropathy": 0,
+     "score": 0.1416,
+     "is_ground_truth": false
+    }
+   ]
+  },
+  {
+   "accession": "NC_001604.1",
+   "organism": "Enterobacteria phage T7",
+   "expected": "holin gp17.5",
+   "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&id=NC_001604.1&rettype=gbwithparts&retmode=text",
+   "n_proteins": 60,
+   "holdout_min_sw_score": 80,
+   "training_holins_removed": 15,
+   "training_holins_left": 543,
+   "ground_truth": [
+    {
+     "protein_index": 52,
+     "id": "T7p53",
+     "product": "holin",
+     "length": 67,
+     "reference": "P03802",
+     "reference_name": "Lysis protein - Bacteriophage T7.",
+     "tier": "curated",
+     "identity": 1.0,
+     "rank": 1,
+     "score": 0.9798
+    }
+   ],
+   "top": [
+    {
+     "rank": 1,
+     "id": "T7p53",
+     "gene": "",
+     "product": "holin",
+     "length": 67,
+     "n_tm_hydropathy": 0,
+     "score": 0.9798,
+     "is_ground_truth": true
+    },
+    {
+     "rank": 2,
+     "id": "T7p55",
+     "gene": "",
+     "product": "Rz-like spanin",
+     "length": 143,
+     "n_tm_hydropathy": 0,
+     "score": 0.7646,
+     "is_ground_truth": false
+    },
+    {
+     "rank": 3,
+     "id": "T7p04",
+     "gene": "",
+     "product": "hypothetical protein",
+     "length": 47,
+     "n_tm_hydropathy": 1,
+     "score": 0.5492,
+     "is_ground_truth": false
+    },
+    {
+     "rank": 4,
+     "id": "T7p56",
+     "gene": "",
+     "product": "Rz-like spanin",
+     "length": 83,
+     "n_tm_hydropathy": 1,
+     "score": 0.426,
+     "is_ground_truth": false
+    },
+    {
+     "rank": 5,
+     "id": "T7p11",
+     "gene": "",
+     "product": "hypothetical protein",
+     "length": 51,
+     "n_tm_hydropathy": 1,
+     "score": 0.3833,
+     "is_ground_truth": false
+    },
+    {
+     "rank": 6,
+     "id": "T7p38",
+     "gene": "",
+     "product": "DUF5476 family protein",
+     "length": 88,
+     "n_tm_hydropathy": 0,
+     "score": 0.2571,
+     "is_ground_truth": false
+    },
+    {
+     "rank": 7,
+     "id": "T7p25",
+     "gene": "",
+     "product": "hypothetical protein",
+     "length": 112,
+     "n_tm_hydropathy": 1,
+     "score": 0.1736,
+     "is_ground_truth": false
+    },
+    {
+     "rank": 8,
+     "id": "T7p36",
+     "gene": "",
+     "product": "DUF5516 domain-containing protein",
+     "length": 37,
+     "n_tm_hydropathy": 1,
+     "score": 0.1694,
+     "is_ground_truth": false
+    },
+    {
+     "rank": 9,
+     "id": "T7p23",
+     "gene": "",
+     "product": "hypothetical protein",
+     "length": 40,
+     "n_tm_hydropathy": 0,
+     "score": 0.1679,
+     "is_ground_truth": false
+    },
+    {
+     "rank": 10,
+     "id": "T7p27",
+     "gene": "",
+     "product": "hypothetical protein",
+     "length": 89,
+     "n_tm_hydropathy": 0,
+     "score": 0.1474,
+     "is_ground_truth": false
+    }
+   ]
+  },
+  {
+   "accession": "NC_001895.1",
+   "organism": "Enterobacteria phage P2",
+   "expected": "holin Y, protein-level evidence",
+   "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&id=NC_001895.1&rettype=gbwithparts&retmode=text",
+   "n_proteins": 43,
+   "holdout_min_sw_score": 80,
+   "training_holins_removed": 24,
+   "training_holins_left": 534,
+   "ground_truth": [
+    {
+     "protein_index": 7,
+     "id": "P2p08",
+     "product": "holin",
+     "length": 93,
+     "reference": "P51773",
+     "reference_name": "Holin - Bacteriophage P2.",
+     "tier": "tested",
+     "identity": 1.0,
+     "rank": 1,
+     "score": 0.9704
+    }
+   ],
+   "top": [
+    {
+     "rank": 1,
+     "id": "P2p08",
+     "gene": "Y",
+     "product": "holin",
+     "length": 93,
+     "n_tm_hydropathy": 2,
+     "score": 0.9704,
+     "is_ground_truth": true
+    },
+    {
+     "rank": 2,
+     "id": "P2p12",
+     "gene": "lysC",
+     "product": "Rz-like spanin",
+     "length": 96,
+     "n_tm_hydropathy": 1,
+     "score": 0.4992,
+     "is_ground_truth": false
+    },
+    {
+     "rank": 3,
+     "id": "P2p17",
+     "gene": "W",
+     "product": "baseplate wedge subunit",
+     "length": 115,
+     "n_tm_hydropathy": 0,
+     "score": 0.2348,
+     "is_ground_truth": false
+    },
+    {
+     "rank": 4,
+     "id": "P2p10",
+     "gene": "lysA",
+     "product": "endolysin",
+     "length": 141,
+     "n_tm_hydropathy": 2,
+     "score": 0.2111,
+     "is_ground_truth": false
+    },
+    {
+     "rank": 5,
+     "id": "P2p11",
+     "gene": "lysB",
+     "product": "Rz-like spanin",
+     "length": 141,
+     "n_tm_hydropathy": 1,
+     "score": 0.1231,
+     "is_ground_truth": false
+    },
+    {
+     "rank": 6,
+     "id": "P2p37",
+     "gene": "",
+     "product": "replication initiation protein",
+     "length": 100,
+     "n_tm_hydropathy": 0,
+     "score": 0.0437,
+     "is_ground_truth": false
+    },
+    {
+     "rank": 7,
+     "id": "P2p41",
+     "gene": "",
+     "product": "DUF3850 domain-containing protein",
+     "length": 109,
+     "n_tm_hydropathy": 0,
+     "score": 0.0341,
+     "is_ground_truth": false
+    },
+    {
+     "rank": 8,
+     "id": "P2p15",
+     "gene": "",
+     "product": "hypothetical protein",
+     "length": 261,
+     "n_tm_hydropathy": 3,
+     "score": 0.0282,
+     "is_ground_truth": false
+    },
+    {
+     "rank": 9,
+     "id": "P2p16",
+     "gene": "V",
+     "product": "baseplate assembly protein",
+     "length": 211,
+     "n_tm_hydropathy": 1,
+     "score": 0.0281,
+     "is_ground_truth": false
+    },
+    {
+     "rank": 10,
+     "id": "P2p03",
+     "gene": "O",
+     "product": "head scaffolding protein",
+     "length": 284,
+     "n_tm_hydropathy": 0,
+     "score": 0.021,
+     "is_ground_truth": false
+    }
+   ]
+  },
+  {
+   "accession": "NC_011048.1",
+   "organism": "Bacillus phage phi29",
+   "expected": "holin gp14 (dual start)",
+   "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&id=NC_011048.1&rettype=gbwithparts&retmode=text",
+   "n_proteins": 27,
+   "holdout_min_sw_score": 80,
+   "training_holins_removed": 6,
+   "training_holins_left": 552,
+   "ground_truth": [
+    {
+     "protein_index": 19,
+     "id": "phi29_gp14",
+     "product": "holin family protein",
+     "length": 131,
+     "reference": "P11188",
+     "reference_name": "Lysis protein (Late protein GP14) - Bacteriophage phi-29.",
+     "tier": "curated",
+     "identity": 1.0,
+     "rank": 1,
+     "score": 0.635
+    }
+   ],
+   "top": [
+    {
+     "rank": 1,
+     "id": "phi29_gp14",
+     "gene": "14",
+     "product": "holin family protein",
+     "length": 131,
+     "n_tm_hydropathy": 2,
+     "score": 0.635,
+     "is_ground_truth": true
+    },
+    {
+     "rank": 2,
+     "id": "phi29_gp11",
+     "gene": "11",
+     "product": "adaptor Ad4",
+     "length": 293,
+     "n_tm_hydropathy": 0,
+     "score": 0.0705,
+     "is_ground_truth": false
+    },
+    {
+     "rank": 3,
+     "id": "phi29_gp0.2",
+     "gene": "0.2",
+     "product": "hypothetical protein",
+     "length": 31,
+     "n_tm_hydropathy": 0,
+     "score": 0.0497,
+     "is_ground_truth": false
+    },
+    {
+     "rank": 4,
+     "id": "phi29_gp1",
+     "gene": "1",
+     "product": "hypothetical protein",
+     "length": 86,
+     "n_tm_hydropathy": 0,
+     "score": 0.0455,
+     "is_ground_truth": false
+    },
+    {
+     "rank": 5,
+     "id": "phi29_gp16.7",
+     "gene": "16.7",
+     "product": "GP16.7-like replication protein",
+     "length": 130,
+     "n_tm_hydropathy": 1,
+     "score": 0.0278,
+     "is_ground_truth": false
+    },
+    {
+     "rank": 6,
+     "id": "phi29_gp12",
+     "gene": "12",
+     "product": "pre-neck appendage protein",
+     "length": 854,
+     "n_tm_hydropathy": 0,
+     "score": 0.0249,
+     "is_ground_truth": false
+    },
+    {
+     "rank": 7,
+     "id": "phi29_gp5",
+     "gene": "5",
+     "product": "single strand DNA binding protein",
+     "length": 124,
+     "n_tm_hydropathy": 0,
+     "score": 0.0229,
+     "is_ground_truth": false
+    },
+    {
+     "rank": 8,
+     "id": "phi29_gp6",
+     "gene": "6",
+     "product": "dsDNA binding protein",
+     "length": 104,
+     "n_tm_hydropathy": 0,
+     "score": 0.0218,
+     "is_ground_truth": false
+    },
+    {
+     "rank": 9,
+     "id": "phi29_gp13",
+     "gene": "13",
+     "product": "tail-type lysozyme domain-containing protein",
+     "length": 364,
+     "n_tm_hydropathy": 0,
+     "score": 0.0212,
+     "is_ground_truth": false
+    },
+    {
+     "rank": 10,
+     "id": "phi29_gp0.8",
+     "gene": "0.8",
+     "product": "hypothetical protein",
+     "length": 56,
+     "n_tm_hydropathy": 0,
+     "score": 0.0202,
+     "is_ground_truth": false
+    }
+   ]
+  },
+  {
+   "accession": "NC_004166.2",
+   "organism": "Bacillus phage SPP1",
+   "expected": "SPP1 holin family",
+   "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&id=NC_004166.2&rettype=gbwithparts&retmode=text",
+   "n_proteins": 97,
+   "holdout_min_sw_score": 80,
+   "training_holins_removed": 36,
+   "training_holins_left": 522,
+   "ground_truth": [
+    {
+     "protein_index": 44,
+     "id": "SPP1p050",
+     "product": "hypothetical protein",
+     "length": 83,
+     "reference": "O48470",
+     "reference_name": "Uncharacterized protein OS=Bacillus phage SPP1 PE=4 SV=2",
+     "tier": "curated",
+     "identity": 1.0,
+     "rank": 2,
+     "score": 0.9465
+    },
+    {
+     "protein_index": 47,
+     "id": "SPP1p053",
+     "product": "holin",
+     "length": 82,
+     "reference": "O48472",
+     "reference_name": "Uncharacterized protein OS=Bacillus phage SPP1 PE=4 SV=1",
+     "tier": "curated",
+     "identity": 1.0,
+     "rank": 1,
+     "score": 0.9913
+    }
+   ],
+   "top": [
+    {
+     "rank": 1,
+     "id": "SPP1p053",
+     "gene": "",
+     "product": "holin",
+     "length": 82,
+     "n_tm_hydropathy": 1,
+     "score": 0.9913,
+     "is_ground_truth": true
+    },
+    {
+     "rank": 2,
+     "id": "SPP1p050",
+     "gene": "",
+     "product": "hypothetical protein",
+     "length": 83,
+     "n_tm_hydropathy": 1,
+     "score": 0.9465,
+     "is_ground_truth": true
+    },
+    {
+     "rank": 3,
+     "id": "SPP1p103",
+     "gene": "",
+     "product": "hypothetical protein",
+     "length": 60,
+     "n_tm_hydropathy": 1,
+     "score": 0.8521,
+     "is_ground_truth": false
+    },
+    {
+     "rank": 4,
+     "id": "SPP1p061",
+     "gene": "",
+     "product": "hypothetical protein",
+     "length": 126,
+     "n_tm_hydropathy": 2,
+     "score": 0.8039,
+     "is_ground_truth": false
+    },
+    {
+     "rank": 5,
+     "id": "SPP1p062",
+     "gene": "",
+     "product": "hypothetical protein",
+     "length": 105,
+     "n_tm_hydropathy": 1,
+     "score": 0.5205,
+     "is_ground_truth": false
+    },
+    {
+     "rank": 6,
+     "id": "SPP1p098",
+     "gene": "",
+     "product": "hypothetical protein",
+     "length": 103,
+     "n_tm_hydropathy": 2,
+     "score": 0.5166,
+     "is_ground_truth": false
+    },
+    {
+     "rank": 7,
+     "id": "SPP1p018",
+     "gene": "",
+     "product": "hypothetical protein",
+     "length": 69,
+     "n_tm_hydropathy": 0,
+     "score": 0.367,
+     "is_ground_truth": false
+    },
+    {
+     "rank": 8,
+     "id": "SPP1p021",
+     "gene": "",
+     "product": "hypothetical protein",
+     "length": 113,
+     "n_tm_hydropathy": 0,
+     "score": 0.345,
+     "is_ground_truth": false
+    },
+    {
+     "rank": 9,
+     "id": "SPP1p049",
+     "gene": "",
+     "product": "hypothetical protein",
+     "length": 76,
+     "n_tm_hydropathy": 0,
+     "score": 0.2729,
+     "is_ground_truth": false
+    },
+    {
+     "rank": 10,
+     "id": "SPP1p052",
+     "gene": "",
+     "product": "hypothetical protein",
+     "length": 117,
+     "n_tm_hydropathy": 0,
+     "score": 0.262,
+     "is_ground_truth": false
+    }
+   ]
+  },
+  {
+   "accession": "NC_002371.2",
+   "organism": "Salmonella phage P22",
+   "expected": "holin gene 13",
+   "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&id=NC_002371.2&rettype=gbwithparts&retmode=text",
+   "n_proteins": 72,
+   "holdout_min_sw_score": 80,
+   "training_holins_removed": 16,
+   "training_holins_left": 542,
+   "ground_truth": [
+    {
+     "protein_index": 63,
+     "id": "P22gp64",
+     "product": "holin/anti-holin",
+     "length": 108,
+     "reference": "P09962",
+     "reference_name": "Holin (Lysis protein 13) - Bacteriophage P22.",
+     "tier": "curated",
+     "identity": 1.0,
+     "rank": 2,
+     "score": 0.9849
+    },
+    {
+     "protein_index": 64,
+     "id": "P22gp65",
+     "product": "holin/anti-holin",
+     "length": 105,
+     "reference": "P09962",
+     "reference_name": "Holin (Lysis protein 13) - Bacteriophage P22.",
+     "tier": "curated",
+     "identity": 1.0,
+     "rank": 1,
+     "score": 0.9872
+    }
+   ],
+   "top": [
+    {
+     "rank": 1,
+     "id": "P22gp65",
+     "gene": "13'",
+     "product": "holin/anti-holin",
+     "length": 105,
+     "n_tm_hydropathy": 1,
+     "score": 0.9872,
+     "is_ground_truth": true
+    },
+    {
+     "rank": 2,
+     "id": "P22gp64",
+     "gene": "13",
+     "product": "holin/anti-holin",
+     "length": 108,
+     "n_tm_hydropathy": 1,
+     "score": 0.9849,
+     "is_ground_truth": true
+    },
+    {
+     "rank": 3,
+     "id": "P22gp70",
+     "gene": "orf25",
+     "product": "hypothetical protein",
+     "length": 25,
+     "n_tm_hydropathy": 0,
+     "score": 0.1236,
+     "is_ground_truth": false
+    },
+    {
+     "rank": 4,
+     "id": "P22gp67",
+     "gene": "15",
+     "product": "Rz-like spanin",
+     "length": 145,
+     "n_tm_hydropathy": 1,
+     "score": 0.1074,
+     "is_ground_truth": false
+    },
+    {
+     "rank": 5,
+     "id": "P22gp45",
+     "gene": "esc",
+     "product": "superinfection exclusion; inhibits SieB",
+     "length": 168,
+     "n_tm_hydropathy": 1,
+     "score": 0.0663,
+     "is_ground_truth": false
+    },
+    {
+     "rank": 6,
+     "id": "P22gp62",
+     "gene": "ninZ",
+     "product": "NinZ",
+     "length": 59,
+     "n_tm_hydropathy": 0,
+     "score": 0.062,
+     "is_ground_truth": false
+    },
+    {
+     "rank": 7,
+     "id": "P22gp68",
+     "gene": "Rz1",
+     "product": "Rz-like spanin",
+     "length": 61,
+     "n_tm_hydropathy": 0,
+     "score": 0.0605,
+     "is_ground_truth": false
+    },
+    {
+     "rank": 8,
+     "id": "P22gp63",
+     "gene": "23",
+     "product": "transcription antitermination protein",
+     "length": 207,
+     "n_tm_hydropathy": 0,
+     "score": 0.0519,
+     "is_ground_truth": false
+    },
+    {
+     "rank": 9,
+     "id": "P22gp14",
+     "gene": "sieA",
+     "product": "superinfection exclusion SieA-like",
+     "length": 164,
+     "n_tm_hydropathy": 2,
+     "score": 0.0471,
+     "is_ground_truth": false
+    },
+    {
+     "rank": 10,
+     "id": "P22gp16",
+     "gene": "orf59a",
+     "product": "hypothetical protein",
+     "length": 59,
+     "n_tm_hydropathy": 0,
+     "score": 0.0389,
+     "is_ground_truth": false
+    }
+   ]
+  },
+  {
+   "accession": "NC_005045.1",
+   "organism": "Pseudomonas phage phiKMV",
+   "expected": "holin gp44, protein-level evidence",
+   "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&id=NC_005045.1&rettype=gbwithparts&retmode=text",
+   "n_proteins": 49,
+   "holdout_min_sw_score": 80,
+   "training_holins_removed": 19,
+   "training_holins_left": 539,
+   "ground_truth": [
+    {
+     "protein_index": 44,
+     "id": "phiKMVp44",
+     "product": "holin",
+     "length": 66,
+     "reference": "Q7Y2C1",
+     "reference_name": "Holin OS=Pseudomonas phage phiKMV OX=204270 GN=44 PE=1 SV=1",
+     "tier": "tested",
+     "identity": 1.0,
+     "rank": 1,
+     "score": 0.9748
+    }
+   ],
+   "top": [
+    {
+     "rank": 1,
+     "id": "phiKMVp44",
+     "gene": "",
+     "product": "holin",
+     "length": 66,
+     "n_tm_hydropathy": 1,
+     "score": 0.9748,
+     "is_ground_truth": true
+    },
+    {
+     "rank": 2,
+     "id": "phiKMVp11",
+     "gene": "",
+     "product": "hypothetical protein",
+     "length": 119,
+     "n_tm_hydropathy": 1,
+     "score": 0.8377,
+     "is_ground_truth": false
+    },
+    {
+     "rank": 3,
+     "id": "phiKMVp08",
+     "gene": "",
+     "product": "hypothetical protein",
+     "length": 78,
+     "n_tm_hydropathy": 2,
+     "score": 0.4466,
+     "is_ground_truth": false
+    },
+    {
+     "rank": 4,
+     "id": "phiKMVp12",
+     "gene": "gp12",
+     "product": "DNA polymerase",
+     "length": 269,
+     "n_tm_hydropathy": 1,
+     "score": 0.2361,
+     "is_ground_truth": false
+    },
+    {
+     "rank": 5,
+     "id": "phiKMVp46",
+     "gene": "",
+     "product": "phage lambda Rz1-like protein",
+     "length": 109,
+     "n_tm_hydropathy": 1,
+     "score": 0.1964,
+     "is_ground_truth": false
+    },
+    {
+     "rank": 6,
+     "id": "phiKMVp29",
+     "gene": "",
+     "product": "virion structural protein",
+     "length": 98,
+     "n_tm_hydropathy": 0,
+     "score": 0.1347,
+     "is_ground_truth": false
+    },
+    {
+     "rank": 7,
+     "id": "phiKMVp48",
+     "gene": "gp48",
+     "product": "minor head protein",
+     "length": 64,
+     "n_tm_hydropathy": 0,
+     "score": 0.1143,
+     "is_ground_truth": false
+    },
+    {
+     "rank": 8,
+     "id": "phiKMVp18",
+     "gene": "",
+     "product": "hypothetical protein",
+     "length": 111,
+     "n_tm_hydropathy": 0,
+     "score": 0.095,
+     "is_ground_truth": false
+    },
+    {
+     "rank": 9,
+     "id": "phiKMVp33",
+     "gene": "gp33",
+     "product": "tail tubular protein A",
+     "length": 184,
+     "n_tm_hydropathy": 0,
+     "score": 0.0868,
+     "is_ground_truth": false
+    },
+    {
+     "rank": 10,
+     "id": "phiKMVp09",
+     "gene": "",
+     "product": "hypothetical protein",
+     "length": 97,
+     "n_tm_hydropathy": 0,
+     "score": 0.0857,
+     "is_ground_truth": false
+    }
+   ]
+  },
+  {
+   "accession": "NC_001900.1",
+   "organism": "Mycobacterium phage D29",
+   "expected": "gene 11 holin, protein-level evidence",
+   "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&id=NC_001900.1&rettype=gbwithparts&retmode=text",
+   "n_proteins": 79,
+   "holdout_min_sw_score": 80,
+   "training_holins_removed": 27,
+   "training_holins_left": 531,
+   "ground_truth": [
+    {
+     "protein_index": 7,
+     "id": "D29p08",
+     "product": "hypothetical protein",
+     "length": 141,
+     "reference": "O64204",
+     "reference_name": "Gene 11 protein OS=Mycobacterium phage D29 GN=11 PE=4 SV=1",
+     "tier": "tested",
+     "identity": 1.0,
+     "rank": 1,
+     "score": 0.969
+    }
+   ],
+   "top": [
+    {
+     "rank": 1,
+     "id": "D29p08",
+     "gene": "",
+     "product": "hypothetical protein",
+     "length": 141,
+     "n_tm_hydropathy": 2,
+     "score": 0.969,
+     "is_ground_truth": true
+    },
+    {
+     "rank": 2,
+     "id": "D29p28",
+     "gene": "",
+     "product": "hypothetical protein",
+     "length": 88,
+     "n_tm_hydropathy": 1,
+     "score": 0.9004,
+     "is_ground_truth": false
+    },
+    {
+     "rank": 3,
+     "id": "D29p33",
+     "gene": "",
+     "product": "hypothetical protein",
+     "length": 145,
+     "n_tm_hydropathy": 2,
+     "score": 0.3417,
+     "is_ground_truth": false
+    },
+    {
+     "rank": 4,
+     "id": "D29p59",
+     "gene": "",
+     "product": "hypothetical protein",
+     "length": 47,
+     "n_tm_hydropathy": 1,
+     "score": 0.1641,
+     "is_ground_truth": false
+    },
+    {
+     "rank": 5,
+     "id": "D29p13",
+     "gene": "",
+     "product": "gp16",
+     "length": 185,
+     "n_tm_hydropathy": 0,
+     "score": 0.0873,
+     "is_ground_truth": false
+    },
+    {
+     "rank": 6,
+     "id": "D29p75",
+     "gene": "",
+     "product": "hypothetical protein",
+     "length": 64,
+     "n_tm_hydropathy": 0,
+     "score": 0.0507,
+     "is_ground_truth": false
+    },
+    {
+     "rank": 7,
+     "id": "D29p51",
+     "gene": "",
+     "product": "gp53",
+     "length": 235,
+     "n_tm_hydropathy": 0,
+     "score": 0.0383,
+     "is_ground_truth": false
+    },
+    {
+     "rank": 8,
+     "id": "D29p74",
+     "gene": "",
+     "product": "hypothetical protein",
+     "length": 31,
+     "n_tm_hydropathy": 0,
+     "score": 0.0352,
+     "is_ground_truth": false
+    },
+    {
+     "rank": 9,
+     "id": "D29p29",
+     "gene": "",
+     "product": "gp31",
+     "length": 617,
+     "n_tm_hydropathy": 1,
+     "score": 0.0338,
+     "is_ground_truth": false
+    },
+    {
+     "rank": 10,
+     "id": "D29p44",
+     "gene": "",
+     "product": "hypothetical protein",
+     "length": 136,
+     "n_tm_hydropathy": 0,
+     "score": 0.0326,
+     "is_ground_truth": false
+    }
+   ]
+  },
+  {
+   "accession": "NC_015274.1",
+   "organism": "Streptococcus phage Dp-1",
+   "expected": "holin, protein-level evidence",
+   "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&id=NC_015274.1&rettype=gbwithparts&retmode=text",
+   "n_proteins": 72,
+   "holdout_min_sw_score": 80,
+   "training_holins_removed": 21,
+   "training_holins_left": 537,
+   "ground_truth": [
+    {
+     "protein_index": 57,
+     "id": "StPhDp-1_gp58",
+     "product": "holin",
+     "length": 74,
+     "reference": "O03978",
+     "reference_name": "Holin - Bacteriophage Dp-1.",
+     "tier": "tested",
+     "identity": 1.0,
+     "rank": 1,
+     "score": 0.9983
+    }
+   ],
+   "top": [
+    {
+     "rank": 1,
+     "id": "StPhDp-1_gp58",
+     "gene": "",
+     "product": "holin",
+     "length": 74,
+     "n_tm_hydropathy": 2,
+     "score": 0.9983,
+     "is_ground_truth": true
+    },
+    {
+     "rank": 2,
+     "id": "StPhDp-1_gp57",
+     "gene": "",
+     "product": "hypothetical protein",
+     "length": 142,
+     "n_tm_hydropathy": 1,
+     "score": 0.9946,
+     "is_ground_truth": false
+    },
+    {
+     "rank": 3,
+     "id": "StPhDp-1_gp33",
+     "gene": "",
+     "product": "hypothetical protein",
+     "length": 122,
+     "n_tm_hydropathy": 0,
+     "score": 0.0384,
+     "is_ground_truth": false
+    },
+    {
+     "rank": 4,
+     "id": "StPhDp-1_gp13",
+     "gene": "",
+     "product": "hypothetical protein",
+     "length": 189,
+     "n_tm_hydropathy": 0,
+     "score": 0.0285,
+     "is_ground_truth": false
+    },
+    {
+     "rank": 5,
+     "id": "StPhDp-1_gp41",
+     "gene": "",
+     "product": "minor capsid protein",
+     "length": 222,
+     "n_tm_hydropathy": 0,
+     "score": 0.0131,
+     "is_ground_truth": false
+    },
+    {
+     "rank": 6,
+     "id": "StPhDp-1_gp35",
+     "gene": "",
+     "product": "RNA 2'-phosphotransferase",
+     "length": 105,
+     "n_tm_hydropathy": 0,
+     "score": 0.0103,
+     "is_ground_truth": false
+    },
+    {
+     "rank": 7,
+     "id": "StPhDp-1_gp16",
+     "gene": "",
+     "product": "DNA ligase",
+     "length": 137,
+     "n_tm_hydropathy": 0,
+     "score": 0.0055,
+     "is_ground_truth": false
+    },
+    {
+     "rank": 8,
+     "id": "StPhDp-1_gp03",
+     "gene": "",
+     "product": "QueD-like 6-pyruvoyl-tetrahydropterin synthase",
+     "length": 173,
+     "n_tm_hydropathy": 0,
+     "score": 0.0044,
+     "is_ground_truth": false
+    },
+    {
+     "rank": 9,
+     "id": "StPhDp-1_gp72",
+     "gene": "",
+     "product": "hypothetical protein",
+     "length": 177,
+     "n_tm_hydropathy": 2,
+     "score": 0.0043,
+     "is_ground_truth": false
+    },
+    {
+     "rank": 10,
+     "id": "StPhDp-1_gp45",
+     "gene": "",
+     "product": "structural protein",
+     "length": 105,
+     "n_tm_hydropathy": 0,
+     "score": 0.004,
+     "is_ground_truth": false
+    }
+   ]
+  },
+  {
+   "accession": "NC_001825.1",
+   "organism": "Streptococcus phage Cp-1",
+   "expected": "holin (lysis protein), protein-level evidence",
+   "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&id=NC_001825.1&rettype=gbwithparts&retmode=text",
+   "n_proteins": 25,
+   "holdout_min_sw_score": 80,
+   "training_holins_removed": 10,
+   "training_holins_left": 548,
+   "ground_truth": [
+    {
+     "protein_index": 20,
+     "id": "Cp-1p24",
+     "product": "holin",
+     "length": 134,
+     "reference": "Q38008",
+     "reference_name": "Holin (Lysis protein) - Bacteriophage Cp-1.",
+     "tier": "tested",
+     "identity": 1.0,
+     "rank": 1,
+     "score": 0.4406
+    }
+   ],
+   "top": [
+    {
+     "rank": 1,
+     "id": "Cp-1p24",
+     "gene": "",
+     "product": "holin",
+     "length": 134,
+     "n_tm_hydropathy": 2,
+     "score": 0.4406,
+     "is_ground_truth": true
+    },
+    {
+     "rank": 2,
+     "id": "Cp-1p16",
+     "gene": "",
+     "product": "hypothetical protein",
+     "length": 288,
+     "n_tm_hydropathy": 0,
+     "score": 0.2917,
+     "is_ground_truth": false
+    },
+    {
+     "rank": 3,
+     "id": "Cp-1p26",
+     "gene": "",
+     "product": "hypothetical protein",
+     "length": 80,
+     "n_tm_hydropathy": 1,
+     "score": 0.1215,
+     "is_ground_truth": false
+    },
+    {
+     "rank": 4,
+     "id": "Cp-1p08",
+     "gene": "",
+     "product": "possible scaffolding protein",
+     "length": 96,
+     "n_tm_hydropathy": 0,
+     "score": 0.0737,
+     "is_ground_truth": false
+    },
+    {
+     "rank": 5,
+     "id": "Cp-1p02",
+     "gene": "",
+     "product": "hypothetical protein",
+     "length": 96,
+     "n_tm_hydropathy": 0,
+     "score": 0.0659,
+     "is_ground_truth": false
+    },
+    {
+     "rank": 6,
+     "id": "Cp-1p20",
+     "gene": "",
+     "product": "tail protein",
+     "length": 237,
+     "n_tm_hydropathy": 0,
+     "score": 0.0511,
+     "is_ground_truth": false
+    },
+    {
+     "rank": 7,
+     "id": "Cp-1p14",
+     "gene": "",
+     "product": "hypothetical protein",
+     "length": 104,
+     "n_tm_hydropathy": 0,
+     "score": 0.0381,
+     "is_ground_truth": false
+    },
+    {
+     "rank": 8,
+     "id": "Cp-1p18",
+     "gene": "",
+     "product": "hypothetical protein",
+     "length": 253,
+     "n_tm_hydropathy": 0,
+     "score": 0.0367,
+     "is_ground_truth": false
+    },
+    {
+     "rank": 9,
+     "id": "Cp-1p12",
+     "gene": "",
+     "product": "lower collar",
+     "length": 194,
+     "n_tm_hydropathy": 0,
+     "score": 0.0367,
+     "is_ground_truth": false
+    },
+    {
+     "rank": 10,
+     "id": "Cp-1p13",
+     "gene": "",
+     "product": "hypothetical protein",
+     "length": 194,
+     "n_tm_hydropathy": 0,
+     "score": 0.0289,
+     "is_ground_truth": false
+    }
+   ]
+  }
+ ]
+}
