@@ -18,8 +18,12 @@ B = Path(__file__).resolve().parent.parent
 POOL = B / "data/raw/pool"; POOL.mkdir(parents=True, exist_ok=True)
 EU = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/"
 QUERY = 'Caudoviricetes[Organism] AND "complete genome"[Title] AND refseq[filter] AND 10000:200000[SLEN]'
-LYSIS = re.compile(r"endolysin|lysozyme|amidase|peptidoglycan hydrolase|murein hydrolase|glycosyl hydrolase|"
-                   r"spanin|\brz\b|rz1|lysis", re.I)
+# A bare "lysis" matched T4's rI/rIIA/rIIB "lysis inhibitor" genes, counting lysis INHIBITION as evidence of a
+# lysis cassette. Spanins are excluded as evidence too: the membrane cross-check (scripts/11) shows Rz-like spanins
+# score 0.74-0.96 themselves, so a spanin neighbour cannot distinguish a holin from another spanin.
+LYSIS = re.compile(r"endolysin|lysozyme|amidase|peptidoglycan hydrolase|murein hydrolase|glycosyl hydrolase", re.I)
+LYSIS_WEAK = re.compile(r"spanin|\brz\b|rz1", re.I)
+NOT_LYSIS = re.compile(r"inhibit", re.I)
 HOLIN_WORD = re.compile(r"holin", re.I)
 
 
@@ -61,9 +65,12 @@ def main():
         prots.sort(key=lambda p: p["start"])
         for i, p in enumerate(prots):
             window = prots[max(0, i - 3):i + 4]
-            near = [w["product"] for w in window if w is not p and LYSIS.search(w["product"] or "")]
+            near = [w["product"] for w in window if w is not p and LYSIS.search(w["product"] or "")
+                    and not NOT_LYSIS.search(w["product"] or "")]
+            weak = [w["product"] for w in window if w is not p and LYSIS_WEAK.search(w["product"] or "")]
             p.update({"accession": acc, "index": i, "n_in_genome": len(prots),
                       "lysis_neighbours": near[:3], "has_lysis_neighbour": bool(near),
+                      "spanin_neighbours": weak[:3],
                       "annotated_holin": bool(HOLIN_WORD.search(p["product"] or ""))})
         out += [p for p in prots if 20 <= len(p["sequence"]) <= 2000]
         if k % 25 == 0: print(f"  {k}/{len(accs)} genomes, {len(out)} proteins", flush=True)

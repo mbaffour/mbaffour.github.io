@@ -1,0 +1,2522 @@
+{
+ "membrane_evidence": {
+  "source": "dirty-science-canvas normalized Phobius / DeepTMHMM / TOPCONS2 output",
+  "independent_of_model": "the classifier has no topology input; its only hydrophobicity features are Kyte-Doolittle"
+ },
+ "genomes": [
+  {
+   "organism": "Enterobacteria phage HK97",
+   "key": "HK97",
+   "accession": "NC_002167.1",
+   "n_proteins": 61
+  },
+  {
+   "organism": "Enterobacteria phage M13",
+   "key": "M13",
+   "accession": "NC_003287.2",
+   "n_proteins": 10
+  },
+  {
+   "organism": "Escherichia phage MS2",
+   "key": "MS2",
+   "accession": "NC_001417.2",
+   "n_proteins": 4
+  },
+  {
+   "organism": "Enterobacteria phage Mu",
+   "key": "Mu",
+   "accession": "NC_000929.1",
+   "n_proteins": 55
+  },
+  {
+   "organism": "Enterobacteria phage P1",
+   "key": "P1",
+   "accession": "NC_005856.1",
+   "n_proteins": 110
+  },
+  {
+   "organism": "Salmonella phage P22",
+   "key": "P22",
+   "accession": "NC_002371.2",
+   "n_proteins": 72
+  },
+  {
+   "organism": "Enterobacteria phage PRD1",
+   "key": "PRD1",
+   "accession": "NC_001421.2",
+   "n_proteins": 31
+  },
+  {
+   "organism": "Enterobacteria phage Qbeta",
+   "key": "Qbeta",
+   "accession": "NC_001890.1",
+   "n_proteins": 4
+  },
+  {
+   "organism": "Bacillus phage SPP1",
+   "key": "SPP1",
+   "accession": "NC_004166.2",
+   "n_proteins": 97
+  },
+  {
+   "organism": "Enterobacteria phage T4",
+   "key": "T4",
+   "accession": "NC_000866.4",
+   "n_proteins": 277
+  },
+  {
+   "organism": "Enterobacteria phage T5",
+   "key": "T5",
+   "accession": "NC_005859.1",
+   "n_proteins": 162
+  },
+  {
+   "organism": "Enterobacteria phage T7",
+   "key": "T7",
+   "accession": "NC_001604.1",
+   "n_proteins": 60
+  },
+  {
+   "organism": "Enterobacteria phage lambda",
+   "key": "lambda",
+   "accession": "NC_001416.1",
+   "n_proteins": 73
+  },
+  {
+   "organism": "Bacillus phage phi29",
+   "key": "phi29",
+   "accession": "NC_011048.1",
+   "n_proteins": 27
+  },
+  {
+   "organism": "Pseudomonas phage phi6",
+   "key": "phi6",
+   "accession": "NC_003715.1, NC_003716.1, NC_003714.1",
+   "n_proteins": 13
+  },
+  {
+   "organism": "Escherichia phage phiX174",
+   "key": "phiX174",
+   "accession": "NC_001422.1",
+   "n_proteins": 11
+  }
+ ],
+ "gate_comparison": {
+  "score >= 0.5": {
+   "score only": {
+    "n_called": 38,
+    "annotated_holin": 12,
+    "precision_vs_annotation": 0.316,
+    "recall_of_annotated": 0.923
+   },
+   "score AND >=2/3 methods call TM": {
+    "n_called": 34,
+    "annotated_holin": 12,
+    "precision_vs_annotation": 0.353,
+    "recall_of_annotated": 0.923
+   }
+  },
+  "score >= 0.9": {
+   "score only": {
+    "n_called": 18,
+    "annotated_holin": 12,
+    "precision_vs_annotation": 0.667,
+    "recall_of_annotated": 0.923
+   },
+   "score AND >=2/3 methods call TM": {
+    "n_called": 18,
+    "annotated_holin": 12,
+    "precision_vs_annotation": 0.667,
+    "recall_of_annotated": 0.923
+   }
+  },
+  "score >= 0.95": {
+   "score only": {
+    "n_called": 16,
+    "annotated_holin": 12,
+    "precision_vs_annotation": 0.75,
+    "recall_of_annotated": 0.923
+   },
+   "score AND >=2/3 methods call TM": {
+    "n_called": 16,
+    "annotated_holin": 12,
+    "precision_vs_annotation": 0.75,
+    "recall_of_annotated": 0.923
+   }
+  },
+  "score >= 0.99": {
+   "score only": {
+    "n_called": 0,
+    "annotated_holin": 0,
+    "precision_vs_annotation": null,
+    "recall_of_annotated": 0.0
+   },
+   "score AND >=2/3 methods call TM": {
+    "n_called": 0,
+    "annotated_holin": 0,
+    "precision_vs_annotation": null,
+    "recall_of_annotated": 0.0
+   }
+  }
+ },
+ "annotated_holins": [
+  {
+   "organism": "Bacillus phage SPP1",
+   "protein_id": "SPP1|SPP1p053",
+   "gene": "",
+   "product": "holin",
+   "length": 82,
+   "score": 0.9891447301809935,
+   "tm": {
+    "Phobius": 1,
+    "DeepTMHMM": 2,
+    "TOPCONS2": 2
+   },
+   "n_methods_membrane": 3,
+   "homolog_identity_to_training_holin": 1.0
+  },
+  {
+   "organism": "Enterobacteria phage T7",
+   "protein_id": "T7|T7p53",
+   "gene": "",
+   "product": "holin",
+   "length": 67,
+   "score": 0.9886730841602392,
+   "tm": {
+    "Phobius": 1,
+    "DeepTMHMM": 2,
+    "TOPCONS2": 1
+   },
+   "n_methods_membrane": 3,
+   "homolog_identity_to_training_holin": 1.0
+  },
+  {
+   "organism": "Enterobacteria phage lambda",
+   "protein_id": "lambda|lambdap92",
+   "gene": "S'",
+   "product": "holin/anti-holin",
+   "length": 105,
+   "score": 0.9885294317616985,
+   "tm": {
+    "Phobius": 3,
+    "DeepTMHMM": 3,
+    "TOPCONS2": 2
+   },
+   "n_methods_membrane": 3,
+   "homolog_identity_to_training_holin": 1.0
+  },
+  {
+   "organism": "Salmonella phage P22",
+   "protein_id": "P22|P22gp64",
+   "gene": "13",
+   "product": "holin/anti-holin",
+   "length": 108,
+   "score": 0.988325197415341,
+   "tm": {
+    "Phobius": 3,
+    "DeepTMHMM": 3,
+    "TOPCONS2": 2
+   },
+   "n_methods_membrane": 3,
+   "homolog_identity_to_training_holin": 1.0
+  },
+  {
+   "organism": "Salmonella phage P22",
+   "protein_id": "P22|P22gp65",
+   "gene": "13'",
+   "product": "holin/anti-holin",
+   "length": 105,
+   "score": 0.988325197415341,
+   "tm": {
+    "Phobius": 3,
+    "DeepTMHMM": 3,
+    "TOPCONS2": 2
+   },
+   "n_methods_membrane": 3,
+   "homolog_identity_to_training_holin": 1.0
+  },
+  {
+   "organism": "Enterobacteria phage lambda",
+   "protein_id": "lambda|lambdap74",
+   "gene": "S",
+   "product": "holin/anti-holin",
+   "length": 107,
+   "score": 0.988325197415341,
+   "tm": {
+    "Phobius": 3,
+    "DeepTMHMM": 3,
+    "TOPCONS2": 2
+   },
+   "n_methods_membrane": 3,
+   "homolog_identity_to_training_holin": 1.0
+  },
+  {
+   "organism": "Enterobacteria phage PRD1",
+   "protein_id": "PRD1|PRD1_31",
+   "gene": "XXXV",
+   "product": "holin",
+   "length": 117,
+   "score": 0.9868089151608823,
+   "tm": {
+    "Phobius": 3,
+    "DeepTMHMM": 3,
+    "TOPCONS2": 3
+   },
+   "n_methods_membrane": 3,
+   "homolog_identity_to_training_holin": 1.0
+  },
+  {
+   "organism": "Enterobacteria phage P1",
+   "protein_id": "P1|P1_gp027",
+   "gene": "lydA",
+   "product": "holin",
+   "length": 109,
+   "score": 0.9866459952631987,
+   "tm": {
+    "Phobius": 2,
+    "DeepTMHMM": 3,
+    "TOPCONS2": 2
+   },
+   "n_methods_membrane": 3,
+   "homolog_identity_to_training_holin": 1.0
+  },
+  {
+   "organism": "Enterobacteria phage HK97",
+   "protein_id": "HK97|HK97p57",
+   "gene": "",
+   "product": "holin/anti-holin",
+   "length": 106,
+   "score": 0.9864672248362953,
+   "tm": {
+    "Phobius": 3,
+    "DeepTMHMM": 3,
+    "TOPCONS2": 2
+   },
+   "n_methods_membrane": 3,
+   "homolog_identity_to_training_holin": 0.9532710280373832
+  },
+  {
+   "organism": "Enterobacteria phage T5",
+   "protein_id": "T5|T5.041",
+   "gene": "C1",
+   "product": "holin",
+   "length": 218,
+   "score": 0.9745813986130442,
+   "tm": {
+    "Phobius": 1,
+    "DeepTMHMM": 1,
+    "TOPCONS2": 1
+   },
+   "n_methods_membrane": 3,
+   "homolog_identity_to_training_holin": 1.0
+  },
+  {
+   "organism": "Enterobacteria phage T4",
+   "protein_id": "T4|T4p254",
+   "gene": "t",
+   "product": "holin",
+   "length": 218,
+   "score": 0.9736377411566022,
+   "tm": {
+    "Phobius": 1,
+    "DeepTMHMM": 1,
+    "TOPCONS2": 1
+   },
+   "n_methods_membrane": 3,
+   "homolog_identity_to_training_holin": 1.0
+  },
+  {
+   "organism": "Bacillus phage phi29",
+   "protein_id": "phi29|phi29_gp14",
+   "gene": "14",
+   "product": "holin family protein",
+   "length": 131,
+   "score": 0.9716322283087322,
+   "tm": {
+    "Phobius": 3,
+    "DeepTMHMM": 3,
+    "TOPCONS2": 3
+   },
+   "n_methods_membrane": 3,
+   "homolog_identity_to_training_holin": 1.0
+  },
+  {
+   "organism": "Enterobacteria phage P1",
+   "protein_id": "P1|P1_gp014",
+   "gene": "lydD",
+   "product": "holin",
+   "length": 84,
+   "score": 0.3255093693892021,
+   "tm": {
+    "Phobius": 2,
+    "DeepTMHMM": 2,
+    "TOPCONS2": 2
+   },
+   "n_methods_membrane": 3,
+   "homolog_identity_to_training_holin": 1.0
+  }
+ ],
+ "annotated_holin_and_membrane_and_called": 12,
+ "annotated_holin_missed_by_model": [
+  {
+   "organism": "Enterobacteria phage P1",
+   "gene": "lydD",
+   "product": "holin",
+   "score": 0.3255093693892021,
+   "n_methods_membrane": 3
+  }
+ ],
+ "spanin_confusion": {
+  "note": "Rz/Rz1-like spanins are lysis-cassette membrane proteins too; membrane evidence does not separate them from holins",
+  "n_scored_over_0.5": 5,
+  "hits": [
+   {
+    "organism": "Enterobacteria phage PRD1",
+    "gene": "ORFu",
+    "product": "Rz-like spanin",
+    "score": 0.9630130605303571,
+    "n_methods_membrane": 2,
+    "length": 120
+   },
+   {
+    "organism": "Enterobacteria phage T4",
+    "gene": "pseT.3",
+    "product": "Rz-like spanin",
+    "score": 0.9005128861684663,
+    "n_methods_membrane": 3,
+    "length": 117
+   },
+   {
+    "organism": "Enterobacteria phage T5",
+    "gene": "",
+    "product": "Rz-like spanin",
+    "score": 0.876629390445243,
+    "n_methods_membrane": 3,
+    "length": 147
+   },
+   {
+    "organism": "Enterobacteria phage T7",
+    "gene": "",
+    "product": "Rz-like spanin",
+    "score": 0.8583416037998581,
+    "n_methods_membrane": 3,
+    "length": 143
+   },
+   {
+    "organism": "Enterobacteria phage HK97",
+    "gene": "Rz",
+    "product": "Rz-like spanin",
+    "score": 0.7423903177095836,
+    "n_methods_membrane": 1,
+    "length": 145
+   }
+  ]
+ },
+ "novel_candidates_high_score_membrane_no_training_homolog": [],
+ "top_hits_per_genome": {
+  "HK97": [
+   {
+    "protein_id": "HK97|HK97p57",
+    "gene": "",
+    "product": "holin/anti-holin",
+    "score": 0.9864672248362953,
+    "tm": {
+     "Phobius": 3,
+     "DeepTMHMM": 3,
+     "TOPCONS2": 2
+    },
+    "n_methods_membrane": 3,
+    "annotated_holin": true,
+    "homolog_identity_to_training_holin": 0.9532710280373832
+   },
+   {
+    "protein_id": "HK97|HK97p13",
+    "gene": "",
+    "product": "Gp15",
+    "score": 0.8475331546512139,
+    "tm": {
+     "Phobius": 1,
+     "DeepTMHMM": 1,
+     "TOPCONS2": 1
+    },
+    "n_methods_membrane": 3,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.0
+   },
+   {
+    "protein_id": "HK97|HK97p38",
+    "gene": "",
+    "product": "Gp48",
+    "score": 0.8002879749468688,
+    "tm": {
+     "Phobius": 1,
+     "DeepTMHMM": 1,
+     "TOPCONS2": 2
+    },
+    "n_methods_membrane": 3,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.2818181818181818
+   },
+   {
+    "protein_id": "HK97|HK97p59",
+    "gene": "Rz",
+    "product": "Rz-like spanin",
+    "score": 0.7423903177095836,
+    "tm": {
+     "Phobius": 0,
+     "DeepTMHMM": 1,
+     "TOPCONS2": 0
+    },
+    "n_methods_membrane": 1,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.24666666666666667
+   },
+   {
+    "protein_id": "HK97|HK97p46",
+    "gene": "",
+    "product": "Gp56",
+    "score": 0.3011490001553191,
+    "tm": {
+     "Phobius": 0,
+     "DeepTMHMM": 0,
+     "TOPCONS2": 1
+    },
+    "n_methods_membrane": 1,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.0
+   },
+   {
+    "protein_id": "HK97|HK97p19",
+    "gene": "I",
+    "product": "tail protein",
+    "score": 0.2092354097867604,
+    "tm": {
+     "Phobius": 2,
+     "DeepTMHMM": 0,
+     "TOPCONS2": 2
+    },
+    "n_methods_membrane": 2,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.3181818181818182
+   },
+   {
+    "protein_id": "HK97|HK97p56",
+    "gene": "",
+    "product": "antitermination protein",
+    "score": 0.10837722669092029,
+    "tm": {
+     "Phobius": 0,
+     "DeepTMHMM": 0,
+     "TOPCONS2": 0
+    },
+    "n_methods_membrane": 0,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.2661290322580645
+   },
+   {
+    "protein_id": "HK97|HK97p30",
+    "gene": "",
+    "product": "Gp40",
+    "score": 0.071680789422082,
+    "tm": {
+     "Phobius": 0,
+     "DeepTMHMM": 0,
+     "TOPCONS2": 0
+    },
+    "n_methods_membrane": 0,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.24242424242424243
+   },
+   {
+    "protein_id": "HK97|HK97p34",
+    "gene": "kil",
+    "product": "Kil protein for bacterial septation inhibition",
+    "score": 0.05373194495186082,
+    "tm": {
+     "Phobius": 0,
+     "DeepTMHMM": 0,
+     "TOPCONS2": 0
+    },
+    "n_methods_membrane": 0,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.0
+   },
+   {
+    "protein_id": "HK97|HK97p01",
+    "gene": "",
+    "product": "terminase small subunit",
+    "score": 0.05205726338313168,
+    "tm": {
+     "Phobius": 0,
+     "DeepTMHMM": 0,
+     "TOPCONS2": 0
+    },
+    "n_methods_membrane": 0,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.0
+   }
+  ],
+  "M13": [
+   {
+    "protein_id": "M13|M13p05",
+    "gene": "IX",
+    "product": "minor coat protein",
+    "score": 0.1566055995738884,
+    "tm": {
+     "Phobius": 0,
+     "DeepTMHMM": 0,
+     "TOPCONS2": 1
+    },
+    "n_methods_membrane": 1,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.0
+   },
+   {
+    "protein_id": "M13|M13p04",
+    "gene": "VII",
+    "product": "minor coat protein",
+    "score": 0.15138077320534576,
+    "tm": {
+     "Phobius": 1,
+     "DeepTMHMM": 1,
+     "TOPCONS2": 1
+    },
+    "n_methods_membrane": 3,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.0
+   },
+   {
+    "protein_id": "M13|M13p08",
+    "gene": "VI",
+    "product": "minor coat protein",
+    "score": 0.04895144642666634,
+    "tm": {
+     "Phobius": 3,
+     "DeepTMHMM": 2,
+     "TOPCONS2": 3
+    },
+    "n_methods_membrane": 3,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.3380281690140845
+   },
+   {
+    "protein_id": "M13|M13p07",
+    "gene": "III",
+    "product": "attachment protein",
+    "score": 0.025147871183566498,
+    "tm": {
+     "Phobius": 1,
+     "DeepTMHMM": 1,
+     "TOPCONS2": 1
+    },
+    "n_methods_membrane": 3,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.2824427480916031
+   },
+   {
+    "protein_id": "M13|M13p02",
+    "gene": "X",
+    "product": "gene X product",
+    "score": 0.019739761620825223,
+    "tm": {
+     "Phobius": 0,
+     "DeepTMHMM": 0,
+     "TOPCONS2": 0
+    },
+    "n_methods_membrane": 0,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.0
+   },
+   {
+    "protein_id": "M13|M13p06",
+    "gene": "VIII",
+    "product": "major coat protein",
+    "score": 0.019228139555694752,
+    "tm": {
+     "Phobius": 1,
+     "DeepTMHMM": 1,
+     "TOPCONS2": 1
+    },
+    "n_methods_membrane": 3,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.0
+   },
+   {
+    "protein_id": "M13|M13p09",
+    "gene": "I",
+    "product": "assembly protein",
+    "score": 0.012166836912080523,
+    "tm": {
+     "Phobius": 1,
+     "DeepTMHMM": 1,
+     "TOPCONS2": 0
+    },
+    "n_methods_membrane": 2,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.24822695035460993
+   },
+   {
+    "protein_id": "M13|M13p03",
+    "gene": "V",
+    "product": "helix destabilising protein",
+    "score": 0.011452012955924212,
+    "tm": {
+     "Phobius": 0,
+     "DeepTMHMM": 0,
+     "TOPCONS2": 0
+    },
+    "n_methods_membrane": 0,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.0
+   },
+   {
+    "protein_id": "M13|M13p01",
+    "gene": "II",
+    "product": "replication initiation protein",
+    "score": 0.007924061325242827,
+    "tm": {
+     "Phobius": 0,
+     "DeepTMHMM": 0,
+     "TOPCONS2": 0
+    },
+    "n_methods_membrane": 0,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.21555555555555556
+   },
+   {
+    "protein_id": "M13|M13p10",
+    "gene": "IV",
+    "product": "phage assembly protein",
+    "score": 0.006762115512557739,
+    "tm": {
+     "Phobius": 0,
+     "DeepTMHMM": 0,
+     "TOPCONS2": 0
+    },
+    "n_methods_membrane": 0,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.2534246575342466
+   }
+  ],
+  "MS2": [
+   {
+    "protein_id": "MS2|MS2g3",
+    "gene": "lys",
+    "product": "hypothetical protein",
+    "score": 0.07316660288548958,
+    "tm": {
+     "Phobius": 1,
+     "DeepTMHMM": 1,
+     "TOPCONS2": 1
+    },
+    "n_methods_membrane": 3,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.0
+   },
+   {
+    "protein_id": "MS2|MS2g1",
+    "gene": "mat",
+    "product": "head maturation protease",
+    "score": 0.02997775206971794,
+    "tm": {
+     "Phobius": 0,
+     "DeepTMHMM": 0,
+     "TOPCONS2": 0
+    },
+    "n_methods_membrane": 0,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.2882882882882883
+   },
+   {
+    "protein_id": "MS2|MS2g4",
+    "gene": "rep",
+    "product": "RNA replicase beta subunit",
+    "score": 0.014663364882132294,
+    "tm": {
+     "Phobius": 0,
+     "DeepTMHMM": 0,
+     "TOPCONS2": 0
+    },
+    "n_methods_membrane": 0,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.3442622950819672
+   },
+   {
+    "protein_id": "MS2|MS2g2",
+    "gene": "cp",
+    "product": "head protein",
+    "score": 0.010710341119578502,
+    "tm": {
+     "Phobius": 0,
+     "DeepTMHMM": 0,
+     "TOPCONS2": 0
+    },
+    "n_methods_membrane": 0,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.0
+   }
+  ],
+  "Mu": [
+   {
+    "protein_id": "Mu|Mup25",
+    "gene": "",
+    "product": "DUF2730 family protein",
+    "score": 0.9683025970592911,
+    "tm": {
+     "Phobius": 0,
+     "DeepTMHMM": 1,
+     "TOPCONS2": 1
+    },
+    "n_methods_membrane": 2,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.2857142857142857
+   },
+   {
+    "protein_id": "Mu|Mup19",
+    "gene": "",
+    "product": "hypothetical protein",
+    "score": 0.6421689951008531,
+    "tm": {
+     "Phobius": 4,
+     "DeepTMHMM": 4,
+     "TOPCONS2": 4
+    },
+    "n_methods_membrane": 3,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.2956521739130435
+   },
+   {
+    "protein_id": "Mu|Mup23",
+    "gene": "",
+    "product": "Rz-like spanin",
+    "score": 0.3813095045644645,
+    "tm": {
+     "Phobius": 0,
+     "DeepTMHMM": 0,
+     "TOPCONS2": 1
+    },
+    "n_methods_membrane": 1,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.0
+   },
+   {
+    "protein_id": "Mu|Mup18",
+    "gene": "",
+    "product": "hypothetical protein",
+    "score": 0.1725033074030925,
+    "tm": {
+     "Phobius": 0,
+     "DeepTMHMM": 0,
+     "TOPCONS2": 0
+    },
+    "n_methods_membrane": 0,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.0
+   },
+   {
+    "protein_id": "Mu|Mup15",
+    "gene": "",
+    "product": "hypothetical protein",
+    "score": 0.11463952729979868,
+    "tm": {
+     "Phobius": 0,
+     "DeepTMHMM": 0,
+     "TOPCONS2": 0
+    },
+    "n_methods_membrane": 0,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.3108108108108108
+   },
+   {
+    "protein_id": "Mu|Mup22",
+    "gene": "",
+    "product": "endolysin",
+    "score": 0.10761464399193664,
+    "tm": {
+     "Phobius": 0,
+     "DeepTMHMM": 0,
+     "TOPCONS2": 0
+    },
+    "n_methods_membrane": 0,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.34782608695652173
+   },
+   {
+    "protein_id": "Mu|Mup49",
+    "gene": "",
+    "product": "tail fiber protein",
+    "score": 0.10144814271416984,
+    "tm": {
+     "Phobius": 0,
+     "DeepTMHMM": 0,
+     "TOPCONS2": 0
+    },
+    "n_methods_membrane": 0,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.28205128205128205
+   },
+   {
+    "protein_id": "Mu|Mup36",
+    "gene": "",
+    "product": "head-tail adaptor",
+    "score": 0.060516188503204636,
+    "tm": {
+     "Phobius": 0,
+     "DeepTMHMM": 0,
+     "TOPCONS2": 0
+    },
+    "n_methods_membrane": 0,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.2708333333333333
+   },
+   {
+    "protein_id": "Mu|Mup27",
+    "gene": "",
+    "product": "terminase small subunit",
+    "score": 0.045883177191691805,
+    "tm": {
+     "Phobius": 0,
+     "DeepTMHMM": 0,
+     "TOPCONS2": 0
+    },
+    "n_methods_membrane": 0,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.2462686567164179
+   },
+   {
+    "protein_id": "Mu|Mup42",
+    "gene": "",
+    "product": "tail length tape measure protein",
+    "score": 0.03721745836627065,
+    "tm": {
+     "Phobius": 0,
+     "DeepTMHMM": 0,
+     "TOPCONS2": 0
+    },
+    "n_methods_membrane": 0,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.325
+   }
+  ],
+  "P1": [
+   {
+    "protein_id": "P1|P1_gp027",
+    "gene": "lydA",
+    "product": "holin",
+    "score": 0.9866459952631987,
+    "tm": {
+     "Phobius": 2,
+     "DeepTMHMM": 3,
+     "TOPCONS2": 2
+    },
+    "n_methods_membrane": 3,
+    "annotated_holin": true,
+    "homolog_identity_to_training_holin": 1.0
+   },
+   {
+    "protein_id": "P1|P1_gp028",
+    "gene": "lydC",
+    "product": "LydC",
+    "score": 0.9647404759395786,
+    "tm": {
+     "Phobius": 2,
+     "DeepTMHMM": 3,
+     "TOPCONS2": 2
+    },
+    "n_methods_membrane": 3,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 1.0
+   },
+   {
+    "protein_id": "P1|P1_gp064",
+    "gene": "ppfA",
+    "product": "PpfA",
+    "score": 0.7255040185058583,
+    "tm": {
+     "Phobius": 0,
+     "DeepTMHMM": 1,
+     "TOPCONS2": 1
+    },
+    "n_methods_membrane": 2,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.2867132867132867
+   },
+   {
+    "protein_id": "P1|P1_gp115",
+    "gene": "lydE",
+    "product": "LydE",
+    "score": 0.6292212554627727,
+    "tm": {
+     "Phobius": 0,
+     "DeepTMHMM": 0,
+     "TOPCONS2": 0
+    },
+    "n_methods_membrane": 0,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.0
+   },
+   {
+    "protein_id": "P1|P1_gp014",
+    "gene": "lydD",
+    "product": "holin",
+    "score": 0.3255093693892021,
+    "tm": {
+     "Phobius": 2,
+     "DeepTMHMM": 2,
+     "TOPCONS2": 2
+    },
+    "n_methods_membrane": 3,
+    "annotated_holin": true,
+    "homolog_identity_to_training_holin": 1.0
+   },
+   {
+    "protein_id": "P1|P1_gp045",
+    "gene": "icd",
+    "product": "host cell division inhibitor Icd-like protein",
+    "score": 0.1904857852994548,
+    "tm": {
+     "Phobius": 0,
+     "DeepTMHMM": 0,
+     "TOPCONS2": 0
+    },
+    "n_methods_membrane": 0,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.0
+   },
+   {
+    "protein_id": "P1|P1_gp075",
+    "gene": "tciB",
+    "product": "TciB-like inhibition of cell division or resistance to colicin",
+    "score": 0.18739388818199093,
+    "tm": {
+     "Phobius": 1,
+     "DeepTMHMM": 2,
+     "TOPCONS2": 1
+    },
+    "n_methods_membrane": 3,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.0
+   },
+   {
+    "protein_id": "P1|P1_gp100",
+    "gene": "upfO",
+    "product": "UpfO",
+    "score": 0.16813630644355346,
+    "tm": {
+     "Phobius": 0,
+     "DeepTMHMM": 0,
+     "TOPCONS2": 0
+    },
+    "n_methods_membrane": 0,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.0
+   },
+   {
+    "protein_id": "P1|P1_gp072",
+    "gene": "plp",
+    "product": "Plp",
+    "score": 0.16587900385229065,
+    "tm": {
+     "Phobius": 0,
+     "DeepTMHMM": 0,
+     "TOPCONS2": 0
+    },
+    "n_methods_membrane": 0,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.0
+   },
+   {
+    "protein_id": "P1|P1_gp113",
+    "gene": "imcB",
+    "product": "ImcB",
+    "score": 0.11804730011061187,
+    "tm": {
+     "Phobius": 0,
+     "DeepTMHMM": 0,
+     "TOPCONS2": 0
+    },
+    "n_methods_membrane": 0,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.0
+   }
+  ],
+  "P22": [
+   {
+    "protein_id": "P22|P22gp64",
+    "gene": "13",
+    "product": "holin/anti-holin",
+    "score": 0.988325197415341,
+    "tm": {
+     "Phobius": 3,
+     "DeepTMHMM": 3,
+     "TOPCONS2": 2
+    },
+    "n_methods_membrane": 3,
+    "annotated_holin": true,
+    "homolog_identity_to_training_holin": 1.0
+   },
+   {
+    "protein_id": "P22|P22gp65",
+    "gene": "13'",
+    "product": "holin/anti-holin",
+    "score": 0.988325197415341,
+    "tm": {
+     "Phobius": 3,
+     "DeepTMHMM": 3,
+     "TOPCONS2": 2
+    },
+    "n_methods_membrane": 3,
+    "annotated_holin": true,
+    "homolog_identity_to_training_holin": 1.0
+   },
+   {
+    "protein_id": "P22|P22gp67",
+    "gene": "15",
+    "product": "Rz-like spanin",
+    "score": 0.29689212385450614,
+    "tm": {
+     "Phobius": 0,
+     "DeepTMHMM": 1,
+     "TOPCONS2": 0
+    },
+    "n_methods_membrane": 1,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.2246376811594203
+   },
+   {
+    "protein_id": "P22|P22gp14",
+    "gene": "sieA",
+    "product": "superinfection exclusion SieA-like",
+    "score": 0.17365665291616586,
+    "tm": {
+     "Phobius": 3,
+     "DeepTMHMM": 3,
+     "TOPCONS2": 3
+    },
+    "n_methods_membrane": 3,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.3258426966292135
+   },
+   {
+    "protein_id": "P22|P22gp70",
+    "gene": "orf25",
+    "product": "hypothetical protein",
+    "score": 0.11361897344898303,
+    "tm": {
+     "Phobius": 0,
+     "DeepTMHMM": 0,
+     "TOPCONS2": 0
+    },
+    "n_methods_membrane": 0,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.0
+   },
+   {
+    "protein_id": "P22|P22gp09",
+    "gene": "26",
+    "product": "tail needle protein",
+    "score": 0.10272653931693496,
+    "tm": {
+     "Phobius": 0,
+     "DeepTMHMM": 0,
+     "TOPCONS2": 0
+    },
+    "n_methods_membrane": 0,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.2835820895522388
+   },
+   {
+    "protein_id": "P22|P22gp45",
+    "gene": "esc",
+    "product": "superinfection exclusion; inhibits SieB",
+    "score": 0.10085839972813547,
+    "tm": {
+     "Phobius": 1,
+     "DeepTMHMM": 2,
+     "TOPCONS2": 1
+    },
+    "n_methods_membrane": 3,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.22
+   },
+   {
+    "protein_id": "P22|P22gp62",
+    "gene": "ninZ",
+    "product": "NinZ",
+    "score": 0.07617260728205938,
+    "tm": {
+     "Phobius": 0,
+     "DeepTMHMM": 0,
+     "TOPCONS2": 0
+    },
+    "n_methods_membrane": 0,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.3877551020408163
+   },
+   {
+    "protein_id": "P22|P22gp68",
+    "gene": "Rz1",
+    "product": "Rz-like spanin",
+    "score": 0.0726851447734447,
+    "tm": {
+     "Phobius": 0,
+     "DeepTMHMM": 0,
+     "TOPCONS2": 0
+    },
+    "n_methods_membrane": 0,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.0
+   },
+   {
+    "protein_id": "P22|P22gp63",
+    "gene": "23",
+    "product": "transcription antitermination protein",
+    "score": 0.07082870584534857,
+    "tm": {
+     "Phobius": 0,
+     "DeepTMHMM": 0,
+     "TOPCONS2": 0
+    },
+    "n_methods_membrane": 0,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.2713178294573643
+   }
+  ],
+  "PRD1": [
+   {
+    "protein_id": "PRD1|PRD1_31",
+    "gene": "XXXV",
+    "product": "holin",
+    "score": 0.9868089151608823,
+    "tm": {
+     "Phobius": 3,
+     "DeepTMHMM": 3,
+     "TOPCONS2": 3
+    },
+    "n_methods_membrane": 3,
+    "annotated_holin": true,
+    "homolog_identity_to_training_holin": 1.0
+   },
+   {
+    "protein_id": "PRD1|PRD1_32",
+    "gene": "ORFu",
+    "product": "Rz-like spanin",
+    "score": 0.9630130605303571,
+    "tm": {
+     "Phobius": 0,
+     "DeepTMHMM": 1,
+     "TOPCONS2": 1
+    },
+    "n_methods_membrane": 2,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.24324324324324326
+   },
+   {
+    "protein_id": "PRD1|PRD1_07",
+    "gene": "XVII",
+    "product": "assembly",
+    "score": 0.5507129239614571,
+    "tm": {
+     "Phobius": 0,
+     "DeepTMHMM": 0,
+     "TOPCONS2": 0
+    },
+    "n_methods_membrane": 0,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.0
+   },
+   {
+    "protein_id": "PRD1|PRD1_15",
+    "gene": "XVIII",
+    "product": "DNA delivery",
+    "score": 0.4099307223067452,
+    "tm": {
+     "Phobius": 2,
+     "DeepTMHMM": 3,
+     "TOPCONS2": 3
+    },
+    "n_methods_membrane": 3,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.29411764705882354
+   },
+   {
+    "protein_id": "PRD1|PRD1_27",
+    "gene": "XXXII",
+    "product": "membrane DNA delivery",
+    "score": 0.244739949342066,
+    "tm": {
+     "Phobius": 1,
+     "DeepTMHMM": 1,
+     "TOPCONS2": 1
+    },
+    "n_methods_membrane": 3,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.0
+   },
+   {
+    "protein_id": "PRD1|PRD1_30",
+    "gene": "XIV",
+    "product": "transglycosylase",
+    "score": 0.1780536667912831,
+    "tm": {
+     "Phobius": 1,
+     "DeepTMHMM": 1,
+     "TOPCONS2": 0
+    },
+    "n_methods_membrane": 2,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.3013698630136986
+   },
+   {
+    "protein_id": "PRD1|PRD1_08",
+    "gene": "VI",
+    "product": "minor head protein",
+    "score": 0.11366243398973833,
+    "tm": {
+     "Phobius": 0,
+     "DeepTMHMM": 0,
+     "TOPCONS2": 0
+    },
+    "n_methods_membrane": 0,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.3046875
+   },
+   {
+    "protein_id": "PRD1|PRD1_18",
+    "gene": "XI",
+    "product": "DNA delivery",
+    "score": 0.09891544407532962,
+    "tm": {
+     "Phobius": 1,
+     "DeepTMHMM": 0,
+     "TOPCONS2": 0
+    },
+    "n_methods_membrane": 1,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.2857142857142857
+   },
+   {
+    "protein_id": "PRD1|PRD1_25",
+    "gene": "ORFx",
+    "product": "hypothetical protein",
+    "score": 0.0984388646006809,
+    "tm": {
+     "Phobius": 0,
+     "DeepTMHMM": 0,
+     "TOPCONS2": 1
+    },
+    "n_methods_membrane": 1,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.0
+   },
+   {
+    "protein_id": "PRD1|PRD1_11",
+    "gene": "XX",
+    "product": "DNA packaging",
+    "score": 0.0863503640800992,
+    "tm": {
+     "Phobius": 1,
+     "DeepTMHMM": 1,
+     "TOPCONS2": 0
+    },
+    "n_methods_membrane": 2,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.0
+   }
+  ],
+  "Qbeta": [
+   {
+    "protein_id": "Qbeta|MX1p1",
+    "gene": "mat",
+    "product": "head maturation protease",
+    "score": 0.052122185789164714,
+    "tm": {
+     "Phobius": 0,
+     "DeepTMHMM": 0,
+     "TOPCONS2": 0
+    },
+    "n_methods_membrane": 0,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.23015873015873015
+   },
+   {
+    "protein_id": "Qbeta|MX1p3",
+    "gene": "",
+    "product": "minor head protein",
+    "score": 0.018186039294644234,
+    "tm": {
+     "Phobius": 0,
+     "DeepTMHMM": 0,
+     "TOPCONS2": 0
+    },
+    "n_methods_membrane": 0,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.0
+   },
+   {
+    "protein_id": "Qbeta|MX1p4",
+    "gene": "rep",
+    "product": "RNA replicase beta subunit",
+    "score": 0.009435942003764046,
+    "tm": {
+     "Phobius": 0,
+     "DeepTMHMM": 0,
+     "TOPCONS2": 0
+    },
+    "n_methods_membrane": 0,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.256
+   },
+   {
+    "protein_id": "Qbeta|MX1p2",
+    "gene": "",
+    "product": "minor head protein",
+    "score": 0.008173149893867799,
+    "tm": {
+     "Phobius": 0,
+     "DeepTMHMM": 0,
+     "TOPCONS2": 0
+    },
+    "n_methods_membrane": 0,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.20899470899470898
+   }
+  ],
+  "SPP1": [
+   {
+    "protein_id": "SPP1|SPP1p053",
+    "gene": "",
+    "product": "holin",
+    "score": 0.9891447301809935,
+    "tm": {
+     "Phobius": 1,
+     "DeepTMHMM": 2,
+     "TOPCONS2": 2
+    },
+    "n_methods_membrane": 3,
+    "annotated_holin": true,
+    "homolog_identity_to_training_holin": 1.0
+   },
+   {
+    "protein_id": "SPP1|SPP1p050",
+    "gene": "",
+    "product": "hypothetical protein",
+    "score": 0.9824227893655633,
+    "tm": {
+     "Phobius": 1,
+     "DeepTMHMM": 1,
+     "TOPCONS2": 1
+    },
+    "n_methods_membrane": 3,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 1.0
+   },
+   {
+    "protein_id": "SPP1|SPP1p098",
+    "gene": "",
+    "product": "hypothetical protein",
+    "score": 0.7936496651406596,
+    "tm": {
+     "Phobius": 3,
+     "DeepTMHMM": 3,
+     "TOPCONS2": 3
+    },
+    "n_methods_membrane": 3,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.0
+   },
+   {
+    "protein_id": "SPP1|SPP1p061",
+    "gene": "",
+    "product": "hypothetical protein",
+    "score": 0.7090369615934399,
+    "tm": {
+     "Phobius": 2,
+     "DeepTMHMM": 2,
+     "TOPCONS2": 2
+    },
+    "n_methods_membrane": 3,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.3225806451612903
+   },
+   {
+    "protein_id": "SPP1|SPP1p103",
+    "gene": "",
+    "product": "hypothetical protein",
+    "score": 0.6539698327554531,
+    "tm": {
+     "Phobius": 2,
+     "DeepTMHMM": 2,
+     "TOPCONS2": 2
+    },
+    "n_methods_membrane": 3,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.36538461538461536
+   },
+   {
+    "protein_id": "SPP1|SPP1p062",
+    "gene": "",
+    "product": "hypothetical protein",
+    "score": 0.4935069361558319,
+    "tm": {
+     "Phobius": 2,
+     "DeepTMHMM": 2,
+     "TOPCONS2": 2
+    },
+    "n_methods_membrane": 3,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.24731182795698925
+   },
+   {
+    "protein_id": "SPP1|SPP1p052",
+    "gene": "",
+    "product": "hypothetical protein",
+    "score": 0.45993214782268077,
+    "tm": {
+     "Phobius": 3,
+     "DeepTMHMM": 0,
+     "TOPCONS2": 1
+    },
+    "n_methods_membrane": 2,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.0
+   },
+   {
+    "protein_id": "SPP1|SPP1p012",
+    "gene": "",
+    "product": "hypothetical protein",
+    "score": 0.3880728024664143,
+    "tm": {
+     "Phobius": 0,
+     "DeepTMHMM": 0,
+     "TOPCONS2": 0
+    },
+    "n_methods_membrane": 0,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.0
+   },
+   {
+    "protein_id": "SPP1|SPP1p018",
+    "gene": "",
+    "product": "hypothetical protein",
+    "score": 0.33956667835441007,
+    "tm": {
+     "Phobius": 0,
+     "DeepTMHMM": 0,
+     "TOPCONS2": 0
+    },
+    "n_methods_membrane": 0,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.0
+   },
+   {
+    "protein_id": "SPP1|SPP1p089",
+    "gene": "",
+    "product": "hypothetical protein",
+    "score": 0.2702802673677919,
+    "tm": {
+     "Phobius": 1,
+     "DeepTMHMM": 0,
+     "TOPCONS2": 0
+    },
+    "n_methods_membrane": 1,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.0
+   }
+  ],
+  "T4": [
+   {
+    "protein_id": "T4|T4p254",
+    "gene": "t",
+    "product": "holin",
+    "score": 0.9736377411566022,
+    "tm": {
+     "Phobius": 1,
+     "DeepTMHMM": 1,
+     "TOPCONS2": 1
+    },
+    "n_methods_membrane": 3,
+    "annotated_holin": true,
+    "homolog_identity_to_training_holin": 1.0
+   },
+   {
+    "protein_id": "T4|T4p226",
+    "gene": "pseT.3",
+    "product": "Rz-like spanin",
+    "score": 0.9005128861684663,
+    "tm": {
+     "Phobius": 1,
+     "DeepTMHMM": 1,
+     "TOPCONS2": 1
+    },
+    "n_methods_membrane": 3,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.0
+   },
+   {
+    "protein_id": "T4|T4p135",
+    "gene": "trna.4",
+    "product": "hypothetical protein",
+    "score": 0.7013070679022259,
+    "tm": {
+     "Phobius": 2,
+     "DeepTMHMM": 2,
+     "TOPCONS2": 2
+    },
+    "n_methods_membrane": 3,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.27419354838709675
+   },
+   {
+    "protein_id": "T4|T4p126",
+    "gene": "e.3",
+    "product": "hypothetical protein",
+    "score": 0.308536619467415,
+    "tm": {
+     "Phobius": 2,
+     "DeepTMHMM": 2,
+     "TOPCONS2": 2
+    },
+    "n_methods_membrane": 3,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.2923076923076923
+   },
+   {
+    "protein_id": "T4|T4p158",
+    "gene": "wac",
+    "product": "fibritin neck whisker",
+    "score": 0.21602190860532167,
+    "tm": {
+     "Phobius": 0,
+     "DeepTMHMM": 0,
+     "TOPCONS2": 0
+    },
+    "n_methods_membrane": 0,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.256198347107438
+   },
+   {
+    "protein_id": "T4|T4p266",
+    "gene": "ac",
+    "product": "Ac acridine resistance protein",
+    "score": 0.18649121556764156,
+    "tm": {
+     "Phobius": 0,
+     "DeepTMHMM": 2,
+     "TOPCONS2": 0
+    },
+    "n_methods_membrane": 1,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.0
+   },
+   {
+    "protein_id": "T4|T4p194",
+    "gene": "29",
+    "product": "baseplate hub subunit and tail length",
+    "score": 0.1593226058734565,
+    "tm": {
+     "Phobius": 1,
+     "DeepTMHMM": 1,
+     "TOPCONS2": 1
+    },
+    "n_methods_membrane": 3,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.2727272727272727
+   },
+   {
+    "protein_id": "T4|T4p123",
+    "gene": "e",
+    "product": "glycoside hydrolase family protein",
+    "score": 0.11247752827893158,
+    "tm": {
+     "Phobius": 0,
+     "DeepTMHMM": 0,
+     "TOPCONS2": 0
+    },
+    "n_methods_membrane": 0,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.2246376811594203
+   },
+   {
+    "protein_id": "T4|T4p271",
+    "gene": "ndd.2a",
+    "product": "periplasmic protein",
+    "score": 0.09374642872474155,
+    "tm": {
+     "Phobius": 0,
+     "DeepTMHMM": 1,
+     "TOPCONS2": 1
+    },
+    "n_methods_membrane": 2,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.0
+   },
+   {
+    "protein_id": "T4|T4p150",
+    "gene": "5.4",
+    "product": "PAAR motif of membran proteins",
+    "score": 0.09165108449804839,
+    "tm": {
+     "Phobius": 0,
+     "DeepTMHMM": 0,
+     "TOPCONS2": 0
+    },
+    "n_methods_membrane": 0,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.0
+   }
+  ],
+  "T5": [
+   {
+    "protein_id": "T5|T5.041",
+    "gene": "C1",
+    "product": "holin",
+    "score": 0.9745813986130442,
+    "tm": {
+     "Phobius": 1,
+     "DeepTMHMM": 1,
+     "TOPCONS2": 1
+    },
+    "n_methods_membrane": 3,
+    "annotated_holin": true,
+    "homolog_identity_to_training_holin": 1.0
+   },
+   {
+    "protein_id": "T5|T5.013",
+    "gene": "",
+    "product": "hypothetical protein",
+    "score": 0.9320930357149857,
+    "tm": {
+     "Phobius": 1,
+     "DeepTMHMM": 2,
+     "TOPCONS2": 2
+    },
+    "n_methods_membrane": 3,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.2807017543859649
+   },
+   {
+    "protein_id": "T5|T5.161",
+    "gene": "",
+    "product": "hypothetical protein",
+    "score": 0.8938371817961942,
+    "tm": {
+     "Phobius": 1,
+     "DeepTMHMM": 1,
+     "TOPCONS2": 1
+    },
+    "n_methods_membrane": 3,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.0
+   },
+   {
+    "protein_id": "T5|T5.030",
+    "gene": "",
+    "product": "hypothetical protein",
+    "score": 0.8784023074100642,
+    "tm": {
+     "Phobius": 1,
+     "DeepTMHMM": 1,
+     "TOPCONS2": 1
+    },
+    "n_methods_membrane": 3,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.25
+   },
+   {
+    "protein_id": "T5|T5.045",
+    "gene": "",
+    "product": "Rz-like spanin",
+    "score": 0.876629390445243,
+    "tm": {
+     "Phobius": 1,
+     "DeepTMHMM": 1,
+     "TOPCONS2": 1
+    },
+    "n_methods_membrane": 3,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.2826086956521739
+   },
+   {
+    "protein_id": "T5|T5.066",
+    "gene": "",
+    "product": "hypothetical protein",
+    "score": 0.8027671373515792,
+    "tm": {
+     "Phobius": 2,
+     "DeepTMHMM": 2,
+     "TOPCONS2": 2
+    },
+    "n_methods_membrane": 3,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.0
+   },
+   {
+    "protein_id": "T5|T5.077",
+    "gene": "",
+    "product": "hypothetical protein",
+    "score": 0.7596223378275567,
+    "tm": {
+     "Phobius": 0,
+     "DeepTMHMM": 0,
+     "TOPCONS2": 1
+    },
+    "n_methods_membrane": 1,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.36220472440944884
+   },
+   {
+    "protein_id": "T5|T5.021",
+    "gene": "",
+    "product": "hypothetical protein",
+    "score": 0.7083359681770087,
+    "tm": {
+     "Phobius": 1,
+     "DeepTMHMM": 1,
+     "TOPCONS2": 1
+    },
+    "n_methods_membrane": 3,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.0
+   },
+   {
+    "protein_id": "T5|T5.160",
+    "gene": "",
+    "product": "hypothetical protein",
+    "score": 0.5673687265512789,
+    "tm": {
+     "Phobius": 0,
+     "DeepTMHMM": 1,
+     "TOPCONS2": 1
+    },
+    "n_methods_membrane": 2,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.0
+   },
+   {
+    "protein_id": "T5|T5.031",
+    "gene": "",
+    "product": "hypothetical protein",
+    "score": 0.5652347356010572,
+    "tm": {
+     "Phobius": 1,
+     "DeepTMHMM": 1,
+     "TOPCONS2": 1
+    },
+    "n_methods_membrane": 3,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.0
+   }
+  ],
+  "T7": [
+   {
+    "protein_id": "T7|T7p53",
+    "gene": "",
+    "product": "holin",
+    "score": 0.9886730841602392,
+    "tm": {
+     "Phobius": 1,
+     "DeepTMHMM": 2,
+     "TOPCONS2": 1
+    },
+    "n_methods_membrane": 3,
+    "annotated_holin": true,
+    "homolog_identity_to_training_holin": 1.0
+   },
+   {
+    "protein_id": "T7|T7p55",
+    "gene": "",
+    "product": "Rz-like spanin",
+    "score": 0.8583416037998581,
+    "tm": {
+     "Phobius": 1,
+     "DeepTMHMM": 1,
+     "TOPCONS2": 1
+    },
+    "n_methods_membrane": 3,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.2689655172413793
+   },
+   {
+    "protein_id": "T7|T7p04",
+    "gene": "",
+    "product": "hypothetical protein",
+    "score": 0.33109485668094224,
+    "tm": {
+     "Phobius": 1,
+     "DeepTMHMM": 0,
+     "TOPCONS2": 1
+    },
+    "n_methods_membrane": 2,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.358974358974359
+   },
+   {
+    "protein_id": "T7|T7p38",
+    "gene": "",
+    "product": "DUF5476 family protein",
+    "score": 0.213696841039913,
+    "tm": {
+     "Phobius": 0,
+     "DeepTMHMM": 0,
+     "TOPCONS2": 0
+    },
+    "n_methods_membrane": 0,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.0
+   },
+   {
+    "protein_id": "T7|T7p11",
+    "gene": "",
+    "product": "hypothetical protein",
+    "score": 0.17619867582038462,
+    "tm": {
+     "Phobius": 1,
+     "DeepTMHMM": 2,
+     "TOPCONS2": 1
+    },
+    "n_methods_membrane": 3,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.0
+   },
+   {
+    "protein_id": "T7|T7p56",
+    "gene": "",
+    "product": "Rz-like spanin",
+    "score": 0.16894967393155444,
+    "tm": {
+     "Phobius": 0,
+     "DeepTMHMM": 0,
+     "TOPCONS2": 1
+    },
+    "n_methods_membrane": 1,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.0
+   },
+   {
+    "protein_id": "T7|T7p25",
+    "gene": "",
+    "product": "hypothetical protein",
+    "score": 0.16221644705051147,
+    "tm": {
+     "Phobius": 2,
+     "DeepTMHMM": 1,
+     "TOPCONS2": 1
+    },
+    "n_methods_membrane": 3,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.2604166666666667
+   },
+   {
+    "protein_id": "T7|T7p23",
+    "gene": "",
+    "product": "hypothetical protein",
+    "score": 0.1571428360226939,
+    "tm": {
+     "Phobius": 0,
+     "DeepTMHMM": 0,
+     "TOPCONS2": 0
+    },
+    "n_methods_membrane": 0,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.0
+   },
+   {
+    "protein_id": "T7|T7p36",
+    "gene": "",
+    "product": "DUF5516 domain-containing protein",
+    "score": 0.09933163871473981,
+    "tm": {
+     "Phobius": 1,
+     "DeepTMHMM": 1,
+     "TOPCONS2": 1
+    },
+    "n_methods_membrane": 3,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.0
+   },
+   {
+    "protein_id": "T7|T7p09",
+    "gene": "",
+    "product": "hypothetical protein",
+    "score": 0.09833096635906159,
+    "tm": {
+     "Phobius": 0,
+     "DeepTMHMM": 0,
+     "TOPCONS2": 0
+    },
+    "n_methods_membrane": 0,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.0
+   }
+  ],
+  "lambda": [
+   {
+    "protein_id": "lambda|lambdap92",
+    "gene": "S'",
+    "product": "holin/anti-holin",
+    "score": 0.9885294317616985,
+    "tm": {
+     "Phobius": 3,
+     "DeepTMHMM": 3,
+     "TOPCONS2": 2
+    },
+    "n_methods_membrane": 3,
+    "annotated_holin": true,
+    "homolog_identity_to_training_holin": 1.0
+   },
+   {
+    "protein_id": "lambda|lambdap74",
+    "gene": "S",
+    "product": "holin/anti-holin",
+    "score": 0.988325197415341,
+    "tm": {
+     "Phobius": 3,
+     "DeepTMHMM": 3,
+     "TOPCONS2": 2
+    },
+    "n_methods_membrane": 3,
+    "annotated_holin": true,
+    "homolog_identity_to_training_holin": 1.0
+   },
+   {
+    "protein_id": "lambda|lambdap73",
+    "gene": "orf-64",
+    "product": "hypothetical protein",
+    "score": 0.41589347451682707,
+    "tm": {
+     "Phobius": 1,
+     "DeepTMHMM": 0,
+     "TOPCONS2": 0
+    },
+    "n_methods_membrane": 1,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.0
+   },
+   {
+    "protein_id": "lambda|lambdap76",
+    "gene": "Rz",
+    "product": "Rz-like spanin",
+    "score": 0.29965077702701315,
+    "tm": {
+     "Phobius": 0,
+     "DeepTMHMM": 1,
+     "TOPCONS2": 1
+    },
+    "n_methods_membrane": 2,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.0
+   },
+   {
+    "protein_id": "lambda|lambdap90",
+    "gene": "orf206b",
+    "product": "hypothetical protein",
+    "score": 0.16408621634265563,
+    "tm": {
+     "Phobius": 0,
+     "DeepTMHMM": 0,
+     "TOPCONS2": 0
+    },
+    "n_methods_membrane": 0,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.3181818181818182
+   },
+   {
+    "protein_id": "lambda|lambdap91",
+    "gene": "Rz1",
+    "product": "Rz-like spanin",
+    "score": 0.15531798730996169,
+    "tm": {
+     "Phobius": 0,
+     "DeepTMHMM": 0,
+     "TOPCONS2": 0
+    },
+    "n_methods_membrane": 0,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.0
+   },
+   {
+    "protein_id": "lambda|lambdap53",
+    "gene": "rexb",
+    "product": "RexB-like exclusion protein",
+    "score": 0.1284075246596732,
+    "tm": {
+     "Phobius": 4,
+     "DeepTMHMM": 4,
+     "TOPCONS2": 4
+    },
+    "n_methods_membrane": 3,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.35365853658536583
+   },
+   {
+    "protein_id": "lambda|lambdap37",
+    "gene": "orf61",
+    "product": "hypothetical protein",
+    "score": 0.09801247197334456,
+    "tm": {
+     "Phobius": 0,
+     "DeepTMHMM": 0,
+     "TOPCONS2": 0
+    },
+    "n_methods_membrane": 0,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.0
+   },
+   {
+    "protein_id": "lambda|lambdap71",
+    "gene": "Q",
+    "product": "antitermination protein",
+    "score": 0.09092342749288837,
+    "tm": {
+     "Phobius": 0,
+     "DeepTMHMM": 0,
+     "TOPCONS2": 0
+    },
+    "n_methods_membrane": 0,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.2661290322580645
+   },
+   {
+    "protein_id": "lambda|lambdap86",
+    "gene": "cIII",
+    "product": "CIII anti-termination",
+    "score": 0.07876786046599085,
+    "tm": {
+     "Phobius": 0,
+     "DeepTMHMM": 0,
+     "TOPCONS2": 0
+    },
+    "n_methods_membrane": 0,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.0
+   }
+  ],
+  "phi29": [
+   {
+    "protein_id": "phi29|phi29_gp14",
+    "gene": "14",
+    "product": "holin family protein",
+    "score": 0.9716322283087322,
+    "tm": {
+     "Phobius": 3,
+     "DeepTMHMM": 3,
+     "TOPCONS2": 3
+    },
+    "n_methods_membrane": 3,
+    "annotated_holin": true,
+    "homolog_identity_to_training_holin": 1.0
+   },
+   {
+    "protein_id": "phi29|phi29_gp1",
+    "gene": "1",
+    "product": "hypothetical protein",
+    "score": 0.16249803560902923,
+    "tm": {
+     "Phobius": 0,
+     "DeepTMHMM": 0,
+     "TOPCONS2": 0
+    },
+    "n_methods_membrane": 0,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.0
+   },
+   {
+    "protein_id": "phi29|phi29_gp0.2",
+    "gene": "0.2",
+    "product": "hypothetical protein",
+    "score": 0.0836476784267398,
+    "tm": {
+     "Phobius": 0,
+     "DeepTMHMM": 0,
+     "TOPCONS2": 0
+    },
+    "n_methods_membrane": 0,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.0
+   },
+   {
+    "protein_id": "phi29|phi29_gp11",
+    "gene": "11",
+    "product": "adaptor Ad4",
+    "score": 0.06169499130254742,
+    "tm": {
+     "Phobius": 0,
+     "DeepTMHMM": 0,
+     "TOPCONS2": 0
+    },
+    "n_methods_membrane": 0,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.23853211009174313
+   },
+   {
+    "protein_id": "phi29|phi29_gp16.7",
+    "gene": "16.7",
+    "product": "GP16.7-like replication protein",
+    "score": 0.032296467253534876,
+    "tm": {
+     "Phobius": 0,
+     "DeepTMHMM": 1,
+     "TOPCONS2": 1
+    },
+    "n_methods_membrane": 2,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.2803738317757009
+   },
+   {
+    "protein_id": "phi29|phi29_gp0.8",
+    "gene": "0.8",
+    "product": "hypothetical protein",
+    "score": 0.02177323799670819,
+    "tm": {
+     "Phobius": 0,
+     "DeepTMHMM": 0,
+     "TOPCONS2": 0
+    },
+    "n_methods_membrane": 0,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.0
+   },
+   {
+    "protein_id": "phi29|phi29_gp8.5",
+    "gene": "8.5",
+    "product": "head fiber protein",
+    "score": 0.01919594328018453,
+    "tm": {
+     "Phobius": 0,
+     "DeepTMHMM": 0,
+     "TOPCONS2": 0
+    },
+    "n_methods_membrane": 0,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.2542372881355932
+   },
+   {
+    "protein_id": "phi29|phi29_gp5",
+    "gene": "5",
+    "product": "single strand DNA binding protein",
+    "score": 0.017175342725089908,
+    "tm": {
+     "Phobius": 0,
+     "DeepTMHMM": 0,
+     "TOPCONS2": 0
+    },
+    "n_methods_membrane": 0,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.0
+   },
+   {
+    "protein_id": "phi29|phi29_gp13",
+    "gene": "13",
+    "product": "tail-type lysozyme domain-containing protein",
+    "score": 0.017109123646195393,
+    "tm": {
+     "Phobius": 0,
+     "DeepTMHMM": 0,
+     "TOPCONS2": 0
+    },
+    "n_methods_membrane": 0,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.26436781609195403
+   },
+   {
+    "protein_id": "phi29|phi29_gp12",
+    "gene": "12",
+    "product": "pre-neck appendage protein",
+    "score": 0.01264484134218715,
+    "tm": {
+     "Phobius": 0,
+     "DeepTMHMM": 0,
+     "TOPCONS2": 0
+    },
+    "n_methods_membrane": 0,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.2717391304347826
+   }
+  ],
+  "phi6": [
+   {
+    "protein_id": "phi6|phi-6M_1",
+    "gene": "",
+    "product": "membrane protein",
+    "score": 0.28435416437778943,
+    "tm": {
+     "Phobius": 1,
+     "DeepTMHMM": 1,
+     "TOPCONS2": 1
+    },
+    "n_methods_membrane": 3,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.0
+   },
+   {
+    "protein_id": "phi6|phi-6S_3",
+    "gene": "",
+    "product": "hypothetical protein",
+    "score": 0.26378769585910167,
+    "tm": {
+     "Phobius": 1,
+     "DeepTMHMM": 0,
+     "TOPCONS2": 0
+    },
+    "n_methods_membrane": 1,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.0
+   },
+   {
+    "protein_id": "phi6|phi-6S_1",
+    "gene": "",
+    "product": "hypothetical protein",
+    "score": 0.17938877477928644,
+    "tm": {
+     "Phobius": 0,
+     "DeepTMHMM": 0,
+     "TOPCONS2": 0
+    },
+    "n_methods_membrane": 0,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.2571428571428571
+   },
+   {
+    "protein_id": "phi6|phi-6M_4",
+    "gene": "",
+    "product": "P13 protein",
+    "score": 0.17878937256050886,
+    "tm": {
+     "Phobius": 0,
+     "DeepTMHMM": 0,
+     "TOPCONS2": 0
+    },
+    "n_methods_membrane": 0,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.0
+   },
+   {
+    "protein_id": "phi6|phi-6M_2",
+    "gene": "",
+    "product": "P6 protein",
+    "score": 0.10653844161313956,
+    "tm": {
+     "Phobius": 3,
+     "DeepTMHMM": 2,
+     "TOPCONS2": 4
+    },
+    "n_methods_membrane": 3,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.308411214953271
+   },
+   {
+    "protein_id": "phi6|phi-6S_4",
+    "gene": "",
+    "product": "hypothetical protein",
+    "score": 0.02271836918653298,
+    "tm": {
+     "Phobius": 0,
+     "DeepTMHMM": 0,
+     "TOPCONS2": 0
+    },
+    "n_methods_membrane": 0,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.0
+   },
+   {
+    "protein_id": "phi6|phi-6L_3",
+    "gene": "",
+    "product": "terminase",
+    "score": 0.022156026419954986,
+    "tm": {
+     "Phobius": 3,
+     "DeepTMHMM": 0,
+     "TOPCONS2": 0
+    },
+    "n_methods_membrane": 1,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.2777777777777778
+   },
+   {
+    "protein_id": "phi6|phi-6S_5",
+    "gene": "",
+    "product": "hypothetical protein",
+    "score": 0.018846970160357256,
+    "tm": {
+     "Phobius": 0,
+     "DeepTMHMM": 0,
+     "TOPCONS2": 0
+    },
+    "n_methods_membrane": 0,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.0
+   },
+   {
+    "protein_id": "phi6|phi-6S_2",
+    "gene": "",
+    "product": "hypothetical protein",
+    "score": 0.017523779127727703,
+    "tm": {
+     "Phobius": 0,
+     "DeepTMHMM": 0,
+     "TOPCONS2": 0
+    },
+    "n_methods_membrane": 0,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.3150684931506849
+   },
+   {
+    "protein_id": "phi6|phi-6M_3",
+    "gene": "",
+    "product": "P3 protein",
+    "score": 0.017040976344892392,
+    "tm": {
+     "Phobius": 0,
+     "DeepTMHMM": 0,
+     "TOPCONS2": 0
+    },
+    "n_methods_membrane": 0,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.3194444444444444
+   }
+  ],
+  "phiX174": [
+   {
+    "protein_id": "phiX174|phiX174p08",
+    "gene": "",
+    "product": "endolysin",
+    "score": 0.04834772256104746,
+    "tm": {
+     "Phobius": 0,
+     "DeepTMHMM": 0,
+     "TOPCONS2": 0
+    },
+    "n_methods_membrane": 0,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.0
+   },
+   {
+    "protein_id": "phiX174|phiX174p07",
+    "gene": "",
+    "product": "head morphogenesis",
+    "score": 0.03096441228448078,
+    "tm": {
+     "Phobius": 0,
+     "DeepTMHMM": 0,
+     "TOPCONS2": 0
+    },
+    "n_methods_membrane": 0,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.0
+   },
+   {
+    "protein_id": "phiX174|phiX174p06",
+    "gene": "",
+    "product": "major head protein",
+    "score": 0.024752735944956198,
+    "tm": {
+     "Phobius": 0,
+     "DeepTMHMM": 0,
+     "TOPCONS2": 0
+    },
+    "n_methods_membrane": 0,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.21709006928406466
+   },
+   {
+    "protein_id": "phiX174|phiX174p03",
+    "gene": "",
+    "product": "head morphogenesis",
+    "score": 0.02165735118638285,
+    "tm": {
+     "Phobius": 0,
+     "DeepTMHMM": 0,
+     "TOPCONS2": 0
+    },
+    "n_methods_membrane": 0,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.0
+   },
+   {
+    "protein_id": "phiX174|phiX174p10",
+    "gene": "",
+    "product": "major spike protein",
+    "score": 0.02002755464636879,
+    "tm": {
+     "Phobius": 0,
+     "DeepTMHMM": 0,
+     "TOPCONS2": 0
+    },
+    "n_methods_membrane": 0,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.20261437908496732
+   },
+   {
+    "protein_id": "phiX174|phiX174p11",
+    "gene": "",
+    "product": "pilot protein for DNA ejection",
+    "score": 0.01746227436902707,
+    "tm": {
+     "Phobius": 0,
+     "DeepTMHMM": 0,
+     "TOPCONS2": 0
+    },
+    "n_methods_membrane": 0,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.29285714285714287
+   },
+   {
+    "protein_id": "phiX174|phiX174p05",
+    "gene": "",
+    "product": "terminase",
+    "score": 0.014529275163750096,
+    "tm": {
+     "Phobius": 0,
+     "DeepTMHMM": 0,
+     "TOPCONS2": 0
+    },
+    "n_methods_membrane": 0,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.0
+   },
+   {
+    "protein_id": "phiX174|phiX174p09",
+    "gene": "",
+    "product": "DNA condensation",
+    "score": 0.013678519769056178,
+    "tm": {
+     "Phobius": 0,
+     "DeepTMHMM": 0,
+     "TOPCONS2": 0
+    },
+    "n_methods_membrane": 0,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.0
+   },
+   {
+    "protein_id": "phiX174|phiX174p04",
+    "gene": "",
+    "product": "K",
+    "score": 0.010339904814841538,
+    "tm": {
+     "Phobius": 0,
+     "DeepTMHMM": 0,
+     "TOPCONS2": 0
+    },
+    "n_methods_membrane": 0,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.0
+   },
+   {
+    "protein_id": "phiX174|phiX174p02",
+    "gene": "",
+    "product": "DNA replication initiation",
+    "score": 0.008942753868235896,
+    "tm": {
+     "Phobius": 0,
+     "DeepTMHMM": 0,
+     "TOPCONS2": 0
+    },
+    "n_methods_membrane": 0,
+    "annotated_holin": false,
+    "homolog_identity_to_training_holin": 0.2641509433962264
+   }
+  ]
+ }
+}
