@@ -15,16 +15,16 @@ Open **`Salmonella_LT2_Topology_Atlas.html`** (one offline file), or the combine
 | Method | Complete / eligible | Not eligible (reason) |
 |---|---|---|
 | Phobius | 4,551 / 4,551 ({'complete': 4551, 'unsupported': 3}) | `Salmonella_LT2|STM1570`: unsupported residue(s) U not in the Phobius alphabet (sequence not altered); `Salmonella_LT2|STM4037`: unsupported residue(s) U not in the Phobius alphabet (sequence not altered); `Salmonella_LT2|STM4285`: unsupported residue(s) U not in the Phobius alphabet (sequence not altered) |
-| DeepTMHMM | 500 / 4,551 ({'complete': 500, 'pending': 4051, 'unsupported': 3}) | `Salmonella_LT2|STM1570`: unsupported residue(s) U not in the DeepTMHMM alphabet (sequence not altered); `Salmonella_LT2|STM4037`: unsupported residue(s) U not in the DeepTMHMM alphabet (sequence not altered); `Salmonella_LT2|STM4285`: unsupported residue(s) U not in the DeepTMHMM alphabet (sequence not altered) |
+| DeepTMHMM | 1,000 / 4,551 ({'complete': 1000, 'pending': 3551, 'unsupported': 3}) | `Salmonella_LT2|STM1570`: unsupported residue(s) U not in the DeepTMHMM alphabet (sequence not altered); `Salmonella_LT2|STM4037`: unsupported residue(s) U not in the DeepTMHMM alphabet (sequence not altered); `Salmonella_LT2|STM4285`: unsupported residue(s) U not in the DeepTMHMM alphabet (sequence not altered) |
 | TOPCONS2 | 0 / 4,551 ({'pending': 4551, 'unsupported': 3}) | `Salmonella_LT2|STM1570`: unsupported residue(s) U not in the TOPCONS2 alphabet (sequence not altered); `Salmonella_LT2|STM4037`: unsupported residue(s) U not in the TOPCONS2 alphabet (sequence not altered); `Salmonella_LT2|STM4285`: unsupported residue(s) U not in the TOPCONS2 alphabet (sequence not altered) |
 
 - **Phobius**: phobius.sbc.su.se JSON API; batches ≤100 sequences and ≤50,000 residues. Plots not requested at proteome scale.
 - **DeepTMHMM**: BioLib app DTU/DeepTMHMM (DTU/DeepTMHMM:1.0.57); ≤500 sequences per job, one job at a time.
 - **TOPCONS2**: topcons.net WSDL API; ≤1,000 sequences per job, ≤2 active jobs. Cache status reported by the server: —. Components (OCTOPUS, Philius, PolyPhobius, SCAMPI, SPOCTOPUS) feed the consensus; they are not extra votes.
-- Job records (exact batch FASTA checksum, job ID, times, status, output checksums) are in `raw/<Method>/*.job.json`; 48 records.
+- Job records (exact batch FASTA checksum, job ID, times, status, output checksums) are in `raw/<Method>/*.job.json`; 49 records.
 
 ## Summary
-- 1,037 proteins with ≥1 predicted membrane span (any main method); 820 with a predicted signal peptide; 16 with DeepTMHMM β-type states; 147 with main-method disagreement.
+- 1,052 proteins with ≥1 predicted membrane span (any main method); 824 with a predicted signal peptide; 24 with DeepTMHMM β-type states; 293 with main-method disagreement.
 - Per-protein calls for every method: `topology_summary.csv` (segments use `LABELstart-stop` runs, 1-based inclusive) and `data.json`.
 
 ## Conventions & cautions
@@ -41,7 +41,7 @@ The atlas renders four views per protein — A presentation orientation (residue
 - Pipeline: GitHub → Actions → *Topology atlas re-run* (`.github/workflows/topology-rerun.yml`, https://github.com/mbaffour/mbaffour.github.io/actions/workflows/topology-rerun.yml) with organism `Salmonella_LT2`; or locally `python3 scripts/rerun.py --org Salmonella_LT2`.
 
 ## Validation
-`verification.json`: 24 pass, 0 fail, 3 pending of 27 checks. Pending: all batches complete: DeepTMHMM/b003.job.json:running; DeepTMHMM coverage of eligible proteins: 500/4551 eligible (4554 in inventory); {'complete': 500, 'pending': 4051, 'unsupported': 3}; TOPCONS2 coverage of eligible proteins: 0/4551 eligible (4554 in inventory); {'pending': 4551, 'unsupported': 3}.
+`verification.json`: 24 pass, 0 fail, 3 pending of 27 checks. Pending: all batches complete: DeepTMHMM/b003.job.json:running; DeepTMHMM coverage of eligible proteins: 1000/4551 eligible (4554 in inventory); {'complete': 1000, 'pending': 3551, 'unsupported': 3}; TOPCONS2 coverage of eligible proteins: 0/4551 eligible (4554 in inventory); {'pending': 4551, 'unsupported': 3}.
 Checks cover input checksums, CDS reconciliation, batch-FASTA identity, raw-output checksums, segment expansion/contiguity/alphabet for every prediction, Phobius signal-peptide boundaries, DeepTMHMM β segments against its GFF, atlas embedding, and the headless-browser audit.
 
 ## Rebuild / resume (from `dirty-science-canvas/`; Python 3 with `biopython requests suds pybiolib`, Node with Playwright)

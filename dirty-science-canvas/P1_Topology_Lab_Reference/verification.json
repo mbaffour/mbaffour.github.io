@@ -1,5 +1,5 @@
 {
- "checked_utc": "2026-11-06T21:28:25+00:00",
+ "checked_utc": "2026-11-08T04:30:15+00:00",
  "organism": "Enterobacteria phage P1",
  "accessions": [
   "NC_005856.1"
@@ -41,7 +41,7 @@
    "detail": ""
   },
   {
-   "check": "raw output checksums (5 files)",
+   "check": "raw output checksums (6 files)",
    "status": "pass",
    "detail": ""
   },
@@ -51,17 +51,12 @@
    "detail": ""
   },
   {
-   "check": "all batches complete",
-   "status": "pending",
-   "detail": "TOPCONS2/b001.job.json:submitted"
-  },
-  {
    "check": "data.json protein set == inventory (order preserved)",
    "status": "pass",
    "detail": ""
   },
   {
-   "check": "220 predictions: segment strings expand to exactly one label per residue, contiguous 1..L, allowed alphabet",
+   "check": "880 predictions: segment strings expand to exactly one label per residue, contiguous 1..L, allowed alphabet",
    "status": "pass",
    "detail": ""
   },
@@ -92,8 +87,8 @@
   },
   {
    "check": "TOPCONS2 coverage of eligible proteins",
-   "status": "pending",
-   "detail": "0/110 eligible (110 in inventory); {'pending': 110}"
+   "status": "pass",
+   "detail": "110/110 eligible (110 in inventory); {'complete': 110}"
   },
   {
    "check": "organism atlas embeds the current sequences and predictions",
@@ -137,13 +132,10 @@
   }
  ],
  "failures": [],
- "pending": [
-  "all batches complete: TOPCONS2/b001.job.json:submitted",
-  "TOPCONS2 coverage of eligible proteins: 0/110 eligible (110 in inventory); {'pending': 110}"
- ],
+ "pending": [],
  "beta_state_predictions": [],
  "browser_check": {
-  "checked_utc": "2026-11-06T21:28:19.537Z",
+  "checked_utc": "2026-11-08T04:30:08.966Z",
   "browser": "153.0.8010.12",
   "proteins_checked": 1568,
   "phage_proteins": 1068,
@@ -187,9 +179,9 @@
   }
  },
  "summary": {
-  "checks": 26,
-  "passed": 24,
+  "checks": 25,
+  "passed": 25,
   "failed": 0,
-  "pending": 2
+  "pending": 0
  }
 }

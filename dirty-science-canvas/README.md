@@ -14,16 +14,16 @@ Membrane-topology and charge atlases for **model bacteriophages and their hosts*
 | [Enterobacteria phage T4](T4_Topology_Lab_Reference/T4_Topology_Atlas.html) | phage | NC_000866.4 | 278 | 23 | 21 | 1 | Phobius 278/278 · DeepTMHMM 277/277 · TOPCONS2 277/277 |
 | [Enterobacteria phage T7](T7_Topology_Lab_Reference/T7_Topology_Atlas.html) | phage | NC_001604.1 | 60 | 9 | 7 | 0 | Phobius 60/60 · DeepTMHMM 60/60 · TOPCONS2 60/60 |
 | [Enterobacteria phage T5](T5_Topology_Lab_Reference/T5_Topology_Atlas.html) | phage | NC_005859.1 | 162 | 21 | 12 | 0 | Phobius 162/162 · DeepTMHMM 162/162 · TOPCONS2 162/162 |
-| [Enterobacteria phage P1](P1_Topology_Lab_Reference/P1_Topology_Atlas.html) | phage | NC_005856.1 | 110 | 8 | 9 | 0 | Phobius 110/110 · DeepTMHMM 110/110 · TOPCONS2 0/110 **(partial)** |
+| [Enterobacteria phage P1](P1_Topology_Lab_Reference/P1_Topology_Atlas.html) | phage | NC_005856.1 | 110 | 8 | 9 | 0 | Phobius 110/110 · DeepTMHMM 110/110 · TOPCONS2 110/110 |
 | [Enterobacteria phage Mu](Mu_Topology_Lab_Reference/Mu_Topology_Atlas.html) | phage | NC_000929.1 | 55 | 4 | 6 | 0 | Phobius 55/55 · DeepTMHMM 55/55 · TOPCONS2 55/55 |
-| [Enterobacteria phage HK97](HK97_Topology_Lab_Reference/HK97_Topology_Atlas.html) | phage | NC_002167.1 | 61 | 7 | 4 | 0 | Phobius 61/61 · DeepTMHMM 61/61 · TOPCONS2 0/61 **(partial)** |
-| [Salmonella phage P22](P22_Topology_Lab_Reference/P22_Topology_Atlas.html) | phage | NC_002371.2 | 72 | 10 | 7 | 0 | Phobius 72/72 · DeepTMHMM 72/72 · TOPCONS2 0/72 **(partial)** |
+| [Enterobacteria phage HK97](HK97_Topology_Lab_Reference/HK97_Topology_Atlas.html) | phage | NC_002167.1 | 61 | 8 | 4 | 0 | Phobius 61/61 · DeepTMHMM 61/61 · TOPCONS2 61/61 |
+| [Salmonella phage P22](P22_Topology_Lab_Reference/P22_Topology_Atlas.html) | phage | NC_002371.2 | 72 | 10 | 7 | 0 | Phobius 72/72 · DeepTMHMM 72/72 · TOPCONS2 72/72 |
 | [Enterobacteria phage PRD1](PRD1_Topology_Lab_Reference/PRD1_Topology_Atlas.html) | phage | NC_001421.2 | 31 | 13 | 10 | 0 | Phobius 31/31 · DeepTMHMM 31/31 · TOPCONS2 0/31 **(partial)** |
 | [Pseudomonas phage phi6](phi6_Topology_Lab_Reference/phi6_Topology_Atlas.html) | phage | NC_003715.1, NC_003716.1, NC_003714.1 | 13 | 4 | 0 | 0 | Phobius 13/13 · DeepTMHMM 13/13 · TOPCONS2 0/13 **(partial)** |
 | [Bacillus phage phi29](phi29_Topology_Lab_Reference/phi29_Topology_Atlas.html) | phage | NC_011048.1 | 27 | 2 | 4 | 0 | Phobius 27/27 · DeepTMHMM 27/27 · TOPCONS2 0/27 **(partial)** |
 | [Bacillus phage SPP1](SPP1_Topology_Lab_Reference/SPP1_Topology_Atlas.html) | phage | NC_004166.2 | 97 | 20 | 8 | 1 | Phobius 97/97 · DeepTMHMM 97/97 · TOPCONS2 0/97 **(partial)** |
 | [Escherichia coli K-12 MG1655](Ecoli_K12_Topology_Lab_Reference/Ecoli_K12_Topology_Atlas.html) | host | NC_000913.3 | 4,300 | 1,055 | 878 | 71 | Phobius 4,297/4,297 · DeepTMHMM 4,297/4,297 · TOPCONS2 0/4,293 **(partial)** |
-| [Salmonella enterica serovar Typhimurium LT2](Salmonella_LT2_Topology_Lab_Reference/Salmonella_LT2_Topology_Atlas.html) | host | NC_003197.2, NC_003277.2 | 4,554 | 1,037 | 820 | 16 | Phobius 4,551/4,551 · DeepTMHMM 500/4,551 · TOPCONS2 0/4,551 **(partial)** |
+| [Salmonella enterica serovar Typhimurium LT2](Salmonella_LT2_Topology_Lab_Reference/Salmonella_LT2_Topology_Atlas.html) | host | NC_003197.2, NC_003277.2 | 4,554 | 1,052 | 824 | 24 | Phobius 4,551/4,551 · DeepTMHMM 1,000/4,551 · TOPCONS2 0/4,551 **(partial)** |
 | [Bacillus subtilis 168](Bsubtilis_168_Topology_Lab_Reference/Bsubtilis_168_Topology_Atlas.html) | host | NC_000964.3 | 4,237 | 1,043 | 549 | 0 | Phobius 4,237/4,237 · DeepTMHMM 0/4,237 · TOPCONS2 0/4,237 **(partial)** |
 
 **Figures** are publication-ready SVG/PNG produced by a collision-free label engine and audited in a real browser for overlapping or clipped text and crossing lines. **Re-run:** one-click Phobius and DeepTMHMM submissions per protein from the atlas; pipeline re-runs via the GitHub Actions workflow `topology-rerun.yml` or `python3 scripts/rerun.py`. **Pipeline:** `scripts/` (fetch → inventory → predictors → normalize → atlas → browser audit → validation). Add an organism by adding an entry to `scripts/config.py`.

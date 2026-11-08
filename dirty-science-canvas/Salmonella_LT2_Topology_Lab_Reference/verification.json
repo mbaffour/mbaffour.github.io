@@ -1,5 +1,5 @@
 {
- "checked_utc": "2026-11-06T21:28:31+00:00",
+ "checked_utc": "2026-11-08T04:30:23+00:00",
  "organism": "Salmonella enterica serovar Typhimurium LT2",
  "accessions": [
   "NC_003197.2",
@@ -67,7 +67,7 @@
    "detail": ""
   },
   {
-   "check": "5051 predictions: segment strings expand to exactly one label per residue, contiguous 1..L, allowed alphabet",
+   "check": "5551 predictions: segment strings expand to exactly one label per residue, contiguous 1..L, allowed alphabet",
    "status": "pass",
    "detail": ""
   },
@@ -82,7 +82,7 @@
    "detail": ""
   },
   {
-   "check": "DeepTMHMM \u03b2-type predictions agree with its GFF (P=periplasm, O=outside, B=beta sheet; 16 proteins)",
+   "check": "DeepTMHMM \u03b2-type predictions agree with its GFF (P=periplasm, O=outside, B=beta sheet; 24 proteins)",
    "status": "pass",
    "detail": ""
   },
@@ -94,7 +94,7 @@
   {
    "check": "DeepTMHMM coverage of eligible proteins",
    "status": "pending",
-   "detail": "500/4551 eligible (4554 in inventory); {'complete': 500, 'pending': 4051, 'unsupported': 3}"
+   "detail": "1000/4551 eligible (4554 in inventory); {'complete': 1000, 'pending': 3551, 'unsupported': 3}"
   },
   {
    "check": "TOPCONS2 coverage of eligible proteins",
@@ -145,7 +145,7 @@
  "failures": [],
  "pending": [
   "all batches complete: DeepTMHMM/b003.job.json:running",
-  "DeepTMHMM coverage of eligible proteins: 500/4551 eligible (4554 in inventory); {'complete': 500, 'pending': 4051, 'unsupported': 3}",
+  "DeepTMHMM coverage of eligible proteins: 1000/4551 eligible (4554 in inventory); {'complete': 1000, 'pending': 3551, 'unsupported': 3}",
   "TOPCONS2 coverage of eligible proteins: 0/4551 eligible (4554 in inventory); {'pending': 4551, 'unsupported': 3}"
  ],
  "beta_state_predictions": [
@@ -164,10 +164,18 @@
   "Salmonella_LT2|STM0364",
   "Salmonella_LT2|STM0373",
   "Salmonella_LT2|STM0413",
-  "Salmonella_LT2|STM0509"
+  "Salmonella_LT2|STM0509",
+  "Salmonella_LT2|STM0546",
+  "Salmonella_LT2|STM0570",
+  "Salmonella_LT2|STM0585",
+  "Salmonella_LT2|STM0628",
+  "Salmonella_LT2|STM0687",
+  "Salmonella_LT2|STM0833",
+  "Salmonella_LT2|STM0920",
+  "Salmonella_LT2|STM0999"
  ],
  "browser_check": {
-  "checked_utc": "2026-11-06T21:28:19.537Z",
+  "checked_utc": "2026-11-08T04:30:08.966Z",
   "browser": "153.0.8010.12",
   "proteins_checked": 1568,
   "phage_proteins": 1068,

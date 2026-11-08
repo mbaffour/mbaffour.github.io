@@ -71,7 +71,7 @@ The atlas renders four views per protein — A presentation orientation (residue
 - Pipeline: GitHub → Actions → *Topology atlas re-run* (`.github/workflows/topology-rerun.yml`, https://github.com/mbaffour/mbaffour.github.io/actions/workflows/topology-rerun.yml) with organism `phi29`; or locally `python3 scripts/rerun.py --org phi29`.
 
 ## Validation
-`verification.json`: 24 pass, 0 fail, 1 pending of 25 checks. Pending: TOPCONS2 coverage of eligible proteins: 0/27 eligible (27 in inventory); {'pending': 27}.
+`verification.json`: 24 pass, 0 fail, 2 pending of 26 checks. Pending: all batches complete: TOPCONS2/b001.job.json:submitted; TOPCONS2 coverage of eligible proteins: 0/27 eligible (27 in inventory); {'pending': 27}.
 Checks cover input checksums, CDS reconciliation, batch-FASTA identity, raw-output checksums, segment expansion/contiguity/alphabet for every prediction, Phobius signal-peptide boundaries, DeepTMHMM β segments against its GFF, atlas embedding, and the headless-browser audit.
 
 ## Rebuild / resume (from `dirty-science-canvas/`; Python 3 with `biopython requests suds pybiolib`, Node with Playwright)

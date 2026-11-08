@@ -2,8 +2,6 @@
 
 Open **`HK97_Topology_Atlas.html`** (one offline file), or the combined atlas `../Dirty_Science_Canvas_Atlas.html`. All topology calls are **computational predictions**, not experimental evidence.
 
-> **Partial:** at least one predictor has not yet finished every eligible protein (see coverage). Missing results are shown as pending, never substituted. Resume with the commands below.
-
 ## Source
 - RefSeq **NC_002167.1**: "Enterobacteria phage HK97, complete genome", 39,732 nt, linear; NCBI record updated 2023/01/11; taxid 2681617.
 - Downloaded from NCBI E-utilities on 2026-11-06 (UTC); URLs and SHA-256 in `inputs/provenance.json`.
@@ -15,81 +13,81 @@ Open **`HK97_Topology_Atlas.html`** (one offline file), or the combined atlas `.
 |---|---|---|
 | Phobius | 61 / 61 ({'complete': 61}) | — |
 | DeepTMHMM | 61 / 61 ({'complete': 61}) | — |
-| TOPCONS2 | 0 / 61 ({'pending': 61}) | — |
+| TOPCONS2 | 61 / 61 ({'complete': 61}) | — |
 
 - **Phobius**: phobius.sbc.su.se JSON API; batches ≤100 sequences and ≤50,000 residues. Per-protein posterior plots (SVG) in `raw/Phobius/plots/`.
 - **DeepTMHMM**: BioLib app DTU/DeepTMHMM (DTU/DeepTMHMM:1.0.57); ≤500 sequences per job, one job at a time.
-- **TOPCONS2**: topcons.net WSDL API; ≤1,000 sequences per job, ≤2 active jobs. Cache status reported by the server: —. Components (OCTOPUS, Philius, PolyPhobius, SCAMPI, SPOCTOPUS) feed the consensus; they are not extra votes.
+- **TOPCONS2**: topcons.net WSDL API; ≤1,000 sequences per job, ≤2 active jobs. Cache status reported by the server: cached: 8, newrun: 53. Components (OCTOPUS, Philius, PolyPhobius, SCAMPI, SPOCTOPUS) feed the consensus; they are not extra votes.
 - Job records (exact batch FASTA checksum, job ID, times, status, output checksums) are in `raw/<Method>/*.job.json`; 3 records.
 
 ## Summary
-- 7 proteins with ≥1 predicted membrane span (any main method); 4 with a predicted signal peptide; 0 with DeepTMHMM β-type states; 9 with main-method disagreement.
+- 8 proteins with ≥1 predicted membrane span (any main method); 4 with a predicted signal peptide; 0 with DeepTMHMM β-type states; 9 with main-method disagreement.
 - Per-protein calls for every method: `topology_summary.csv` (segments use `LABELstart-stop` runs, 1-based inclusive) and `data.json`.
 
 ### Per-protein calls (main methods)
 | Gene | Locus tag | Product | aa | Phobius | DeepTMHMM | TOPCONS2 | Disagreement |
 |---|---|---|---|---|---|---|---|
-| — | `HK97p01` | terminase small subunit | 161 | none | none | pending | — |
-| — | `HK97p02` | terminase large subunit | 504 | none | none | pending | — |
-| — | `HK97p03` | portal protein | 424 | none | none | pending | — |
-| — | `HK97p04` | head maturation protease | 225 | none | none | pending | — |
-| — | `HK97p05` | major head protein | 385 | none | TM 215–224 | pending | span_count |
-| — | `HK97p06` | head-tail adaptor Ad1 | 108 | none | none | pending | — |
-| — | `HK97p07` | head closure Hc1 | 112 | none | none | pending | — |
-| — | `HK97p08` | HK97 gp10 family protein | 149 | none | none | pending | — |
-| — | `HK97p09` | tail terminator | 115 | none | none | pending | — |
-| — | `HK97p10` | major tail subunit | 234 | none | none | pending | — |
-| — | `HK97p11` | tail protein | 224 | none | none | pending | — |
-| — | `HK97p12` | tail protein | 128 | none | none | pending | — |
-| — | `HK97p13` | Gp15 | 62 | TM 6–24 | TM 4–24 | pending | — |
-| H | `HK97p14` | tail length tape measure protein | 1089 | none | TM 71–80, TM 295–305, TM 432–441 | pending | span_count |
-| M | `HK97p15` | minor tail protein | 112 | none | none | pending | — |
-| L | `HK97p16` | minor tail protein | 252 | none | none | pending | — |
-| K | `HK97p17` | minor tail protein | 236 | none | none | pending | — |
-| I | `HK97p19` | tail protein | 202 | TM 98–121, TM 127–145 | none | pending | span_count |
-| — | `HK97p20` | Gp22 | 120 | none | none | pending | — |
-| — | `HK97p21` | Gp23 | 86 | SP 1–24 | none | pending | signal_peptide |
-| J | `HK97p22` | tail protein | 1296 | none | none | pending | — |
-| stf | `HK97p23` | tail fiber protein | 321 | none | none | pending | — |
-| tfa | `HK97p24` | tail fiber assembly | 202 | none | none | pending | — |
-| int | `HK97p25` | integrase | 356 | none | none | pending | — |
-| xis | `HK97p26` | excisionase | 72 | none | none | pending | — |
-| — | `HK97p27` | Gp37 | 176 | none | none | pending | — |
-| — | `HK97p28` | DUF2737 family protein | 54 | none | none | pending | — |
-| — | `HK97p29` | abc2 anti-RecBCD | 97 | none | none | pending | — |
-| — | `HK97p30` | Gp40 | 129 | none | none | pending | — |
-| erf | `HK97p31` | Erf-like ssDNA annealing protein | 201 | none | none | pending | — |
-| — | `HK97p32` | recombinase | 83 | none | none | pending | — |
-| — | `HK97p33` | recombinase | 58 | none | none | pending | — |
-| kil | `HK97p34` | Kil protein for bacterial septation inhibition | 50 | none | none | pending | — |
-| cIII | `HK97p35` | CIII anti-termination | 44 | none | none | pending | — |
-| — | `HK97p36` | Gp45 | 156 | none | none | pending | — |
-| N | `HK97p37` | anti-termination protein N-like | 127 | none | none | pending | — |
-| — | `HK97p38` | Gp48 | 216 | TM 151–175 | TM 151–171 | pending | span_boundaries(max_shift=4) |
-| — | `HK97p39` | Gp49 | 88 | none | none | pending | — |
-| cI | `HK97p40` | LexA family transcriptional regulator | 237 | none | none | pending | — |
-| — | `HK97p41` | Cro/CI family transcriptional regulator | 66 | none | none | pending | — |
-| cII | `HK97p42` | CII-like transcriptional activator | 98 | none | none | pending | — |
-| — | `HK97p43` | Gp53 | 53 | none | none | pending | — |
-| O | `HK97p44` | replication initiation O-like | 273 | none | none | pending | — |
-| P | `HK97p45` | replicative DNA helicase | 458 | SP 1–23 | none | pending | signal_peptide |
-| — | `HK97p46` | Gp56 | 32 | none | SP 1–23 | pending | signal_peptide |
-| — | `HK97p47` | Gp60 | 70 | none | none | pending | — |
-| — | `HK97p48` | NinB/ Orf homologous recombination mediator | 146 | none | none | pending | — |
-| — | `HK97p49` | DNA methyltransferase | 175 | none | none | pending | — |
-| — | `HK97p50` | NinE family protein | 60 | none | none | pending | — |
-| — | `HK97p51` | protein ninF | 56 | none | none | pending | — |
-| roi | `HK97p52` | anti-repressor | 241 | none | none | pending | — |
-| — | `HK97p53` | HNH endonuclease | 96 | none | none | pending | — |
-| — | `HK97p54` | RusA family crossover junction endodeoxyribonuclease | 120 | none | none | pending | — |
-| — | `HK97p55` | protein ninH | 62 | none | none | pending | — |
-| — | `HK97p56` | antitermination protein | 207 | none | none | pending | — |
-| — | `HK97p57` | holin/anti-holin | 106 | TM 12–31, TM 38–57, TM 63–82 | TM 12–31, TM 43–63, TM 70–90 | pending | span_boundaries(max_shift=8) |
-| — | `HK97p58` | endolysin | 158 | none | none | pending | — |
-| Rz | `HK97p59` | Rz-like spanin | 145 | SP 1–22 | TM 4–23 | pending | span_count, signal_peptide |
-| — | `HK97p60` | KilA-N domain-containing protein | 242 | none | none | pending | — |
-| — | `HK97p61` | hypothetical protein | 77 | none | none | pending | — |
-| — | `HK97p62` | HNH endonuclease | 119 | none | none | pending | — |
+| — | `HK97p01` | terminase small subunit | 161 | none | none | none | — |
+| — | `HK97p02` | terminase large subunit | 504 | none | none | none | — |
+| — | `HK97p03` | portal protein | 424 | none | none | none | — |
+| — | `HK97p04` | head maturation protease | 225 | none | none | none | — |
+| — | `HK97p05` | major head protein | 385 | none | TM 215–224 | none | span_count |
+| — | `HK97p06` | head-tail adaptor Ad1 | 108 | none | none | none | — |
+| — | `HK97p07` | head closure Hc1 | 112 | none | none | none | — |
+| — | `HK97p08` | HK97 gp10 family protein | 149 | none | none | none | — |
+| — | `HK97p09` | tail terminator | 115 | none | none | none | — |
+| — | `HK97p10` | major tail subunit | 234 | none | none | none | — |
+| — | `HK97p11` | tail protein | 224 | none | none | none | — |
+| — | `HK97p12` | tail protein | 128 | none | none | none | — |
+| — | `HK97p13` | Gp15 | 62 | TM 6–24 | TM 4–24 | TM 5–25 | — |
+| H | `HK97p14` | tail length tape measure protein | 1089 | none | TM 71–80, TM 295–305, TM 432–441 | TM 292–312, TM 427–447 | span_count, n_terminal_side |
+| M | `HK97p15` | minor tail protein | 112 | none | none | none | — |
+| L | `HK97p16` | minor tail protein | 252 | none | none | none | — |
+| K | `HK97p17` | minor tail protein | 236 | none | none | none | — |
+| I | `HK97p19` | tail protein | 202 | TM 98–121, TM 127–145 | none | TM 93–113, TM 124–144 | span_count |
+| — | `HK97p20` | Gp22 | 120 | none | none | none | — |
+| — | `HK97p21` | Gp23 | 86 | SP 1–24 | none | none | signal_peptide |
+| J | `HK97p22` | tail protein | 1296 | none | none | none | — |
+| stf | `HK97p23` | tail fiber protein | 321 | none | none | none | — |
+| tfa | `HK97p24` | tail fiber assembly | 202 | none | none | none | — |
+| int | `HK97p25` | integrase | 356 | none | none | none | — |
+| xis | `HK97p26` | excisionase | 72 | none | none | none | — |
+| — | `HK97p27` | Gp37 | 176 | none | none | none | — |
+| — | `HK97p28` | DUF2737 family protein | 54 | none | none | none | — |
+| — | `HK97p29` | abc2 anti-RecBCD | 97 | none | none | none | — |
+| — | `HK97p30` | Gp40 | 129 | none | none | none | — |
+| erf | `HK97p31` | Erf-like ssDNA annealing protein | 201 | none | none | none | — |
+| — | `HK97p32` | recombinase | 83 | none | none | none | — |
+| — | `HK97p33` | recombinase | 58 | none | none | none | — |
+| kil | `HK97p34` | Kil protein for bacterial septation inhibition | 50 | none | none | none | — |
+| cIII | `HK97p35` | CIII anti-termination | 44 | none | none | none | — |
+| — | `HK97p36` | Gp45 | 156 | none | none | none | — |
+| N | `HK97p37` | anti-termination protein N-like | 127 | none | none | none | — |
+| — | `HK97p38` | Gp48 | 216 | TM 151–175 | TM 151–171 | TM 15–35, TM 151–171 | span_count |
+| — | `HK97p39` | Gp49 | 88 | none | none | none | — |
+| cI | `HK97p40` | LexA family transcriptional regulator | 237 | none | none | none | — |
+| — | `HK97p41` | Cro/CI family transcriptional regulator | 66 | none | none | none | — |
+| cII | `HK97p42` | CII-like transcriptional activator | 98 | none | none | none | — |
+| — | `HK97p43` | Gp53 | 53 | none | none | none | — |
+| O | `HK97p44` | replication initiation O-like | 273 | none | none | none | — |
+| P | `HK97p45` | replicative DNA helicase | 458 | SP 1–23 | none | none | signal_peptide |
+| — | `HK97p46` | Gp56 | 32 | none | SP 1–23 | TM 2–22 | span_count, signal_peptide |
+| — | `HK97p47` | Gp60 | 70 | none | none | none | — |
+| — | `HK97p48` | NinB/ Orf homologous recombination mediator | 146 | none | none | none | — |
+| — | `HK97p49` | DNA methyltransferase | 175 | none | none | none | — |
+| — | `HK97p50` | NinE family protein | 60 | none | none | none | — |
+| — | `HK97p51` | protein ninF | 56 | none | none | none | — |
+| roi | `HK97p52` | anti-repressor | 241 | none | none | none | — |
+| — | `HK97p53` | HNH endonuclease | 96 | none | none | none | — |
+| — | `HK97p54` | RusA family crossover junction endodeoxyribonuclease | 120 | none | none | none | — |
+| — | `HK97p55` | protein ninH | 62 | none | none | none | — |
+| — | `HK97p56` | antitermination protein | 207 | none | none | none | — |
+| — | `HK97p57` | holin/anti-holin | 106 | TM 12–31, TM 38–57, TM 63–82 | TM 12–31, TM 43–63, TM 70–90 | TM 41–61, TM 68–88 | span_count, n_terminal_side |
+| — | `HK97p58` | endolysin | 158 | none | none | none | — |
+| Rz | `HK97p59` | Rz-like spanin | 145 | SP 1–22 | TM 4–23 | SP 1–22 | span_count, signal_peptide |
+| — | `HK97p60` | KilA-N domain-containing protein | 242 | none | none | none | — |
+| — | `HK97p61` | hypothetical protein | 77 | none | none | none | — |
+| — | `HK97p62` | HNH endonuclease | 119 | none | none | none | — |
 
 ## Conventions & cautions
 - 1-based inclusive amino-acid positions in the annotated precursor translation; signal peptides keep precursor numbering. comma-separated LABELstart-stop runs (1-based inclusive) covering every residue exactly once; expand to obtain the per-residue label string.
@@ -105,7 +103,7 @@ The atlas renders four views per protein — A presentation orientation (residue
 - Pipeline: GitHub → Actions → *Topology atlas re-run* (`.github/workflows/topology-rerun.yml`, https://github.com/mbaffour/mbaffour.github.io/actions/workflows/topology-rerun.yml) with organism `HK97`; or locally `python3 scripts/rerun.py --org HK97`.
 
 ## Validation
-`verification.json`: 24 pass, 0 fail, 2 pending of 26 checks. Pending: all batches complete: TOPCONS2/b001.job.json:submitted; TOPCONS2 coverage of eligible proteins: 0/61 eligible (61 in inventory); {'pending': 61}.
+`verification.json`: 25 pass, 0 fail, 0 pending of 25 checks. 
 Checks cover input checksums, CDS reconciliation, batch-FASTA identity, raw-output checksums, segment expansion/contiguity/alphabet for every prediction, Phobius signal-peptide boundaries, DeepTMHMM β segments against its GFF, atlas embedding, and the headless-browser audit.
 
 ## Rebuild / resume (from `dirty-science-canvas/`; Python 3 with `biopython requests suds pybiolib`, Node with Playwright)

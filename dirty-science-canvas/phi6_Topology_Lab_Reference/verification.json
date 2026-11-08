@@ -1,5 +1,5 @@
 {
- "checked_utc": "2026-11-06T21:28:28+00:00",
+ "checked_utc": "2026-11-08T04:30:19+00:00",
  "organism": "Pseudomonas phage phi6",
  "accessions": [
   "NC_003715.1",
@@ -68,12 +68,12 @@
    "detail": ""
   },
   {
-   "check": "submitted batch FASTAs are exact inventory sequences (2 job records)",
+   "check": "submitted batch FASTAs are exact inventory sequences (3 job records)",
    "status": "pass",
    "detail": ""
   },
   {
-   "check": "raw output checksums (4 files)",
+   "check": "raw output checksums (5 files)",
    "status": "pass",
    "detail": ""
   },
@@ -169,7 +169,7 @@
  ],
  "beta_state_predictions": [],
  "browser_check": {
-  "checked_utc": "2026-11-06T21:28:19.537Z",
+  "checked_utc": "2026-11-08T04:30:08.966Z",
   "browser": "153.0.8010.12",
   "proteins_checked": 1568,
   "phage_proteins": 1068,
