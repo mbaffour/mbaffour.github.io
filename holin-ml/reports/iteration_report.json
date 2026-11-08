@@ -1,0 +1,58 @@
+{
+ "guards": {
+  "gold_holdout": "whole homology clusters, seed 0, 20% of holin clusters; never trained on",
+  "independent_evidence": "model score >= P95 threshold AND annotated endolysin/spanin within 3 genes; context is never a model feature",
+  "diversity_cap": "<= 3 accepted per source genome, <= 150 per iteration",
+  "counter_metrics": "stop unless gold AP improves by > 0.002; stop if LOFO recall falls or hard-case median rises by > 0.05",
+  "ambiguous_handling": "high score without context evidence is excluded, never relabelled negative"
+ },
+ "history": [
+  {
+   "iteration": 0,
+   "n_train": 7083,
+   "n_holin": 364,
+   "n_added_cumulative": 0,
+   "gold_average_precision": 0.9036,
+   "gold_auroc": 0.9831,
+   "gold_recall_at_P95": 0.6392,
+   "lofo_mean_recall": 0.2903,
+   "lofo_by_family": {
+    "1.E.26": 0.129,
+    "1.E.11": 0.238,
+    "1.E.34": 0.0,
+    "1.E.31": 0.684,
+    "1.E.5": 0.444,
+    "1.E.36": 0.389,
+    "1.E.2": 0.438,
+    "1.E.40": 0.0
+   },
+   "hard_case_median": 0.016
+  },
+  {
+   "iteration": 1,
+   "n_train": 7139,
+   "n_holin": 420,
+   "n_added_cumulative": 56,
+   "gold_average_precision": 0.8988,
+   "gold_auroc": 0.9851,
+   "gold_recall_at_P95": 0.567,
+   "lofo_mean_recall": 0.4629,
+   "lofo_by_family": {
+    "pseudo": 0.857,
+    "1.E.26": 0.258,
+    "1.E.11": 0.19,
+    "1.E.34": 0.0,
+    "1.E.31": 0.842,
+    "1.E.5": 0.5,
+    "1.E.36": 0.556,
+    "1.E.2": 0.5
+   },
+   "hard_case_median": 0.0208,
+   "stop_reasons": [
+    "gold AP 0.8988 did not beat 0.9036 + 0.002"
+   ]
+  }
+ ],
+ "final_added": 0,
+ "accepted": []
+}

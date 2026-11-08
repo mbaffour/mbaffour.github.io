@@ -40,7 +40,8 @@ GOLD_FRACTION = 0.20          # of holin-bearing clusters
 MAX_PER_CLUSTER = 3
 NOISE = 0.002                 # gold AP must improve by more than this
 HARD_CASE_TOL = 0.05          # median hard-case score may not rise by more than this
-LOFO_FAMILIES = 8             # biggest families, re-measured every iteration
+LOFO_FAMILIES = 8             # biggest real families, chosen once at iteration 0 and held fixed
+LOFO_SET = None               # pinned at iteration 0 so the mean is comparable across rounds
 HOMOLOGY_SCORE = 80           # SW score at which a pool protein counts as homologous to the gold set
 
 
@@ -117,11 +118,17 @@ def main():
         # leave-one-family-out on the biggest families inside the trainable part (GUARD 4)
         fams = {}
         for i, r in enumerate(train):
-            if r["label"] == "holin" and r.get("tcdb_family", "SwissProt-only") != "SwissProt-only":
+            if r["label"] == "holin" and r.get("tcdb_family", "SwissProt-only") not in ("SwissProt-only", "pseudo"):
                 fams.setdefault(r["tcdb_family"], []).append(i)
         lofo = {}
         cut95 = float(th_[idx[0]]) if len(idx) else 0.95
-        for f in sorted(fams, key=lambda f: -len(fams[f]))[:LOFO_FAMILIES]:
+        # Pin the family set to the one chosen at iteration 0. Re-picking "the biggest families" each round
+        # let the synthetic "pseudo" family enter the list and evict a real one (1.E.40), so the mean rose
+        # partly because an easy family replaced a hard one -- the means were not comparable across rounds.
+        global LOFO_SET
+        if LOFO_SET is None:
+            LOFO_SET = sorted(fams, key=lambda f: -len(fams[f]))[:LOFO_FAMILIES]
+        for f in [f for f in LOFO_SET if f in fams]:
             mem = fams[f]; drop = {train[i]["cluster"] for i in mem}
             keep = [i for i in range(len(train)) if i not in set(mem) and not (y[i] == 1 and train[i]["cluster"] in drop)]
             mm = model(); mm.fit(X[keep], y[keep])
