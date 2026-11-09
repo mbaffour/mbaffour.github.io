@@ -7,3 +7,4 @@ reports/*.log
 # mined pool: 300 phage GenBank records, ~50 MB, regenerable from
 # data/raw/pool/accessions.json + provenance.json (URLs and SHA-256 recorded there)
 data/raw/pool/*.gb
+data/raw/pfam/*.tsv.gz
