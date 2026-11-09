@@ -349,17 +349,6 @@ body.stage footer { border-top: 1px solid rgba(246, 236, 218, .12); }
 body.stage footer a { color: var(--ink-2); }
 
 /* ---------------------------------------------------------------------
-   CURSOR
-   --------------------------------------------------------------------- */
-.cur { position: fixed; z-index: 9800; left: 0; top: 0; width: 34px; height: 34px; margin: -17px 0 0 -17px; border-radius: 50%;
-    border: 1.5px solid rgba(244, 196, 48, .85); pointer-events: none; mix-blend-mode: difference;
-    transition: width .3s, height .3s, margin .3s, background .3s, opacity .3s; display: grid; place-items: center; opacity: 0; }
-.cur.on { opacity: 1; }
-.cur.big { width: 74px; height: 74px; margin: -37px 0 0 -37px; background: rgba(244, 196, 48, .9); border-color: transparent; }
-.cur span { font: 600 .58rem/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: #120b08; opacity: 0; transition: opacity .2s; }
-.cur.big span { opacity: 1; }
-
-/* ---------------------------------------------------------------------
    MOTION AND STATES
    No browser default curves on this page: every transition decelerates on
    --ease. Keyframe loops (grain, the cue bob) keep their own timing.
@@ -542,6 +531,5 @@ body.stage footer { position: relative; }
     html.js .stage-name .ln > span, html.js .stage-hero .lbl-stage, html.js .stage-lede, html.js .stage-ctas, html.js .stage-proof, html.js .stage-bar > *, html.js .capsid { opacity: 1; transform: none; }
     html.js body.stage .section-title { clip-path: none; transform: none; }
     html.js .step .step-w { transform: none; transition: none; }
-    .cur { display: none; }
     .stage-hero { position: relative; }
 }

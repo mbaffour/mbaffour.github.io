@@ -6,7 +6,8 @@
  *   peeks           underlined phrases show their picture beside the pointer
  *   Act II          tool cards scatter → stack → ring → orbit → fly out, by scroll
  *   Act III         each bench step lights as it crosses the middle of the screen
- *   cursor, clock   a trailing ring on pointer devices; College Station time
+ *   clock           College Station time
+ *   (no custom cursor: the trailing ring was removed as distracting)
  *   menu            focus and scroll handling for the full-screen menu
  * Reduced motion: no preloader, no smooth scroll, no ring choreography (the cards
  * sit in a grid), steps all lit. Every piece checks for its own markup.
@@ -236,27 +237,6 @@
             });
         }, { rootMargin: '-42% 0px -42% 0px' });
         steps.forEach(function (s) { io.observe(s); });
-    }
-
-    /* ---------- cursor ---------- */
-    if (fine && !reduce) {
-        var cur = document.createElement('div');
-        cur.className = 'cur'; cur.setAttribute('aria-hidden', 'true');
-        cur.innerHTML = '<span></span>';
-        document.body.appendChild(cur);
-        var lab = cur.firstChild, cx = -100, cy = -100, kx = -100, ky = -100;
-        window.addEventListener('pointermove', function (e) { kx = e.clientX; ky = e.clientY; cur.classList.add('on'); }, { passive: true });
-        document.addEventListener('pointerleave', function () { cur.classList.remove('on'); });
-        (function move() {
-            cx += (kx - cx) * 0.2; cy += (ky - cy) * 0.2;
-            cur.style.transform = 'translate(' + cx.toFixed(1) + 'px,' + cy.toFixed(1) + 'px)';
-            requestAnimationFrame(move);
-        })();
-        document.addEventListener('pointerover', function (e) {
-            var big = e.target.closest('.ring-card a, .tool-card, .proj-card, .blog-card, .gallery-item');
-            cur.classList.toggle('big', !!big);
-            lab.textContent = big ? (big.closest('.gallery-item') ? 'View' : 'Open') : '';
-        });
     }
 
     /* ---------- menu: words on the button, focus in and out ---------- */
