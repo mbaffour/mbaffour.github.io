@@ -405,5 +405,16 @@
   "bytes": 132,
   "rows": 0,
   "uniprot_release": "2026_04"
+ },
+ "PF51202": {
+  "pfam_name": "NGO1622-like phage-associated putative holin",
+  "is_antiholin_family": false,
+  "query": "xref:pfam-PF51202",
+  "url": "https://rest.uniprot.org/uniprotkb/stream?compressed=true&format=tsv&fields=accession,reviewed,protein_name,gene_names,organism_name,organism_id,virus_hosts,length,protein_existence,keyword,xref_pfam,xref_tcdb,ft_transmem,sequence&query=xref%3Apfam-PF51202",
+  "retrieved_utc": "2026-11-09T17:51:50Z",
+  "sha256": "ec65141ac0705848b0079c41a48872ca38437581eb73b964e8e44313dde24c2a",
+  "bytes": 132,
+  "rows": 0,
+  "uniprot_release": "2026_04"
  }
 }

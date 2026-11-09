@@ -1,0 +1,399 @@
+{
+  "dropped": {
+    "length_out_of_range": 1086,
+    "already_in_dataset": 450,
+    "non_standard_residue": 13
+  },
+  "per_family": {
+    "PF04020": {
+      "pfam_name": "Mycobacterial 4 TMS phage holin, superfamily IV",
+      "antiholin_family": false,
+      "members_downloaded": 11040,
+      "usable_distinct": 9481,
+      "reviewed_kept": 0,
+      "unreviewed_kept": 150,
+      "median_length": 120,
+      "over_150_aa": 1
+    },
+    "PF04531": {
+      "pfam_name": "Bacteriophage holin",
+      "antiholin_family": false,
+      "members_downloaded": 972,
+      "usable_distinct": 839,
+      "reviewed_kept": 0,
+      "unreviewed_kept": 150,
+      "median_length": 87,
+      "over_150_aa": 9
+    },
+    "PF04550": {
+      "pfam_name": "Phage holin family 2",
+      "antiholin_family": false,
+      "members_downloaded": 275,
+      "usable_distinct": 225,
+      "reviewed_kept": 0,
+      "unreviewed_kept": 150,
+      "median_length": 97,
+      "over_150_aa": 2
+    },
+    "PF04688": {
+      "pfam_name": "SPP1 phage holin",
+      "antiholin_family": false,
+      "members_downloaded": 727,
+      "usable_distinct": 597,
+      "reviewed_kept": 0,
+      "unreviewed_kept": 150,
+      "median_length": 82,
+      "over_150_aa": 1
+    },
+    "PF04971": {
+      "pfam_name": "Bacteriophage P21 holin S",
+      "antiholin_family": false,
+      "members_downloaded": 352,
+      "usable_distinct": 236,
+      "reviewed_kept": 1,
+      "unreviewed_kept": 149,
+      "median_length": 75,
+      "over_150_aa": 1
+    },
+    "PF05102": {
+      "pfam_name": "holin, BlyA family",
+      "antiholin_family": false,
+      "members_downloaded": 79,
+      "usable_distinct": 61,
+      "reviewed_kept": 0,
+      "unreviewed_kept": 61,
+      "median_length": 64,
+      "over_150_aa": 0
+    },
+    "PF05105": {
+      "pfam_name": "Bacteriophage holin family",
+      "antiholin_family": false,
+      "members_downloaded": 2958,
+      "usable_distinct": 2764,
+      "reviewed_kept": 0,
+      "unreviewed_kept": 150,
+      "median_length": 139,
+      "over_150_aa": 45
+    },
+    "PF05106": {
+      "pfam_name": "Phage holin family (Lysis protein S)",
+      "antiholin_family": false,
+      "members_downloaded": 854,
+      "usable_distinct": 746,
+      "reviewed_kept": 1,
+      "unreviewed_kept": 149,
+      "median_length": 109,
+      "over_150_aa": 0
+    },
+    "PF05449": {
+      "pfam_name": "Putative 3TM holin, Phage_holin_3",
+      "antiholin_family": false,
+      "members_downloaded": 527,
+      "usable_distinct": 482,
+      "reviewed_kept": 0,
+      "unreviewed_kept": 150,
+      "median_length": 93,
+      "over_150_aa": 0
+    },
+    "PF06946": {
+      "pfam_name": "Bacteriophage A118-like holin, Hol118",
+      "antiholin_family": false,
+      "members_downloaded": 351,
+      "usable_distinct": 340,
+      "reviewed_kept": 0,
+      "unreviewed_kept": 150,
+      "median_length": 90,
+      "over_150_aa": 0
+    },
+    "PF07332": {
+      "pfam_name": "Putative Actinobacterial Holin-X, holin superfamily III",
+      "antiholin_family": false,
+      "members_downloaded": 12653,
+      "usable_distinct": 12060,
+      "reviewed_kept": 0,
+      "unreviewed_kept": 150,
+      "median_length": 138,
+      "over_150_aa": 42
+    },
+    "PF09682": {
+      "pfam_name": "Bacteriophage holin of superfamily 6 (Holin_LLH)",
+      "antiholin_family": false,
+      "members_downloaded": 497,
+      "usable_distinct": 442,
+      "reviewed_kept": 0,
+      "unreviewed_kept": 150,
+      "median_length": 114,
+      "over_150_aa": 15
+    },
+    "PF10746": {
+      "pfam_name": "Phage holin T7 family, holin superfamily II",
+      "antiholin_family": false,
+      "members_downloaded": 494,
+      "usable_distinct": 229,
+      "reviewed_kept": 0,
+      "unreviewed_kept": 150,
+      "median_length": 67,
+      "over_150_aa": 0
+    },
+    "PF10960": {
+      "pfam_name": "BhlA holin family",
+      "antiholin_family": false,
+      "members_downloaded": 462,
+      "usable_distinct": 421,
+      "reviewed_kept": 2,
+      "unreviewed_kept": 148,
+      "median_length": 72,
+      "over_150_aa": 0
+    },
+    "PF11031": {
+      "pfam_name": "Bacteriophage T holin",
+      "antiholin_family": false,
+      "members_downloaded": 387,
+      "usable_distinct": 225,
+      "reviewed_kept": 2,
+      "unreviewed_kept": 148,
+      "median_length": 218,
+      "over_150_aa": 136
+    },
+    "PF11351": {
+      "pfam_name": "Holin of 3TMs, for gene-transfer release",
+      "antiholin_family": false,
+      "members_downloaded": 1476,
+      "usable_distinct": 1451,
+      "reviewed_kept": 0,
+      "unreviewed_kept": 150,
+      "median_length": 159,
+      "over_150_aa": 80
+    },
+    "PF13272": {
+      "pfam_name": "Putative 2/3 transmembrane domain holin",
+      "antiholin_family": false,
+      "members_downloaded": 276,
+      "usable_distinct": 235,
+      "reviewed_kept": 0,
+      "unreviewed_kept": 150,
+      "median_length": 114,
+      "over_150_aa": 0
+    },
+    "PF16079": {
+      "pfam_name": "Phage holin family Hol44, in holin superfamily V",
+      "antiholin_family": false,
+      "members_downloaded": 707,
+      "usable_distinct": 672,
+      "reviewed_kept": 0,
+      "unreviewed_kept": 150,
+      "median_length": 89,
+      "over_150_aa": 1
+    },
+    "PF16080": {
+      "pfam_name": "Bacteriophage holin family HP1",
+      "antiholin_family": false,
+      "members_downloaded": 529,
+      "usable_distinct": 445,
+      "reviewed_kept": 0,
+      "unreviewed_kept": 150,
+      "median_length": 72,
+      "over_150_aa": 1
+    },
+    "PF16081": {
+      "pfam_name": "Mycobacterial 2 TMS Phage Holin (M2 Hol) Family",
+      "antiholin_family": false,
+      "members_downloaded": 123,
+      "usable_distinct": 86,
+      "reviewed_kept": 0,
+      "unreviewed_kept": 86,
+      "median_length": 139,
+      "over_150_aa": 17
+    },
+    "PF16082": {
+      "pfam_name": "Bacteriophage holin family, superfamily II-like",
+      "antiholin_family": false,
+      "members_downloaded": 85,
+      "usable_distinct": 78,
+      "reviewed_kept": 0,
+      "unreviewed_kept": 78,
+      "median_length": 85,
+      "over_150_aa": 0
+    },
+    "PF16083": {
+      "pfam_name": "LydA holin phage, holin superfamily III",
+      "antiholin_family": false,
+      "members_downloaded": 586,
+      "usable_distinct": 516,
+      "reviewed_kept": 0,
+      "unreviewed_kept": 150,
+      "median_length": 105,
+      "over_150_aa": 1
+    },
+    "PF16084": {
+      "pfam_name": "LydA-holin antagonist",
+      "antiholin_family": true,
+      "members_downloaded": 20,
+      "usable_distinct": 18,
+      "reviewed_kept": 0,
+      "unreviewed_kept": 18,
+      "median_length": 146,
+      "over_150_aa": 3
+    },
+    "PF16085": {
+      "pfam_name": "Bacteriophage holin Hol, superfamily III",
+      "antiholin_family": false,
+      "members_downloaded": 360,
+      "usable_distinct": 324,
+      "reviewed_kept": 0,
+      "unreviewed_kept": 150,
+      "median_length": 113,
+      "over_150_aa": 0
+    },
+    "PF16931": {
+      "pfam_name": "Putative phage holin",
+      "antiholin_family": false,
+      "members_downloaded": 600,
+      "usable_distinct": 542,
+      "reviewed_kept": 0,
+      "unreviewed_kept": 150,
+      "median_length": 123,
+      "over_150_aa": 1
+    },
+    "PF16935": {
+      "pfam_name": "Putative Holin-like Toxin (Hol-Tox)",
+      "antiholin_family": false,
+      "members_downloaded": 1330,
+      "usable_distinct": 1131,
+      "reviewed_kept": 3,
+      "unreviewed_kept": 147,
+      "median_length": 34,
+      "over_150_aa": 0
+    },
+    "PF16936": {
+      "pfam_name": "Putative holin",
+      "antiholin_family": false,
+      "members_downloaded": 215,
+      "usable_distinct": 200,
+      "reviewed_kept": 0,
+      "unreviewed_kept": 150,
+      "median_length": 92,
+      "over_150_aa": 1
+    },
+    "PF16938": {
+      "pfam_name": "Putative phage holin Dp-1",
+      "antiholin_family": false,
+      "members_downloaded": 175,
+      "usable_distinct": 155,
+      "reviewed_kept": 0,
+      "unreviewed_kept": 150,
+      "median_length": 74,
+      "over_150_aa": 3
+    },
+    "PF16945": {
+      "pfam_name": "Putative lactococcus lactis phage r1t holin",
+      "antiholin_family": false,
+      "members_downloaded": 803,
+      "usable_distinct": 634,
+      "reviewed_kept": 0,
+      "unreviewed_kept": 150,
+      "median_length": 83,
+      "over_150_aa": 16
+    },
+    "PF23778": {
+      "pfam_name": "Putative phage holin family 2",
+      "antiholin_family": false,
+      "members_downloaded": 229,
+      "usable_distinct": 197,
+      "reviewed_kept": 0,
+      "unreviewed_kept": 150,
+      "median_length": 122,
+      "over_150_aa": 7
+    },
+    "PF23809": {
+      "pfam_name": "Bacteriophage holin",
+      "antiholin_family": false,
+      "members_downloaded": 253,
+      "usable_distinct": 213,
+      "reviewed_kept": 0,
+      "unreviewed_kept": 150,
+      "median_length": 131,
+      "over_150_aa": 22
+    },
+    "PF23987": {
+      "pfam_name": "Bacteriophage holin Pam3 gp28 family",
+      "antiholin_family": false,
+      "members_downloaded": 139,
+      "usable_distinct": 136,
+      "reviewed_kept": 0,
+      "unreviewed_kept": 136,
+      "median_length": 76,
+      "over_150_aa": 1
+    },
+    "PF24205": {
+      "pfam_name": "T4-like virus antiholin family",
+      "antiholin_family": true,
+      "members_downloaded": 190,
+      "usable_distinct": 108,
+      "reviewed_kept": 0,
+      "unreviewed_kept": 108,
+      "median_length": 97,
+      "over_150_aa": 0
+    },
+    "PF26844": {
+      "pfam_name": "Phage phiKMV holin family",
+      "antiholin_family": false,
+      "members_downloaded": 28,
+      "usable_distinct": 4,
+      "reviewed_kept": 0,
+      "unreviewed_kept": 4,
+      "median_length": 66,
+      "over_150_aa": 0
+    },
+    "PF27028": {
+      "pfam_name": "Bacteriophage T1 holin",
+      "antiholin_family": false,
+      "members_downloaded": 198,
+      "usable_distinct": 86,
+      "reviewed_kept": 0,
+      "unreviewed_kept": 86,
+      "median_length": 71,
+      "over_150_aa": 0
+    },
+    "PF28015": {
+      "pfam_name": "Antiholin LysA-like",
+      "antiholin_family": true,
+      "members_downloaded": 79,
+      "usable_distinct": 74,
+      "reviewed_kept": 0,
+      "unreviewed_kept": 74,
+      "median_length": 141,
+      "over_150_aa": 2
+    },
+    "PF37872": {
+      "pfam_name": "Actinomycetota putative holin",
+      "antiholin_family": false,
+      "members_downloaded": 0,
+      "usable_distinct": 0,
+      "reviewed_kept": 0,
+      "unreviewed_kept": 0,
+      "median_length": null,
+      "over_150_aa": 0
+    },
+    "PF51202": {
+      "pfam_name": "NGO1622-like phage-associated putative holin",
+      "antiholin_family": false,
+      "members_downloaded": 0,
+      "usable_distinct": 0,
+      "reviewed_kept": 0,
+      "unreviewed_kept": 0,
+      "median_length": null,
+      "over_150_aa": 0
+    }
+  },
+  "final": {
+    "records": 4701,
+    "holin": 4497,
+    "holin_like_antiholin": 204,
+    "pfam_reviewed": 9,
+    "pfam_unreviewed": 4692,
+    "holin_median_length": 97,
+    "holin_over_150_aa": 403,
+    "holin_over_200_aa": 160
+  }
+}

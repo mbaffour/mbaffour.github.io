@@ -1,0 +1,26 @@
+{
+  "rule": "existing records keep their original clusters; new holins join an existing family by identity >= 0.3 at coverage >= 0.5, else form new families",
+  "why_not_recluster": "adding sequences can bridge previously separate clusters, which would place a training holin in a gold-holdout family and leak invisibly",
+  "counts": {
+    "curated": 4701,
+    "joined_existing_family": 4700,
+    "formed_new_families": 1,
+    "new_clusters": 1,
+    "excluded_as_gold_cluster": 1702,
+    "usable": 2999,
+    "usable_holin": 2886,
+    "usable_holin_like": 113,
+    "usable_holin_over_150aa": 302,
+    "usable_holin_over_200aa": 150
+  },
+  "tiers": {
+    "pfam_unreviewed": 2992,
+    "pfam_reviewed": 7
+  },
+  "top_new_families_by_size": [
+    {
+      "cluster": 1034,
+      "n": 1
+    }
+  ]
+}
