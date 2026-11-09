@@ -1,0 +1,461 @@
+{
+  "why": "a candidate signature only means something if it points the same way against spanins, bacterial membrane proteins AND the membrane subset of the phage negatives",
+  "flaw_found_in_scripts_16": "the phage negatives are overwhelmingly soluble (median n_tm 0), so that contrast reports membrane-ness rather than any holin signature",
+  "candidates": [
+    {
+      "feature": "frac_hydrophobic",
+      "medians": {
+        "holin": 0.5065,
+        "spanin": 0.4248,
+        "bacterial_membrane": 0.56,
+        "phage_membrane": 0.4581
+      },
+      "effects": {
+        "spanin": {
+          "effect": 0.786,
+          "p": 2.48e-36
+        },
+        "bacterial_membrane": {
+          "effect": -0.311,
+          "p": 8.63e-35
+        },
+        "phage_membrane": {
+          "effect": 0.223,
+          "p": 6.49e-08
+        }
+      },
+      "verdict": "points in opposite directions against different controls"
+    },
+    {
+      "feature": "aac_F",
+      "medians": {
+        "holin": 0.0369,
+        "spanin": 0.0175,
+        "bacterial_membrane": 0.0619,
+        "phage_membrane": 0.0433
+      },
+      "effects": {
+        "spanin": {
+          "effect": 0.502,
+          "p": 9.34e-16
+        },
+        "bacterial_membrane": {
+          "effect": -0.43,
+          "p": 8.5e-65
+        },
+        "phage_membrane": {
+          "effect": -0.149,
+          "p": 0.000323
+        }
+      },
+      "verdict": "points in opposite directions against different controls"
+    },
+    {
+      "feature": "aac_I",
+      "medians": {
+        "holin": 0.0741,
+        "spanin": 0.044,
+        "bacterial_membrane": 0.0805,
+        "phage_membrane": 0.0735
+      },
+      "effects": {
+        "spanin": {
+          "effect": 0.446,
+          "p": 9.75e-13
+        },
+        "bacterial_membrane": {
+          "effect": -0.096,
+          "p": 0.000158
+        },
+        "phage_membrane": {
+          "effect": -0.01,
+          "p": 0.814
+        }
+      },
+      "verdict": "explained by membrane-ness"
+    },
+    {
+      "feature": "aac_G",
+      "medians": {
+        "holin": 0.0738,
+        "spanin": 0.05,
+        "bacterial_membrane": 0.0791,
+        "phage_membrane": 0.0619
+      },
+      "effects": {
+        "spanin": {
+          "effect": 0.456,
+          "p": 2.85e-13
+        },
+        "bacterial_membrane": {
+          "effect": -0.087,
+          "p": 0.00055
+        },
+        "phage_membrane": {
+          "effect": 0.228,
+          "p": 3.45e-08
+        }
+      },
+      "verdict": "explained by membrane-ness"
+    },
+    {
+      "feature": "aac_A",
+      "medians": {
+        "holin": 0.1047,
+        "spanin": 0.104,
+        "bacterial_membrane": 0.0952,
+        "phage_membrane": 0.0867
+      },
+      "effects": {
+        "spanin": {
+          "effect": -0.057,
+          "p": 0.362
+        },
+        "bacterial_membrane": {
+          "effect": 0.13,
+          "p": 2.86e-07
+        },
+        "phage_membrane": {
+          "effect": 0.285,
+          "p": 5.1e-12
+        }
+      },
+      "verdict": "points in opposite directions against different controls"
+    },
+    {
+      "feature": "aac_L",
+      "medians": {
+        "holin": 0.1148,
+        "spanin": 0.1043,
+        "bacterial_membrane": 0.1329,
+        "phage_membrane": 0.0986
+      },
+      "effects": {
+        "spanin": {
+          "effect": 0.219,
+          "p": 0.00047
+        },
+        "bacterial_membrane": {
+          "effect": -0.226,
+          "p": 4.05e-19
+        },
+        "phage_membrane": {
+          "effect": 0.2,
+          "p": 1.37e-06
+        }
+      },
+      "verdict": "points in opposite directions against different controls"
+    },
+    {
+      "feature": "anchor_tm_len",
+      "medians": {
+        "holin": 27.0,
+        "spanin": 21.0,
+        "bacterial_membrane": 32.0,
+        "phage_membrane": 25.0
+      },
+      "effects": {
+        "spanin": {
+          "effect": 0.484,
+          "p": 8.53e-15
+        },
+        "bacterial_membrane": {
+          "effect": -0.377,
+          "p": 2.77e-50
+        },
+        "phage_membrane": {
+          "effect": 0.136,
+          "p": 0.001
+        }
+      },
+      "verdict": "points in opposite directions against different controls"
+    },
+    {
+      "feature": "soluble_frac",
+      "medians": {
+        "holin": 0.4431,
+        "spanin": 0.7875,
+        "bacterial_membrane": 0.283,
+        "phage_membrane": 0.61
+      },
+      "effects": {
+        "spanin": {
+          "effect": -0.664,
+          "p": 2.21e-26
+        },
+        "bacterial_membrane": {
+          "effect": 0.332,
+          "p": 2.76e-39
+        },
+        "phage_membrane": {
+          "effect": -0.169,
+          "p": 4.1e-05
+        }
+      },
+      "verdict": "points in opposite directions against different controls"
+    },
+    {
+      "feature": "tm_fraction",
+      "medians": {
+        "holin": 0.3476,
+        "spanin": 0.1966,
+        "bacterial_membrane": 0.5241,
+        "phage_membrane": 0.2604
+      },
+      "effects": {
+        "spanin": {
+          "effect": 0.561,
+          "p": 2.47e-19
+        },
+        "bacterial_membrane": {
+          "effect": -0.317,
+          "p": 5.48e-36
+        },
+        "phage_membrane": {
+          "effect": 0.141,
+          "p": 0.000651
+        }
+      },
+      "verdict": "points in opposite directions against different controls"
+    },
+    {
+      "feature": "last_tm_end_to_cterm",
+      "medians": {
+        "holin": 36.5,
+        "spanin": 81.0,
+        "bacterial_membrane": 14.0,
+        "phage_membrane": 43.0
+      },
+      "effects": {
+        "spanin": {
+          "effect": -0.529,
+          "p": 2.5e-17
+        },
+        "bacterial_membrane": {
+          "effect": 0.308,
+          "p": 3.46e-34
+        },
+        "phage_membrane": {
+          "effect": -0.055,
+          "p": 0.18
+        }
+      },
+      "verdict": "points in opposite directions against different controls"
+    },
+    {
+      "feature": "residues_after_last_tm",
+      "medians": {
+        "holin": 28.0,
+        "spanin": 71.0,
+        "bacterial_membrane": 15.0,
+        "phage_membrane": 44.0
+      },
+      "effects": {
+        "spanin": {
+          "effect": -0.296,
+          "p": 2.21e-06
+        },
+        "bacterial_membrane": {
+          "effect": 0.14,
+          "p": 2.7e-08
+        },
+        "phage_membrane": {
+          "effect": -0.19,
+          "p": 4.18e-06
+        }
+      },
+      "verdict": "points in opposite directions against different controls"
+    },
+    {
+      "feature": "cterm20_K+R",
+      "medians": {
+        "holin": 3.0,
+        "spanin": 3.0,
+        "bacterial_membrane": 2.0,
+        "phage_membrane": 2.0
+      },
+      "effects": {
+        "spanin": {
+          "effect": 0.143,
+          "p": 0.0204
+        },
+        "bacterial_membrane": {
+          "effect": 0.213,
+          "p": 1.29e-17
+        },
+        "phage_membrane": {
+          "effect": 0.237,
+          "p": 6.44e-09
+        }
+      },
+      "verdict": "consistent across all three controls"
+    },
+    {
+      "feature": "cterm20_net_charge",
+      "medians": {
+        "holin": 1.0,
+        "spanin": 1.0,
+        "bacterial_membrane": 1.0,
+        "phage_membrane": 0.0
+      },
+      "effects": {
+        "spanin": {
+          "effect": 0.06,
+          "p": 0.336
+        },
+        "bacterial_membrane": {
+          "effect": -0.03,
+          "p": 0.221
+        },
+        "phage_membrane": {
+          "effect": 0.078,
+          "p": 0.0552
+        }
+      },
+      "verdict": "points in opposite directions against different controls"
+    },
+    {
+      "feature": "frac_charged",
+      "medians": {
+        "holin": 0.1966,
+        "spanin": 0.25,
+        "bacterial_membrane": 0.15,
+        "phage_membrane": 0.2308
+      },
+      "effects": {
+        "spanin": {
+          "effect": -0.426,
+          "p": 9.65e-12
+        },
+        "bacterial_membrane": {
+          "effect": 0.347,
+          "p": 7.99e-43
+        },
+        "phage_membrane": {
+          "effect": -0.215,
+          "p": 1.91e-07
+        }
+      },
+      "verdict": "points in opposite directions against different controls"
+    },
+    {
+      "feature": "aac_C",
+      "medians": {
+        "holin": 0.0,
+        "spanin": 0.0167,
+        "bacterial_membrane": 0.0049,
+        "phage_membrane": 0.0107
+      },
+      "effects": {
+        "spanin": {
+          "effect": -0.585,
+          "p": 5.46e-24
+        },
+        "bacterial_membrane": {
+          "effect": -0.097,
+          "p": 5.4e-05
+        },
+        "phage_membrane": {
+          "effect": -0.335,
+          "p": 7.95e-18
+        }
+      },
+      "verdict": "explained by membrane-ness"
+    },
+    {
+      "feature": "n_tm",
+      "medians": {
+        "holin": 1.0,
+        "spanin": 1.0,
+        "bacterial_membrane": 2.0,
+        "phage_membrane": 1.0
+      },
+      "effects": {
+        "spanin": {
+          "effect": 0.298,
+          "p": 3.73e-08
+        },
+        "bacterial_membrane": {
+          "effect": -0.467,
+          "p": 4.43e-82
+        },
+        "phage_membrane": {
+          "effect": 0.117,
+          "p": 0.000464
+        }
+      },
+      "verdict": "points in opposite directions against different controls"
+    },
+    {
+      "feature": "length",
+      "medians": {
+        "holin": 100.0,
+        "spanin": 112.0,
+        "bacterial_membrane": 148.0,
+        "phage_membrane": 110.0
+      },
+      "effects": {
+        "spanin": {
+          "effect": -0.176,
+          "p": 0.00483
+        },
+        "bacterial_membrane": {
+          "effect": -0.444,
+          "p": 3.39e-69
+        },
+        "phage_membrane": {
+          "effect": -0.081,
+          "p": 0.0513
+        }
+      },
+      "verdict": "points in opposite directions against different controls"
+    }
+  ],
+  "glycine": {
+    "question": "is the glycine enrichment seen against spanins inside the TM helices, as the published pinholin S21-68 glycine zipper is, or generic to TM helices?",
+    "groups": {
+      "holin": {
+        "n": 468,
+        "median_gly_in_tm": 0.087,
+        "zipper_hits_per_100_tm_residues": 2.08,
+        "percent_with_a_zipper": 59.8
+      },
+      "spanin": {
+        "n": 53,
+        "median_gly_in_tm": 0.0526,
+        "zipper_hits_per_100_tm_residues": 0.0,
+        "percent_with_a_zipper": 28.3
+      },
+      "bacterial_membrane": {
+        "n": 6895,
+        "median_gly_in_tm": 0.0811,
+        "zipper_hits_per_100_tm_residues": 1.79,
+        "percent_with_a_zipper": 68.9
+      }
+    },
+    "comparisons": {
+      "holin_vs_spanin": {
+        "gly_in_tm": {
+          "effect": 0.295,
+          "p": 0.000434
+        },
+        "has_zipper": {
+          "effect": 0.315,
+          "p": 1.16e-05
+        }
+      },
+      "holin_vs_bacterial_membrane": {
+        "gly_in_tm": {
+          "effect": 0.077,
+          "p": 0.00532
+        },
+        "has_zipper": {
+          "effect": -0.091,
+          "p": 4.04e-05
+        }
+      }
+    },
+    "answer": "generic. Holin TM helices are no more glycine-zippered than ordinary bacterial membrane proteins, and FEWER holins carry a GxxxG-spaced motif at all (59.8% vs 68.9%). The apparent enrichment is because spanins are glycine-poor, not because holins are rich."
+  },
+  "conclusion": "no interpretable compositional feature survives all three controls except C-terminal K+R enrichment, which is the long-established charged-tail signature. Everything else is intermediate between spanins and bacterial membrane proteins."
+}
