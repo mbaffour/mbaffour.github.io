@@ -99,3 +99,60 @@ class ESM:
             b.append(i)
         if b: run(b)
         return np.stack(out)
+
+
+# ---------------------------------------------------------------------------------------------------------------
+# TM-anchored local features.
+#
+# Why these exist. Mean-pooled embeddings and whole-protein composition describe a 218-aa protein as a whole, so a
+# 30-residue membrane anchor is averaged into ~190 residues of soluble domain. That is exactly how the model loses
+# T4 holin T and T5 C1 (both ~218 aa, single N-terminal TM at 24-54 and 16-47, long C-terminal tail): under
+# leave-one-genome-out both score 0.0000.
+#
+# Generic sliding-window features do not fix it either. "C-terminal charge of the window" is meaningless when the
+# window ends mid-protein -- for T4 t it flips from +2 to -3 purely because the window stops at residue 100.
+#
+# So these features describe the parts a holin is actually made of: the anchor TM segment, the charge on each side
+# of it (the positive-inside asymmetry), and the largest non-TM stretch treated as its own domain.
+LOCAL_NAMES = ["n_tm", "anchor_tm_len", "anchor_tm_start_frac", "anchor_tm_hydropathy", "flank_N20_charge",
+               "flank_C20_charge", "flank_charge_asymmetry", "soluble_len", "soluble_frac", "soluble_net_charge",
+               "soluble_charge_per_res", "soluble_frac_hydrophobic", "anchor_in_n_terminal_third",
+               "residues_before_first_tm", "residues_after_last_tm", "n_tm_in_first_100", "tm_residue_frac"]
+
+
+def _charge(s): return sum((a in "KR") - (a in "DE") for a in s)
+
+
+def local(seq, flank=40):
+    """TM-anchored features, plus the sub-sequence (anchor TM +/- `flank`) to embed as the protein's membrane domain.
+
+    Returns (vector, window_sequence). With no TM segment the vector is zeroed apart from the length-derived
+    entries and the window is the N-terminal 2*flank residues, so the caller never has to special-case it.
+    """
+    L = len(seq)
+    segs = tm_segments(seq)
+    if not segs:
+        v = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, float(L), 1.0, float(_charge(seq)), _charge(seq) / max(L, 1),
+             sum(a in "AVILMFWC" for a in seq) / max(L, 1), 0.0, float(L), 0.0, 0.0, 0.0]
+        return v, seq[:2 * flank]
+    a_s, a_e = max(segs, key=lambda s: s[1] - s[0])          # longest segment is the anchor
+    tm = seq[a_s - 1:a_e]
+    before, after = seq[max(0, a_s - 1 - 20):a_s - 1], seq[a_e:a_e + 20]
+    # the largest stretch of the protein that is not in any TM segment: the soluble domain
+    cuts, prev = [], 0
+    for s, e in sorted(segs):
+        if s - 1 > prev: cuts.append((prev, s - 1))
+        prev = e
+    if prev < L: cuts.append((prev, L))
+    sol = max(cuts, key=lambda c: c[1] - c[0]) if cuts else (0, 0)
+    sseq = seq[sol[0]:sol[1]]
+    tm_res = sum(e - s + 1 for s, e in segs)
+    v = [float(len(segs)), float(a_e - a_s + 1), (a_s - 1) / max(L, 1),
+         float(np.mean([KD.get(c, 0.0) for c in tm])) if tm else 0.0,
+         float(_charge(before)), float(_charge(after)), float(_charge(after) - _charge(before)),
+         float(len(sseq)), len(sseq) / max(L, 1), float(_charge(sseq)), _charge(sseq) / max(len(sseq), 1),
+         sum(a in "AVILMFWC" for a in sseq) / max(len(sseq), 1),
+         1.0 if (a_s - 1) < L / 3 else 0.0, float(sorted(segs)[0][0] - 1), float(L - sorted(segs)[-1][1]),
+         float(sum(1 for s, e in segs if s <= 100)), tm_res / max(L, 1)]
+    w0, w1 = max(0, a_s - 1 - flank), min(L, a_e + flank)
+    return v, seq[w0:w1]
