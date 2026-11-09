@@ -1,0 +1,339 @@
+{
+  "design": {
+    "primary": "genome scan over 16 atlas phages, none of which contributed a training negative",
+    "secondary": "frozen gold holdout, bacterial negatives only, kept as a regression check",
+    "ci": "95% percentile bootstrap resampling genomes, not proteins"
+  },
+  "models": {
+    "baseline": {
+      "genome_scan_PRIMARY": {
+        "average_precision": 0.9788,
+        "average_precision_CI95_by_genome": [
+          0.9217,
+          1.0
+        ],
+        "at_thresholds": {
+          "0.5": {
+            "called": 22,
+            "true": 13,
+            "precision": 0.591,
+            "recall": 1.0
+          },
+          "0.9": {
+            "called": 17,
+            "true": 13,
+            "precision": 0.765,
+            "recall": 1.0
+          },
+          "0.95": {
+            "called": 17,
+            "true": 13,
+            "precision": 0.765,
+            "recall": 1.0
+          }
+        },
+        "median_score_annotated_holins": 1.0,
+        "median_score_spanins": 0.0001,
+        "n_spanins_over_0.5": 2,
+        "n_false_positives_over_0.9": 4,
+        "holins_ranked": [
+          {
+            "phage": "SPP1",
+            "gene": "SPP1|SPP1p053",
+            "length": 82,
+            "score": 1.0,
+            "rank_overall": 1,
+            "rank_in_genome": 1,
+            "n_methods_membrane": 3
+          },
+          {
+            "phage": "T7",
+            "gene": "T7|T7p53",
+            "length": 67,
+            "score": 1.0,
+            "rank_overall": 2,
+            "rank_in_genome": 1,
+            "n_methods_membrane": 3
+          },
+          {
+            "phage": "lambda",
+            "gene": "S'",
+            "length": 105,
+            "score": 1.0,
+            "rank_overall": 3,
+            "rank_in_genome": 1,
+            "n_methods_membrane": 3
+          },
+          {
+            "phage": "lambda",
+            "gene": "S",
+            "length": 107,
+            "score": 1.0,
+            "rank_overall": 4,
+            "rank_in_genome": 2,
+            "n_methods_membrane": 3
+          },
+          {
+            "phage": "P1",
+            "gene": "lydA",
+            "length": 109,
+            "score": 1.0,
+            "rank_overall": 5,
+            "rank_in_genome": 1,
+            "n_methods_membrane": 3
+          },
+          {
+            "phage": "P22",
+            "gene": "13",
+            "length": 108,
+            "score": 1.0,
+            "rank_overall": 6,
+            "rank_in_genome": 1,
+            "n_methods_membrane": 3
+          },
+          {
+            "phage": "PRD1",
+            "gene": "XXXV",
+            "length": 117,
+            "score": 1.0,
+            "rank_overall": 7,
+            "rank_in_genome": 1,
+            "n_methods_membrane": 3
+          },
+          {
+            "phage": "P22",
+            "gene": "13'",
+            "length": 105,
+            "score": 1.0,
+            "rank_overall": 8,
+            "rank_in_genome": 2,
+            "n_methods_membrane": 3
+          },
+          {
+            "phage": "T5",
+            "gene": "C1",
+            "length": 218,
+            "score": 1.0,
+            "rank_overall": 9,
+            "rank_in_genome": 1,
+            "n_methods_membrane": 3
+          },
+          {
+            "phage": "phi29",
+            "gene": "14",
+            "length": 131,
+            "score": 1.0,
+            "rank_overall": 10,
+            "rank_in_genome": 1,
+            "n_methods_membrane": 3
+          },
+          {
+            "phage": "T4",
+            "gene": "t",
+            "length": 218,
+            "score": 1.0,
+            "rank_overall": 11,
+            "rank_in_genome": 1,
+            "n_methods_membrane": 3
+          },
+          {
+            "phage": "HK97",
+            "gene": "HK97|HK97p57",
+            "length": 106,
+            "score": 1.0,
+            "rank_overall": 14,
+            "rank_in_genome": 1,
+            "n_methods_membrane": 3
+          },
+          {
+            "phage": "P1",
+            "gene": "lydD",
+            "length": 84,
+            "score": 1.0,
+            "rank_overall": 15,
+            "rank_in_genome": 3,
+            "n_methods_membrane": 3
+          }
+        ]
+      },
+      "gold_holdout_SECONDARY": {
+        "average_precision": 0.9085,
+        "auroc": 0.9843,
+        "recall_at_P95": 0.6959,
+        "threshold_P95": 0.806
+      }
+    },
+    "phage_negatives": {
+      "genome_scan_PRIMARY": {
+        "average_precision": 0.9043,
+        "average_precision_CI95_by_genome": [
+          0.7899,
+          1.0
+        ],
+        "at_thresholds": {
+          "0.5": {
+            "called": 15,
+            "true": 12,
+            "precision": 0.8,
+            "recall": 0.923
+          },
+          "0.9": {
+            "called": 13,
+            "true": 11,
+            "precision": 0.846,
+            "recall": 0.846
+          },
+          "0.95": {
+            "called": 13,
+            "true": 11,
+            "precision": 0.846,
+            "recall": 0.846
+          }
+        },
+        "median_score_annotated_holins": 0.9891,
+        "median_score_spanins": 0.0008,
+        "n_spanins_over_0.5": 0,
+        "n_false_positives_over_0.9": 2,
+        "holins_ranked": [
+          {
+            "phage": "lambda",
+            "gene": "S",
+            "length": 107,
+            "score": 0.997,
+            "rank_overall": 1,
+            "rank_in_genome": 1,
+            "n_methods_membrane": 3
+          },
+          {
+            "phage": "P1",
+            "gene": "lydA",
+            "length": 109,
+            "score": 0.996,
+            "rank_overall": 2,
+            "rank_in_genome": 1,
+            "n_methods_membrane": 3
+          },
+          {
+            "phage": "SPP1",
+            "gene": "SPP1|SPP1p053",
+            "length": 82,
+            "score": 0.996,
+            "rank_overall": 3,
+            "rank_in_genome": 1,
+            "n_methods_membrane": 3
+          },
+          {
+            "phage": "T7",
+            "gene": "T7|T7p53",
+            "length": 67,
+            "score": 0.996,
+            "rank_overall": 4,
+            "rank_in_genome": 1,
+            "n_methods_membrane": 3
+          },
+          {
+            "phage": "lambda",
+            "gene": "S'",
+            "length": 105,
+            "score": 0.996,
+            "rank_overall": 5,
+            "rank_in_genome": 2,
+            "n_methods_membrane": 3
+          },
+          {
+            "phage": "PRD1",
+            "gene": "XXXV",
+            "length": 117,
+            "score": 0.993,
+            "rank_overall": 6,
+            "rank_in_genome": 1,
+            "n_methods_membrane": 3
+          },
+          {
+            "phage": "T4",
+            "gene": "t",
+            "length": 218,
+            "score": 0.989,
+            "rank_overall": 7,
+            "rank_in_genome": 1,
+            "n_methods_membrane": 3
+          },
+          {
+            "phage": "T5",
+            "gene": "C1",
+            "length": 218,
+            "score": 0.989,
+            "rank_overall": 8,
+            "rank_in_genome": 1,
+            "n_methods_membrane": 3
+          },
+          {
+            "phage": "HK97",
+            "gene": "HK97|HK97p57",
+            "length": 106,
+            "score": 0.986,
+            "rank_overall": 10,
+            "rank_in_genome": 1,
+            "n_methods_membrane": 3
+          },
+          {
+            "phage": "P22",
+            "gene": "13",
+            "length": 108,
+            "score": 0.984,
+            "rank_overall": 11,
+            "rank_in_genome": 1,
+            "n_methods_membrane": 3
+          },
+          {
+            "phage": "P22",
+            "gene": "13'",
+            "length": 105,
+            "score": 0.98,
+            "rank_overall": 12,
+            "rank_in_genome": 2,
+            "n_methods_membrane": 3
+          },
+          {
+            "phage": "phi29",
+            "gene": "14",
+            "length": 131,
+            "score": 0.89,
+            "rank_overall": 14,
+            "rank_in_genome": 1,
+            "n_methods_membrane": 3
+          },
+          {
+            "phage": "P1",
+            "gene": "lydD",
+            "length": 84,
+            "score": 0.003,
+            "rank_overall": 75,
+            "rank_in_genome": 7,
+            "n_methods_membrane": 3
+          }
+        ]
+      },
+      "gold_holdout_SECONDARY": {
+        "average_precision": 0.8876,
+        "auroc": 0.9819,
+        "recall_at_P95": 0.7062,
+        "threshold_P95": 0.34
+      }
+    }
+  },
+  "baseline_to_phage_negatives": {
+    "genome_scan_AP": [
+      0.9788,
+      0.9043
+    ],
+    "gold_AP": [
+      0.9085,
+      0.8876
+    ],
+    "spanins_over_0.5": [
+      2,
+      0
+    ]
+  }
+}
