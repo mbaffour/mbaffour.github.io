@@ -1,0 +1,175 @@
+{
+  "question": "how much of the score is recognising a holin vs recognising its family",
+  "method": "each atlas-phage holin scored with its homology family in training and with it removed (leave-one-genome-out, scripts/14); the difference is the collapse",
+  "caveat": "13 annotated holins, so these are case-by-case observations, not rates with useful error bars",
+  "summary": {
+    "family recognition only": 3,
+    "generalises": 9,
+    "fails either way": 1
+  },
+  "holins": [
+    {
+      "phage": "T4",
+      "gene": "t",
+      "length": 218,
+      "in_family": 0.9891,
+      "out_of_family": 0.0001,
+      "collapse": 0.989,
+      "verdict": "family recognition only"
+    },
+    {
+      "phage": "T5",
+      "gene": "C1",
+      "length": 218,
+      "in_family": 0.989,
+      "out_of_family": 0.0,
+      "collapse": 0.989,
+      "verdict": "family recognition only"
+    },
+    {
+      "phage": "phi29",
+      "gene": "14",
+      "length": 131,
+      "in_family": 0.8897,
+      "out_of_family": 0.4292,
+      "collapse": 0.4605,
+      "verdict": "family recognition only"
+    },
+    {
+      "phage": "P22",
+      "gene": "13",
+      "length": 108,
+      "in_family": 0.9839,
+      "out_of_family": 0.9156,
+      "collapse": 0.0683,
+      "verdict": "generalises"
+    },
+    {
+      "phage": "HK97",
+      "gene": "HK97|HK97p57",
+      "length": 106,
+      "in_family": 0.9863,
+      "out_of_family": 0.9574,
+      "collapse": 0.0289,
+      "verdict": "generalises"
+    },
+    {
+      "phage": "P1",
+      "gene": "lydA",
+      "length": 109,
+      "in_family": 0.996,
+      "out_of_family": 0.9919,
+      "collapse": 0.0041,
+      "verdict": "generalises"
+    },
+    {
+      "phage": "lambda",
+      "gene": "S",
+      "length": 107,
+      "in_family": 0.997,
+      "out_of_family": 0.9939,
+      "collapse": 0.0031,
+      "verdict": "generalises"
+    },
+    {
+      "phage": "lambda",
+      "gene": "S'",
+      "length": 105,
+      "in_family": 0.9957,
+      "out_of_family": 0.9947,
+      "collapse": 0.001,
+      "verdict": "generalises"
+    },
+    {
+      "phage": "P1",
+      "gene": "lydD",
+      "length": 84,
+      "in_family": 0.0027,
+      "out_of_family": 0.005,
+      "collapse": -0.0023,
+      "verdict": "fails either way"
+    },
+    {
+      "phage": "SPP1",
+      "gene": "SPP1|SPP1p053",
+      "length": 82,
+      "in_family": 0.9959,
+      "out_of_family": 0.9988,
+      "collapse": -0.0029,
+      "verdict": "generalises"
+    },
+    {
+      "phage": "T7",
+      "gene": "T7|T7p53",
+      "length": 67,
+      "in_family": 0.9958,
+      "out_of_family": 0.9999,
+      "collapse": -0.0041,
+      "verdict": "generalises"
+    },
+    {
+      "phage": "P22",
+      "gene": "13'",
+      "length": 105,
+      "in_family": 0.9801,
+      "out_of_family": 0.9852,
+      "collapse": -0.0051,
+      "verdict": "generalises"
+    },
+    {
+      "phage": "PRD1",
+      "gene": "XXXV",
+      "length": 117,
+      "in_family": 0.9929,
+      "out_of_family": 0.9981,
+      "collapse": -0.0052,
+      "verdict": "generalises"
+    }
+  ],
+  "control_full_protein_vs_anchor_window": {
+    "finding": "the anchor window scores far BELOW the full protein, so the signal is not concentrated in the membrane anchor; the model was trained on whole proteins only, so a fragment is also out of distribution for it",
+    "rows": [
+      {
+        "phage": "T4",
+        "gene": "t",
+        "full_length": 218,
+        "full_score": 0.9891,
+        "window_length": 94,
+        "window_score": 0.0025
+      },
+      {
+        "phage": "T5",
+        "gene": "C1",
+        "full_length": 218,
+        "full_score": 0.989,
+        "window_length": 87,
+        "window_score": 0.0013
+      },
+      {
+        "phage": "lambda",
+        "gene": "S",
+        "full_length": 107,
+        "full_score": 0.997,
+        "window_length": 66,
+        "window_score": 0.5148
+      },
+      {
+        "phage": "lambda",
+        "gene": "S'",
+        "full_length": 105,
+        "full_score": 0.9957,
+        "window_length": 64,
+        "window_score": 0.6486
+      },
+      {
+        "phage": "phi29",
+        "gene": "14",
+        "full_length": 131,
+        "full_score": 0.8897,
+        "window_length": 113,
+        "window_score": 0.1855
+      }
+    ]
+  },
+  "conclusion": "the model generalises to the small multi-TM class I holins and to little else; T4 t and T5 C1 (~218 aa, single N-terminal TM, large C-terminal domain) are recognised only when their own family is in training, and only 52 of 558 training holins exceed 150 aa"
+}
