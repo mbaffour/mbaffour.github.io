@@ -114,6 +114,10 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--tsv", required=True); ap.add_argument("--genbank", required=True)
     ap.add_argument("--top", type=int, default=3); ap.add_argument("--threshold", type=float, default=0.5)
+    ap.add_argument("--min-cov", type=float, default=0.8,
+                    help="coverage floor for the nearest-training-neighbour identity. A local alignment of a few "
+                         "residues can read as 100%% identical, so an identity quoted without a coverage floor is "
+                         "meaningless: DAC15 gp095 scores 1.000 unfiltered and 0.375 at coverage 0.8.")
     a = ap.parse_args()
     rows = sorted(csv.DictReader(open(a.tsv), delimiter="\t"), key=lambda r: int(r["start"]))
     seq = {p["id"]: p["sequence"] for p in S5.annotated_proteins(a.genbank)}
@@ -136,6 +140,25 @@ def main():
                    | {r["sequence"] for r in json.load(open(B / "data/processed/holins_extra_clustered.json")) if r["label"] == "holin"},
           "endolysin": {r["sequence"] for r in json.load(open(B / "data/processed/endolysin_positives.json"))},
           "spanin": {r["sequence"] for r in json.load(open(B / "data/processed/spanin_positives.json"))}}
+    # Nearest training neighbour, per class. This is what separates "the model had never seen this family" from
+    # "the family was simply missing from our data". DAC15 made the distinction concrete: its endolysin gp039 has
+    # an 80%-identical relative at full coverage among crAss-like phage PF01832 lysins that were in UniProt all
+    # along, so that miss was a coverage gap; its holin gp095 sits at 37.5% to any known holin, which is a real
+    # novel-family call. Identity is reported with the coverage floor applied, never without.
+    nn = {}
+    try:
+        CL = importlib.import_module("03_cluster")           # pyopal; verification-only, never needed to predict
+        for c in classes:
+            tgt = sorted(tr[c])
+            for gid in cand:
+                best = (0.0, 0.0)
+                for ident, cov, _ in CL.align_pairs(seq[gid], tgt):
+                    if cov >= a.min_cov and ident > best[0]: best = (ident, cov)
+                nn.setdefault(gid, {})[c] = {"max_identity": round(best[0], 3), "coverage": round(best[1], 2),
+                                             "n_targets": len(tgt)}
+    except ImportError:
+        print("# pyopal not installed: skipping nearest-training-neighbour identity", file=sys.stderr)
+
     out = []
     for gid in sorted(cand, key=lambda g: idx[g]):
         r = rows[idx[gid]]; i = idx[gid]
@@ -147,7 +170,9 @@ def main():
                     "pfam_domains": dom.get(gid, []), "phobius": topo_summary(topo.get(gid)),
                     "kd_tm_segments": len(F.tm_segments(s)), "cterm20_charge": sum((x in "KR") - (x in "DE") for x in s[-20:]),
                     "structural_neighbours_within_3": struct_ctx, "neighbour_products": near,
-                    "in_training": {c: s in tr[c] for c in classes}})
+                    "in_training": {c: s in tr[c] for c in classes},
+                    "nearest_training_neighbour": nn.get(gid),
+                    "nn_coverage_floor": a.min_cov})
     # DOMAIN RESCUE: scan the WHOLE proteome (incl. proteins over the predictor's length cap) for lysis domains, and
     # report any domain-bearing protein the model did NOT nominate. On Bacteroides phage DAC15 this is what found the
     # real endolysin candidate (gp039, Glucosaminidase + signal peptide) that the model scored 0.006.
