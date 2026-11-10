@@ -8,6 +8,30 @@
       "n_annotated": 19,
       "config": {},
       "report": "endolysin_eval.json"
+    },
+    "v2 families": {
+      "strict": 0.6517,
+      "realistic": 0.7369,
+      "gold_AP": 0.9499,
+      "n_annotated": 19,
+      "config": {
+        "confusable_negatives": 0,
+        "train_positives": 2157,
+        "train_negatives": 16080
+      },
+      "report": "endolysin_eval_v2_noconf.json"
+    },
+    "v2 families+confusables": {
+      "strict": 0.5415,
+      "realistic": 0.6394,
+      "gold_AP": 0.9505,
+      "n_annotated": 19,
+      "config": {
+        "confusable_negatives": 156,
+        "train_positives": 2157,
+        "train_negatives": 16205
+      },
+      "report": "endolysin_eval_v2_conf.json"
     }
   },
   "spanin": {
@@ -18,6 +42,30 @@
       "n_annotated": 15,
       "config": {},
       "report": "spanin_eval.json"
+    },
+    "v2 families": {
+      "strict": 0.8059,
+      "realistic": 0.8831,
+      "gold_AP": 0.9244,
+      "n_annotated": 15,
+      "config": {
+        "confusable_negatives": 0,
+        "train_positives": 1644,
+        "train_negatives": 16583
+      },
+      "report": "spanin_eval_v2_noconf.json"
+    },
+    "v2 families+confusables": {
+      "strict": 0.7271,
+      "realistic": 0.8709,
+      "gold_AP": 0.9263,
+      "n_annotated": 15,
+      "config": {
+        "confusable_negatives": 156,
+        "train_positives": 1644,
+        "train_negatives": 16708
+      },
+      "report": "spanin_eval_v2_conf.json"
     }
   },
   "holin": {
@@ -60,11 +108,31 @@
         "fp_over_0.9": 4,
         "top1_per_genome": 1.0
       }
+    },
+    "C_plus_crossclass": {
+      "strict": {
+        "AP": 0.7986,
+        "CI95": [
+          0.5498,
+          0.9782
+        ],
+        "fp_over_0.9": 6,
+        "top1_per_genome": 0.8
+      },
+      "realistic": {
+        "AP": 0.9588,
+        "CI95": [
+          0.8758,
+          1.0
+        ],
+        "fp_over_0.9": 3,
+        "top1_per_genome": 1.0
+      }
     }
   },
   "recommendation": {
-    "endolysin": "no v2 run available",
-    "spanin": "no v2 run available",
-    "holin": "arm C not run yet"
+    "endolysin": "KEEP v1: v2 families strict 0.6517 < v1 0.7286",
+    "spanin": "SHIP v2 families (spanin_eval_v2_noconf.json)",
+    "holin": "SHIP arm C with --crossclass (strict 0.7986 >= B 0.7847)"
   }
 }

@@ -55,15 +55,17 @@ def main():
                     help="add data/processed/lysis_confusables.json to the negatives: phage TAIL lysozymes and "
                          "other lysis-adjacent proteins that are not holin/endolysin/spanin. Run both ways and "
                          "compare -- they are only worth shipping if the leave-one-genome-out number says so.")
+    ap.add_argument("--pos-suffix", default="", help="read {cls}_positives<suffix>.json instead of the default, "
+                                                     "for ablation datasets built by scripts/27 --suffix")
     ap.add_argument("--tag", default="", help="suffix for model/report filenames, so an ablation run does not "
                                               "overwrite the shipped model")
     a = ap.parse_args(); cls = a.cls
     esm = F.ESM(B / "models/esm_cache")
     feats = lambda ss: np.hstack([np.array([F.handcrafted(s) for s in ss]), esm.embed(ss)]) if ss else np.zeros((0, 516))
 
-    pos = json.load(open(B / f"data/processed/{cls}_positives.json"))
+    pos = json.load(open(B / f"data/processed/{cls}_positives{a.pos_suffix}.json"))
     other = "spanin" if cls == "endolysin" else "endolysin"
-    other_pos = json.load(open(B / f"data/processed/{other}_positives.json"))
+    other_pos = json.load(open(B / f"data/processed/{other}_positives{a.pos_suffix}.json"))
     base = json.load(open(B / "data/processed/dataset.json"))
     cur = json.load(open(B / "data/processed/holins_extra_clustered.json"))
     negs = json.load(open(B / "data/processed/phage_negatives.json"))

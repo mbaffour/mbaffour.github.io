@@ -181,12 +181,22 @@ def main():
     ap.add_argument("--per-family", type=int, default=150)
     ap.add_argument("--cap-endolysin", type=int, default=6000)
     ap.add_argument("--gold-fraction", type=float, default=0.2)
+    ap.add_argument("--no-struct-guard", action="store_true",
+                    help="ABLATION: keep Pfam-tier members whose product names them a tail/baseplate/virion "
+                         "protein. Used to attribute the v2 endolysin regression between breadth dilution and "
+                         "this guard; not for building a shipped dataset.")
+    ap.add_argument("--suffix", default="", help="appended to output filenames so an ablation does not clobber "
+                                                 "the real dataset")
     a = ap.parse_args()
 
     base = json.load(open(B / "data/processed/dataset.json"))
     cur = json.load(open(B / "data/processed/holins_extra_clustered.json"))
     holin_seqs = {r["sequence"] for r in base if r["label"] == "holin"} | {r["sequence"] for r in cur if r["label"] == "holin"}
 
+    if a.no_struct_guard:
+        global STRUCT_NAME
+        STRUCT_NAME = re.compile(r"(?!x)x")           # matches nothing
+        print("ABLATION: structural-name guard DISABLED", flush=True)
     raw = {}
     for cls in ("endolysin", "spanin"):
         cand, pfam_members = collect(cls)
@@ -235,7 +245,7 @@ def main():
                             "label": cls, "tier": r["tier"], "source": r["src"], "cluster": int(c),
                             "in_gold_holdout": int(c) in gold_cl,
                             "sources": [{"source": r["src"], "accession": r["acc"], "description": r["name"], "organism": r["org"]}]})
-        (B / f"data/processed/{cls}_positives.json").write_text(json.dumps(records, indent=1))
+        (B / f"data/processed/{cls}_positives{a.suffix}.json").write_text(json.dumps(records, indent=1))
         L = [len(r["seq"]) for r in recs]
         rep["classes"][cls] = {"positives": len(records), "clusters": len(clusters),
                                "gold_clusters": len(gold_cl), "gold_positives": sum(r["in_gold_holdout"] for r in records),
@@ -245,11 +255,11 @@ def main():
     conf = collect_confusables()
     known = {r["seq"] for cls in out for r in out[cls]} | holin_seqs
     conf = [r for r in conf if r["sequence"] not in known]   # never contradict a positive label
-    (B / "data/processed/lysis_confusables.json").write_text(json.dumps(conf, indent=1))
+    (B / f"data/processed/lysis_confusables{a.suffix}.json").write_text(json.dumps(conf, indent=1))
     from collections import Counter as _C
     rep["confusables"] = {"count": len(conf), "by_family": dict(_C(r["pfam"] for r in conf))}
     print(f"confusables: {len(conf)} sequences across {len(rep['confusables']['by_family'])} families", flush=True)
-    (B / "reports/lysis_build_report.json").write_text(json.dumps(rep, indent=2))
+    (B / f"reports/lysis_build_report{a.suffix}.json").write_text(json.dumps(rep, indent=2))
     print(json.dumps(rep, indent=1))
 
 

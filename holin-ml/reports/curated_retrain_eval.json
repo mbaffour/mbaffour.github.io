@@ -228,7 +228,7 @@
           "holins": 0
         }
       },
-      "fit_seconds": 61
+      "fit_seconds": 64
     },
     "A_current__sequence_removal": {
       "n_train": 10465,
@@ -450,7 +450,7 @@
           "holins": 0
         }
       },
-      "fit_seconds": 63
+      "fit_seconds": 53
     },
     "B_plus_curated__family_removal": {
       "n_train": 13351,
@@ -672,7 +672,7 @@
           "holins": 0
         }
       },
-      "fit_seconds": 106
+      "fit_seconds": 102
     },
     "B_plus_curated__sequence_removal": {
       "n_train": 13351,
@@ -894,7 +894,451 @@
           "holins": 0
         }
       },
-      "fit_seconds": 140
+      "fit_seconds": 111
+    },
+    "C_plus_crossclass__family_removal": {
+      "n_train": 18419,
+      "n_holin_train": 3250,
+      "genome_scan_PRIMARY": {
+        "average_precision": 0.7986,
+        "CI95_by_genome": [
+          0.5498,
+          0.9782
+        ],
+        "at_thresholds": {
+          "0.5": {
+            "called": 25,
+            "true": 10,
+            "precision": 0.4,
+            "recall": 0.769
+          },
+          "0.9": {
+            "called": 16,
+            "true": 10,
+            "precision": 0.625,
+            "recall": 0.769
+          }
+        },
+        "top1_per_genome": 0.8,
+        "median_holin_rank": 1,
+        "spanins_over_0.5": 0,
+        "false_positives_over_0.9": 6,
+        "holins": [
+          {
+            "phage": "SPP1",
+            "gene": "SPP1|SPP1p053",
+            "length": 82,
+            "score": 0.999,
+            "rank_in_genome": 1,
+            "n_in_genome": 97
+          },
+          {
+            "phage": "P1",
+            "gene": "lydA",
+            "length": 109,
+            "score": 0.9989,
+            "rank_in_genome": 1,
+            "n_in_genome": 110
+          },
+          {
+            "phage": "T7",
+            "gene": "T7|T7p53",
+            "length": 67,
+            "score": 0.9982,
+            "rank_in_genome": 1,
+            "n_in_genome": 60
+          },
+          {
+            "phage": "PRD1",
+            "gene": "XXXV",
+            "length": 117,
+            "score": 0.9977,
+            "rank_in_genome": 1,
+            "n_in_genome": 31
+          },
+          {
+            "phage": "P22",
+            "gene": "13",
+            "length": 108,
+            "score": 0.9964,
+            "rank_in_genome": 1,
+            "n_in_genome": 72
+          },
+          {
+            "phage": "P22",
+            "gene": "13'",
+            "length": 105,
+            "score": 0.9963,
+            "rank_in_genome": 2,
+            "n_in_genome": 72
+          },
+          {
+            "phage": "lambda",
+            "gene": "S'",
+            "length": 105,
+            "score": 0.9962,
+            "rank_in_genome": 1,
+            "n_in_genome": 73
+          },
+          {
+            "phage": "lambda",
+            "gene": "S",
+            "length": 107,
+            "score": 0.9959,
+            "rank_in_genome": 2,
+            "n_in_genome": 73
+          },
+          {
+            "phage": "HK97",
+            "gene": "HK97|HK97p57",
+            "length": 106,
+            "score": 0.9909,
+            "rank_in_genome": 1,
+            "n_in_genome": 61
+          },
+          {
+            "phage": "phi29",
+            "gene": "14",
+            "length": 131,
+            "score": 0.9849,
+            "rank_in_genome": 1,
+            "n_in_genome": 27
+          },
+          {
+            "phage": "P1",
+            "gene": "lydD",
+            "length": 84,
+            "score": 0.3137,
+            "rank_in_genome": 3,
+            "n_in_genome": 110
+          },
+          {
+            "phage": "T5",
+            "gene": "C1",
+            "length": 218,
+            "score": 0.001,
+            "rank_in_genome": 32,
+            "n_in_genome": 162
+          },
+          {
+            "phage": "T4",
+            "gene": "t",
+            "length": 218,
+            "score": 0.0004,
+            "rank_in_genome": 66,
+            "n_in_genome": 278
+          }
+        ]
+      },
+      "gold_holdout_SECONDARY": {
+        "average_precision": 0.8683,
+        "recall_at_P95": 0.5412
+      },
+      "per_genome_removal": {
+        "HK97": {
+          "mode": "family",
+          "clusters": 12,
+          "holins": 1913
+        },
+        "M13": {
+          "mode": "family",
+          "clusters": 0,
+          "holins": 0
+        },
+        "MS2": {
+          "mode": "family",
+          "clusters": 0,
+          "holins": 0
+        },
+        "Mu": {
+          "mode": "family",
+          "clusters": 0,
+          "holins": 0
+        },
+        "P1": {
+          "mode": "family",
+          "clusters": 5,
+          "holins": 349
+        },
+        "P22": {
+          "mode": "family",
+          "clusters": 14,
+          "holins": 1801
+        },
+        "PRD1": {
+          "mode": "family",
+          "clusters": 7,
+          "holins": 1120
+        },
+        "Qbeta": {
+          "mode": "family",
+          "clusters": 0,
+          "holins": 0
+        },
+        "SPP1": {
+          "mode": "family",
+          "clusters": 12,
+          "holins": 1729
+        },
+        "T4": {
+          "mode": "family",
+          "clusters": 2,
+          "holins": 160
+        },
+        "T5": {
+          "mode": "family",
+          "clusters": 2,
+          "holins": 160
+        },
+        "T7": {
+          "mode": "family",
+          "clusters": 9,
+          "holins": 1337
+        },
+        "lambda": {
+          "mode": "family",
+          "clusters": 11,
+          "holins": 1726
+        },
+        "phi29": {
+          "mode": "family",
+          "clusters": 6,
+          "holins": 816
+        },
+        "phi6": {
+          "mode": "family",
+          "clusters": 0,
+          "holins": 0
+        },
+        "phiX174": {
+          "mode": "family",
+          "clusters": 0,
+          "holins": 0
+        }
+      },
+      "fit_seconds": 113
+    },
+    "C_plus_crossclass__sequence_removal": {
+      "n_train": 18419,
+      "n_holin_train": 3250,
+      "genome_scan_PRIMARY": {
+        "average_precision": 0.9588,
+        "CI95_by_genome": [
+          0.8758,
+          1.0
+        ],
+        "at_thresholds": {
+          "0.5": {
+            "called": 24,
+            "true": 12,
+            "precision": 0.5,
+            "recall": 0.923
+          },
+          "0.9": {
+            "called": 15,
+            "true": 12,
+            "precision": 0.8,
+            "recall": 0.923
+          }
+        },
+        "top1_per_genome": 1.0,
+        "median_holin_rank": 1,
+        "spanins_over_0.5": 0,
+        "false_positives_over_0.9": 3,
+        "holins": [
+          {
+            "phage": "P1",
+            "gene": "lydA",
+            "length": 109,
+            "score": 0.9998,
+            "rank_in_genome": 1,
+            "n_in_genome": 110
+          },
+          {
+            "phage": "T7",
+            "gene": "T7|T7p53",
+            "length": 67,
+            "score": 0.9998,
+            "rank_in_genome": 1,
+            "n_in_genome": 60
+          },
+          {
+            "phage": "P22",
+            "gene": "13",
+            "length": 108,
+            "score": 0.9997,
+            "rank_in_genome": 1,
+            "n_in_genome": 72
+          },
+          {
+            "phage": "P22",
+            "gene": "13'",
+            "length": 105,
+            "score": 0.9996,
+            "rank_in_genome": 2,
+            "n_in_genome": 72
+          },
+          {
+            "phage": "SPP1",
+            "gene": "SPP1|SPP1p053",
+            "length": 82,
+            "score": 0.9996,
+            "rank_in_genome": 1,
+            "n_in_genome": 97
+          },
+          {
+            "phage": "lambda",
+            "gene": "S",
+            "length": 107,
+            "score": 0.9996,
+            "rank_in_genome": 1,
+            "n_in_genome": 73
+          },
+          {
+            "phage": "lambda",
+            "gene": "S'",
+            "length": 105,
+            "score": 0.9996,
+            "rank_in_genome": 2,
+            "n_in_genome": 73
+          },
+          {
+            "phage": "PRD1",
+            "gene": "XXXV",
+            "length": 117,
+            "score": 0.9987,
+            "rank_in_genome": 1,
+            "n_in_genome": 31
+          },
+          {
+            "phage": "T4",
+            "gene": "t",
+            "length": 218,
+            "score": 0.9984,
+            "rank_in_genome": 1,
+            "n_in_genome": 278
+          },
+          {
+            "phage": "T5",
+            "gene": "C1",
+            "length": 218,
+            "score": 0.9984,
+            "rank_in_genome": 1,
+            "n_in_genome": 162
+          },
+          {
+            "phage": "HK97",
+            "gene": "HK97|HK97p57",
+            "length": 106,
+            "score": 0.9975,
+            "rank_in_genome": 1,
+            "n_in_genome": 61
+          },
+          {
+            "phage": "phi29",
+            "gene": "14",
+            "length": 131,
+            "score": 0.9974,
+            "rank_in_genome": 1,
+            "n_in_genome": 27
+          },
+          {
+            "phage": "P1",
+            "gene": "lydD",
+            "length": 84,
+            "score": 0.3567,
+            "rank_in_genome": 4,
+            "n_in_genome": 110
+          }
+        ]
+      },
+      "gold_holdout_SECONDARY": {
+        "average_precision": 0.8683,
+        "recall_at_P95": 0.5412
+      },
+      "per_genome_removal": {
+        "HK97": {
+          "mode": "sequence",
+          "clusters": 0,
+          "holins": 2
+        },
+        "M13": {
+          "mode": "sequence",
+          "clusters": 0,
+          "holins": 0
+        },
+        "MS2": {
+          "mode": "sequence",
+          "clusters": 0,
+          "holins": 0
+        },
+        "Mu": {
+          "mode": "sequence",
+          "clusters": 0,
+          "holins": 0
+        },
+        "P1": {
+          "mode": "sequence",
+          "clusters": 0,
+          "holins": 2
+        },
+        "P22": {
+          "mode": "sequence",
+          "clusters": 0,
+          "holins": 0
+        },
+        "PRD1": {
+          "mode": "sequence",
+          "clusters": 0,
+          "holins": 0
+        },
+        "Qbeta": {
+          "mode": "sequence",
+          "clusters": 0,
+          "holins": 0
+        },
+        "SPP1": {
+          "mode": "sequence",
+          "clusters": 0,
+          "holins": 0
+        },
+        "T4": {
+          "mode": "sequence",
+          "clusters": 0,
+          "holins": 26
+        },
+        "T5": {
+          "mode": "sequence",
+          "clusters": 0,
+          "holins": 15
+        },
+        "T7": {
+          "mode": "sequence",
+          "clusters": 0,
+          "holins": 4
+        },
+        "lambda": {
+          "mode": "sequence",
+          "clusters": 0,
+          "holins": 3
+        },
+        "phi29": {
+          "mode": "sequence",
+          "clusters": 0,
+          "holins": 1
+        },
+        "phi6": {
+          "mode": "sequence",
+          "clusters": 0,
+          "holins": 0
+        },
+        "phiX174": {
+          "mode": "sequence",
+          "clusters": 0,
+          "holins": 0
+        }
+      },
+      "fit_seconds": 129
     }
   }
 }
