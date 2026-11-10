@@ -32,6 +32,18 @@
         "train_negatives": 16205
       },
       "report": "endolysin_eval_v2_conf.json"
+    },
+    "v2 families, NO struct guard": {
+      "strict": 0.5918,
+      "realistic": 0.6718,
+      "gold_AP": 0.9558,
+      "n_annotated": 19,
+      "config": {
+        "confusable_negatives": 0,
+        "train_positives": 2030,
+        "train_negatives": 16080
+      },
+      "report": "endolysin_eval_v2_noguard.json"
     }
   },
   "spanin": {

@@ -58,7 +58,8 @@ def main():
     print(f"{'model':<34}{'strict':>9}{'realistic':>11}{'gold':>8}  note")
     print("-" * 78)
     for cls in ("endolysin", "spanin"):
-        for label, tag in (("v1 shipped", ""), ("v2 families", "_v2_noconf"), ("v2 families+confusables", "_v2_conf")):
+        for label, tag in (("v1 shipped", ""), ("v2 families", "_v2_noconf"), ("v2 families+confusables", "_v2_conf"),
+                           ("v2 families, NO struct guard", "_v2_noguard")):
             r = lysis(cls, tag)
             if not r: print(f"{cls+' '+label:<34}{'(missing)':>9}"); continue
             out[cls][label] = r

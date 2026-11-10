@@ -48,13 +48,32 @@ identified by name ("Pre-baseplate central spike protein Gp5", "Tail lysin", "CH
 hydrolase", "Minor tail protein") — i.e. *homologs* that would otherwise help rank those entry-lysin targets under
 the realistic protocol. Real contributor, different mechanism.
 
-### Two causes still to separate
-1. **Breadth dilution** — the positive class went from 8 to 22 families and is now far more heterogeneous.
-2. **The structural guard** removing 1,360 entry-lysin homologs.
+### Attributed by ablation: it is breadth dilution, and the guard was HELPING
 
-Strict (−0.077) and realistic (−0.106) fell by similar amounts, which *suggests* dilution dominates, since the
-strict protocol removes families anyway and should be less guard-sensitive. That is an inference, not a
-measurement; the attributing ablation is v2 families with the guard switched off.
+| endolysin model | strict | realistic |
+|---|---|---|
+| v1 shipped | **0.7286** | **0.8430** |
+| v2 families, with guard | 0.6517 | 0.7369 |
+| **v2 families, guard OFF** | **0.5918** | **0.6718** |
+| v2 families + confusables | 0.5415 | 0.6394 |
+
+Switching the guard off made the model *worse again* (−0.060 strict, −0.065 realistic), so the guard was
+recovering part of the loss, not causing it. The regression is attributable to **breadth dilution alone**, and the
+hypothesis that the guard contributed was wrong — in the opposite direction. The ablation is well controlled: the
+per-family cap of 150 binds either way, so disabling the guard changed which members were drawn (Pfam tier
+1,909 → 1,867) rather than the set size, making this a composition test at near-constant n.
+
+### The subtle lesson: exclude a confusable, do not label it negative
+Two results that look similar point opposite ways, and together they generalise:
+
+- **Omitting** entry-lysin homologs from the positives (the guard) **helps**: +0.060 strict.
+- **Actively training** entry lysins as negatives (confusables) **hurts**: −0.110 strict.
+
+So the correct treatment of a protein you cannot separate from the target class is to leave it out of the label
+set entirely. Labelling it negative forces the model to carve a boundary through a region where the features do
+not support one, and it pays for that with recall on true positives. This also partly resolves the labelling
+worry above: the guard improves the score *despite* 3 of 19 benchmark targets being entry lysins, so the label
+conflict bites hard on the confusables arm but is not what drives the family regression.
 
 ## Everything here is within noise — read directions, not magnitudes
 
