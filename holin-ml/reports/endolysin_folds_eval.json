@@ -1,0 +1,229 @@
+{
+  "class": "endolysin",
+  "architecture": "per-fold one-vs-rest, combined by max",
+  "folds": {
+    "amidase": 579,
+    "endopeptidase": 866,
+    "glycosidase": 741,
+    "other_cwh": 321,
+    "transglycosylase": 131,
+    "unassigned": 432
+  },
+  "n_atlas_genomes": 12,
+  "n_annotated_in_atlas": 19,
+  "neg_ratio": 8,
+  "design_note": "other folds' endolysins are EXCLUDED from each fold model, never used as negatives: a different-fold endolysin is still an endolysin, and the confusables experiment showed that labelling an inseparable protein as negative costs recall.",
+  "baseline_single_model": {
+    "strict": 0.7286,
+    "realistic": 0.843,
+    "source": "reports/endolysin_eval.json (shipped v1)"
+  },
+  "family_removal": {
+    "genome_AP": 0.6239,
+    "CI95_by_genome": [
+      0.3969,
+      0.8417
+    ],
+    "at_thresholds": {
+      "0.5": {
+        "called": 20,
+        "true": 12,
+        "precision": 0.6,
+        "recall": 0.632
+      },
+      "0.9": {
+        "called": 15,
+        "true": 10,
+        "precision": 0.667,
+        "recall": 0.526
+      }
+    },
+    "top1_per_genome": 0.75,
+    "which_fold_won": {
+      "HK97|HK97p58": {
+        "fold": "glycosidase",
+        "score": 1.0
+      },
+      "Mu|Mup22": {
+        "fold": "other_cwh",
+        "score": 0.1351
+      },
+      "lyz": {
+        "fold": "glycosidase",
+        "score": 1.0
+      },
+      "sit": {
+        "fold": "endopeptidase",
+        "score": 0.9593
+      },
+      "19": {
+        "fold": "unassigned",
+        "score": 0.0002
+      },
+      "XV": {
+        "fold": "glycosidase",
+        "score": 1.0
+      },
+      "VII": {
+        "fold": "glycosidase",
+        "score": 0.2477
+      },
+      "XIV": {
+        "fold": "unassigned",
+        "score": 0.0
+      },
+      "SPP1|SPP1p051": {
+        "fold": "amidase",
+        "score": 1.0
+      },
+      "e": {
+        "fold": "glycosidase",
+        "score": 0.4609
+      },
+      "5": {
+        "fold": "unassigned",
+        "score": 0.0142
+      },
+      "lys": {
+        "fold": "endopeptidase",
+        "score": 1.0
+      },
+      "T5|T5.083": {
+        "fold": "glycosidase",
+        "score": 0.8507
+      },
+      "T7|T7p20": {
+        "fold": "amidase",
+        "score": 0.8912
+      },
+      "T7|T7p51": {
+        "fold": "glycosidase",
+        "score": 0.943
+      },
+      "R": {
+        "fold": "glycosidase",
+        "score": 1.0
+      },
+      "13": {
+        "fold": "endopeptidase",
+        "score": 1.0
+      },
+      "15": {
+        "fold": "glycosidase",
+        "score": 1.0
+      },
+      "phiX174|phiX174p": {
+        "fold": "unassigned",
+        "score": 0.0
+      }
+    },
+    "seconds": 314
+  },
+  "sequence_removal": {
+    "genome_AP": 0.7492,
+    "CI95_by_genome": [
+      0.5564,
+      0.9096
+    ],
+    "at_thresholds": {
+      "0.5": {
+        "called": 26,
+        "true": 16,
+        "precision": 0.615,
+        "recall": 0.842
+      },
+      "0.9": {
+        "called": 22,
+        "true": 15,
+        "precision": 0.682,
+        "recall": 0.789
+      }
+    },
+    "top1_per_genome": 0.75,
+    "which_fold_won": {
+      "HK97|HK97p58": {
+        "fold": "glycosidase",
+        "score": 1.0
+      },
+      "Mu|Mup22": {
+        "fold": "glycosidase",
+        "score": 0.9733
+      },
+      "lyz": {
+        "fold": "glycosidase",
+        "score": 1.0
+      },
+      "sit": {
+        "fold": "transglycosylase",
+        "score": 0.9978
+      },
+      "19": {
+        "fold": "glycosidase",
+        "score": 0.0003
+      },
+      "XV": {
+        "fold": "glycosidase",
+        "score": 1.0
+      },
+      "VII": {
+        "fold": "glycosidase",
+        "score": 0.6448
+      },
+      "XIV": {
+        "fold": "other_cwh",
+        "score": 0.0
+      },
+      "SPP1|SPP1p051": {
+        "fold": "amidase",
+        "score": 1.0
+      },
+      "e": {
+        "fold": "glycosidase",
+        "score": 0.9998
+      },
+      "5": {
+        "fold": "glycosidase",
+        "score": 0.9702
+      },
+      "lys": {
+        "fold": "endopeptidase",
+        "score": 1.0
+      },
+      "T5|T5.083": {
+        "fold": "other_cwh",
+        "score": 1.0
+      },
+      "T7|T7p20": {
+        "fold": "amidase",
+        "score": 1.0
+      },
+      "T7|T7p51": {
+        "fold": "transglycosylase",
+        "score": 0.9827
+      },
+      "R": {
+        "fold": "glycosidase",
+        "score": 1.0
+      },
+      "13": {
+        "fold": "endopeptidase",
+        "score": 1.0
+      },
+      "15": {
+        "fold": "glycosidase",
+        "score": 1.0
+      },
+      "phiX174|phiX174p": {
+        "fold": "unassigned",
+        "score": 0.0
+      }
+    },
+    "seconds": 315
+  },
+  "gold_holdout": {
+    "AP": 0.9537,
+    "n_pos": 631,
+    "n_neg": 4020,
+    "note": "not comparable across dataset versions: scripts/27 re-draws the clusters"
+  }
+}
