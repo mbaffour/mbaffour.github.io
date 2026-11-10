@@ -1,0 +1,4636 @@
+{
+ "threshold": 0.5,
+ "cassette_window": 6,
+ "lambda_validation": {
+  "rows": [
+   {
+    "class": "holin",
+    "gene": "S",
+    "P": 0.9999765188152425,
+    "rank": 2
+   },
+   {
+    "class": "holin",
+    "gene": "S'",
+    "P": 0.9999820304008117,
+    "rank": 1
+   },
+   {
+    "class": "endolysin",
+    "gene": "R",
+    "P": 0.9960197050265864,
+    "rank": 1
+   },
+   {
+    "class": "spanin",
+    "gene": "Rz",
+    "P": 0.983521363891747,
+    "rank": 1
+   },
+   {
+    "class": "spanin",
+    "gene": "Rz1",
+    "P": 0.9778744098947852,
+    "rank": 2
+   }
+  ],
+  "lines": [
+   "holin: S (holin/anti-holin) P=1.000 rank 2/73; top is S' (holin/anti-holin) P=1.000",
+   "holin: S' (holin/anti-holin) P=1.000 rank 1/73; top is S' (holin/anti-holin) P=1.000",
+   "endolysin: R (endolysin) P=0.996 rank 1/73; top is R (endolysin) P=0.996",
+   "spanin: Rz (Rz-like spanin) P=0.984 rank 1/73; top is Rz (Rz-like spanin) P=0.984",
+   "spanin: Rz1 (Rz-like spanin) P=0.978 rank 2/73; top is Rz (Rz-like spanin) P=0.984",
+   "S-R-Rz/Rz1 cassette detected: True"
+  ],
+  "cassette_detected": true,
+  "passed": true,
+  "verdict": "PASS: known lambda lysis genes score high for their class and the cassette is detected."
+ },
+ "genomes": {
+  "lambda": {
+   "organism": "Enterobacteria phage lambda",
+   "n_proteins": 73,
+   "top": {
+    "holin": {
+     "gene": "S'",
+     "id": "lambdap92",
+     "product": "holin/anti-holin",
+     "P": 0.9999820304008117,
+     "index": 66
+    },
+    "endolysin": {
+     "gene": "R",
+     "id": "lambdap75",
+     "product": "endolysin",
+     "P": 0.9960197050265864,
+     "index": 67
+    },
+    "spanin": {
+     "gene": "Rz",
+     "id": "lambdap76",
+     "product": "Rz-like spanin",
+     "P": 0.983521363891747,
+     "index": 68
+    }
+   },
+   "cassettes": [
+    {
+     "gene_index_range": [
+      62,
+      72
+     ],
+     "members": [
+      {
+       "index": 65,
+       "gene": "S",
+       "id": "lambdap74",
+       "product": "holin/anti-holin",
+       "P": {
+        "holin": 0.9999765188152425,
+        "endolysin": 0.0002853779474397377,
+        "spanin": 0.0003418464772113419
+       },
+       "classes_called": [
+        "holin"
+       ]
+      },
+      {
+       "index": 66,
+       "gene": "S'",
+       "id": "lambdap92",
+       "product": "holin/anti-holin",
+       "P": {
+        "holin": 0.9999820304008117,
+        "endolysin": 0.00032488498347728784,
+        "spanin": 0.00043324476493242415
+       },
+       "classes_called": [
+        "holin"
+       ]
+      },
+      {
+       "index": 67,
+       "gene": "R",
+       "id": "lambdap75",
+       "product": "endolysin",
+       "P": {
+        "holin": 0.00013086235651677387,
+        "endolysin": 0.9960197050265864,
+        "spanin": 0.0005230982310589874
+       },
+       "classes_called": [
+        "endolysin"
+       ]
+      },
+      {
+       "index": 68,
+       "gene": "Rz",
+       "id": "lambdap76",
+       "product": "Rz-like spanin",
+       "P": {
+        "holin": 0.0010115998073453897,
+        "endolysin": 0.0003111545270637696,
+        "spanin": 0.983521363891747
+       },
+       "classes_called": [
+        "spanin"
+       ]
+      },
+      {
+       "index": 69,
+       "gene": "Rz1",
+       "id": "lambdap91",
+       "product": "Rz-like spanin",
+       "P": {
+        "holin": 0.002293789959879936,
+        "endolysin": 0.0003680413364472992,
+        "spanin": 0.9778744098947852
+       },
+       "classes_called": [
+        "spanin"
+       ]
+      }
+     ]
+    }
+   ],
+   "proteins": [
+    {
+     "index": 0,
+     "id": "lambdap01",
+     "gene": "nu1",
+     "product": "terminase small subunit",
+     "start": 191,
+     "stop": 736,
+     "strand": "+",
+     "length": 181,
+     "P": {
+      "holin": 0.0006186331687307074,
+      "endolysin": 0.0009519854620596538,
+      "spanin": 0.0007570686712866229
+     },
+     "call": "none"
+    },
+    {
+     "index": 1,
+     "id": "lambdap02",
+     "gene": "A",
+     "product": "terminase large subunit",
+     "start": 711,
+     "stop": 2636,
+     "strand": "+",
+     "length": 641,
+     "P": {
+      "holin": 1.379134107237645e-05,
+      "endolysin": 0.001233446505961428,
+      "spanin": 0.00039460172089986526
+     },
+     "call": "none"
+    },
+    {
+     "index": 2,
+     "id": "lambdap03",
+     "gene": "W",
+     "product": "head-tail adaptor Ad1",
+     "start": 2633,
+     "stop": 2839,
+     "strand": "+",
+     "length": 68,
+     "P": {
+      "holin": 6.618694934006056e-05,
+      "endolysin": 0.0007326936662059467,
+      "spanin": 0.003204564031897897
+     },
+     "call": "none"
+    },
+    {
+     "index": 3,
+     "id": "lambdap04",
+     "gene": "B",
+     "product": "portal protein",
+     "start": 2836,
+     "stop": 4437,
+     "strand": "+",
+     "length": 533,
+     "P": {
+      "holin": 0.00010000339523925137,
+      "endolysin": 0.0007031566888593651,
+      "spanin": 0.0005065025910949509
+     },
+     "call": "none"
+    },
+    {
+     "index": 4,
+     "id": "lambdap05",
+     "gene": "C",
+     "product": "S49 family peptidase",
+     "start": 4418,
+     "stop": 5737,
+     "strand": "+",
+     "length": 439,
+     "P": {
+      "holin": 0.0003195355602225426,
+      "endolysin": 0.3131024987444251,
+      "spanin": 0.0012204425305278226
+     },
+     "call": "none"
+    },
+    {
+     "index": 5,
+     "id": "lambdap06",
+     "gene": "nu3",
+     "product": "capsid assembly protein",
+     "start": 5132,
+     "stop": 5737,
+     "strand": "+",
+     "length": 201,
+     "P": {
+      "holin": 0.0009204785494381273,
+      "endolysin": 0.0026193997466608322,
+      "spanin": 0.11247071387682087
+     },
+     "call": "none"
+    },
+    {
+     "index": 6,
+     "id": "lambdap07",
+     "gene": "D",
+     "product": "head decoration",
+     "start": 5747,
+     "stop": 6079,
+     "strand": "+",
+     "length": 110,
+     "P": {
+      "holin": 4.394428785839603e-05,
+      "endolysin": 0.00784793959841901,
+      "spanin": 0.0013134947475546316
+     },
+     "call": "none"
+    },
+    {
+     "index": 7,
+     "id": "lambdap08",
+     "gene": "E",
+     "product": "major capsid protein",
+     "start": 6135,
+     "stop": 7160,
+     "strand": "+",
+     "length": 341,
+     "P": {
+      "holin": 1.7965802246245e-05,
+      "endolysin": 0.002233409822583346,
+      "spanin": 0.0007520295572060268
+     },
+     "call": "none"
+    },
+    {
+     "index": 8,
+     "id": "lambdap09",
+     "gene": "Fi",
+     "product": "DNA packaging chaperone FI",
+     "start": 7202,
+     "stop": 7600,
+     "strand": "+",
+     "length": 132,
+     "P": {
+      "holin": 0.00010905110984374895,
+      "endolysin": 0.0005778147811592759,
+      "spanin": 0.001029596220683286
+     },
+     "call": "none"
+    },
+    {
+     "index": 9,
+     "id": "lambdap10",
+     "gene": "Fii",
+     "product": "head closure Hc1",
+     "start": 7612,
+     "stop": 7965,
+     "strand": "+",
+     "length": 117,
+     "P": {
+      "holin": 5.8225795810901084e-05,
+      "endolysin": 0.0015258814095045667,
+      "spanin": 0.0006195410105605491
+     },
+     "call": "none"
+    },
+    {
+     "index": 10,
+     "id": "lambdap11",
+     "gene": "Z",
+     "product": "tail protein",
+     "start": 7977,
+     "stop": 8555,
+     "strand": "+",
+     "length": 192,
+     "P": {
+      "holin": 2.3343694915298594e-05,
+      "endolysin": 0.014356058742034803,
+      "spanin": 0.0014810126793049067
+     },
+     "call": "none"
+    },
+    {
+     "index": 11,
+     "id": "lambdap12",
+     "gene": "U",
+     "product": "tail terminator",
+     "start": 8552,
+     "stop": 8947,
+     "strand": "+",
+     "length": 131,
+     "P": {
+      "holin": 8.466776499643014e-05,
+      "endolysin": 0.0003894420015640032,
+      "spanin": 0.0004913636978947719
+     },
+     "call": "none"
+    },
+    {
+     "index": 12,
+     "id": "lambdap13",
+     "gene": "V",
+     "product": "major tail protein",
+     "start": 8955,
+     "stop": 9695,
+     "strand": "+",
+     "length": 246,
+     "P": {
+      "holin": 2.7209359390271828e-05,
+      "endolysin": 0.011433620039327429,
+      "spanin": 0.0004914326961885613
+     },
+     "call": "none"
+    },
+    {
+     "index": 13,
+     "id": "lambdap14",
+     "gene": "G",
+     "product": "minor tail protein G",
+     "start": 9711,
+     "stop": 10133,
+     "strand": "+",
+     "length": 140,
+     "P": {
+      "holin": 8.358980303673786e-05,
+      "endolysin": 0.0012462394923268333,
+      "spanin": 0.0009363509123896677
+     },
+     "call": "none"
+    },
+    {
+     "index": 14,
+     "id": "lambdap15",
+     "gene": "T",
+     "product": "minor tail protein",
+     "start": 10115,
+     "stop": 10549,
+     "strand": "+",
+     "length": 144,
+     "P": {
+      "holin": 0.0015679934239805273,
+      "endolysin": 0.001626647091987074,
+      "spanin": 0.0084823544390481
+     },
+     "call": "none"
+    },
+    {
+     "index": 15,
+     "id": "lambdap16",
+     "gene": "H",
+     "product": "tail length tape measure protein",
+     "start": 10542,
+     "stop": 13103,
+     "strand": "+",
+     "length": 853,
+     "P": {
+      "holin": 0.0006639015243780486,
+      "endolysin": 0.010754506509146736,
+      "spanin": 0.0011968422009909696
+     },
+     "call": "none"
+    },
+    {
+     "index": 16,
+     "id": "lambdap17",
+     "gene": "M",
+     "product": "minor tail protein",
+     "start": 13100,
+     "stop": 13429,
+     "strand": "+",
+     "length": 109,
+     "P": {
+      "holin": 1.054859591456655e-05,
+      "endolysin": 0.001452975880050415,
+      "spanin": 0.0020172383120116624
+     },
+     "call": "none"
+    },
+    {
+     "index": 17,
+     "id": "lambdap18",
+     "gene": "L",
+     "product": "minor tail protein",
+     "start": 13429,
+     "stop": 14127,
+     "strand": "+",
+     "length": 232,
+     "P": {
+      "holin": 4.0135564711407906e-05,
+      "endolysin": 0.009920289417133733,
+      "spanin": 0.001979546914233943
+     },
+     "call": "none"
+    },
+    {
+     "index": 18,
+     "id": "lambdap19",
+     "gene": "K",
+     "product": "C40 family peptidase",
+     "start": 14276,
+     "stop": 14875,
+     "strand": "+",
+     "length": 199,
+     "P": {
+      "holin": 1.8546634724301247e-05,
+      "endolysin": 0.19129185081010106,
+      "spanin": 0.00046210898303807344
+     },
+     "call": "none"
+    },
+    {
+     "index": 19,
+     "id": "lambdap20",
+     "gene": "I",
+     "product": "tail assembly protein",
+     "start": 14773,
+     "stop": 15444,
+     "strand": "+",
+     "length": 223,
+     "P": {
+      "holin": 0.0016700237793324814,
+      "endolysin": 0.0003375580490248729,
+      "spanin": 0.0005517775561238691
+     },
+     "call": "none"
+    },
+    {
+     "index": 20,
+     "id": "lambdap21",
+     "gene": "J",
+     "product": "central tail fiber J",
+     "start": 15505,
+     "stop": 18903,
+     "strand": "+",
+     "length": 1132,
+     "P": {
+      "holin": 0.00014497582467138008,
+      "endolysin": 0.005130431816088918,
+      "spanin": 0.0007323498024009816
+     },
+     "call": "none"
+    },
+    {
+     "index": 21,
+     "id": "lambdap26",
+     "gene": "lom",
+     "product": "Lom outer membrane protein",
+     "start": 18965,
+     "stop": 19585,
+     "strand": "+",
+     "length": 206,
+     "P": {
+      "holin": 0.00024509619437419603,
+      "endolysin": 0.0033891968001766555,
+      "spanin": 0.0014618249235474287
+     },
+     "call": "none"
+    },
+    {
+     "index": 22,
+     "id": "lambdap27",
+     "gene": "orf-401",
+     "product": "tail fiber protein",
+     "start": 19650,
+     "stop": 20855,
+     "strand": "+",
+     "length": 401,
+     "P": {
+      "holin": 0.002012864216064164,
+      "endolysin": 0.018207058028164427,
+      "spanin": 0.008180575813007962
+     },
+     "call": "none"
+    },
+    {
+     "index": 23,
+     "id": "lambdap90",
+     "gene": "orf206b",
+     "product": "hypothetical protein",
+     "start": 20147,
+     "stop": 20767,
+     "strand": "-",
+     "length": 206,
+     "P": {
+      "holin": 0.00044461795597974243,
+      "endolysin": 0.0012021699780638453,
+      "spanin": 0.004094946510806865
+     },
+     "call": "none"
+    },
+    {
+     "index": 24,
+     "id": "lambdap28",
+     "gene": "orf-314",
+     "product": "tail fiber protein",
+     "start": 21029,
+     "stop": 21973,
+     "strand": "+",
+     "length": 314,
+     "P": {
+      "holin": 0.0008564881710048521,
+      "endolysin": 0.010912653201138232,
+      "spanin": 0.0005366909550206379
+     },
+     "call": "none"
+    },
+    {
+     "index": 25,
+     "id": "lambdap29",
+     "gene": "orf-194",
+     "product": "tail fiber assembly",
+     "start": 21973,
+     "stop": 22557,
+     "strand": "+",
+     "length": 194,
+     "P": {
+      "holin": 0.0003538637440855039,
+      "endolysin": 0.0015140821123623518,
+      "spanin": 0.0008142335788856835
+     },
+     "call": "none"
+    },
+    {
+     "index": 26,
+     "id": "lambdap80",
+     "gene": "ea47",
+     "product": "ea47",
+     "start": 22686,
+     "stop": 23918,
+     "strand": "-",
+     "length": 410,
+     "P": {
+      "holin": 3.9927826386531246e-05,
+      "endolysin": 0.002131395592900999,
+      "spanin": 0.0008280122846224322
+     },
+     "call": "none"
+    },
+    {
+     "index": 27,
+     "id": "lambdap81",
+     "gene": "ea31",
+     "product": "HNH endonuclease",
+     "start": 24509,
+     "stop": 25399,
+     "strand": "-",
+     "length": 296,
+     "P": {
+      "holin": 9.88871123632215e-06,
+      "endolysin": 0.0013177292321523268,
+      "spanin": 0.0005105058778909644
+     },
+     "call": "none"
+    },
+    {
+     "index": 28,
+     "id": "lambdap82",
+     "gene": "ea59",
+     "product": "AAA family ATPase",
+     "start": 25396,
+     "stop": 26973,
+     "strand": "-",
+     "length": 525,
+     "P": {
+      "holin": 0.00016278853533662805,
+      "endolysin": 0.004661531263309471,
+      "spanin": 0.00033366299557190994
+     },
+     "call": "none"
+    },
+    {
+     "index": 29,
+     "id": "lambdap33",
+     "gene": "int",
+     "product": "integrase",
+     "start": 27812,
+     "stop": 28882,
+     "strand": "-",
+     "length": 356,
+     "P": {
+      "holin": 1.810071860453654e-05,
+      "endolysin": 0.0006989619376940718,
+      "spanin": 0.0005113663637817669
+     },
+     "call": "none"
+    },
+    {
+     "index": 30,
+     "id": "lambdap34",
+     "gene": "xis",
+     "product": "excisionase",
+     "start": 28860,
+     "stop": 29078,
+     "strand": "-",
+     "length": 72,
+     "P": {
+      "holin": 6.708376226964864e-05,
+      "endolysin": 0.0006981000146279885,
+      "spanin": 0.0012562410868144965
+     },
+     "call": "none"
+    },
+    {
+     "index": 31,
+     "id": "lambdap35",
+     "gene": "",
+     "product": "hypothetical protein",
+     "start": 29118,
+     "stop": 29285,
+     "strand": "-",
+     "length": 55,
+     "P": {
+      "holin": 2.1823239136231038e-05,
+      "endolysin": 0.0003897613137294576,
+      "spanin": 0.0010077582388418778
+     },
+     "call": "none"
+    },
+    {
+     "index": 32,
+     "id": "lambdap36",
+     "gene": "ea8.5",
+     "product": "ea8.5",
+     "start": 29374,
+     "stop": 29655,
+     "strand": "-",
+     "length": 93,
+     "P": {
+      "holin": 1.1418681691373934e-05,
+      "endolysin": 0.004936963658029737,
+      "spanin": 0.0011425113321715413
+     },
+     "call": "none"
+    },
+    {
+     "index": 33,
+     "id": "lambdap83",
+     "gene": "ea22",
+     "product": "ead/Ea22-like family protein",
+     "start": 29847,
+     "stop": 30395,
+     "strand": "-",
+     "length": 182,
+     "P": {
+      "holin": 6.964830821767703e-06,
+      "endolysin": 0.0015676920867598286,
+      "spanin": 0.0010112805728222424
+     },
+     "call": "none"
+    },
+    {
+     "index": 34,
+     "id": "lambdap37",
+     "gene": "orf61",
+     "product": "hypothetical protein",
+     "start": 30839,
+     "stop": 31024,
+     "strand": "-",
+     "length": 61,
+     "P": {
+      "holin": 0.000566006001827306,
+      "endolysin": 0.007399024660791631,
+      "spanin": 0.16084016633054454
+     },
+     "call": "none"
+    },
+    {
+     "index": 35,
+     "id": "lambdap38",
+     "gene": "orf63",
+     "product": "DUF1382 family protein",
+     "start": 31005,
+     "stop": 31196,
+     "strand": "-",
+     "length": 63,
+     "P": {
+      "holin": 0.0003768312616531382,
+      "endolysin": 0.0013312975644894798,
+      "spanin": 0.004311416720523185
+     },
+     "call": "none"
+    },
+    {
+     "index": 36,
+     "id": "lambdap39",
+     "gene": "orf60a",
+     "product": "DUF1317 domain-containing protein",
+     "start": 31169,
+     "stop": 31351,
+     "strand": "-",
+     "length": 60,
+     "P": {
+      "holin": 0.0001736460154890489,
+      "endolysin": 0.0012945756333214524,
+      "spanin": 0.007179356717126668
+     },
+     "call": "none"
+    },
+    {
+     "index": 37,
+     "id": "lambdap41",
+     "gene": "exo",
+     "product": "exonuclease",
+     "start": 31348,
+     "stop": 32028,
+     "strand": "-",
+     "length": 226,
+     "P": {
+      "holin": 0.0002728232678352006,
+      "endolysin": 0.0013775733670081593,
+      "spanin": 0.000701706774506486
+     },
+     "call": "none"
+    },
+    {
+     "index": 38,
+     "id": "lambdap84",
+     "gene": "bet",
+     "product": "RecT-like ssDNA annealing protein",
+     "start": 32025,
+     "stop": 32810,
+     "strand": "-",
+     "length": 261,
+     "P": {
+      "holin": 2.083469639255232e-05,
+      "endolysin": 0.0016649824513297047,
+      "spanin": 0.0006610110937386054
+     },
+     "call": "none"
+    },
+    {
+     "index": 39,
+     "id": "lambdap42",
+     "gene": "gam",
+     "product": "gam-like host nuclease inhibitor",
+     "start": 32816,
+     "stop": 33232,
+     "strand": "-",
+     "length": 138,
+     "P": {
+      "holin": 4.405107630964539e-05,
+      "endolysin": 0.0011827565175114277,
+      "spanin": 0.018347664270368335
+     },
+     "call": "none"
+    },
+    {
+     "index": 40,
+     "id": "lambdap85",
+     "gene": "kil",
+     "product": "Kil protein for bacterial septation inhibition",
+     "start": 33187,
+     "stop": 33330,
+     "strand": "-",
+     "length": 47,
+     "P": {
+      "holin": 0.013606713955767916,
+      "endolysin": 0.0021849358562503153,
+      "spanin": 0.005040888452075513
+     },
+     "call": "none"
+    },
+    {
+     "index": 41,
+     "id": "lambdap86",
+     "gene": "cIII",
+     "product": "CIII anti-termination",
+     "start": 33299,
+     "stop": 33463,
+     "strand": "-",
+     "length": 54,
+     "P": {
+      "holin": 0.01034853297347627,
+      "endolysin": 0.004718687866757084,
+      "spanin": 0.02424505800375966
+     },
+     "call": "none"
+    },
+    {
+     "index": 42,
+     "id": "lambdap45",
+     "gene": "ea10",
+     "product": "hypothetical protein",
+     "start": 33536,
+     "stop": 33904,
+     "strand": "-",
+     "length": 122,
+     "P": {
+      "holin": 2.4100842919774686e-05,
+      "endolysin": 0.0005173465797542188,
+      "spanin": 0.0007182910755920742
+     },
+     "call": "none"
+    },
+    {
+     "index": 43,
+     "id": "lambdap46",
+     "gene": "ral",
+     "product": "restriction alleviation ral",
+     "start": 34087,
+     "stop": 34287,
+     "strand": "-",
+     "length": 66,
+     "P": {
+      "holin": 1.03784015188147e-05,
+      "endolysin": 0.0009225191985103539,
+      "spanin": 0.01257255109908936
+     },
+     "call": "none"
+    },
+    {
+     "index": 44,
+     "id": "lambdap47",
+     "gene": "orf28",
+     "product": "hypothetical protein",
+     "start": 34271,
+     "stop": 34357,
+     "strand": "-",
+     "length": 28,
+     "P": {
+      "holin": 3.8968474912172587e-05,
+      "endolysin": 0.0012079516503818648,
+      "spanin": 0.023214530829844017
+     },
+     "call": "none"
+    },
+    {
+     "index": 45,
+     "id": "lambdap48",
+     "gene": "",
+     "product": "SieB superinfection exclusion",
+     "start": 34482,
+     "stop": 35036,
+     "strand": "+",
+     "length": 184,
+     "P": {
+      "holin": 0.010237989089588308,
+      "endolysin": 0.00034125336707370316,
+      "spanin": 0.0005205399470694557
+     },
+     "call": "none"
+    },
+    {
+     "index": 46,
+     "id": "lambdap49",
+     "gene": "N",
+     "product": "anti-termination protein N-like",
+     "start": 35037,
+     "stop": 35438,
+     "strand": "-",
+     "length": 133,
+     "P": {
+      "holin": 3.407619024712954e-05,
+      "endolysin": 0.013712162048643308,
+      "spanin": 0.3030444947839935
+     },
+     "call": "none"
+    },
+    {
+     "index": 47,
+     "id": "lambdap53",
+     "gene": "rexb",
+     "product": "RexB-like exclusion protein",
+     "start": 35825,
+     "stop": 36259,
+     "strand": "-",
+     "length": 144,
+     "P": {
+      "holin": 0.005745541996819353,
+      "endolysin": 0.00023991815332783889,
+      "spanin": 0.0005532545475135788
+     },
+     "call": "none"
+    },
+    {
+     "index": 48,
+     "id": "lambdap87",
+     "gene": "rexa",
+     "product": "RexA-like exclusion protein",
+     "start": 36275,
+     "stop": 37114,
+     "strand": "-",
+     "length": 279,
+     "P": {
+      "holin": 7.020594414702285e-05,
+      "endolysin": 0.00793535936550099,
+      "spanin": 0.0004195596733268691
+     },
+     "call": "none"
+    },
+    {
+     "index": 49,
+     "id": "lambdap88",
+     "gene": "cI",
+     "product": "LexA family transcriptional regulator",
+     "start": 37227,
+     "stop": 37940,
+     "strand": "-",
+     "length": 237,
+     "P": {
+      "holin": 9.858382823034867e-06,
+      "endolysin": 0.008884954665435195,
+      "spanin": 0.000500710389471414
+     },
+     "call": "none"
+    },
+    {
+     "index": 50,
+     "id": "lambdap57",
+     "gene": "cro",
+     "product": "Cro/CI family transcriptional regulator",
+     "start": 38041,
+     "stop": 38241,
+     "strand": "+",
+     "length": 66,
+     "P": {
+      "holin": 2.255662681947608e-05,
+      "endolysin": 0.0008385923977015301,
+      "spanin": 0.0010595634048467762
+     },
+     "call": "none"
+    },
+    {
+     "index": 51,
+     "id": "lambdap59",
+     "gene": "cII",
+     "product": "CII-like transcriptional activator",
+     "start": 38360,
+     "stop": 38653,
+     "strand": "+",
+     "length": 97,
+     "P": {
+      "holin": 0.0005166795231686074,
+      "endolysin": 0.001148407270518468,
+      "spanin": 0.0010453663542153442
+     },
+     "call": "none"
+    },
+    {
+     "index": 52,
+     "id": "lambdap89",
+     "gene": "O",
+     "product": "replication initiation O-like",
+     "start": 38686,
+     "stop": 39585,
+     "strand": "+",
+     "length": 299,
+     "P": {
+      "holin": 3.200171279551639e-05,
+      "endolysin": 0.0032510579378936446,
+      "spanin": 0.0010697091717813037
+     },
+     "call": "none"
+    },
+    {
+     "index": 53,
+     "id": "lambdap61",
+     "gene": "P",
+     "product": "DNA replication protein",
+     "start": 39582,
+     "stop": 40283,
+     "strand": "+",
+     "length": 233,
+     "P": {
+      "holin": 0.0002681050758203105,
+      "endolysin": 0.015775208680678048,
+      "spanin": 0.0017737269326515025
+     },
+     "call": "none"
+    },
+    {
+     "index": 54,
+     "id": "lambdap62",
+     "gene": "ren",
+     "product": "Ren-like exclusion protein",
+     "start": 40280,
+     "stop": 40570,
+     "strand": "+",
+     "length": 96,
+     "P": {
+      "holin": 0.0003550590733473675,
+      "endolysin": 0.003505129532413582,
+      "spanin": 0.0006900897823719363
+     },
+     "call": "none"
+    },
+    {
+     "index": 55,
+     "id": "lambdap63",
+     "gene": "NinB",
+     "product": "NinB/ Orf homologous recombination mediator",
+     "start": 40644,
+     "stop": 41084,
+     "strand": "+",
+     "length": 146,
+     "P": {
+      "holin": 1.1534588451247836e-05,
+      "endolysin": 0.013233264598709018,
+      "spanin": 0.0008477829315228251
+     },
+     "call": "none"
+    },
+    {
+     "index": 56,
+     "id": "lambdap64",
+     "gene": "NinC",
+     "product": "phosphoadenosine phosphosulfate reductase",
+     "start": 41081,
+     "stop": 41953,
+     "strand": "+",
+     "length": 290,
+     "P": {
+      "holin": 5.0313234990916677e-05,
+      "endolysin": 0.0056438827660958745,
+      "spanin": 0.0006073717010367821
+     },
+     "call": "none"
+    },
+    {
+     "index": 57,
+     "id": "lambdap65",
+     "gene": "NinD",
+     "product": "NinD protein",
+     "start": 41950,
+     "stop": 42123,
+     "strand": "+",
+     "length": 57,
+     "P": {
+      "holin": 1.8083541044646608e-05,
+      "endolysin": 0.0006755478628957504,
+      "spanin": 0.005593203304018504
+     },
+     "call": "none"
+    },
+    {
+     "index": 58,
+     "id": "lambdap66",
+     "gene": "NinE",
+     "product": "NinE family protein",
+     "start": 42090,
+     "stop": 42272,
+     "strand": "+",
+     "length": 60,
+     "P": {
+      "holin": 1.61012331696782e-05,
+      "endolysin": 0.0017156516566176473,
+      "spanin": 0.006404494872028906
+     },
+     "call": "none"
+    },
+    {
+     "index": 59,
+     "id": "lambdap67",
+     "gene": "NinF",
+     "product": "protein ninF",
+     "start": 42269,
+     "stop": 42439,
+     "strand": "+",
+     "length": 56,
+     "P": {
+      "holin": 2.9014035099009986e-05,
+      "endolysin": 0.00042678994106113235,
+      "spanin": 0.001134264188609692
+     },
+     "call": "none"
+    },
+    {
+     "index": 60,
+     "id": "lambdap68",
+     "gene": "NinG",
+     "product": "NinG/ Rap DNA junction specific endonuclease",
+     "start": 42429,
+     "stop": 43043,
+     "strand": "+",
+     "length": 204,
+     "P": {
+      "holin": 1.3286677680013944e-05,
+      "endolysin": 0.0008531426610457793,
+      "spanin": 0.0005059993132749824
+     },
+     "call": "none"
+    },
+    {
+     "index": 61,
+     "id": "lambdap69",
+     "gene": "NinH",
+     "product": "NinH family protein",
+     "start": 43040,
+     "stop": 43246,
+     "strand": "+",
+     "length": 68,
+     "P": {
+      "holin": 5.331293458299348e-05,
+      "endolysin": 0.0018891606988370746,
+      "spanin": 0.0010963642000670982
+     },
+     "call": "none"
+    },
+    {
+     "index": 62,
+     "id": "lambdap70",
+     "gene": "NinI",
+     "product": "serine/threonine protein phosphatase",
+     "start": 43224,
+     "stop": 43889,
+     "strand": "+",
+     "length": 221,
+     "P": {
+      "holin": 4.191650015745271e-05,
+      "endolysin": 0.02790618037082931,
+      "spanin": 0.0005437619154189453
+     },
+     "call": "none"
+    },
+    {
+     "index": 63,
+     "id": "lambdap71",
+     "gene": "Q",
+     "product": "antitermination protein",
+     "start": 43886,
+     "stop": 44509,
+     "strand": "+",
+     "length": 207,
+     "P": {
+      "holin": 0.0002742875450475395,
+      "endolysin": 0.04328925157315877,
+      "spanin": 0.000888899754059097
+     },
+     "call": "none"
+    },
+    {
+     "index": 64,
+     "id": "lambdap73",
+     "gene": "orf-64",
+     "product": "hypothetical protein",
+     "start": 44621,
+     "stop": 44815,
+     "strand": "+",
+     "length": 64,
+     "P": {
+      "holin": 0.0056291669752016535,
+      "endolysin": 0.0013280465809984467,
+      "spanin": 0.012857651593027541
+     },
+     "call": "none"
+    },
+    {
+     "index": 65,
+     "id": "lambdap74",
+     "gene": "S",
+     "product": "holin/anti-holin",
+     "start": 45186,
+     "stop": 45509,
+     "strand": "+",
+     "length": 107,
+     "P": {
+      "holin": 0.9999765188152425,
+      "endolysin": 0.0002853779474397377,
+      "spanin": 0.0003418464772113419
+     },
+     "call": "holin"
+    },
+    {
+     "index": 66,
+     "id": "lambdap92",
+     "gene": "S'",
+     "product": "holin/anti-holin",
+     "start": 45192,
+     "stop": 45509,
+     "strand": "+",
+     "length": 105,
+     "P": {
+      "holin": 0.9999820304008117,
+      "endolysin": 0.00032488498347728784,
+      "spanin": 0.00043324476493242415
+     },
+     "call": "holin"
+    },
+    {
+     "index": 67,
+     "id": "lambdap75",
+     "gene": "R",
+     "product": "endolysin",
+     "start": 45493,
+     "stop": 45969,
+     "strand": "+",
+     "length": 158,
+     "P": {
+      "holin": 0.00013086235651677387,
+      "endolysin": 0.9960197050265864,
+      "spanin": 0.0005230982310589874
+     },
+     "call": "endolysin"
+    },
+    {
+     "index": 68,
+     "id": "lambdap76",
+     "gene": "Rz",
+     "product": "Rz-like spanin",
+     "start": 45966,
+     "stop": 46427,
+     "strand": "+",
+     "length": 153,
+     "P": {
+      "holin": 0.0010115998073453897,
+      "endolysin": 0.0003111545270637696,
+      "spanin": 0.983521363891747
+     },
+     "call": "spanin"
+    },
+    {
+     "index": 69,
+     "id": "lambdap91",
+     "gene": "Rz1",
+     "product": "Rz-like spanin",
+     "start": 46186,
+     "stop": 46368,
+     "strand": "+",
+     "length": 60,
+     "P": {
+      "holin": 0.002293789959879936,
+      "endolysin": 0.0003680413364472992,
+      "spanin": 0.9778744098947852
+     },
+     "call": "spanin"
+    },
+    {
+     "index": 70,
+     "id": "lambdap77",
+     "gene": "bor",
+     "product": "Bor-like outer membrane protein",
+     "start": 46459,
+     "stop": 46752,
+     "strand": "-",
+     "length": 97,
+     "P": {
+      "holin": 8.643361345114981e-05,
+      "endolysin": 0.0020827950730936268,
+      "spanin": 0.10923886383058806
+     },
+     "call": "none"
+    },
+    {
+     "index": 71,
+     "id": "lambdap78",
+     "gene": "",
+     "product": "head protein",
+     "start": 47042,
+     "stop": 47575,
+     "strand": "-",
+     "length": 177,
+     "P": {
+      "holin": 0.00030342123368606183,
+      "endolysin": 0.013101526109728989,
+      "spanin": 0.00099816563770074
+     },
+     "call": "none"
+    },
+    {
+     "index": 72,
+     "id": "lambdap79",
+     "gene": "",
+     "product": "hypothetical protein",
+     "start": 47738,
+     "stop": 47944,
+     "strand": "+",
+     "length": 68,
+     "P": {
+      "holin": 9.638357011478581e-05,
+      "endolysin": 0.0016515629686245426,
+      "spanin": 0.018897838675168206
+     },
+     "call": "none"
+    }
+   ]
+  },
+  "T7": {
+   "organism": "Enterobacteria phage T7",
+   "n_proteins": 60,
+   "top": {
+    "holin": {
+     "gene": "T7p53",
+     "id": "T7p53",
+     "product": "holin",
+     "P": 0.9999746319336996,
+     "index": 52
+    },
+    "endolysin": {
+     "gene": "T7p20",
+     "id": "T7p20",
+     "product": "amidase",
+     "P": 0.9963743068549596,
+     "index": 19
+    },
+    "spanin": {
+     "gene": "T7p55",
+     "id": "T7p55",
+     "product": "Rz-like spanin",
+     "P": 0.9946845330438991,
+     "index": 54
+    }
+   },
+   "cassettes": [],
+   "proteins": [
+    {
+     "index": 0,
+     "id": "T7p01",
+     "gene": "",
+     "product": "ocr-like anti-restriction",
+     "start": 925,
+     "stop": 1278,
+     "strand": "+",
+     "length": 117,
+     "P": {
+      "holin": 0.00026375120260573444,
+      "endolysin": 0.0008168450596359817,
+      "spanin": 0.0012035661130213662
+     },
+     "call": "none"
+    },
+    {
+     "index": 1,
+     "id": "T7p02",
+     "gene": "",
+     "product": "hypothetical protein",
+     "start": 1278,
+     "stop": 1433,
+     "strand": "+",
+     "length": 51,
+     "P": {
+      "holin": 0.0007579945539853217,
+      "endolysin": 0.0029982775861862577,
+      "spanin": 0.2701998158929126
+     },
+     "call": "none"
+    },
+    {
+     "index": 2,
+     "id": "T7p04",
+     "gene": "",
+     "product": "hypothetical protein",
+     "start": 1496,
+     "stop": 1639,
+     "strand": "+",
+     "length": 47,
+     "P": {
+      "holin": 0.012602592048326736,
+      "endolysin": 0.00021771439904765544,
+      "spanin": 0.0003101117867811138
+     },
+     "call": "none"
+    },
+    {
+     "index": 3,
+     "id": "T7p05",
+     "gene": "",
+     "product": "hypothetical protein",
+     "start": 1636,
+     "stop": 1972,
+     "strand": "+",
+     "length": 111,
+     "P": {
+      "holin": 1.708286292539571e-05,
+      "endolysin": 0.003257307341820248,
+      "spanin": 0.004951721742831825
+     },
+     "call": "none"
+    },
+    {
+     "index": 4,
+     "id": "T7p06",
+     "gene": "",
+     "product": "hypothetical protein",
+     "start": 1636,
+     "stop": 1797,
+     "strand": "+",
+     "length": 53,
+     "P": {
+      "holin": 0.00021997036451462565,
+      "endolysin": 0.001180935556768098,
+      "spanin": 0.0503857311645019
+     },
+     "call": "none"
+    },
+    {
+     "index": 5,
+     "id": "T7p03",
+     "gene": "",
+     "product": "serine-threonine kinase",
+     "start": 2021,
+     "stop": 3100,
+     "strand": "+",
+     "length": 359,
+     "P": {
+      "holin": 1.7882755230018496e-05,
+      "endolysin": 0.0026167066088380003,
+      "spanin": 0.0009757843717972361
+     },
+     "call": "none"
+    },
+    {
+     "index": 6,
+     "id": "T7p07",
+     "gene": "",
+     "product": "RNA polymerase",
+     "start": 3171,
+     "stop": 5822,
+     "strand": "+",
+     "length": 883,
+     "P": {
+      "holin": 9.211728548156127e-06,
+      "endolysin": 0.007536058240602889,
+      "spanin": 0.0004614538427430758
+     },
+     "call": "none"
+    },
+    {
+     "index": 7,
+     "id": "T7p09",
+     "gene": "",
+     "product": "hypothetical protein",
+     "start": 6007,
+     "stop": 6135,
+     "strand": "+",
+     "length": 42,
+     "P": {
+      "holin": 0.0001645416505758796,
+      "endolysin": 0.0006738644239132608,
+      "spanin": 0.001314374187111502
+     },
+     "call": "none"
+    },
+    {
+     "index": 8,
+     "id": "T7p08",
+     "gene": "",
+     "product": "dGTPase inhibitor; target for F exclusion",
+     "start": 6137,
+     "stop": 6394,
+     "strand": "+",
+     "length": 85,
+     "P": {
+      "holin": 1.4962270048837277e-05,
+      "endolysin": 0.0005289167957025267,
+      "spanin": 0.0016488809579308227
+     },
+     "call": "none"
+    },
+    {
+     "index": 9,
+     "id": "T7p10",
+     "gene": "",
+     "product": "DNA ligase",
+     "start": 6475,
+     "stop": 7554,
+     "strand": "+",
+     "length": 359,
+     "P": {
+      "holin": 1.7892930420042193e-05,
+      "endolysin": 0.0022776007199629272,
+      "spanin": 0.0004744238616299807
+     },
+     "call": "none"
+    },
+    {
+     "index": 10,
+     "id": "T7p11",
+     "gene": "",
+     "product": "hypothetical protein",
+     "start": 7608,
+     "stop": 7763,
+     "strand": "+",
+     "length": 51,
+     "P": {
+      "holin": 0.005850126068693219,
+      "endolysin": 0.00036128205112879303,
+      "spanin": 0.00047727594511423306
+     },
+     "call": "none"
+    },
+    {
+     "index": 11,
+     "id": "T7p12",
+     "gene": "",
+     "product": "hypothetical protein",
+     "start": 7791,
+     "stop": 7880,
+     "strand": "+",
+     "length": 29,
+     "P": {
+      "holin": 0.0015936770481633593,
+      "endolysin": 0.00024127567780933798,
+      "spanin": 0.000877497049484136
+     },
+     "call": "none"
+    },
+    {
+     "index": 12,
+     "id": "T7p13",
+     "gene": "",
+     "product": "hypothetical protein",
+     "start": 7906,
+     "stop": 8166,
+     "strand": "+",
+     "length": 86,
+     "P": {
+      "holin": 0.0009488721369501549,
+      "endolysin": 0.0017944202498640304,
+      "spanin": 0.005727294602669942
+     },
+     "call": "none"
+    },
+    {
+     "index": 13,
+     "id": "T7p14",
+     "gene": "",
+     "product": "nucleotide kinase",
+     "start": 8166,
+     "stop": 8756,
+     "strand": "+",
+     "length": 196,
+     "P": {
+      "holin": 7.251200784789738e-06,
+      "endolysin": 0.0021322914080793122,
+      "spanin": 0.004024505510505643
+     },
+     "call": "none"
+    },
+    {
+     "index": 14,
+     "id": "T7p15",
+     "gene": "",
+     "product": "hypothetical protein",
+     "start": 8749,
+     "stop": 8895,
+     "strand": "+",
+     "length": 48,
+     "P": {
+      "holin": 0.00022293099178096463,
+      "endolysin": 0.0010157751259977515,
+      "spanin": 0.004646441871717545
+     },
+     "call": "none"
+    },
+    {
+     "index": 15,
+     "id": "T7p16",
+     "gene": "",
+     "product": "RNA polymerase inhibitor",
+     "start": 8898,
+     "stop": 9092,
+     "strand": "+",
+     "length": 64,
+     "P": {
+      "holin": 3.284982422057174e-05,
+      "endolysin": 0.0010862043275154825,
+      "spanin": 0.0006669546854781049
+     },
+     "call": "none"
+    },
+    {
+     "index": 16,
+     "id": "T7p17",
+     "gene": "",
+     "product": "Gp2.5-like ssDNA binding protein and ssDNA annealing protein",
+     "start": 9158,
+     "stop": 9856,
+     "strand": "+",
+     "length": 232,
+     "P": {
+      "holin": 3.075575864144997e-05,
+      "endolysin": 0.00235868042425075,
+      "spanin": 0.001119874388782859
+     },
+     "call": "none"
+    },
+    {
+     "index": 17,
+     "id": "T7p18",
+     "gene": "",
+     "product": "endonuclease",
+     "start": 9857,
+     "stop": 10276,
+     "strand": "+",
+     "length": 139,
+     "P": {
+      "holin": 1.3711555367615998e-05,
+      "endolysin": 0.005322774461496275,
+      "spanin": 0.009242351295900347
+     },
+     "call": "none"
+    },
+    {
+     "index": 18,
+     "id": "T7p19",
+     "gene": "",
+     "product": "endonuclease",
+     "start": 10257,
+     "stop": 10706,
+     "strand": "+",
+     "length": 149,
+     "P": {
+      "holin": 1.1383786249940432e-05,
+      "endolysin": 0.00738595981821116,
+      "spanin": 0.0006159529693518733
+     },
+     "call": "none"
+    },
+    {
+     "index": 19,
+     "id": "T7p20",
+     "gene": "",
+     "product": "amidase",
+     "start": 10706,
+     "stop": 11161,
+     "strand": "+",
+     "length": 151,
+     "P": {
+      "holin": 3.4287426571082106e-05,
+      "endolysin": 0.9963743068549596,
+      "spanin": 0.0005313834812057606
+     },
+     "call": "endolysin"
+    },
+    {
+     "index": 20,
+     "id": "T7p21",
+     "gene": "",
+     "product": "HNH endonuclease",
+     "start": 11225,
+     "stop": 11590,
+     "strand": "+",
+     "length": 121,
+     "P": {
+      "holin": 1.3911514247818578e-05,
+      "endolysin": 0.0012217989567976466,
+      "spanin": 0.0011139504279292826
+     },
+     "call": "none"
+    },
+    {
+     "index": 21,
+     "id": "T7p22",
+     "gene": "",
+     "product": "DNA primase/helicase",
+     "start": 11565,
+     "stop": 13265,
+     "strand": "+",
+     "length": 566,
+     "P": {
+      "holin": 3.810766878830939e-05,
+      "endolysin": 0.03193457270391722,
+      "spanin": 0.00044312006993458126
+     },
+     "call": "none"
+    },
+    {
+     "index": 22,
+     "id": "T7p23",
+     "gene": "",
+     "product": "hypothetical protein",
+     "start": 11635,
+     "stop": 11757,
+     "strand": "+",
+     "length": 40,
+     "P": {
+      "holin": 0.001327309077463311,
+      "endolysin": 0.001249135770817874,
+      "spanin": 0.03866625252621548
+     },
+     "call": "none"
+    },
+    {
+     "index": 23,
+     "id": "T7p24",
+     "gene": "",
+     "product": "DNA primase/helicase",
+     "start": 11754,
+     "stop": 13265,
+     "strand": "+",
+     "length": 503,
+     "P": {
+      "holin": 3.103318016946049e-05,
+      "endolysin": 0.06916214994089236,
+      "spanin": 0.0003989230813121602
+     },
+     "call": "none"
+    },
+    {
+     "index": 24,
+     "id": "T7p25",
+     "gene": "",
+     "product": "hypothetical protein",
+     "start": 12988,
+     "stop": 13326,
+     "strand": "+",
+     "length": 112,
+     "P": {
+      "holin": 0.00582323910184696,
+      "endolysin": 0.0004119757798554018,
+      "spanin": 0.0024916214967570247
+     },
+     "call": "none"
+    },
+    {
+     "index": 25,
+     "id": "T7p26",
+     "gene": "",
+     "product": "hypothetical protein",
+     "start": 13352,
+     "stop": 13564,
+     "strand": "+",
+     "length": 70,
+     "P": {
+      "holin": 0.003928147837578003,
+      "endolysin": 0.001824880071974007,
+      "spanin": 0.01563707525545838
+     },
+     "call": "none"
+    },
+    {
+     "index": 26,
+     "id": "T7p27",
+     "gene": "",
+     "product": "hypothetical protein",
+     "start": 13584,
+     "stop": 13853,
+     "strand": "+",
+     "length": 89,
+     "P": {
+      "holin": 6.922446905352137e-05,
+      "endolysin": 0.0010713758800473554,
+      "spanin": 0.0009063501322318584
+     },
+     "call": "none"
+    },
+    {
+     "index": 27,
+     "id": "T7p28",
+     "gene": "",
+     "product": "hypothetical protein",
+     "start": 13927,
+     "stop": 14334,
+     "strand": "+",
+     "length": 135,
+     "P": {
+      "holin": 1.58106556031039e-05,
+      "endolysin": 0.03743100749086269,
+      "spanin": 0.0016938090760297202
+     },
+     "call": "none"
+    },
+    {
+     "index": 28,
+     "id": "T7p29",
+     "gene": "",
+     "product": "DNA polymerase I",
+     "start": 14353,
+     "stop": 16467,
+     "strand": "+",
+     "length": 704,
+     "P": {
+      "holin": 1.3280822989910072e-05,
+      "endolysin": 0.008861215283139236,
+      "spanin": 0.0006676182559088292
+     },
+     "call": "none"
+    },
+    {
+     "index": 29,
+     "id": "T7p30",
+     "gene": "",
+     "product": "hypothetical protein",
+     "start": 16483,
+     "stop": 16839,
+     "strand": "+",
+     "length": 118,
+     "P": {
+      "holin": 4.045630666155016e-05,
+      "endolysin": 0.009265791518653683,
+      "spanin": 0.0008136517247865633
+     },
+     "call": "none"
+    },
+    {
+     "index": 30,
+     "id": "T7p31",
+     "gene": "",
+     "product": "hypothetical protein",
+     "start": 16851,
+     "stop": 17359,
+     "strand": "+",
+     "length": 169,
+     "P": {
+      "holin": 2.8932185430498142e-05,
+      "endolysin": 0.03364573412722317,
+      "spanin": 0.0007921824211716724
+     },
+     "call": "none"
+    },
+    {
+     "index": 31,
+     "id": "T7p32",
+     "gene": "",
+     "product": "DUF2675 domain-containing protein",
+     "start": 16851,
+     "stop": 17150,
+     "strand": "+",
+     "length": 99,
+     "P": {
+      "holin": 0.0002642167895238477,
+      "endolysin": 0.0021676721274340796,
+      "spanin": 0.0011894593913913283
+     },
+     "call": "none"
+    },
+    {
+     "index": 32,
+     "id": "T7p33",
+     "gene": "",
+     "product": "hypothetical protein",
+     "start": 17150,
+     "stop": 17359,
+     "strand": "+",
+     "length": 69,
+     "P": {
+      "holin": 0.0003881637102319641,
+      "endolysin": 0.005604417418878355,
+      "spanin": 0.0010366324952347783
+     },
+     "call": "none"
+    },
+    {
+     "index": 33,
+     "id": "T7p34",
+     "gene": "",
+     "product": "Gp5.9-like inihibitor of recBCD nuclease",
+     "start": 17359,
+     "stop": 17517,
+     "strand": "+",
+     "length": 52,
+     "P": {
+      "holin": 0.0003587580146505538,
+      "endolysin": 0.0017303427674808772,
+      "spanin": 0.012533476594048631
+     },
+     "call": "none"
+    },
+    {
+     "index": 34,
+     "id": "T7p35",
+     "gene": "",
+     "product": "exonuclease",
+     "start": 17504,
+     "stop": 18406,
+     "strand": "+",
+     "length": 300,
+     "P": {
+      "holin": 0.00012331044448988203,
+      "endolysin": 0.04003676812270882,
+      "spanin": 0.00037581824230506565
+     },
+     "call": "none"
+    },
+    {
+     "index": 35,
+     "id": "T7p36",
+     "gene": "",
+     "product": "DUF5516 domain-containing protein",
+     "start": 18394,
+     "stop": 18507,
+     "strand": "+",
+     "length": 37,
+     "P": {
+      "holin": 0.006952704711426515,
+      "endolysin": 0.0002455564028701173,
+      "spanin": 0.0004261435120984264
+     },
+     "call": "none"
+    },
+    {
+     "index": 36,
+     "id": "T7p37",
+     "gene": "",
+     "product": "DUF2717 domain-containing protein",
+     "start": 18605,
+     "stop": 18859,
+     "strand": "+",
+     "length": 84,
+     "P": {
+      "holin": 0.0001154216090536187,
+      "endolysin": 0.000523775752768899,
+      "spanin": 0.0015596327597345737
+     },
+     "call": "none"
+    },
+    {
+     "index": 37,
+     "id": "T7p38",
+     "gene": "",
+     "product": "DUF5476 family protein",
+     "start": 18864,
+     "stop": 19130,
+     "strand": "+",
+     "length": 88,
+     "P": {
+      "holin": 0.002631059939799156,
+      "endolysin": 0.002574202227232576,
+      "spanin": 0.010535923093079656
+     },
+     "call": "none"
+    },
+    {
+     "index": 38,
+     "id": "T7p39",
+     "gene": "",
+     "product": "host range and adsorption protein",
+     "start": 19130,
+     "stop": 19531,
+     "strand": "+",
+     "length": 133,
+     "P": {
+      "holin": 4.447118057900604e-05,
+      "endolysin": 0.005279899766741907,
+      "spanin": 0.0026653374437577764
+     },
+     "call": "none"
+    },
+    {
+     "index": 39,
+     "id": "T7p40",
+     "gene": "",
+     "product": "host range and adsorption protein",
+     "start": 19535,
+     "stop": 19834,
+     "strand": "+",
+     "length": 99,
+     "P": {
+      "holin": 0.002776860902868556,
+      "endolysin": 0.0010257846654840468,
+      "spanin": 0.05895199481844663
+     },
+     "call": "none"
+    },
+    {
+     "index": 40,
+     "id": "T7p41",
+     "gene": "",
+     "product": "HNH endonuclease",
+     "start": 19848,
+     "stop": 20240,
+     "strand": "+",
+     "length": 130,
+     "P": {
+      "holin": 8.054541553892836e-06,
+      "endolysin": 0.0023339090972578657,
+      "spanin": 0.0029262953958831763
+     },
+     "call": "none"
+    },
+    {
+     "index": 41,
+     "id": "T7p42",
+     "gene": "",
+     "product": "head-tail adaptor",
+     "start": 20240,
+     "stop": 21850,
+     "strand": "+",
+     "length": 536,
+     "P": {
+      "holin": 6.200060772470989e-05,
+      "endolysin": 0.001083907388352522,
+      "spanin": 0.0006054226662800813
+     },
+     "call": "none"
+    },
+    {
+     "index": 42,
+     "id": "T7p43",
+     "gene": "",
+     "product": "head assembly",
+     "start": 21950,
+     "stop": 22873,
+     "strand": "+",
+     "length": 307,
+     "P": {
+      "holin": 0.0007090298055013411,
+      "endolysin": 0.008664334316767141,
+      "spanin": 0.0024483853951537127
+     },
+     "call": "none"
+    },
+    {
+     "index": 43,
+     "id": "T7p44",
+     "gene": "",
+     "product": "major head protein",
+     "start": 22967,
+     "stop": 24162,
+     "strand": "+",
+     "length": 398,
+     "P": {
+      "holin": 0.0001233297009506488,
+      "endolysin": 0.0027281752845874085,
+      "spanin": 0.0004824101000186742
+     },
+     "call": "none"
+    },
+    {
+     "index": 44,
+     "id": "T7p45",
+     "gene": "",
+     "product": "major head protein",
+     "start": 22967,
+     "stop": 24004,
+     "strand": "+",
+     "length": 345,
+     "P": {
+      "holin": 2.3302514603393675e-05,
+      "endolysin": 0.001878823234460634,
+      "spanin": 0.0006168404479788218
+     },
+     "call": "none"
+    },
+    {
+     "index": 45,
+     "id": "T7p46",
+     "gene": "",
+     "product": "tail protein",
+     "start": 24228,
+     "stop": 24818,
+     "strand": "+",
+     "length": 196,
+     "P": {
+      "holin": 4.4336472050967146e-05,
+      "endolysin": 0.0036153847997258863,
+      "spanin": 0.0013545590711221006
+     },
+     "call": "none"
+    },
+    {
+     "index": 46,
+     "id": "T7p47",
+     "gene": "",
+     "product": "tail protein",
+     "start": 24842,
+     "stop": 27226,
+     "strand": "+",
+     "length": 794,
+     "P": {
+      "holin": 0.0005489434579810617,
+      "endolysin": 0.003301979582678263,
+      "spanin": 0.000475633916737319
+     },
+     "call": "none"
+    },
+    {
+     "index": 47,
+     "id": "T7p48",
+     "gene": "",
+     "product": "internal virion protein",
+     "start": 27307,
+     "stop": 27723,
+     "strand": "+",
+     "length": 138,
+     "P": {
+      "holin": 4.586249551160492e-05,
+      "endolysin": 0.005031611842726794,
+      "spanin": 0.0013327407938240677
+     },
+     "call": "none"
+    },
+    {
+     "index": 48,
+     "id": "T7p49",
+     "gene": "",
+     "product": "internal virion protein",
+     "start": 27728,
+     "stop": 28318,
+     "strand": "+",
+     "length": 196,
+     "P": {
+      "holin": 0.0005032365495319501,
+      "endolysin": 0.003063319022221556,
+      "spanin": 0.0021043954466313007
+     },
+     "call": "none"
+    },
+    {
+     "index": 49,
+     "id": "T7p50",
+     "gene": "",
+     "product": "internal virion protein",
+     "start": 28325,
+     "stop": 30568,
+     "strand": "+",
+     "length": 747,
+     "P": {
+      "holin": 7.253682182024391e-05,
+      "endolysin": 0.21875658744445278,
+      "spanin": 0.002026500938997294
+     },
+     "call": "none"
+    },
+    {
+     "index": 50,
+     "id": "T7p51",
+     "gene": "",
+     "product": "internal virion protein with endolysin domain",
+     "start": 30595,
+     "stop": 34551,
+     "strand": "+",
+     "length": 1318,
+     "P": {
+      "holin": 0.0006040622036092258,
+      "endolysin": 0.21776266533053676,
+      "spanin": 0.000804237421908099
+     },
+     "call": "none"
+    },
+    {
+     "index": 51,
+     "id": "T7p52",
+     "gene": "",
+     "product": "tail fiber protein",
+     "start": 34624,
+     "stop": 36285,
+     "strand": "+",
+     "length": 553,
+     "P": {
+      "holin": 0.00018459693804900228,
+      "endolysin": 0.005188049846271038,
+      "spanin": 0.0008199220910774063
+     },
+     "call": "none"
+    },
+    {
+     "index": 52,
+     "id": "T7p53",
+     "gene": "",
+     "product": "holin",
+     "start": 36344,
+     "stop": 36547,
+     "strand": "+",
+     "length": 67,
+     "P": {
+      "holin": 0.9999746319336996,
+      "endolysin": 0.0004452060885704854,
+      "spanin": 0.0004992922199668251
+     },
+     "call": "holin"
+    },
+    {
+     "index": 53,
+     "id": "T7p54",
+     "gene": "",
+     "product": "terminase small subunit",
+     "start": 36553,
+     "stop": 36822,
+     "strand": "+",
+     "length": 89,
+     "P": {
+      "holin": 0.00013754780677137138,
+      "endolysin": 0.0010674079550697002,
+      "spanin": 0.004856539632747171
+     },
+     "call": "none"
+    },
+    {
+     "index": 54,
+     "id": "T7p55",
+     "gene": "",
+     "product": "Rz-like spanin",
+     "start": 36917,
+     "stop": 37348,
+     "strand": "+",
+     "length": 143,
+     "P": {
+      "holin": 0.013231149180848688,
+      "endolysin": 0.0007613514333788975,
+      "spanin": 0.9946845330438991
+     },
+     "call": "spanin"
+    },
+    {
+     "index": 55,
+     "id": "T7p56",
+     "gene": "",
+     "product": "Rz-like spanin",
+     "start": 37032,
+     "stop": 37283,
+     "strand": "+",
+     "length": 83,
+     "P": {
+      "holin": 0.014686965403947573,
+      "endolysin": 0.00022828953206308815,
+      "spanin": 0.9915196635100098
+     },
+     "call": "spanin"
+    },
+    {
+     "index": 56,
+     "id": "T7p57",
+     "gene": "",
+     "product": "terminase large subunit",
+     "start": 37370,
+     "stop": 39130,
+     "strand": "+",
+     "length": 586,
+     "P": {
+      "holin": 4.149781133125533e-05,
+      "endolysin": 0.000972628740991962,
+      "spanin": 0.00046126716872463145
+     },
+     "call": "none"
+    },
+    {
+     "index": 57,
+     "id": "T7p58",
+     "gene": "",
+     "product": "hypothetical protein",
+     "start": 38016,
+     "stop": 38273,
+     "strand": "+",
+     "length": 85,
+     "P": {
+      "holin": 0.0004544478803080815,
+      "endolysin": 0.0015253411714911905,
+      "spanin": 0.01988118695383321
+     },
+     "call": "none"
+    },
+    {
+     "index": 58,
+     "id": "T7p59",
+     "gene": "",
+     "product": "hypothetical protein",
+     "start": 38553,
+     "stop": 38726,
+     "strand": "+",
+     "length": 57,
+     "P": {
+      "holin": 0.0007848634002668875,
+      "endolysin": 0.010856206920540777,
+      "spanin": 0.05274573543740713
+     },
+     "call": "none"
+    },
+    {
+     "index": 59,
+     "id": "T7p60",
+     "gene": "",
+     "product": "hypothetical protein",
+     "start": 39389,
+     "stop": 39538,
+     "strand": "+",
+     "length": 49,
+     "P": {
+      "holin": 0.006947817810941791,
+      "endolysin": 0.0014437613932069546,
+      "spanin": 0.0032417253078837996
+     },
+     "call": "none"
+    }
+   ]
+  },
+  "P22": {
+   "organism": "Salmonella phage P22",
+   "n_proteins": 72,
+   "top": {
+    "holin": {
+     "gene": "13'",
+     "id": "P22gp65",
+     "product": "holin/anti-holin",
+     "P": 0.9999514331692714,
+     "index": 63
+    },
+    "endolysin": {
+     "gene": "19",
+     "id": "P22gp66",
+     "product": "endolysin",
+     "P": 0.8875557677120247,
+     "index": 64
+    },
+    "spanin": {
+     "gene": "Rz1",
+     "id": "P22gp68",
+     "product": "Rz-like spanin",
+     "P": 0.9894262137443061,
+     "index": 66
+    }
+   },
+   "cassettes": [
+    {
+     "gene_index_range": [
+      59,
+      69
+     ],
+     "members": [
+      {
+       "index": 62,
+       "gene": "13",
+       "id": "P22gp64",
+       "product": "holin/anti-holin",
+       "P": {
+        "holin": 0.9999279040531583,
+        "endolysin": 0.0002361664913294806,
+        "spanin": 0.0003786282369658737
+       },
+       "classes_called": [
+        "holin"
+       ]
+      },
+      {
+       "index": 63,
+       "gene": "13'",
+       "id": "P22gp65",
+       "product": "holin/anti-holin",
+       "P": {
+        "holin": 0.9999514331692714,
+        "endolysin": 0.0002168254622891786,
+        "spanin": 0.000356218250289972
+       },
+       "classes_called": [
+        "holin"
+       ]
+      },
+      {
+       "index": 64,
+       "gene": "19",
+       "id": "P22gp66",
+       "product": "endolysin",
+       "P": {
+        "holin": 0.009015624100338338,
+        "endolysin": 0.8875557677120247,
+        "spanin": 0.0014426595032447293
+       },
+       "classes_called": [
+        "endolysin"
+       ]
+      },
+      {
+       "index": 65,
+       "gene": "15",
+       "id": "P22gp67",
+       "product": "Rz-like spanin",
+       "P": {
+        "holin": 0.0012564551626630689,
+        "endolysin": 0.0008155853563818925,
+        "spanin": 0.9855663271747557
+       },
+       "classes_called": [
+        "spanin"
+       ]
+      },
+      {
+       "index": 66,
+       "gene": "Rz1",
+       "id": "P22gp68",
+       "product": "Rz-like spanin",
+       "P": {
+        "holin": 0.00022695011876247602,
+        "endolysin": 0.0007925297599847951,
+        "spanin": 0.9894262137443061
+       },
+       "classes_called": [
+        "spanin"
+       ]
+      }
+     ]
+    }
+   ],
+   "proteins": [
+    {
+     "index": 0,
+     "id": "P22gp02",
+     "gene": "2",
+     "product": "terminase large subunit",
+     "start": 203,
+     "stop": 1702,
+     "strand": "+",
+     "length": 499,
+     "P": {
+      "holin": 1.5838948773447454e-05,
+      "endolysin": 0.0021097496252738147,
+      "spanin": 0.0003903478799968172
+     },
+     "call": "none"
+    },
+    {
+     "index": 1,
+     "id": "P22gp03",
+     "gene": "1",
+     "product": "portal protein",
+     "start": 1702,
+     "stop": 3879,
+     "strand": "+",
+     "length": 725,
+     "P": {
+      "holin": 6.536593276363708e-05,
+      "endolysin": 0.001204094242993148,
+      "spanin": 0.0006701660748644031
+     },
+     "call": "none"
+    },
+    {
+     "index": 2,
+     "id": "P22gp04",
+     "gene": "8",
+     "product": "head scaffolding protein",
+     "start": 3893,
+     "stop": 4804,
+     "strand": "+",
+     "length": 303,
+     "P": {
+      "holin": 0.00016908299438823308,
+      "endolysin": 0.0033815020185346046,
+      "spanin": 0.001730797465671575
+     },
+     "call": "none"
+    },
+    {
+     "index": 3,
+     "id": "P22gp05",
+     "gene": "5",
+     "product": "head protein",
+     "start": 4804,
+     "stop": 6096,
+     "strand": "+",
+     "length": 430,
+     "P": {
+      "holin": 3.131854658242797e-05,
+      "endolysin": 0.001931504037353724,
+      "spanin": 0.0006074849217968744
+     },
+     "call": "none"
+    },
+    {
+     "index": 4,
+     "id": "P22gp06",
+     "gene": "orf69",
+     "product": "hypothetical protein",
+     "start": 6135,
+     "stop": 6344,
+     "strand": "+",
+     "length": 69,
+     "P": {
+      "holin": 1.5172857390288924e-05,
+      "endolysin": 0.000834152797692447,
+      "spanin": 0.001926597470959448
+     },
+     "call": "none"
+    },
+    {
+     "index": 5,
+     "id": "P22gp07",
+     "gene": "4",
+     "product": "head-tail adaptor Ad3",
+     "start": 6328,
+     "stop": 6828,
+     "strand": "+",
+     "length": 166,
+     "P": {
+      "holin": 0.00012007559981054325,
+      "endolysin": 0.8162359834011561,
+      "spanin": 0.0007331077274083296
+     },
+     "call": "endolysin"
+    },
+    {
+     "index": 6,
+     "id": "P22gp08",
+     "gene": "10",
+     "product": "head closure Hc3",
+     "start": 6788,
+     "stop": 8206,
+     "strand": "+",
+     "length": 472,
+     "P": {
+      "holin": 8.993174162558233e-05,
+      "endolysin": 0.00542201043119378,
+      "spanin": 0.0007584053576361446
+     },
+     "call": "none"
+    },
+    {
+     "index": 7,
+     "id": "P22gp09",
+     "gene": "26",
+     "product": "tail needle protein",
+     "start": 8210,
+     "stop": 8911,
+     "strand": "+",
+     "length": 233,
+     "P": {
+      "holin": 0.0010814785032351862,
+      "endolysin": 0.00303207437293406,
+      "spanin": 0.003166187303232245
+     },
+     "call": "none"
+    },
+    {
+     "index": 8,
+     "id": "P22gp10",
+     "gene": "14",
+     "product": "head morphogenesis",
+     "start": 8911,
+     "stop": 9366,
+     "strand": "+",
+     "length": 151,
+     "P": {
+      "holin": 7.828914045239655e-05,
+      "endolysin": 0.00175907940743863,
+      "spanin": 0.0014532820297133875
+     },
+     "call": "none"
+    },
+    {
+     "index": 9,
+     "id": "P22gp11",
+     "gene": "7",
+     "product": "DNA ejection",
+     "start": 9369,
+     "stop": 10058,
+     "strand": "+",
+     "length": 229,
+     "P": {
+      "holin": 0.0007005699448691975,
+      "endolysin": 0.004471506857797929,
+      "spanin": 0.0012768696951528972
+     },
+     "call": "none"
+    },
+    {
+     "index": 10,
+     "id": "P22gp12",
+     "gene": "20",
+     "product": "released from the phage upon host infection",
+     "start": 10069,
+     "stop": 11484,
+     "strand": "+",
+     "length": 471,
+     "P": {
+      "holin": 0.0004559474655247982,
+      "endolysin": 0.0850405842666114,
+      "spanin": 0.0015088047129705809
+     },
+     "call": "none"
+    },
+    {
+     "index": 11,
+     "id": "P22gp13",
+     "gene": "16",
+     "product": "head morphogenesis",
+     "start": 11484,
+     "stop": 13313,
+     "strand": "+",
+     "length": 609,
+     "P": {
+      "holin": 0.0008570918859221526,
+      "endolysin": 0.18635542708141334,
+      "spanin": 0.0008177123720597628
+     },
+     "call": "none"
+    },
+    {
+     "index": 12,
+     "id": "P22gp14",
+     "gene": "sieA",
+     "product": "superinfection exclusion SieA-like",
+     "start": 13336,
+     "stop": 13830,
+     "strand": "-",
+     "length": 164,
+     "P": {
+      "holin": 0.002080098535047464,
+      "endolysin": 0.00026573366332621366,
+      "spanin": 0.0003123726122917767
+     },
+     "call": "none"
+    },
+    {
+     "index": 13,
+     "id": "P22gp16",
+     "gene": "orf59a",
+     "product": "hypothetical protein",
+     "start": 14240,
+     "stop": 14419,
+     "strand": "-",
+     "length": 59,
+     "P": {
+      "holin": 5.396122370894933e-05,
+      "endolysin": 0.003058316501549421,
+      "spanin": 0.006949411113628221
+     },
+     "call": "none"
+    },
+    {
+     "index": 14,
+     "id": "P22gp15",
+     "gene": "mnt",
+     "product": "partition protein ATPase",
+     "start": 14519,
+     "stop": 14770,
+     "strand": "-",
+     "length": 83,
+     "P": {
+      "holin": 0.00010620238046276182,
+      "endolysin": 0.0013846073479086218,
+      "spanin": 0.0006685757932219663
+     },
+     "call": "none"
+    },
+    {
+     "index": 15,
+     "id": "P22gp18",
+     "gene": "arc",
+     "product": "Arc-like repressor",
+     "start": 14861,
+     "stop": 15022,
+     "strand": "+",
+     "length": 53,
+     "P": {
+      "holin": 0.0004474177035135225,
+      "endolysin": 0.002693297536538486,
+      "spanin": 0.0005851433872854285
+     },
+     "call": "none"
+    },
+    {
+     "index": 16,
+     "id": "P22gp17",
+     "gene": "ant",
+     "product": "Ant",
+     "start": 15091,
+     "stop": 15993,
+     "strand": "+",
+     "length": 300,
+     "P": {
+      "holin": 6.030952090343361e-05,
+      "endolysin": 0.0010382673560414902,
+      "spanin": 0.0005012019182624259
+     },
+     "call": "none"
+    },
+    {
+     "index": 17,
+     "id": "P22gp19",
+     "gene": "9",
+     "product": "tail spike protein",
+     "start": 16204,
+     "stop": 18207,
+     "strand": "+",
+     "length": 667,
+     "P": {
+      "holin": 1.748619457693356e-05,
+      "endolysin": 0.0021671753730800034,
+      "spanin": 0.00034994692624156203
+     },
+     "call": "none"
+    },
+    {
+     "index": 18,
+     "id": "P22gp20",
+     "gene": "gtrC",
+     "product": "GtrC-like O-antigen conversion translocase",
+     "start": 18266,
+     "stop": 19726,
+     "strand": "-",
+     "length": 486,
+     "P": {
+      "holin": 0.00023935617135966886,
+      "endolysin": 0.0010804102948596486,
+      "spanin": 0.0007764110164061882
+     },
+     "call": "none"
+    },
+    {
+     "index": 19,
+     "id": "P22gp21",
+     "gene": "gtrB",
+     "product": "GtrB glycosyltransferase for O-antigen conversion",
+     "start": 19713,
+     "stop": 20645,
+     "strand": "-",
+     "length": 310,
+     "P": {
+      "holin": 1.74801923385954e-05,
+      "endolysin": 0.005236109763926768,
+      "spanin": 0.00030124401509972875
+     },
+     "call": "none"
+    },
+    {
+     "index": 20,
+     "id": "P22gp22",
+     "gene": "gtrA",
+     "product": "GtrA-like O-antigen conversion",
+     "start": 20642,
+     "stop": 21004,
+     "strand": "-",
+     "length": 120,
+     "P": {
+      "holin": 0.0005726680819691641,
+      "endolysin": 0.00022157354378549688,
+      "spanin": 0.0003289804021011778
+     },
+     "call": "none"
+    },
+    {
+     "index": 21,
+     "id": "P22gp23",
+     "gene": "int",
+     "product": "integrase",
+     "start": 21353,
+     "stop": 22516,
+     "strand": "-",
+     "length": 387,
+     "P": {
+      "holin": 7.1801765746258585e-06,
+      "endolysin": 0.0009967106414971625,
+      "spanin": 0.00047641893123817435
+     },
+     "call": "none"
+    },
+    {
+     "index": 22,
+     "id": "P22gp24",
+     "gene": "xis",
+     "product": "excisionase",
+     "start": 22393,
+     "stop": 22743,
+     "strand": "-",
+     "length": 116,
+     "P": {
+      "holin": 0.00014595168916756515,
+      "endolysin": 0.0026612223770332098,
+      "spanin": 0.020927240316459414
+     },
+     "call": "none"
+    },
+    {
+     "index": 23,
+     "id": "P22gp25",
+     "gene": "eaC",
+     "product": "EaC",
+     "start": 22746,
+     "stop": 23381,
+     "strand": "-",
+     "length": 211,
+     "P": {
+      "holin": 7.4814855934530305e-06,
+      "endolysin": 0.005036067261407662,
+      "spanin": 0.00044102618040260075
+     },
+     "call": "none"
+    },
+    {
+     "index": 24,
+     "id": "P22gp26",
+     "gene": "eaG",
+     "product": "EaG",
+     "start": 23482,
+     "stop": 23661,
+     "strand": "-",
+     "length": 59,
+     "P": {
+      "holin": 6.375538132828866e-05,
+      "endolysin": 0.002844904958746595,
+      "spanin": 0.0011136161785347371
+     },
+     "call": "none"
+    },
+    {
+     "index": 25,
+     "id": "P22gp27",
+     "gene": "eaA",
+     "product": "EaA",
+     "start": 23758,
+     "stop": 24711,
+     "strand": "-",
+     "length": 317,
+     "P": {
+      "holin": 1.8396658124661872e-05,
+      "endolysin": 0.0014620574499659067,
+      "spanin": 0.0007282654136708529
+     },
+     "call": "none"
+    },
+    {
+     "index": 26,
+     "id": "P22gp28",
+     "gene": "eaI",
+     "product": "EaI",
+     "start": 24715,
+     "stop": 24909,
+     "strand": "-",
+     "length": 64,
+     "P": {
+      "holin": 0.00011485212090941955,
+      "endolysin": 0.0005465627528185537,
+      "spanin": 0.0012936966764536758
+     },
+     "call": "none"
+    },
+    {
+     "index": 27,
+     "id": "P22gp29",
+     "gene": "eaD",
+     "product": "EaD",
+     "start": 24906,
+     "stop": 25499,
+     "strand": "-",
+     "length": 197,
+     "P": {
+      "holin": 5.777431190436948e-05,
+      "endolysin": 0.0007593680991980377,
+      "spanin": 0.004029444879112778
+     },
+     "call": "none"
+    },
+    {
+     "index": 28,
+     "id": "P22gp30",
+     "gene": "eaF",
+     "product": "EaF",
+     "start": 25496,
+     "stop": 25855,
+     "strand": "-",
+     "length": 119,
+     "P": {
+      "holin": 1.3122292648813617e-05,
+      "endolysin": 0.0015678607835036367,
+      "spanin": 0.0006946027377398157
+     },
+     "call": "none"
+    },
+    {
+     "index": 29,
+     "id": "P22gp31",
+     "gene": "orf45",
+     "product": "hypothetical protein",
+     "start": 25830,
+     "stop": 25967,
+     "strand": "-",
+     "length": 45,
+     "P": {
+      "holin": 0.0002703115754065369,
+      "endolysin": 0.0012922020877872361,
+      "spanin": 0.001908795048870526
+     },
+     "call": "none"
+    },
+    {
+     "index": 30,
+     "id": "P22gp32",
+     "gene": "eaE",
+     "product": "EaE",
+     "start": 25964,
+     "stop": 26461,
+     "strand": "-",
+     "length": 165,
+     "P": {
+      "holin": 1.843360685447028e-05,
+      "endolysin": 0.003285560268306516,
+      "spanin": 0.005385176645319607
+     },
+     "call": "none"
+    },
+    {
+     "index": 31,
+     "id": "P22gp33",
+     "gene": "orf56",
+     "product": "hypothetical protein",
+     "start": 26449,
+     "stop": 26619,
+     "strand": "-",
+     "length": 56,
+     "P": {
+      "holin": 0.000412910183509357,
+      "endolysin": 0.0048436184889717225,
+      "spanin": 0.032801628281799125
+     },
+     "call": "none"
+    },
+    {
+     "index": 32,
+     "id": "P22gp34",
+     "gene": "abc2",
+     "product": "abc2 anti-RecBCD",
+     "start": 26630,
+     "stop": 26923,
+     "strand": "-",
+     "length": 97,
+     "P": {
+      "holin": 6.329335291625973e-05,
+      "endolysin": 0.0034142007446762816,
+      "spanin": 0.012280471072647795
+     },
+     "call": "none"
+    },
+    {
+     "index": 33,
+     "id": "P22gp35",
+     "gene": "abc1",
+     "product": "Abc1",
+     "start": 26970,
+     "stop": 27254,
+     "strand": "-",
+     "length": 94,
+     "P": {
+      "holin": 1.734134125905315e-05,
+      "endolysin": 0.0018097394971906757,
+      "spanin": 0.00225034349809955
+     },
+     "call": "none"
+    },
+    {
+     "index": 34,
+     "id": "P22gp36",
+     "gene": "erf",
+     "product": "Erf-like ssDNA annealing protein",
+     "start": 27254,
+     "stop": 27871,
+     "strand": "-",
+     "length": 205,
+     "P": {
+      "holin": 0.0003193227836711749,
+      "endolysin": 0.00194870294940998,
+      "spanin": 0.0024388092696736342
+     },
+     "call": "none"
+    },
+    {
+     "index": 35,
+     "id": "P22gp37",
+     "gene": "arf",
+     "product": "Erf recombination cofactor Arf",
+     "start": 27868,
+     "stop": 28011,
+     "strand": "-",
+     "length": 47,
+     "P": {
+      "holin": 0.00012833418846752977,
+      "endolysin": 0.0020771275557804753,
+      "spanin": 0.0035494307340615803
+     },
+     "call": "none"
+    },
+    {
+     "index": 36,
+     "id": "P22gp38",
+     "gene": "kil",
+     "product": "Kil protein for bacterial septation inhibition",
+     "start": 28001,
+     "stop": 28189,
+     "strand": "-",
+     "length": 62,
+     "P": {
+      "holin": 0.00023985264388842625,
+      "endolysin": 0.0030553896177024907,
+      "spanin": 0.06289291338261922
+     },
+     "call": "none"
+    },
+    {
+     "index": 37,
+     "id": "P22gp39",
+     "gene": "c3",
+     "product": "CIII anti-termination",
+     "start": 28170,
+     "stop": 28328,
+     "strand": "-",
+     "length": 52,
+     "P": {
+      "holin": 0.0018193399904188592,
+      "endolysin": 0.0021162045552633253,
+      "spanin": 0.009213267128475108
+     },
+     "call": "none"
+    },
+    {
+     "index": 38,
+     "id": "P22gp40",
+     "gene": "17",
+     "product": "superinfection exclusion",
+     "start": 28414,
+     "stop": 28725,
+     "strand": "-",
+     "length": 103,
+     "P": {
+      "holin": 3.869800010655492e-06,
+      "endolysin": 0.0005320868482353741,
+      "spanin": 0.0006742201826517523
+     },
+     "call": "none"
+    },
+    {
+     "index": 39,
+     "id": "P22gp41",
+     "gene": "orf87",
+     "product": "hypothetical protein",
+     "start": 28873,
+     "stop": 29076,
+     "strand": "-",
+     "length": 67,
+     "P": {
+      "holin": 1.6363380107689758e-05,
+      "endolysin": 0.0011182933420079944,
+      "spanin": 0.0012442552818210412
+     },
+     "call": "none"
+    },
+    {
+     "index": 40,
+     "id": "P22gp42",
+     "gene": "orf78",
+     "product": "hypothetical protein",
+     "start": 29076,
+     "stop": 29312,
+     "strand": "-",
+     "length": 78,
+     "P": {
+      "holin": 5.3313804973573044e-05,
+      "endolysin": 0.0005222129705638698,
+      "spanin": 0.0016966660241970687
+     },
+     "call": "none"
+    },
+    {
+     "index": 41,
+     "id": "P22gp43",
+     "gene": "ral",
+     "product": "restriction alleviation ral",
+     "start": 29349,
+     "stop": 29543,
+     "strand": "-",
+     "length": 64,
+     "P": {
+      "holin": 1.1886145645786548e-05,
+      "endolysin": 0.0007954056131331117,
+      "spanin": 0.004643424725193264
+     },
+     "call": "none"
+    },
+    {
+     "index": 42,
+     "id": "P22gp44",
+     "gene": "sieB",
+     "product": "superinfection exclusion; inhibits SieB",
+     "start": 29758,
+     "stop": 30336,
+     "strand": "+",
+     "length": 192,
+     "P": {
+      "holin": 0.012090536197979411,
+      "endolysin": 0.0003518950427102053,
+      "spanin": 0.0006193765703661545
+     },
+     "call": "none"
+    },
+    {
+     "index": 43,
+     "id": "P22gp45",
+     "gene": "esc",
+     "product": "superinfection exclusion; inhibits SieB",
+     "start": 29830,
+     "stop": 30336,
+     "strand": "+",
+     "length": 168,
+     "P": {
+      "holin": 0.29313782176119585,
+      "endolysin": 0.002607937912917771,
+      "spanin": 0.0014724782780041214
+     },
+     "call": "none"
+    },
+    {
+     "index": 44,
+     "id": "P22gp46",
+     "gene": "24",
+     "product": "hypothetical protein",
+     "start": 30357,
+     "stop": 30659,
+     "strand": "-",
+     "length": 100,
+     "P": {
+      "holin": 9.063728416188088e-05,
+      "endolysin": 0.005228965356090189,
+      "spanin": 0.004540354031073237
+     },
+     "call": "none"
+    },
+    {
+     "index": 45,
+     "id": "P22gp47",
+     "gene": "c2",
+     "product": "C2",
+     "start": 31013,
+     "stop": 31663,
+     "strand": "-",
+     "length": 216,
+     "P": {
+      "holin": 2.638638506709253e-05,
+      "endolysin": 0.019391488863644047,
+      "spanin": 0.00041581010652551667
+     },
+     "call": "none"
+    },
+    {
+     "index": 46,
+     "id": "P22gp48",
+     "gene": "cro",
+     "product": "transcriptional regulator",
+     "start": 31744,
+     "stop": 31929,
+     "strand": "+",
+     "length": 61,
+     "P": {
+      "holin": 0.00015378991624065517,
+      "endolysin": 0.0063204387903644955,
+      "spanin": 0.00100585940687579
+     },
+     "call": "none"
+    },
+    {
+     "index": 47,
+     "id": "P22gp49",
+     "gene": "c1",
+     "product": "CII-like transcriptional activator",
+     "start": 32036,
+     "stop": 32314,
+     "strand": "+",
+     "length": 92,
+     "P": {
+      "holin": 0.00025989454815001484,
+      "endolysin": 0.0017743283153757445,
+      "spanin": 0.0006269206297712509
+     },
+     "call": "none"
+    },
+    {
+     "index": 48,
+     "id": "P22gp50",
+     "gene": "orf48",
+     "product": "tail protein",
+     "start": 32349,
+     "stop": 32495,
+     "strand": "+",
+     "length": 48,
+     "P": {
+      "holin": 3.229115480477591e-05,
+      "endolysin": 0.0013978034765037746,
+      "spanin": 0.012807536599891547
+     },
+     "call": "none"
+    },
+    {
+     "index": 49,
+     "id": "P22gp51",
+     "gene": "18",
+     "product": "replication initiation O-like",
+     "start": 32488,
+     "stop": 33303,
+     "strand": "+",
+     "length": 271,
+     "P": {
+      "holin": 6.983289087462095e-05,
+      "endolysin": 0.0011875660804138014,
+      "spanin": 0.0006139408048638963
+     },
+     "call": "none"
+    },
+    {
+     "index": 50,
+     "id": "P22gp52",
+     "gene": "12",
+     "product": "hypothetical protein",
+     "start": 33300,
+     "stop": 34676,
+     "strand": "+",
+     "length": 458,
+     "P": {
+      "holin": 0.00011339868961421504,
+      "endolysin": 0.018239598305681948,
+      "spanin": 0.0004626065456574249
+     },
+     "call": "none"
+    },
+    {
+     "index": 51,
+     "id": "P22gp53",
+     "gene": "ninA",
+     "product": "hypothetical protein",
+     "start": 34673,
+     "stop": 34753,
+     "strand": "+",
+     "length": 26,
+     "P": {
+      "holin": 0.02480546499586253,
+      "endolysin": 0.00022838794798876985,
+      "spanin": 0.0003293909021409377
+     },
+     "call": "none"
+    },
+    {
+     "index": 52,
+     "id": "P22gp54",
+     "gene": "ninB",
+     "product": "NinB/ Orf homologous recombination mediator",
+     "start": 34750,
+     "stop": 35187,
+     "strand": "+",
+     "length": 145,
+     "P": {
+      "holin": 3.503118716961232e-05,
+      "endolysin": 0.01968010720375291,
+      "spanin": 0.0011955345612888277
+     },
+     "call": "none"
+    },
+    {
+     "index": 53,
+     "id": "P22gp55",
+     "gene": "ninD",
+     "product": "NinD",
+     "start": 35184,
+     "stop": 35357,
+     "strand": "+",
+     "length": 57,
+     "P": {
+      "holin": 1.8547933230133776e-05,
+      "endolysin": 0.0003942965037098649,
+      "spanin": 0.003341354374021669
+     },
+     "call": "none"
+    },
+    {
+     "index": 54,
+     "id": "P22gp56",
+     "gene": "ninE",
+     "product": "NinE",
+     "start": 35324,
+     "stop": 35500,
+     "strand": "+",
+     "length": 58,
+     "P": {
+      "holin": 1.1382885708102391e-05,
+      "endolysin": 0.0017697877431433419,
+      "spanin": 0.009870802064948428
+     },
+     "call": "none"
+    },
+    {
+     "index": 55,
+     "id": "P22gp57",
+     "gene": "ninX",
+     "product": "NinX",
+     "start": 35497,
+     "stop": 35835,
+     "strand": "+",
+     "length": 112,
+     "P": {
+      "holin": 5.395093151915347e-05,
+      "endolysin": 0.0026318369808264845,
+      "spanin": 0.0008892952717502203
+     },
+     "call": "none"
+    },
+    {
+     "index": 56,
+     "id": "P22gp58",
+     "gene": "ninF",
+     "product": "NinF",
+     "start": 35828,
+     "stop": 36004,
+     "strand": "+",
+     "length": 58,
+     "P": {
+      "holin": 1.7282836155287328e-05,
+      "endolysin": 0.00040513098585128984,
+      "spanin": 0.0028977320315705306
+     },
+     "call": "none"
+    },
+    {
+     "index": 57,
+     "id": "P22gp59",
+     "gene": "ninG",
+     "product": "NinG/ Rap DNA junction specific endonuclease",
+     "start": 35997,
+     "stop": 36608,
+     "strand": "+",
+     "length": 203,
+     "P": {
+      "holin": 1.2020926870164765e-05,
+      "endolysin": 0.0011027833561604806,
+      "spanin": 0.0008047054769705525
+     },
+     "call": "none"
+    },
+    {
+     "index": 58,
+     "id": "P22gp60",
+     "gene": "ninY",
+     "product": "NinY",
+     "start": 36605,
+     "stop": 36829,
+     "strand": "+",
+     "length": 74,
+     "P": {
+      "holin": 2.001713110138317e-05,
+      "endolysin": 0.0007940767728009749,
+      "spanin": 0.028817795518391365
+     },
+     "call": "none"
+    },
+    {
+     "index": 59,
+     "id": "P22gp61",
+     "gene": "ninH",
+     "product": "NinH",
+     "start": 36826,
+     "stop": 37029,
+     "strand": "+",
+     "length": 67,
+     "P": {
+      "holin": 0.00011598087531093242,
+      "endolysin": 0.0022439361591811307,
+      "spanin": 0.0010857844523241324
+     },
+     "call": "none"
+    },
+    {
+     "index": 60,
+     "id": "P22gp62",
+     "gene": "ninZ",
+     "product": "NinZ",
+     "start": 37010,
+     "stop": 37189,
+     "strand": "+",
+     "length": 59,
+     "P": {
+      "holin": 0.002355095729284815,
+      "endolysin": 0.0013035130176801957,
+      "spanin": 0.24366399161054603
+     },
+     "call": "none"
+    },
+    {
+     "index": 61,
+     "id": "P22gp63",
+     "gene": "23",
+     "product": "transcription antitermination protein",
+     "start": 37186,
+     "stop": 37809,
+     "strand": "+",
+     "length": 207,
+     "P": {
+      "holin": 0.00042815278966184785,
+      "endolysin": 0.06942689669255052,
+      "spanin": 0.0008761408679277029
+     },
+     "call": "none"
+    },
+    {
+     "index": 62,
+     "id": "P22gp64",
+     "gene": "13",
+     "product": "holin/anti-holin",
+     "start": 38244,
+     "stop": 38570,
+     "strand": "+",
+     "length": 108,
+     "P": {
+      "holin": 0.9999279040531583,
+      "endolysin": 0.0002361664913294806,
+      "spanin": 0.0003786282369658737
+     },
+     "call": "holin"
+    },
+    {
+     "index": 63,
+     "id": "P22gp65",
+     "gene": "13'",
+     "product": "holin/anti-holin",
+     "start": 38253,
+     "stop": 38570,
+     "strand": "+",
+     "length": 105,
+     "P": {
+      "holin": 0.9999514331692714,
+      "endolysin": 0.0002168254622891786,
+      "spanin": 0.000356218250289972
+     },
+     "call": "holin"
+    },
+    {
+     "index": 64,
+     "id": "P22gp66",
+     "gene": "19",
+     "product": "endolysin",
+     "start": 38551,
+     "stop": 38991,
+     "strand": "+",
+     "length": 146,
+     "P": {
+      "holin": 0.009015624100338338,
+      "endolysin": 0.8875557677120247,
+      "spanin": 0.0014426595032447293
+     },
+     "call": "endolysin"
+    },
+    {
+     "index": 65,
+     "id": "P22gp67",
+     "gene": "15",
+     "product": "Rz-like spanin",
+     "start": 38988,
+     "stop": 39425,
+     "strand": "+",
+     "length": 145,
+     "P": {
+      "holin": 0.0012564551626630689,
+      "endolysin": 0.0008155853563818925,
+      "spanin": 0.9855663271747557
+     },
+     "call": "spanin"
+    },
+    {
+     "index": 66,
+     "id": "P22gp68",
+     "gene": "Rz1",
+     "product": "Rz-like spanin",
+     "start": 39187,
+     "stop": 39372,
+     "strand": "+",
+     "length": 61,
+     "P": {
+      "holin": 0.00022695011876247602,
+      "endolysin": 0.0007925297599847951,
+      "spanin": 0.9894262137443061
+     },
+     "call": "spanin"
+    },
+    {
+     "index": 67,
+     "id": "P22gp69",
+     "gene": "rha",
+     "product": "anti-repressor",
+     "start": 39575,
+     "stop": 40180,
+     "strand": "+",
+     "length": 201,
+     "P": {
+      "holin": 0.00030830592793789307,
+      "endolysin": 0.0016073609999333262,
+      "spanin": 0.0005104906743820121
+     },
+     "call": "none"
+    },
+    {
+     "index": 68,
+     "id": "P22gp70",
+     "gene": "orf25",
+     "product": "hypothetical protein",
+     "start": 40329,
+     "stop": 40406,
+     "strand": "+",
+     "length": 25,
+     "P": {
+      "holin": 0.007011573832898507,
+      "endolysin": 0.0022571335872066233,
+      "spanin": 0.008471248462832641
+     },
+     "call": "none"
+    },
+    {
+     "index": 69,
+     "id": "P22gp71",
+     "gene": "orf80",
+     "product": "Orf80",
+     "start": 41014,
+     "stop": 41256,
+     "strand": "+",
+     "length": 80,
+     "P": {
+      "holin": 0.00014155296222721704,
+      "endolysin": 0.0008169792270004664,
+      "spanin": 0.001909955965098888
+     },
+     "call": "none"
+    },
+    {
+     "index": 70,
+     "id": "P22gp72",
+     "gene": "orf59c",
+     "product": "Orf59c",
+     "start": 41258,
+     "stop": 41437,
+     "strand": "+",
+     "length": 59,
+     "P": {
+      "holin": 0.00032587545479912544,
+      "endolysin": 0.000512849479878922,
+      "spanin": 0.0017328012886456091
+     },
+     "call": "none"
+    },
+    {
+     "index": 71,
+     "id": "P22gp01",
+     "gene": "3",
+     "product": "terminase small subunit",
+     "start": 41461,
+     "stop": 225,
+     "strand": "+",
+     "length": 162,
+     "P": {
+      "holin": 4.3935446013284775e-05,
+      "endolysin": 0.0022717209092638457,
+      "spanin": 0.0026770672946219115
+     },
+     "call": "none"
+    }
+   ]
+  },
+  "HK97": {
+   "organism": "Enterobacteria phage HK97",
+   "n_proteins": 61,
+   "top": {
+    "holin": {
+     "gene": "HK97p57",
+     "id": "HK97p57",
+     "product": "holin/anti-holin",
+     "P": 0.9999175098050942,
+     "index": 55
+    },
+    "endolysin": {
+     "gene": "HK97p58",
+     "id": "HK97p58",
+     "product": "endolysin",
+     "P": 0.9957035325816114,
+     "index": 56
+    },
+    "spanin": {
+     "gene": "Rz",
+     "id": "HK97p59",
+     "product": "Rz-like spanin",
+     "P": 0.9769885222088529,
+     "index": 57
+    }
+   },
+   "cassettes": [
+    {
+     "gene_index_range": [
+      51,
+      60
+     ],
+     "members": [
+      {
+       "index": 55,
+       "gene": "HK97p57",
+       "id": "HK97p57",
+       "product": "holin/anti-holin",
+       "P": {
+        "holin": 0.9999175098050942,
+        "endolysin": 0.0008593711036269411,
+        "spanin": 0.0004357119565090381
+       },
+       "classes_called": [
+        "holin"
+       ]
+      },
+      {
+       "index": 56,
+       "gene": "HK97p58",
+       "id": "HK97p58",
+       "product": "endolysin",
+       "P": {
+        "holin": 0.00012577591470710353,
+        "endolysin": 0.9957035325816114,
+        "spanin": 0.0005230982310589874
+       },
+       "classes_called": [
+        "endolysin"
+       ]
+      },
+      {
+       "index": 57,
+       "gene": "Rz",
+       "id": "HK97p59",
+       "product": "Rz-like spanin",
+       "P": {
+        "holin": 0.0021954421571748362,
+        "endolysin": 0.00035578586765369147,
+        "spanin": 0.9769885222088529
+       },
+       "classes_called": [
+        "spanin"
+       ]
+      }
+     ]
+    }
+   ],
+   "proteins": [
+    {
+     "index": 0,
+     "id": "HK97p01",
+     "gene": "",
+     "product": "terminase small subunit",
+     "start": 50,
+     "stop": 535,
+     "strand": "+",
+     "length": 161,
+     "P": {
+      "holin": 0.0005590453851495633,
+      "endolysin": 0.004246017630816134,
+      "spanin": 0.004223813918574782
+     },
+     "call": "none"
+    },
+    {
+     "index": 1,
+     "id": "HK97p02",
+     "gene": "",
+     "product": "terminase large subunit",
+     "start": 542,
+     "stop": 2056,
+     "strand": "+",
+     "length": 504,
+     "P": {
+      "holin": 3.0436088879600187e-05,
+      "endolysin": 0.0014155375495684787,
+      "spanin": 0.00035701330175145725
+     },
+     "call": "none"
+    },
+    {
+     "index": 2,
+     "id": "HK97p03",
+     "gene": "",
+     "product": "portal protein",
+     "start": 2056,
+     "stop": 3330,
+     "strand": "+",
+     "length": 424,
+     "P": {
+      "holin": 3.6872221337160245e-05,
+      "endolysin": 0.001513538227297608,
+      "spanin": 0.00045891244827743694
+     },
+     "call": "none"
+    },
+    {
+     "index": 3,
+     "id": "HK97p04",
+     "gene": "",
+     "product": "head maturation protease",
+     "start": 3348,
+     "stop": 4025,
+     "strand": "+",
+     "length": 225,
+     "P": {
+      "holin": 7.68687387234702e-05,
+      "endolysin": 0.010184680521134769,
+      "spanin": 0.000384066903583185
+     },
+     "call": "none"
+    },
+    {
+     "index": 4,
+     "id": "HK97p05",
+     "gene": "",
+     "product": "major head protein",
+     "start": 4028,
+     "stop": 5185,
+     "strand": "+",
+     "length": 385,
+     "P": {
+      "holin": 2.8143482988998237e-05,
+      "endolysin": 0.0014083629370200182,
+      "spanin": 0.0009699168238126508
+     },
+     "call": "none"
+    },
+    {
+     "index": 5,
+     "id": "HK97p06",
+     "gene": "",
+     "product": "head-tail adaptor Ad1",
+     "start": 5219,
+     "stop": 5545,
+     "strand": "+",
+     "length": 108,
+     "P": {
+      "holin": 0.00011202909714940521,
+      "endolysin": 0.0011805683732538648,
+      "spanin": 0.000878314989839234
+     },
+     "call": "none"
+    },
+    {
+     "index": 6,
+     "id": "HK97p07",
+     "gene": "",
+     "product": "head closure Hc1",
+     "start": 5545,
+     "stop": 5883,
+     "strand": "+",
+     "length": 112,
+     "P": {
+      "holin": 6.494556874445186e-06,
+      "endolysin": 0.0006079742589556349,
+      "spanin": 0.0005867883330704103
+     },
+     "call": "none"
+    },
+    {
+     "index": 7,
+     "id": "HK97p08",
+     "gene": "",
+     "product": "HK97 gp10 family protein",
+     "start": 5880,
+     "stop": 6329,
+     "strand": "+",
+     "length": 149,
+     "P": {
+      "holin": 4.067144018788025e-05,
+      "endolysin": 0.004574433136366593,
+      "spanin": 0.0005688431879787434
+     },
+     "call": "none"
+    },
+    {
+     "index": 8,
+     "id": "HK97p09",
+     "gene": "",
+     "product": "tail terminator",
+     "start": 6326,
+     "stop": 6673,
+     "strand": "+",
+     "length": 115,
+     "P": {
+      "holin": 0.00024843152727819124,
+      "endolysin": 0.0012506544602673914,
+      "spanin": 0.00036803262453400596
+     },
+     "call": "none"
+    },
+    {
+     "index": 9,
+     "id": "HK97p10",
+     "gene": "",
+     "product": "major tail subunit",
+     "start": 6733,
+     "stop": 7437,
+     "strand": "+",
+     "length": 234,
+     "P": {
+      "holin": 0.0002894359301768628,
+      "endolysin": 0.005168522458172609,
+      "spanin": 0.0013483200001358714
+     },
+     "call": "none"
+    },
+    {
+     "index": 10,
+     "id": "HK97p11",
+     "gene": "",
+     "product": "tail protein",
+     "start": 7472,
+     "stop": 8145,
+     "strand": "+",
+     "length": 224,
+     "P": {
+      "holin": 7.424044372109309e-05,
+      "endolysin": 0.007350484082197545,
+      "spanin": 0.00041698889932094527
+     },
+     "call": "none"
+    },
+    {
+     "index": 11,
+     "id": "HK97p12",
+     "gene": "",
+     "product": "tail protein",
+     "start": 7472,
+     "stop": 7858,
+     "strand": "+",
+     "length": 128,
+     "P": {
+      "holin": 8.798779710825048e-05,
+      "endolysin": 0.001063642257563039,
+      "spanin": 0.0009195882740086919
+     },
+     "call": "none"
+    },
+    {
+     "index": 12,
+     "id": "HK97p13",
+     "gene": "",
+     "product": "Gp15",
+     "start": 8203,
+     "stop": 8391,
+     "strand": "+",
+     "length": 62,
+     "P": {
+      "holin": 0.854760548467964,
+      "endolysin": 0.00025324853653758115,
+      "spanin": 0.0038284311124945508
+     },
+     "call": "holin"
+    },
+    {
+     "index": 13,
+     "id": "HK97p14",
+     "gene": "H",
+     "product": "tail length tape measure protein",
+     "start": 8435,
+     "stop": 11704,
+     "strand": "+",
+     "length": 1089,
+     "P": {
+      "holin": 0.0001935840542533202,
+      "endolysin": 0.017653969926483475,
+      "spanin": 0.001234559116966381
+     },
+     "call": "none"
+    },
+    {
+     "index": 14,
+     "id": "HK97p15",
+     "gene": "M",
+     "product": "minor tail protein",
+     "start": 11707,
+     "stop": 12045,
+     "strand": "+",
+     "length": 112,
+     "P": {
+      "holin": 2.0338934544479405e-05,
+      "endolysin": 0.0022625105473193,
+      "spanin": 0.00039152192119908086
+     },
+     "call": "none"
+    },
+    {
+     "index": 15,
+     "id": "HK97p16",
+     "gene": "L",
+     "product": "minor tail protein",
+     "start": 12042,
+     "stop": 12800,
+     "strand": "+",
+     "length": 252,
+     "P": {
+      "holin": 7.184224224315867e-05,
+      "endolysin": 0.0071819458916411805,
+      "spanin": 0.0009611619499634672
+     },
+     "call": "none"
+    },
+    {
+     "index": 16,
+     "id": "HK97p17",
+     "gene": "K",
+     "product": "minor tail protein",
+     "start": 12802,
+     "stop": 13512,
+     "strand": "+",
+     "length": 236,
+     "P": {
+      "holin": 1.4106881711977872e-05,
+      "endolysin": 0.028313705293681563,
+      "spanin": 0.0007270166405170842
+     },
+     "call": "none"
+    },
+    {
+     "index": 17,
+     "id": "HK97p19",
+     "gene": "I",
+     "product": "tail protein",
+     "start": 13834,
+     "stop": 14442,
+     "strand": "+",
+     "length": 202,
+     "P": {
+      "holin": 0.11676888503545779,
+      "endolysin": 0.0008983374726389503,
+      "spanin": 0.004737937132702744
+     },
+     "call": "none"
+    },
+    {
+     "index": 18,
+     "id": "HK97p20",
+     "gene": "",
+     "product": "Gp22",
+     "start": 14475,
+     "stop": 14837,
+     "strand": "+",
+     "length": 120,
+     "P": {
+      "holin": 0.0005741565273239206,
+      "endolysin": 0.0014627567395783738,
+      "spanin": 0.01974788378714589
+     },
+     "call": "none"
+    },
+    {
+     "index": 19,
+     "id": "HK97p21",
+     "gene": "",
+     "product": "Gp23",
+     "start": 14715,
+     "stop": 14975,
+     "strand": "-",
+     "length": 86,
+     "P": {
+      "holin": 0.00020547548518608987,
+      "endolysin": 0.00934031547199546,
+      "spanin": 0.0016710784213578242
+     },
+     "call": "none"
+    },
+    {
+     "index": 20,
+     "id": "HK97p22",
+     "gene": "J",
+     "product": "tail protein",
+     "start": 15141,
+     "stop": 19031,
+     "strand": "+",
+     "length": 1296,
+     "P": {
+      "holin": 0.0001410771648399762,
+      "endolysin": 0.009640724553051325,
+      "spanin": 0.0010055773340235425
+     },
+     "call": "none"
+    },
+    {
+     "index": 21,
+     "id": "HK97p23",
+     "gene": "stf",
+     "product": "tail fiber protein",
+     "start": 19239,
+     "stop": 20204,
+     "strand": "+",
+     "length": 321,
+     "P": {
+      "holin": 7.388225239324576e-05,
+      "endolysin": 0.0036846935412505008,
+      "spanin": 0.0004756812234288409
+     },
+     "call": "none"
+    },
+    {
+     "index": 22,
+     "id": "HK97p24",
+     "gene": "tfa",
+     "product": "tail fiber assembly",
+     "start": 20204,
+     "stop": 20812,
+     "strand": "+",
+     "length": 202,
+     "P": {
+      "holin": 5.970348576951521e-05,
+      "endolysin": 0.003549224862860776,
+      "spanin": 0.0010852727125255548
+     },
+     "call": "none"
+    },
+    {
+     "index": 23,
+     "id": "HK97p25",
+     "gene": "int",
+     "product": "integrase",
+     "start": 21318,
+     "stop": 22388,
+     "strand": "-",
+     "length": 356,
+     "P": {
+      "holin": 1.3464905001753838e-05,
+      "endolysin": 0.0007140923507032999,
+      "spanin": 0.0005113663637817669
+     },
+     "call": "none"
+    },
+    {
+     "index": 24,
+     "id": "HK97p26",
+     "gene": "xis",
+     "product": "excisionase",
+     "start": 22366,
+     "stop": 22584,
+     "strand": "-",
+     "length": 72,
+     "P": {
+      "holin": 7.290926290244716e-05,
+      "endolysin": 0.000730903227840636,
+      "spanin": 0.0012888194164191484
+     },
+     "call": "none"
+    },
+    {
+     "index": 25,
+     "id": "HK97p27",
+     "gene": "",
+     "product": "Gp37",
+     "start": 22772,
+     "stop": 23302,
+     "strand": "-",
+     "length": 176,
+     "P": {
+      "holin": 7.770980148889203e-06,
+      "endolysin": 0.0019490513026899376,
+      "spanin": 0.018227269949480346
+     },
+     "call": "none"
+    },
+    {
+     "index": 26,
+     "id": "HK97p28",
+     "gene": "",
+     "product": "DUF2737 family protein",
+     "start": 23299,
+     "stop": 23463,
+     "strand": "-",
+     "length": 54,
+     "P": {
+      "holin": 3.1836971424325195e-05,
+      "endolysin": 0.005067051981771203,
+      "spanin": 0.08152063087872577
+     },
+     "call": "none"
+    },
+    {
+     "index": 27,
+     "id": "HK97p29",
+     "gene": "",
+     "product": "abc2 anti-RecBCD",
+     "start": 23474,
+     "stop": 23767,
+     "strand": "-",
+     "length": 97,
+     "P": {
+      "holin": 2.2423492108655873e-05,
+      "endolysin": 0.005135804772526621,
+      "spanin": 0.008240514545074332
+     },
+     "call": "none"
+    },
+    {
+     "index": 28,
+     "id": "HK97p30",
+     "gene": "",
+     "product": "Gp40",
+     "start": 23786,
+     "stop": 24175,
+     "strand": "-",
+     "length": 129,
+     "P": {
+      "holin": 0.00013101601344603402,
+      "endolysin": 0.0018061094225468592,
+      "spanin": 0.0014533407542228324
+     },
+     "call": "none"
+    },
+    {
+     "index": 29,
+     "id": "HK97p31",
+     "gene": "erf",
+     "product": "Erf-like ssDNA annealing protein",
+     "start": 24175,
+     "stop": 24780,
+     "strand": "-",
+     "length": 201,
+     "P": {
+      "holin": 0.00010104257217764185,
+      "endolysin": 0.0007347917543380701,
+      "spanin": 0.000434105091423388
+     },
+     "call": "none"
+    },
+    {
+     "index": 30,
+     "id": "HK97p32",
+     "gene": "",
+     "product": "recombinase",
+     "start": 24791,
+     "stop": 25042,
+     "strand": "-",
+     "length": 83,
+     "P": {
+      "holin": 1.5824057824608098e-05,
+      "endolysin": 0.00102500188087908,
+      "spanin": 0.006614621997644106
+     },
+     "call": "none"
+    },
+    {
+     "index": 31,
+     "id": "HK97p33",
+     "gene": "",
+     "product": "recombinase",
+     "start": 24791,
+     "stop": 24967,
+     "strand": "-",
+     "length": 58,
+     "P": {
+      "holin": 0.0001092844987139898,
+      "endolysin": 0.0012439901794519261,
+      "spanin": 0.04208800403324392
+     },
+     "call": "none"
+    },
+    {
+     "index": 32,
+     "id": "HK97p34",
+     "gene": "kil",
+     "product": "Kil protein for bacterial septation inhibition",
+     "start": 25039,
+     "stop": 25191,
+     "strand": "-",
+     "length": 50,
+     "P": {
+      "holin": 0.0017022445397099717,
+      "endolysin": 0.0020058525341714647,
+      "spanin": 0.017249617081136936
+     },
+     "call": "none"
+    },
+    {
+     "index": 33,
+     "id": "HK97p35",
+     "gene": "cIII",
+     "product": "CIII anti-termination",
+     "start": 25176,
+     "stop": 25310,
+     "strand": "-",
+     "length": 44,
+     "P": {
+      "holin": 0.0003485971756540326,
+      "endolysin": 0.0008894989931777632,
+      "spanin": 0.018245996291831303
+     },
+     "call": "none"
+    },
+    {
+     "index": 34,
+     "id": "HK97p36",
+     "gene": "",
+     "product": "Gp45",
+     "start": 25505,
+     "stop": 25975,
+     "strand": "-",
+     "length": 156,
+     "P": {
+      "holin": 4.2897366447913195e-06,
+      "endolysin": 0.002776641789040693,
+      "spanin": 0.0010451713892499117
+     },
+     "call": "none"
+    },
+    {
+     "index": 35,
+     "id": "HK97p37",
+     "gene": "N",
+     "product": "anti-termination protein N-like",
+     "start": 26034,
+     "stop": 26417,
+     "strand": "-",
+     "length": 127,
+     "P": {
+      "holin": 1.4370629665330667e-05,
+      "endolysin": 0.0025913761946227097,
+      "spanin": 0.0010785113943955588
+     },
+     "call": "none"
+    },
+    {
+     "index": 36,
+     "id": "HK97p38",
+     "gene": "",
+     "product": "Gp48",
+     "start": 26909,
+     "stop": 27559,
+     "strand": "-",
+     "length": 216,
+     "P": {
+      "holin": 0.15033620237570608,
+      "endolysin": 0.0007306677924854703,
+      "spanin": 0.06179973591079219
+     },
+     "call": "none"
+    },
+    {
+     "index": 37,
+     "id": "HK97p39",
+     "gene": "",
+     "product": "Gp49",
+     "start": 27547,
+     "stop": 27813,
+     "strand": "-",
+     "length": 88,
+     "P": {
+      "holin": 4.052580220424269e-05,
+      "endolysin": 0.0005681547849814547,
+      "spanin": 0.002680415589245227
+     },
+     "call": "none"
+    },
+    {
+     "index": 38,
+     "id": "HK97p40",
+     "gene": "cI",
+     "product": "LexA family transcriptional regulator",
+     "start": 28239,
+     "stop": 28952,
+     "strand": "-",
+     "length": 237,
+     "P": {
+      "holin": 1.3652410315686973e-05,
+      "endolysin": 0.009349591256110575,
+      "spanin": 0.000500710389471414
+     },
+     "call": "none"
+    },
+    {
+     "index": 39,
+     "id": "HK97p41",
+     "gene": "",
+     "product": "Cro/CI family transcriptional regulator",
+     "start": 29053,
+     "stop": 29253,
+     "strand": "+",
+     "length": 66,
+     "P": {
+      "holin": 6.444030080129453e-05,
+      "endolysin": 0.0008084927220551659,
+      "spanin": 0.0011426018761300546
+     },
+     "call": "none"
+    },
+    {
+     "index": 40,
+     "id": "HK97p42",
+     "gene": "cII",
+     "product": "CII-like transcriptional activator",
+     "start": 29391,
+     "stop": 29687,
+     "strand": "+",
+     "length": 98,
+     "P": {
+      "holin": 0.00037350663143105914,
+      "endolysin": 0.0009695103797493334,
+      "spanin": 0.00550954043837471
+     },
+     "call": "none"
+    },
+    {
+     "index": 41,
+     "id": "HK97p43",
+     "gene": "",
+     "product": "Gp53",
+     "start": 29720,
+     "stop": 29881,
+     "strand": "+",
+     "length": 53,
+     "P": {
+      "holin": 6.664030380140478e-05,
+      "endolysin": 0.0011113643529869761,
+      "spanin": 0.008100124099115306
+     },
+     "call": "none"
+    },
+    {
+     "index": 42,
+     "id": "HK97p44",
+     "gene": "O",
+     "product": "replication initiation O-like",
+     "start": 29868,
+     "stop": 30689,
+     "strand": "+",
+     "length": 273,
+     "P": {
+      "holin": 3.9699427342311596e-05,
+      "endolysin": 0.0023483382859547193,
+      "spanin": 0.0007321854235867241
+     },
+     "call": "none"
+    },
+    {
+     "index": 43,
+     "id": "HK97p45",
+     "gene": "P",
+     "product": "replicative DNA helicase",
+     "start": 30686,
+     "stop": 32062,
+     "strand": "+",
+     "length": 458,
+     "P": {
+      "holin": 0.00012571250833428812,
+      "endolysin": 0.015915298765337794,
+      "spanin": 0.00040982179335921057
+     },
+     "call": "none"
+    },
+    {
+     "index": 44,
+     "id": "HK97p46",
+     "gene": "",
+     "product": "Gp56",
+     "start": 32059,
+     "stop": 32157,
+     "strand": "+",
+     "length": 32,
+     "P": {
+      "holin": 0.732740964467542,
+      "endolysin": 0.0008725139902862128,
+      "spanin": 0.0003820769248235212
+     },
+     "call": "holin"
+    },
+    {
+     "index": 45,
+     "id": "HK97p47",
+     "gene": "",
+     "product": "Gp60",
+     "start": 32144,
+     "stop": 32356,
+     "strand": "+",
+     "length": 70,
+     "P": {
+      "holin": 5.072727077945049e-05,
+      "endolysin": 0.004341285148827357,
+      "spanin": 0.006115762559506947
+     },
+     "call": "none"
+    },
+    {
+     "index": 46,
+     "id": "HK97p48",
+     "gene": "",
+     "product": "NinB/ Orf homologous recombination mediator",
+     "start": 32337,
+     "stop": 32777,
+     "strand": "+",
+     "length": 146,
+     "P": {
+      "holin": 1.1857481269905381e-05,
+      "endolysin": 0.026016963772733277,
+      "spanin": 0.0009388941806830275
+     },
+     "call": "none"
+    },
+    {
+     "index": 47,
+     "id": "HK97p49",
+     "gene": "",
+     "product": "DNA methyltransferase",
+     "start": 32774,
+     "stop": 33301,
+     "strand": "+",
+     "length": 175,
+     "P": {
+      "holin": 2.6389835346230855e-05,
+      "endolysin": 0.0021350106542819677,
+      "spanin": 0.0004755309915867498
+     },
+     "call": "none"
+    },
+    {
+     "index": 48,
+     "id": "HK97p50",
+     "gene": "",
+     "product": "NinE family protein",
+     "start": 33298,
+     "stop": 33480,
+     "strand": "+",
+     "length": 60,
+     "P": {
+      "holin": 3.779291071435032e-05,
+      "endolysin": 0.0010273940031892052,
+      "spanin": 0.006863779399611493
+     },
+     "call": "none"
+    },
+    {
+     "index": 49,
+     "id": "HK97p51",
+     "gene": "",
+     "product": "protein ninF",
+     "start": 33477,
+     "stop": 33647,
+     "strand": "+",
+     "length": 56,
+     "P": {
+      "holin": 2.621979311212214e-05,
+      "endolysin": 0.0003343183491839357,
+      "spanin": 0.0016170888869408793
+     },
+     "call": "none"
+    },
+    {
+     "index": 50,
+     "id": "HK97p52",
+     "gene": "roi",
+     "product": "anti-repressor",
+     "start": 33640,
+     "stop": 34365,
+     "strand": "+",
+     "length": 241,
+     "P": {
+      "holin": 1.2910869746171537e-05,
+      "endolysin": 0.0027419367037239822,
+      "spanin": 0.0005486024465589122
+     },
+     "call": "none"
+    },
+    {
+     "index": 51,
+     "id": "HK97p53",
+     "gene": "",
+     "product": "HNH endonuclease",
+     "start": 34365,
+     "stop": 34655,
+     "strand": "+",
+     "length": 96,
+     "P": {
+      "holin": 1.8893776147806517e-05,
+      "endolysin": 0.0342262968634388,
+      "spanin": 0.0007281831241915475
+     },
+     "call": "none"
+    },
+    {
+     "index": 52,
+     "id": "HK97p54",
+     "gene": "",
+     "product": "RusA family crossover junction endodeoxyribonuclease",
+     "start": 34652,
+     "stop": 35014,
+     "strand": "+",
+     "length": 120,
+     "P": {
+      "holin": 0.0003545215311851523,
+      "endolysin": 0.0010341013888218334,
+      "spanin": 0.0009524639196113048
+     },
+     "call": "none"
+    },
+    {
+     "index": 53,
+     "id": "HK97p55",
+     "gene": "",
+     "product": "protein ninH",
+     "start": 35011,
+     "stop": 35199,
+     "strand": "+",
+     "length": 62,
+     "P": {
+      "holin": 9.02332750671228e-05,
+      "endolysin": 0.0023673563603733017,
+      "spanin": 0.0037823539001048557
+     },
+     "call": "none"
+    },
+    {
+     "index": 54,
+     "id": "HK97p56",
+     "gene": "",
+     "product": "antitermination protein",
+     "start": 35196,
+     "stop": 35819,
+     "strand": "+",
+     "length": 207,
+     "P": {
+      "holin": 0.00014558812728716674,
+      "endolysin": 0.08397209088845929,
+      "spanin": 0.0010380622014803812
+     },
+     "call": "none"
+    },
+    {
+     "index": 55,
+     "id": "HK97p57",
+     "gene": "",
+     "product": "holin/anti-holin",
+     "start": 36248,
+     "stop": 36568,
+     "strand": "+",
+     "length": 106,
+     "P": {
+      "holin": 0.9999175098050942,
+      "endolysin": 0.0008593711036269411,
+      "spanin": 0.0004357119565090381
+     },
+     "call": "holin"
+    },
+    {
+     "index": 56,
+     "id": "HK97p58",
+     "gene": "",
+     "product": "endolysin",
+     "start": 36552,
+     "stop": 37028,
+     "strand": "+",
+     "length": 158,
+     "P": {
+      "holin": 0.00012577591470710353,
+      "endolysin": 0.9957035325816114,
+      "spanin": 0.0005230982310589874
+     },
+     "call": "endolysin"
+    },
+    {
+     "index": 57,
+     "id": "HK97p59",
+     "gene": "Rz",
+     "product": "Rz-like spanin",
+     "start": 37025,
+     "stop": 37462,
+     "strand": "+",
+     "length": 145,
+     "P": {
+      "holin": 0.0021954421571748362,
+      "endolysin": 0.00035578586765369147,
+      "spanin": 0.9769885222088529
+     },
+     "call": "spanin"
+    },
+    {
+     "index": 58,
+     "id": "HK97p60",
+     "gene": "",
+     "product": "KilA-N domain-containing protein",
+     "start": 37672,
+     "stop": 38400,
+     "strand": "+",
+     "length": 242,
+     "P": {
+      "holin": 6.883449466476962e-05,
+      "endolysin": 0.0018227479963996197,
+      "spanin": 0.0004181651954686998
+     },
+     "call": "none"
+    },
+    {
+     "index": 59,
+     "id": "HK97p61",
+     "gene": "",
+     "product": "hypothetical protein",
+     "start": 38403,
+     "stop": 38636,
+     "strand": "+",
+     "length": 77,
+     "P": {
+      "holin": 0.00027732661101592367,
+      "endolysin": 0.009582030119901355,
+      "spanin": 0.008176188114260822
+     },
+     "call": "none"
+    },
+    {
+     "index": 60,
+     "id": "HK97p62",
+     "gene": "",
+     "product": "HNH endonuclease",
+     "start": 39054,
+     "stop": 39413,
+     "strand": "+",
+     "length": 119,
+     "P": {
+      "holin": 2.439633246451945e-05,
+      "endolysin": 0.002561773682869323,
+      "spanin": 0.0015506670885071779
+     },
+     "call": "none"
+    }
+   ]
+  }
+ }
+}
