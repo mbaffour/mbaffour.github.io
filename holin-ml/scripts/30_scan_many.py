@@ -66,10 +66,12 @@ def fetch_panel(path):
                     if i == 4: print("FETCH FAILED", acc, flush=True)
                     time.sleep(2 ** (i + 1))
         if not f.exists(): continue
+        org = ""
+        for ln in f.read_text(errors="replace").splitlines():
+            if ln.strip().startswith("ORGANISM"): org = ln.split("ORGANISM", 1)[1].strip(); break
         try:
             ps = S.annotated_proteins(str(f))
-            org = ""
-            out.append((acc, org, [dict(p, id=p.get("locus_tag") or p.get("protein_id") or "", gene=p.get("gene") or "") for p in ps]))
+            out.append((acc, org, [dict(p, id=p.get("locus_tag") or p.get("protein_id") or "", gene=p.get("gene") or "", organism=org) for p in ps]))
         except Exception as e:
             print("PARSE FAILED", acc, e, flush=True)
     return out
@@ -110,7 +112,7 @@ def main():
             b = max(CLASSES, key=lambda c: p["P"][c]); p["call"] = b if p["P"][b] >= a.threshold else "none"
         cass = SC.find_cassettes(ps, a.threshold, a.cassette_window)
         org_txt = " ".join((p["product"] or "") + " " + (p.get("organism") or "") for p in ps)
-        is_actino = bool(ACTINO.search(acc + " " + org_txt))  # organism rarely in pool rows; acc as weak proxy
+        is_actino = bool(ACTINO.search((org or "") + " " + acc + " " + org_txt))
         agg["n_genomes"] += 1; agg["with_cassette"] += bool(cass); agg["actino_genomes"] += is_actino
         agg["actino_with_cassette"] += bool(cass) and is_actino
         rec = {"accession": acc, "n_proteins": len(ps), "cassettes": len(cass), "class": {}}
