@@ -28,7 +28,7 @@ python3 scripts/33_verify_calls.py --tsv reports/dac15_final.tsv \
 |---|---|
 | location | **86,545–87,018 (−)**, 157 aa |
 | domain | **PF01832 Glucosaminidase (GH73)**, aa 53–156, **E = 8.7e-17** — the *only* lysis domain in 118 proteins vs 69 lysis HMMs |
-| topology | Phobius signal peptide, cleaved at 27/28 (`n8-23c27/28o`), 0 TM → **secreted endolysin** |
+| topology | Phobius signal peptide, cleavage 27/28 (`n8-23c27/28o`), 0 TM → N-terminally membrane-targeted; **export route uncertain, see below** |
 | nearest training relative | endolysin **0.803 identity at coverage 1.00** (of 2,788) vs holin 0.379, spanin 0.321 |
 | model score | P(endolysin) = **0.0059**, **rank 25 of 118** |
 | context | among nucleotide/NAD-salvage genes (gp038 ribose-phosphate pyrophosphokinase, gp036 nicotinamide phosphoribosyltransferase) |
@@ -41,9 +41,22 @@ UniProt — from crAss-like phages (`uncultured phage cr126_1`, `uncultured phag
 This was never a novel-family problem. It was a **training-data coverage gap**, and adding that family still only
 moved the score to 0.107 (see `retrain_v2_report.md`), which is why endolysin detection should be domain-driven.
 
-*Caveat:* GH73 domains also occur in non-lytic proteins (FlgJ, bacterial autolysins). What argues for lysis here is
-the cleavable signal peptide — a secreted endolysin, a known strategy paired with pinhole-type holins — plus its
-position outside the structural module.
+*Caveat 1 — the N-terminus is NOT cleanly a cleaved signal peptide.* Inspecting it by hand (`MKQRFINILLVIAIVALG
+VLVFLNHEAIEQC…`) rather than trusting the Phobius label:
+- h-region (8–23) `ILLVIAIVALGVLVFLN`, mean Kyte–Doolittle **+3.05** — strongly hydrophobic, so a genuine signal
+  peptide *or* a membrane anchor;
+- n-region charge **+2**, canonical;
+- but the predicted cleavage at 27/28 gives **−3 = His**, which is not the small residue a canonical Sec AXA
+  cleavage motif requires, so cleavage is doubtful;
+- and it is **not SAR-like**: signal-anchor-release domains are characteristically *weakly* hydrophobic and
+  Gly/Ala-rich, whereas this is +3.05 with only 18% G+A;
+- Cys31 is **not** in a lipobox (`I-E-Q-C` fails `[LVI][ASTVI][GAS]C`), so not a lipoprotein.
+
+So gp039 is N-terminally membrane-targeted, but whether it is cleaved and released, signal-anchored, or retained
+is unresolved by prediction. Calling it "secreted" overstates the evidence; that wording has been corrected here.
+
+*Caveat 2:* GH73 domains also occur in non-lytic proteins (FlgJ, bacterial autolysins). What argues for lysis is
+the membrane-targeting N-terminus plus its position outside the structural module — not the domain alone.
 
 ### Holin — **gp095**, plausible and genuinely novel
 
@@ -54,6 +67,10 @@ position outside the structural module.
 | topology | Phobius 1 TM, `o6-25i`; C-terminal charge −1 |
 | nearest training relative | holin **0.375** at coverage ≥0.8 (of 5,055) — no close relative |
 | domain | none of the 38 holin Pfam families hits |
+
+Hand-checked topology supports the call: TM 6–25 mean Kyte–Doolittle **+1.70** (moderate, as holin TMs tend to
+be), a basic **RRK** cluster immediately C-terminal to the TM (the positive-inside rule), N-out/C-in orientation,
+and a mixed/acidic C-terminal tail. That is a class III / pinholin-like single-TM architecture.
 
 Right size, right topology, top-ranked, and **37.5% max identity to any of 5,055 known holins** — so this is a real
 novel-family call the model made unaided. It is the one result here where the ML did the work. Unconfirmed by
