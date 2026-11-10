@@ -77,7 +77,15 @@ The spanin result specifically depended on the CPT/Kongari curated set: the clas
 
 Scanning 300 pooled Caudoviricetes genomes (plus a fresh out-of-sample panel) the caller recovers annotated holins in **96.9 %** of genomes that have one (186/192), of which a majority (107) are out-of-sample. Endolysin and spanin recovery on the pool is near-total but largely in-sample (their positives were partly drawn from these annotations), so the honest generalisation estimates remain the LOGO figures above. The tool runs identically on annotated GenBank and on **raw nucleotide assemblies** via de-novo gene calling (Pyrodigal): on phage N4, the nucleotide path recovered the same holin/endolysin/spanin cassette as the annotation, from sequence alone.
 
-*[Expanded out-of-sample panel — in progress; results appended on completion: additional diverse genomes with emphasis on actinobacterial hosts, reporting genuinely-unseen recovery and the actino subset specifically.]*
+**Expanded out-of-sample panel (38 genomes, 23 actinobacterial).** To test generalisation on genomes with no overlap with training (verified against the pool, prior panel, atlas and benchmark), and specifically to probe the historical actinobacterial weakness, we scanned a fresh panel weighted toward *Mycobacterium*, *Streptomyces*, *Rhodococcus*, *Gordonia*, *Corynebacterium* and *Propionibacterium* phages. Reporting genuinely-unseen recovery (recovered gene is *not* an exact training sequence):
+
+| class | annotated | recovered | in-sample | genuinely unseen |
+|---|---|---|---|---|
+| holin | 26 | 25 (96 %) | 11 | **14** |
+| endolysin | 37 | 36 (97 %) | 8 | **28** |
+| spanin | 6 | 6 | 6 | 0 (no generalisation test here) |
+
+Here "unseen" is the weaker criterion of *not an exact training sequence* — close homologues (e.g. *Mycobacterium* cluster siblings) may still be in training, so this is more permissive than the strict LOGO protocol (§2.3, §3.1), which removes the whole family at ≥30 % identity and remains the true never-seen-family estimate. Within the actinobacterial subset, **7 holins not identical to any training sequence** were recovered — Rosebush, Phlyer, Tweety, *Propionibacterium* PHL194M00, Barnyard, *Rhodococcus* ReqiPepy6, Predator — all at 0.975–1.000, together with 19 such endolysins (0.92–0.995). This is a marked improvement in evidence over the first panel, which contained only one, and gives no sign of the historical actinobacterial holin blind spot at this level of homology control. It is reported with its limits: the subset is *Mycobacterium*-dominated; 9 of 23 genomes have no annotated holin to score; the two misses are in less-represented hosts (*Corynebacterium* P1201 holin, 0.33; *Streptomyces* VWB endolysin, 0.21); and this measures sensitivity, not specificity. Separately, **marine cyanophage endolysins are a documented weakness** (S-PM2 0.60, P-SSM2 0.63). Across the panel there are ~1.6 high-confidence un-annotated calls per genome, consistent with the ~0.75 precision at P≥0.9 — i.e. the caller is sensitive but over-calls, and high-confidence use should apply the 0.95 threshold and context filtering.
 
 ### 3.4 A reproducible biological finding: adjacent holin-fold gene pairs
 
