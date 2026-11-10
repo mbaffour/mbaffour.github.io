@@ -6,3 +6,6 @@ torch>=2.0            # the CPU build is fine; ESM-2 t12_35M is only 35 M parame
 transformers>=4.40    # loads ESM-2 (facebook/esm2_t12_35M_UR50D); ~130 MB of weights download on first run
 biopython>=1.80       # GenBank and FASTA parsing (--genbank, --genome)
 pyrodigal>=3.0        # de-novo gene calling for raw nucleotide input (--genome)
+pyhmmer>=0.10          # optional: lysis Pfam HMM scan for scripts/32 --domains and scripts/33.
+                       # Predict works without it; it is the model-INDEPENDENT evidence and the only thing that
+                       # found the real endolysin in Bacteroides phage DAC15 (scored 0.0059, model rank 25/118).

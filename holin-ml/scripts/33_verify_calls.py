@@ -23,67 +23,15 @@ import features as F
 S5 = importlib.import_module("05_scan_genome")
 
 B = Path(__file__).resolve().parent.parent
-HMMDIR = B / "data/raw/pfam_hmm"
 PHOBIUS = "https://phobius.sbc.su.se/api/predict"
-ENDOLYSIN_PFAM = {  # catalytic and cell-wall-binding domains found in phage lysins
-    "PF00959": "Phage_lysozyme (GH24)", "PF01183": "Glyco_hydro_25 lysozyme", "PF01510": "Amidase_2",
-    "PF01520": "Amidase_3", "PF05257": "CHAP", "PF00877": "NLPC_P60", "PF01464": "SLT transglycosylase",
-    "PF01551": "Peptidase_M23", "PF02557": "VanY (M15)", "PF08291": "Peptidase_M15_3", "PF13539": "Peptidase_M15_4",
-    "PF01832": "Glucosaminidase", "PF05838": "Glyco_hydro_108", "PF13702": "Lysozyme_like", "PF07486": "Hydrolase_2",
-    "PF01471": "PG_binding_1", "PF01476": "LysM", "PF18341": "PSA endolysin CBD", "PF16754": "Pesticin",
-    # newer Pfam families named for phage endolysins -- lambda R is PF31186, NOT PF00959 (found via a positive control)
-    "PF31186": "Endolysin", "PF25309": "Endolysin-like domain", "PF31067": "Endolysin A",
-    "PF13406": "SLT_2 transglycosylase", "PF06737": "Transglycosylase", "PF01473": "CW_binding_1 (choline-binding)",
-    "PF08230": "CW_7 cell-wall binding", "PF09374": "PG_binding_3"}
-SPANIN_PFAM = {"PF17531": "Spanin outer lipoprotein (T7-like)", "PF26831": "Phage spanin outer lipoprotein",
-               "PF03245": "Phage_lysis (Rz)", "PF06085": "Rz1 lipoprotein"}
-STRUCT = re.compile(r"virion|structural|head|capsid|tail|fib(er|re)|baseplate|portal|terminase|tape.?measure|neck", re.I)
-NOT_HOLIN = re.compile(r"choline|cholinesterase|carnitine|betaine|sulfatase|kinase|acyltransferase|cell wall binding", re.I)
-
-
-def holin_pfam():
-    d = json.load(open(B / "data/raw/interpro_pfam_holin.json"))
-    return {r["metadata"]["accession"]: r["metadata"]["name"] for r in d["results"] if not NOT_HOLIN.search(r["metadata"]["name"])}
-
-
-def fetch_hmms(accs):
-    HMMDIR.mkdir(parents=True, exist_ok=True)
-    prov_p = HMMDIR / "provenance.json"
-    prov = json.loads(prov_p.read_text()) if prov_p.exists() else {}
-    for acc in accs:
-        f = HMMDIR / f"{acc}.hmm"
-        if f.exists(): continue
-        url = f"https://www.ebi.ac.uk/interpro/api/entry/pfam/{acc}?annotation=hmm"
-        try:
-            raw = urllib.request.urlopen(url, timeout=120).read()
-            txt = gzip.decompress(raw) if raw[:2] == b"\x1f\x8b" else raw
-            if not txt.startswith(b"HMMER"): raise ValueError("not an HMM")
-            f.write_bytes(txt); prov[acc] = {"url": url, "retrieved_utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())}
-        except Exception as e:
-            prov[acc] = {"url": url, "error": f"{type(e).__name__}: {str(e)[:80]}"}
-        time.sleep(0.3)
-    prov_p.write_text(json.dumps(prov, indent=1))
-    return [HMMDIR / f"{a}.hmm" for a in accs if (HMMDIR / f"{a}.hmm").exists()]
-
-
-def scan(seqs, hmm_files, cls_of):
-    import pyhmmer
-    alpha = pyhmmer.easel.Alphabet.amino()
-    hmms = []
-    for f in hmm_files:
-        with pyhmmer.plan7.HMMFile(str(f)) as h: hmms.extend(list(h))
-    digital = [pyhmmer.easel.TextSequence(name=k.encode(), sequence=v).digitize(alpha) for k, v in seqs.items()]
-    out = {k: [] for k in seqs}
-    for hits in pyhmmer.hmmer.hmmscan(digital, hmms, E=1e-3, domE=1e-3):
-        q = hits.query.name.decode() if isinstance(hits.query.name, bytes) else hits.query.name
-        for h in hits:
-            if not h.included: continue
-            for d in h.domains.included:
-                acc = (h.accession or h.name).decode().split(".")[0] if isinstance(h.accession or h.name, bytes) else str(h.accession or h.name).split(".")[0]
-                name = h.name.decode() if isinstance(h.name, bytes) else h.name
-                out[q].append({"pfam": acc, "name": name, "class": cls_of.get(acc, "?"), "from": d.env_from, "to": d.env_to,
-                               "ievalue": float(f"{d.i_evalue:.2e}")})
-    return out
+# Domain machinery now lives in scripts/domains.py, shared with the predictor (scripts/32) so the deployable
+# entrypoint does not import this verification script. Names re-exported for callers and for backwards
+# compatibility.
+import domains as D
+HMMDIR = D.HMMDIR
+ENDOLYSIN_PFAM, SPANIN_PFAM = D.ENDOLYSIN_PFAM, D.SPANIN_PFAM
+STRUCT, NOT_HOLIN = D.STRUCT, D.NOT_HOLIN
+holin_pfam, fetch_hmms, scan = D.holin_pfam, D.fetch_hmms, D.scan
 
 
 def phobius(seqs):

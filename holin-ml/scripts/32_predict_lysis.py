@@ -62,6 +62,9 @@ def main():
                          "Slower and needs the HMMs (cached in data/raw/pfam_hmm, fetched once from InterPro), but "
                          "it is the evidence that does NOT depend on the model: on Bacteroides phage DAC15 the "
                          "real endolysin candidate scored 0.006 and was found only this way.")
+    ap.add_argument("--hmm-dir", help="directory of lysis Pfam .hmm files for --domains. Defaults to "
+                                      "data/raw/pfam_hmm, downloading any that are missing from InterPro "
+                                      "(one-off). Pre-populate it and pass this for an offline or HPC run.")
     ap.add_argument("--out")
     a = ap.parse_args()
 
@@ -98,32 +101,42 @@ def main():
     for k, cs in enumerate(cass, 1):
         for m in cs["members"]: ps[m["index"]]["cassette"] = str(k)
 
-    dom = {}
+    dom, dtier = {}, {}
     if a.domains:
         try:
-            V = importlib.import_module("33_verify_calls")
-            hol = V.holin_pfam()
-            cls_of = {**{x: "endolysin" for x in V.ENDOLYSIN_PFAM}, **{x: "holin" for x in hol},
-                      **{x: "spanin" for x in V.SPANIN_PFAM}}
-            hmms = V.fetch_hmms(list(V.ENDOLYSIN_PFAM) + list(hol) + list(V.SPANIN_PFAM))
-            hits = V.scan({p["id"]: p["sequence"] for p in ps}, hmms, cls_of)
-            dom = {k: ";".join(f"{h['pfam']}:{h['class']}" for h in v) for k, v in hits.items() if v}
-            print(f"# domain scan: {len(hmms)} lysis HMMs, {len(dom)} of {len(ps)} proteins carry a lysis domain",
-                  file=sys.stderr)
+            import domains as D                       # pyhmmer; optional, predict works without it
+            hmms, cls_of = D.lysis_hmms(a.hmm_dir)
+            hits = D.scan({p["id"]: p["sequence"] for p in ps}, hmms, cls_of)
+            dom = {k: D.summarise(v) for k, v in hits.items() if D.summarise(v)}
+            dtier = {p["id"]: {c: D.tier(hits.get(p["id"]), c) for c in CLASSES} for p in ps}
+            n2 = sum(1 for v in dtier.values() if max(v.values()) >= 2)
+            print(f"# domain scan: {len(hmms)} lysis HMMs; {n2} of {len(ps)} proteins carry a CATALYTIC or "
+                  f"family-defining lysis domain ({len(dom)} with any hit incl. binding-only)", file=sys.stderr)
         except Exception as e:
             print(f"# --domains unavailable ({type(e).__name__}: {e}); continuing without it", file=sys.stderr)
-            dom, a.domains = {}, False
+            dom, dtier, a.domains = {}, {}, False
+
+    # Evidence-aware rank: domain tier first, then model probability. This is the integration that matters --
+    # a catalytic lysis domain is model-independent evidence, so it outranks any probability. On DAC15 it moves
+    # gp039 from model rank 25 to evidence rank 1 for endolysin, which is the whole point.
+    if a.domains:
+        for c in CLASSES:
+            order = sorted(range(len(ps)), key=lambda i: (-dtier[ps[i]["id"]][c], -ps[i]["P"][c]))
+            for r, i in enumerate(order, 1): ps[i].setdefault("ev_rank", {})[c] = r
 
     cols = ["id", "gene", "product", "start", "stop", "strand", "length",
             "P_holin", "P_endolysin", "P_spanin", "rank_holin", "rank_endolysin", "rank_spanin",
-            "call", "cassette"] + (["pfam_lysis"] if a.domains else [])
+            "call", "cassette"] + (["pfam_lysis", "dom_tier_holin", "dom_tier_endolysin", "dom_tier_spanin",
+                                    "ev_rank_holin", "ev_rank_endolysin", "ev_rank_spanin"] if a.domains else [])
     lines = ["\t".join(cols)]
     for p in ps:
         row = [p["id"], p.get("gene", ""), (p.get("product") or "").replace("\t", " "),
                p["start"], p["stop"], p["strand"], len(p["sequence"]),
                f"{p['P']['holin']:.4f}", f"{p['P']['endolysin']:.4f}", f"{p['P']['spanin']:.4f}",
                p["rank"]["holin"], p["rank"]["endolysin"], p["rank"]["spanin"], p["call"], p["cassette"]]
-        if a.domains: row.append(dom.get(p["id"], ""))
+        if a.domains:
+            row.append(dom.get(p["id"], ""))
+            row += [dtier[p["id"]][c] for c in CLASSES] + [p["ev_rank"][c] for c in CLASSES]
         lines.append("\t".join(str(x) for x in row))
     (Path(a.out).write_text("\n".join(lines) + "\n") if a.out else print("\n".join(lines)))
 
@@ -132,24 +145,27 @@ def main():
           f"; cassettes {len(cass)}" + ("" if positional else " (n/a for protein FASTA)"), file=sys.stderr)
     # ranked shortlist per class, printed whatever the threshold
     for c in CLASSES:
-        top = sorted(ps, key=lambda p: -p["P"][c])[:a.top]
-        print(f"#\n# {c.upper()} -- top {len(top)} of {len(ps)} by P({c})", file=sys.stderr)
+        key = (lambda p: (-dtier[p["id"]][c], -p["P"][c])) if a.domains else (lambda p: -p["P"][c])
+        top = sorted(ps, key=key)[:a.top]
+        how = "by domain evidence, then P" if a.domains else f"by P({c})"
+        print(f"#\n# {c.upper()} -- top {len(top)} of {len(ps)} {how}", file=sys.stderr)
         print(f"# {'rank':>4} {'gene/id':<20} {'location':>22} {'len':>5} {'P':>8}"
-              f"{'  domain' if a.domains else ''}", file=sys.stderr)
+              f"{'  ev  domain' if a.domains else ''}", file=sys.stderr)
         for p in top:
             loc = f"{p['start']}..{p['stop']}{p['strand']}" if positional else "n/a"
             mark = " *" if p["call"] == c else "  "
-            print(f"# {p['rank'][c]:>4} {(p.get('gene') or p['id'])[:20]:<20} {loc:>22} "
-                  f"{len(p['sequence']):>5} {p['P'][c]:>8.4f}{mark}"
-                  f"{'  ' + dom.get(p['id'], '-') if a.domains else ''}", file=sys.stderr)
+            ev = f"  {dtier[p['id']][c]}   {dom.get(p['id']) or '-'}" if a.domains else ""
+            rk = p["ev_rank"][c] if a.domains else p["rank"][c]
+            print(f"# {rk:>4} {(p.get('gene') or p['id'])[:20]:<20} {loc:>22} "
+                  f"{len(p['sequence']):>5} {p['P'][c]:>8.4f}{mark}{ev}", file=sys.stderr)
     print(f"#\n# * = called at >={a.threshold}. A gene from a family the model has never seen can rank near the "
           f"top while scoring well below any threshold, so read the ranking, not only the call.", file=sys.stderr)
     if a.domains:
-        missed = [p for p in ps if dom.get(p["id"]) and p["call"] == "none"]
+        missed = [p for p in ps if max(dtier[p["id"]].values()) >= 2 and p["call"] == "none"]
         if missed:
             print(f"# {len(missed)} protein(s) carry a lysis Pfam domain but were NOT called -- inspect these "
                   f"first: " + ", ".join(f"{p.get('gene') or p['id']} ({dom[p['id']]}, rank_e="
-                  f"{p['rank']['endolysin']})" for p in missed[:6]), file=sys.stderr)
+                  f"{p['rank']['endolysin']} -> ev_rank_e={p['ev_rank']['endolysin']})" for p in missed[:6]), file=sys.stderr)
     if a.show_cassettes:
         for k, cs in enumerate(cass, 1):
             mem = ", ".join(f"{m['gene'] or m['id']}[{'/'.join(m['classes_called'])}]" for m in cs["members"])
