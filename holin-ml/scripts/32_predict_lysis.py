@@ -53,6 +53,15 @@ def main():
     ap.add_argument("--threshold", type=float, default=0.5)
     ap.add_argument("--cassette-window", type=int, default=6)
     ap.add_argument("--show-cassettes", action="store_true")
+    ap.add_argument("--top", type=int, default=5,
+                    help="how many ranked candidates per class to print in the summary (default 5). The ranked "
+                         "shortlist is printed whatever the threshold, because a novel-family gene can rank well "
+                         "while scoring far below any threshold.")
+    ap.add_argument("--domains", action="store_true",
+                    help="also scan every protein with the lysis Pfam HMMs (pyhmmer) and add a pfam_lysis column. "
+                         "Slower and needs the HMMs (cached in data/raw/pfam_hmm, fetched once from InterPro), but "
+                         "it is the evidence that does NOT depend on the model: on Bacteroides phage DAC15 the "
+                         "real endolysin candidate scored 0.006 and was found only this way.")
     ap.add_argument("--out")
     a = ap.parse_args()
 
@@ -79,21 +88,68 @@ def main():
         p["P"] = {c: float(P[c][i]) for c in CLASSES}
         b = max(CLASSES, key=lambda c: p["P"][c]); p["call"] = b if p["P"][b] >= a.threshold else "none"
         p["cassette"] = ""
+    # rank within this run, per class: 1 = highest P. Ranks are reported alongside the probabilities because the
+    # probability alone is not safe to read as a verdict out of distribution -- the honest use of this tool is a
+    # ranked shortlist per class, which is what the leave-one-genome-out numbers actually measure.
+    for c in CLASSES:
+        for r, i in enumerate(sorted(range(len(ps)), key=lambda i: -ps[i]["P"][c]), 1):
+            ps[i].setdefault("rank", {})[c] = r
     cass = SC.find_cassettes(ps, a.threshold, a.cassette_window) if positional else []
     for k, cs in enumerate(cass, 1):
         for m in cs["members"]: ps[m["index"]]["cassette"] = str(k)
 
-    cols = ["id", "gene", "product", "start", "stop", "strand", "length", "P_holin", "P_endolysin", "P_spanin", "call", "cassette"]
+    dom = {}
+    if a.domains:
+        try:
+            V = importlib.import_module("33_verify_calls")
+            hol = V.holin_pfam()
+            cls_of = {**{x: "endolysin" for x in V.ENDOLYSIN_PFAM}, **{x: "holin" for x in hol},
+                      **{x: "spanin" for x in V.SPANIN_PFAM}}
+            hmms = V.fetch_hmms(list(V.ENDOLYSIN_PFAM) + list(hol) + list(V.SPANIN_PFAM))
+            hits = V.scan({p["id"]: p["sequence"] for p in ps}, hmms, cls_of)
+            dom = {k: ";".join(f"{h['pfam']}:{h['class']}" for h in v) for k, v in hits.items() if v}
+            print(f"# domain scan: {len(hmms)} lysis HMMs, {len(dom)} of {len(ps)} proteins carry a lysis domain",
+                  file=sys.stderr)
+        except Exception as e:
+            print(f"# --domains unavailable ({type(e).__name__}: {e}); continuing without it", file=sys.stderr)
+            dom, a.domains = {}, False
+
+    cols = ["id", "gene", "product", "start", "stop", "strand", "length",
+            "P_holin", "P_endolysin", "P_spanin", "rank_holin", "rank_endolysin", "rank_spanin",
+            "call", "cassette"] + (["pfam_lysis"] if a.domains else [])
     lines = ["\t".join(cols)]
     for p in ps:
-        lines.append("\t".join(str(x) for x in [p["id"], p.get("gene", ""), (p.get("product") or "").replace("\t", " "),
-                      p["start"], p["stop"], p["strand"], len(p["sequence"]),
-                      f"{p['P']['holin']:.4f}", f"{p['P']['endolysin']:.4f}", f"{p['P']['spanin']:.4f}", p["call"], p["cassette"]]))
+        row = [p["id"], p.get("gene", ""), (p.get("product") or "").replace("\t", " "),
+               p["start"], p["stop"], p["strand"], len(p["sequence"]),
+               f"{p['P']['holin']:.4f}", f"{p['P']['endolysin']:.4f}", f"{p['P']['spanin']:.4f}",
+               p["rank"]["holin"], p["rank"]["endolysin"], p["rank"]["spanin"], p["call"], p["cassette"]]
+        if a.domains: row.append(dom.get(p["id"], ""))
+        lines.append("\t".join(str(x) for x in row))
     (Path(a.out).write_text("\n".join(lines) + "\n") if a.out else print("\n".join(lines)))
 
     called = {c: sum(1 for p in ps if p["call"] == c) for c in CLASSES}
     print(f"# called at >={a.threshold}: " + ", ".join(f"{c} {called[c]}" for c in CLASSES) +
           f"; cassettes {len(cass)}" + ("" if positional else " (n/a for protein FASTA)"), file=sys.stderr)
+    # ranked shortlist per class, printed whatever the threshold
+    for c in CLASSES:
+        top = sorted(ps, key=lambda p: -p["P"][c])[:a.top]
+        print(f"#\n# {c.upper()} -- top {len(top)} of {len(ps)} by P({c})", file=sys.stderr)
+        print(f"# {'rank':>4} {'gene/id':<20} {'location':>22} {'len':>5} {'P':>8}"
+              f"{'  domain' if a.domains else ''}", file=sys.stderr)
+        for p in top:
+            loc = f"{p['start']}..{p['stop']}{p['strand']}" if positional else "n/a"
+            mark = " *" if p["call"] == c else "  "
+            print(f"# {p['rank'][c]:>4} {(p.get('gene') or p['id'])[:20]:<20} {loc:>22} "
+                  f"{len(p['sequence']):>5} {p['P'][c]:>8.4f}{mark}"
+                  f"{'  ' + dom.get(p['id'], '-') if a.domains else ''}", file=sys.stderr)
+    print(f"#\n# * = called at >={a.threshold}. A gene from a family the model has never seen can rank near the "
+          f"top while scoring well below any threshold, so read the ranking, not only the call.", file=sys.stderr)
+    if a.domains:
+        missed = [p for p in ps if dom.get(p["id"]) and p["call"] == "none"]
+        if missed:
+            print(f"# {len(missed)} protein(s) carry a lysis Pfam domain but were NOT called -- inspect these "
+                  f"first: " + ", ".join(f"{p.get('gene') or p['id']} ({dom[p['id']]}, rank_e="
+                  f"{p['rank']['endolysin']})" for p in missed[:6]), file=sys.stderr)
     if a.show_cassettes:
         for k, cs in enumerate(cass, 1):
             mem = ", ".join(f"{m['gene'] or m['id']}[{'/'.join(m['classes_called'])}]" for m in cs["members"])

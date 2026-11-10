@@ -24,7 +24,28 @@ python3 scripts/32_predict_lysis.py --proteins proteins.faa --out hits.tsv
 python3 scripts/32_predict_lysis.py --genbank phage.gb --show-cassettes --threshold 0.95
 python3 scripts/32_predict_lysis.py --acc NC_008720.1
 ```
-Output is TSV: `id, gene, product, start, stop, strand, length, P_holin, P_endolysin, P_spanin, call, cassette`.
+Output is TSV:
+`id, gene, product, start, stop, strand, length, P_holin, P_endolysin, P_spanin, rank_holin, rank_endolysin,
+rank_spanin, call, cassette` — plus `pfam_lysis` with `--domains`.
+
+`rank_*` is the protein's rank within this run for that class (1 = highest). Ranks are there because a
+probability is not safe to read as a verdict out of distribution: the ranked shortlist per class is what the
+leave-one-genome-out numbers actually measure. The summary prints the top `--top N` per class with coordinates,
+length, score and rank **whatever the threshold**, since a novel-family gene can rank well while scoring below
+any threshold.
+
+`--domains` additionally scans every protein with the lysis Pfam HMMs (pyhmmer; HMMs cached in
+`data/raw/pfam_hmm`, fetched once from InterPro) and ends with the line that matters most:
+
+```
+# 1 protein(s) carry a lysis Pfam domain but were NOT called -- inspect these first:
+#   KNU90_gp039 (PF01832:endolysin, rank_e=25)
+```
+
+That is evidence independent of the model, and on *Bacteroides* phage DAC15 it is the **only** thing that finds
+the real endolysin candidate: gp039 scores 0.0059 and ranks **25th of 118**, so neither the threshold nor the
+ranking would have surfaced it. Use `--domains` on anything out of distribution.
+
 For many genomes at once use `scripts/30_scan_many.py`.
 
 ## What you need (pinned to the versions the models were built with)
