@@ -1,0 +1,5256 @@
+{
+ "source": "pool",
+ "threshold": 0.5,
+ "cassette_window": 6,
+ "summary": {
+  "genomes_scanned": 300,
+  "genomes_with_a_detected_cassette": 62,
+  "cassette_rate": 0.207,
+  "actino_genomes": 0,
+  "actino_with_cassette": 0,
+  "per_class_recovery": {
+   "holin": {
+    "genomes_with_an_annotated_gene": 192,
+    "recovered_at_threshold": 186,
+    "recovery_rate": 0.969,
+    "top_scoring_protein_is_annotated_that_class": 177,
+    "of_recovered_how_many_in_sample": 79
+   },
+   "endolysin": {
+    "genomes_with_an_annotated_gene": 268,
+    "recovered_at_threshold": 264,
+    "recovery_rate": 0.985,
+    "top_scoring_protein_is_annotated_that_class": 254,
+    "of_recovered_how_many_in_sample": 264
+   },
+   "spanin": {
+    "genomes_with_an_annotated_gene": 88,
+    "recovered_at_threshold": 81,
+    "recovery_rate": 0.92,
+    "top_scoring_protein_is_annotated_that_class": 54,
+    "of_recovered_how_many_in_sample": 81
+   }
+  },
+  "high_conf_unannotated_calls": 237
+ },
+ "caveat": "pool endolysin/spanin annotations were partly used in training, so their recovery is partly in-sample (see of_recovered_how_many_in_sample); holins were not drawn from the pool",
+ "novel_calls": [
+  {
+   "accession": "NC_006938.1",
+   "class": "holin",
+   "P": 1.0,
+   "gene": "JL001p89",
+   "product": "gp89",
+   "length": 88
+  },
+  {
+   "accession": "NC_009016.1",
+   "class": "holin",
+   "P": 1.0,
+   "gene": "VPVV882_gp71",
+   "product": "putative phage-related protein",
+   "length": 182
+  },
+  {
+   "accession": "NC_014461.1",
+   "class": "holin",
+   "P": 1.0,
+   "gene": "28",
+   "product": "hypothetical protein",
+   "length": 84
+  },
+  {
+   "accession": "NC_015296.1",
+   "class": "holin",
+   "P": 1.0,
+   "gene": "Vi01_189c",
+   "product": "putative uncharacterised protein",
+   "length": 196
+  },
+  {
+   "accession": "NC_015464.1",
+   "class": "holin",
+   "P": 1.0,
+   "gene": "NCTC12673_gp110",
+   "product": "hypothetical protein",
+   "length": 93
+  },
+  {
+   "accession": "NC_021780.1",
+   "class": "holin",
+   "P": 1.0,
+   "gene": "N269_gp06",
+   "product": "hypothetical protein",
+   "length": 73
+  },
+  {
+   "accession": "NC_022331.2",
+   "class": "holin",
+   "P": 1.0,
+   "gene": "BANE1_17",
+   "product": "hypothetical protein",
+   "length": 123
+  },
+  {
+   "accession": "NC_023701.1",
+   "class": "holin",
+   "P": 1.0,
+   "gene": "17",
+   "product": "hypothetical protein",
+   "length": 114
+  },
+  {
+   "accession": "NC_005357.1",
+   "class": "holin",
+   "P": 0.999,
+   "gene": "bbp1",
+   "product": "Bbp1",
+   "length": 210
+  },
+  {
+   "accession": "NC_007809.1",
+   "class": "holin",
+   "P": 0.999,
+   "gene": "PPM6_gp064",
+   "product": "hypothetical protein ORF064",
+   "length": 64
+  },
+  {
+   "accession": "NC_008202.2",
+   "class": "holin",
+   "P": 0.999,
+   "gene": "Halo30",
+   "product": "hypothetical protein",
+   "length": 106
+  },
+  {
+   "accession": "NC_011269.2",
+   "class": "holin",
+   "P": 0.999,
+   "gene": "77",
+   "product": "hypothetical protein",
+   "length": 53
+  },
+  {
+   "accession": "NC_015584.1",
+   "class": "holin",
+   "P": 0.999,
+   "gene": "30",
+   "product": "hypothetical protein",
+   "length": 84
+  },
+  {
+   "accession": "NC_016570.1",
+   "class": "holin",
+   "P": 0.999,
+   "gene": "orf236",
+   "product": "hypothetical protein",
+   "length": 190
+  },
+  {
+   "accession": "NC_019417.1",
+   "class": "holin",
+   "P": 0.999,
+   "gene": "D855_gp05",
+   "product": "hypothetical protein",
+   "length": 73
+  },
+  {
+   "accession": "NC_019516.2",
+   "class": "holin",
+   "P": 0.999,
+   "gene": "F417_gp019",
+   "product": "hypothetical protein",
+   "length": 141
+  },
+  {
+   "accession": "NC_019524.2",
+   "class": "holin",
+   "P": 0.999,
+   "gene": "F418_p66",
+   "product": "hypothetical protein",
+   "length": 71
+  },
+  {
+   "accession": "NC_019912.1",
+   "class": "holin",
+   "P": 0.999,
+   "gene": "ISGA_3",
+   "product": "involved in bacteriocin production or immunity",
+   "length": 95
+  },
+  {
+   "accession": "NC_021315.1",
+   "class": "holin",
+   "P": 0.999,
+   "gene": "chi_035",
+   "product": "hypothetical protein",
+   "length": 73
+  },
+  {
+   "accession": "NC_021779.1",
+   "class": "holin",
+   "P": 0.999,
+   "gene": "N276_gp66",
+   "product": "hypothetical protein",
+   "length": 73
+  },
+  {
+   "accession": "NC_026610.2",
+   "class": "holin",
+   "P": 0.999,
+   "gene": "VC55_gp78",
+   "product": "hypothetical protein",
+   "length": 60
+  },
+  {
+   "accession": "NC_027350.1",
+   "class": "holin",
+   "P": 0.999,
+   "gene": "ACQ45_gp79",
+   "product": "hypothetical protein",
+   "length": 60
+  },
+  {
+   "accession": "NC_027365.1",
+   "class": "holin",
+   "P": 0.999,
+   "gene": "34",
+   "product": "hypothetical protein",
+   "length": 111
+  },
+  {
+   "accession": "NC_006936.1",
+   "class": "holin",
+   "P": 0.998,
+   "gene": "phiJL1_ORF60",
+   "product": "hypothetical protein",
+   "length": 60
+  },
+  {
+   "accession": "NC_011269.2",
+   "class": "holin",
+   "P": 0.998,
+   "gene": "76",
+   "product": "hypothetical protein",
+   "length": 98
+  },
+  {
+   "accession": "NC_016765.1",
+   "class": "holin",
+   "P": 0.998,
+   "gene": "PMG1_00069",
+   "product": "hypothetical protein",
+   "length": 89
+  },
+  {
+   "accession": "NC_019925.1",
+   "class": "holin",
+   "P": 0.998,
+   "gene": "G379_gp052",
+   "product": "hypothetical protein",
+   "length": 190
+  },
+  {
+   "accession": "NC_021331.1",
+   "class": "holin",
+   "P": 0.998,
+   "gene": "pSf1_0051",
+   "product": "hypothetical protein",
+   "length": 58
+  },
+  {
+   "accession": "NC_023724.1",
+   "class": "holin",
+   "P": 0.998,
+   "gene": "33",
+   "product": "hypothetical protein",
+   "length": 109
+  },
+  {
+   "accession": "NC_003157.5",
+   "class": "holin",
+   "P": 0.997,
+   "gene": "phiNIH1.1_p49",
+   "product": "hypothetical protein-phage associated",
+   "length": 98
+  },
+  {
+   "accession": "NC_007807.1",
+   "class": "holin",
+   "P": 0.997,
+   "gene": "119X_gp16",
+   "product": "hypothetical protein",
+   "length": 115
+  },
+  {
+   "accession": "NC_009382.1",
+   "class": "holin",
+   "P": 0.997,
+   "gene": "RPRSA1_gp43",
+   "product": "membrane protein",
+   "length": 78
+  },
+  {
+   "accession": "NC_014459.2",
+   "class": "holin",
+   "P": 0.997,
+   "gene": "33",
+   "product": "hypothetical protein",
+   "length": 113
+  },
+  {
+   "accession": "NC_015584.1",
+   "class": "holin",
+   "P": 0.997,
+   "gene": "96",
+   "product": "hypothetical protein",
+   "length": 86
+  },
+  {
+   "accession": "NC_022343.1",
+   "class": "holin",
+   "P": 0.997,
+   "gene": "P748_gp084",
+   "product": "hypothetical protein",
+   "length": 190
+  },
+  {
+   "accession": "NC_027348.2",
+   "class": "holin",
+   "P": 0.997,
+   "gene": "RG2014_081",
+   "product": "hypothetical protein",
+   "length": 108
+  },
+  {
+   "accession": "NC_027629.1",
+   "class": "holin",
+   "P": 0.997,
+   "gene": "AFL89_gp39",
+   "product": "hypothetical protein",
+   "length": 68
+  },
+  {
+   "accession": "NC_005262.3",
+   "class": "holin",
+   "P": 0.996,
+   "gene": "Bcep22_gp34",
+   "product": "hypothetical protein",
+   "length": 71
+  },
+  {
+   "accession": "NC_007809.1",
+   "class": "holin",
+   "P": 0.996,
+   "gene": "PPM6_gp040",
+   "product": "hypothetical protein ORF040",
+   "length": 114
+  },
+  {
+   "accession": "NC_014458.1",
+   "class": "holin",
+   "P": 0.996,
+   "gene": "33",
+   "product": "hypothetical protein",
+   "length": 112
+  },
+  {
+   "accession": "NC_016570.1",
+   "class": "spanin",
+   "P": 0.996,
+   "gene": "orf135",
+   "product": "hypothetical protein",
+   "length": 229
+  },
+  {
+   "accession": "NC_027335.2",
+   "class": "holin",
+   "P": 0.996,
+   "gene": "YP_009147118.1",
+   "product": "membrane protein",
+   "length": 89
+  },
+  {
+   "accession": "NC_006938.1",
+   "class": "holin",
+   "P": 0.995,
+   "gene": "JL001p04",
+   "product": "gp04",
+   "length": 86
+  },
+  {
+   "accession": "NC_009015.1",
+   "class": "holin",
+   "P": 0.995,
+   "gene": "BcepF1.086",
+   "product": "hypothetical protein",
+   "length": 201
+  },
+  {
+   "accession": "NC_010342.1",
+   "class": "holin",
+   "P": 0.995,
+   "gene": "HAPgp46",
+   "product": "hypothetical protein",
+   "length": 145
+  },
+  {
+   "accession": "NC_011289.1",
+   "class": "holin",
+   "P": 0.995,
+   "gene": "36",
+   "product": "minor tail protein",
+   "length": 123
+  },
+  {
+   "accession": "NC_022054.2",
+   "class": "holin",
+   "P": 0.995,
+   "gene": "29",
+   "product": "membrane protein",
+   "length": 94
+  },
+  {
+   "accession": "NC_023601.2",
+   "class": "holin",
+   "P": 0.995,
+   "gene": "CF96_gp100",
+   "product": "hypothetical protein",
+   "length": 72
+  },
+  {
+   "accession": "NC_027627.1",
+   "class": "holin",
+   "P": 0.995,
+   "gene": "AFL92_gp39",
+   "product": "hypothetical protein",
+   "length": 67
+  },
+  {
+   "accession": "NC_027628.1",
+   "class": "holin",
+   "P": 0.995,
+   "gene": "AFL87_gp39",
+   "product": "hypothetical protein",
+   "length": 67
+  }
+ ],
+ "per_genome": [
+  {
+   "accession": "NC_000871.1",
+   "n_proteins": 45,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": false
+    }
+   }
+  },
+  {
+   "accession": "NC_000872.1",
+   "n_proteins": 44,
+   "cassettes": 0,
+   "class": {
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_000929.1",
+   "n_proteins": 55,
+   "cassettes": 1,
+   "class": {
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "spanin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_000935.1",
+   "n_proteins": 54,
+   "cassettes": 1,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "spanin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_001317.1",
+   "n_proteins": 46,
+   "cassettes": 1,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "spanin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_001629.1",
+   "n_proteins": 37,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_001697.1",
+   "n_proteins": 41,
+   "cassettes": 1,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "spanin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_001706.1",
+   "n_proteins": 39,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_001835.1",
+   "n_proteins": 56,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 3,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_001884.1",
+   "n_proteins": 184,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_001909.1",
+   "n_proteins": 63,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 3,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_002072.2",
+   "n_proteins": 45,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_002166.1",
+   "n_proteins": 35,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_002167.1",
+   "n_proteins": 56,
+   "cassettes": 1,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "spanin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_002185.1",
+   "n_proteins": 46,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_002214.1",
+   "n_proteins": 43,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_002484.2",
+   "n_proteins": 98,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_002515.1",
+   "n_proteins": 11,
+   "cassettes": 0,
+   "class": {}
+  },
+  {
+   "accession": "NC_002519.1",
+   "n_proteins": 32,
+   "cassettes": 0,
+   "class": {}
+  },
+  {
+   "accession": "NC_002628.3",
+   "n_proteins": 37,
+   "cassettes": 0,
+   "class": {
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_002649.1",
+   "n_proteins": 35,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": false
+    }
+   }
+  },
+  {
+   "accession": "NC_002656.1",
+   "n_proteins": 86,
+   "cassettes": 0,
+   "class": {
+    "endolysin": {
+     "annotated": 3,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_002661.2",
+   "n_proteins": 60,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_003157.5",
+   "n_proteins": 56,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_003278.1",
+   "n_proteins": 47,
+   "cassettes": 1,
+   "class": {
+    "holin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "spanin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_003288.1",
+   "n_proteins": 65,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_003309.1",
+   "n_proteins": 71,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "spanin": {
+     "annotated": 1,
+     "recovered": false,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_003313.1",
+   "n_proteins": 44,
+   "cassettes": 1,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_003315.1",
+   "n_proteins": 32,
+   "cassettes": 1,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "spanin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_003390.2",
+   "n_proteins": 55,
+   "cassettes": 0,
+   "class": {
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_003907.2",
+   "n_proteins": 67,
+   "cassettes": 0,
+   "class": {}
+  },
+  {
+   "accession": "NC_004165.1",
+   "n_proteins": 17,
+   "cassettes": 0,
+   "class": {
+    "endolysin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_004303.1",
+   "n_proteins": 53,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_004333.2",
+   "n_proteins": 66,
+   "cassettes": 1,
+   "class": {
+    "holin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_004348.1",
+   "n_proteins": 65,
+   "cassettes": 1,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "spanin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_004466.2",
+   "n_proteins": 72,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_004615.1",
+   "n_proteins": 51,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_004616.1",
+   "n_proteins": 44,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_004617.1",
+   "n_proteins": 47,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_004678.1",
+   "n_proteins": 21,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": false
+    }
+   }
+  },
+  {
+   "accession": "NC_004680.2",
+   "n_proteins": 115,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_004681.1",
+   "n_proteins": 141,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_004682.2",
+   "n_proteins": 86,
+   "cassettes": 0,
+   "class": {
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_004683.1",
+   "n_proteins": 84,
+   "cassettes": 1,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": false
+    },
+    "endolysin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_004685.1",
+   "n_proteins": 122,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 3,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_004686.2",
+   "n_proteins": 108,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_004688.1",
+   "n_proteins": 237,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_004745.1",
+   "n_proteins": 40,
+   "cassettes": 1,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "spanin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_004775.2",
+   "n_proteins": 51,
+   "cassettes": 1,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": false
+    },
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "spanin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_004814.1",
+   "n_proteins": 20,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_004831.2",
+   "n_proteins": 52,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 3,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_004902.1",
+   "n_proteins": 60,
+   "cassettes": 0,
+   "class": {
+    "endolysin": {
+     "annotated": 1,
+     "recovered": false,
+     "top_is_annotated": false
+    },
+    "spanin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": false
+    }
+   }
+  },
+  {
+   "accession": "NC_004913.3",
+   "n_proteins": 166,
+   "cassettes": 1,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "spanin": {
+     "annotated": 3,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_004914.3",
+   "n_proteins": 28,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_004927.2",
+   "n_proteins": 125,
+   "cassettes": 0,
+   "class": {}
+  },
+  {
+   "accession": "NC_005056.1",
+   "n_proteins": 42,
+   "cassettes": 1,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "spanin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_005135.1",
+   "n_proteins": 252,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": false
+    },
+    "spanin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": false
+    }
+   }
+  },
+  {
+   "accession": "NC_005178.1",
+   "n_proteins": 55,
+   "cassettes": 1,
+   "class": {
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "spanin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_005262.3",
+   "n_proteins": 76,
+   "cassettes": 1,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "spanin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_005263.2",
+   "n_proteins": 63,
+   "cassettes": 1,
+   "class": {
+    "holin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_005284.1",
+   "n_proteins": 70,
+   "cassettes": 0,
+   "class": {
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "spanin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": false
+    }
+   }
+  },
+  {
+   "accession": "NC_005340.1",
+   "n_proteins": 42,
+   "cassettes": 1,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "spanin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_005342.2",
+   "n_proteins": 36,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_005344.1",
+   "n_proteins": 64,
+   "cassettes": 1,
+   "class": {
+    "holin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "spanin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_005356.1",
+   "n_proteins": 62,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_005357.1",
+   "n_proteins": 48,
+   "cassettes": 0,
+   "class": {
+    "endolysin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_005833.1",
+   "n_proteins": 78,
+   "cassettes": 1,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "spanin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": false
+    }
+   }
+  },
+  {
+   "accession": "NC_005856.1",
+   "n_proteins": 109,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "spanin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": false
+    }
+   }
+  },
+  {
+   "accession": "NC_005859.1",
+   "n_proteins": 162,
+   "cassettes": 1,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "spanin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_005880.2",
+   "n_proteins": 212,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 5,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_005882.1",
+   "n_proteins": 53,
+   "cassettes": 1,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "spanin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": false
+    }
+   }
+  },
+  {
+   "accession": "NC_005887.1",
+   "n_proteins": 46,
+   "cassettes": 1,
+   "class": {
+    "holin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "spanin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_006552.1",
+   "n_proteins": 69,
+   "cassettes": 1,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "spanin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_006565.1",
+   "n_proteins": 164,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 4,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_006882.2",
+   "n_proteins": 58,
+   "cassettes": 0,
+   "class": {}
+  },
+  {
+   "accession": "NC_006936.1",
+   "n_proteins": 46,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_006938.1",
+   "n_proteins": 90,
+   "cassettes": 1,
+   "class": {
+    "endolysin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_007019.1",
+   "n_proteins": 42,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_007021.1",
+   "n_proteins": 195,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 5,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_007023.1",
+   "n_proteins": 292,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "spanin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": false
+    }
+   }
+  },
+  {
+   "accession": "NC_007047.1",
+   "n_proteins": 71,
+   "cassettes": 0,
+   "class": {}
+  },
+  {
+   "accession": "NC_007048.1",
+   "n_proteins": 59,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 1,
+     "recovered": false,
+     "top_is_annotated": false
+    }
+   }
+  },
+  {
+   "accession": "NC_007049.1",
+   "n_proteins": 57,
+   "cassettes": 0,
+   "class": {}
+  },
+  {
+   "accession": "NC_007050.1",
+   "n_proteins": 43,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_007052.1",
+   "n_proteins": 55,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_007053.1",
+   "n_proteins": 54,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_007054.1",
+   "n_proteins": 30,
+   "cassettes": 0,
+   "class": {}
+  },
+  {
+   "accession": "NC_007055.1",
+   "n_proteins": 70,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_007056.1",
+   "n_proteins": 77,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_007057.1",
+   "n_proteins": 62,
+   "cassettes": 0,
+   "class": {
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_007059.1",
+   "n_proteins": 56,
+   "cassettes": 0,
+   "class": {
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_007060.1",
+   "n_proteins": 62,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_007061.1",
+   "n_proteins": 53,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_007062.1",
+   "n_proteins": 39,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_007063.1",
+   "n_proteins": 42,
+   "cassettes": 0,
+   "class": {
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_007064.1",
+   "n_proteins": 16,
+   "cassettes": 0,
+   "class": {
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_007065.1",
+   "n_proteins": 67,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_007066.1",
+   "n_proteins": 70,
+   "cassettes": 0,
+   "class": {
+    "endolysin": {
+     "annotated": 4,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_007145.2",
+   "n_proteins": 47,
+   "cassettes": 1,
+   "class": {
+    "holin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "spanin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_007291.1",
+   "n_proteins": 82,
+   "cassettes": 0,
+   "class": {
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "spanin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_007457.1",
+   "n_proteins": 51,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_007603.1",
+   "n_proteins": 74,
+   "cassettes": 1,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "spanin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": false
+    }
+   }
+  },
+  {
+   "accession": "NC_007610.1",
+   "n_proteins": 174,
+   "cassettes": 0,
+   "class": {
+    "endolysin": {
+     "annotated": 3,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_007636.1",
+   "n_proteins": 58,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 3,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "spanin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_007637.1",
+   "n_proteins": 62,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "spanin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_007709.1",
+   "n_proteins": 59,
+   "cassettes": 0,
+   "class": {
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "spanin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_007734.1",
+   "n_proteins": 21,
+   "cassettes": 0,
+   "class": {}
+  },
+  {
+   "accession": "NC_007807.1",
+   "n_proteins": 53,
+   "cassettes": 1,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": false
+    },
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "spanin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": false
+    }
+   }
+  },
+  {
+   "accession": "NC_007809.1",
+   "n_proteins": 85,
+   "cassettes": 1,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": false
+    },
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "spanin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": false
+    }
+   }
+  },
+  {
+   "accession": "NC_007917.1",
+   "n_proteins": 79,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_008152.1",
+   "n_proteins": 48,
+   "cassettes": 1,
+   "class": {
+    "holin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "spanin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": false
+    }
+   }
+  },
+  {
+   "accession": "NC_008193.1",
+   "n_proteins": 44,
+   "cassettes": 1,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_008194.1",
+   "n_proteins": 72,
+   "cassettes": 0,
+   "class": {
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_008196.1",
+   "n_proteins": 97,
+   "cassettes": 0,
+   "class": {
+    "endolysin": {
+     "annotated": 3,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_008201.1",
+   "n_proteins": 49,
+   "cassettes": 1,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "spanin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_008202.2",
+   "n_proteins": 64,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 3,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_008203.1",
+   "n_proteins": 98,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_008205.1",
+   "n_proteins": 63,
+   "cassettes": 0,
+   "class": {}
+  },
+  {
+   "accession": "NC_008206.2",
+   "n_proteins": 148,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_008208.1",
+   "n_proteins": 241,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": false
+    },
+    "spanin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_008363.1",
+   "n_proteins": 54,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 3,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_008367.1",
+   "n_proteins": 45,
+   "cassettes": 0,
+   "class": {}
+  },
+  {
+   "accession": "NC_008370.1",
+   "n_proteins": 48,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 3,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_008515.1",
+   "n_proteins": 270,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "spanin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": false
+    }
+   }
+  },
+  {
+   "accession": "NC_008583.1",
+   "n_proteins": 30,
+   "cassettes": 0,
+   "class": {}
+  },
+  {
+   "accession": "NC_008717.1",
+   "n_proteins": 46,
+   "cassettes": 0,
+   "class": {
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "spanin": {
+     "annotated": 1,
+     "recovered": false,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_008722.1",
+   "n_proteins": 65,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_008723.1",
+   "n_proteins": 64,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_008798.1",
+   "n_proteins": 43,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_008799.1",
+   "n_proteins": 36,
+   "cassettes": 0,
+   "class": {
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_009015.1",
+   "n_proteins": 127,
+   "cassettes": 1,
+   "class": {
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "spanin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_009016.1",
+   "n_proteins": 71,
+   "cassettes": 0,
+   "class": {
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_009231.1",
+   "n_proteins": 78,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_009234.1",
+   "n_proteins": 39,
+   "cassettes": 1,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "spanin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_009235.2",
+   "n_proteins": 64,
+   "cassettes": 1,
+   "class": {
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "spanin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_009236.1",
+   "n_proteins": 36,
+   "cassettes": 0,
+   "class": {
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_009237.1",
+   "n_proteins": 54,
+   "cassettes": 1,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "spanin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_009382.1",
+   "n_proteins": 51,
+   "cassettes": 1,
+   "class": {
+    "holin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_009526.1",
+   "n_proteins": 16,
+   "cassettes": 0,
+   "class": {}
+  },
+  {
+   "accession": "NC_009531.1",
+   "n_proteins": 61,
+   "cassettes": 0,
+   "class": {}
+  },
+  {
+   "accession": "NC_009540.1",
+   "n_proteins": 87,
+   "cassettes": 1,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "spanin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_009542.2",
+   "n_proteins": 45,
+   "cassettes": 1,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "spanin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": false
+    }
+   }
+  },
+  {
+   "accession": "NC_009543.1",
+   "n_proteins": 57,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": false,
+     "top_is_annotated": false
+    },
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "spanin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": false
+    }
+   }
+  },
+  {
+   "accession": "NC_009551.1",
+   "n_proteins": 41,
+   "cassettes": 0,
+   "class": {}
+  },
+  {
+   "accession": "NC_009552.3",
+   "n_proteins": 62,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_009604.1",
+   "n_proteins": 42,
+   "cassettes": 1,
+   "class": {
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "spanin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": false
+    }
+   }
+  },
+  {
+   "accession": "NC_009643.1",
+   "n_proteins": 22,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_009737.2",
+   "n_proteins": 54,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_009803.1",
+   "n_proteins": 116,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_009804.1",
+   "n_proteins": 90,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": false,
+     "top_is_annotated": false
+    }
+   }
+  },
+  {
+   "accession": "NC_009811.2",
+   "n_proteins": 145,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 3,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_009817.1",
+   "n_proteins": 130,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 3,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_009818.1",
+   "n_proteins": 44,
+   "cassettes": 0,
+   "class": {
+    "endolysin": {
+     "annotated": 1,
+     "recovered": false,
+     "top_is_annotated": true
+    },
+    "spanin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_009878.1",
+   "n_proteins": 80,
+   "cassettes": 1,
+   "class": {
+    "endolysin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_010147.1",
+   "n_proteins": 37,
+   "cassettes": 0,
+   "class": {
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_010275.2",
+   "n_proteins": 6,
+   "cassettes": 0,
+   "class": {}
+  },
+  {
+   "accession": "NC_010324.1",
+   "n_proteins": 128,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "spanin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_010342.1",
+   "n_proteins": 46,
+   "cassettes": 0,
+   "class": {
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_010353.1",
+   "n_proteins": 31,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_010583.1",
+   "n_proteins": 169,
+   "cassettes": 1,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 3,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "spanin": {
+     "annotated": 3,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_010808.1",
+   "n_proteins": 44,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_011019.1",
+   "n_proteins": 76,
+   "cassettes": 0,
+   "class": {
+    "endolysin": {
+     "annotated": 3,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_011020.1",
+   "n_proteins": 79,
+   "cassettes": 0,
+   "class": {
+    "endolysin": {
+     "annotated": 3,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_011021.1",
+   "n_proteins": 74,
+   "cassettes": 0,
+   "class": {
+    "endolysin": {
+     "annotated": 3,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_011023.1",
+   "n_proteins": 88,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_011046.1",
+   "n_proteins": 52,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 3,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_011054.1",
+   "n_proteins": 61,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 3,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_011055.1",
+   "n_proteins": 82,
+   "cassettes": 0,
+   "class": {
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_011056.1",
+   "n_proteins": 85,
+   "cassettes": 0,
+   "class": {
+    "endolysin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_011085.3",
+   "n_proteins": 49,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "spanin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_011167.1",
+   "n_proteins": 86,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_011269.2",
+   "n_proteins": 220,
+   "cassettes": 1,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 3,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_011287.1",
+   "n_proteins": 86,
+   "cassettes": 0,
+   "class": {
+    "endolysin": {
+     "annotated": 3,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_011288.1",
+   "n_proteins": 94,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 3,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_011289.1",
+   "n_proteins": 87,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 3,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_011291.1",
+   "n_proteins": 73,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 3,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_011398.1",
+   "n_proteins": 67,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_011421.1",
+   "n_proteins": 203,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 3,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_011611.1",
+   "n_proteins": 44,
+   "cassettes": 0,
+   "class": {
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_011612.1",
+   "n_proteins": 39,
+   "cassettes": 0,
+   "class": {
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_011613.1",
+   "n_proteins": 39,
+   "cassettes": 1,
+   "class": {
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "spanin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_011614.1",
+   "n_proteins": 54,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_012223.2",
+   "n_proteins": 67,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "spanin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": false
+    }
+   }
+  },
+  {
+   "accession": "NC_012530.1",
+   "n_proteins": 198,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 3,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_012638.1",
+   "n_proteins": 218,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "spanin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": false
+    }
+   }
+  },
+  {
+   "accession": "NC_012743.2",
+   "n_proteins": 75,
+   "cassettes": 1,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "spanin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": false
+    }
+   }
+  },
+  {
+   "accession": "NC_013152.1",
+   "n_proteins": 49,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 3,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_013153.1",
+   "n_proteins": 19,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_013155.1",
+   "n_proteins": 48,
+   "cassettes": 0,
+   "class": {
+    "endolysin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_013420.1",
+   "n_proteins": 112,
+   "cassettes": 0,
+   "class": {}
+  },
+  {
+   "accession": "NC_013598.1",
+   "n_proteins": 43,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_013645.1",
+   "n_proteins": 44,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": false
+    }
+   }
+  },
+  {
+   "accession": "NC_013694.1",
+   "n_proteins": 86,
+   "cassettes": 1,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_013936.1",
+   "n_proteins": 67,
+   "cassettes": 0,
+   "class": {
+    "endolysin": {
+     "annotated": 3,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_014458.1",
+   "n_proteins": 94,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": false
+    }
+   }
+  },
+  {
+   "accession": "NC_014459.2",
+   "n_proteins": 91,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 2,
+     "recovered": false,
+     "top_is_annotated": false
+    }
+   }
+  },
+  {
+   "accession": "NC_014460.1",
+   "n_proteins": 43,
+   "cassettes": 0,
+   "class": {}
+  },
+  {
+   "accession": "NC_014461.1",
+   "n_proteins": 123,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": false,
+     "top_is_annotated": false
+    },
+    "endolysin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_014467.1",
+   "n_proteins": 250,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "spanin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_015250.1",
+   "n_proteins": 257,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": false
+    },
+    "spanin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": false
+    }
+   }
+  },
+  {
+   "accession": "NC_015269.1",
+   "n_proteins": 139,
+   "cassettes": 1,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "spanin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_015296.1",
+   "n_proteins": 208,
+   "cassettes": 0,
+   "class": {
+    "endolysin": {
+     "annotated": 3,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "spanin": {
+     "annotated": 1,
+     "recovered": false,
+     "top_is_annotated": false
+    }
+   }
+  },
+  {
+   "accession": "NC_015456.1",
+   "n_proteins": 79,
+   "cassettes": 0,
+   "class": {
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "spanin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": false
+    }
+   }
+  },
+  {
+   "accession": "NC_015464.1",
+   "n_proteins": 166,
+   "cassettes": 0,
+   "class": {
+    "endolysin": {
+     "annotated": 3,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "spanin": {
+     "annotated": 1,
+     "recovered": false,
+     "top_is_annotated": false
+    }
+   }
+  },
+  {
+   "accession": "NC_015584.1",
+   "n_proteins": 129,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": false,
+     "top_is_annotated": false
+    },
+    "endolysin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_016161.1",
+   "n_proteins": 57,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": false
+    },
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_016562.1",
+   "n_proteins": 147,
+   "cassettes": 0,
+   "class": {
+    "endolysin": {
+     "annotated": 3,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "spanin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": false
+    }
+   }
+  },
+  {
+   "accession": "NC_016570.1",
+   "n_proteins": 196,
+   "cassettes": 0,
+   "class": {
+    "endolysin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "spanin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": false
+    }
+   }
+  },
+  {
+   "accession": "NC_016650.1",
+   "n_proteins": 66,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_016765.1",
+   "n_proteins": 74,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_017688.1",
+   "n_proteins": 54,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 3,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_017695.1",
+   "n_proteins": 43,
+   "cassettes": 0,
+   "class": {
+    "endolysin": {
+     "annotated": 3,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_017696.1",
+   "n_proteins": 51,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 3,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_017698.1",
+   "n_proteins": 40,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_017702.1",
+   "n_proteins": 24,
+   "cassettes": 0,
+   "class": {
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_017969.1",
+   "n_proteins": 143,
+   "cassettes": 1,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "spanin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_018087.3",
+   "n_proteins": 256,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_018281.1",
+   "n_proteins": 59,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_018284.1",
+   "n_proteins": 45,
+   "cassettes": 0,
+   "class": {
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_018452.1",
+   "n_proteins": 72,
+   "cassettes": 1,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "spanin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_018853.1",
+   "n_proteins": 54,
+   "cassettes": 0,
+   "class": {
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_019417.1",
+   "n_proteins": 72,
+   "cassettes": 0,
+   "class": {
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "spanin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": false
+    }
+   }
+  },
+  {
+   "accession": "NC_019419.2",
+   "n_proteins": 52,
+   "cassettes": 0,
+   "class": {
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "spanin": {
+     "annotated": 1,
+     "recovered": false,
+     "top_is_annotated": false
+    }
+   }
+  },
+  {
+   "accession": "NC_019449.1",
+   "n_proteins": 50,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_019507.1",
+   "n_proteins": 257,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 4,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "spanin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": false
+    }
+   }
+  },
+  {
+   "accession": "NC_019509.1",
+   "n_proteins": 45,
+   "cassettes": 0,
+   "class": {
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "spanin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_019511.1",
+   "n_proteins": 186,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 6,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_019516.2",
+   "n_proteins": 212,
+   "cassettes": 0,
+   "class": {}
+  },
+  {
+   "accession": "NC_019524.2",
+   "n_proteins": 80,
+   "cassettes": 0,
+   "class": {
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "spanin": {
+     "annotated": 3,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_019911.2",
+   "n_proteins": 57,
+   "cassettes": 1,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_019912.1",
+   "n_proteins": 53,
+   "cassettes": 0,
+   "class": {
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_019916.1",
+   "n_proteins": 54,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_019917.1",
+   "n_proteins": 72,
+   "cassettes": 1,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "spanin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_019919.2",
+   "n_proteins": 152,
+   "cassettes": 1,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "spanin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": false
+    }
+   }
+  },
+  {
+   "accession": "NC_019925.1",
+   "n_proteins": 201,
+   "cassettes": 0,
+   "class": {
+    "endolysin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "spanin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": false
+    }
+   }
+  },
+  {
+   "accession": "NC_019933.2",
+   "n_proteins": 47,
+   "cassettes": 0,
+   "class": {
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "spanin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_020414.2",
+   "n_proteins": 60,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 3,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "spanin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_020477.1",
+   "n_proteins": 74,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_020478.1",
+   "n_proteins": 78,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_020479.1",
+   "n_proteins": 60,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_020480.1",
+   "n_proteins": 76,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_020490.2",
+   "n_proteins": 74,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 3,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_020877.1",
+   "n_proteins": 122,
+   "cassettes": 0,
+   "class": {
+    "endolysin": {
+     "annotated": 5,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_021306.2",
+   "n_proteins": 56,
+   "cassettes": 0,
+   "class": {
+    "endolysin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_021315.1",
+   "n_proteins": 66,
+   "cassettes": 0,
+   "class": {
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "spanin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_021320.1",
+   "n_proteins": 118,
+   "cassettes": 0,
+   "class": {}
+  },
+  {
+   "accession": "NC_021321.1",
+   "n_proteins": 123,
+   "cassettes": 0,
+   "class": {}
+  },
+  {
+   "accession": "NC_021331.1",
+   "n_proteins": 94,
+   "cassettes": 1,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "spanin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_021335.1",
+   "n_proteins": 105,
+   "cassettes": 0,
+   "class": {}
+  },
+  {
+   "accession": "NC_021779.1",
+   "n_proteins": 61,
+   "cassettes": 0,
+   "class": {
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "spanin": {
+     "annotated": 1,
+     "recovered": false,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_021780.1",
+   "n_proteins": 57,
+   "cassettes": 0,
+   "class": {
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "spanin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_021781.2",
+   "n_proteins": 93,
+   "cassettes": 0,
+   "class": {
+    "endolysin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_021783.1",
+   "n_proteins": 49,
+   "cassettes": 0,
+   "class": {
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "spanin": {
+     "annotated": 1,
+     "recovered": false,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_022054.2",
+   "n_proteins": 71,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_022331.2",
+   "n_proteins": 93,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": false
+    },
+    "endolysin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_022343.1",
+   "n_proteins": 154,
+   "cassettes": 0,
+   "class": {
+    "endolysin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "spanin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": false
+    }
+   }
+  },
+  {
+   "accession": "NC_022765.1",
+   "n_proteins": 72,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": false,
+     "top_is_annotated": false
+    },
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_022766.1",
+   "n_proteins": 57,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_022773.1",
+   "n_proteins": 76,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_022989.1",
+   "n_proteins": 51,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_023594.2",
+   "n_proteins": 67,
+   "cassettes": 1,
+   "class": {
+    "endolysin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_023601.2",
+   "n_proteins": 170,
+   "cassettes": 1,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "spanin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": false
+    }
+   }
+  },
+  {
+   "accession": "NC_023687.1",
+   "n_proteins": 78,
+   "cassettes": 0,
+   "class": {
+    "endolysin": {
+     "annotated": 3,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_023690.1",
+   "n_proteins": 215,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_023697.1",
+   "n_proteins": 75,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_023698.1",
+   "n_proteins": 76,
+   "cassettes": 0,
+   "class": {
+    "endolysin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_023699.1",
+   "n_proteins": 72,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 3,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_023700.1",
+   "n_proteins": 26,
+   "cassettes": 0,
+   "class": {}
+  },
+  {
+   "accession": "NC_023701.1",
+   "n_proteins": 97,
+   "cassettes": 0,
+   "class": {
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_023702.1",
+   "n_proteins": 76,
+   "cassettes": 0,
+   "class": {
+    "endolysin": {
+     "annotated": 3,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_023704.1",
+   "n_proteins": 63,
+   "cassettes": 0,
+   "class": {
+    "endolysin": {
+     "annotated": 3,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_023705.1",
+   "n_proteins": 50,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_023712.1",
+   "n_proteins": 100,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_023716.1",
+   "n_proteins": 96,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": false
+    }
+   }
+  },
+  {
+   "accession": "NC_023720.1",
+   "n_proteins": 67,
+   "cassettes": 1,
+   "class": {
+    "endolysin": {
+     "annotated": 3,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_023721.1",
+   "n_proteins": 31,
+   "cassettes": 0,
+   "class": {}
+  },
+  {
+   "accession": "NC_023724.1",
+   "n_proteins": 97,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 3,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_023726.1",
+   "n_proteins": 62,
+   "cassettes": 0,
+   "class": {
+    "endolysin": {
+     "annotated": 3,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_023728.1",
+   "n_proteins": 80,
+   "cassettes": 0,
+   "class": {
+    "endolysin": {
+     "annotated": 3,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_023732.1",
+   "n_proteins": 49,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": false,
+     "top_is_annotated": false
+    },
+    "endolysin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": false
+    }
+   }
+  },
+  {
+   "accession": "NC_023739.1",
+   "n_proteins": 65,
+   "cassettes": 0,
+   "class": {
+    "endolysin": {
+     "annotated": 3,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_023745.1",
+   "n_proteins": 73,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_023746.1",
+   "n_proteins": 78,
+   "cassettes": 0,
+   "class": {
+    "endolysin": {
+     "annotated": 3,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_024142.2",
+   "n_proteins": 93,
+   "cassettes": 1,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": false
+    },
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "spanin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": false
+    }
+   }
+  },
+  {
+   "accession": "NC_024206.1",
+   "n_proteins": 54,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": false
+    },
+    "endolysin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_024329.1",
+   "n_proteins": 48,
+   "cassettes": 0,
+   "class": {}
+  },
+  {
+   "accession": "NC_025417.1",
+   "n_proteins": 33,
+   "cassettes": 0,
+   "class": {
+    "endolysin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_025440.1",
+   "n_proteins": 154,
+   "cassettes": 0,
+   "class": {
+    "endolysin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_026608.1",
+   "n_proteins": 52,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": false
+    }
+   }
+  },
+  {
+   "accession": "NC_026610.2",
+   "n_proteins": 80,
+   "cassettes": 0,
+   "class": {
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_027297.1",
+   "n_proteins": 141,
+   "cassettes": 1,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "spanin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": false
+    }
+   }
+  },
+  {
+   "accession": "NC_027335.2",
+   "n_proteins": 220,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 5,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_027348.2",
+   "n_proteins": 87,
+   "cassettes": 1,
+   "class": {
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "spanin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": false
+    }
+   }
+  },
+  {
+   "accession": "NC_027350.1",
+   "n_proteins": 80,
+   "cassettes": 1,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": false
+    },
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "spanin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_027356.1",
+   "n_proteins": 127,
+   "cassettes": 1,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "spanin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_027365.1",
+   "n_proteins": 94,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 3,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_027623.2",
+   "n_proteins": 44,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_027627.1",
+   "n_proteins": 44,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_027628.1",
+   "n_proteins": 43,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_027629.1",
+   "n_proteins": 45,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  }
+ ]
+}
