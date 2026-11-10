@@ -1,0 +1,6 @@
+# Everything above, plus what is needed to RE-RUN the full training pipeline (scripts/01-31).
+# Install:  python -m pip install -r requirements-pipeline.txt
+-r requirements.txt
+pyopal>=0.7           # exhaustive Smith-Waterman homology clustering and leakage screens (scripts/03 and callers)
+scipy>=1.10           # statistics in the signature analyses (scripts/16, 18)
+openpyxl>=3.1         # extracting the Kongari 2018 CPT spanin supplement (scripts/25b)

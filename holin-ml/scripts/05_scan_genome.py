@@ -19,7 +19,8 @@ import numpy as np
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import features as F
 import importlib
-C = importlib.import_module("03_cluster")
+# 03_cluster (and its pyopal dependency) is imported lazily inside --holdout only, so the predictor
+# (scripts/32) can import this module for its gene callers without needing pyopal installed.
 
 B = Path(__file__).resolve().parent.parent
 EU = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi"
@@ -88,6 +89,7 @@ def main():
     note = "shipped model; the scanned genome's own holin may have been part of training"
     removed = []
     if a.holdout:
+        C = importlib.import_module("03_cluster")
         hol = [r for r in train if r["label"] == "holin"]
         best = C.search([p["sequence"] for p in prots], [r["sequence"] for r in hol], min_score=0)
         keep_h = [r for r, b in zip(hol, best) if b < C.MIN_ID]

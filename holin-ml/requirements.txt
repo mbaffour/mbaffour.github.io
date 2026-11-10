@@ -1,0 +1,8 @@
+# Run the lysis-gene predictor (scripts/32_predict_lysis.py) and the scanners (scripts/29, 30).
+# Install:  python -m pip install -r requirements.txt
+scikit-learn==1.9.1   # MUST match exactly: the three models are pickled scikit-learn estimators
+numpy>=2.0,<3
+torch>=2.0            # the CPU build is fine; ESM-2 t12_35M is only 35 M parameters
+transformers>=4.40    # loads ESM-2 (facebook/esm2_t12_35M_UR50D); ~130 MB of weights download on first run
+biopython>=1.80       # GenBank and FASTA parsing (--genbank, --genome)
+pyrodigal>=3.0        # de-novo gene calling for raw nucleotide input (--genome)
