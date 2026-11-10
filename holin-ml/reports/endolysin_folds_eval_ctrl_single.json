@@ -1,0 +1,225 @@
+{
+  "class": "endolysin",
+  "architecture": "per-fold one-vs-rest, combined by max",
+  "folds": {
+    "all": 2788
+  },
+  "n_atlas_genomes": 12,
+  "n_annotated_in_atlas": 19,
+  "neg_ratio": 8,
+  "design_note": "other folds' endolysins are EXCLUDED from each fold model, never used as negatives: a different-fold endolysin is still an endolysin, and the confusables experiment showed that labelling an inseparable protein as negative costs recall.",
+  "baseline_single_model": {
+    "strict": 0.7286,
+    "realistic": 0.843,
+    "source": "reports/endolysin_eval.json (shipped v1)"
+  },
+  "family_removal": {
+    "genome_AP": 0.5855,
+    "CI95_by_genome": [
+      0.3417,
+      0.8446
+    ],
+    "at_thresholds": {
+      "0.5": {
+        "called": 17,
+        "true": 11,
+        "precision": 0.647,
+        "recall": 0.579
+      },
+      "0.9": {
+        "called": 10,
+        "true": 8,
+        "precision": 0.8,
+        "recall": 0.421
+      }
+    },
+    "top1_per_genome": 0.667,
+    "which_fold_won": {
+      "HK97|HK97p58": {
+        "fold": "all",
+        "score": 0.9974
+      },
+      "Mu|Mup22": {
+        "fold": "all",
+        "score": 0.3449
+      },
+      "lyz": {
+        "fold": "all",
+        "score": 0.979
+      },
+      "sit": {
+        "fold": "all",
+        "score": 0.873
+      },
+      "19": {
+        "fold": "all",
+        "score": 0.0147
+      },
+      "XV": {
+        "fold": "all",
+        "score": 0.9526
+      },
+      "VII": {
+        "fold": "all",
+        "score": 0.9929
+      },
+      "XIV": {
+        "fold": "all",
+        "score": 0.0002
+      },
+      "SPP1|SPP1p051": {
+        "fold": "all",
+        "score": 0.5607
+      },
+      "e": {
+        "fold": "all",
+        "score": 0.194
+      },
+      "5": {
+        "fold": "all",
+        "score": 0.0355
+      },
+      "lys": {
+        "fold": "all",
+        "score": 0.9711
+      },
+      "T5|T5.083": {
+        "fold": "all",
+        "score": 0.1105
+      },
+      "T7|T7p20": {
+        "fold": "all",
+        "score": 0.7547
+      },
+      "T7|T7p51": {
+        "fold": "all",
+        "score": 0.3678
+      },
+      "R": {
+        "fold": "all",
+        "score": 0.9974
+      },
+      "13": {
+        "fold": "all",
+        "score": 0.9881
+      },
+      "15": {
+        "fold": "all",
+        "score": 0.9958
+      },
+      "phiX174|phiX174p": {
+        "fold": "all",
+        "score": 0.0004
+      }
+    },
+    "seconds": 136
+  },
+  "sequence_removal": {
+    "genome_AP": 0.7693,
+    "CI95_by_genome": [
+      0.5809,
+      0.9313
+    ],
+    "at_thresholds": {
+      "0.5": {
+        "called": 21,
+        "true": 15,
+        "precision": 0.714,
+        "recall": 0.789
+      },
+      "0.9": {
+        "called": 14,
+        "true": 12,
+        "precision": 0.857,
+        "recall": 0.632
+      }
+    },
+    "top1_per_genome": 0.75,
+    "which_fold_won": {
+      "HK97|HK97p58": {
+        "fold": "all",
+        "score": 0.9952
+      },
+      "Mu|Mup22": {
+        "fold": "all",
+        "score": 0.8586
+      },
+      "lyz": {
+        "fold": "all",
+        "score": 0.9786
+      },
+      "sit": {
+        "fold": "all",
+        "score": 0.9326
+      },
+      "19": {
+        "fold": "all",
+        "score": 0.0602
+      },
+      "XV": {
+        "fold": "all",
+        "score": 0.9913
+      },
+      "VII": {
+        "fold": "all",
+        "score": 0.9812
+      },
+      "XIV": {
+        "fold": "all",
+        "score": 0.0004
+      },
+      "SPP1|SPP1p051": {
+        "fold": "all",
+        "score": 0.9796
+      },
+      "e": {
+        "fold": "all",
+        "score": 0.7724
+      },
+      "5": {
+        "fold": "all",
+        "score": 0.4
+      },
+      "lys": {
+        "fold": "all",
+        "score": 0.9818
+      },
+      "T5|T5.083": {
+        "fold": "all",
+        "score": 0.9852
+      },
+      "T7|T7p20": {
+        "fold": "all",
+        "score": 0.9908
+      },
+      "T7|T7p51": {
+        "fold": "all",
+        "score": 0.705
+      },
+      "R": {
+        "fold": "all",
+        "score": 0.9954
+      },
+      "13": {
+        "fold": "all",
+        "score": 0.9942
+      },
+      "15": {
+        "fold": "all",
+        "score": 0.9965
+      },
+      "phiX174|phiX174p": {
+        "fold": "all",
+        "score": 0.0004
+      }
+    },
+    "seconds": 86
+  },
+  "gold_holdout": {
+    "AP": 0.9431,
+    "n_pos": 631,
+    "n_neg": 4020,
+    "note": "not comparable across dataset versions: scripts/27 re-draws the clusters"
+  },
+  "arch": "single"
+}

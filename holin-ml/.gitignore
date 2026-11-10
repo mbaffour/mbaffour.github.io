@@ -12,3 +12,8 @@ data/raw/pfam_lysis/*.tsv.gz
 data/raw/kongari2018/*.xlsx
 data/raw/panel/*.gb
 data/raw/pfam_hmm/*.hmm
+
+# intermediate architecture-experiment models (scripts/39 ablations); the eval JSONs plus the
+# script are the reproducible evidence, and only the shipped model is committed
+models/endolysin_folds_ctrl_*.pkl
+models/endolysin_folds_*_full.pkl
