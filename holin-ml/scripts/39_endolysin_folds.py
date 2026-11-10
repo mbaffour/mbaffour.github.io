@@ -60,7 +60,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--boot", type=int, default=2000)
     ap.add_argument("--neg-ratio", type=int, default=8)
-    ap.add_argument("--arch", choices=["folds", "single", "routed"], default="folds",
+    ap.add_argument("--arch", choices=["folds", "single", "routed", "gated"], default="folds",
                     help="CONTROL: 'single' runs one pooled model through the identical code path, negatives, "
                          "subsampling rule and removal protocol, so the only thing that differs is the "
                          "architecture. Without this the per-fold numbers are confounded by the per-fold "
@@ -68,7 +68,13 @@ def main():
                          "design the evidence points to: a protein whose HMM scan confirms a catalytic fold is "
                          "scored by THAT fold's model; one with no domain falls back to the pooled model. "
                          "Max-over-all-folds gives six chances to produce a false positive, which is why pure "
-                         "'folds' inflates known false positives (Serwaa head-tail 0.969 -> 1.000).")
+                         "'folds' inflates known false positives (Serwaa head-tail 0.969 -> 1.000). 'gated' is "
+                         "the corrected form: max(pooled, HMM-confirmed folds). Pure 'routed' REPLACES the "
+                         "pooled score with the fold score and collapses on the strict protocol (AP 0.27), "
+                         "because family removal guts exactly the fold model a domain-bearing gene is routed "
+                         "to, while the pooled model that could still generalise is never consulted. Keeping "
+                         "the pooled score as a floor fixes that without reopening the false-positive problem, "
+                         "since folds are still only consulted when the HMM confirms them.")
     ap.add_argument("--tag", default="")
     ap.add_argument("--min-fold", type=int, default=40, help="a fold with fewer positives is folded into "
                                                              "'unassigned' rather than given its own model")
@@ -136,13 +142,15 @@ def main():
     Xs = feats([p["sequence"] for p in gp])
     print(f"{len(genomes)} atlas phages, {int(yscan.sum())} annotated endolysins to recover", flush=True)
 
-    if a.arch == "routed":
+    if a.arch in ("routed", "gated"):
         ah = D.scan({f"a{i}": p["sequence"] for i, p in enumerate(gp)}, hmms, cls_of)
         atlas_folds = [{OF[h["pfam"]] for h in ah.get(f"a{i}", [])
                         if h["pfam"] in OF and h["grade"] == "catalytic" and h["ievalue"] <= 1e-5}
                        for i in range(len(gp))]
-        print(f"routed: {sum(1 for f in atlas_folds if f)} of {len(gp)} atlas proteins have a confirmed "
-              f"catalytic fold; the rest fall back to the pooled model", flush=True)
+        print(f"{a.arch}: {sum(1 for f in atlas_folds if f)} of {len(gp)} atlas proteins have a confirmed "
+              f"catalytic fold"
+              + ("; the rest fall back to the pooled model" if a.arch == "routed"
+                 else "; every protein also keeps its pooled score as a floor"), flush=True)
 
     pos_seqs = [pos[i]["sequence"] for i in tr_pos]
     cl_of_trpos = np.array([pos[i].get("cluster", -1) for i in tr_pos])
@@ -194,14 +202,15 @@ def main():
             sel = [i for i, p in enumerate(gp) if p["phage"] == g["key"]]
             best = np.zeros(len(sel)); win = [""] * len(sel)
             fitted = {f: fit_fold(f, drop) for f in names}
-            pooled = fit_pooled(drop) if a.arch == "routed" else None
-            if a.arch == "routed":
+            pooled = fit_pooled(drop) if a.arch in ("routed", "gated") else None
+            if a.arch in ("routed", "gated"):
                 sp = pooled.predict_proba(Xs[sel])[:, 1] if pooled is not None else np.zeros(len(sel))
                 sf = {f: (m.predict_proba(Xs[sel])[:, 1] if m is not None else None)
                       for f, m in fitted.items()}
                 for j, i in enumerate(sel):
                     conf = atlas_folds[i] & set(names)
                     cand = [(sf[f][j], f) for f in conf if sf.get(f) is not None]
+                    if a.arch == "gated": cand.append((sp[j], "pooled"))   # pooled is always a floor
                     best[j], win[j] = max(cand) if cand else (sp[j], "pooled(no domain)")
             else:
                 for f in names:
@@ -245,10 +254,11 @@ def main():
     out["gold_holdout"] = {"AP": round(float(average_precision_score(yg, sg)), 4),
                            "n_pos": len(gold_pos), "n_neg": len(gold_neg),
                            "note": "not comparable across dataset versions: scripts/27 re-draws the clusters"}
-    if a.arch == "routed": prod["__pooled__"] = fit_pooled(allmask)
+    if a.arch in ("routed", "gated"): prod["__pooled__"] = fit_pooled(allmask)
     pickle.dump({"models": prod, "folds": {f: counts[f] for f in names},
-                 "combine": ("route by HMM-confirmed catalytic fold, else __pooled__" if a.arch == "routed"
-                             else "max"),
+                 "combine": {"routed": "route by HMM-confirmed catalytic fold, else __pooled__",
+                             "gated": "max(__pooled__, HMM-confirmed fold models)",
+                             "folds": "max over all folds", "single": "single pooled model"}[a.arch],
                  "arch": a.arch,
                  "features": "both", "algorithm": "hgb", "class": "endolysin",
                  "hand_feature_names": list(F.HAND_NAMES), "esm_model": F.ESM.MODEL,
