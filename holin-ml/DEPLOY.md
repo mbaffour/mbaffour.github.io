@@ -28,9 +28,12 @@ Output is TSV: `id, gene, product, start, stop, strand, length, P_holin, P_endol
 For many genomes at once use `scripts/30_scan_many.py`.
 
 ## What you need (pinned to the versions the models were built with)
-- Python 3.13, **scikit-learn 1.9.1** (the pickled models must load under a matching scikit-learn — this is the one
-  version that actually matters), numpy 2.5, torch 2.15 (CPU is fine — ESM-2 t12_35M is only 35 M params),
-  transformers 5.22, biopython, and **pyrodigal 3.7** for `--genome`.
+- `pip install -r requirements.txt` — the single source of truth for dependencies. Step-by-step local install
+  (tested on a clean machine) is in `README.md` under "Run it on your computer".
+- **scikit-learn 1.9.1** is the one pin that matters: the pickled models must load under a matching scikit-learn.
+  Python 3.11+ (3.13 tested); torch CPU build is fine (ESM-2 t12_35M is only 35 M params). On Linux install the CPU
+  torch wheel first (`--index-url https://download.pytorch.org/whl/cpu`) to avoid multi-GB GPU builds.
+- pyopal is NOT needed to predict (only to re-run the training pipeline: `requirements-pipeline.txt`).
 - The ESM-2 weights `facebook/esm2_t12_35M_UR50D` (~130 MB) download from HuggingFace on first run. For offline/HPC
   use, pre-cache them (set `HF_HOME` to a populated cache) or run once online to warm `models/esm_cache`.
 - The three model files in `models/`: `holin_model_curated.pkl`, `endolysin_model.pkl`, `spanin_model.pkl`.

@@ -11,6 +11,61 @@ evaluation, not around a headline number.
 
 > Everything here is a **prediction**. A high score is a hypothesis to test at the bench, not a demonstrated holin.
 
+## Run it on your computer
+
+The tool now calls all three lysis genes (holins, endolysins, spanins), from protein or nucleotide sequence.
+These steps were tested end to end on a clean machine (fresh clone, new environment, install, prediction) and take
+about 3 minutes. You need Python 3.11 or newer (3.13 tested), git, about 1.5 GB of free disk (mostly PyTorch), and an
+internet connection the first time.
+
+```bash
+# 1. Get the code: this branch only, no history (~135 MB)
+git clone --depth 1 -b claude/holin-ml --single-branch https://github.com/mbaffour/mbaffour.github.io.git lysis-caller
+cd lysis-caller/holin-ml
+
+# 2. Make an isolated environment
+python3 -m venv .venv                 # Windows: py -m venv .venv
+source .venv/bin/activate             # Windows PowerShell: .venv\Scripts\Activate.ps1
+
+# 3. Install
+pip install torch --index-url https://download.pytorch.org/whl/cpu   # LINUX ONLY, see note below
+pip install -r requirements.txt       # on Mac and Windows this line alone is enough
+
+# 4. Check it works (should call gp60 spanin, gp61 endolysin, gp62 and gp63 holin)
+python scripts/32_predict_lysis.py --proteins galaxy/test-data/sample_proteins.faa
+```
+
+Then point it at your own sequences:
+
+```bash
+python scripts/32_predict_lysis.py --genome my_phage.fna --show-cassettes         # raw assembly, no annotation
+python scripts/32_predict_lysis.py --proteins my_proteins.faa --out hits.tsv      # protein FASTA
+python scripts/32_predict_lysis.py --genbank my_phage.gb --threshold 0.95         # annotated genome
+python scripts/32_predict_lysis.py --acc NC_008720.1                              # fetch from NCBI
+python scripts/30_scan_many.py --accessions my_list.txt --out reports/my_scan     # many genomes at once
+```
+
+Things worth knowing:
+
+- **Linux only:** a plain `pip install torch` downloads multi-gigabyte GPU builds. Install the CPU build first, as in
+  step 3. CPU is enough because the protein model is small. Mac (including Apple Silicon) and Windows get a CPU-sized
+  build by default.
+- **First run** downloads the ESM-2 protein language model (~130 MB) from HuggingFace. After that it runs offline;
+  set `HF_HUB_OFFLINE=1` to make sure it never tries the network.
+- **Output** is one TSV row per protein: `P_holin`, `P_endolysin`, `P_spanin` are independent probabilities, `call` is
+  the strongest class above the threshold, and `cassette` groups genes that co-locate as a full lysis cassette.
+- **Reading the scores:** precision is about 0.75 at a score of 0.9, so use `--threshold 0.95` when you need
+  high-confidence calls. A gene from a family the model has never seen gets a ranked shortlist, not a verdict.
+- **If the models fail to load,** check `pip show scikit-learn` reports exactly 1.9.1. The models are saved
+  scikit-learn objects and need that version (`pip install scikit-learn==1.9.1`).
+- **Windows:** if PowerShell refuses to activate the environment, run
+  `Set-ExecutionPolicy -Scope CurrentUser RemoteSigned` once.
+- **Conda users:** `conda create -n lysis python=3.13 && conda activate lysis`, then step 3.
+- **Retraining** the models from scratch needs `pip install -r requirements-pipeline.txt`; see `PROTOCOL.md`.
+- If this ever moves to the repository's main branch, drop `-b claude/holin-ml --single-branch` from step 1.
+
+Full deployment notes, including the Galaxy wrapper, are in `DEPLOY.md`; the write-up is `MANUSCRIPT.md`.
+
 ## Headline result
 
 The honest performance number is the **leave-one-genome-out (LOGO) genome scan**: for each of 16 model phages, remove
