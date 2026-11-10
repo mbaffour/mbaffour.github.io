@@ -26,6 +26,13 @@ UNIPROT = {
                      'protein_name:"lysozyme RrrD" OR protein_name:"murein hydrolase")'),
     "sp_spanin": ('reviewed:true AND (protein_name:spanin OR protein_name:"Rz" OR protein_name:"Rz1" OR '
                   'gene:rz OR gene:rz1)'),
+    # breadth: phage-taxonomy spanins including unreviewed gene:rz/rz1 (the classic spanin gene names). This is
+    # ~1,659 vs the 26 reviewed, and lifts the weakest class. Quality is mixed (TrEMBL), so scripts/27 tiers it.
+    "phage_spanin": '(protein_name:spanin OR gene:rz OR gene:rz1) AND taxonomy_id:10239',
+    # experimentally-validated gold tier: evidence at protein level (UniProt PE=1).
+    "validated_spanin": '(protein_name:spanin OR gene:rz OR gene:rz1) AND existence:1',
+    "validated_endolysin": '(protein_name:endolysin OR protein_name:"phage lysin" OR protein_name:amidase OR '
+                           'protein_name:"peptidoglycan hydrolase") AND existence:1',
 }
 INTERPRO = {"interpro_pfam_endolysin.json": "endolysin", "interpro_pfam_spanin.json": "spanin"}
 
