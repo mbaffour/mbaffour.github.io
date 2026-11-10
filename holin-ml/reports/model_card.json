@@ -1,0 +1,46 @@
+{
+  "model": "holin_model_curated.pkl",
+  "sha256": "0fcb2e40997ff403653d6ce767fba644cab6c03bb90094b7a5a1f27eca1107b4",
+  "trained_utc": "2026-11-10T07:06:04Z",
+  "purpose": "rank the proteins of a phage genome by probability of being a holin",
+  "recipe": "HistGradientBoosting over 36 handcrafted features + 480-d mean-pooled ESM-2 (t12_35M). TM-anchored local features were tested and rejected (scripts/15).",
+  "training_composition": {
+    "rows": 17940,
+    "holins": 5055,
+    "holins_original": 558,
+    "holins_curated": 4497,
+    "negatives_bacterial": 9503,
+    "negatives_phage": 3382
+  },
+  "honest_performance_leave_one_genome_out": {
+    "note": "measured in scripts/22 by removing each genome's holin family before scoring it; this deployment model trains on everything, so these are the estimate, not its own score",
+    "realistic_>=95pct_identity_removed": {
+      "genome_AP": 0.9647,
+      "CI95": [
+        0.8928,
+        1.0
+      ],
+      "recall_at_0.9": 0.923,
+      "precision_at_0.9": 0.75,
+      "top1_per_genome": 1.0
+    },
+    "strict_>=30pct_identity_family_removed": {
+      "genome_AP": 0.7847,
+      "CI95": [
+        0.5381,
+        0.9619
+      ],
+      "recall_at_0.9": 0.692,
+      "precision_at_0.9": 0.75,
+      "top1_per_genome": 0.8
+    }
+  },
+  "known_limits": [
+    "profile-match evidence: only 7 of 2,886 curated holins are Swiss-Prot reviewed",
+    "Pfam is exhausted as a source: 4,700 of 4,701 curated records joined existing families",
+    "P1 lydD remains the weakest annotated holin (0.60, rank 3/110)",
+    "precision falls vs the pre-curation model (0.75 vs 0.82 at >=0.9); use the 0.95 threshold for high-confidence calls",
+    "a genuinely novel holin family gets a shortlist, not an answer (strict AP 0.785)"
+  ],
+  "usage": "import pickle, features as F; m=pickle.load(open('models/holin_model_curated.pkl','rb')); X=hstack([handcrafted, esm.embed(seqs)]); m['model'].predict_proba(X)[:,1]"
+}
