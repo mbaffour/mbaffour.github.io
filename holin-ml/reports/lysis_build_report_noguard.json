@@ -1,0 +1,52 @@
+{
+  "dropped": {
+    "is_known_holin": 1,
+    "claimed_by_both_classes": 0,
+    "bad_length": 329,
+    "nonstandard": 4
+  },
+  "classes": {
+    "endolysin": {
+      "positives": 2746,
+      "clusters": 321,
+      "gold_clusters": 64,
+      "gold_positives": 716,
+      "tiers": {
+        "validated": 378,
+        "reviewed": 83,
+        "pool": 418,
+        "pfam": 1867
+      },
+      "length_median": 270,
+      "length_p90": 583,
+      "over_150aa": 2495
+    },
+    "spanin": {
+      "positives": 2160,
+      "clusters": 187,
+      "gold_clusters": 37,
+      "gold_positives": 516,
+      "tiers": {
+        "validated": 10,
+        "reviewed": 18,
+        "curated": 910,
+        "pool": 25,
+        "trembl": 1023,
+        "pfam": 174
+      },
+      "length_median": 116,
+      "length_p90": 160,
+      "over_150aa": 298
+    }
+  },
+  "confusables": {
+    "count": 152,
+    "by_family": {
+      "PF04517": 26,
+      "PF11125": 14,
+      "PF16754": 5,
+      "PF18013": 105,
+      "PF26810": 2
+    }
+  }
+}
