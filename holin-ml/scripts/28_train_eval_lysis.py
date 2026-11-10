@@ -105,7 +105,7 @@ def main():
                     drop[:len(tr_pos)] = np.isin(cl_ids[:len(tr_pos)], list(dc)) if dc else False
                 else:
                     hit = [i for i, v in enumerate(ident) if v >= 0.95]
-                    drop[np.array(hit, int)] = True if hit else drop
+                    if hit: drop[np.array(hit, int)] = True
             keep = ~drop
             m = hgb().fit(X[keep], y[keep])
             sel = [i for i, p in enumerate(gp) if p["phage"] == g["key"]]

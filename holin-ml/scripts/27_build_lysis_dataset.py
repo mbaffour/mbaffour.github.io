@@ -54,6 +54,26 @@ def collect(cls):
         s = (r.get("Sequence") or "").strip().upper()
         if s: cand.append(dict(seq=s, name=r.get("Protein names") or "", org=r.get("Organism") or "",
                                acc=r.get("Entry") or "", reviewed=True, tier="reviewed", src="uniprot_reviewed"))
+    # experimentally-validated gold tier (UniProt evidence at protein level, PE=1)
+    vf = R / f"uniprot_validated_{cls}.tsv.gz"
+    if vf.exists():
+        for r in tsv(vf):
+            s = (r.get("Sequence") or "").strip().upper()
+            if s: cand.append(dict(seq=s, name=r.get("Protein names") or "", org=r.get("Organism") or "",
+                                   acc=r.get("Entry") or "", reviewed=(r.get("Reviewed") or "").lower() == "reviewed",
+                                   tier="validated", src="uniprot_validated"))
+    # spanin breadth: phage-taxonomy spanins incl. unreviewed gene:rz/rz1 (the classic spanin gene names)
+    if cls == "spanin" and (R / "uniprot_phage_spanin.tsv.gz").exists():
+        for r in tsv(R / "uniprot_phage_spanin.tsv.gz"):
+            s = (r.get("Sequence") or "").strip().upper()
+            rev = (r.get("Reviewed") or "").lower() == "reviewed"
+            if s: cand.append(dict(seq=s, name=r.get("Protein names") or "", org=r.get("Organism") or "",
+                                   acc=r.get("Entry") or "", reviewed=rev, tier=("reviewed" if rev else "trembl"), src="phage_spanin"))
+    # CPT (Young lab) curated spanins -- Kongari et al. 2018, the published origin of the CPT spanin database
+    if cls == "spanin" and (R / "kongari2018/spanins.json").exists():
+        for o in json.load(open(R / "kongari2018/spanins.json")):
+            cand.append(dict(seq=o["seq"], name=f"{o['type']} (Kongari2018)", org=o.get("host") or "",
+                             acc=o.get("accession") or "", reviewed=False, tier="curated", src="kongari2018"))
     # Swiss-Prot phage proteins named for this class
     for r in tsv(R / "uniprot_sp_phage.tsv.gz"):
         nm = r.get("Protein names") or ""
@@ -118,10 +138,11 @@ def main():
         print(f"{cls}: {len(cand)} candidate rows before dedup", flush=True)
 
     # dedup within class (reviewed representative preferred); then resolve cross-class and holin overlaps
+    TIER_RANK = {"validated": 0, "reviewed": 1, "curated": 2, "pool": 3, "trembl": 4, "pfam": 5}
     def dedup(cand):
         u = {}
-        for c in sorted(cand, key=lambda c: (not c["reviewed"], {"reviewed": 0, "pool": 1, "pfam": 2}[c["tier"]], len(c["seq"]))):
-            u.setdefault(c["seq"], c)
+        for c in sorted(cand, key=lambda c: (TIER_RANK[c["tier"]], len(c["seq"]))):
+            u.setdefault(c["seq"], c)      # best-evidence representative wins per sequence
         return u
     end_u, spa_u = dedup(raw["endolysin"]), dedup(raw["spanin"])
     both = set(end_u) & set(spa_u)
