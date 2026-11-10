@@ -1,0 +1,38 @@
+{
+  "dropped": {
+    "is_known_holin": 0,
+    "claimed_by_both_classes": 0,
+    "bad_length": 62,
+    "nonstandard": 1
+  },
+  "classes": {
+    "endolysin": {
+      "positives": 1229,
+      "clusters": 168,
+      "gold_clusters": 33,
+      "gold_positives": 293,
+      "tiers": {
+        "reviewed": 156,
+        "pfam": 650,
+        "pool": 423
+      },
+      "length_median": 282,
+      "length_p90": 551,
+      "over_150aa": 1145
+    },
+    "spanin": {
+      "positives": 288,
+      "clusters": 42,
+      "gold_clusters": 8,
+      "gold_positives": 96,
+      "tiers": {
+        "reviewed": 25,
+        "pool": 119,
+        "pfam": 144
+      },
+      "length_median": 99,
+      "length_p90": 149,
+      "over_150aa": 23
+    }
+  }
+}
