@@ -1,54 +1,116 @@
-# Lysis genes in Bacteroides phage DAC15 (NC_055832.1)
+# Lysis genes in *Bacteroides* phage DAC15 (NC_055832.1)
 
-**Genome:** 99,494 bp, linear. *Crassvirales; Steigviridae; Asinivirinae; Wulfhauvirus* (crAss-like); host *Bacteroides*.
-Of its 120 annotated CDS, almost all are "hypothetical protein".
+**Genome:** 99,494 bp, linear. *Crassvirales; Steigviridae; Asinivirinae; Wulfhauvirus* (crAss-like); host
+*Bacteroides*. 118 scorable CDS of 120, nearly all annotated "hypothetical protein".
 
-**Out-of-sample status:** no DAC15 protein is in any training set (holin, endolysin, or spanin). No crAss-like phage
-contributed lysis genes to training, so DAC15 is **out of distribution at the genome and the family level**. Read
-everything below as candidates, not verdicts.
+**Out-of-sample status:** no DAC15 protein is in any training set (verified by exact sequence match against all
+three positive sets). Every candidate below is out-of-sample.
+
+**Models used:** holin `holin_model_curated.pkl` (arm B), endolysin `endolysin_model.pkl` (**v1** — the v2
+family-expanded model regressed and was not shipped, see `reports/retrain_v2_report.md`), spanin
+`spanin_model.pkl` (**v2**, family-expanded, +0.077 strict AP).
 
 **Reproduce:**
 ```
-python3 scripts/32_predict_lysis.py --acc NC_055832.1 --out reports/dac15_lysis.tsv
-python3 scripts/33_verify_calls.py --tsv reports/dac15_lysis.tsv --genbank data/raw/genomes/NC_055832.1.gb --top 3
+python3 scripts/32_predict_lysis.py --genbank data/raw/genomes/NC_055832.1.gb \
+        --domains --show-cassettes --top 5 --out reports/dac15_final.tsv
+python3 scripts/33_verify_calls.py --tsv reports/dac15_final.tsv \
+        --genbank data/raw/genomes/NC_055832.1.gb --top 3
 ```
-`scripts/33` checks each candidate with Pfam lysis-domain HMMs (pyhmmer, E < 1e-3), Phobius topology, a training-set
-lookup and ±3-gene context. It also scans the **whole proteome** for lysis domains, including proteins over the
-predictor's 2,000-aa cap, to catch genes the model missed ("domain rescue").
 
-## Result
+---
 
-| role | gene | position | size | model P | independent evidence | confidence |
-|---|---|---|---|---|---|---|
-| **endolysin** | **gp039** | 86,545 (−) | 157 aa | 0.006 (missed) | **Glucosaminidase PF01832, aa 53–156, E = 8.7e-17**; Phobius signal peptide, cleaved at 27/28 → secreted lysin | **best supported** |
-| holin | gp095 | 25,829 (+) | 133 aa | 0.966 | Phobius: 1 TM (out 6–25 in); no holin Pfam; max identity to known holins 0.32 | plausible, unconfirmed |
-| holin | gp012 | 97,466 (−) | 31 aa | 0.728 | 1 TM, but 31 aa is too short for a holin | likely false positive |
-| endolysin | gp080 | 41,176 (+) | 832 aa | 0.839 | no lysis domain, no TM; sits among virion structural proteins | likely false positive / virion protein |
-| spanin | gp004 = gp008 | 1,337 (−) / 98,989 (−) | 50 aa | 0.865 | identical copies in the terminal repeat; Phobius signal peptide (cleaved at 22) but **no lipobox** | weak |
+## The answer
 
-**No lysis cassette.** These genes are scattered across the genome, not clustered. gp039 sits among nucleotide and
-NAD-salvage genes (ribose-phosphate pyrophosphokinase gp038, nicotinamide phosphoribosyltransferase gp036). gp095
-sits in a block of uncharacterized genes.
+### Endolysin — **gp039**, the only credible candidate in the genome
 
-## How to read this
+| | |
+|---|---|
+| location | **86,545–87,018 (−)**, 157 aa |
+| domain | **PF01832 Glucosaminidase (GH73)**, aa 53–156, **E = 8.7e-17** — the *only* lysis domain in 118 proteins vs 69 lysis HMMs |
+| topology | Phobius signal peptide, cleaved at 27/28 (`n8-23c27/28o`), 0 TM → **secreted endolysin** |
+| nearest training relative | endolysin **0.803 identity at coverage 1.00** (of 2,788) vs holin 0.379, spanin 0.321 |
+| model score | P(endolysin) = **0.0059**, **rank 25 of 118** |
+| context | among nucleotide/NAD-salvage genes (gp038 ribose-phosphate pyrophosphokinase, gp036 nicotinamide phosphoribosyltransferase) |
 
-- **The strongest call came from verification, not from the model.** gp039 is the only DAC15 protein with any lysis
-  domain. The endolysin model scored it 0.006, because the Glucosaminidase family (PF01832) is missing from the
-  endolysin training families. This is a known coverage gap, not a random error.
-- **Caveat on gp039:** Glucosaminidase domains also occur in non-lytic proteins such as FlgJ and bacterial autolysins.
-  On its own, a domain hit can't separate an exit lysin from a virion or entry lysin. Two things argue for lysis here:
-  the cleavable signal peptide (a secreted endolysin, a known strategy that works with a pinhole-type holin) and its
-  position outside the structural module.
-- **Holin:** gp095 has the size and single-TM topology of a class II/III holin, and the model is confident. But there
-  is no family or homology support, and it isn't next to gp039.
-- **Spanin:** spanins are expected in Gram-negative hosts like *Bacteroides*, but the gp004/gp008 call lacks the
-  o-spanin lipobox and an i-spanin partner. Treat it as unresolved. crAss-like phages may use an unrecognized
-  spanin-equivalent.
+**The model missed it, and so would the ranking.** 0.0059 is below any threshold and rank 25 is not a position
+anyone inspects. It was found only by the model-independent domain scan (`--domains`).
+
+The nearest-neighbour figures settle *why*: gp039 is 80.3% identical at full coverage to PF01832 lysins already in
+UniProt — from crAss-like phages (`uncultured phage cr126_1`, `uncultured phage cr151_1`, `Kolpuevirus frurule`).
+This was never a novel-family problem. It was a **training-data coverage gap**, and adding that family still only
+moved the score to 0.107 (see `retrain_v2_report.md`), which is why endolysin detection should be domain-driven.
+
+*Caveat:* GH73 domains also occur in non-lytic proteins (FlgJ, bacterial autolysins). What argues for lysis here is
+the cleavable signal peptide — a secreted endolysin, a known strategy paired with pinhole-type holins — plus its
+position outside the structural module.
+
+### Holin — **gp095**, plausible and genuinely novel
+
+| | |
+|---|---|
+| location | **25,829–26,230 (+)**, 133 aa |
+| model | P(holin) = **0.9664**, **rank 1 of 118** |
+| topology | Phobius 1 TM, `o6-25i`; C-terminal charge −1 |
+| nearest training relative | holin **0.375** at coverage ≥0.8 (of 5,055) — no close relative |
+| domain | none of the 38 holin Pfam families hits |
+
+Right size, right topology, top-ranked, and **37.5% max identity to any of 5,055 known holins** — so this is a real
+novel-family call the model made unaided. It is the one result here where the ML did the work. Unconfirmed by
+family or domain evidence, and not adjacent to gp039.
+
+### Spanin — **gp004 / gp008**, weak and unresolved
+
+Identical 50-aa copies at **1,337–1,489 (−)** and **98,989–99,141 (−)** — the terminal repeat, so one gene in two
+copies. P(spanin) = **0.5746** (ranks 1–2). Phobius: signal peptide cleaved at 22, 0 TM. **No o-spanin lipobox**
+(`[LVI][ASTVI][GAS]C`), no i-spanin partner, max identity 0.349 to 2,160 known spanins.
+
+Treat as unresolved. Spanins are expected in a Gram-negative host, but crAss-like phages may use an unrecognised
+equivalent. Note the shipped spanin v2 model scores this *lower* than v1 did (0.865 → 0.575) — being less
+confident about a lipobox-less call is the correct direction.
+
+### Rejected: gp080
+
+P(endolysin) = 0.8385, rank 1 — **but no lysis domain, no TM (`i`), 832 aa, and a structural-protein neighbour.**
+Almost certainly a virion protein or a false positive. This is the entry-vs-exit lysin confusion the project keeps
+running into (T4 gp5, T7 gp16): a large multidomain protein in the structural module is not an exit endolysin.
+
+### No lysis cassette
+`--show-cassettes` finds none. The candidates are scattered across the genome — gp039 at 86.5 kb, gp095 at 25.8 kb,
+gp004/gp008 in the terminal repeats. This is exactly the case the per-gene callers were built for.
+
+---
+
+## Full candidate table
+
+| gene | location | len | P(hol) | P(end) | P(spa) | rank h/e/s | call | Pfam | TM | SP |
+|---|---|---|---|---|---|---|---|---|---|---|
+| **gp039** | 86,545–87,018 − | 157 | 0.001 | 0.006 | 0.002 | 29/**25**/52 | none | **PF01832** | 0 | **yes (27)** |
+| gp095 | 25,829–26,230 + | 133 | **0.966** | 0.000 | 0.141 | **1**/112/4 | holin | – | 1 | no |
+| gp012 | 97,466–97,561 − | 31 | 0.728 | 0.000 | 0.001 | 2/–/– | holin | – | 1 | no |
+| gp080 | 41,176–43,674 + | 832 | 0.000 | **0.839** | 0.001 | –/**1**/– | endolysin | – | 0 | no |
+| gp004 | 1,337–1,489 − | 50 | 0.006 | 0.001 | **0.575** | –/–/**1** | spanin | – | 0 | yes (22) |
+| gp008 | 98,989–99,141 − | 50 | 0.006 | 0.001 | **0.575** | –/–/**2** | spanin | – | 0 | yes (22) |
+| gp098 | 24,573–25,184 + | 203 | 0.000 | 0.002 | 0.179 | –/–/3 | none | – | 1 | no |
+| gp077 | 51,785–55,894 − | 1369 | 0.000 | 0.173 | 0.001 | –/2/– | none | – | 0 | no |
+| gp079 | 43,678–45,045 + | 455 | 0.000 | 0.087 | 0.002 | –/3/– | none | – | 0 | no |
+
+gp012 (31 aa) and gp018 (27 aa) are too short to be holins — treat as false positives.
+
+---
 
 ## What would settle it
-1. Experimental tests:
-   - express gp039 and run a zymogram or turbidity assay on *Bacteroides* or *E. coli* peptidoglycan;
-   - co-express gp095 with gp039 in *E. coli* to test holin-dependent lysis.
-2. Model fix: retrain the endolysin model with the missing catalytic families (PF01832 Glucosaminidase, and also SLT
-   PF01464, M23 PF01551, NlpC PF00877, GH25 PF01183, M15 PF02557/PF08291/PF13539, GH108 PF05838). Then re-score
-   DAC15. Until then, run `scripts/33` with the domain rescue on any out-of-distribution genome.
+
+1. **Experiment.** Express gp039 and run a zymogram / turbidity assay on *Bacteroides* peptidoglycan; co-express
+   gp095 with gp039 in a heterologous host to test holin-dependent lysis timing.
+2. **gp004/gp008.** Check for lipidation experimentally, or search the genome for an unrecognised i-spanin partner;
+   the absence of a lipobox is the main thing against the current call.
+3. **Tooling.** This genome is the case for per-fold endolysin models gated by the HMM scan, rather than one
+   classifier covering five unrelated catalytic folds (proposed, not built — `retrain_v2_report.md`).
+
+## Honest summary
+
+One of the three genes was found by the model (**gp095**, a genuine novel-family holin call at rank 1 of 118). One
+was found *only* by model-independent domain evidence (**gp039**, scored 0.0059 at rank 25). One remains
+unresolved (**gp004/gp008**). And the model's top endolysin call (**gp080**) is probably wrong. On an
+out-of-distribution genome the domain scan is not a nice-to-have — it is what produced the answer.

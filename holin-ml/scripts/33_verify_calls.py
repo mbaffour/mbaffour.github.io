@@ -121,6 +121,7 @@ def main():
     a = ap.parse_args()
     rows = sorted(csv.DictReader(open(a.tsv), delimiter="\t"), key=lambda r: int(r["start"]))
     seq = {p["id"]: p["sequence"] for p in S5.annotated_proteins(a.genbank)}
+    seq_all = dict(seq)          # every protein, including any over the predictor's length cap
     idx = {r["id"]: i for i, r in enumerate(rows)}
     classes = ("holin", "endolysin", "spanin")
     cand = {}
@@ -145,19 +146,25 @@ def main():
     # an 80%-identical relative at full coverage among crAss-like phage PF01832 lysins that were in UniProt all
     # along, so that miss was a coverage gap; its holin gp095 sits at 37.5% to any known holin, which is a real
     # novel-family call. Identity is reported with the coverage floor applied, never without.
-    nn = {}
-    try:
-        CL = importlib.import_module("03_cluster")           # pyopal; verification-only, never needed to predict
+    def nearest(ids):
+        """max identity to each class's training positives, at or above the coverage floor, per id."""
+        res = {}
+        try:
+            CL = importlib.import_module("03_cluster")       # pyopal; verification-only, never needed to predict
+        except ImportError:
+            print("# pyopal not installed: skipping nearest-training-neighbour identity", file=sys.stderr)
+            return res
         for c in classes:
             tgt = sorted(tr[c])
-            for gid in cand:
+            for gid in ids:
                 best = (0.0, 0.0)
-                for ident, cov, _ in CL.align_pairs(seq[gid], tgt):
+                for ident, cov, _ in CL.align_pairs(seq_all[gid], tgt):
                     if cov >= a.min_cov and ident > best[0]: best = (ident, cov)
-                nn.setdefault(gid, {})[c] = {"max_identity": round(best[0], 3), "coverage": round(best[1], 2),
-                                             "n_targets": len(tgt)}
-    except ImportError:
-        print("# pyopal not installed: skipping nearest-training-neighbour identity", file=sys.stderr)
+                res.setdefault(gid, {})[c] = {"max_identity": round(best[0], 3), "coverage": round(best[1], 2),
+                                              "n_targets": len(tgt)}
+        return res
+
+    nn = nearest(list(cand))
 
     out = []
     for gid in sorted(cand, key=lambda g: idx[g]):
@@ -187,9 +194,13 @@ def main():
                        "P": {c: float(r[f"P_{c}"]) for c in classes} if r else None,
                        "note": "model did not nominate this protein; lysis-domain evidence only" +
                                ("" if r else " (over the predictor's 2000-aa length cap, never scored)")})
+    for p in allp: seq_all.setdefault(p["id"], p["sequence"])
+    nn_r = nearest([x["id"] for x in rescue])
     for x in rescue:
-        topo_x = phobius({x["id"]: [p["sequence"] for p in allp if p["id"] == x["id"]][0]}).get(x["id"])
+        topo_x = phobius({x["id"]: seq_all[x["id"]]}).get(x["id"])
         x["phobius"] = topo_summary(topo_x)
+        x["nearest_training_neighbour"] = nn_r.get(x["id"])
+        x["nn_coverage_floor"] = a.min_cov
     stem = Path(a.tsv).with_suffix("")
     Path(f"{stem}_verified.json").write_text(json.dumps({"model_candidates": out, "domain_rescue": rescue}, indent=1))
     if rescue:

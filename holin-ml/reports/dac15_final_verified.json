@@ -1,0 +1,794 @@
+{
+ "model_candidates": [
+  {
+   "id": "KNU90_gp004",
+   "index": 3,
+   "start": 1337,
+   "strand": "-",
+   "length": 50,
+   "product": "hypothetical protein",
+   "P": {
+    "holin": 0.0062,
+    "endolysin": 0.0005,
+    "spanin": 0.5746
+   },
+   "candidate_for": [
+    "spanin"
+   ],
+   "pfam_domains": [],
+   "phobius": {
+    "tm": null,
+    "sp": null,
+    "raw": "n7-18c22/23o",
+    "fields": {
+     "id": "KNU90_gp004",
+     "length": 50,
+     "transmembrane_count": 0,
+     "signal_peptide": true,
+     "cleavage_site": 22,
+     "topology": "n7-18c22/23o",
+     "features": [
+      {
+       "label": "n",
+       "start": 1,
+       "stop": 6
+      },
+      {
+       "label": "h",
+       "start": 7,
+       "stop": 18
+      },
+      {
+       "label": "c",
+       "start": 19,
+       "stop": 22
+      },
+      {
+       "label": "C",
+       "start": 23,
+       "stop": 23
+      },
+      {
+       "label": "O",
+       "start": 24,
+       "stop": 50
+      }
+     ]
+    }
+   },
+   "kd_tm_segments": 1,
+   "cterm20_charge": -3,
+   "structural_neighbours_within_3": 0,
+   "neighbour_products": [
+    "hypothetical protein",
+    "hypothetical protein",
+    "hypothetical protein",
+    "hypothetical protein",
+    "hypothetical protein",
+    "HNH endonuclease"
+   ],
+   "in_training": {
+    "holin": false,
+    "endolysin": false,
+    "spanin": false
+   },
+   "nearest_training_neighbour": {
+    "holin": {
+     "max_identity": 0.357,
+     "coverage": 0.82,
+     "n_targets": 5055
+    },
+    "endolysin": {
+     "max_identity": 0.326,
+     "coverage": 0.86,
+     "n_targets": 2788
+    },
+    "spanin": {
+     "max_identity": 0.349,
+     "coverage": 0.8,
+     "n_targets": 2160
+    }
+   },
+   "nn_coverage_floor": 0.8
+  },
+  {
+   "id": "KNU90_gp098",
+   "index": 28,
+   "start": 24573,
+   "strand": "+",
+   "length": 203,
+   "product": "hypothetical protein",
+   "P": {
+    "holin": 0.0003,
+    "endolysin": 0.0023,
+    "spanin": 0.1787
+   },
+   "candidate_for": [
+    "spanin"
+   ],
+   "pfam_domains": [],
+   "phobius": {
+    "tm": null,
+    "sp": null,
+    "raw": "o6-22i",
+    "fields": {
+     "id": "KNU90_gp098",
+     "length": 203,
+     "transmembrane_count": 1,
+     "signal_peptide": false,
+     "cleavage_site": null,
+     "topology": "o6-22i",
+     "features": [
+      {
+       "label": "o",
+       "start": 1,
+       "stop": 5
+      },
+      {
+       "label": "M",
+       "start": 6,
+       "stop": 22
+      },
+      {
+       "label": "i",
+       "start": 23,
+       "stop": 203
+      }
+     ]
+    }
+   },
+   "kd_tm_segments": 1,
+   "cterm20_charge": 2,
+   "structural_neighbours_within_3": 2,
+   "neighbour_products": [
+    "virion structural protein",
+    "virion structural protein",
+    "hypothetical protein",
+    "hypothetical protein",
+    "hypothetical protein",
+    "hypothetical protein"
+   ],
+   "in_training": {
+    "holin": false,
+    "endolysin": false,
+    "spanin": false
+   },
+   "nearest_training_neighbour": {
+    "holin": {
+     "max_identity": 0.364,
+     "coverage": 0.88,
+     "n_targets": 5055
+    },
+    "endolysin": {
+     "max_identity": 0.269,
+     "coverage": 0.8,
+     "n_targets": 2788
+    },
+    "spanin": {
+     "max_identity": 0.314,
+     "coverage": 0.95,
+     "n_targets": 2160
+    }
+   },
+   "nn_coverage_floor": 0.8
+  },
+  {
+   "id": "KNU90_gp095",
+   "index": 31,
+   "start": 25829,
+   "strand": "+",
+   "length": 133,
+   "product": "hypothetical protein",
+   "P": {
+    "holin": 0.9664,
+    "endolysin": 0.0003,
+    "spanin": 0.141
+   },
+   "candidate_for": [
+    "holin"
+   ],
+   "pfam_domains": [],
+   "phobius": {
+    "tm": null,
+    "sp": null,
+    "raw": "o6-25i",
+    "fields": {
+     "id": "KNU90_gp095",
+     "length": 133,
+     "transmembrane_count": 1,
+     "signal_peptide": false,
+     "cleavage_site": null,
+     "topology": "o6-25i",
+     "features": [
+      {
+       "label": "o",
+       "start": 1,
+       "stop": 5
+      },
+      {
+       "label": "M",
+       "start": 6,
+       "stop": 25
+      },
+      {
+       "label": "i",
+       "start": 26,
+       "stop": 133
+      }
+     ]
+    }
+   },
+   "kd_tm_segments": 1,
+   "cterm20_charge": -1,
+   "structural_neighbours_within_3": 0,
+   "neighbour_products": [
+    "hypothetical protein",
+    "hypothetical protein",
+    "hypothetical protein",
+    "hypothetical protein",
+    "hypothetical protein",
+    "hypothetical protein"
+   ],
+   "in_training": {
+    "holin": false,
+    "endolysin": false,
+    "spanin": false
+   },
+   "nearest_training_neighbour": {
+    "holin": {
+     "max_identity": 0.375,
+     "coverage": 0.86,
+     "n_targets": 5055
+    },
+    "endolysin": {
+     "max_identity": 0.287,
+     "coverage": 0.89,
+     "n_targets": 2788
+    },
+    "spanin": {
+     "max_identity": 0.333,
+     "coverage": 0.81,
+     "n_targets": 2160
+    }
+   },
+   "nn_coverage_floor": 0.8
+  },
+  {
+   "id": "KNU90_gp080",
+   "index": 46,
+   "start": 41176,
+   "strand": "+",
+   "length": 832,
+   "product": "hypothetical protein",
+   "P": {
+    "holin": 0.0001,
+    "endolysin": 0.8385,
+    "spanin": 0.0013
+   },
+   "candidate_for": [
+    "endolysin"
+   ],
+   "pfam_domains": [],
+   "phobius": {
+    "tm": null,
+    "sp": null,
+    "raw": "i",
+    "fields": {
+     "id": "KNU90_gp080",
+     "length": 832,
+     "transmembrane_count": 0,
+     "signal_peptide": false,
+     "cleavage_site": null,
+     "topology": "i",
+     "features": [
+      {
+       "label": "O",
+       "start": 1,
+       "stop": 832
+      }
+     ]
+    }
+   },
+   "kd_tm_segments": 1,
+   "cterm20_charge": 6,
+   "structural_neighbours_within_3": 1,
+   "neighbour_products": [
+    "hypothetical protein",
+    "hypothetical protein",
+    "virion structural protein",
+    "hypothetical protein",
+    "hypothetical protein",
+    "hypothetical protein"
+   ],
+   "in_training": {
+    "holin": false,
+    "endolysin": false,
+    "spanin": false
+   },
+   "nearest_training_neighbour": {
+    "holin": {
+     "max_identity": 0.368,
+     "coverage": 0.91,
+     "n_targets": 5055
+    },
+    "endolysin": {
+     "max_identity": 0.395,
+     "coverage": 0.92,
+     "n_targets": 2788
+    },
+    "spanin": {
+     "max_identity": 0.348,
+     "coverage": 0.92,
+     "n_targets": 2160
+    }
+   },
+   "nn_coverage_floor": 0.8
+  },
+  {
+   "id": "KNU90_gp079",
+   "index": 47,
+   "start": 43678,
+   "strand": "+",
+   "length": 455,
+   "product": "hypothetical protein",
+   "P": {
+    "holin": 0.0003,
+    "endolysin": 0.0873,
+    "spanin": 0.0019
+   },
+   "candidate_for": [
+    "endolysin"
+   ],
+   "pfam_domains": [],
+   "phobius": {
+    "tm": null,
+    "sp": null,
+    "raw": "i",
+    "fields": {
+     "id": "KNU90_gp079",
+     "length": 455,
+     "transmembrane_count": 0,
+     "signal_peptide": false,
+     "cleavage_site": null,
+     "topology": "i",
+     "features": [
+      {
+       "label": "O",
+       "start": 1,
+       "stop": 455
+      }
+     ]
+    }
+   },
+   "kd_tm_segments": 0,
+   "cterm20_charge": -4,
+   "structural_neighbours_within_3": 1,
+   "neighbour_products": [
+    "hypothetical protein",
+    "virion structural protein",
+    "hypothetical protein",
+    "hypothetical protein",
+    "hypothetical protein",
+    "hypothetical protein"
+   ],
+   "in_training": {
+    "holin": false,
+    "endolysin": false,
+    "spanin": false
+   },
+   "nearest_training_neighbour": {
+    "holin": {
+     "max_identity": 0.379,
+     "coverage": 0.82,
+     "n_targets": 5055
+    },
+    "endolysin": {
+     "max_identity": 0.303,
+     "coverage": 0.95,
+     "n_targets": 2788
+    },
+    "spanin": {
+     "max_identity": 0.333,
+     "coverage": 0.84,
+     "n_targets": 2160
+    }
+   },
+   "nn_coverage_floor": 0.8
+  },
+  {
+   "id": "KNU90_gp077",
+   "index": 48,
+   "start": 51785,
+   "strand": "-",
+   "length": 1369,
+   "product": "hypothetical protein",
+   "P": {
+    "holin": 0.0001,
+    "endolysin": 0.1728,
+    "spanin": 0.0011
+   },
+   "candidate_for": [
+    "endolysin"
+   ],
+   "pfam_domains": [],
+   "phobius": {
+    "tm": null,
+    "sp": null,
+    "raw": "i",
+    "fields": {
+     "id": "KNU90_gp077",
+     "length": 1369,
+     "transmembrane_count": 0,
+     "signal_peptide": false,
+     "cleavage_site": null,
+     "topology": "i",
+     "features": [
+      {
+       "label": "O",
+       "start": 1,
+       "stop": 1369
+      }
+     ]
+    }
+   },
+   "kd_tm_segments": 0,
+   "cterm20_charge": 2,
+   "structural_neighbours_within_3": 1,
+   "neighbour_products": [
+    "virion structural protein",
+    "hypothetical protein",
+    "hypothetical protein",
+    "hypothetical protein",
+    "hypothetical protein",
+    "hypothetical protein"
+   ],
+   "in_training": {
+    "holin": false,
+    "endolysin": false,
+    "spanin": false
+   },
+   "nearest_training_neighbour": {
+    "holin": {
+     "max_identity": 0.407,
+     "coverage": 0.86,
+     "n_targets": 5055
+    },
+    "endolysin": {
+     "max_identity": 0.333,
+     "coverage": 0.9,
+     "n_targets": 2788
+    },
+    "spanin": {
+     "max_identity": 0.324,
+     "coverage": 0.81,
+     "n_targets": 2160
+    }
+   },
+   "nn_coverage_floor": 0.8
+  },
+  {
+   "id": "KNU90_gp018",
+   "index": 106,
+   "start": 95763,
+   "strand": "-",
+   "length": 27,
+   "product": "hypothetical protein",
+   "P": {
+    "holin": 0.068,
+    "endolysin": 0.0033,
+    "spanin": 0.0045
+   },
+   "candidate_for": [
+    "holin"
+   ],
+   "pfam_domains": [],
+   "phobius": {
+    "tm": null,
+    "sp": null,
+    "raw": "i",
+    "fields": {
+     "id": "KNU90_gp018",
+     "length": 27,
+     "transmembrane_count": 0,
+     "signal_peptide": false,
+     "cleavage_site": null,
+     "topology": "i",
+     "features": [
+      {
+       "label": "O",
+       "start": 1,
+       "stop": 27
+      }
+     ]
+    }
+   },
+   "kd_tm_segments": 0,
+   "cterm20_charge": -2,
+   "structural_neighbours_within_3": 0,
+   "neighbour_products": [
+    "hypothetical protein",
+    "hypothetical protein",
+    "hypothetical protein",
+    "hypothetical protein",
+    "hypothetical protein",
+    "hypothetical protein"
+   ],
+   "in_training": {
+    "holin": false,
+    "endolysin": false,
+    "spanin": false
+   },
+   "nearest_training_neighbour": {
+    "holin": {
+     "max_identity": 0.462,
+     "coverage": 0.89,
+     "n_targets": 5055
+    },
+    "endolysin": {
+     "max_identity": 0.481,
+     "coverage": 0.93,
+     "n_targets": 2788
+    },
+    "spanin": {
+     "max_identity": 0.409,
+     "coverage": 0.81,
+     "n_targets": 2160
+    }
+   },
+   "nn_coverage_floor": 0.8
+  },
+  {
+   "id": "KNU90_gp012",
+   "index": 112,
+   "start": 97466,
+   "strand": "-",
+   "length": 31,
+   "product": "hypothetical protein",
+   "P": {
+    "holin": 0.7276,
+    "endolysin": 0.0003,
+    "spanin": 0.0011
+   },
+   "candidate_for": [
+    "holin"
+   ],
+   "pfam_domains": [],
+   "phobius": {
+    "tm": null,
+    "sp": null,
+    "raw": "o6-21i",
+    "fields": {
+     "id": "KNU90_gp012",
+     "length": 31,
+     "transmembrane_count": 1,
+     "signal_peptide": false,
+     "cleavage_site": null,
+     "topology": "o6-21i",
+     "features": [
+      {
+       "label": "o",
+       "start": 1,
+       "stop": 5
+      },
+      {
+       "label": "M",
+       "start": 6,
+       "stop": 21
+      },
+      {
+       "label": "i",
+       "start": 22,
+       "stop": 31
+      }
+     ]
+    }
+   },
+   "kd_tm_segments": 1,
+   "cterm20_charge": 2,
+   "structural_neighbours_within_3": 0,
+   "neighbour_products": [
+    "hypothetical protein",
+    "hypothetical protein",
+    "hypothetical protein",
+    "hypothetical protein",
+    "hypothetical protein",
+    "hypothetical protein"
+   ],
+   "in_training": {
+    "holin": false,
+    "endolysin": false,
+    "spanin": false
+   },
+   "nearest_training_neighbour": {
+    "holin": {
+     "max_identity": 0.467,
+     "coverage": 0.87,
+     "n_targets": 5055
+    },
+    "endolysin": {
+     "max_identity": 0.4,
+     "coverage": 0.81,
+     "n_targets": 2788
+    },
+    "spanin": {
+     "max_identity": 0.462,
+     "coverage": 0.84,
+     "n_targets": 2160
+    }
+   },
+   "nn_coverage_floor": 0.8
+  },
+  {
+   "id": "KNU90_gp008",
+   "index": 116,
+   "start": 98989,
+   "strand": "-",
+   "length": 50,
+   "product": "hypothetical protein",
+   "P": {
+    "holin": 0.0062,
+    "endolysin": 0.0005,
+    "spanin": 0.5746
+   },
+   "candidate_for": [
+    "spanin"
+   ],
+   "pfam_domains": [],
+   "phobius": {
+    "tm": null,
+    "sp": null,
+    "raw": "n7-18c22/23o",
+    "fields": {
+     "id": "KNU90_gp008",
+     "length": 50,
+     "transmembrane_count": 0,
+     "signal_peptide": true,
+     "cleavage_site": 22,
+     "topology": "n7-18c22/23o",
+     "features": [
+      {
+       "label": "n",
+       "start": 1,
+       "stop": 6
+      },
+      {
+       "label": "h",
+       "start": 7,
+       "stop": 18
+      },
+      {
+       "label": "c",
+       "start": 19,
+       "stop": 22
+      },
+      {
+       "label": "C",
+       "start": 23,
+       "stop": 23
+      },
+      {
+       "label": "O",
+       "start": 24,
+       "stop": 50
+      }
+     ]
+    }
+   },
+   "kd_tm_segments": 1,
+   "cterm20_charge": -3,
+   "structural_neighbours_within_3": 0,
+   "neighbour_products": [
+    "hypothetical protein",
+    "hypothetical protein",
+    "hypothetical protein",
+    "hypothetical protein"
+   ],
+   "in_training": {
+    "holin": false,
+    "endolysin": false,
+    "spanin": false
+   },
+   "nearest_training_neighbour": {
+    "holin": {
+     "max_identity": 0.357,
+     "coverage": 0.82,
+     "n_targets": 5055
+    },
+    "endolysin": {
+     "max_identity": 0.326,
+     "coverage": 0.86,
+     "n_targets": 2788
+    },
+    "spanin": {
+     "max_identity": 0.349,
+     "coverage": 0.8,
+     "n_targets": 2160
+    }
+   },
+   "nn_coverage_floor": 0.8
+  }
+ ],
+ "domain_rescue": [
+  {
+   "id": "KNU90_gp039",
+   "start": 86545,
+   "strand": "-",
+   "length": 157,
+   "product": "hypothetical protein",
+   "pfam_domains": [
+    {
+     "pfam": "PF01832",
+     "name": "Glucosaminidase",
+     "class": "endolysin",
+     "from": 53,
+     "to": 156,
+     "ievalue": 8.72e-17
+    }
+   ],
+   "P": {
+    "holin": 0.0005,
+    "endolysin": 0.0059,
+    "spanin": 0.0024
+   },
+   "note": "model did not nominate this protein; lysis-domain evidence only",
+   "phobius": {
+    "tm": null,
+    "sp": null,
+    "raw": "n8-23c27/28o",
+    "fields": {
+     "id": "KNU90_gp039",
+     "length": 157,
+     "transmembrane_count": 0,
+     "signal_peptide": true,
+     "cleavage_site": 27,
+     "topology": "n8-23c27/28o",
+     "features": [
+      {
+       "label": "n",
+       "start": 1,
+       "stop": 7
+      },
+      {
+       "label": "h",
+       "start": 8,
+       "stop": 23
+      },
+      {
+       "label": "c",
+       "start": 24,
+       "stop": 27
+      },
+      {
+       "label": "C",
+       "start": 28,
+       "stop": 28
+      },
+      {
+       "label": "O",
+       "start": 29,
+       "stop": 157
+      }
+     ]
+    }
+   },
+   "nearest_training_neighbour": {
+    "holin": {
+     "max_identity": 0.379,
+     "coverage": 0.91,
+     "n_targets": 5055
+    },
+    "endolysin": {
+     "max_identity": 0.803,
+     "coverage": 1.0,
+     "n_targets": 2788
+    },
+    "spanin": {
+     "max_identity": 0.321,
+     "coverage": 0.84,
+     "n_targets": 2160
+    }
+   },
+   "nn_coverage_floor": 0.8
+  }
+ ]
+}
