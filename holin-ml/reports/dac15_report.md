@@ -28,7 +28,7 @@ python3 scripts/33_verify_calls.py --tsv reports/dac15_final.tsv \
 |---|---|
 | location | **86,545–87,018 (−)**, 157 aa |
 | domain | **PF01832 Glucosaminidase (GH73)**, aa 53–156, **E = 8.7e-17** — the *only* lysis domain in 118 proteins vs 69 lysis HMMs |
-| topology | Phobius signal peptide, cleavage 27/28 (`n8-23c27/28o`), 0 TM → N-terminally membrane-targeted; **export route uncertain, see below** |
+| topology | **three predictors disagree** — Phobius SP (cleave 27/28), DeepTMHMM SP (signal 1–23, 0 TM), **SignalP 6.0 says NO signal peptide (OTHER 0.847)**. Export route unresolved; see below |
 | nearest training relative | endolysin **0.803 identity at coverage 1.00** (of 2,788) vs holin 0.379, spanin 0.321 |
 | model score | P(endolysin) = **0.0059**, **rank 25 of 118** |
 | context | among nucleotide/NAD-salvage genes (gp038 ribose-phosphate pyrophosphokinase, gp036 nicotinamide phosphoribosyltransferase) |
@@ -41,8 +41,23 @@ UniProt — from crAss-like phages (`uncultured phage cr126_1`, `uncultured phag
 This was never a novel-family problem. It was a **training-data coverage gap**, and adding that family still only
 moved the score to 0.107 (see `retrain_v2_report.md`), which is why endolysin detection should be domain-driven.
 
-*Caveat 1 — the N-terminus is NOT cleanly a cleaved signal peptide.* Inspecting it by hand (`MKQRFINILLVIAIVALG
-VLVFLNHEAIEQC…`) rather than trusting the Phobius label:
+*Caveat 1 — the N-terminus is genuinely ambiguous, and three predictors disagree.*
+
+| method | call on gp039 |
+|---|---|
+| Phobius | signal peptide, cleaved 27/28, 0 TM |
+| DeepTMHMM | class **SP**: signal 1–23, outside 24–157, **0 TMRs** |
+| **SignalP 6.0** | **OTHER 0.847** — i.e. *no* signal peptide. SP(Sec/SPI) only 0.143, LIPO 0.009, TAT 0.0004. No cleavage site |
+
+SignalP 6.0 is the dedicated signal-peptide model and it declines the call, while DeepTMHMM — primarily a
+*topology* model, whose SP-vs-signal-anchor axis is its weaker one — calls SP with zero TM. A hydrophobic
+N-terminal segment that is neither a confident signal peptide nor a TM helix is the signature of a borderline
+region: a weak/non-canonical SP, or a signal anchor one tool is mislabelling. **It cannot be settled by
+prediction** and needs an experiment (e.g. N-terminal sequencing of the mature protein, or a PhoA/LacZ fusion).
+
+Raw outputs are in `reports/topology_dac15/`; reproduce with `scripts/36_external_topology.py`.
+
+Hand-inspecting the same region (`MKQRFINILLVIAIVALGVLVFLNHEAIEQC…`) is consistent with that ambiguity:
 - h-region (8–23) `ILLVIAIVALGVLVFLN`, mean Kyte–Doolittle **+3.05** — strongly hydrophobic, so a genuine signal
   peptide *or* a membrane anchor;
 - n-region charge **+2**, canonical;
@@ -52,8 +67,9 @@ VLVFLNHEAIEQC…`) rather than trusting the Phobius label:
   Gly/Ala-rich, whereas this is +3.05 with only 18% G+A;
 - Cys31 is **not** in a lipobox (`I-E-Q-C` fails `[LVI][ASTVI][GAS]C`), so not a lipoprotein.
 
-So gp039 is N-terminally membrane-targeted, but whether it is cleaved and released, signal-anchored, or retained
-is unresolved by prediction. Calling it "secreted" overstates the evidence; that wording has been corrected here.
+So gp039 is N-terminally membrane-targeted, but whether it is cleaved and released, signal-anchored or retained
+is **unresolved**. Calling it "secreted" overstates the evidence. The one thing all three methods agree on is
+that it carries **no transmembrane helix**, so it is not an integral membrane protein.
 
 *Caveat 2:* GH73 domains also occur in non-lytic proteins (FlgJ, bacterial autolysins). What argues for lysis is
 the membrane-targeting N-terminus plus its position outside the structural module — not the domain alone.
@@ -68,9 +84,18 @@ the membrane-targeting N-terminus plus its position outside the structural modul
 | nearest training relative | holin **0.375** at coverage ≥0.8 (of 5,055) — no close relative |
 | domain | none of the 38 holin Pfam families hits |
 
-Hand-checked topology supports the call: TM 6–25 mean Kyte–Doolittle **+1.70** (moderate, as holin TMs tend to
-be), a basic **RRK** cluster immediately C-terminal to the TM (the positive-inside rule), N-out/C-in orientation,
-and a mixed/acidic C-terminal tail. That is a class III / pinholin-like single-TM architecture.
+**Topology confirmed by two independent methods**, which is as good as prediction gets here:
+
+| method | call on gp095 |
+|---|---|
+| Phobius | 1 TM, `o6-25i` |
+| DeepTMHMM | class **TM**: outside 1–5, **TMhelix 6–24**, inside 25–133 |
+| SignalP 6.0 | OTHER 1.000 — no signal peptide (as expected for a TM protein) |
+
+Agreeing to within one residue on a single TM with N-out/C-in orientation. Hand-checked features support it too:
+TM mean Kyte–Doolittle **+1.70** (moderate, as holin TMs tend to be), a basic **RRK** cluster immediately
+C-terminal to the TM (the positive-inside rule), and a mixed/acidic C-terminal tail. That is a class III /
+pinholin-like single-TM architecture.
 
 Right size, right topology, top-ranked, and **37.5% max identity to any of 5,055 known holins** — so this is a real
 novel-family call the model made unaided. It is the one result here where the ML did the work. Unconfirmed by
@@ -79,12 +104,22 @@ family or domain evidence, and not adjacent to gp039.
 ### Spanin — **gp004 / gp008**, weak and unresolved
 
 Identical 50-aa copies at **1,337–1,489 (−)** and **98,989–99,141 (−)** — the terminal repeat, so one gene in two
-copies. P(spanin) = **0.5746** (ranks 1–2). Phobius: signal peptide cleaved at 22, 0 TM. **No o-spanin lipobox**
-(`[LVI][ASTVI][GAS]C`), no i-spanin partner, max identity 0.349 to 2,160 known spanins.
+copies. P(spanin) = **0.5746** (ranks 1–2), max identity 0.349 to 2,160 known spanins.
 
-Treat as unresolved. Spanins are expected in a Gram-negative host, but crAss-like phages may use an unrecognised
-equivalent. Note the shipped spanin v2 model scores this *lower* than v1 did (0.865 → 0.575) — being less
-confident about a lipobox-less call is the correct direction.
+**SignalP 6.0 argues against the spanin call, and this is the decisive test.** It confirms a genuine Sec signal
+peptide — SP(Sec/SPI) **0.946**, cleavage site **20–21** (Pr 0.877), n-region 1–2, h-region 3–17, c-region 18–20 —
+but scores **LIPO (Sec/SPII) at just 0.042**. o-spanins are *lipoproteins*: they are anchored in the outer
+membrane through a lipidated cysteine, which requires the SPII route. A protein with SPI ≈ 0.95 and SPII ≈ 0.04 is
+a **secreted protein, not an outer-membrane lipoprotein**, which is independently consistent with the absent
+lipobox (`I-E-Q-C` fails `[LVI][ASTVI][GAS]C`). DeepTMHMM agrees it is SP with 0 TM, so it is not an i-spanin
+either (those are inner-membrane, single-TM).
+
+**Downgraded from "weak" to "probably not a spanin."** DAC15's outer-membrane disruption mechanism is therefore
+unidentified — the most interesting open question in this genome, given that the i-spanin family we added to
+training (PF03245, 311 members) still hits nothing here.
+
+Worth noting the shipped spanin v2 model already moved in the right direction, scoring this *lower* than v1 did
+(0.865 → 0.575) — less confident about a call the topology now contradicts.
 
 ### Rejected: gp080
 
