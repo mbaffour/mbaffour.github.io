@@ -1,0 +1,414 @@
+{
+ "source": "/tmp/claude-0/-home-user-mbaffour-github-io/ae54e614-94be-5086-856f-f7da55d4495a/scratchpad/panel.txt",
+ "threshold": 0.5,
+ "cassette_window": 6,
+ "summary": {
+  "genomes_scanned": 12,
+  "genomes_with_a_detected_cassette": 5,
+  "cassette_rate": 0.417,
+  "actino_genomes": 3,
+  "actino_with_cassette": 0,
+  "per_class_recovery": {
+   "holin": {
+    "genomes_with_an_annotated_gene": 8,
+    "recovered_at_threshold": 8,
+    "recovery_rate": 1.0,
+    "top_scoring_protein_is_annotated_that_class": 6,
+    "of_recovered_how_many_in_sample": 4
+   },
+   "endolysin": {
+    "genomes_with_an_annotated_gene": 10,
+    "recovered_at_threshold": 10,
+    "recovery_rate": 1.0,
+    "top_scoring_protein_is_annotated_that_class": 10,
+    "of_recovered_how_many_in_sample": 4
+   },
+   "spanin": {
+    "genomes_with_an_annotated_gene": 5,
+    "recovered_at_threshold": 5,
+    "recovery_rate": 1.0,
+    "top_scoring_protein_is_annotated_that_class": 5,
+    "of_recovered_how_many_in_sample": 5
+   }
+  },
+  "high_conf_unannotated_calls": 22
+ },
+ "caveat": "pool endolysin/spanin annotations were partly used in training, so their recovery is partly in-sample (see of_recovered_how_many_in_sample); holins were not drawn from the pool",
+ "novel_calls": [
+  {
+   "accession": "NC_009993.1",
+   "class": "holin",
+   "P": 1.0,
+   "gene": "",
+   "product": "gp33",
+   "length": 136
+  },
+  {
+   "accession": "NC_009993.1",
+   "class": "holin",
+   "P": 0.999,
+   "gene": "",
+   "product": "gp34",
+   "length": 106
+  },
+  {
+   "accession": "NC_009799.1",
+   "class": "holin",
+   "P": 0.999,
+   "gene": "ORF27",
+   "product": "gp27",
+   "length": 139
+  },
+  {
+   "accession": "NC_019405.1",
+   "class": "holin",
+   "P": 0.998,
+   "gene": "",
+   "product": "hypothetical protein",
+   "length": 89
+  },
+  {
+   "accession": "NC_001978.1",
+   "class": "holin",
+   "P": 0.996,
+   "gene": "",
+   "product": "gp29 protein",
+   "length": 78
+  },
+  {
+   "accession": "NC_001978.1",
+   "class": "endolysin",
+   "P": 0.996,
+   "gene": "",
+   "product": "gp50 protein",
+   "length": 362
+  },
+  {
+   "accession": "NC_001978.1",
+   "class": "holin",
+   "P": 0.994,
+   "gene": "",
+   "product": "gp48 protein",
+   "length": 90
+  },
+  {
+   "accession": "NC_009799.1",
+   "class": "holin",
+   "P": 0.993,
+   "gene": "ORF28",
+   "product": "gp28",
+   "length": 138
+  },
+  {
+   "accession": "NC_003387.1",
+   "class": "holin",
+   "P": 0.991,
+   "gene": "",
+   "product": "hypothetical protein",
+   "length": 98
+  },
+  {
+   "accession": "NC_004629.1",
+   "class": "holin",
+   "P": 0.988,
+   "gene": "",
+   "product": "PHIKZ253.1",
+   "length": 35
+  },
+  {
+   "accession": "NC_003387.1",
+   "class": "holin",
+   "P": 0.984,
+   "gene": "",
+   "product": "minor tail protein",
+   "length": 139
+  },
+  {
+   "accession": "NC_009993.1",
+   "class": "endolysin",
+   "P": 0.978,
+   "gene": "",
+   "product": "gp31",
+   "length": 402
+  },
+  {
+   "accession": "NC_005282.1",
+   "class": "holin",
+   "P": 0.971,
+   "gene": "",
+   "product": "Phage conserved protein",
+   "length": 64
+  },
+  {
+   "accession": "NC_004629.1",
+   "class": "holin",
+   "P": 0.969,
+   "gene": "",
+   "product": "PHIKZ293.2",
+   "length": 45
+  },
+  {
+   "accession": "NC_005282.1",
+   "class": "holin",
+   "P": 0.967,
+   "gene": "",
+   "product": "hypothetical membrane protein",
+   "length": 68
+  },
+  {
+   "accession": "NC_009993.1",
+   "class": "endolysin",
+   "P": 0.96,
+   "gene": "",
+   "product": "gp32",
+   "length": 411
+  },
+  {
+   "accession": "NC_005282.1",
+   "class": "spanin",
+   "P": 0.955,
+   "gene": "",
+   "product": "hypothetical protein",
+   "length": 85
+  },
+  {
+   "accession": "NC_001901.1",
+   "class": "spanin",
+   "P": 0.947,
+   "gene": "gene 24",
+   "product": "Cor superinfection exclusion protein",
+   "length": 78
+  },
+  {
+   "accession": "NC_009936.1",
+   "class": "spanin",
+   "P": 0.915,
+   "gene": "",
+   "product": "hypothetical protein",
+   "length": 149
+  },
+  {
+   "accession": "NC_004629.1",
+   "class": "holin",
+   "P": 0.909,
+   "gene": "",
+   "product": "PHIKZ107",
+   "length": 105
+  },
+  {
+   "accession": "NC_019405.1",
+   "class": "spanin",
+   "P": 0.909,
+   "gene": "",
+   "product": "lipoprotein",
+   "length": 142
+  },
+  {
+   "accession": "NC_004629.1",
+   "class": "holin",
+   "P": 0.901,
+   "gene": "",
+   "product": "virion structural protein",
+   "length": 131
+  }
+ ],
+ "per_genome": [
+  {
+   "accession": "NC_001335.1",
+   "n_proteins": 90,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_003387.1",
+   "n_proteins": 89,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 3,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_009993.1",
+   "n_proteins": 79,
+   "cassettes": 0,
+   "class": {}
+  },
+  {
+   "accession": "NC_001978.1",
+   "n_proteins": 55,
+   "cassettes": 0,
+   "class": {}
+  },
+  {
+   "accession": "NC_009799.1",
+   "n_proteins": 55,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": false
+    },
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_002747.1",
+   "n_proteins": 56,
+   "cassettes": 0,
+   "class": {
+    "holin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_004629.1",
+   "n_proteins": 369,
+   "cassettes": 1,
+   "class": {
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "spanin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_009936.1",
+   "n_proteins": 57,
+   "cassettes": 1,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 3,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "spanin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_003298.1",
+   "n_proteins": 55,
+   "cassettes": 1,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "spanin": {
+     "annotated": 2,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_001901.1",
+   "n_proteins": 60,
+   "cassettes": 1,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_005282.1",
+   "n_proteins": 127,
+   "cassettes": 0,
+   "class": {
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "spanin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  },
+  {
+   "accession": "NC_019405.1",
+   "n_proteins": 338,
+   "cassettes": 1,
+   "class": {
+    "holin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": false
+    },
+    "endolysin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    },
+    "spanin": {
+     "annotated": 1,
+     "recovered": true,
+     "top_is_annotated": true
+    }
+   }
+  }
+ ]
+}
