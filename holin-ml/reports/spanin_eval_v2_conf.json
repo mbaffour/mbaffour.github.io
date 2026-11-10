@@ -1,0 +1,60 @@
+{
+  "class": "spanin",
+  "n_atlas_genomes": 9,
+  "n_annotated_in_atlas": 15,
+  "family_removal": {
+    "genome_AP": 0.7271,
+    "CI95_by_genome": [
+      0.5325,
+      1.0
+    ],
+    "at_thresholds": {
+      "0.5": {
+        "called": 12,
+        "true": 9,
+        "precision": 0.75,
+        "recall": 0.6
+      },
+      "0.9": {
+        "called": 7,
+        "true": 6,
+        "precision": 0.857,
+        "recall": 0.4
+      }
+    },
+    "top1_per_genome": 0.778
+  },
+  "sequence_removal": {
+    "genome_AP": 0.8709,
+    "CI95_by_genome": [
+      0.6615,
+      1.0
+    ],
+    "at_thresholds": {
+      "0.5": {
+        "called": 19,
+        "true": 15,
+        "precision": 0.789,
+        "recall": 1.0
+      },
+      "0.9": {
+        "called": 11,
+        "true": 10,
+        "precision": 0.909,
+        "recall": 0.667
+      }
+    },
+    "top1_per_genome": 0.889
+  },
+  "gold_holdout": {
+    "AP": 0.9263,
+    "n_pos": 516,
+    "n_neg": 4176,
+    "note": "class gold-holdout clusters vs held-out negative sample; this model trains on all"
+  },
+  "config": {
+    "confusable_negatives": 156,
+    "train_positives": 1644,
+    "train_negatives": 16708
+  }
+}
