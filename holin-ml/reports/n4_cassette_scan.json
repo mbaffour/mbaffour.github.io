@@ -1,0 +1,1254 @@
+{
+ "threshold": 0.5,
+ "cassette_window": 6,
+ "lambda_validation": null,
+ "genomes": {
+  "NC_008720.1": {
+   "organism": "NC_008720.1",
+   "n_proteins": 72,
+   "top": {
+    "holin": {
+     "gene": "EPNV4_gp63",
+     "id": "EPNV4_gp63",
+     "product": "gp63",
+     "P": 0.9827095903058347,
+     "index": 62
+    },
+    "endolysin": {
+     "gene": "EPNV4_gp61",
+     "id": "EPNV4_gp61",
+     "product": "endolysin",
+     "P": 0.976279052144139,
+     "index": 60
+    },
+    "spanin": {
+     "gene": "EPNV4_gp60",
+     "id": "EPNV4_gp60",
+     "product": "Rz-like spanin",
+     "P": 0.9826588661635073,
+     "index": 59
+    }
+   },
+   "cassettes": [
+    {
+     "gene_index_range": [
+      55,
+      65
+     ],
+     "members": [
+      {
+       "index": 59,
+       "gene": "EPNV4_gp60",
+       "id": "EPNV4_gp60",
+       "product": "Rz-like spanin",
+       "P": {
+        "holin": 0.00012321759932172412,
+        "endolysin": 0.0004762613062976066,
+        "spanin": 0.9826588661635073
+       },
+       "classes_called": [
+        "spanin"
+       ]
+      },
+      {
+       "index": 60,
+       "gene": "EPNV4_gp61",
+       "id": "EPNV4_gp61",
+       "product": "endolysin",
+       "P": {
+        "holin": 9.109437913711269e-05,
+        "endolysin": 0.976279052144139,
+        "spanin": 0.001151132255331056
+       },
+       "classes_called": [
+        "endolysin"
+       ]
+      },
+      {
+       "index": 61,
+       "gene": "EPNV4_gp62",
+       "id": "EPNV4_gp62",
+       "product": "holin",
+       "P": {
+        "holin": 0.7496687681995273,
+        "endolysin": 0.0006739539979750726,
+        "spanin": 0.0010014159655626835
+       },
+       "classes_called": [
+        "holin"
+       ]
+      },
+      {
+       "index": 62,
+       "gene": "EPNV4_gp63",
+       "id": "EPNV4_gp63",
+       "product": "gp63",
+       "P": {
+        "holin": 0.9827095903058347,
+        "endolysin": 0.00029951536530469555,
+        "spanin": 0.0015392429495975305
+       },
+       "classes_called": [
+        "holin"
+       ]
+      }
+     ]
+    }
+   ],
+   "proteins": [
+    {
+     "index": 0,
+     "id": "EPNV4_gp01",
+     "gene": "",
+     "product": "gp1",
+     "start": 154,
+     "stop": 480,
+     "strand": "+",
+     "length": 108,
+     "P": {
+      "holin": 0.005491688574491548,
+      "endolysin": 0.0024370055702144988,
+      "spanin": 0.005303882194215635
+     },
+     "call": "none"
+    },
+    {
+     "index": 1,
+     "id": "EPNV4_gp02",
+     "gene": "",
+     "product": "gp2",
+     "start": 586,
+     "stop": 1071,
+     "strand": "+",
+     "length": 161,
+     "P": {
+      "holin": 0.0003970096939042244,
+      "endolysin": 0.005560257746918707,
+      "spanin": 0.20583310938565214
+     },
+     "call": "none"
+    },
+    {
+     "index": 2,
+     "id": "EPNV4_gp03",
+     "gene": "",
+     "product": "gp3",
+     "start": 1214,
+     "stop": 1528,
+     "strand": "+",
+     "length": 104,
+     "P": {
+      "holin": 9.171290044561759e-06,
+      "endolysin": 0.005014610060482488,
+      "spanin": 0.0013522091181630198
+     },
+     "call": "none"
+    },
+    {
+     "index": 3,
+     "id": "EPNV4_gp04",
+     "gene": "",
+     "product": "gp4",
+     "start": 1532,
+     "stop": 1969,
+     "strand": "+",
+     "length": 145,
+     "P": {
+      "holin": 0.00012198173422079207,
+      "endolysin": 0.6135642807452273,
+      "spanin": 0.0007715012551404374
+     },
+     "call": "endolysin"
+    },
+    {
+     "index": 4,
+     "id": "EPNV4_gp05",
+     "gene": "",
+     "product": "hypothetical protein",
+     "start": 1944,
+     "stop": 2141,
+     "strand": "+",
+     "length": 65,
+     "P": {
+      "holin": 2.9459828611338554e-05,
+      "endolysin": 0.0053699213860533964,
+      "spanin": 0.002944560861743492
+     },
+     "call": "none"
+    },
+    {
+     "index": 5,
+     "id": "EPNV4_gp06",
+     "gene": "",
+     "product": "gp6",
+     "start": 2152,
+     "stop": 2310,
+     "strand": "+",
+     "length": 52,
+     "P": {
+      "holin": 3.797341887753682e-05,
+      "endolysin": 0.003166495874388871,
+      "spanin": 0.07012568375065857
+     },
+     "call": "none"
+    },
+    {
+     "index": 6,
+     "id": "EPNV4_gp07",
+     "gene": "",
+     "product": "gp7",
+     "start": 2310,
+     "stop": 2519,
+     "strand": "+",
+     "length": 69,
+     "P": {
+      "holin": 3.218587278072281e-05,
+      "endolysin": 0.003541594178568508,
+      "spanin": 0.011440641403462074
+     },
+     "call": "none"
+    },
+    {
+     "index": 7,
+     "id": "EPNV4_gp08",
+     "gene": "",
+     "product": "gp8",
+     "start": 2593,
+     "stop": 2808,
+     "strand": "+",
+     "length": 71,
+     "P": {
+      "holin": 4.488781590927207e-05,
+      "endolysin": 0.0020310484645873926,
+      "spanin": 0.001380414678864408
+     },
+     "call": "none"
+    },
+    {
+     "index": 8,
+     "id": "EPNV4_gp09",
+     "gene": "",
+     "product": "gp9",
+     "start": 2805,
+     "stop": 3119,
+     "strand": "+",
+     "length": 104,
+     "P": {
+      "holin": 8.299896908189154e-05,
+      "endolysin": 0.006022940959191367,
+      "spanin": 0.0077530517902838405
+     },
+     "call": "none"
+    },
+    {
+     "index": 9,
+     "id": "EPNV4_gp10",
+     "gene": "",
+     "product": "gp10",
+     "start": 3106,
+     "stop": 3282,
+     "strand": "+",
+     "length": 58,
+     "P": {
+      "holin": 0.0002491335709795696,
+      "endolysin": 0.0012811253453538108,
+      "spanin": 0.012022468596609064
+     },
+     "call": "none"
+    },
+    {
+     "index": 10,
+     "id": "EPNV4_gp11",
+     "gene": "",
+     "product": "gp11",
+     "start": 3282,
+     "stop": 3602,
+     "strand": "+",
+     "length": 106,
+     "P": {
+      "holin": 0.00028611813984296146,
+      "endolysin": 0.0017253916060268755,
+      "spanin": 0.0017958802863729923
+     },
+     "call": "none"
+    },
+    {
+     "index": 11,
+     "id": "EPNV4_gp12",
+     "gene": "",
+     "product": "DUF4326 domain-containing protein",
+     "start": 3605,
+     "stop": 3973,
+     "strand": "+",
+     "length": 122,
+     "P": {
+      "holin": 0.0009017572401481916,
+      "endolysin": 0.10734533864262599,
+      "spanin": 0.0032782274783196242
+     },
+     "call": "none"
+    },
+    {
+     "index": 12,
+     "id": "EPNV4_gp13",
+     "gene": "",
+     "product": "gp13",
+     "start": 3966,
+     "stop": 4151,
+     "strand": "+",
+     "length": 61,
+     "P": {
+      "holin": 2.074597757399704e-05,
+      "endolysin": 0.002766498715968855,
+      "spanin": 0.0017015783610235722
+     },
+     "call": "none"
+    },
+    {
+     "index": 13,
+     "id": "EPNV4_gp14",
+     "gene": "",
+     "product": "hypothetical protein",
+     "start": 4148,
+     "stop": 4528,
+     "strand": "+",
+     "length": 126,
+     "P": {
+      "holin": 0.0005458990710325699,
+      "endolysin": 0.016320757304281328,
+      "spanin": 0.0005409212759225734
+     },
+     "call": "none"
+    },
+    {
+     "index": 14,
+     "id": "EPNV4_gp15",
+     "gene": "",
+     "product": "RNAP1",
+     "start": 4603,
+     "stop": 5412,
+     "strand": "+",
+     "length": 269,
+     "P": {
+      "holin": 7.847371852813767e-06,
+      "endolysin": 0.0019507102098440714,
+      "spanin": 0.0006474348075339167
+     },
+     "call": "none"
+    },
+    {
+     "index": 15,
+     "id": "EPNV4_gp16",
+     "gene": "",
+     "product": "RNA polymerase",
+     "start": 5460,
+     "stop": 6674,
+     "strand": "+",
+     "length": 404,
+     "P": {
+      "holin": 5.254016025046344e-06,
+      "endolysin": 0.004833359923622926,
+      "spanin": 0.0006747116674265091
+     },
+     "call": "none"
+    },
+    {
+     "index": 16,
+     "id": "EPNV4_gp17",
+     "gene": "",
+     "product": "Hoc-like head decoration",
+     "start": 6759,
+     "stop": 7598,
+     "strand": "+",
+     "length": 279,
+     "P": {
+      "holin": 3.9178943286613584e-05,
+      "endolysin": 0.005499398926517546,
+      "spanin": 0.0007750111483311205
+     },
+     "call": "none"
+    },
+    {
+     "index": 17,
+     "id": "EPNV4_gp18",
+     "gene": "",
+     "product": "superinfection exclusion",
+     "start": 7668,
+     "stop": 7982,
+     "strand": "+",
+     "length": 104,
+     "P": {
+      "holin": 7.790492834963432e-06,
+      "endolysin": 0.0005756394039163807,
+      "spanin": 0.00039639962371632265
+     },
+     "call": "none"
+    },
+    {
+     "index": 18,
+     "id": "EPNV4_gp19",
+     "gene": "",
+     "product": "membrane protein",
+     "start": 8057,
+     "stop": 8263,
+     "strand": "+",
+     "length": 68,
+     "P": {
+      "holin": 0.006288526785369894,
+      "endolysin": 0.0002144920936643274,
+      "spanin": 0.0003058682492287479
+     },
+     "call": "none"
+    },
+    {
+     "index": 19,
+     "id": "EPNV4_gp20",
+     "gene": "",
+     "product": "lipoprotein",
+     "start": 8256,
+     "stop": 9092,
+     "strand": "+",
+     "length": 278,
+     "P": {
+      "holin": 0.0005545476533090077,
+      "endolysin": 0.012105505336625378,
+      "spanin": 0.001774618009900146
+     },
+     "call": "none"
+    },
+    {
+     "index": 20,
+     "id": "EPNV4_gp21",
+     "gene": "",
+     "product": "gp21",
+     "start": 9155,
+     "stop": 9379,
+     "strand": "+",
+     "length": 74,
+     "P": {
+      "holin": 2.425618219966848e-05,
+      "endolysin": 0.0011956286211144264,
+      "spanin": 0.008552143932638064
+     },
+     "call": "none"
+    },
+    {
+     "index": 21,
+     "id": "EPNV4_gp22",
+     "gene": "",
+     "product": "endonuclease",
+     "start": 9381,
+     "stop": 9737,
+     "strand": "+",
+     "length": 118,
+     "P": {
+      "holin": 9.052076309570085e-06,
+      "endolysin": 0.008100402229096226,
+      "spanin": 0.012646347654685733
+     },
+     "call": "none"
+    },
+    {
+     "index": 22,
+     "id": "EPNV4_gp23",
+     "gene": "",
+     "product": "gp23",
+     "start": 9738,
+     "stop": 9908,
+     "strand": "+",
+     "length": 56,
+     "P": {
+      "holin": 0.30698865329392405,
+      "endolysin": 0.0002540005000925346,
+      "spanin": 0.00029023729467177363
+     },
+     "call": "none"
+    },
+    {
+     "index": 23,
+     "id": "EPNV4_gp24",
+     "gene": "",
+     "product": "ATPase",
+     "start": 9938,
+     "stop": 10996,
+     "strand": "+",
+     "length": 352,
+     "P": {
+      "holin": 8.657949016339755e-05,
+      "endolysin": 0.0027415949895717466,
+      "spanin": 0.0005780357206012381
+     },
+     "call": "none"
+    },
+    {
+     "index": 24,
+     "id": "EPNV4_gp25",
+     "gene": "",
+     "product": "HNH endonuclease",
+     "start": 11164,
+     "stop": 12306,
+     "strand": "+",
+     "length": 380,
+     "P": {
+      "holin": 2.2202399340676882e-05,
+      "endolysin": 0.14708920454120852,
+      "spanin": 0.0005065263613059642
+     },
+     "call": "none"
+    },
+    {
+     "index": 25,
+     "id": "EPNV4_gp26",
+     "gene": "",
+     "product": "dCTP deaminase",
+     "start": 12313,
+     "stop": 12819,
+     "strand": "+",
+     "length": 168,
+     "P": {
+      "holin": 0.00011726917936099816,
+      "endolysin": 0.004769864185809617,
+      "spanin": 0.000368890262409201
+     },
+     "call": "none"
+    },
+    {
+     "index": 26,
+     "id": "EPNV4_gp27",
+     "gene": "",
+     "product": "gp27",
+     "start": 12833,
+     "stop": 13033,
+     "strand": "+",
+     "length": 66,
+     "P": {
+      "holin": 0.00030853790115506605,
+      "endolysin": 0.006699184158349789,
+      "spanin": 0.003008333907090038
+     },
+     "call": "none"
+    },
+    {
+     "index": 27,
+     "id": "EPNV4_gp28",
+     "gene": "",
+     "product": "gp28",
+     "start": 13147,
+     "stop": 13389,
+     "strand": "+",
+     "length": 80,
+     "P": {
+      "holin": 8.841823134669508e-05,
+      "endolysin": 0.022061536435262808,
+      "spanin": 0.007323431037035815
+     },
+     "call": "none"
+    },
+    {
+     "index": 28,
+     "id": "EPNV4_gp29",
+     "gene": "",
+     "product": "gp29",
+     "start": 13389,
+     "stop": 13850,
+     "strand": "+",
+     "length": 153,
+     "P": {
+      "holin": 0.000425456770253927,
+      "endolysin": 0.0028644441912954854,
+      "spanin": 0.00740119225267496
+     },
+     "call": "none"
+    },
+    {
+     "index": 29,
+     "id": "EPNV4_gp30",
+     "gene": "",
+     "product": "gp30",
+     "start": 13843,
+     "stop": 14784,
+     "strand": "+",
+     "length": 313,
+     "P": {
+      "holin": 0.00012569313356895209,
+      "endolysin": 0.04547590970592822,
+      "spanin": 0.0028669990680890325
+     },
+     "call": "none"
+    },
+    {
+     "index": 30,
+     "id": "EPNV4_gp31",
+     "gene": "",
+     "product": "gp31",
+     "start": 14882,
+     "stop": 15115,
+     "strand": "+",
+     "length": 77,
+     "P": {
+      "holin": 7.1211514651618995e-06,
+      "endolysin": 0.0030240051680725704,
+      "spanin": 0.0010754667008962993
+     },
+     "call": "none"
+    },
+    {
+     "index": 31,
+     "id": "EPNV4_gp32",
+     "gene": "",
+     "product": "gp32",
+     "start": 15108,
+     "stop": 15434,
+     "strand": "+",
+     "length": 108,
+     "P": {
+      "holin": 7.004878394357956e-05,
+      "endolysin": 0.00027762099194607835,
+      "spanin": 0.013412699168939508
+     },
+     "call": "none"
+    },
+    {
+     "index": 32,
+     "id": "EPNV4_gp33",
+     "gene": "",
+     "product": "RIIA lysis inhibitor",
+     "start": 15460,
+     "stop": 17985,
+     "strand": "+",
+     "length": 841,
+     "P": {
+      "holin": 3.719858399164983e-05,
+      "endolysin": 0.010993908114638238,
+      "spanin": 0.0006723552102289499
+     },
+     "call": "none"
+    },
+    {
+     "index": 33,
+     "id": "EPNV4_gp34",
+     "gene": "",
+     "product": "RIIB lysis inhibitor",
+     "start": 17985,
+     "stop": 20075,
+     "strand": "+",
+     "length": 696,
+     "P": {
+      "holin": 4.381321435062031e-05,
+      "endolysin": 0.00829018911116198,
+      "spanin": 0.0005925424960443195
+     },
+     "call": "none"
+    },
+    {
+     "index": 34,
+     "id": "EPNV4_gp35",
+     "gene": "",
+     "product": "gp35",
+     "start": 20143,
+     "stop": 20538,
+     "strand": "+",
+     "length": 131,
+     "P": {
+      "holin": 9.970064579887969e-05,
+      "endolysin": 0.00047846311082981027,
+      "spanin": 0.0007577744828025023
+     },
+     "call": "none"
+    },
+    {
+     "index": 35,
+     "id": "EPNV4_gp36",
+     "gene": "",
+     "product": "gp36",
+     "start": 20462,
+     "stop": 20914,
+     "strand": "+",
+     "length": 150,
+     "P": {
+      "holin": 6.195668131506813e-05,
+      "endolysin": 0.013267008407268677,
+      "spanin": 0.0006496701758709097
+     },
+     "call": "none"
+    },
+    {
+     "index": 36,
+     "id": "EPNV4_gp37",
+     "gene": "",
+     "product": "DNA helicase",
+     "start": 20957,
+     "stop": 22276,
+     "strand": "+",
+     "length": 439,
+     "P": {
+      "holin": 1.1771963880380491e-05,
+      "endolysin": 0.007645503011021622,
+      "spanin": 0.0009352667960862948
+     },
+     "call": "none"
+    },
+    {
+     "index": 37,
+     "id": "EPNV4_gp38",
+     "gene": "",
+     "product": "gp38",
+     "start": 22286,
+     "stop": 22813,
+     "strand": "+",
+     "length": 175,
+     "P": {
+      "holin": 0.00016510341124621373,
+      "endolysin": 0.004789193527214502,
+      "spanin": 0.002762685428270676
+     },
+     "call": "none"
+    },
+    {
+     "index": 38,
+     "id": "EPNV4_gp39",
+     "gene": "",
+     "product": "DNA polymerase",
+     "start": 22821,
+     "stop": 25400,
+     "strand": "+",
+     "length": 859,
+     "P": {
+      "holin": 1.5061050200204784e-05,
+      "endolysin": 0.047500934880990275,
+      "spanin": 0.0006341125931032972
+     },
+     "call": "none"
+    },
+    {
+     "index": 39,
+     "id": "EPNV4_gp40",
+     "gene": "",
+     "product": "gp40",
+     "start": 25397,
+     "stop": 25735,
+     "strand": "+",
+     "length": 112,
+     "P": {
+      "holin": 4.8629870057629944e-05,
+      "endolysin": 0.0012393282670963533,
+      "spanin": 0.002333927582853598
+     },
+     "call": "none"
+    },
+    {
+     "index": 40,
+     "id": "EPNV4_gp41",
+     "gene": "",
+     "product": "gp41",
+     "start": 25738,
+     "stop": 26346,
+     "strand": "+",
+     "length": 202,
+     "P": {
+      "holin": 2.8006500589700774e-05,
+      "endolysin": 0.005409606007962028,
+      "spanin": 0.0004339648525787127
+     },
+     "call": "none"
+    },
+    {
+     "index": 41,
+     "id": "EPNV4_gp42",
+     "gene": "",
+     "product": "exonuclease",
+     "start": 26343,
+     "stop": 27317,
+     "strand": "+",
+     "length": 324,
+     "P": {
+      "holin": 2.248111159663304e-05,
+      "endolysin": 0.0037262013255193907,
+      "spanin": 0.0006227457334955513
+     },
+     "call": "none"
+    },
+    {
+     "index": 42,
+     "id": "EPNV4_gp43",
+     "gene": "",
+     "product": "DNA primase",
+     "start": 27314,
+     "stop": 29461,
+     "strand": "+",
+     "length": 715,
+     "P": {
+      "holin": 2.135317685901291e-05,
+      "endolysin": 0.0011436045794115195,
+      "spanin": 0.00031915500927124095
+     },
+     "call": "none"
+    },
+    {
+     "index": 43,
+     "id": "EPNV4_gp44",
+     "gene": "",
+     "product": "Sak4-like ssDNA annealing protein",
+     "start": 29520,
+     "stop": 30275,
+     "strand": "+",
+     "length": 251,
+     "P": {
+      "holin": 4.8148305793722647e-05,
+      "endolysin": 0.0006890197749157317,
+      "spanin": 0.0005008802037998608
+     },
+     "call": "none"
+    },
+    {
+     "index": 44,
+     "id": "EPNV4_gp45",
+     "gene": "",
+     "product": "single strand DNA binding protein",
+     "start": 30321,
+     "stop": 31118,
+     "strand": "+",
+     "length": 265,
+     "P": {
+      "holin": 0.00011259669652068555,
+      "endolysin": 0.0011485264131038198,
+      "spanin": 0.0005739543921093215
+     },
+     "call": "none"
+    },
+    {
+     "index": 45,
+     "id": "EPNV4_gp46",
+     "gene": "",
+     "product": "gp46",
+     "start": 31118,
+     "stop": 31675,
+     "strand": "+",
+     "length": 185,
+     "P": {
+      "holin": 0.0003367025624374149,
+      "endolysin": 0.012837520381868271,
+      "spanin": 0.00043410449944983315
+     },
+     "call": "none"
+    },
+    {
+     "index": 46,
+     "id": "EPNV4_gp47",
+     "gene": "",
+     "product": "gp47",
+     "start": 31678,
+     "stop": 32112,
+     "strand": "+",
+     "length": 144,
+     "P": {
+      "holin": 0.0027003357484199956,
+      "endolysin": 0.0014849801636459894,
+      "spanin": 0.02503063787078318
+     },
+     "call": "none"
+    },
+    {
+     "index": 47,
+     "id": "EPNV4_gp48",
+     "gene": "",
+     "product": "hypothetical protein",
+     "start": 33632,
+     "stop": 34003,
+     "strand": "+",
+     "length": 123,
+     "P": {
+      "holin": 3.222689303130376e-05,
+      "endolysin": 0.001240888885239659,
+      "spanin": 0.002404941127651637
+     },
+     "call": "none"
+    },
+    {
+     "index": 48,
+     "id": "EPNV4_gp49",
+     "gene": "",
+     "product": "DUF2829 domain-containing protein",
+     "start": 34003,
+     "stop": 34485,
+     "strand": "+",
+     "length": 160,
+     "P": {
+      "holin": 6.4865093242861294e-06,
+      "endolysin": 0.014947697716296005,
+      "spanin": 0.00038884840402196444
+     },
+     "call": "none"
+    },
+    {
+     "index": 49,
+     "id": "EPNV4_gp50",
+     "gene": "",
+     "product": "virion RNA polymerase",
+     "start": 34523,
+     "stop": 45025,
+     "strand": "-",
+     "length": 3500,
+     "P": {
+      "holin": 0.00024083327313363382,
+      "endolysin": 0.09728962409902224,
+      "spanin": 0.0008373340473039073
+     },
+     "call": "none"
+    },
+    {
+     "index": 50,
+     "id": "EPNV4_gp51",
+     "gene": "",
+     "product": "virion structural protein",
+     "start": 45126,
+     "stop": 47060,
+     "strand": "-",
+     "length": 644,
+     "P": {
+      "holin": 0.0023921408888257127,
+      "endolysin": 0.28129668270832187,
+      "spanin": 0.002458531556807396
+     },
+     "call": "none"
+    },
+    {
+     "index": 51,
+     "id": "EPNV4_gp52",
+     "gene": "",
+     "product": "16.5 kDa protein",
+     "start": 47071,
+     "stop": 47523,
+     "strand": "-",
+     "length": 150,
+     "P": {
+      "holin": 0.0007254357368518756,
+      "endolysin": 0.0030923567707728944,
+      "spanin": 0.002191587480021522
+     },
+     "call": "none"
+    },
+    {
+     "index": 52,
+     "id": "EPNV4_gp53",
+     "gene": "",
+     "product": "gp53",
+     "start": 47537,
+     "stop": 50194,
+     "strand": "-",
+     "length": 885,
+     "P": {
+      "holin": 0.0010328971295418853,
+      "endolysin": 0.025776870496593454,
+      "spanin": 0.0016155778151871023
+     },
+     "call": "none"
+    },
+    {
+     "index": 53,
+     "id": "EPNV4_gp54",
+     "gene": "",
+     "product": "virion structural protein",
+     "start": 50198,
+     "stop": 51097,
+     "strand": "-",
+     "length": 299,
+     "P": {
+      "holin": 0.0012011190569113173,
+      "endolysin": 0.0031854164842410443,
+      "spanin": 0.006656823075658073
+     },
+     "call": "none"
+    },
+    {
+     "index": 54,
+     "id": "EPNV4_gp55",
+     "gene": "",
+     "product": "gp55",
+     "start": 51177,
+     "stop": 51803,
+     "strand": "-",
+     "length": 208,
+     "P": {
+      "holin": 4.946886463496224e-05,
+      "endolysin": 0.0026238763209580594,
+      "spanin": 0.0005956111476256041
+     },
+     "call": "none"
+    },
+    {
+     "index": 55,
+     "id": "EPNV4_gp56",
+     "gene": "",
+     "product": "major head protein",
+     "start": 51866,
+     "stop": 53071,
+     "strand": "-",
+     "length": 401,
+     "P": {
+      "holin": 1.5785053281001988e-05,
+      "endolysin": 0.0011159763217139923,
+      "spanin": 0.0007588932703544631
+     },
+     "call": "none"
+    },
+    {
+     "index": 56,
+     "id": "EPNV4_gp57",
+     "gene": "",
+     "product": "tail length tape measure protein",
+     "start": 53083,
+     "stop": 54300,
+     "strand": "-",
+     "length": 405,
+     "P": {
+      "holin": 0.0006407627152216626,
+      "endolysin": 0.004126946361284939,
+      "spanin": 0.0020692891145955177
+     },
+     "call": "none"
+    },
+    {
+     "index": 57,
+     "id": "EPNV4_gp58",
+     "gene": "",
+     "product": "gp58",
+     "start": 54326,
+     "stop": 54673,
+     "strand": "-",
+     "length": 115,
+     "P": {
+      "holin": 0.00010187763829124842,
+      "endolysin": 0.004528044377419038,
+      "spanin": 0.0028710245163472083
+     },
+     "call": "none"
+    },
+    {
+     "index": 58,
+     "id": "EPNV4_gp59",
+     "gene": "",
+     "product": "portal protein",
+     "start": 54676,
+     "stop": 56967,
+     "strand": "-",
+     "length": 763,
+     "P": {
+      "holin": 4.9627958619970084e-05,
+      "endolysin": 0.000801818405258751,
+      "spanin": 0.0009533730910002029
+     },
+     "call": "none"
+    },
+    {
+     "index": 59,
+     "id": "EPNV4_gp60",
+     "gene": "",
+     "product": "Rz-like spanin",
+     "start": 56976,
+     "stop": 57479,
+     "strand": "-",
+     "length": 167,
+     "P": {
+      "holin": 0.00012321759932172412,
+      "endolysin": 0.0004762613062976066,
+      "spanin": 0.9826588661635073
+     },
+     "call": "spanin"
+    },
+    {
+     "index": 60,
+     "id": "EPNV4_gp61",
+     "gene": "",
+     "product": "endolysin",
+     "start": 57460,
+     "stop": 58086,
+     "strand": "-",
+     "length": 208,
+     "P": {
+      "holin": 9.109437913711269e-05,
+      "endolysin": 0.976279052144139,
+      "spanin": 0.001151132255331056
+     },
+     "call": "endolysin"
+    },
+    {
+     "index": 61,
+     "id": "EPNV4_gp62",
+     "gene": "",
+     "product": "holin",
+     "start": 58073,
+     "stop": 58336,
+     "strand": "-",
+     "length": 87,
+     "P": {
+      "holin": 0.7496687681995273,
+      "endolysin": 0.0006739539979750726,
+      "spanin": 0.0010014159655626835
+     },
+     "call": "holin"
+    },
+    {
+     "index": 62,
+     "id": "EPNV4_gp63",
+     "gene": "",
+     "product": "gp63",
+     "start": 58321,
+     "stop": 58653,
+     "strand": "-",
+     "length": 110,
+     "P": {
+      "holin": 0.9827095903058347,
+      "endolysin": 0.00029951536530469555,
+      "spanin": 0.0015392429495975305
+     },
+     "call": "holin"
+    },
+    {
+     "index": 63,
+     "id": "EPNV4_gp64",
+     "gene": "",
+     "product": "tail assembly protein",
+     "start": 58757,
+     "stop": 60010,
+     "strand": "-",
+     "length": 417,
+     "P": {
+      "holin": 8.429070521202767e-05,
+      "endolysin": 0.43580891106021347,
+      "spanin": 0.00045198460584151373
+     },
+     "call": "none"
+    },
+    {
+     "index": 64,
+     "id": "EPNV4_gp65",
+     "gene": "",
+     "product": "tail sheath and receptor binding protein",
+     "start": 60043,
+     "stop": 64191,
+     "strand": "-",
+     "length": 1382,
+     "P": {
+      "holin": 2.940395246675192e-05,
+      "endolysin": 0.33374964484171454,
+      "spanin": 0.0005343226848032164
+     },
+     "call": "none"
+    },
+    {
+     "index": 65,
+     "id": "EPNV4_gp66",
+     "gene": "",
+     "product": "appendage",
+     "start": 64233,
+     "stop": 65903,
+     "strand": "-",
+     "length": 556,
+     "P": {
+      "holin": 0.007903520885241657,
+      "endolysin": 0.0024462756529661303,
+      "spanin": 0.000572614164183135
+     },
+     "call": "none"
+    },
+    {
+     "index": 66,
+     "id": "EPNV4_gp67",
+     "gene": "",
+     "product": "virion structural protein",
+     "start": 65900,
+     "stop": 66610,
+     "strand": "-",
+     "length": 236,
+     "P": {
+      "holin": 0.00019410488423425787,
+      "endolysin": 0.0023531774466194408,
+      "spanin": 0.001097255598027963
+     },
+     "call": "none"
+    },
+    {
+     "index": 67,
+     "id": "EPNV4_gp68",
+     "gene": "",
+     "product": "gp68",
+     "start": 66617,
+     "stop": 68209,
+     "strand": "-",
+     "length": 530,
+     "P": {
+      "holin": 2.38860360897231e-05,
+      "endolysin": 0.0017992947590156824,
+      "spanin": 0.00038900235758489935
+     },
+     "call": "none"
+    },
+    {
+     "index": 68,
+     "id": "EPNV4_gp69",
+     "gene": "",
+     "product": "gp69",
+     "start": 68202,
+     "stop": 68894,
+     "strand": "-",
+     "length": 230,
+     "P": {
+      "holin": 0.0005080092842997696,
+      "endolysin": 0.012750800272354769,
+      "spanin": 0.0014862337460394314
+     },
+     "call": "none"
+    },
+    {
+     "index": 69,
+     "id": "EPNV4_gp70",
+     "gene": "",
+     "product": "gp70",
+     "start": 69055,
+     "stop": 69363,
+     "strand": "+",
+     "length": 102,
+     "P": {
+      "holin": 0.00014148108389153814,
+      "endolysin": 0.0023622682687020023,
+      "spanin": 0.0016854918105942945
+     },
+     "call": "none"
+    },
+    {
+     "index": 70,
+     "id": "EPNV4_gp71",
+     "gene": "",
+     "product": "gp71",
+     "start": 69574,
+     "stop": 69939,
+     "strand": "+",
+     "length": 121,
+     "P": {
+      "holin": 2.2928064738654875e-05,
+      "endolysin": 0.0010418144610820118,
+      "spanin": 0.0010918368185713818
+     },
+     "call": "none"
+    },
+    {
+     "index": 71,
+     "id": "EPNV4_gp72",
+     "gene": "",
+     "product": "gp72",
+     "start": 69948,
+     "stop": 70076,
+     "strand": "+",
+     "length": 42,
+     "P": {
+      "holin": 0.0004498988819170298,
+      "endolysin": 0.004190306122368362,
+      "spanin": 0.0054479092209188725
+     },
+     "call": "none"
+    }
+   ]
+  }
+ }
+}
