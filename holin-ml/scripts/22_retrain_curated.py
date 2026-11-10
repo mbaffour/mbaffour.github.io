@@ -1,4 +1,13 @@
-"""Does curating 4,497 more holins actually help? Leave-one-genome-out, three arms.
+"""Does curating 4,497 more holins actually help -- and does the holin model need cross-class negatives?
+Leave-one-genome-out.
+
+Arm C was added 2026-11. The holin model predates scripts/27, so unlike the endolysin and spanin models it has
+never been shown the other two classes as negatives: its negatives are bacterial + phage-derived, which carry
+only ~101 spanins and no curated endolysins. Every other model in the project is trained to tell the three
+classes apart; this one was not, which is a discipline gap rather than a measured choice. Arm C closes it by
+adding the scripts/27 endolysin and spanin positives, plus the scripts/26 confusables (phage TAIL lysozymes,
+microvirus E and MS2 L -- membrane proteins that lyse the cell without being holins), as negatives. Whether that
+helps is decided by the genome-scan AP below, not by assumption.
 
   A  current    original training records (minus gold holdout) + 3,382 phage-derived negatives
   B  + curated  A + every usable curated holin (2,886)
@@ -80,15 +89,35 @@ def main():
     y = np.array([p["is_holin"] for p in gp], int)
     grp = np.array([p["phage"] for p in gp])
 
+    # arm C extra negatives: the other two lysis classes + the lysis-adjacent confusables
+    xcls = []
+    for f in ("endolysin_positives.json", "spanin_positives.json", "lysis_confusables.json"):
+        fp = B / "data/processed" / f
+        if fp.exists():
+            for r in json.load(open(fp)):
+                xcls.append({"sequence": r["sequence"], "label": "negative", "cluster": -1,
+                             "id": r.get("id"), "xclass_src": f})
+    hol_all = {r["sequence"] for r in base if r["label"] == "holin"} | {r["sequence"] for r in cur}
+    xcls = [r for r in xcls if r["sequence"] not in hol_all]      # a known holin is never a negative
+    atlas_seqs = {pr["sequence"] for g in genomes for pr in g["proteins"]}
+    n_drop = sum(r["sequence"] in atlas_seqs for r in xcls)       # never train on a protein we then score
+    xcls = [r for r in xcls if r["sequence"] not in atlas_seqs]
+    if n_drop: print(f"arm C: dropped {n_drop} cross-class negatives that are scored atlas proteins", flush=True)
+    print(f"arm C cross-class negatives: {len(xcls)}", flush=True)
+
     t = time.time()
     FE = {k: feats([r["sequence"] for r in v]) for k, v in
-          (("tr0", tr0), ("negs", negs), ("cur", cur), ("gold", gold))}
+          (("tr0", tr0), ("negs", negs), ("cur", cur), ("gold", gold), ("xcls", xcls)) if v}
     Xg = feats([p["sequence"] for p in gp])
     print(f"features in {int(time.time()-t)}s", flush=True)
     y0 = np.array([r["label"] == "holin" for r in tr0], int)
     ARMS = {"A_current": ([FE["tr0"], FE["negs"]], [y0, np.zeros(len(negs), int)], tr0 + negs),
             "B_plus_curated": ([FE["tr0"], FE["negs"], FE["cur"]],
                                [y0, np.zeros(len(negs), int), np.ones(len(cur), int)], tr0 + negs + cur)}
+    if xcls:
+        ARMS["C_plus_crossclass"] = ([FE["tr0"], FE["negs"], FE["cur"], FE["xcls"]],
+                                     [y0, np.zeros(len(negs), int), np.ones(len(cur), int),
+                                      np.zeros(len(xcls), int)], tr0 + negs + cur + xcls)
 
     out = {}
     for (name, (Xs, ys, recs)), mode in [(a_, m) for a_ in ARMS.items() for m in ("family", "sequence")]:
@@ -169,6 +198,7 @@ def main():
         {"design": {"primary": "leave-one-genome-out genome scan; each genome's holin family removed from "
                                "training first, so adding a target's own Pfam relatives cannot buy its score",
                     "arms": {"A": "current", "B": "+ all usable curated holins",
+                             "C": "arm B + endolysin/spanin positives and lysis confusables as negatives",
                              "C": "+ only curated holins that formed NEW families, separating more holins from "
                                   "more architectures"}},
          "models": out}, indent=2))

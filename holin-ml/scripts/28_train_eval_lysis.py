@@ -51,6 +51,12 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--class", dest="cls", required=True, choices=["endolysin", "spanin"])
     ap.add_argument("--boot", type=int, default=2000)
+    ap.add_argument("--confusables", action="store_true",
+                    help="add data/processed/lysis_confusables.json to the negatives: phage TAIL lysozymes and "
+                         "other lysis-adjacent proteins that are not holin/endolysin/spanin. Run both ways and "
+                         "compare -- they are only worth shipping if the leave-one-genome-out number says so.")
+    ap.add_argument("--tag", default="", help="suffix for model/report filenames, so an ablation run does not "
+                                              "overwrite the shipped model")
     a = ap.parse_args(); cls = a.cls
     esm = F.ESM(B / "models/esm_cache")
     feats = lambda ss: np.hstack([np.array([F.handcrafted(s) for s in ss]), esm.embed(ss)]) if ss else np.zeros((0, 516))
@@ -69,6 +75,18 @@ def main():
     # negative pool = other lysis class + holins + bacterial + phage negatives; hold out 20% (seed 0) as gold negatives
     negpool = ([("otherclass", r) for r in other_pos] + [("holin", r) for r in holins]
                + [("bacterial", r) for r in bact] + [("phage_neg", r) for r in negs])
+    n_conf = 0
+    if a.confusables:
+        cf = json.load(open(B / "data/processed/lysis_confusables.json"))
+        # leakage guard: a confusable family can contain the very protein of a genome we are about to score
+        # (e.g. the microvirus E of phiX174). Training on it as a negative would flatter the genome scan, so any
+        # exact sequence match to an atlas protein is dropped before it reaches the negative pool.
+        atlas_seqs = {pr["sequence"] for g in atlas_phages(cls) for pr in g["proteins"]}
+        n_drop = sum(r["sequence"] in atlas_seqs for r in cf)
+        cf = [r for r in cf if r["sequence"] not in atlas_seqs]
+        negpool += [("confusable", r) for r in cf]; n_conf = len(cf)
+        print(f"{cls}: + {n_conf} confusable negatives (entry lysins, single-gene lysis proteins); "
+              f"{n_drop} dropped as exact matches to a scored atlas protein", flush=True)
     rng = np.random.default_rng(0); idx = rng.permutation(len(negpool))
     n_gold_neg = int(0.2 * len(negpool))
     gold_neg = [negpool[i][1] for i in idx[:n_gold_neg]]
@@ -143,11 +161,12 @@ def main():
     mprod = hgb().fit(np.vstack([X, Xgp]), np.concatenate([y, np.ones(len(gold_pos), int)]))  # ship on everything
     bundle = {"model": mprod, "features": "both", "algorithm": "hgb", "class": cls,
               "hand_feature_names": list(F.HAND_NAMES), "esm_model": F.ESM.MODEL,
-              "trained_on": {"positives": len(pos), "negatives": len(negpool)},
+              "trained_on": {"positives": len(pos), "negatives": len(negpool), "confusable_negatives": n_conf},
               "note": f"one-vs-rest {cls}; negatives include holins and {other}s. Honest estimate = leave-one-genome-out above."}
-    pickle.dump(bundle, open(B / f"models/{cls}_model.pkl", "wb"))
-    (B / f"reports/{cls}_eval.json").write_text(json.dumps(out, indent=2))
-    print(f"saved models/{cls}_model.pkl ; " + json.dumps({k: out[k].get("genome_AP") for k in out if k.endswith("removal")}))
+    out["config"] = {"confusable_negatives": n_conf, "train_positives": len(tr_pos), "train_negatives": len(tr_neg)}
+    pickle.dump(bundle, open(B / f"models/{cls}_model{a.tag}.pkl", "wb"))
+    (B / f"reports/{cls}_eval{a.tag}.json").write_text(json.dumps(out, indent=2))
+    print(f"saved models/{cls}_model{a.tag}.pkl ; " + json.dumps({k: out[k].get("genome_AP") for k in out if k.endswith("removal")}))
 
 
 if __name__ == "__main__":

@@ -37,6 +37,13 @@ MINL, MAXL = 30, 1200
 END_NAME = re.compile(r"endolysin|lysozyme|muramidase|amidase|peptidoglycan|murein|glucosaminidase|\blysin\b|"
                       r"\bCHAP\b|transglycosylase|glycoside hydrolase|N-acetylmuramoyl", re.I)
 SPA_NAME = re.compile(r"spanin|\bRz\b|\bRz1\b", re.I)
+# A phage protein can carry a peptidoglycan-hydrolase domain and still not be an exit lysin: tail, baseplate and
+# spike proteins use the same chemistry to get IN (T4 gp5, T7 gp16). Those are dropped from the Pfam depth tier,
+# whose members are labelled by family membership alone and so cannot otherwise be told apart. The named and
+# reviewed tiers are left alone -- there the annotation itself is the evidence.
+STRUCT_NAME = re.compile(r"\btail\b|baseplate|base plate|\bcapsid\b|portal|\bvirion\b|structural|"
+                         r"\bspike\b|tape ?measure|\bfib(er|re)\b|\bsheath\b|\bneck\b|whisker|"
+                         r"terminase|major head|minor head|internal (head|virion) protein", re.I)
 PFAM_CLASS = json.load(open(R / "pfam_lysis/provenance.json"))
 
 
@@ -98,9 +105,11 @@ def collect(cls):
     for acc in fams:
         for r in tsv(R / f"pfam_lysis/{acc}.tsv.gz"):
             s = (r.get("Sequence") or "").strip().upper()
-            if s: pfam_members[acc].append(dict(seq=s, name=r.get("Protein names") or "", org=r.get("Organism") or "",
-                                                acc=r.get("Entry") or "", reviewed=(r.get("Reviewed") or "").lower() == "reviewed",
-                                                tier="pfam", src=f"pfam:{acc}", pfam=acc))
+            nm = r.get("Protein names") or ""
+            if s and not STRUCT_NAME.search(nm):
+                pfam_members[acc].append(dict(seq=s, name=nm, org=r.get("Organism") or "",
+                                              acc=r.get("Entry") or "", reviewed=(r.get("Reviewed") or "").lower() == "reviewed",
+                                              tier="pfam", src=f"pfam:{acc}", pfam=acc))
     return cand, pfam_members
 
 
@@ -118,10 +127,59 @@ def decile_sample(recs, k, seed=0):
     return out[:k]
 
 
+def stratified_cap(recs, k, per_family):
+    """Bound the set for clustering cost WITHOUT letting any one Pfam family be sampled away.
+
+    The old global decile_sample(recs, cap) drew across the whole class at once, so a family added for its
+    architecture could be dropped wholesale by a cap set for an older, denser family -- the failure that left
+    PF01832 Glucosaminidase effectively absent. Evidence-bearing tiers are kept outright; the pfam depth tier is
+    sampled per family, by length decile within the family, and only then trimmed evenly if the cap still binds.
+    """
+    keep = [r for r in recs if r["tier"] != "pfam"]
+    byfam = defaultdict(list)
+    for r in recs:
+        if r["tier"] == "pfam": byfam[r.get("pfam") or r["src"]].append(r)
+    depth = []
+    for fam in sorted(byfam):
+        depth += decile_sample(byfam[fam], per_family)
+    budget = max(k - len(keep), 0)
+    while len(depth) > budget and budget > 0:
+        per = max(1, budget // max(len(byfam), 1))
+        trimmed = []
+        for fam in sorted(byfam):
+            g = [r for r in depth if (r.get("pfam") or r["src"]) == fam]
+            trimmed += g[:per]
+        if len(trimmed) >= len(depth): break
+        depth = trimmed
+    return keep + depth[:budget]
+
+
+def collect_confusables():
+    """Lysis-adjacent families that are NOT holin/endolysin/spanin (scripts/26 role="confusable").
+
+    Virion-associated (entry) lysozymes, pesticin, single-gene lysis membrane proteins, colicin-release lysis
+    proteins and disruptins. They are emitted as their own file so scripts/28 can add them to the negatives and
+    MEASURE whether they help, rather than assuming it.
+    """
+    out = []
+    for acc, m in sorted(PFAM_CLASS.items()):
+        if m.get("role") != "confusable" or not m.get("rows"): continue
+        for r in tsv(R / "pfam_lysis" / f"{acc}.tsv.gz"):
+            sq = (r.get("Sequence") or "").strip().upper()
+            if not sq or not (MINL <= len(sq) <= MAXL) or set(sq) - AA20: continue
+            out.append({"id": f"confusable_{r.get('Entry') or len(out)}", "sequence": sq, "length": len(sq),
+                        "label": "confusable", "pfam": acc, "pfam_name": m.get("pfam_name") or "",
+                        "source": f"pfam:{acc}", "description": r.get("Protein names") or "",
+                        "organism": r.get("Organism") or ""})
+    u = {}
+    for r in out: u.setdefault(r["sequence"], r)
+    return list(u.values())
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--per-family", type=int, default=150)
-    ap.add_argument("--cap-endolysin", type=int, default=3000)
+    ap.add_argument("--cap-endolysin", type=int, default=6000)
     ap.add_argument("--gold-fraction", type=float, default=0.2)
     a = ap.parse_args()
 
@@ -156,7 +214,7 @@ def main():
             if not (MINL <= len(s) <= MAXL): drop["bad_length"] += 1; continue
             if set(s) - AA20: drop["nonstandard"] += 1; continue
             recs.append(c)
-        if cls == "endolysin": recs = decile_sample(recs, a.cap_endolysin)  # bound clustering cost for long seqs
+        if cls == "endolysin": recs = stratified_cap(recs, a.cap_endolysin, a.per_family)
         out[cls] = recs
         print(f"{cls}: {len(recs)} distinct positives after guards "
               f"(reviewed {sum(r['tier']=='reviewed' for r in recs)}, pool {sum(r['tier']=='pool' for r in recs)}, "
@@ -184,6 +242,13 @@ def main():
                                "tiers": dict(Counter(r["tier"] for r in recs)),
                                "length_median": int(np.median(L)), "length_p90": int(np.percentile(L, 90)),
                                "over_150aa": int(sum(x > 150 for x in L))}
+    conf = collect_confusables()
+    known = {r["seq"] for cls in out for r in out[cls]} | holin_seqs
+    conf = [r for r in conf if r["sequence"] not in known]   # never contradict a positive label
+    (B / "data/processed/lysis_confusables.json").write_text(json.dumps(conf, indent=1))
+    from collections import Counter as _C
+    rep["confusables"] = {"count": len(conf), "by_family": dict(_C(r["pfam"] for r in conf))}
+    print(f"confusables: {len(conf)} sequences across {len(rep['confusables']['by_family'])} families", flush=True)
     (B / "reports/lysis_build_report.json").write_text(json.dumps(rep, indent=2))
     print(json.dumps(rep, indent=1))
 

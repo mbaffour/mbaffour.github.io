@@ -15,7 +15,7 @@ Composition (same winning recipe as scripts/22 arm B: handcrafted + mean-pooled 
 
 Usage: python3 scripts/23_train_production.py
 """
-import hashlib, json, pickle, sys, time
+import argparse, hashlib, json, pickle, sys, time
 from pathlib import Path
 import numpy as np
 from sklearn.ensemble import HistGradientBoostingClassifier
@@ -27,12 +27,29 @@ def hgb(): return HistGradientBoostingClassifier(max_iter=400, learning_rate=0.0
 
 
 def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--crossclass", action="store_true",
+                    help="add the scripts/27 endolysin and spanin positives plus the scripts/26 confusables as "
+                         "negatives, so this model is held to the same three-class discrimination as the other "
+                         "two. Ship it only if scripts/22 arm C beats arm B on leave-one-genome-out.")
+    ap.add_argument("--out", default="models/holin_model_curated.pkl")
+    a = ap.parse_args()
     base = json.load(open(B / "data/processed/dataset.json"))
     negs = json.load(open(B / "data/processed/phage_negatives.json"))
     cur = json.load(open(B / "data/processed/holins_extra_clustered.json"))
 
     pos = [r for r in base if r["label"] == "holin"] + [r for r in cur if r["label"] == "holin"]
     neg = [r for r in base if r["label"] == "negative"] + negs
+    n_x = 0
+    if a.crossclass:
+        hol = {r["sequence"] for r in pos}
+        xc = []
+        for f in ("endolysin_positives.json", "spanin_positives.json", "lysis_confusables.json"):
+            fp = B / "data/processed" / f
+            if fp.exists(): xc += [r for r in json.load(open(fp)) if r["sequence"] not in hol]
+        seen = set(); xc = [r for r in xc if not (r["sequence"] in seen or seen.add(r["sequence"]))]
+        neg += xc; n_x = len(xc)
+        print(f"+ {n_x} cross-class negatives (endolysins, spanins, lysis confusables)", flush=True)
     recs = pos + neg
     y = np.array([1] * len(pos) + [0] * len(neg), int)
     print(f"training rows {len(recs)}: {len(pos)} holins ({sum(r['label']=='holin' for r in base)} original + "
@@ -51,15 +68,15 @@ def main():
                              "holins_original": sum(r["label"] == "holin" for r in base),
                              "holins_curated": sum(r["label"] == "holin" for r in cur),
                              "negatives_bacterial": sum(r["label"] == "negative" for r in base),
-                             "negatives_phage": len(negs)},
+                             "negatives_phage": len(negs), "negatives_crossclass": n_x},
               "note": "DEPLOYMENT model: trained on all labels including the gold holdout. Do not quote a "
                       "gold-holdout score from it. Honest estimate = leave-one-genome-out in "
                       "reports/curated_retrain_eval.json (AP 0.965 realistic / 0.785 strict)."}
-    out = B / "models/holin_model_curated.pkl"
+    out = B / a.out
     pickle.dump(bundle, open(out, "wb"))
     sha = hashlib.sha256(out.read_bytes()).hexdigest()
 
-    card = {"model": "holin_model_curated.pkl", "sha256": sha, "trained_utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+    card = {"model": a.out.split("/")[-1], "sha256": sha, "trained_utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
             "purpose": "rank the proteins of a phage genome by probability of being a holin",
             "recipe": "HistGradientBoosting over 36 handcrafted features + 480-d mean-pooled ESM-2 (t12_35M). "
                       "TM-anchored local features were tested and rejected (scripts/15).",
@@ -79,9 +96,11 @@ def main():
                              "a genuinely novel holin family gets a shortlist, not an answer (strict AP 0.785)"],
             "usage": "import pickle, features as F; m=pickle.load(open('models/holin_model_curated.pkl','rb')); "
                      "X=hstack([handcrafted, esm.embed(seqs)]); m['model'].predict_proba(X)[:,1]"}
-    (B / "reports/model_card.json").write_text(json.dumps(card, indent=2))
+    cardp = "reports/model_card.json" if a.out == "models/holin_model_curated.pkl" else \
+            f"reports/model_card_{Path(a.out).stem}.json"
+    (B / cardp).write_text(json.dumps(card, indent=2))
     print(f"saved {out.name} ({out.stat().st_size//1024} KiB, sha {sha[:12]})")
-    print("wrote reports/model_card.json")
+    print(f"wrote {cardp}")
 
 
 if __name__ == "__main__":
