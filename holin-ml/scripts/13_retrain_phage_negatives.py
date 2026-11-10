@@ -1,14 +1,16 @@
 """Retrain with phage-derived negatives and judge the model on the task it is actually used for.
 
 Two models, same recipe (handcrafted + ESM-2 features, HistGradientBoosting), differing only in training data:
-  baseline  = the original 10,061 records (558 holins, 9,503 bacterial negatives)
+  baseline  = the original 10,061 records (558 holins, 9,503 negatives: 7,884 bacterial + 1,619 phage,
+              but 0 spanins and no lysis-cassette-mined hard negatives)
   phage-neg = baseline + 3,382 phage-derived negatives (101 of them Rz-like spanins)
 
 Two evaluations, deliberately ranked:
   PRIMARY   genome scan. Rank all proteins of the 16 topology-atlas phages (1,067 proteins, 13 annotated holins)
             and measure average precision and precision/recall at thresholds. This is the deployment task: pick
             the holin out of a phage genome. None of those genomes contributed a training negative.
-  SECONDARY frozen gold holdout (2,978 records, 194 holins). Its negatives are all bacterial, so it shares the
+  SECONDARY frozen gold holdout (2,978 records, 194 holins). Its negatives are drawn from the original pool
+            (bacterial + Swiss-Prot phage) and contain no mined spanin/lysis-cassette hard negatives, so it shares the
             blind spot being fixed here; it is kept only as a regression check that the old task is not broken.
 
 Gold holdout membership is unchanged -- new negatives all receive fresh cluster ids, so the holdout is identical
@@ -149,7 +151,7 @@ def main():
                                   res["phage_negatives"]["genome_scan_PRIMARY"]["n_spanins_over_0.5"]]}
     (B / "reports/phage_negatives_eval.json").write_text(json.dumps(
         {"design": {"primary": "genome scan over 16 atlas phages, none of which contributed a training negative",
-                    "secondary": "frozen gold holdout, bacterial negatives only, kept as a regression check",
+                    "secondary": "frozen gold holdout; original negatives (no mined spanin/lysis hard negatives), a regression check",
                     "ci": "95% percentile bootstrap resampling genomes, not proteins"},
          "models": res, "baseline_to_phage_negatives": delta}, indent=2))
     print("\n" + json.dumps(delta, indent=1))

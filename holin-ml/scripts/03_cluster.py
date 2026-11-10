@@ -3,8 +3,10 @@
 Exhaustive all-vs-all Smith-Waterman (a k-mer prefilter was tried and rejected: only ~10% recall of true holin-holin edges).
 Verification: pyopal Smith-Waterman (BLOSUM62, gap open 11 / extend 1), identity = identical aligned positions / alignment length,
 coverage = aligned residues / length of the shorter sequence. Edge if identity >= MIN_ID and coverage >= MIN_COV.
-Clusters = connected components (single linkage), which is conservative for leakage control.
+Clusters = greedy set-cover (greedy(), longest sequence first), which avoids the chaining that single linkage produces -- an early single-linkage attempt collapsed 10,286 holins into one component -- while staying conservative for leakage control.
 Also exposes search(): best hits of query sequences against a set, used to exclude test-genome homologs from training.
+
+Usage: python3 scripts/03_cluster.py [MIN_SCORE]   (default MIN_SCORE 0; writes data/processed/cluster_summary.json)
 """
 import json, sys
 from collections import defaultdict

@@ -8,6 +8,8 @@ Holin-like (kept out of training, reported separately): bacterial / toxin / GTA 
 CidA/LrgA and antiholins.
 Negatives = Swiss-Prot bacteriophage proteins + Swiss-Prot bacterial membrane proteins (30-250 aa) with no lysis-related
 annotation. Exact duplicate sequences are merged (all sources kept); conflicting labels are resolved or dropped and reported.
+
+Usage: python3 scripts/02_build_dataset.py   (no arguments; reads data/raw/, writes data/processed/dataset.json)
 """
 import csv, gzip, hashlib, io, json, re
 from pathlib import Path

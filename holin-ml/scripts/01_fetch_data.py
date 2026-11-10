@@ -3,7 +3,9 @@
 - Swiss-Prot bacteriophage proteins (negative pool candidates) and Swiss-Prot bacterial small membrane proteins (hard negatives)
 - TCDB: all sequences + family names (holin superfamily 1.E)
 - InterPro: Pfam entries whose name/description mention holin
-Re-running skips files already present."""
+Re-running skips files already present.
+
+Usage: python3 scripts/01_fetch_data.py   (no arguments; writes data/raw/)"""
 import datetime, hashlib, json, sys, time, urllib.parse, urllib.request
 from pathlib import Path
 R = Path(__file__).resolve().parent.parent / "data" / "raw"; R.mkdir(parents=True, exist_ok=True)

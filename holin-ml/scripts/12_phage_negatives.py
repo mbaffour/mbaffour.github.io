@@ -1,9 +1,11 @@
 """Build phage-derived negatives, so the training set matches the task the model is actually used for.
 
-Why this exists. The original negatives are 9,503 bacterial proteins: 0 phage proteins and 0 spanins. The model
-therefore learned "holin vs. bacterial proteome", but it is used to rank the proteins of a phage genome, where
-almost everything it sees is a phage protein that is not a holin. That mismatch is what the genome scan exposed:
-gold average precision 0.904, yet precision 0.32 at score >= 0.5 on real genomes, with Rz-like spanins among the
+Why this exists. The 9,503 original negatives are 7,884 bacterial TM proteins + 1,619 Swiss-Prot phage proteins,
+but they contain 0 spanins and no proteins mined from a lysis cassette. (An earlier version of this note claimed
+"0 phage proteins"; that was a bug -- it counted an is_phage flag that only the mined negatives carry. The
+phage proteins were there; the HARD phage confusables were not.) So the model had few examples of the things it
+most needs to reject when scanning a genome -- above all spanins, which are small phage lysis-cassette membrane
+proteins. The genome scan showed the cost: Rz-like spanins scored 0.86-0.96 because no spanin was ever a
 top hits (0.86-0.96) because no spanin was ever shown to the model as a negative.
 
 What a candidate negative must satisfy:
