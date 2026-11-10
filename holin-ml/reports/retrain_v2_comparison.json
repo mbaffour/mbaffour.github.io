@@ -1,0 +1,70 @@
+{
+  "decision_rule": "strict LOGO genome AP primary; realistic as tie-break; confusables must not lose strict AP. Gold-holdout AP is not comparable across versions (clusters re-drawn).",
+  "endolysin": {
+    "v1 shipped": {
+      "strict": 0.7286,
+      "realistic": 0.843,
+      "gold_AP": 0.8006,
+      "n_annotated": 19,
+      "config": {},
+      "report": "endolysin_eval.json"
+    }
+  },
+  "spanin": {
+    "v1 shipped": {
+      "strict": 0.729,
+      "realistic": 0.8345,
+      "gold_AP": 0.9157,
+      "n_annotated": 15,
+      "config": {},
+      "report": "spanin_eval.json"
+    }
+  },
+  "holin": {
+    "A_current": {
+      "strict": {
+        "AP": 0.6252,
+        "CI95": [
+          0.3964,
+          0.9117
+        ],
+        "fp_over_0.9": 1,
+        "top1_per_genome": 0.7
+      },
+      "realistic": {
+        "AP": 0.8234,
+        "CI95": [
+          0.6775,
+          0.9709
+        ],
+        "fp_over_0.9": 2,
+        "top1_per_genome": 1.0
+      }
+    },
+    "B_plus_curated": {
+      "strict": {
+        "AP": 0.7847,
+        "CI95": [
+          0.5381,
+          0.9619
+        ],
+        "fp_over_0.9": 3,
+        "top1_per_genome": 0.8
+      },
+      "realistic": {
+        "AP": 0.9647,
+        "CI95": [
+          0.8928,
+          1.0
+        ],
+        "fp_over_0.9": 4,
+        "top1_per_genome": 1.0
+      }
+    }
+  },
+  "recommendation": {
+    "endolysin": "no v2 run available",
+    "spanin": "no v2 run available",
+    "holin": "arm C not run yet"
+  }
+}

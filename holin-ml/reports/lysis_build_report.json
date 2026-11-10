@@ -2,41 +2,51 @@
   "dropped": {
     "is_known_holin": 1,
     "claimed_by_both_classes": 0,
-    "bad_length": 63,
-    "nonstandard": 4
+    "bad_length": 133,
+    "nonstandard": 6
   },
   "classes": {
     "endolysin": {
-      "positives": 1529,
-      "clusters": 229,
-      "gold_clusters": 45,
-      "gold_positives": 192,
+      "positives": 2788,
+      "clusters": 332,
+      "gold_clusters": 66,
+      "gold_positives": 631,
       "tiers": {
         "validated": 378,
         "reviewed": 83,
         "pool": 418,
-        "pfam": 650
+        "pfam": 1909
       },
-      "length_median": 303,
-      "length_p90": 579,
-      "over_150aa": 1438
+      "length_median": 267,
+      "length_p90": 561,
+      "over_150aa": 2524
     },
     "spanin": {
-      "positives": 2045,
-      "clusters": 185,
+      "positives": 2160,
+      "clusters": 187,
       "gold_clusters": 37,
-      "gold_positives": 512,
+      "gold_positives": 516,
       "tiers": {
         "validated": 10,
         "reviewed": 18,
         "curated": 910,
         "pool": 25,
         "trembl": 1023,
-        "pfam": 59
+        "pfam": 174
       },
       "length_median": 116,
-      "length_p90": 159,
-      "over_150aa": 281
+      "length_p90": 160,
+      "over_150aa": 298
+    }
+  },
+  "confusables": {
+    "count": 156,
+    "by_family": {
+      "PF04517": 26,
+      "PF11125": 14,
+      "PF16754": 5,
+      "PF18013": 109,
+      "PF26810": 2
     }
   }
 }
