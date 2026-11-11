@@ -93,9 +93,32 @@ def load_sets(cls, endo_pos_path, spa_pos_path):
     return pos, neg
 
 
-def ck_dir(root, hp, epos, spos):
-    """One checkpoint directory per (estimator, dataset) combination, so configs cannot collide."""
-    sig = json.dumps({"hp": hp, "endolysin": epos, "spanin": spos}, sort_keys=True)
+def stratified_subsample(recs, n, seed, field):
+    """Exactly n records, each stratum of `field` kept in proportion (largest-remainder rounding).
+    Deterministic: records are ordered by id inside each stratum before the seeded draw."""
+    if n >= len(recs): return list(recs), {}
+    strata = {}
+    for r in recs: strata.setdefault(str(r.get(field)), []).append(r)
+    total = len(recs)
+    quota = {k: n * len(v) / total for k, v in strata.items()}
+    take = {k: int(q) for k, q in quota.items()}
+    short = n - sum(take.values())
+    for k in sorted(quota, key=lambda k: (-(quota[k] - take[k]), k))[:short]: take[k] += 1
+    rng = np.random.default_rng(seed); out = []
+    for k in sorted(strata):
+        v = sorted(strata[k], key=lambda r: r["id"])
+        ix = rng.choice(len(v), size=take[k], replace=False)
+        out += [v[i] for i in sorted(ix)]
+    return out, {k: [len(strata[k]), take[k]] for k in sorted(strata)}
+
+
+def ck_dir(root, hp, epos, spos, extra=None):
+    """One checkpoint directory per (estimator, dataset) combination, so configs cannot collide.
+    `extra` (e.g. a positive subsample) joins the key only when present, so every directory written
+    before it existed keeps its hash and stays readable."""
+    key = {"hp": hp, "endolysin": epos, "spanin": spos}
+    if extra: key["extra"] = extra
+    sig = json.dumps(key, sort_keys=True)
     d = Path(root) / hashlib.sha256(sig.encode()).hexdigest()[:16]
     d.mkdir(parents=True, exist_ok=True)
     (d / "config.json").write_text(sig)
@@ -130,6 +153,11 @@ def main():
     ap.add_argument("--endolysin-positives", default="data/processed/endolysin_positives.json")
     ap.add_argument("--spanin-positives", default="data/processed/spanin_positives.json")
     ap.add_argument("--out", default="reports/logo_benchmark.json")
+    ap.add_argument("--pos-subsample", type=int, default=0,
+                    help="cut the evaluated class's TRAINING positives (after the gold holdout) to exactly "
+                         "this many, stratified by --pos-subsample-strata; 0 = off")
+    ap.add_argument("--pos-subsample-seed", type=int, default=0)
+    ap.add_argument("--pos-subsample-strata", default="source")
     ap.add_argument("--checkpoint", default=".fitckpt",
                     help="directory for per-genome score checkpoints; a run resumes from these, so a "
                          "container restart or a command timeout costs only the genome in flight")
@@ -145,8 +173,10 @@ def main():
                "early_stopping": (False if str(a.early_stopping).lower() in ("false", "0", "no")
                                   else a.early_stopping)})
     print(f"estimator: {HP}", flush=True)
+    SUB = ({"n": a.pos_subsample, "seed": a.pos_subsample_seed, "strata": a.pos_subsample_strata}
+           if a.pos_subsample else None)
     CK = ck_dir(B / a.checkpoint if not Path(a.checkpoint).is_absolute() else a.checkpoint,
-                dict(HP), a.endolysin_positives, a.spanin_positives)
+                dict(HP), a.endolysin_positives, a.spanin_positives, SUB)
     print(f"checkpoints: {CK}", flush=True)
     paths = sorted({p for g in a.genbanks for p in glob.glob(str(B / g))})
     esm = F.ESM(B / "models/esm_cache")
@@ -188,6 +218,14 @@ def main():
         gs = [g for g in genomes if g["truth"][cls]]
         if not gs: print(f"{cls}: no truths, skipped"); continue
         pos, neg = load_sets(cls, a.endolysin_positives, a.spanin_positives)
+        if SUB:
+            n_before = len(pos)
+            pos, strata = stratified_subsample(pos, SUB["n"], SUB["seed"], SUB["strata"])
+            out.setdefault("subsample", {})[cls] = {
+                **SUB, "n_before": n_before, "n_after": len(pos),
+                "strata_before_after": strata, "ids": sorted(r["id"] for r in pos)}
+            print(f"{cls}: subsampled training positives {n_before} -> {len(pos)} "
+                  f"(seed {SUB['seed']}, strata {SUB['strata']})", flush=True)
         pos_seqs = [r["sequence"] for r in pos]
         cl_ids = np.array([r.get("cluster", -1) for r in pos])
         t = time.time()
