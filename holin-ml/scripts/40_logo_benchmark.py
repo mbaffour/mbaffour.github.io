@@ -116,7 +116,8 @@ def ck_load(d, cls, mode, genome, n):
 def ck_save(d, cls, mode, genome, s):
     f = d / f"{cls}__{mode}__{genome}.json"
     tmp = f.with_suffix(".tmp")
-    tmp.write_text(json.dumps([round(float(x), 6) for x in s]))
+    tmp.write_text(json.dumps([float(x) for x in s]))   # full precision: 6dp moved bootstrap
+                                                        # CI bounds by ~4e-4 on a resumed run
     tmp.replace(f)                      # atomic, so a kill mid-write cannot leave a short file
 
 

@@ -5,7 +5,10 @@
 cd /home/user/mbaffour.github.io/.worktrees/holin-ml/holin-ml || exit 1
 V2=data/processed/endolysin_positives.json
 run () {  # label es iter leaves lr
-  local label=$1 es=$2 it=$3 lv=$4 lr=$5 out="reports/sweep_$label.json" try=0
+  local label=$1 es=$2 it=$3 lv=$4 lr=$5 try=0
+  local out="reports/sweep_$label.json"   # SEPARATE statement: bash expands every word of a
+                                          # `local` command before assigning any of them, so
+                                          # $label on the same line expands to empty
   if [ -f "$out" ]; then echo "=== $label already done ==="; return; fi
   while [ ! -f "$out" ] && [ $try -lt 12 ]; do
     try=$((try+1)); echo "=== $label attempt $try ==="
