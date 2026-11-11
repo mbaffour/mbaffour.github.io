@@ -1,0 +1,189 @@
+{
+ "n_genomes_scanned": 72,
+ "boot": 2000,
+ "hyperparameters": {
+  "max_iter": 800,
+  "learning_rate": 0.04,
+  "max_leaf_nodes": 63,
+  "early_stopping": false
+ },
+ "datasets": {
+  "endolysin": "data/processed/endolysin_positives.json",
+  "spanin": "data/processed/spanin_positives.json"
+ },
+ "note": "Expanded LOGO: the atlas evaluation used 19 endolysins/12 genomes and 15 spanins/9 genomes, which left every model comparison inside its confidence interval. This uses all annotated lysis genes in the scanned panel. Protocol and negative recipes are unchanged from scripts/22 and scripts/28, so the figures describe the models as deployed.",
+ "classes": {
+  "endolysin": {
+   "family_removal": {
+    "all": {
+     "AP": 0.5561,
+     "CI95_by_genome": [
+      0.4438,
+      0.6836
+     ],
+     "n_truths": 95,
+     "n_scored": 6668,
+     "n_genomes": 63,
+     "median_rank": 1.0,
+     "top1": 0.547,
+     "recall_at5": 0.916,
+     "recall_at0.5": 0.663
+    },
+    "exit_only": {
+     "AP": 0.587,
+     "CI95_by_genome": [
+      0.4619,
+      0.7171
+     ],
+     "n_truths": 76,
+     "n_scored": 6649,
+     "n_genomes": 63,
+     "median_rank": 1.0,
+     "top1": 0.671,
+     "recall_at5": 0.934,
+     "recall_at0.5": 0.75
+    },
+    "unique_models_fitted": 59,
+    "genomes_from_checkpoint": 0,
+    "fits_note": "unique_models_fitted counts fits done in THIS process; with genomes_from_checkpoint > 0 the run resumed and earlier fits are not counted. Scores are identical either way.",
+    "seconds": 1823,
+    "missed_truths": [
+     {
+      "genome": "NC_019405.1",
+      "id": "D865_gp322",
+      "rank": 321,
+      "score": 0.0,
+      "product": "glycoside hydrolase"
+     },
+     {
+      "genome": "NC_019411",
+      "id": "D870_gp329",
+      "rank": 321,
+      "score": 0.0,
+      "product": "glycoside hydrolase"
+     },
+     {
+      "genome": "NC_001895.1",
+      "id": "P2p10",
+      "rank": 43,
+      "score": 0.0,
+      "product": "endolysin"
+     },
+     {
+      "genome": "NC_006820",
+      "id": "S-PM2p157",
+      "rank": 32,
+      "score": 0.0,
+      "product": "putative lysin"
+     },
+     {
+      "genome": "NC_005282.1",
+      "id": "Felix01p070",
+      "rank": 31,
+      "score": 0.0,
+      "product": "endolysin"
+     },
+     {
+      "genome": "NC_006820",
+      "id": "S-PM2p213",
+      "rank": 10,
+      "score": 0.0065,
+      "product": "baseplate hub and tail lysozyme"
+     },
+     {
+      "genome": "NC_009820",
+      "id": "PBI_TWEETY_19",
+      "rank": 10,
+      "score": 0.0003,
+      "product": "minor tail protein with lysin activity"
+     },
+     {
+      "genome": "NC_000866.4",
+      "id": "T4p144",
+      "rank": 6,
+      "score": 0.0001,
+      "product": "baseplate hub subunit and tail lysozyme"
+     }
+    ]
+   },
+   "sequence_removal": {
+    "all": {
+     "AP": 0.7396,
+     "CI95_by_genome": [
+      0.6294,
+      0.844
+     ],
+     "n_truths": 95,
+     "n_scored": 6668,
+     "n_genomes": 63,
+     "median_rank": 1.0,
+     "top1": 0.568,
+     "recall_at5": 0.937,
+     "recall_at0.5": 0.821
+    },
+    "exit_only": {
+     "AP": 0.7704,
+     "CI95_by_genome": [
+      0.6492,
+      0.8799
+     ],
+     "n_truths": 76,
+     "n_scored": 6649,
+     "n_genomes": 63,
+     "median_rank": 1.0,
+     "top1": 0.684,
+     "recall_at5": 0.947,
+     "recall_at0.5": 0.882
+    },
+    "unique_models_fitted": 37,
+    "genomes_from_checkpoint": 0,
+    "fits_note": "unique_models_fitted counts fits done in THIS process; with genomes_from_checkpoint > 0 the run resumed and earlier fits are not counted. Scores are identical either way.",
+    "seconds": 1305,
+    "missed_truths": [
+     {
+      "genome": "NC_019405.1",
+      "id": "D865_gp322",
+      "rank": 176,
+      "score": 0.0,
+      "product": "glycoside hydrolase"
+     },
+     {
+      "genome": "NC_019411",
+      "id": "D870_gp329",
+      "rank": 169,
+      "score": 0.0,
+      "product": "glycoside hydrolase"
+     },
+     {
+      "genome": "NC_005282.1",
+      "id": "Felix01p070",
+      "rank": 20,
+      "score": 0.0,
+      "product": "endolysin"
+     },
+     {
+      "genome": "NC_006820",
+      "id": "S-PM2p157",
+      "rank": 18,
+      "score": 0.0004,
+      "product": "putative lysin"
+     },
+     {
+      "genome": "NC_006820",
+      "id": "S-PM2p213",
+      "rank": 13,
+      "score": 0.0046,
+      "product": "baseplate hub and tail lysozyme"
+     },
+     {
+      "genome": "NC_009820",
+      "id": "PBI_TWEETY_19",
+      "rank": 6,
+      "score": 0.0115,
+      "product": "minor tail protein with lysin activity"
+     }
+    ]
+   }
+  }
+ }
+}
