@@ -1,0 +1,54 @@
+{
+ "A": {
+  "endolysin": "data/processed/endolysin_positives_v1.json",
+  "hp": {
+   "early_stopping": false,
+   "learning_rate": 0.06,
+   "max_iter": 400,
+   "max_leaf_nodes": 31
+  },
+  "spanin": "data/processed/spanin_positives.json"
+ },
+ "B": {
+  "endolysin": "data/processed/endolysin_positives_v1.json",
+  "hp": {
+   "early_stopping": false,
+   "learning_rate": 0.04,
+   "max_iter": 800,
+   "max_leaf_nodes": 63
+  },
+  "spanin": "data/processed/spanin_positives.json"
+ },
+ "class": "endolysin",
+ "boot": 4000,
+ "protocols": {
+  "family": {
+   "AP_A": 0.6141,
+   "AP_B": 0.5991,
+   "delta_B_minus_A": -0.0151,
+   "delta_CI95": [
+    -0.0541,
+    0.0212
+   ],
+   "p_two_sided": 0.4355,
+   "n_genomes": 63,
+   "n_truths": 95,
+   "n_resamples_used": 4000,
+   "frac_resamples_B_worse": 0.7823
+  },
+  "sequence": {
+   "AP_A": 0.8092,
+   "AP_B": 0.7934,
+   "delta_B_minus_A": -0.0158,
+   "delta_CI95": [
+    -0.038,
+    0.0042
+   ],
+   "p_two_sided": 0.145,
+   "n_genomes": 63,
+   "n_truths": 95,
+   "n_resamples_used": 4000,
+   "frac_resamples_B_worse": 0.9275
+  }
+ }
+}

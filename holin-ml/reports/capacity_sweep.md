@@ -43,29 +43,37 @@ resampled once and both APs recomputed on that resample.
 
 | contrast | protocol | delta | CI95 | p | B worse in |
 |---|---|---|---|---|---|
-| v1 -> v2 data, auto ES | strict | -0.0539 | [-0.1171, +0.0239] | 0.193 | 90% |
-| v1 -> v2 data, auto ES | realistic | -0.0118 | [-0.0538, +0.0313] | 0.614 | 69% |
-| **v1 -> v2 data, ES off** | strict | -0.0389 | [-0.0903, +0.0122] | 0.155 | 92% |
-| **v1 -> v2 data, ES off** | **realistic** | **-0.0613** | **[-0.1126, -0.0108]** | **0.013** | **99%** |
+| v1 -> v2 data, auto ES 400/31 | strict | -0.0539 | [-0.1171, +0.0239] | 0.193 | 90% |
+| v1 -> v2 data, auto ES 400/31 | realistic | -0.0118 | [-0.0538, +0.0313] | 0.614 | 69% |
+| **v1 -> v2 data, ES off 400/31** | strict | -0.0389 | [-0.0903, +0.0122] | 0.155 | 92% |
+| **v1 -> v2 data, ES off 400/31** | **realistic** | **-0.0613** | **[-0.1126, -0.0108]** | **0.013** | **99%** |
+| **v1 -> v2 data, ES off 800/63** | strict | -0.0429 | [-0.0965, +0.0152] | 0.158 | 92% |
+| **v1 -> v2 data, ES off 800/63** | realistic | **-0.0538** | [-0.1043, +0.0009] | 0.055 | 97% |
 | ES auto -> off, v2 data | strict | +0.0068 | [-0.0423, +0.0530] | 0.825 | 41% |
 | ES auto -> off, v2 data | realistic | -0.0039 | [-0.0355, +0.0247] | 0.764 | 62% |
 | 400/31 -> 800/63, v2 data | strict | -0.0191 | [-0.0460, +0.0093] | 0.188 | 91% |
 | 400/31 -> 800/63, v2 data | realistic | -0.0083 | [-0.0238, +0.0087] | 0.358 | 82% |
+| 400/31 -> 800/63, v1 data | strict | -0.0151 | [-0.0541, +0.0212] | 0.436 | 78% |
+| 400/31 -> 800/63, v1 data | realistic | -0.0158 | [-0.0380, +0.0042] | 0.145 | 93% |
 
-**Exactly one interval excludes zero**: the family expansion costs 0.061 AP on the realistic protocol
-at the configuration where it had its best chance -- early stopping off, so no contaminated
-validation split truncating training, and the capacity setting that performed best overall.
+**One interval excludes zero**, and the contrast next to it comes within 0.001 of doing so. Both are
+the data lever on the realistic protocol with early stopping off: -0.0613 (p = 0.013, 99% of
+resamples worse) at 400/31 and -0.0538 (p = 0.055, CI upper bound +0.0009, 97% worse) at 800/63.
+The effect is therefore not an artifact of one estimator setting -- it appears at both capacities
+tested. Those two measurements are correlated rather than independent, being the same datasets and
+the same genomes under a different estimator, so this is one effect seen twice, not two
+replications.
 
-Multiplicity, stated rather than buried: this is one nominally significant result out of eight
-contrasts. The Bonferroni threshold for eight tests is 0.00625 and p = 0.013 does not survive it.
-What survives correction is nothing; what survives inspection is that the sign is the same in all
-six AP comparisons and that the single resolvable contrast is the one where the data lever was
-given its fairest test.
+Multiplicity, stated rather than buried: twelve contrasts, one nominal hit. The Bonferroni threshold
+for twelve tests is 0.0042 and p = 0.013 does not survive it. Nothing here survives correction. What
+survives inspection is that all six data contrasts share a sign, all four capacity contrasts share a
+sign, and the two contrasts that come closest to resolving are the same effect at two capacities.
 
 ## Answers
 
-**Q1 -- does more data help?** No. Six AP comparisons, six pointing the same way, and the one the
-benchmark can resolve says the expansion costs 0.061 AP. The one consistent benefit is strict
+**Q1 -- does more data help?** No. Six AP comparisons, six pointing the same way, and the two that
+come closest to resolving put the cost at 0.061 and 0.054 AP on the realistic protocol, at the two
+capacities tested. The one consistent benefit is strict
 recall@5: v2 is better by 0.04 to 0.05 in all three configurations, which fits broader family
 coverage buying reach at the cost of precision. If the model is used as a shortlist generator, that
 trade is arguably worth having; if it is used as a ranker, it is not.
@@ -75,8 +83,9 @@ claim of mine that it was worth "+0.046 realistic AP and +0.084 strict top-1". T
 cell, the v1 realistic protocol. The v2 pair gives -0.0039 (p = 0.76) and the top-1 gain falls from
 +0.084 to +0.011. One of four dataset-by-protocol cells showed the effect; it is not there.
 
-**Q3 -- is the model capacity-limited?** No. Going from 400/31 to 800/63 is worse in 91% of strict
-resamples and 82% of realistic ones, never better, never significantly so.
+**Q3 -- is the model capacity-limited?** No. Going from 400/31 to 800/63 is worse in all four
+contrasts -- on both datasets and both protocols, in 78% to 93% of resamples -- never better, never
+significantly so.
 
 ## The confound in Q1, which blocks the strong version of the claim
 
@@ -111,6 +120,14 @@ With 95 truths across 63 genomes the paired CIs are roughly +/-0.05 AP wide on t
 The benchmark cannot resolve effects below about 0.05, so a 0.02 improvement from any future change
 is not measurable here. Resolving +/-0.03 would need on the order of three times the genomes. Any
 claim of a small gain on this benchmark should be read as unmeasurable rather than real.
+
+## Reproducibility
+
+Three configurations were re-run from scratch during this work and had to match reports committed
+hours earlier, on AP, both bootstrap CI bounds, top-1 and recall@5, on both protocols. All three
+matched exactly: v1_base_es (twice, once fresh and once fully resumed from checkpoints),
+v1_noes_400_31 and v1_noes_800_63. The one deviation found anywhere was a 4e-4 shift in a single CI
+bound traced to 6-decimal rounding in the checkpoint writer, which is now full precision.
 
 ## Not run
 
