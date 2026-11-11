@@ -251,6 +251,97 @@
      }
     ]
    }
+  },
+  "spanin": {
+   "family_removal": {
+    "all": {
+     "AP": 0.6286,
+     "CI95_by_genome": [
+      0.4841,
+      0.8526
+     ],
+     "n_truths": 32,
+     "n_scored": 2307,
+     "n_genomes": 19,
+     "median_rank": 1.5,
+     "top1": 0.5,
+     "recall_at5": 0.938,
+     "recall_at0.5": 0.562
+    },
+    "exit_only": {
+     "AP": 0.6286,
+     "CI95_by_genome": [
+      0.4841,
+      0.8526
+     ],
+     "n_truths": 32,
+     "n_scored": 2307,
+     "n_genomes": 19,
+     "median_rank": 1.5,
+     "top1": 0.5,
+     "recall_at5": 0.938,
+     "recall_at0.5": 0.562
+    },
+    "unique_models_fitted": 18,
+    "seconds": 84,
+    "missed_truths": [
+     {
+      "genome": "NC_000924",
+      "id": "ST933Wp48",
+      "rank": 7,
+      "score": 0.0124,
+      "product": "Rz-like spanin"
+     },
+     {
+      "genome": "NC_000866.4",
+      "id": "T4p225",
+      "rank": 6,
+      "score": 0.0271,
+      "product": "Rz-like spanin"
+     }
+    ]
+   },
+   "sequence_removal": {
+    "all": {
+     "AP": 0.7822,
+     "CI95_by_genome": [
+      0.6475,
+      0.9392
+     ],
+     "n_truths": 32,
+     "n_scored": 2307,
+     "n_genomes": 19,
+     "median_rank": 1.0,
+     "top1": 0.562,
+     "recall_at5": 0.969,
+     "recall_at0.5": 0.812
+    },
+    "exit_only": {
+     "AP": 0.7822,
+     "CI95_by_genome": [
+      0.6475,
+      0.9392
+     ],
+     "n_truths": 32,
+     "n_scored": 2307,
+     "n_genomes": 19,
+     "median_rank": 1.0,
+     "top1": 0.562,
+     "recall_at5": 0.969,
+     "recall_at0.5": 0.812
+    },
+    "unique_models_fitted": 17,
+    "seconds": 81,
+    "missed_truths": [
+     {
+      "genome": "NC_018283",
+      "id": "B613_gp44",
+      "rank": 6,
+      "score": 0.0509,
+      "product": "Rz-like spanin"
+     }
+    ]
+   }
   }
  }
 }
