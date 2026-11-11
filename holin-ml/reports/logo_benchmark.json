@@ -1,0 +1,116 @@
+{
+ "n_genomes_scanned": 72,
+ "boot": 2000,
+ "datasets": {
+  "endolysin": "data/processed/endolysin_positives.json",
+  "spanin": "data/processed/spanin_positives.json"
+ },
+ "note": "Expanded LOGO: the atlas evaluation used 19 endolysins/12 genomes and 15 spanins/9 genomes, which left every model comparison inside its confidence interval. This uses all annotated lysis genes in the scanned panel. Protocol and negative recipes are unchanged from scripts/22 and scripts/28, so the figures describe the models as deployed.",
+ "classes": {
+  "holin": {
+   "family_removal": {
+    "all": {
+     "AP": 0.6128,
+     "CI95_by_genome": [
+      0.4945,
+      0.7416
+     ],
+     "n_truths": 53,
+     "n_scored": 4937,
+     "n_genomes": 50,
+     "median_rank": 1.0,
+     "top1": 0.66,
+     "recall_at5": 0.925,
+     "recall_at0.5": 0.774
+    },
+    "exit_only": {
+     "AP": 0.6128,
+     "CI95_by_genome": [
+      0.4945,
+      0.7416
+     ],
+     "n_truths": 53,
+     "n_scored": 4937,
+     "n_genomes": 50,
+     "median_rank": 1.0,
+     "top1": 0.66,
+     "recall_at5": 0.925,
+     "recall_at0.5": 0.774
+    },
+    "unique_models_fitted": 45,
+    "seconds": 223,
+    "missed_truths": [
+     {
+      "genome": "NC_062776.1",
+      "id": "M1M54_gp58",
+      "rank": 17,
+      "score": 0.0048,
+      "product": "putative phage holin"
+     },
+     {
+      "genome": "NC_000866.4",
+      "id": "T4p254",
+      "rank": 15,
+      "score": 0.0015,
+      "product": "holin"
+     },
+     {
+      "genome": "NC_026609",
+      "id": "VC66_gp31",
+      "rank": 10,
+      "score": 0.0021,
+      "product": "holin"
+     },
+     {
+      "genome": "NC_015273",
+      "id": "BuPhKS14_gp28",
+      "rank": 6,
+      "score": 0.0028,
+      "product": "holin"
+     }
+    ]
+   },
+   "sequence_removal": {
+    "all": {
+     "AP": 0.7544,
+     "CI95_by_genome": [
+      0.656,
+      0.8437
+     ],
+     "n_truths": 53,
+     "n_scored": 4937,
+     "n_genomes": 50,
+     "median_rank": 1.0,
+     "top1": 0.698,
+     "recall_at5": 0.981,
+     "recall_at0.5": 0.925
+    },
+    "exit_only": {
+     "AP": 0.7544,
+     "CI95_by_genome": [
+      0.656,
+      0.8437
+     ],
+     "n_truths": 53,
+     "n_scored": 4937,
+     "n_genomes": 50,
+     "median_rank": 1.0,
+     "top1": 0.698,
+     "recall_at5": 0.981,
+     "recall_at0.5": 0.925
+    },
+    "unique_models_fitted": 23,
+    "seconds": 150,
+    "missed_truths": [
+     {
+      "genome": "NC_026609",
+      "id": "VC66_gp31",
+      "rank": 16,
+      "score": 0.0006,
+      "product": "holin"
+     }
+    ]
+   }
+  }
+ }
+}
