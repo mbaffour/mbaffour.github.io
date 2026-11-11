@@ -32,7 +32,7 @@ Usage: python3 scripts/40_logo_benchmark.py [--classes holin endolysin spanin] [
                                             [--endolysin-positives data/processed/endolysin_positives_v1.json]
 Writes reports/logo_benchmark.json
 """
-import argparse, glob, importlib, json, re, sys, time
+import argparse, hashlib, glob, importlib, json, re, sys, time
 from pathlib import Path
 import numpy as np
 from sklearn.ensemble import HistGradientBoostingClassifier
@@ -93,6 +93,33 @@ def load_sets(cls, endo_pos_path, spa_pos_path):
     return pos, neg
 
 
+def ck_dir(root, hp, epos, spos):
+    """One checkpoint directory per (estimator, dataset) combination, so configs cannot collide."""
+    sig = json.dumps({"hp": hp, "endolysin": epos, "spanin": spos}, sort_keys=True)
+    d = Path(root) / hashlib.sha256(sig.encode()).hexdigest()[:16]
+    d.mkdir(parents=True, exist_ok=True)
+    (d / "config.json").write_text(sig)
+    return d
+
+
+def ck_load(d, cls, mode, genome, n):
+    """Per-protein scores for one (class, protocol, genome), or None if not computed yet."""
+    f = d / f"{cls}__{mode}__{genome}.json"
+    if not f.exists(): return None
+    try:
+        s = json.loads(f.read_text())
+    except Exception:
+        return None
+    return np.array(s, float) if isinstance(s, list) and len(s) == n else None
+
+
+def ck_save(d, cls, mode, genome, s):
+    f = d / f"{cls}__{mode}__{genome}.json"
+    tmp = f.with_suffix(".tmp")
+    tmp.write_text(json.dumps([round(float(x), 6) for x in s]))
+    tmp.replace(f)                      # atomic, so a kill mid-write cannot leave a short file
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--classes", nargs="+", default=list(CLASSES), choices=list(CLASSES))
@@ -102,6 +129,9 @@ def main():
     ap.add_argument("--endolysin-positives", default="data/processed/endolysin_positives.json")
     ap.add_argument("--spanin-positives", default="data/processed/spanin_positives.json")
     ap.add_argument("--out", default="reports/logo_benchmark.json")
+    ap.add_argument("--checkpoint", default=".fitckpt",
+                    help="directory for per-genome score checkpoints; a run resumes from these, so a "
+                         "container restart or a command timeout costs only the genome in flight")
     ap.add_argument("--max-iter", type=int, default=400)
     ap.add_argument("--max-leaf-nodes", type=int, default=31)
     ap.add_argument("--learning-rate", type=float, default=0.06)
@@ -114,6 +144,9 @@ def main():
                "early_stopping": (False if str(a.early_stopping).lower() in ("false", "0", "no")
                                   else a.early_stopping)})
     print(f"estimator: {HP}", flush=True)
+    CK = ck_dir(B / a.checkpoint if not Path(a.checkpoint).is_absolute() else a.checkpoint,
+                dict(HP), a.endolysin_positives, a.spanin_positives)
+    print(f"checkpoints: {CK}", flush=True)
     paths = sorted({p for g in a.genbanks for p in glob.glob(str(B / g))})
     esm = F.ESM(B / "models/esm_cache")
     feats = lambda ss: (np.hstack([np.array([F.handcrafted(s) for s in ss]), esm.embed(ss)])
@@ -162,25 +195,30 @@ def main():
               f"{sum(len(g['truth'][cls]) for g in gs)} truths; features in {int(time.time()-t)}s", flush=True)
         res = {}
         for mode in ("family", "sequence"):
-            t = time.time(); cache = {}; rows = []
+            t = time.time(); cache = {}; rows = []; resumed = 0
             for g in gs:
-                qs = [g["proteins"][i]["sequence"] for i in g["truth"][cls]]
-                ident = CL.search(qs, pos_seqs, 80)
-                if mode == "family":
-                    dc = {cl_ids[i] for i, v in enumerate(ident) if v >= CL.MIN_ID}
-                    drop = np.isin(cl_ids, list(dc)) if dc else np.zeros(len(pos), bool)
+                s = ck_load(CK, cls, mode, g["name"], len(g["proteins"]))
+                if s is not None:
+                    resumed += 1
                 else:
-                    drop = np.array([v >= 0.95 for v in ident])
-                key = drop.tobytes()
-                if key not in cache:
-                    keep = ~drop
-                    if keep.sum() < 10: cache[key] = None
+                    qs = [g["proteins"][i]["sequence"] for i in g["truth"][cls]]
+                    ident = CL.search(qs, pos_seqs, 80)
+                    if mode == "family":
+                        dc = {cl_ids[i] for i, v in enumerate(ident) if v >= CL.MIN_ID}
+                        drop = np.isin(cl_ids, list(dc)) if dc else np.zeros(len(pos), bool)
                     else:
-                        X = np.vstack([Xp[keep], Xn])
-                        y = np.concatenate([np.ones(int(keep.sum()), int), np.zeros(len(neg), int)])
-                        cache[key] = hgb().fit(X, y)
-                m = cache[key]
-                s = m.predict_proba(g["X"])[:, 1] if m is not None else np.zeros(len(g["proteins"]))
+                        drop = np.array([v >= 0.95 for v in ident])
+                    key = drop.tobytes()
+                    if key not in cache:
+                        keep = ~drop
+                        if keep.sum() < 10: cache[key] = None
+                        else:
+                            X = np.vstack([Xp[keep], Xn])
+                            y = np.concatenate([np.ones(int(keep.sum()), int), np.zeros(len(neg), int)])
+                            cache[key] = hgb().fit(X, y)
+                    m = cache[key]
+                    s = m.predict_proba(g["X"])[:, 1] if m is not None else np.zeros(len(g["proteins"]))
+                    ck_save(CK, cls, mode, g["name"], s)
                 tset = set(g["truth"][cls])
                 order = np.argsort(-s)
                 rank = {int(i): r for r, i in enumerate(order, 1)}
@@ -210,10 +248,16 @@ def main():
                         "recall_at0.5": round(float(np.mean([r["score"] >= 0.5 for r in tr_rows])), 3)}
             keep_exit = [r for r in rows if not (r["y"] and r["virion"])]
             res[f"{mode}_removal"] = {"all": agg(rows), "exit_only": agg(keep_exit),
-                                      "unique_models_fitted": len(cache), "seconds": int(time.time() - t)}
+                                      "unique_models_fitted": len(cache),
+                                      "genomes_from_checkpoint": resumed,
+                                      "fits_note": "unique_models_fitted counts fits done in THIS process; with "
+                                                   "genomes_from_checkpoint > 0 the run resumed and earlier fits "
+                                                   "are not counted. Scores are identical either way.",
+                                      "seconds": int(time.time() - t)}
             v = res[f"{mode}_removal"]["all"]
             print(f"  {mode:<9} AP={v['AP']:.4f} CI={v['CI95_by_genome']} top1={v['top1']} "
-                  f"r@5={v['recall_at5']} ({len(cache)} fits, {int(time.time()-t)}s)", flush=True)
+                  f"r@5={v['recall_at5']} ({len(cache)} fits, {resumed} resumed, "
+                  f"{int(time.time()-t)}s)", flush=True)
             res[f"{mode}_removal"]["missed_truths"] = sorted(
                 [{"genome": r["genome"], "id": r["id"], "rank": r["rank"], "score": round(r["score"], 4),
                   "product": r["product"]} for r in rows if r["y"] and r["rank"] > 5],
