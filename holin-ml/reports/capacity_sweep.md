@@ -1,12 +1,15 @@
 # Capacity sweep: does the endolysin model improve with more data, more capacity, or a clean
 # early-stopping split?
 
-Three levers, six configurations, eight paired tests. `scripts/40_logo_benchmark.py` for the runs,
-`scripts/41_paired_delta.py` for the differences. Endolysin only; 63 genomes, 95 annotated truths.
+Three levers, six configurations, a follow-up subsample experiment with three seeds, and sixteen
+paired tests. `scripts/40_logo_benchmark.py` for the runs, `scripts/41_paired_delta.py` for the
+differences. Endolysin only; 63 genomes, 95 annotated truths.
 
 The question came from a direct challenge: *don't we learn more with more data in an ML model?* The
-honest answer below is no, not here, and at the one configuration where the benchmark can resolve
-the difference the extra data measurably **hurt**.
+answer below has two halves. The v2 expansion measurably **hurt** (-0.061 realistic AP at the
+configuration where the benchmark can resolve it). And the subsample experiment shows the damage came
+from **what was added, not how much**: matched to v1's count and class ratio, v2's mix loses 90% of
+the same ground, while 820 extra records of that mix move AP by 0.006.
 
 ## The configurations
 
@@ -71,12 +74,12 @@ sign, and the two contrasts that come closest to resolving are the same effect a
 
 ## Answers
 
-**Q1 -- does more data help?** No. Six AP comparisons, six pointing the same way, and the two that
-come closest to resolving put the cost at 0.061 and 0.054 AP on the realistic protocol, at the two
-capacities tested. The one consistent benefit is strict
-recall@5: v2 is better by 0.04 to 0.05 in all three configurations, which fits broader family
-coverage buying reach at the cost of precision. If the model is used as a shortlist generator, that
-trade is arguably worth having; if it is used as a ranker, it is not.
+**Q1 -- does more data help?** No, and the subsample experiment below says why. Six AP comparisons
+point the same way, and the two that come closest to resolving put the cost at 0.061 and 0.054 AP on
+the realistic protocol. Cutting v2 back to v1's exact count and class ratio recovers almost none of
+that: 90% of the realistic loss and 98% of the strict loss are composition. The extra count itself is
+worth +/-0.006. The one consistent benefit is strict recall@5, better by 0.04 to 0.05 in all three
+configurations -- broader family coverage buying reach at the cost of precision.
 
 **Q2 -- does the homology-contaminated early-stopping split matter?** No. This replaces an earlier
 claim of mine that it was worth "+0.046 realistic AP and +0.084 strict top-1". That came from one
@@ -87,17 +90,76 @@ cell, the v1 realistic protocol. The v2 pair gives -0.0039 (p = 0.76) and the to
 contrasts -- on both datasets and both protocols, in 78% to 93% of resamples -- never better, never
 significantly so.
 
-## The confound in Q1, which blocks the strong version of the claim
+## Resolving the confound: it is composition, not count
 
-v1 and v2 do not differ only in family coverage. They differ in count, and because both use the same
-20,100 negatives, they differ in class ratio: **1:15.0 for v1, 1:9.3 for v2**. "More data hurt" is
-therefore not separable here from "a different positive-to-negative ratio hurt", and the second is a
-calibration effect, not a statement about data volume.
+The capacity sweep could not say *why* v2 lost, because v1 and v2 differ in count and composition at
+once, and with the 20,100 negatives fixed a count change is also a class-ratio change (1:15.0 vs
+1:9.3). So v2's training positives were cut to exactly v1's count -- 1,337, stratified by source so
+v2's mix is preserved -- and evaluated at the configuration where the gap resolved (early stopping
+off, 400/31). Three seeds. The reading was fixed before any number came back: *recovers v1* means
+count/ratio did the damage; *stays at v2* means composition did.
 
-The experiment that separates them: subsample v2 to 1,337 positives while keeping its broader family
-diversity, and rerun. Matching v1 would place the harm on count and ratio; staying low would place it
-on the added families' label quality. Until that is run, the defensible claim is narrow -- *this
-expansion, as built, did not help and probably cost a little* -- not the general one.
+| arm | positives | ratio | curated share | strict AP | realistic AP |
+|---|---|---|---|---|---|
+| v1 | 1,337 | 1:15.0 | 57% | 0.6141 | 0.8092 |
+| **v2 subsample** (3 seeds) | **1,337** | **1:15.0** | **33%** | **0.5759** (0.5612, 0.5713, 0.5953) | **0.7541** (0.7630, 0.7312, 0.7682) |
+| v2 | 2,157 | 1:9.3 | 33% | 0.5753 | 0.7479 |
+
+Paired, with each resample averaging over the three seeds so the interval covers seed variance as well
+as genome variance:
+
+| contrast | protocol | delta | CI95 | p | worse in |
+|---|---|---|---|---|---|
+| v1 -> subsample (**composition**, count held) | strict | -0.0382 | [-0.0877, +0.0079] | 0.116 | 94% |
+| v1 -> subsample (**composition**, count held) | realistic | **-0.0551** | **[-0.1019, -0.0073]** | **0.021** | **99%** |
+| subsample -> v2 (**count/ratio**, mix held) | strict | -0.0006 | [-0.0293, +0.0275] | 0.991 | 50% |
+| subsample -> v2 (**count/ratio**, mix held) | realistic | -0.0063 | [-0.0266, +0.0111] | 0.515 | 74% |
+
+(The second pair is printed by `scripts/41` as v2 -> subsample; the signs here are flipped to read in
+the v1 -> v2 direction so the two rows add up.)
+
+**The decomposition adds up.** On the realistic protocol, v1 -> v2 is -0.0613; composition accounts for
+-0.0551 of it (90%) and count/ratio for -0.0063 (10%). On the strict protocol it is -0.0382 of -0.0388
+(98%) against -0.0006. Matching v1's count and class ratio recovers essentially none of the loss.
+
+**The null is the stronger half of this result.** The count/ratio contrast is not merely
+non-significant; its interval is narrow -- about +/-0.02 to +/-0.03 -- and centred on zero. Adding 820
+more positives of the same mix moved AP by 0.0006 and 0.0063. That is about as close as this benchmark
+gets to showing that something does nothing.
+
+**Seed variance mattered.** The three draws span 0.034 strict and 0.037 realistic, the same order as
+the effects being measured. One seed alone could have read anywhere from "most of the gap" to "barely
+any", which is why the averaged-over-seeds interval is the one reported.
+
+Multiplicity: this was the single pre-specified test of a new experiment, but across the whole sweep it
+is one more contrast. p = 0.021 would not survive a Bonferroni correction over every test run here. The
+count/ratio null does not depend on any threshold.
+
+### What "composition" means concretely
+
+v2 is not v1 plus extra families. Against v1's training positives:
+
+| | n | Pfam-mined | pool | UniProt-validated | UniProt-reviewed |
+|---|---|---|---|---|---|
+| **dropped** from v1 | 304 | 177 (58%) | 60 (20%) | 51 (17%) | 16 (5%) |
+| **added** in v2 | 1,124 | 1,059 (94%) | 23 (2%) | 34 (3%) | 8 (1%) |
+
+So the expansion did two things at once: it **discarded 127 curated positives** (pool, validated,
+reviewed) that v1 trained on, and it **added 1,059 domain-mined ones**. This experiment shows the
+composition change is what hurt; it cannot say which of those two halves did it.
+
+The discarded curated records deserve a look on their own. Nothing in the stated purpose of the v2
+rebuild -- adding families -- called for removing validated endolysins from training, so their loss
+may be a side effect of the rebuild (deduplication, re-clustering or the stratified per-family cap)
+rather than a decision anyone made.
+
+### Answer to the original question
+
+*Don't we learn more with more data?* Measured directly: **more data of the same kind did nothing**
+(+/-0.006 AP), and **the expansion hurt because of what it contained, not how much of it there was**. The
+general principle is not wrong; it is conditional on the added data being as good as what it joins.
+Domain-mined labels are not, at least not here, and in this build they came at the expense of curated
+ones.
 
 ## What this says about where the ceiling is
 

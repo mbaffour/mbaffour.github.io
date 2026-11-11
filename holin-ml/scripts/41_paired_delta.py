@@ -46,52 +46,60 @@ def genomes_with_truth(cls, patterns):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--a", required=True); ap.add_argument("--b", required=True)
+    ap.add_argument("--a", required=True); ap.add_argument("--b", required=True, nargs="+")
     ap.add_argument("--cls", default="endolysin"); ap.add_argument("--boot", type=int, default=4000)
     ap.add_argument("--genbanks", nargs="+", default=["data/raw/panel/*.gb", "data/raw/genomes/*.gb"])
     ap.add_argument("--out")
     a = ap.parse_args()
-    da, db = Path(a.a), Path(a.b)
-    ca, cb = json.loads((da / "config.json").read_text()), json.loads((db / "config.json").read_text())
-    print(f"A: {ca['hp']['max_iter']}/{ca['hp']['max_leaf_nodes']} es={ca['hp']['early_stopping']} "
-          f"{Path(ca['endolysin']).name}")
-    print(f"B: {cb['hp']['max_iter']}/{cb['hp']['max_leaf_nodes']} es={cb['hp']['early_stopping']} "
-          f"{Path(cb['endolysin']).name}")
+    da = Path(a.a); dbs = [Path(x) for x in a.b]
+    ca = json.loads((da / "config.json").read_text())
+    cbs = [json.loads((d / "config.json").read_text()) for d in dbs]
+    desc = lambda c: (f"{c['hp']['max_iter']}/{c['hp']['max_leaf_nodes']} es={c['hp']['early_stopping']} "
+                      f"{Path(c['endolysin']).name}" + (f" sub={c['extra']}" if c.get("extra") else ""))
+    print("A:", desc(ca))
+    for c in cbs: print("B:", desc(c))
+    if len(dbs) > 1:
+        print(f"   ({len(dbs)} B replicates: each resample averages the per-replicate deltas, so the CI "
+              f"covers replicate variance as well as genome variance)")
 
     gs = genomes_with_truth(a.cls, a.genbanks)
-    res = {"A": ca, "B": cb, "class": a.cls, "boot": a.boot, "protocols": {}}
+    res = {"A": ca, "B": cbs if len(cbs) > 1 else cbs[0], "class": a.cls, "boot": a.boot, "protocols": {}}
     for mode in ("family", "sequence"):
-        rows = []
+        gn, y, xa, xbs = [], [], [], [[] for _ in dbs]
         for g in gs:
             sa = L.ck_load(da, a.cls, mode, g["name"], g["n"])
-            sb = L.ck_load(db, a.cls, mode, g["name"], g["n"])
-            if sa is None or sb is None:
+            sb = [L.ck_load(d, a.cls, mode, g["name"], g["n"]) for d in dbs]
+            if sa is None or any(x is None for x in sb):
                 print(f"  {mode}: missing checkpoint for {g['name']}, skipped"); continue
             for i in range(g["n"]):
-                rows.append((g["name"], int(i in g["truth"]), float(sa[i]), float(sb[i])))
-        if not rows: print(f"  {mode}: nothing to compare"); continue
-        gn = np.array([r[0] for r in rows]); y = np.array([r[1] for r in rows])
-        xa = np.array([r[2] for r in rows]); xb = np.array([r[3] for r in rows])
-        apa, apb = average_precision_score(y, xa), average_precision_score(y, xb)
+                gn.append(g["name"]); y.append(int(i in g["truth"])); xa.append(float(sa[i]))
+                for k in range(len(dbs)): xbs[k].append(float(sb[k][i]))
+        if not gn: print(f"  {mode}: nothing to compare"); continue
+        gn, y, xa = np.array(gn), np.array(y), np.array(xa); xbs = [np.array(x) for x in xbs]
+        apa = average_precision_score(y, xa)
+        apbs = [average_precision_score(y, x) for x in xbs]
         uq = sorted(set(gn)); idx = {q: np.where(gn == q)[0] for q in uq}
         rng = np.random.default_rng(0); d = []
         for _ in range(a.boot):
             pick = rng.choice(uq, size=len(uq), replace=True)
             ix = np.concatenate([idx[q] for q in pick])
             if len(set(y[ix])) < 2: continue
-            d.append(average_precision_score(y[ix], xb[ix]) - average_precision_score(y[ix], xa[ix]))
+            base = average_precision_score(y[ix], xa[ix])
+            d.append(np.mean([average_precision_score(y[ix], x[ix]) - base for x in xbs]))
         d = np.array(d)
         lo, hi = np.percentile(d, [2.5, 97.5])
-        # two-sided bootstrap p: how often the difference lands on the other side of zero
         p = 2 * min((d <= 0).mean(), (d >= 0).mean())
-        v = {"AP_A": round(float(apa), 4), "AP_B": round(float(apb), 4),
-             "delta_B_minus_A": round(float(apb - apa), 4),
+        apb = float(np.mean(apbs))
+        v = {"AP_A": round(float(apa), 4), "AP_B": round(apb, 4),
+             "AP_B_per_replicate": [round(float(x), 4) for x in apbs],
+             "delta_B_minus_A": round(apb - float(apa), 4),
              "delta_CI95": [round(float(lo), 4), round(float(hi), 4)],
              "p_two_sided": round(float(min(p, 1.0)), 4),
              "n_genomes": len(uq), "n_truths": int(y.sum()), "n_resamples_used": int(len(d)),
              "frac_resamples_B_worse": round(float((d < 0).mean()), 4)}
         res["protocols"][mode] = v
-        print(f"  {mode:<9} AP_A={v['AP_A']:.4f} AP_B={v['AP_B']:.4f} "
+        rep = "" if len(apbs) == 1 else f" (reps {', '.join(f'{x:.4f}' for x in apbs)})"
+        print(f"  {mode:<9} AP_A={v['AP_A']:.4f} AP_B={v['AP_B']:.4f}{rep} "
               f"delta={v['delta_B_minus_A']:+.4f} CI95={v['delta_CI95']} "
               f"p={v['p_two_sided']:.4f} (B worse in {v['frac_resamples_B_worse']*100:.0f}% of resamples)")
     if a.out:
