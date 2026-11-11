@@ -141,17 +141,75 @@ v2 is not v1 plus extra families. Against v1's training positives:
 
 | | n | Pfam-mined | pool | UniProt-validated | UniProt-reviewed |
 |---|---|---|---|---|---|
-| **dropped** from v1 | 304 | 177 (58%) | 60 (20%) | 51 (17%) | 16 (5%) |
+| **left training** (v1 -> v2) | 304 | 177 (58%) | 60 (20%) | 51 (17%) | 16 (5%) |
 | **added** in v2 | 1,124 | 1,059 (94%) | 23 (2%) | 34 (3%) | 8 (1%) |
 
-So the expansion did two things at once: it **discarded 127 curated positives** (pool, validated,
-reviewed) that v1 trained on, and it **added 1,059 domain-mined ones**. This experiment shows the
-composition change is what hurt; it cannot say which of those two halves did it.
+So the expansion changed the training set in three ways at once: 127 curated positives (pool,
+validated, reviewed) that v1 trained on left training, 177 Pfam-tier records from core families left
+it too, and 1,059 domain-mined records joined it. This experiment shows the composition change is what
+hurt; it cannot say which part. (The 127 curated records were moved into v2's gold holdout, not
+discarded -- see the restore test below, which also shows they were not the cause.)
 
-The discarded curated records deserve a look on their own. Nothing in the stated purpose of the v2
-rebuild -- adding families -- called for removing validated endolysins from training, so their loss
-may be a side effect of the rebuild (deduplication, re-clustering or the stratified per-family cap)
-rather than a decision anyone made.
+## Restoring the 127 curated positives: they were not the cause
+
+The subsample test located the loss in composition. The obvious suspect was 127 curated positives (60
+pool, 51 UniProt-validated, 16 reviewed) that v1 trained on and v2 did not. They turned out never to
+have been discarded: scripts/27 draws the gold holdout as 20% of homology *clusters* with a fixed seed,
+v2's re-clustering changed the cluster ids, the same seed drew different clusters, and v2's draw
+landed on larger ones -- 631 positives held out (23%) against 192 (13%) for v1. That draw swept the 127
+into v2's holdout.
+
+`scripts/42_restore_holdout.py` returned exactly those 127 to v2's training set (every record keeps v2's
+cluster id), plus three count-matched controls returning 127 random held-out **Pfam-mined** records
+instead. All at early stopping off, 400/31. Records are flipped by position, because ids are not unique
+in v2 -- a first build that flipped by id dragged in 9 extra records and was caught by a count check
+before anything ran.
+
+| arm | train positives | strict AP | realistic AP |
+|---|---|---|---|
+| v1 | 1,337 | 0.6141 | 0.8092 |
+| **v2 + 127 curated restored** | 2,284 | **0.5727** | **0.7546** |
+| v2 + 127 Pfam-mined (3 seeds) | 2,284 | 0.5573 (0.5629, 0.5535, 0.5555) | 0.7415 (0.7450, 0.7479, 0.7317) |
+| v2 | 2,157 | 0.5753 | 0.7479 |
+
+| contrast | protocol | delta | CI95 | p | worse in |
+|---|---|---|---|---|---|
+| v2 -> restore curated | strict | -0.0026 | [-0.0318, +0.0280] | 0.853 | 57% |
+| v2 -> restore curated | realistic | +0.0067 | [-0.0116, +0.0266] | 0.524 | 26% |
+| v1 -> restore curated (gap left) | strict | -0.0415 | [-0.0878, +0.0034] | 0.070 | 96% |
+| v1 -> restore curated (gap left) | realistic | **-0.0546** | **[-0.1030, -0.0083]** | **0.017** | **99%** |
+| curated -> Pfam-mined, equal count | strict | -0.0154 | [-0.0440, +0.0128] | 0.313 | 84% |
+| curated -> Pfam-mined, equal count | realistic | -0.0131 | [-0.0336, +0.0055] | 0.191 | 90% |
+| v2 -> add 127 Pfam-mined | strict | -0.0180 | [-0.0404, +0.0018] | 0.079 | 96% |
+| v2 -> add 127 Pfam-mined | realistic | -0.0064 | [-0.0216, +0.0084] | 0.429 | 79% |
+
+**Restoring the curated records recovers almost nothing.** It moves v2 by -0.003 strict and +0.007
+realistic, and the gap to v1 stays essentially whole: -0.0546 realistic (it was -0.0613), still
+excluding zero, and -0.0415 strict (it was -0.0389). The reading fixed before the run was "restore
+~ v2 means the curated records were not the cause", and that is what happened.
+
+**The equal-count comparison leans one way and does not resolve.** At an identical 2,284 positives the
+curated set beats the Pfam-mined one by 0.015 strict and 0.013 realistic (the controls are worse in
+84% and 90% of resamples). Adding 127 more Pfam-mined records to v2 *lowers* strict AP by 0.018 (worse
+in 96%, p = 0.079). Nothing here crosses significance, but every contrast in this block points the same
+way: curated positives are roughly neutral at the margin, mined ones slightly harmful.
+
+**What the pre-specified reading over-simplified.** It said that if restoring failed, the loss "was the
+added Pfam-mined records". That skipped a second difference between v2 and v1. v1 trained on 177
+Pfam-tier records that v2 does not -- 90 swept into v2's holdout by the same redraw, 87 cut outright by
+the rebuild's cap or guard -- and they come from the core families (PF00959 phage lysozyme 68, PF05257
+32, PF01510 31, PF01520 24, PF31067 19). So the gap now sits on two candidates this experiment cannot
+separate: **the ~1,100 records v2 added**, or **the 177 core-family records it lost**. The Pfam-mined
+controls favour the first, without settling it. Restoring the 90 held-out ones is the cheap test.
+
+### Correction to the composition write-up above
+
+An earlier version of this report said v2 "discarded 127 curated positives". They were not discarded;
+they were moved into v2's gold holdout by the cluster redraw described here. The broader lesson stands
+and is worth stating on its own: **the "frozen" gold holdout is frozen only within a dataset version.**
+Rebuilding the dataset re-draws it, so it changes which records train *and* which records evaluate.
+Gold-holdout scores are not comparable across versions -- which `scripts/35` already enforces -- and
+training sets across versions differ by more than whatever the rebuild was meant to change.
 
 ### Answer to the original question
 
