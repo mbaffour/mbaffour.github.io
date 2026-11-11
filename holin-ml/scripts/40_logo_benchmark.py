@@ -53,8 +53,21 @@ TRUTH = {
 ANTI = re.compile(r"antiholin|anti-holin", re.I)
 
 
+HP = {"max_iter": 400, "learning_rate": 0.06, "max_leaf_nodes": 31, "early_stopping": "auto"}
+
+
 def hgb():
-    return HistGradientBoostingClassifier(max_iter=400, learning_rate=0.06, max_leaf_nodes=31, random_state=0)
+    """The estimator, with capacity under explicit control.
+
+    Note on early stopping, which is why these flags exist. The shipped models all stop well short of their
+    max_iter (holin 269/400, endolysin 104/400, spanin 90/400), so max_iter was never the binding constraint.
+    Worse, sklearn's early stopping holds out 10% of rows AT RANDOM, and the training sets contain thousands of
+    near-duplicate homologs -- so that internal validation split is homology-contaminated and the model stops
+    when it stops improving on a leaked signal, not on novel families. This project controls homology leakage in
+    the clustering, the frozen gold holdout and the LOGO protocols, but never inside the estimator.
+    --early-stopping False removes that confound and makes max_iter a real capacity dial.
+    """
+    return HistGradientBoostingClassifier(random_state=0, **HP)
 
 
 def load_sets(cls, endo_pos_path, spa_pos_path):
@@ -89,8 +102,18 @@ def main():
     ap.add_argument("--endolysin-positives", default="data/processed/endolysin_positives.json")
     ap.add_argument("--spanin-positives", default="data/processed/spanin_positives.json")
     ap.add_argument("--out", default="reports/logo_benchmark.json")
+    ap.add_argument("--max-iter", type=int, default=400)
+    ap.add_argument("--max-leaf-nodes", type=int, default=31)
+    ap.add_argument("--learning-rate", type=float, default=0.06)
+    ap.add_argument("--early-stopping", default="auto",
+                    help="'auto' (sklearn default, homology-contaminated 10%% random split) or 'False'")
     a = ap.parse_args()
 
+    HP.update({"max_iter": a.max_iter, "max_leaf_nodes": a.max_leaf_nodes,
+               "learning_rate": a.learning_rate,
+               "early_stopping": (False if str(a.early_stopping).lower() in ("false", "0", "no")
+                                  else a.early_stopping)})
+    print(f"estimator: {HP}", flush=True)
     paths = sorted({p for g in a.genbanks for p in glob.glob(str(B / g))})
     esm = F.ESM(B / "models/esm_cache")
     feats = lambda ss: (np.hstack([np.array([F.handcrafted(s) for s in ss]), esm.embed(ss)])
@@ -119,7 +142,7 @@ def main():
     for g in genomes: g["X"] = feats([x["sequence"] for x in g["proteins"]])
     print(f"genome features in {int(time.time()-t)}s", flush=True)
 
-    out = {"n_genomes_scanned": len(genomes), "boot": a.boot,
+    out = {"n_genomes_scanned": len(genomes), "boot": a.boot, "hyperparameters": dict(HP),
            "datasets": {"endolysin": a.endolysin_positives, "spanin": a.spanin_positives},
            "note": "Expanded LOGO: the atlas evaluation used 19 endolysins/12 genomes and 15 spanins/9 genomes, "
                    "which left every model comparison inside its confidence interval. This uses all annotated "
