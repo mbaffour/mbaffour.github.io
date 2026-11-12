@@ -93,6 +93,28 @@ def load_sets(cls, endo_pos_path, spa_pos_path):
     return pos, neg
 
 
+_SIM_T = None
+def _sim_init(targets):
+    global _SIM_T; _SIM_T = targets
+def _sim_row(q):
+    """identity of q to every target, under the SAME rule the protocols use to remove homologues (coverage of the
+    shorter sequence >= CL.MIN_COV and Smith-Waterman score >= 80); 0 where that rule is not met."""
+    return np.array([ident if (cov >= CL.MIN_COV and sc >= 80) else 0.0
+                     for ident, cov, sc in CL.align_pairs(q, _SIM_T)], np.float32)
+
+
+def sim_matrix(queries, targets, cache_dir, procs=4):
+    """queries x targets identity matrix, cached on disk by content hash (it is the expensive part)."""
+    h = hashlib.sha256(("\n".join(queries) + "\n#\n" + "\n".join(targets)).encode()).hexdigest()[:20]
+    f = Path(cache_dir) / f"sim_{h}.npy"
+    if f.exists(): return np.load(f)
+    from multiprocessing import Pool
+    with Pool(procs, initializer=_sim_init, initargs=(targets,)) as pool:
+        M = np.vstack(pool.map(_sim_row, queries, chunksize=16)) if queries else np.zeros((0, len(targets)), np.float32)
+    f.parent.mkdir(parents=True, exist_ok=True); np.save(f, M)
+    return M
+
+
 def stratified_subsample(recs, n, seed, field):
     """Exactly n records, each stratum of `field` kept in proportion (largest-remainder rounding).
     Deterministic: records are ordered by id inside each stratum before the seeded draw."""
@@ -158,6 +180,11 @@ def main():
                          "this many, stratified by --pos-subsample-strata; 0 = off")
     ap.add_argument("--pos-subsample-seed", type=int, default=0)
     ap.add_argument("--pos-subsample-strata", default="source")
+    ap.add_argument("--sim-features", action="store_true",
+                    help="append one feature: max identity to the class's KEPT training positives (self and exact "
+                         "duplicates masked for training rows; for a scored genome, only positives surviving that "
+                         "genome's homology removal count). Also reports a nearest-neighbour baseline that ranks "
+                         "by that identity alone.")
     ap.add_argument("--checkpoint", default=".fitckpt",
                     help="directory for per-genome score checkpoints; a run resumes from these, so a "
                          "container restart or a command timeout costs only the genome in flight")
@@ -175,8 +202,10 @@ def main():
     print(f"estimator: {HP}", flush=True)
     SUB = ({"n": a.pos_subsample, "seed": a.pos_subsample_seed, "strata": a.pos_subsample_strata}
            if a.pos_subsample else None)
+    EXTRA = dict(SUB or {})
+    if a.sim_features: EXTRA["sim"] = "target_class_max_identity_v1"
     CK = ck_dir(B / a.checkpoint if not Path(a.checkpoint).is_absolute() else a.checkpoint,
-                dict(HP), a.endolysin_positives, a.spanin_positives, SUB)
+                dict(HP), a.endolysin_positives, a.spanin_positives, EXTRA or None)
     print(f"checkpoints: {CK}", flush=True)
     paths = sorted({p for g in a.genbanks for p in glob.glob(str(B / g))})
     esm = F.ESM(B / "models/esm_cache")
@@ -232,9 +261,21 @@ def main():
         Xp, Xn = feats(pos_seqs), feats([r["sequence"] for r in neg])
         print(f"{cls}: {len(pos)} training positives, {len(neg)} negatives, {len(gs)} genomes, "
               f"{sum(len(g['truth'][cls]) for g in gs)} truths; features in {int(time.time()-t)}s", flush=True)
+        if a.sim_features:
+            t = time.time(); cdir = B / ".simcache"
+            S_pos = sim_matrix(pos_seqs, pos_seqs, cdir)
+            same = np.array([[x == y for y in pos_seqs] for x in pos_seqs])   # self AND exact duplicates
+            S_pos[same] = 0.0
+            S_neg = sim_matrix([r["sequence"] for r in neg], pos_seqs, cdir)
+            allg = [x["sequence"] for g in gs for x in g["proteins"]]
+            S_all = sim_matrix(allg, pos_seqs, cdir); o = 0
+            for g in gs:
+                g["S"] = S_all[o:o + len(g["proteins"])]; o += len(g["proteins"])
+            print(f"{cls}: similarity matrices {S_pos.shape} {S_neg.shape} {S_all.shape} in {int(time.time()-t)}s",
+                  flush=True)
         res = {}
         for mode in ("family", "sequence"):
-            t = time.time(); cache = {}; rows = []; resumed = 0
+            t = time.time(); cache = {}; rows = []; resumed = 0; nn_rows = []
             for g in gs:
                 s = ck_load(CK, cls, mode, g["name"], len(g["proteins"]))
                 if s is not None:
@@ -251,14 +292,29 @@ def main():
                     if key not in cache:
                         keep = ~drop
                         if keep.sum() < 10: cache[key] = None
+                        elif a.sim_features:
+                            fp = S_pos[np.ix_(keep, keep)].max(1)[:, None]
+                            fn = S_neg[:, keep].max(1)[:, None]
+                            X = np.vstack([np.hstack([Xp[keep], fp]), np.hstack([Xn, fn])])
+                            y = np.concatenate([np.ones(int(keep.sum()), int), np.zeros(len(neg), int)])
+                            cache[key] = hgb().fit(X, y)
                         else:
                             X = np.vstack([Xp[keep], Xn])
                             y = np.concatenate([np.ones(int(keep.sum()), int), np.zeros(len(neg), int)])
                             cache[key] = hgb().fit(X, y)
                     m = cache[key]
-                    s = m.predict_proba(g["X"])[:, 1] if m is not None else np.zeros(len(g["proteins"]))
+                    Xg = g["X"]
+                    if a.sim_features:
+                        fg = g["S"][:, ~drop].max(1)[:, None]
+                        Xg = np.hstack([Xg, fg])
+                        ck_save(CK, cls + "-nn", mode, g["name"], fg[:, 0])
+                    s = m.predict_proba(Xg)[:, 1] if m is not None else np.zeros(len(g["proteins"]))
                     ck_save(CK, cls, mode, g["name"], s)
                 tset = set(g["truth"][cls])
+                if a.sim_features:
+                    snn = ck_load(CK, cls + "-nn", mode, g["name"], len(g["proteins"]))
+                    for i in range(len(g["proteins"])):
+                        nn_rows.append({"genome": g["name"], "y": int(i in tset), "score": float(snn[i])})
                 order = np.argsort(-s)
                 rank = {int(i): r for r, i in enumerate(order, 1)}
                 for i in range(len(g["proteins"])):
@@ -293,6 +349,12 @@ def main():
                                                    "genomes_from_checkpoint > 0 the run resumed and earlier fits "
                                                    "are not counted. Scores are identical either way.",
                                       "seconds": int(time.time() - t)}
+            if a.sim_features:
+                # nearest-neighbour baseline: rank by identity alone. AP/CI only -- many ties at 0, so ranks are not
+                # meaningful for it.
+                res[f"{mode}_removal"]["nearest_neighbour_baseline"] = {
+                    k: v for k, v in (agg([dict(r, rank=0) for r in nn_rows]) or {}).items()
+                    if k in ("AP", "CI95_by_genome", "n_truths", "n_genomes")}
             v = res[f"{mode}_removal"]["all"]
             print(f"  {mode:<9} AP={v['AP']:.4f} CI={v['CI95_by_genome']} top1={v['top1']} "
                   f"r@5={v['recall_at5']} ({len(cache)} fits, {resumed} resumed, "
