@@ -1,0 +1,2769 @@
+{
+ "n_genomes_scanned": 184,
+ "boot": 2000,
+ "hyperparameters": {
+  "max_iter": 400,
+  "learning_rate": 0.06,
+  "max_leaf_nodes": 31,
+  "early_stopping": false
+ },
+ "datasets": {
+  "endolysin": "data/processed/endolysin_positives_v1.json",
+  "spanin": "data/processed/spanin_positives.json"
+ },
+ "note": "Expanded LOGO: the atlas evaluation used 19 endolysins/12 genomes and 15 spanins/9 genomes, which left every model comparison inside its confidence interval. This uses all annotated lysis genes in the scanned panel. Protocol and negative recipes are unchanged from scripts/22 and scripts/28, so the figures describe the models as deployed.",
+ "classes": {
+  "endolysin": {
+   "family_removal": {
+    "all": {
+     "AP": 0.5081,
+     "CI95_by_genome": [
+      0.4483,
+      0.5792
+     ],
+     "n_truths": 180,
+     "n_scored": 22538,
+     "n_genomes": 169,
+     "median_rank": 1.0,
+     "top1": 0.661,
+     "recall_at5": 0.922,
+     "recall_at0.5": 0.606
+    },
+    "exit_only": {
+     "AP": 0.5081,
+     "CI95_by_genome": [
+      0.4483,
+      0.5792
+     ],
+     "n_truths": 180,
+     "n_scored": 22538,
+     "n_genomes": 169,
+     "median_rank": 1.0,
+     "top1": 0.661,
+     "recall_at5": 0.922,
+     "recall_at0.5": 0.606
+    },
+    "unique_models_fitted": 77,
+    "genomes_from_checkpoint": 27,
+    "fits_note": "unique_models_fitted counts fits done in THIS process; with genomes_from_checkpoint > 0 the run resumed and earlier fits are not counted. Scores are identical either way.",
+    "seconds": 987,
+    "truth_ranks": [
+     {
+      "genome": "JX100809",
+      "id": "CcrSwift_gp100",
+      "rank": 1,
+      "score": 0.7337,
+      "of": 342
+     },
+     {
+      "genome": "JX100810",
+      "id": "CcrColossus_gp134",
+      "rank": 7,
+      "score": 0.0258,
+      "of": 446
+     },
+     {
+      "genome": "JX100811",
+      "id": "CcrKarma_gp105",
+      "rank": 1,
+      "score": 0.7337,
+      "of": 352
+     },
+     {
+      "genome": "JX100812",
+      "id": "CcrMagneto_gp101",
+      "rank": 1,
+      "score": 0.8346,
+      "of": 346
+     },
+     {
+      "genome": "JX100813",
+      "id": "CbK_gp104",
+      "rank": 1,
+      "score": 0.7337,
+      "of": 337
+     },
+     {
+      "genome": "JX100814",
+      "id": "CcrRogue_gp101",
+      "rank": 4,
+      "score": 0.0231,
+      "of": 348
+     },
+     {
+      "genome": "JX104231",
+      "id": "BcepMigl_gp73",
+      "rank": 1,
+      "score": 0.6911,
+      "of": 74
+     },
+     {
+      "genome": "JX193904",
+      "id": "EfaCPT1_gp20",
+      "rank": 1,
+      "score": 0.9999,
+      "of": 69
+     },
+     {
+      "genome": "KF626665",
+      "id": "Sano_43",
+      "rank": 1,
+      "score": 1.0,
+      "of": 77
+     },
+     {
+      "genome": "KF626666",
+      "id": "Paz_48",
+      "rank": 4,
+      "score": 0.0018,
+      "of": 51
+     },
+     {
+      "genome": "KF626667",
+      "id": "Prado_49",
+      "rank": 4,
+      "score": 0.0006,
+      "of": 52
+     },
+     {
+      "genome": "KF626668",
+      "id": "Salvo_36",
+      "rank": 1,
+      "score": 0.7291,
+      "of": 72
+     },
+     {
+      "genome": "KF669647",
+      "id": "BigBertha_57",
+      "rank": 1,
+      "score": 0.9994,
+      "of": 290
+     },
+     {
+      "genome": "KF669648",
+      "id": "Blastoid_34",
+      "rank": 1,
+      "score": 0.013,
+      "of": 79
+     },
+     {
+      "genome": "KF669649",
+      "id": "CampHawk_104",
+      "rank": 1,
+      "score": 0.9997,
+      "of": 230
+     },
+     {
+      "genome": "KF669649",
+      "id": "CampHawk_91",
+      "rank": 10,
+      "score": 0.0012,
+      "of": 230
+     },
+     {
+      "genome": "KF669650",
+      "id": "CN1A_36",
+      "rank": 1,
+      "score": 0.9991,
+      "of": 78
+     },
+     {
+      "genome": "KF669651",
+      "id": "Glittering_32",
+      "rank": 3,
+      "score": 0.0008,
+      "of": 78
+     },
+     {
+      "genome": "KF669652",
+      "id": "Grass_46",
+      "rank": 2,
+      "score": 0.9986,
+      "of": 252
+     },
+     {
+      "genome": "KF669653",
+      "id": "Marshall_122",
+      "rank": 1,
+      "score": 0.9997,
+      "of": 205
+     },
+     {
+      "genome": "KF669654",
+      "id": "Maynard_122",
+      "rank": 1,
+      "score": 0.9997,
+      "of": 200
+     },
+     {
+      "genome": "KF669655",
+      "id": "Page_24",
+      "rank": 2,
+      "score": 0.9967,
+      "of": 50
+     },
+     {
+      "genome": "KF669656",
+      "id": "Petty_41",
+      "rank": 1,
+      "score": 0.9999,
+      "of": 45
+     },
+     {
+      "genome": "KF669657",
+      "id": "Plant_19",
+      "rank": 1,
+      "score": 0.9997,
+      "of": 50
+     },
+     {
+      "genome": "KF669657",
+      "id": "Plant_24",
+      "rank": 2,
+      "score": 0.9974,
+      "of": 50
+     },
+     {
+      "genome": "KF669658",
+      "id": "Presley_56",
+      "rank": 1,
+      "score": 0.9999,
+      "of": 93
+     },
+     {
+      "genome": "KF669659",
+      "id": "Riggi_33",
+      "rank": 2,
+      "score": 0.0088,
+      "of": 79
+     },
+     {
+      "genome": "KF669660",
+      "id": "Pony_19",
+      "rank": 1,
+      "score": 0.9999,
+      "of": 48
+     },
+     {
+      "genome": "KF669662",
+      "id": "Spock_55",
+      "rank": 1,
+      "score": 0.9996,
+      "of": 282
+     },
+     {
+      "genome": "KF669663",
+      "id": "Staley_60",
+      "rank": 3,
+      "score": 0.967,
+      "of": 112
+     },
+     {
+      "genome": "KX987158",
+      "id": "CPTSasha_53",
+      "rank": 1,
+      "score": 0.999,
+      "of": 81
+     },
+     {
+      "genome": "KY002061",
+      "id": "CPTSergei_63",
+      "rank": 1,
+      "score": 0.999,
+      "of": 91
+     },
+     {
+      "genome": "KY654690",
+      "id": "CPT_Mijalis092",
+      "rank": 2,
+      "score": 0.0283,
+      "of": 131
+     },
+     {
+      "genome": "KY817360",
+      "id": "Toil_gp31",
+      "rank": 4,
+      "score": 0.2583,
+      "of": 35
+     },
+     {
+      "genome": "MK598851",
+      "id": "CPT_Minorna_002",
+      "rank": 1,
+      "score": 1.0,
+      "of": 57
+     },
+     {
+      "genome": "MK618715",
+      "id": "CPT_Parlo_083",
+      "rank": 1,
+      "score": 0.9991,
+      "of": 86
+     },
+     {
+      "genome": "MK618716",
+      "id": "CPT_Sebago_005",
+      "rank": 1,
+      "score": 0.0599,
+      "of": 70
+     },
+     {
+      "genome": "MK618716",
+      "id": "CPT_Sebago_008",
+      "rank": 3,
+      "score": 0.0013,
+      "of": 70
+     },
+     {
+      "genome": "MK618717",
+      "id": "CPT_MTx_057",
+      "rank": 1,
+      "score": 0.9999,
+      "of": 103
+     },
+     {
+      "genome": "MK637516",
+      "id": "Milano_032",
+      "rank": 1,
+      "score": 0.9997,
+      "of": 128
+     },
+     {
+      "genome": "MK903277",
+      "id": "CPT_Pisces_019",
+      "rank": 1,
+      "score": 0.8123,
+      "of": 49
+     },
+     {
+      "genome": "MK903278",
+      "id": "CPT_Pagan_056",
+      "rank": 21,
+      "score": 0.0,
+      "of": 59
+     },
+     {
+      "genome": "MK903279",
+      "id": "CPT_Peacock_025",
+      "rank": 1,
+      "score": 0.6555,
+      "of": 55
+     },
+     {
+      "genome": "MK903280",
+      "id": "CPT_Ponderosa_052",
+      "rank": 7,
+      "score": 0.0004,
+      "of": 54
+     },
+     {
+      "genome": "MK903281",
+      "id": "CPT_Penshu1_020",
+      "rank": 1,
+      "score": 0.5803,
+      "of": 54
+     },
+     {
+      "genome": "MK903282",
+      "id": "CPT_Mansfield_052",
+      "rank": 1,
+      "score": 0.9998,
+      "of": 105
+     },
+     {
+      "genome": "MK931438",
+      "id": "Schulenberg_073",
+      "rank": 1,
+      "score": 0.0898,
+      "of": 85
+     },
+     {
+      "genome": "MK931439",
+      "id": "CPT_Sciku_065",
+      "rank": 1,
+      "score": 0.0898,
+      "of": 73
+     },
+     {
+      "genome": "MK931440",
+      "id": "CPT_Shashou_072",
+      "rank": 1,
+      "score": 0.0898,
+      "of": 77
+     },
+     {
+      "genome": "MK931441",
+      "id": "CPT_Snoke_073",
+      "rank": 1,
+      "score": 0.0898,
+      "of": 81
+     },
+     {
+      "genome": "MK931442",
+      "id": "CPT_Sin4_066",
+      "rank": 1,
+      "score": 0.0096,
+      "of": 78
+     },
+     {
+      "genome": "MK931443",
+      "id": "CPT_Sweeny_066",
+      "rank": 2,
+      "score": 0.0006,
+      "of": 78
+     },
+     {
+      "genome": "MK931444",
+      "id": "CPT_Skenny_066",
+      "rank": 1,
+      "score": 0.013,
+      "of": 78
+     },
+     {
+      "genome": "MK931445",
+      "id": "CPT_Shelby_066",
+      "rank": 4,
+      "score": 0.0003,
+      "of": 78
+     },
+     {
+      "genome": "MK931446",
+      "id": "CPT_Shelanagig_058",
+      "rank": 1,
+      "score": 0.1356,
+      "of": 68
+     },
+     {
+      "genome": "MK994515",
+      "id": "CPT_Moabite_016",
+      "rank": 1,
+      "score": 1.0,
+      "of": 337
+     },
+     {
+      "genome": "MN044033",
+      "id": "CPT_Marfa_115",
+      "rank": 1,
+      "score": 0.9992,
+      "of": 279
+     },
+     {
+      "genome": "MN045228",
+      "id": "CPT_Maine_074",
+      "rank": 4,
+      "score": 0.9811,
+      "of": 219
+     },
+     {
+      "genome": "MN045229",
+      "id": "Mangalitsa_080",
+      "rank": 3,
+      "score": 0.0382,
+      "of": 82
+     },
+     {
+      "genome": "MN045230",
+      "id": "CPT_Magnus_143",
+      "rank": 2,
+      "score": 0.9993,
+      "of": 212
+     },
+     {
+      "genome": "MN045231",
+      "id": "CPT_Paul_015",
+      "rank": 22,
+      "score": 0.0,
+      "of": 133
+     },
+     {
+      "genome": "MN062185",
+      "id": "CPT_Phriendly_065",
+      "rank": 18,
+      "score": 0.0,
+      "of": 71
+     },
+     {
+      "genome": "MN062186",
+      "id": "CPT_Pokken_084",
+      "rank": 1,
+      "score": 0.9999,
+      "of": 92
+     },
+     {
+      "genome": "MN062187",
+      "id": "Samson_003",
+      "rank": 1,
+      "score": 0.0361,
+      "of": 57
+     },
+     {
+      "genome": "MN062189",
+      "id": "CPT_MyoSmar_053",
+      "rank": 1,
+      "score": 0.9999,
+      "of": 105
+     },
+     {
+      "genome": "MN066127",
+      "id": "CPT_Matapan_138",
+      "rank": 1,
+      "score": 0.9999,
+      "of": 214
+     },
+     {
+      "genome": "MN070121",
+      "id": "CPT_Shemara_071",
+      "rank": 1,
+      "score": 0.9493,
+      "of": 83
+     },
+     {
+      "genome": "MN106244",
+      "id": "CPTSoftv3_052",
+      "rank": 1,
+      "score": 1.0,
+      "of": 87
+     },
+     {
+      "genome": "MN106245",
+      "id": "CPTPhageEI1_120",
+      "rank": 1,
+      "score": 0.9898,
+      "of": 295
+     },
+     {
+      "genome": "MT028297",
+      "id": "CPT_Privateer_047",
+      "rank": 1,
+      "score": 0.9638,
+      "of": 144
+     },
+     {
+      "genome": "NC_019405",
+      "id": "D865_gp314",
+      "rank": 1,
+      "score": 0.7337,
+      "of": 337
+     },
+     {
+      "genome": "NC_019406",
+      "id": "CcrColossus_gp134",
+      "rank": 7,
+      "score": 0.0258,
+      "of": 446
+     },
+     {
+      "genome": "NC_019407",
+      "id": "CcrMagneto_gp101",
+      "rank": 1,
+      "score": 0.8346,
+      "of": 346
+     },
+     {
+      "genome": "NC_019408",
+      "id": "D869_gp331",
+      "rank": 4,
+      "score": 0.0231,
+      "of": 348
+     },
+     {
+      "genome": "NC_019410",
+      "id": "CcrKarma_gp105",
+      "rank": 1,
+      "score": 0.7337,
+      "of": 352
+     },
+     {
+      "genome": "NC_019411",
+      "id": "D870_gp321",
+      "rank": 1,
+      "score": 0.7337,
+      "of": 342
+     },
+     {
+      "genome": "NC_019917",
+      "id": "G167_gp12",
+      "rank": 1,
+      "score": 0.6911,
+      "of": 74
+     },
+     {
+      "genome": "NC_022761",
+      "id": "CampHawk_104",
+      "rank": 1,
+      "score": 0.9996,
+      "of": 230
+     },
+     {
+      "genome": "NC_022763",
+      "id": "Spock_55",
+      "rank": 1,
+      "score": 0.9996,
+      "of": 282
+     },
+     {
+      "genome": "NC_022764",
+      "id": "Page_24",
+      "rank": 2,
+      "score": 0.9967,
+      "of": 50
+     },
+     {
+      "genome": "NC_022765",
+      "id": "Riggi_33",
+      "rank": 2,
+      "score": 0.0088,
+      "of": 79
+     },
+     {
+      "genome": "NC_022766",
+      "id": "Glittering_32",
+      "rank": 3,
+      "score": 0.0008,
+      "of": 78
+     },
+     {
+      "genome": "NC_022767",
+      "id": "Staley_31",
+      "rank": 2,
+      "score": 0.9795,
+      "of": 112
+     },
+     {
+      "genome": "NC_022767",
+      "id": "Staley_60",
+      "rank": 3,
+      "score": 0.9563,
+      "of": 112
+     },
+     {
+      "genome": "NC_022768",
+      "id": "Maynard_122",
+      "rank": 1,
+      "score": 0.9997,
+      "of": 200
+     },
+     {
+      "genome": "NC_022769",
+      "id": "BigBertha_57",
+      "rank": 1,
+      "score": 0.9994,
+      "of": 290
+     },
+     {
+      "genome": "NC_022770",
+      "id": "Pony_24",
+      "rank": 2,
+      "score": 0.9943,
+      "of": 48
+     },
+     {
+      "genome": "NC_022771",
+      "id": "Grass_46",
+      "rank": 2,
+      "score": 0.9986,
+      "of": 252
+     },
+     {
+      "genome": "NC_022772",
+      "id": "Marshall_122",
+      "rank": 1,
+      "score": 0.9997,
+      "of": 205
+     },
+     {
+      "genome": "NC_022773",
+      "id": "V456_gp34",
+      "rank": 1,
+      "score": 0.013,
+      "of": 79
+     },
+     {
+      "genome": "NC_022774",
+      "id": "Slash_30",
+      "rank": 2,
+      "score": 0.9795,
+      "of": 110
+     },
+     {
+      "genome": "NC_022774",
+      "id": "Slash_58",
+      "rank": 3,
+      "score": 0.9563,
+      "of": 110
+     },
+     {
+      "genome": "NC_022982",
+      "id": "Paz_48",
+      "rank": 4,
+      "score": 0.0018,
+      "of": 51
+     },
+     {
+      "genome": "NC_022987",
+      "id": "Prado_49",
+      "rank": 4,
+      "score": 0.0006,
+      "of": 52
+     },
+     {
+      "genome": "NC_023570",
+      "id": "Petty_41",
+      "rank": 1,
+      "score": 0.9999,
+      "of": 45
+     },
+     {
+      "genome": "NC_023581",
+      "id": "Presley_56",
+      "rank": 1,
+      "score": 0.9999,
+      "of": 93
+     },
+     {
+      "genome": "NC_025465",
+      "id": "EfaCPT1_gp20",
+      "rank": 1,
+      "score": 0.9999,
+      "of": 69
+     },
+     {
+      "genome": "NC_042344",
+      "id": "FGG50_gp43",
+      "rank": 1,
+      "score": 1.0,
+      "of": 77
+     },
+     {
+      "genome": "NC_042345",
+      "id": "FGG49_gp36",
+      "rank": 1,
+      "score": 0.7291,
+      "of": 72
+     },
+     {
+      "genome": "NC_047786",
+      "id": "HOR37_gp53",
+      "rank": 1,
+      "score": 0.999,
+      "of": 81
+     },
+     {
+      "genome": "NC_048172",
+      "id": "HOV29_gp02",
+      "rank": 1,
+      "score": 1.0,
+      "of": 57
+     },
+     {
+      "genome": "NC_048758",
+      "id": "HWC14_gp83",
+      "rank": 1,
+      "score": 0.9991,
+      "of": 86
+     },
+     {
+      "genome": "NC_048759",
+      "id": "HWC15_gp057",
+      "rank": 1,
+      "score": 0.9999,
+      "of": 103
+     },
+     {
+      "genome": "NC_048798",
+      "id": "HWC54_gp115",
+      "rank": 1,
+      "score": 0.9992,
+      "of": 279
+     },
+     {
+      "genome": "NC_048799",
+      "id": "HWC55_gp22",
+      "rank": 2,
+      "score": 0.9605,
+      "of": 82
+     },
+     {
+      "genome": "NC_048799",
+      "id": "HWC55_gp80",
+      "rank": 3,
+      "score": 0.0306,
+      "of": 82
+     },
+     {
+      "genome": "NC_048800",
+      "id": "HWC56_gp053",
+      "rank": 1,
+      "score": 0.9999,
+      "of": 105
+     },
+     {
+      "genome": "NC_048805",
+      "id": "HWC61_gp52",
+      "rank": 1,
+      "score": 1.0,
+      "of": 87
+     },
+     {
+      "genome": "NC_048861",
+      "id": "HWD17_gp047",
+      "rank": 1,
+      "score": 0.9325,
+      "of": 144
+     },
+     {
+      "genome": "NC_048861",
+      "id": "HWD17_gp098",
+      "rank": 2,
+      "score": 0.0076,
+      "of": 144
+     },
+     {
+      "genome": "NC_049462",
+      "id": "HYP92_gp098",
+      "rank": 2,
+      "score": 0.9997,
+      "of": 212
+     },
+     {
+      "genome": "NC_049462",
+      "id": "HYP92_gp120",
+      "rank": 19,
+      "score": 0.0002,
+      "of": 212
+     },
+     {
+      "genome": "NC_049463",
+      "id": "HYP93_gp55",
+      "rank": 1,
+      "score": 0.9999,
+      "of": 92
+     },
+     {
+      "genome": "NC_049839",
+      "id": "H1O05_gp66",
+      "rank": 2,
+      "score": 0.0006,
+      "of": 78
+     },
+     {
+      "genome": "NC_049841",
+      "id": "H1O07_gp66",
+      "rank": 1,
+      "score": 0.013,
+      "of": 78
+     },
+     {
+      "genome": "NC_049846",
+      "id": "H1O12_gp66",
+      "rank": 4,
+      "score": 0.0003,
+      "of": 78
+     },
+     {
+      "genome": "NC_049847",
+      "id": "H1O13_gp66",
+      "rank": 1,
+      "score": 0.0096,
+      "of": 78
+     },
+     {
+      "genome": "NC_052978",
+      "id": "JT320_gp40",
+      "rank": 1,
+      "score": 0.1655,
+      "of": 76
+     },
+     {
+      "genome": "NC_054982",
+      "id": "KMC70_gp05",
+      "rank": 1,
+      "score": 0.0599,
+      "of": 70
+     },
+     {
+      "genome": "NC_055061",
+      "id": "KMD62_gp31",
+      "rank": 4,
+      "score": 0.2583,
+      "of": 35
+     },
+     {
+      "genome": "NC_069152",
+      "id": "PF624_gp71",
+      "rank": 1,
+      "score": 0.9493,
+      "of": 83
+     },
+     {
+      "genome": "NC_069744",
+      "id": "PM395_gp03",
+      "rank": 1,
+      "score": 0.0361,
+      "of": 57
+     },
+     {
+      "genome": "NC_070992",
+      "id": "PQC58_gp015",
+      "rank": 22,
+      "score": 0.0,
+      "of": 133
+     },
+     {
+      "genome": "NC_073195",
+      "id": "QA044_gp58",
+      "rank": 1,
+      "score": 0.1356,
+      "of": 68
+     },
+     {
+      "genome": "OL657226",
+      "id": "CPT_434_73",
+      "rank": 2,
+      "score": 0.0371,
+      "of": 76
+     },
+     {
+      "genome": "OL657227",
+      "id": "CPT_434B_73",
+      "rank": 1,
+      "score": 0.0592,
+      "of": 74
+     },
+     {
+      "genome": "OL657228",
+      "id": "CPT_21_68",
+      "rank": 2,
+      "score": 0.0126,
+      "of": 71
+     },
+     {
+      "genome": "OM418625",
+      "id": "CPT_lambdaimm21_065",
+      "rank": 1,
+      "score": 0.9991,
+      "of": 70
+     },
+     {
+      "genome": "OM418626",
+      "id": "CPT_lambdaimm434_068",
+      "rank": 1,
+      "score": 0.9991,
+      "of": 75
+     },
+     {
+      "genome": "OM418627",
+      "id": "CPT_lambdah434imm21_068",
+      "rank": 1,
+      "score": 0.9991,
+      "of": 74
+     },
+     {
+      "genome": "OP331213",
+      "id": "CPT_pKp20_126",
+      "rank": 1,
+      "score": 0.9993,
+      "of": 272
+     },
+     {
+      "genome": "PQ659294",
+      "id": "CPTvBecoSOzMSK_063",
+      "rank": 3,
+      "score": 0.0036,
+      "of": 75
+     },
+     {
+      "genome": "PX021331",
+      "id": "CPT_Serwaa_011",
+      "rank": 4,
+      "score": 0.1165,
+      "of": 85
+     },
+     {
+      "genome": "PX116155",
+      "id": "CPT_P794_009",
+      "rank": 1,
+      "score": 0.9919,
+      "of": 45
+     },
+     {
+      "genome": "PX132328",
+      "id": "CPT_Platino_073",
+      "rank": 1,
+      "score": 0.9678,
+      "of": 73
+     },
+     {
+      "genome": "PX132329",
+      "id": "CPT_P788_089",
+      "rank": 7,
+      "score": 0.0009,
+      "of": 94
+     },
+     {
+      "genome": "PX132330",
+      "id": "CPT_Pelota_021",
+      "rank": 2,
+      "score": 0.1169,
+      "of": 53
+     },
+     {
+      "genome": "PX132331",
+      "id": "CPT_Soup_070",
+      "rank": 5,
+      "score": 0.0002,
+      "of": 82
+     },
+     {
+      "genome": "PX132332",
+      "id": "CPT_Seismo_070",
+      "rank": 1,
+      "score": 0.9879,
+      "of": 74
+     },
+     {
+      "genome": "PX132333",
+      "id": "CPT_Solido_054",
+      "rank": 1,
+      "score": 0.998,
+      "of": 57
+     },
+     {
+      "genome": "PX132334",
+      "id": "CPT_Swabian_069",
+      "rank": 2,
+      "score": 0.0007,
+      "of": 87
+     },
+     {
+      "genome": "PX132335",
+      "id": "CPT_Sign_021",
+      "rank": 1,
+      "score": 0.9867,
+      "of": 103
+     },
+     {
+      "genome": "PX132336",
+      "id": "CPT_Sissy_019",
+      "rank": 1,
+      "score": 1.0,
+      "of": 72
+     },
+     {
+      "genome": "PX223408",
+      "id": "Shash_132",
+      "rank": 1,
+      "score": 0.8346,
+      "of": 347
+     },
+     {
+      "genome": "PX223409",
+      "id": "Senya_126",
+      "rank": 1,
+      "score": 0.9442,
+      "of": 348
+     },
+     {
+      "genome": "PX673828",
+      "id": "DVQJIASR_CDS0225",
+      "rank": 1,
+      "score": 0.9995,
+      "of": 235
+     },
+     {
+      "genome": "PX673829",
+      "id": "ZJUNKEMW_CDS0079",
+      "rank": 2,
+      "score": 0.9987,
+      "of": 224
+     },
+     {
+      "genome": "PX673830",
+      "id": "JFQWHLCP_CDS0015",
+      "rank": 1,
+      "score": 1.0,
+      "of": 241
+     },
+     {
+      "genome": "PX673831",
+      "id": "GAJKQIMK_CDS0149",
+      "rank": 1,
+      "score": 0.9997,
+      "of": 236
+     },
+     {
+      "genome": "PX673832",
+      "id": "TDQGTYJN_CDS0041",
+      "rank": 1,
+      "score": 0.2557,
+      "of": 83
+     },
+     {
+      "genome": "PX673833",
+      "id": "ZYCZWERL_CDS0082",
+      "rank": 1,
+      "score": 0.2557,
+      "of": 84
+     },
+     {
+      "genome": "PX673834",
+      "id": "CMWJCHOT_CDS0047",
+      "rank": 1,
+      "score": 0.1825,
+      "of": 90
+     },
+     {
+      "genome": "PX673835",
+      "id": "HZKOMLEM_CDS0014",
+      "rank": 1,
+      "score": 0.1754,
+      "of": 88
+     },
+     {
+      "genome": "PX673836",
+      "id": "PAKMPFRB_CDS0007",
+      "rank": 1,
+      "score": 0.2557,
+      "of": 84
+     },
+     {
+      "genome": "PX673837",
+      "id": "MBXUQWIE_CDS0178",
+      "rank": 1,
+      "score": 1.0,
+      "of": 240
+     },
+     {
+      "genome": "PX673838",
+      "id": "SXRUHANW_CDS0040",
+      "rank": 1,
+      "score": 0.1825,
+      "of": 88
+     },
+     {
+      "genome": "PX673839",
+      "id": "ZFGXFYGE_CDS0001",
+      "rank": 1,
+      "score": 0.1825,
+      "of": 88
+     },
+     {
+      "genome": "PX673840",
+      "id": "WZARAQII_CDS0093",
+      "rank": 1,
+      "score": 1.0,
+      "of": 227
+     },
+     {
+      "genome": "PX673841",
+      "id": "PVTVMHHX_CDS0084",
+      "rank": 1,
+      "score": 0.2557,
+      "of": 85
+     },
+     {
+      "genome": "PX673842",
+      "id": "NLAUYAXJ_CDS0192",
+      "rank": 1,
+      "score": 1.0,
+      "of": 240
+     },
+     {
+      "genome": "PX673843",
+      "id": "UZREALUT_CDS0105",
+      "rank": 1,
+      "score": 1.0,
+      "of": 238
+     },
+     {
+      "genome": "PX673844",
+      "id": "TEIUVZFR_CDS0010",
+      "rank": 1,
+      "score": 0.9972,
+      "of": 106
+     },
+     {
+      "genome": "PX866595",
+      "id": "CPT_P15_031",
+      "rank": 1,
+      "score": 0.0364,
+      "of": 73
+     },
+     {
+      "genome": "PX866596",
+      "id": "CPT_P11_031",
+      "rank": 1,
+      "score": 0.0046,
+      "of": 77
+     },
+     {
+      "genome": "PX866597",
+      "id": "CPT_Asciepus_008",
+      "rank": 3,
+      "score": 0.9666,
+      "of": 252
+     },
+     {
+      "genome": "PX866597",
+      "id": "CPT_Asciepus_122",
+      "rank": 7,
+      "score": 0.5228,
+      "of": 252
+     },
+     {
+      "genome": "PX866599",
+      "id": "CPT_Salamander_023",
+      "rank": 1,
+      "score": 0.9998,
+      "of": 50
+     },
+     {
+      "genome": "PX866600",
+      "id": "CPT_Wyvern_034",
+      "rank": 1,
+      "score": 0.9999,
+      "of": 168
+     },
+     {
+      "genome": "PX866601",
+      "id": "CPT_Nierus_052",
+      "rank": 2,
+      "score": 0.9949,
+      "of": 263
+     },
+     {
+      "genome": "PX866601",
+      "id": "CPT_Nierus_198",
+      "rank": 8,
+      "score": 0.0864,
+      "of": 263
+     },
+     {
+      "genome": "PX866602",
+      "id": "CPT_Cyclops_026",
+      "rank": 1,
+      "score": 1.0,
+      "of": 104
+     },
+     {
+      "genome": "PX866603",
+      "id": "CPT_Wyrm_054",
+      "rank": 2,
+      "score": 0.9893,
+      "of": 106
+     },
+     {
+      "genome": "PX866604",
+      "id": "CPT_P10_031",
+      "rank": 1,
+      "score": 0.0046,
+      "of": 70
+     },
+     {
+      "genome": "PX866605",
+      "id": "CPT_Basilisk_024",
+      "rank": 1,
+      "score": 0.9999,
+      "of": 102
+     },
+     {
+      "genome": "PX866606",
+      "id": "CPT_Crius_042",
+      "rank": 1,
+      "score": 0.0007,
+      "of": 85
+     },
+     {
+      "genome": "PX866610",
+      "id": "CPT_P15podo_018",
+      "rank": 1,
+      "score": 0.9997,
+      "of": 50
+     },
+     {
+      "genome": "PX866611",
+      "id": "CPT_Cerberus_027",
+      "rank": 1,
+      "score": 1.0,
+      "of": 97
+     },
+     {
+      "genome": "PX866611",
+      "id": "CPT_Cerberus_059",
+      "rank": 93,
+      "score": 0.0,
+      "of": 97
+     },
+     {
+      "genome": "PX866612",
+      "id": "CPT_Gorgon_043",
+      "rank": 1,
+      "score": 1.0,
+      "of": 104
+     },
+     {
+      "genome": "QB177515",
+      "id": "YHC46341.1",
+      "rank": 6,
+      "score": 0.0008,
+      "of": 71
+     }
+    ],
+    "missed_truths": [
+     {
+      "genome": "PX866611",
+      "id": "CPT_Cerberus_059",
+      "rank": 93,
+      "score": 0.0,
+      "product": "endolysin endopeptidase"
+     },
+     {
+      "genome": "MN045231",
+      "id": "CPT_Paul_015",
+      "rank": 22,
+      "score": 0.0,
+      "product": "endolysin glycosidase"
+     },
+     {
+      "genome": "NC_070992",
+      "id": "PQC58_gp015",
+      "rank": 22,
+      "score": 0.0,
+      "product": "endolysin"
+     },
+     {
+      "genome": "MK903278",
+      "id": "CPT_Pagan_056",
+      "rank": 21,
+      "score": 0.0,
+      "product": "SAR endolysin"
+     },
+     {
+      "genome": "NC_049462",
+      "id": "HYP92_gp120",
+      "rank": 19,
+      "score": 0.0002,
+      "product": "endolysin"
+     },
+     {
+      "genome": "MN062185",
+      "id": "CPT_Phriendly_065",
+      "rank": 18,
+      "score": 0.0,
+      "product": "endolysin glycosidase"
+     },
+     {
+      "genome": "KF669649",
+      "id": "CampHawk_91",
+      "rank": 10,
+      "score": 0.0012,
+      "product": "endolysin"
+     },
+     {
+      "genome": "PX866601",
+      "id": "CPT_Nierus_198",
+      "rank": 8,
+      "score": 0.0864,
+      "product": "endolysin endopeptidase"
+     },
+     {
+      "genome": "JX100810",
+      "id": "CcrColossus_gp134",
+      "rank": 7,
+      "score": 0.0258,
+      "product": "putative endolysin"
+     },
+     {
+      "genome": "MK903280",
+      "id": "CPT_Ponderosa_052",
+      "rank": 7,
+      "score": 0.0004,
+      "product": "SAR endolysin"
+     },
+     {
+      "genome": "NC_019406",
+      "id": "CcrColossus_gp134",
+      "rank": 7,
+      "score": 0.0258,
+      "product": "endolysin"
+     },
+     {
+      "genome": "PX132329",
+      "id": "CPT_P788_089",
+      "rank": 7,
+      "score": 0.0009,
+      "product": "endolysin glycosyl hydrolase"
+     },
+     {
+      "genome": "PX866597",
+      "id": "CPT_Asciepus_122",
+      "rank": 7,
+      "score": 0.5228,
+      "product": "endolysin endopeptidase"
+     },
+     {
+      "genome": "QB177515",
+      "id": "YHC46341.1",
+      "rank": 6,
+      "score": 0.0008,
+      "product": "endolysin"
+     }
+    ]
+   },
+   "sequence_removal": {
+    "all": {
+     "AP": 0.7858,
+     "CI95_by_genome": [
+      0.7361,
+      0.8359
+     ],
+     "n_truths": 180,
+     "n_scored": 22538,
+     "n_genomes": 169,
+     "median_rank": 1.0,
+     "top1": 0.794,
+     "recall_at5": 0.956,
+     "recall_at0.5": 0.872
+    },
+    "exit_only": {
+     "AP": 0.7858,
+     "CI95_by_genome": [
+      0.7361,
+      0.8359
+     ],
+     "n_truths": 180,
+     "n_scored": 22538,
+     "n_genomes": 169,
+     "median_rank": 1.0,
+     "top1": 0.794,
+     "recall_at5": 0.956,
+     "recall_at0.5": 0.872
+    },
+    "unique_models_fitted": 28,
+    "genomes_from_checkpoint": 0,
+    "fits_note": "unique_models_fitted counts fits done in THIS process; with genomes_from_checkpoint > 0 the run resumed and earlier fits are not counted. Scores are identical either way.",
+    "seconds": 399,
+    "truth_ranks": [
+     {
+      "genome": "JX100809",
+      "id": "CcrSwift_gp100",
+      "rank": 1,
+      "score": 0.9998,
+      "of": 342
+     },
+     {
+      "genome": "JX100810",
+      "id": "CcrColossus_gp134",
+      "rank": 1,
+      "score": 0.8829,
+      "of": 446
+     },
+     {
+      "genome": "JX100811",
+      "id": "CcrKarma_gp105",
+      "rank": 1,
+      "score": 0.9998,
+      "of": 352
+     },
+     {
+      "genome": "JX100812",
+      "id": "CcrMagneto_gp101",
+      "rank": 1,
+      "score": 0.9993,
+      "of": 346
+     },
+     {
+      "genome": "JX100813",
+      "id": "CbK_gp104",
+      "rank": 1,
+      "score": 0.9998,
+      "of": 337
+     },
+     {
+      "genome": "JX100814",
+      "id": "CcrRogue_gp101",
+      "rank": 2,
+      "score": 0.8561,
+      "of": 348
+     },
+     {
+      "genome": "JX104231",
+      "id": "BcepMigl_gp73",
+      "rank": 1,
+      "score": 1.0,
+      "of": 74
+     },
+     {
+      "genome": "JX193904",
+      "id": "EfaCPT1_gp20",
+      "rank": 1,
+      "score": 1.0,
+      "of": 69
+     },
+     {
+      "genome": "KF626665",
+      "id": "Sano_43",
+      "rank": 1,
+      "score": 1.0,
+      "of": 77
+     },
+     {
+      "genome": "KF626666",
+      "id": "Paz_48",
+      "rank": 1,
+      "score": 1.0,
+      "of": 51
+     },
+     {
+      "genome": "KF626667",
+      "id": "Prado_49",
+      "rank": 1,
+      "score": 0.9998,
+      "of": 52
+     },
+     {
+      "genome": "KF626668",
+      "id": "Salvo_36",
+      "rank": 1,
+      "score": 0.8898,
+      "of": 72
+     },
+     {
+      "genome": "KF669647",
+      "id": "BigBertha_57",
+      "rank": 1,
+      "score": 0.9968,
+      "of": 290
+     },
+     {
+      "genome": "KF669648",
+      "id": "Blastoid_34",
+      "rank": 1,
+      "score": 0.9997,
+      "of": 79
+     },
+     {
+      "genome": "KF669649",
+      "id": "CampHawk_104",
+      "rank": 1,
+      "score": 0.9999,
+      "of": 230
+     },
+     {
+      "genome": "KF669649",
+      "id": "CampHawk_91",
+      "rank": 10,
+      "score": 0.0046,
+      "of": 230
+     },
+     {
+      "genome": "KF669650",
+      "id": "CN1A_36",
+      "rank": 1,
+      "score": 0.9982,
+      "of": 78
+     },
+     {
+      "genome": "KF669651",
+      "id": "Glittering_32",
+      "rank": 1,
+      "score": 0.3964,
+      "of": 78
+     },
+     {
+      "genome": "KF669652",
+      "id": "Grass_46",
+      "rank": 1,
+      "score": 0.9999,
+      "of": 252
+     },
+     {
+      "genome": "KF669653",
+      "id": "Marshall_122",
+      "rank": 1,
+      "score": 1.0,
+      "of": 205
+     },
+     {
+      "genome": "KF669654",
+      "id": "Maynard_122",
+      "rank": 1,
+      "score": 1.0,
+      "of": 200
+     },
+     {
+      "genome": "KF669655",
+      "id": "Page_24",
+      "rank": 2,
+      "score": 0.9988,
+      "of": 50
+     },
+     {
+      "genome": "KF669656",
+      "id": "Petty_41",
+      "rank": 1,
+      "score": 0.9998,
+      "of": 45
+     },
+     {
+      "genome": "KF669657",
+      "id": "Plant_19",
+      "rank": 1,
+      "score": 0.9999,
+      "of": 50
+     },
+     {
+      "genome": "KF669657",
+      "id": "Plant_24",
+      "rank": 2,
+      "score": 0.999,
+      "of": 50
+     },
+     {
+      "genome": "KF669658",
+      "id": "Presley_56",
+      "rank": 1,
+      "score": 1.0,
+      "of": 93
+     },
+     {
+      "genome": "KF669659",
+      "id": "Riggi_33",
+      "rank": 1,
+      "score": 0.9999,
+      "of": 79
+     },
+     {
+      "genome": "KF669660",
+      "id": "Pony_19",
+      "rank": 1,
+      "score": 1.0,
+      "of": 48
+     },
+     {
+      "genome": "KF669662",
+      "id": "Spock_55",
+      "rank": 1,
+      "score": 0.9996,
+      "of": 282
+     },
+     {
+      "genome": "KF669663",
+      "id": "Staley_60",
+      "rank": 2,
+      "score": 0.9857,
+      "of": 112
+     },
+     {
+      "genome": "KX987158",
+      "id": "CPTSasha_53",
+      "rank": 1,
+      "score": 1.0,
+      "of": 81
+     },
+     {
+      "genome": "KY002061",
+      "id": "CPTSergei_63",
+      "rank": 1,
+      "score": 1.0,
+      "of": 91
+     },
+     {
+      "genome": "KY654690",
+      "id": "CPT_Mijalis092",
+      "rank": 2,
+      "score": 0.9961,
+      "of": 131
+     },
+     {
+      "genome": "KY817360",
+      "id": "Toil_gp31",
+      "rank": 3,
+      "score": 0.4931,
+      "of": 35
+     },
+     {
+      "genome": "MK598851",
+      "id": "CPT_Minorna_002",
+      "rank": 1,
+      "score": 1.0,
+      "of": 57
+     },
+     {
+      "genome": "MK618715",
+      "id": "CPT_Parlo_083",
+      "rank": 1,
+      "score": 0.9999,
+      "of": 86
+     },
+     {
+      "genome": "MK618716",
+      "id": "CPT_Sebago_005",
+      "rank": 1,
+      "score": 0.613,
+      "of": 70
+     },
+     {
+      "genome": "MK618716",
+      "id": "CPT_Sebago_008",
+      "rank": 2,
+      "score": 0.0143,
+      "of": 70
+     },
+     {
+      "genome": "MK618717",
+      "id": "CPT_MTx_057",
+      "rank": 1,
+      "score": 1.0,
+      "of": 103
+     },
+     {
+      "genome": "MK637516",
+      "id": "Milano_032",
+      "rank": 1,
+      "score": 0.9999,
+      "of": 128
+     },
+     {
+      "genome": "MK903277",
+      "id": "CPT_Pisces_019",
+      "rank": 1,
+      "score": 1.0,
+      "of": 49
+     },
+     {
+      "genome": "MK903278",
+      "id": "CPT_Pagan_056",
+      "rank": 1,
+      "score": 0.722,
+      "of": 59
+     },
+     {
+      "genome": "MK903279",
+      "id": "CPT_Peacock_025",
+      "rank": 1,
+      "score": 1.0,
+      "of": 55
+     },
+     {
+      "genome": "MK903280",
+      "id": "CPT_Ponderosa_052",
+      "rank": 2,
+      "score": 0.2723,
+      "of": 54
+     },
+     {
+      "genome": "MK903281",
+      "id": "CPT_Penshu1_020",
+      "rank": 1,
+      "score": 1.0,
+      "of": 54
+     },
+     {
+      "genome": "MK903282",
+      "id": "CPT_Mansfield_052",
+      "rank": 1,
+      "score": 0.9998,
+      "of": 105
+     },
+     {
+      "genome": "MK931438",
+      "id": "Schulenberg_073",
+      "rank": 1,
+      "score": 0.9064,
+      "of": 85
+     },
+     {
+      "genome": "MK931439",
+      "id": "CPT_Sciku_065",
+      "rank": 1,
+      "score": 0.9064,
+      "of": 73
+     },
+     {
+      "genome": "MK931440",
+      "id": "CPT_Shashou_072",
+      "rank": 1,
+      "score": 0.9064,
+      "of": 77
+     },
+     {
+      "genome": "MK931441",
+      "id": "CPT_Snoke_073",
+      "rank": 1,
+      "score": 0.9064,
+      "of": 81
+     },
+     {
+      "genome": "MK931442",
+      "id": "CPT_Sin4_066",
+      "rank": 1,
+      "score": 1.0,
+      "of": 78
+     },
+     {
+      "genome": "MK931443",
+      "id": "CPT_Sweeny_066",
+      "rank": 1,
+      "score": 0.999,
+      "of": 78
+     },
+     {
+      "genome": "MK931444",
+      "id": "CPT_Skenny_066",
+      "rank": 1,
+      "score": 0.9999,
+      "of": 78
+     },
+     {
+      "genome": "MK931445",
+      "id": "CPT_Shelby_066",
+      "rank": 1,
+      "score": 0.9976,
+      "of": 78
+     },
+     {
+      "genome": "MK931446",
+      "id": "CPT_Shelanagig_058",
+      "rank": 1,
+      "score": 0.9686,
+      "of": 68
+     },
+     {
+      "genome": "MK994515",
+      "id": "CPT_Moabite_016",
+      "rank": 1,
+      "score": 1.0,
+      "of": 337
+     },
+     {
+      "genome": "MN044033",
+      "id": "CPT_Marfa_115",
+      "rank": 2,
+      "score": 0.9995,
+      "of": 279
+     },
+     {
+      "genome": "MN045228",
+      "id": "CPT_Maine_074",
+      "rank": 2,
+      "score": 0.9998,
+      "of": 219
+     },
+     {
+      "genome": "MN045229",
+      "id": "Mangalitsa_080",
+      "rank": 3,
+      "score": 0.1264,
+      "of": 82
+     },
+     {
+      "genome": "MN045230",
+      "id": "CPT_Magnus_143",
+      "rank": 1,
+      "score": 1.0,
+      "of": 212
+     },
+     {
+      "genome": "MN045231",
+      "id": "CPT_Paul_015",
+      "rank": 15,
+      "score": 0.0001,
+      "of": 133
+     },
+     {
+      "genome": "MN062185",
+      "id": "CPT_Phriendly_065",
+      "rank": 12,
+      "score": 0.0001,
+      "of": 71
+     },
+     {
+      "genome": "MN062186",
+      "id": "CPT_Pokken_084",
+      "rank": 1,
+      "score": 1.0,
+      "of": 92
+     },
+     {
+      "genome": "MN062187",
+      "id": "Samson_003",
+      "rank": 1,
+      "score": 0.9998,
+      "of": 57
+     },
+     {
+      "genome": "MN062189",
+      "id": "CPT_MyoSmar_053",
+      "rank": 1,
+      "score": 1.0,
+      "of": 105
+     },
+     {
+      "genome": "MN066127",
+      "id": "CPT_Matapan_138",
+      "rank": 1,
+      "score": 0.9999,
+      "of": 214
+     },
+     {
+      "genome": "MN070121",
+      "id": "CPT_Shemara_071",
+      "rank": 1,
+      "score": 0.9999,
+      "of": 83
+     },
+     {
+      "genome": "MN106244",
+      "id": "CPTSoftv3_052",
+      "rank": 1,
+      "score": 1.0,
+      "of": 87
+     },
+     {
+      "genome": "MN106245",
+      "id": "CPTPhageEI1_120",
+      "rank": 2,
+      "score": 0.9977,
+      "of": 295
+     },
+     {
+      "genome": "MT028297",
+      "id": "CPT_Privateer_047",
+      "rank": 1,
+      "score": 0.9977,
+      "of": 144
+     },
+     {
+      "genome": "NC_019405",
+      "id": "D865_gp314",
+      "rank": 1,
+      "score": 0.9998,
+      "of": 337
+     },
+     {
+      "genome": "NC_019406",
+      "id": "CcrColossus_gp134",
+      "rank": 1,
+      "score": 0.8829,
+      "of": 446
+     },
+     {
+      "genome": "NC_019407",
+      "id": "CcrMagneto_gp101",
+      "rank": 1,
+      "score": 0.9993,
+      "of": 346
+     },
+     {
+      "genome": "NC_019408",
+      "id": "D869_gp331",
+      "rank": 2,
+      "score": 0.8561,
+      "of": 348
+     },
+     {
+      "genome": "NC_019410",
+      "id": "CcrKarma_gp105",
+      "rank": 1,
+      "score": 0.9998,
+      "of": 352
+     },
+     {
+      "genome": "NC_019411",
+      "id": "D870_gp321",
+      "rank": 1,
+      "score": 0.9998,
+      "of": 342
+     },
+     {
+      "genome": "NC_019917",
+      "id": "G167_gp12",
+      "rank": 1,
+      "score": 1.0,
+      "of": 74
+     },
+     {
+      "genome": "NC_022761",
+      "id": "CampHawk_104",
+      "rank": 1,
+      "score": 0.9999,
+      "of": 230
+     },
+     {
+      "genome": "NC_022763",
+      "id": "Spock_55",
+      "rank": 1,
+      "score": 0.9996,
+      "of": 282
+     },
+     {
+      "genome": "NC_022764",
+      "id": "Page_24",
+      "rank": 2,
+      "score": 0.9988,
+      "of": 50
+     },
+     {
+      "genome": "NC_022765",
+      "id": "Riggi_33",
+      "rank": 1,
+      "score": 0.9999,
+      "of": 79
+     },
+     {
+      "genome": "NC_022766",
+      "id": "Glittering_32",
+      "rank": 1,
+      "score": 0.3964,
+      "of": 78
+     },
+     {
+      "genome": "NC_022767",
+      "id": "Staley_60",
+      "rank": 2,
+      "score": 0.9857,
+      "of": 112
+     },
+     {
+      "genome": "NC_022767",
+      "id": "Staley_31",
+      "rank": 3,
+      "score": 0.9836,
+      "of": 112
+     },
+     {
+      "genome": "NC_022768",
+      "id": "Maynard_122",
+      "rank": 1,
+      "score": 1.0,
+      "of": 200
+     },
+     {
+      "genome": "NC_022769",
+      "id": "BigBertha_57",
+      "rank": 1,
+      "score": 0.9968,
+      "of": 290
+     },
+     {
+      "genome": "NC_022770",
+      "id": "Pony_24",
+      "rank": 2,
+      "score": 0.9988,
+      "of": 48
+     },
+     {
+      "genome": "NC_022771",
+      "id": "Grass_46",
+      "rank": 1,
+      "score": 0.9999,
+      "of": 252
+     },
+     {
+      "genome": "NC_022772",
+      "id": "Marshall_122",
+      "rank": 1,
+      "score": 1.0,
+      "of": 205
+     },
+     {
+      "genome": "NC_022773",
+      "id": "V456_gp34",
+      "rank": 1,
+      "score": 0.9997,
+      "of": 79
+     },
+     {
+      "genome": "NC_022774",
+      "id": "Slash_58",
+      "rank": 2,
+      "score": 0.9857,
+      "of": 110
+     },
+     {
+      "genome": "NC_022774",
+      "id": "Slash_30",
+      "rank": 3,
+      "score": 0.9836,
+      "of": 110
+     },
+     {
+      "genome": "NC_022982",
+      "id": "Paz_48",
+      "rank": 1,
+      "score": 1.0,
+      "of": 51
+     },
+     {
+      "genome": "NC_022987",
+      "id": "Prado_49",
+      "rank": 1,
+      "score": 0.9998,
+      "of": 52
+     },
+     {
+      "genome": "NC_023570",
+      "id": "Petty_41",
+      "rank": 1,
+      "score": 0.9998,
+      "of": 45
+     },
+     {
+      "genome": "NC_023581",
+      "id": "Presley_56",
+      "rank": 1,
+      "score": 1.0,
+      "of": 93
+     },
+     {
+      "genome": "NC_025465",
+      "id": "EfaCPT1_gp20",
+      "rank": 1,
+      "score": 1.0,
+      "of": 69
+     },
+     {
+      "genome": "NC_042344",
+      "id": "FGG50_gp43",
+      "rank": 1,
+      "score": 1.0,
+      "of": 77
+     },
+     {
+      "genome": "NC_042345",
+      "id": "FGG49_gp36",
+      "rank": 1,
+      "score": 0.8898,
+      "of": 72
+     },
+     {
+      "genome": "NC_047786",
+      "id": "HOR37_gp53",
+      "rank": 1,
+      "score": 1.0,
+      "of": 81
+     },
+     {
+      "genome": "NC_048172",
+      "id": "HOV29_gp02",
+      "rank": 1,
+      "score": 1.0,
+      "of": 57
+     },
+     {
+      "genome": "NC_048758",
+      "id": "HWC14_gp83",
+      "rank": 1,
+      "score": 0.9999,
+      "of": 86
+     },
+     {
+      "genome": "NC_048759",
+      "id": "HWC15_gp057",
+      "rank": 1,
+      "score": 1.0,
+      "of": 103
+     },
+     {
+      "genome": "NC_048798",
+      "id": "HWC54_gp115",
+      "rank": 2,
+      "score": 0.9995,
+      "of": 279
+     },
+     {
+      "genome": "NC_048799",
+      "id": "HWC55_gp22",
+      "rank": 1,
+      "score": 0.9995,
+      "of": 82
+     },
+     {
+      "genome": "NC_048799",
+      "id": "HWC55_gp80",
+      "rank": 3,
+      "score": 0.1264,
+      "of": 82
+     },
+     {
+      "genome": "NC_048800",
+      "id": "HWC56_gp053",
+      "rank": 1,
+      "score": 1.0,
+      "of": 105
+     },
+     {
+      "genome": "NC_048805",
+      "id": "HWC61_gp52",
+      "rank": 1,
+      "score": 1.0,
+      "of": 87
+     },
+     {
+      "genome": "NC_048861",
+      "id": "HWD17_gp047",
+      "rank": 1,
+      "score": 0.9977,
+      "of": 144
+     },
+     {
+      "genome": "NC_048861",
+      "id": "HWD17_gp098",
+      "rank": 2,
+      "score": 0.1221,
+      "of": 144
+     },
+     {
+      "genome": "NC_049462",
+      "id": "HYP92_gp098",
+      "rank": 1,
+      "score": 1.0,
+      "of": 212
+     },
+     {
+      "genome": "NC_049462",
+      "id": "HYP92_gp120",
+      "rank": 7,
+      "score": 0.0051,
+      "of": 212
+     },
+     {
+      "genome": "NC_049463",
+      "id": "HYP93_gp55",
+      "rank": 1,
+      "score": 1.0,
+      "of": 92
+     },
+     {
+      "genome": "NC_049839",
+      "id": "H1O05_gp66",
+      "rank": 1,
+      "score": 0.999,
+      "of": 78
+     },
+     {
+      "genome": "NC_049841",
+      "id": "H1O07_gp66",
+      "rank": 1,
+      "score": 0.9999,
+      "of": 78
+     },
+     {
+      "genome": "NC_049846",
+      "id": "H1O12_gp66",
+      "rank": 1,
+      "score": 0.9976,
+      "of": 78
+     },
+     {
+      "genome": "NC_049847",
+      "id": "H1O13_gp66",
+      "rank": 1,
+      "score": 1.0,
+      "of": 78
+     },
+     {
+      "genome": "NC_052978",
+      "id": "JT320_gp40",
+      "rank": 1,
+      "score": 0.9689,
+      "of": 76
+     },
+     {
+      "genome": "NC_054982",
+      "id": "KMC70_gp05",
+      "rank": 1,
+      "score": 0.4404,
+      "of": 70
+     },
+     {
+      "genome": "NC_055061",
+      "id": "KMD62_gp31",
+      "rank": 3,
+      "score": 0.4931,
+      "of": 35
+     },
+     {
+      "genome": "NC_069152",
+      "id": "PF624_gp71",
+      "rank": 1,
+      "score": 0.9999,
+      "of": 83
+     },
+     {
+      "genome": "NC_069744",
+      "id": "PM395_gp03",
+      "rank": 1,
+      "score": 0.9998,
+      "of": 57
+     },
+     {
+      "genome": "NC_070992",
+      "id": "PQC58_gp015",
+      "rank": 15,
+      "score": 0.0001,
+      "of": 133
+     },
+     {
+      "genome": "NC_073195",
+      "id": "QA044_gp58",
+      "rank": 1,
+      "score": 0.9686,
+      "of": 68
+     },
+     {
+      "genome": "OL657226",
+      "id": "CPT_434_73",
+      "rank": 1,
+      "score": 1.0,
+      "of": 76
+     },
+     {
+      "genome": "OL657227",
+      "id": "CPT_434B_73",
+      "rank": 1,
+      "score": 1.0,
+      "of": 74
+     },
+     {
+      "genome": "OL657228",
+      "id": "CPT_21_68",
+      "rank": 1,
+      "score": 1.0,
+      "of": 71
+     },
+     {
+      "genome": "OM418625",
+      "id": "CPT_lambdaimm21_065",
+      "rank": 1,
+      "score": 1.0,
+      "of": 70
+     },
+     {
+      "genome": "OM418626",
+      "id": "CPT_lambdaimm434_068",
+      "rank": 1,
+      "score": 1.0,
+      "of": 75
+     },
+     {
+      "genome": "OM418627",
+      "id": "CPT_lambdah434imm21_068",
+      "rank": 1,
+      "score": 1.0,
+      "of": 74
+     },
+     {
+      "genome": "OP331213",
+      "id": "CPT_pKp20_126",
+      "rank": 2,
+      "score": 0.9994,
+      "of": 272
+     },
+     {
+      "genome": "PQ659294",
+      "id": "CPTvBecoSOzMSK_063",
+      "rank": 1,
+      "score": 0.9995,
+      "of": 75
+     },
+     {
+      "genome": "PX021331",
+      "id": "CPT_Serwaa_011",
+      "rank": 3,
+      "score": 0.8769,
+      "of": 85
+     },
+     {
+      "genome": "PX116155",
+      "id": "CPT_P794_009",
+      "rank": 1,
+      "score": 0.9995,
+      "of": 45
+     },
+     {
+      "genome": "PX132328",
+      "id": "CPT_Platino_073",
+      "rank": 1,
+      "score": 1.0,
+      "of": 73
+     },
+     {
+      "genome": "PX132329",
+      "id": "CPT_P788_089",
+      "rank": 6,
+      "score": 0.0041,
+      "of": 94
+     },
+     {
+      "genome": "PX132330",
+      "id": "CPT_Pelota_021",
+      "rank": 1,
+      "score": 0.993,
+      "of": 53
+     },
+     {
+      "genome": "PX132331",
+      "id": "CPT_Soup_070",
+      "rank": 2,
+      "score": 0.3713,
+      "of": 82
+     },
+     {
+      "genome": "PX132332",
+      "id": "CPT_Seismo_070",
+      "rank": 1,
+      "score": 0.9989,
+      "of": 74
+     },
+     {
+      "genome": "PX132333",
+      "id": "CPT_Solido_054",
+      "rank": 1,
+      "score": 0.9998,
+      "of": 57
+     },
+     {
+      "genome": "PX132334",
+      "id": "CPT_Swabian_069",
+      "rank": 1,
+      "score": 0.9988,
+      "of": 87
+     },
+     {
+      "genome": "PX132335",
+      "id": "CPT_Sign_021",
+      "rank": 1,
+      "score": 0.9936,
+      "of": 103
+     },
+     {
+      "genome": "PX132336",
+      "id": "CPT_Sissy_019",
+      "rank": 1,
+      "score": 1.0,
+      "of": 72
+     },
+     {
+      "genome": "PX223408",
+      "id": "Shash_132",
+      "rank": 1,
+      "score": 0.9993,
+      "of": 347
+     },
+     {
+      "genome": "PX223409",
+      "id": "Senya_126",
+      "rank": 1,
+      "score": 0.9995,
+      "of": 348
+     },
+     {
+      "genome": "PX673828",
+      "id": "DVQJIASR_CDS0225",
+      "rank": 1,
+      "score": 0.9999,
+      "of": 235
+     },
+     {
+      "genome": "PX673829",
+      "id": "ZJUNKEMW_CDS0079",
+      "rank": 1,
+      "score": 1.0,
+      "of": 224
+     },
+     {
+      "genome": "PX673830",
+      "id": "JFQWHLCP_CDS0015",
+      "rank": 1,
+      "score": 1.0,
+      "of": 241
+     },
+     {
+      "genome": "PX673831",
+      "id": "GAJKQIMK_CDS0149",
+      "rank": 1,
+      "score": 1.0,
+      "of": 236
+     },
+     {
+      "genome": "PX673832",
+      "id": "TDQGTYJN_CDS0041",
+      "rank": 1,
+      "score": 0.9803,
+      "of": 83
+     },
+     {
+      "genome": "PX673833",
+      "id": "ZYCZWERL_CDS0082",
+      "rank": 1,
+      "score": 0.9803,
+      "of": 84
+     },
+     {
+      "genome": "PX673834",
+      "id": "CMWJCHOT_CDS0047",
+      "rank": 1,
+      "score": 0.9671,
+      "of": 90
+     },
+     {
+      "genome": "PX673835",
+      "id": "HZKOMLEM_CDS0014",
+      "rank": 1,
+      "score": 0.9673,
+      "of": 88
+     },
+     {
+      "genome": "PX673836",
+      "id": "PAKMPFRB_CDS0007",
+      "rank": 1,
+      "score": 0.9803,
+      "of": 84
+     },
+     {
+      "genome": "PX673837",
+      "id": "MBXUQWIE_CDS0178",
+      "rank": 1,
+      "score": 1.0,
+      "of": 240
+     },
+     {
+      "genome": "PX673838",
+      "id": "SXRUHANW_CDS0040",
+      "rank": 1,
+      "score": 0.9671,
+      "of": 88
+     },
+     {
+      "genome": "PX673839",
+      "id": "ZFGXFYGE_CDS0001",
+      "rank": 1,
+      "score": 0.9671,
+      "of": 88
+     },
+     {
+      "genome": "PX673840",
+      "id": "WZARAQII_CDS0093",
+      "rank": 1,
+      "score": 1.0,
+      "of": 227
+     },
+     {
+      "genome": "PX673841",
+      "id": "PVTVMHHX_CDS0084",
+      "rank": 1,
+      "score": 0.9803,
+      "of": 85
+     },
+     {
+      "genome": "PX673842",
+      "id": "NLAUYAXJ_CDS0192",
+      "rank": 1,
+      "score": 1.0,
+      "of": 240
+     },
+     {
+      "genome": "PX673843",
+      "id": "UZREALUT_CDS0105",
+      "rank": 1,
+      "score": 1.0,
+      "of": 238
+     },
+     {
+      "genome": "PX673844",
+      "id": "TEIUVZFR_CDS0010",
+      "rank": 1,
+      "score": 1.0,
+      "of": 106
+     },
+     {
+      "genome": "PX866595",
+      "id": "CPT_P15_031",
+      "rank": 1,
+      "score": 0.3015,
+      "of": 73
+     },
+     {
+      "genome": "PX866596",
+      "id": "CPT_P11_031",
+      "rank": 1,
+      "score": 0.0171,
+      "of": 77
+     },
+     {
+      "genome": "PX866597",
+      "id": "CPT_Asciepus_008",
+      "rank": 1,
+      "score": 0.9994,
+      "of": 252
+     },
+     {
+      "genome": "PX866597",
+      "id": "CPT_Asciepus_122",
+      "rank": 4,
+      "score": 0.9435,
+      "of": 252
+     },
+     {
+      "genome": "PX866599",
+      "id": "CPT_Salamander_023",
+      "rank": 1,
+      "score": 0.9999,
+      "of": 50
+     },
+     {
+      "genome": "PX866600",
+      "id": "CPT_Wyvern_034",
+      "rank": 1,
+      "score": 0.9999,
+      "of": 168
+     },
+     {
+      "genome": "PX866601",
+      "id": "CPT_Nierus_052",
+      "rank": 1,
+      "score": 0.9997,
+      "of": 263
+     },
+     {
+      "genome": "PX866601",
+      "id": "CPT_Nierus_198",
+      "rank": 7,
+      "score": 0.2452,
+      "of": 263
+     },
+     {
+      "genome": "PX866602",
+      "id": "CPT_Cyclops_026",
+      "rank": 1,
+      "score": 1.0,
+      "of": 104
+     },
+     {
+      "genome": "PX866603",
+      "id": "CPT_Wyrm_054",
+      "rank": 3,
+      "score": 0.9854,
+      "of": 106
+     },
+     {
+      "genome": "PX866604",
+      "id": "CPT_P10_031",
+      "rank": 1,
+      "score": 0.0171,
+      "of": 70
+     },
+     {
+      "genome": "PX866605",
+      "id": "CPT_Basilisk_024",
+      "rank": 1,
+      "score": 0.9995,
+      "of": 102
+     },
+     {
+      "genome": "PX866606",
+      "id": "CPT_Crius_042",
+      "rank": 1,
+      "score": 0.9992,
+      "of": 85
+     },
+     {
+      "genome": "PX866610",
+      "id": "CPT_P15podo_018",
+      "rank": 1,
+      "score": 0.9999,
+      "of": 50
+     },
+     {
+      "genome": "PX866611",
+      "id": "CPT_Cerberus_027",
+      "rank": 1,
+      "score": 1.0,
+      "of": 97
+     },
+     {
+      "genome": "PX866611",
+      "id": "CPT_Cerberus_059",
+      "rank": 94,
+      "score": 0.0,
+      "of": 97
+     },
+     {
+      "genome": "PX866612",
+      "id": "CPT_Gorgon_043",
+      "rank": 1,
+      "score": 1.0,
+      "of": 104
+     },
+     {
+      "genome": "QB177515",
+      "id": "YHC46341.1",
+      "rank": 3,
+      "score": 0.0201,
+      "of": 71
+     }
+    ],
+    "missed_truths": [
+     {
+      "genome": "PX866611",
+      "id": "CPT_Cerberus_059",
+      "rank": 94,
+      "score": 0.0,
+      "product": "endolysin endopeptidase"
+     },
+     {
+      "genome": "MN045231",
+      "id": "CPT_Paul_015",
+      "rank": 15,
+      "score": 0.0001,
+      "product": "endolysin glycosidase"
+     },
+     {
+      "genome": "NC_070992",
+      "id": "PQC58_gp015",
+      "rank": 15,
+      "score": 0.0001,
+      "product": "endolysin"
+     },
+     {
+      "genome": "MN062185",
+      "id": "CPT_Phriendly_065",
+      "rank": 12,
+      "score": 0.0001,
+      "product": "endolysin glycosidase"
+     },
+     {
+      "genome": "KF669649",
+      "id": "CampHawk_91",
+      "rank": 10,
+      "score": 0.0046,
+      "product": "endolysin"
+     },
+     {
+      "genome": "NC_049462",
+      "id": "HYP92_gp120",
+      "rank": 7,
+      "score": 0.0051,
+      "product": "endolysin"
+     },
+     {
+      "genome": "PX866601",
+      "id": "CPT_Nierus_198",
+      "rank": 7,
+      "score": 0.2452,
+      "product": "endolysin endopeptidase"
+     },
+     {
+      "genome": "PX132329",
+      "id": "CPT_P788_089",
+      "rank": 6,
+      "score": 0.0041,
+      "product": "endolysin glycosyl hydrolase"
+     }
+    ]
+   }
+  }
+ }
+}
