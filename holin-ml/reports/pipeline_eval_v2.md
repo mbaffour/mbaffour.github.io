@@ -96,9 +96,23 @@ failures have different causes and both land on the same component:
 | diagnosis | coverage gap | **pure model failure** |
 | rescued by HMM? | **yes** (rank 25 → 1) | **no** |
 
-Open question worth one experiment-free step: Serwaa's endolysin matches no lysis Pfam family, so it may belong to
-a family outside our 74. A full InterProScan would settle it. EBI's job API requires a submitter email address,
-which is not mine to supply — run it yourself, or say the word and I will use an address you nominate.
+**InterProScan settles the open question: no domain anywhere.** A full InterProScan 5.78 run
+(`reports/serwaa011_interproscan.json`) on CPT_Serwaa_011 found **zero matches across all 23 member
+analyses** -- Pfam 38.2, CDD, SMART, PANTHER, NCBIfam, HAMAP, PIRSF, PRINTS, PROSITE, SFLD, the structural
+classifiers Gene3D/FunFam and SUPERFAMILY, and also SignalP, Phobius and TMHMM (no signal peptide, no
+transmembrane segment). EBI's pre-computed lookup failed for this sequence, so every analysis was run on it
+from scratch; the null is not a missing cache entry.
+
+So this endolysin belongs to a family that **no domain database recognises**, even at the fold level --
+yet it is 50.4% identical, at coverage >=0.8, to an endolysin in our own training set. That pins down what
+each part of the pipeline can do with it:
+
+- **The HMM layer can never catch it.** There is no signature to match, in our 74 HMMs or in InterPro.
+- **Homology can.** A training relative at 50% identity is a strong signal, and the model does not see it
+  directly -- it sees a mean-pooled embedding, and scored this gene 0.3641. This is the clearest case for
+  giving the model its nearest-neighbour identity to each class as an explicit input.
+- **Genomic context can.** It sits inside a complete holin / endolysin / i-spanin / o-spanin cassette, the
+  position an endolysin occupies; the annotation most likely rests on exactly that synteny.
 
 ## Discovery mode: genomes with no annotated lysis gene
 
