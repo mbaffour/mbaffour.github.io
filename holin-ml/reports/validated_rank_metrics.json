@@ -1,0 +1,158 @@
+{
+ "endolysin": {
+  "known_family": {
+   "genes": 22,
+   "genomes": 22,
+   "gene_top1": 0.545,
+   "gene_top1_CI95": [
+    0.318,
+    0.727
+   ],
+   "gene_top5": 1.0,
+   "gene_top5_CI95": [
+    1.0,
+    1.0
+   ],
+   "median_rank": 1.0,
+   "genome_best_top1": 0.545,
+   "genome_best_top1_CI95": [
+    0.318,
+    0.727
+   ],
+   "genome_best_top5": 1.0,
+   "genome_best_top5_CI95": [
+    1.0,
+    1.0
+   ]
+  },
+  "novel_family": {
+   "genes": 22,
+   "genomes": 22,
+   "gene_top1": 0.455,
+   "gene_top1_CI95": [
+    0.227,
+    0.682
+   ],
+   "gene_top5": 0.955,
+   "gene_top5_CI95": [
+    0.864,
+    1.0
+   ],
+   "median_rank": 2.0,
+   "genome_best_top1": 0.455,
+   "genome_best_top1_CI95": [
+    0.227,
+    0.682
+   ],
+   "genome_best_top5": 0.955,
+   "genome_best_top5_CI95": [
+    0.864,
+    1.0
+   ]
+  }
+ },
+ "holin": {
+  "known_family": {
+   "genes": 8,
+   "genomes": 8,
+   "gene_top1": 0.875,
+   "gene_top1_CI95": [
+    0.625,
+    1.0
+   ],
+   "gene_top5": 1.0,
+   "gene_top5_CI95": [
+    1.0,
+    1.0
+   ],
+   "median_rank": 1.0,
+   "genome_best_top1": 0.875,
+   "genome_best_top1_CI95": [
+    0.625,
+    1.0
+   ],
+   "genome_best_top5": 1.0,
+   "genome_best_top5_CI95": [
+    1.0,
+    1.0
+   ]
+  },
+  "novel_family": {
+   "genes": 8,
+   "genomes": 8,
+   "gene_top1": 0.875,
+   "gene_top1_CI95": [
+    0.625,
+    1.0
+   ],
+   "gene_top5": 0.875,
+   "gene_top5_CI95": [
+    0.625,
+    1.0
+   ],
+   "median_rank": 1.0,
+   "genome_best_top1": 0.875,
+   "genome_best_top1_CI95": [
+    0.625,
+    1.0
+   ],
+   "genome_best_top5": 0.875,
+   "genome_best_top5_CI95": [
+    0.625,
+    1.0
+   ]
+  }
+ },
+ "spanin": {
+  "known_family": {
+   "genes": 7,
+   "genomes": 4,
+   "gene_top1": 0.429,
+   "gene_top1_CI95": [
+    0.2,
+    0.5
+   ],
+   "gene_top5": 1.0,
+   "gene_top5_CI95": [
+    1.0,
+    1.0
+   ],
+   "median_rank": 2.0,
+   "genome_best_top1": 0.75,
+   "genome_best_top1_CI95": [
+    0.25,
+    1.0
+   ],
+   "genome_best_top5": 1.0,
+   "genome_best_top5_CI95": [
+    1.0,
+    1.0
+   ]
+  },
+  "novel_family": {
+   "genes": 7,
+   "genomes": 4,
+   "gene_top1": 0.429,
+   "gene_top1_CI95": [
+    0.2,
+    0.5
+   ],
+   "gene_top5": 0.857,
+   "gene_top5_CI95": [
+    0.4,
+    1.0
+   ],
+   "median_rank": 2.0,
+   "genome_best_top1": 0.75,
+   "genome_best_top1_CI95": [
+    0.25,
+    1.0
+   ],
+   "genome_best_top5": 0.75,
+   "genome_best_top5_CI95": [
+    0.25,
+    1.0
+   ]
+  }
+ }
+}

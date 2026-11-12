@@ -271,8 +271,20 @@ def main():
                         if ss else np.zeros((0, 516)))
 
     # ---- genomes and ground truth ----
-    genomes = []
+    genomes = []; _seen_dna = {}
     for p in paths:
+        # one record per genome: the same DNA saved twice (an accession with and without its version, or a GenBank
+        # record and its RefSeq copy) would be scored twice and tighten every interval for nothing
+        try:
+            import hashlib
+            from Bio import SeqIO
+            _r = next(SeqIO.parse(p, "genbank"))
+            _k = hashlib.sha1(min(str(_r.seq).upper(), str(_r.seq.reverse_complement()).upper()).encode()).hexdigest()
+            if str(_r.seq).strip("Nn") and _k in _seen_dna:
+                print(f"duplicate genome skipped: {Path(p).stem} (same DNA as {_seen_dna[_k]})", flush=True); continue
+            _seen_dna[_k] = Path(p).stem
+        except Exception:
+            pass
         try:
             ann = [x for x in S5.annotated_proteins(p) if x.get("sequence")]
             if a.de_novo:

@@ -65,6 +65,18 @@ Reading: the right use is a **ranked shortlist**. For a new phage the true gene 
 
 **High-confidence calls use per-class cut-offs**, read from each model file and reported in the `high_conf` column: 0.95 for holin and spanin, **0.9995 for endolysin**. The endolysin model's probabilities are more extreme (§2.2); at 0.9995 it gives precision 0.976 / recall 0.421 (realistic) and 0.913 / 0.221 (strict), which beats the previous endolysin model at 0.95 on all four measures. That cut-off was chosen on the same panel it is reported on, so it is mildly optimistic.
 
+**Validation on curated and experimental evidence.** Product names are an imperfect yardstick, so the models were
+also tested against two sets graded without them. On **130 CPT genomes** whose lysis genes were curated by hand
+(125 endolysins, 78 holins, 162 spanins), the curated gene is in the top five proteins of its genome for 91 % of
+endolysins, 85 % of holins and 88 % of genomes' spanins under the novel-family protocol (95 %, 94 % and 96 % for known
+families) (`reports/cpt_benchmark.md`). On **24 genomes with experimentally proven lysis genes** (UniProt, evidence at
+protein level), reduced to bare DNA and re-called with Pyrodigal so that no annotation is used at all, the proven gene
+is in the top five for 20 of 21 endolysins, 7 of 8 holins and 3 of 4 spanins under the same protocol
+(`reports/validated_benchmark.md`). The two sets agree.
+
+Two genomes in the 66-genome panel were present twice (an accession with and without its version suffix); removing the
+copies lowers the endolysin figures by 0.005-0.009 AP, below the panel's resolution.
+
 ### 3.2 What worked and what did not
 
 Four interventions were attempted under the same guards; two were adopted and two rejected, each on its own evidence:

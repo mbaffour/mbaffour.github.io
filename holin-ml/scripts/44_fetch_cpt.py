@@ -67,6 +67,32 @@ def label(gdir):
         summ.append({"genome": f.stem, "organism": org.group(1).strip() if org else "", "n_proteins": len(ps),
                      "cpt_locus_tags": cpt, **{f"n_{c}": len(v) for c, v in t.items()}})
         if any(t.values()): truth[f.stem] = {c: v for c, v in t.items() if v}
+    # ONE record per genome. NCBI holds many CPT genomes twice -- the original GenBank record and its RefSeq copy
+    # (e.g. MN044033 CPT_Marfa_265 and NC_048798 HWC54_gp162). Counting both double-counts the phage and makes every
+    # interval look tighter than it is. Identical DNA (either strand) = same genome; keep CPT's own record (CPT_ locus
+    # tags), else the original GenBank (non-RefSeq) record.
+    import hashlib
+    from Bio import SeqIO
+    by_seq = {}
+    for srow in summ:
+        rec = next(SeqIO.parse(str(gdir / f"{srow['genome']}.gb"), "genbank"))
+        k = hashlib.sha1(min(str(rec.seq).upper(), str(rec.seq.reverse_complement()).upper()).encode()).hexdigest()
+        by_seq.setdefault(k, []).append(srow)
+    # also one record per organism: the same phage resequenced (Escherichia phage 434 appears twice with
+    # slightly different DNA) is still one phage
+    merged = {}
+    for rows in by_seq.values():
+        org = rows[0]["organism"]
+        merged.setdefault(org, []).extend(rows)
+    keep, dropped = set(), []
+    for rows in merged.values():
+        best = max(rows, key=lambda r: (r["cpt_locus_tags"] > 0, not r["genome"].startswith(("NC_", "AC_", "NZ_"))))
+        keep.add(best["genome"])
+        dropped += [{"dropped": r["genome"], "kept": best["genome"]} for r in rows if r is not best]
+    truth = {g: v for g, v in truth.items() if g in keep}
+    summ = [r for r in summ if r["genome"] in keep]
+    print(f"{len(keep)} distinct genomes; {len(dropped)} duplicate records dropped (same DNA)")
+    (OUT / "duplicates_dropped.json").write_text(json.dumps(dropped, indent=1))
     (OUT / "truth.json").write_text(json.dumps(truth, indent=1))
     (OUT / "summary.json").write_text(json.dumps(summ, indent=1))
     print(f"\n{len(summ)} genomes parsed; {sum(s['cpt_locus_tags'] > 0 for s in summ)} with CPT_ locus tags; "
