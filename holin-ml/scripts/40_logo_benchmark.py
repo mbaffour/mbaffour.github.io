@@ -115,6 +115,25 @@ def sim_matrix(queries, targets, cache_dir, procs=4):
     return M
 
 
+_PT = None
+def _pt_init(truths):
+    global _PT; _PT = truths
+def _pt_row(pos_seq):
+    """one training positive against every truth, in the SAME direction and with the SAME rule as CL.search
+    (align_pairs(positive, truths); coverage >= CL.MIN_COV and SW score >= 80, else 0)"""
+    return np.array([ident if (cov >= CL.MIN_COV and sc >= 80) else 0.0
+                     for ident, cov, sc in CL.align_pairs(pos_seq, _PT)], np.float32)
+
+
+def pos_truth_matrix(pos_seqs, truth_seqs, procs=4):
+    """positives x truths identity, computed once per class instead of once per genome. Column j of this matrix,
+    maxed over a genome's truths, equals CL.search(that genome's truths, pos_seqs, 80): align_pairs scores each target
+    independently, so batching every truth into one database changes nothing but the cost."""
+    from multiprocessing import Pool
+    with Pool(procs, initializer=_pt_init, initargs=(truth_seqs,)) as pool:
+        return np.vstack(pool.map(_pt_row, pos_seqs, chunksize=8))
+
+
 def denovo_from_genbank(gb):
     """genes called from the bare DNA of a GenBank record with Pyrodigal (meta mode); no annotation is read"""
     import pyrodigal
@@ -329,6 +348,13 @@ def main():
                 g["S"] = S_all[o:o + len(g["proteins"])]; o += len(g["proteins"])
             print(f"{cls}: similarity matrices {S_pos.shape} {S_neg.shape} {S_all.shape} in {int(time.time()-t)}s",
                   flush=True)
+        t = time.time()
+        tseqs, tcol = [], {}
+        for g in gs:
+            for i in g["truth"][cls]:
+                tcol.setdefault(g["name"], []).append(len(tseqs)); tseqs.append(g["proteins"][i]["sequence"])
+        PT = pos_truth_matrix(pos_seqs, tseqs)
+        print(f"{cls}: positive-vs-truth identity {PT.shape} in {int(time.time()-t)}s", flush=True)
         res = {}
         for mode in ("family", "sequence"):
             t = time.time(); cache = {}; rows = []; resumed = 0; nn_rows = []
@@ -337,8 +363,7 @@ def main():
                 if s is not None:
                     resumed += 1
                 else:
-                    qs = [g["proteins"][i]["sequence"] for i in g["truth"][cls]]
-                    ident = CL.search(qs, pos_seqs, 80)
+                    ident = PT[:, tcol[g["name"]]].max(1)
                     if mode == "family":
                         dc = {cl_ids[i] for i, v in enumerate(ident) if v >= CL.MIN_ID}
                         drop = np.isin(cl_ids, list(dc)) if dc else np.zeros(len(pos), bool)
