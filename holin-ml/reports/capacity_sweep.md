@@ -1,8 +1,8 @@
 # Capacity sweep: does the endolysin model improve with more data, more capacity, or a clean
 # early-stopping split?
 
-Three levers, six configurations, a follow-up subsample experiment with three seeds, and sixteen
-paired tests. `scripts/40_logo_benchmark.py` for the runs, `scripts/41_paired_delta.py` for the
+Three levers, six configurations, two follow-up experiments (subsample, three seeds; restore-127, four
+arms), and twenty-six paired tests. `scripts/40_logo_benchmark.py` for the runs, `scripts/41_paired_delta.py` for the
 differences. Endolysin only; 63 genomes, 95 annotated truths.
 
 The question came from a direct challenge: *don't we learn more with more data in an ML model?* The
@@ -81,10 +81,25 @@ that: 90% of the realistic loss and 98% of the strict loss are composition. The 
 worth +/-0.006. The one consistent benefit is strict recall@5, better by 0.04 to 0.05 in all three
 configurations -- broader family coverage buying reach at the cost of precision.
 
-**Q2 -- does the homology-contaminated early-stopping split matter?** No. This replaces an earlier
-claim of mine that it was worth "+0.046 realistic AP and +0.084 strict top-1". That came from one
-cell, the v1 realistic protocol. The v2 pair gives -0.0039 (p = 0.76) and the top-1 gain falls from
-+0.084 to +0.011. One of four dataset-by-protocol cells showed the effect; it is not there.
+**Q2 -- does the homology-contaminated early-stopping split matter?** For v1, yes; for v2, no. This
+answer has been wrong twice and is now settled by a paired test. I first reported it as worth "+0.046
+realistic AP and +0.084 strict top-1" from the v1 pair alone; then, when the v2 pair showed nothing, I
+said the effect "is not there". Both were premature. Paired on the same genomes:
+
+| data | protocol | delta (ES auto -> off) | CI95 | p |
+|---|---|---|---|---|
+| v1 | strict | -0.0082 | [-0.0509, +0.0332] | 0.802 |
+| **v1** | **realistic** | **+0.0456** | **[+0.0170, +0.0698]** | **0.001** |
+| v2 | strict | +0.0068 | [-0.0423, +0.0530] | 0.825 |
+| v2 | realistic | -0.0039 | [-0.0355, +0.0247] | 0.764 |
+
+The v1 realistic gain is the strongest single result in this report: never worse in any of 4,000
+resamples, and p = 0.001 survives a Bonferroni correction over every contrast run here. It is an
+interaction, not a general effect -- early stopping off helps the v1 training set and does nothing for
+v2, and helps neither on the strict protocol. A plausible reading, not tested: with cleaner labels the
+extra boosting rounds keep learning signal, with v2's noisier mined labels they fit noise. Practically,
+**the shipped endolysin model is v1 data trained with early stopping on**, so the measured-best variant
+is not the one shipped.
 
 **Q3 -- is the model capacity-limited?** No. Going from 400/31 to 800/63 is worse in all four
 contrasts -- on both datasets and both protocols, in 78% to 93% of resamples -- never better, never
@@ -221,14 +236,16 @@ ones.
 
 ## What this says about where the ceiling is
 
-Three levers -- data volume, model capacity, and a known defect in the training procedure -- and
-three nulls. A model that is neither data-limited nor capacity-limited, and that is unaffected by
-fixing a contaminated validation split, is limited by its inputs. The features are 36 handcrafted
-descriptors plus a 480-dimensional mean-pooled ESM-2 35M embedding, and mean-pooling is the obvious
-suspect: it discards the positional structure that distinguishes a catalytic domain in context from
-the same residues elsewhere. That is consistent with the two documented failures, DAC15 gp039
-(scored 0.0059 with an 80%-identical relative in training) and Serwaa's endolysin (0.3641 with a
-50%-identical relative present all along).
+Of three levers, only one moved anything: fixing the contaminated early-stopping split, and only for
+the v1 training set (+0.046 realistic, nothing on strict). More data did not help -- the expansion hurt
+through its composition -- and more capacity did not help. A model that responds to neither data nor
+capacity on the strict protocol, where it must generalise to unseen families, is limited by its inputs.
+The features are 36 handcrafted descriptors plus a 480-dimensional mean-pooled ESM-2 35M embedding, and
+mean-pooling is the obvious suspect: it discards the positional structure that distinguishes a catalytic
+domain in context from the same residues elsewhere. That fits the two documented failures. DAC15 gp039
+scored 0.0059; its 80%-identical relative only entered training with v2. Serwaa's endolysin scored
+0.3641 with a 50%-identical relative in training all along, and InterProScan finds no domain in it in
+any of 23 member databases, so nothing but homology or genomic context can find it.
 
 Untested and cheapest to test: similarity features -- maximum Smith-Waterman identity to each class's
 training set, as explicit model inputs. The information that rescued both failures was homology, and
