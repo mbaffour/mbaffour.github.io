@@ -32,8 +32,8 @@ rank_spanin, call, high_conf, lysis_call, cassette` — plus `pfam_lysis`, `dom_
 summary: the top-ranked protein once its neighbours are taken into account (a candidate beside a strong holin,
 endolysin or spanin is lifted; `models/context_params.json`). It is **confident** when its score clears that class's
 measured cut-off or, with `--domains`, when it carries a catalytic lysis domain; otherwise **candidate**. On 130
-CPT-curated phages, cross-validated, confident calls were correct 92% (endolysin), 90% (holin) and 96% (spanin) of the
-time for known families, about 80% for novel ones. Ranks are context-aware; `--no-context` turns that off.
+CPT-curated phages, cross-validated, confident calls were correct 95% (endolysin), 90% (holin) and 96% (spanin) of the
+time for known families, and 80-83% for novel ones. Ranks are context-aware; `--no-context` turns that off.
 
 `high_conf` lists the classes whose probability clears that class's **own** high-confidence cut-off, stored in each
 model file: 0.95 for holin and spanin, 0.9995 for endolysin. Use it instead of a single `--threshold 0.95`, which no
@@ -69,8 +69,9 @@ For many genomes at once use `scripts/30_scan_many.py`.
 - The ESM-2 weights `facebook/esm2_t12_35M_UR50D` (~130 MB) download from HuggingFace on first run. For offline/HPC
   use, pre-cache them (set `HF_HOME` to a populated cache) or run once online to warm `models/esm_cache`.
 - The three model files in `models/`: `holin_model_curated.pkl`, `endolysin_model.pkl`, `spanin_model.pkl`.
-  The previous endolysin model is kept as `endolysin_model_v1_es_retired.pkl` (rename it to `endolysin_model.pkl`
-  to roll back).
+  The endolysin model is trained only on evidence-backed labels (no positives labelled from genome product names).
+  Earlier endolysin models are kept as `endolysin_model_v1_pool_retired.pkl` (the previous one) and
+  `endolysin_model_v1_es_retired.pkl`; rename one to `endolysin_model.pkl` to roll back.
 
 ## How well it works, and how to read the score
 Honest leave-one-genome-out estimates over 66 genomes and 180 annotated lysis genes (`scripts/40_logo_benchmark.py`,
