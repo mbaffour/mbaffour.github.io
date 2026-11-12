@@ -236,6 +236,11 @@ def main():
                     help="ignore the GenBank annotation entirely: call genes from the bare DNA with Pyrodigal, score "
                          "those proteins, and place --truth-file genes on them by amino-acid SEQUENCE (needs --truth-file)."
                          " This is how a newly sequenced, unannotated phage is handled.")
+    ap.add_argument("--score-all", action="store_true",
+                    help="also write checkpoint scores for genomes with NO curated gene of the class (used as context "
+                         "inputs by the integrated caller). For those genomes every training positive >= 95%% identical "
+                         "to ANY of the genome's proteins is removed first, so an unannotated gene of the class cannot be "
+                         "scored by a model that trained on it. They never enter this class's metrics.")
     ap.add_argument("--sim-features", action="store_true",
                     help="append one feature: max identity to the class's KEPT training positives (self and exact "
                          "duplicates masked for training rows; for a scored genome, only positives surviving that "
@@ -367,6 +372,25 @@ def main():
                 tcol.setdefault(g["name"], []).append(len(tseqs)); tseqs.append(g["proteins"][i]["sequence"])
         PT = pos_truth_matrix(pos_seqs, tseqs)
         print(f"{cls}: positive-vs-truth identity {PT.shape} in {int(time.time()-t)}s", flush=True)
+        if a.score_all:
+            rest = [g for g in genomes if not g["truth"][cls]]
+            t = time.time(); pending = [g for g in rest if any(ck_load(CK, cls, m, g["name"], len(g["proteins"])) is None
+                                                             for m in ("family", "sequence"))]
+            if pending:
+                allp = [x["sequence"] for g in pending for x in g["proteins"]]
+                PA = pos_truth_matrix(pos_seqs, allp); o = 0; fcache = {}
+                for g in pending:
+                    n = len(g["proteins"]); drop = PA[:, o:o + n].max(1) >= 0.95; o += n
+                    key = drop.tobytes()
+                    if key not in fcache:
+                        keep = ~drop
+                        X = np.vstack([Xp[keep], Xn])
+                        y = np.concatenate([np.ones(int(keep.sum()), int), np.zeros(len(neg), int)])
+                        fcache[key] = hgb().fit(X, y)
+                    sc = fcache[key].predict_proba(g["X"])[:, 1]
+                    for m in ("family", "sequence"): ck_save(CK, cls, m, g["name"], sc)
+            print(f"{cls}: context scores for {len(rest)} genomes without a curated {cls} "
+                  f"({len(pending)} computed, {len(fcache) if pending else 0} fits) in {int(time.time()-t)}s", flush=True)
         res = {}
         for mode in ("family", "sequence"):
             t = time.time(); cache = {}; rows = []; resumed = 0; nn_rows = []
