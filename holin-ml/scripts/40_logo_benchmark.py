@@ -163,6 +163,14 @@ def seq_place(target, ps):
     return best[0] if best[1] >= 0.9 else None
 
 
+def pos_weights(cl, mode):
+    """sample weights for the kept positives: by homology family, normalised to sum to the number of positives"""
+    if mode == "none": return np.ones(len(cl))
+    _, inv, cnt = np.unique(cl, return_inverse=True, return_counts=True)
+    w = 1.0 / (cnt[inv] if mode == "cluster" else np.sqrt(cnt[inv]))
+    return w * (len(cl) / w.sum())
+
+
 def stratified_subsample(recs, n, seed, field):
     """Exactly n records, each stratum of `field` kept in proportion (largest-remainder rounding).
     Deterministic: records are ordered by id inside each stratum before the seeded draw."""
@@ -241,6 +249,12 @@ def main():
                          "inputs by the integrated caller). For those genomes every training positive >= 95%% identical "
                          "to ANY of the genome's proteins is removed first, so an unannotated gene of the class cannot be "
                          "scored by a model that trained on it. They never enter this class's metrics.")
+    ap.add_argument("--pos-weight", default="none", choices=["none", "cluster", "sqrt"],
+                    help="weight training positives by homology family so the model cannot lean on a few large ones: "
+                         "cluster = each family carries equal total weight (1/size); sqrt = 1/sqrt(size). Total positive "
+                         "weight is kept equal to the number of positives.")
+    ap.add_argument("--features", default="both", choices=["both", "hand", "esm"],
+                    help="hand = only the 36 biophysical sequence features; esm = only the ESM-2 embedding")
     ap.add_argument("--sim-features", action="store_true",
                     help="append one feature: max identity to the class's KEPT training positives (self and exact "
                          "duplicates masked for training rows; for a scored genome, only positives surviving that "
@@ -264,6 +278,8 @@ def main():
     SUB = ({"n": a.pos_subsample, "seed": a.pos_subsample_seed, "strata": a.pos_subsample_strata}
            if a.pos_subsample else None)
     EXTRA = dict(SUB or {})
+    if a.pos_weight != "none": EXTRA["pos_weight"] = a.pos_weight
+    if a.features != "both": EXTRA["features"] = a.features
     if a.sim_features: EXTRA["sim"] = "target_class_max_identity_v1"
     CK = ck_dir(B / a.checkpoint if not Path(a.checkpoint).is_absolute() else a.checkpoint,
                 dict(HP), a.endolysin_positives, a.spanin_positives, EXTRA or None)
@@ -272,8 +288,9 @@ def main():
     TF = json.load(open(B / a.truth_file)) if a.truth_file else None
     if TF is not None: paths = [p for p in paths if Path(p).stem in TF]
     esm = F.ESM(B / "models/esm_cache")
-    feats = lambda ss: (np.hstack([np.array([F.handcrafted(s) for s in ss]), esm.embed(ss)])
-                        if ss else np.zeros((0, 516)))
+    FSEL = {"both": slice(0, 516), "hand": slice(0, 36), "esm": slice(36, 516)}[a.features]
+    feats = lambda ss: ((np.hstack([np.array([F.handcrafted(s) for s in ss]), esm.embed(ss)])
+                         if ss else np.zeros((0, 516)))[:, FSEL])
 
     # ---- genomes and ground truth ----
     genomes = []; _seen_dna = {}
@@ -386,7 +403,8 @@ def main():
                         keep = ~drop
                         X = np.vstack([Xp[keep], Xn])
                         y = np.concatenate([np.ones(int(keep.sum()), int), np.zeros(len(neg), int)])
-                        fcache[key] = hgb().fit(X, y)
+                        sw = np.concatenate([pos_weights(cl_ids[keep], a.pos_weight), np.ones(len(neg))])
+                        fcache[key] = hgb().fit(X, y, sample_weight=sw)
                     sc = fcache[key].predict_proba(g["X"])[:, 1]
                     for m in ("family", "sequence"): ck_save(CK, cls, m, g["name"], sc)
             print(f"{cls}: context scores for {len(rest)} genomes without a curated {cls} "
@@ -414,11 +432,13 @@ def main():
                             fn = S_neg[:, keep].max(1)[:, None]
                             X = np.vstack([np.hstack([Xp[keep], fp]), np.hstack([Xn, fn])])
                             y = np.concatenate([np.ones(int(keep.sum()), int), np.zeros(len(neg), int)])
-                            cache[key] = hgb().fit(X, y)
+                            sw = np.concatenate([pos_weights(cl_ids[keep], a.pos_weight), np.ones(len(neg))])
+                            cache[key] = hgb().fit(X, y, sample_weight=sw)
                         else:
                             X = np.vstack([Xp[keep], Xn])
                             y = np.concatenate([np.ones(int(keep.sum()), int), np.zeros(len(neg), int)])
-                            cache[key] = hgb().fit(X, y)
+                            sw = np.concatenate([pos_weights(cl_ids[keep], a.pos_weight), np.ones(len(neg))])
+                            cache[key] = hgb().fit(X, y, sample_weight=sw)
                     m = cache[key]
                     Xg = g["X"]
                     if a.sim_features:
