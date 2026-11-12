@@ -180,6 +180,10 @@ def main():
                          "this many, stratified by --pos-subsample-strata; 0 = off")
     ap.add_argument("--pos-subsample-seed", type=int, default=0)
     ap.add_argument("--pos-subsample-strata", default="source")
+    ap.add_argument("--truth-file",
+                    help="JSON {genome_stem: {class: [protein ids]}}: take truth from this file (e.g. experimentally "
+                         "validated genes placed by sequence, scripts/43) instead of from GenBank product names. Only "
+                         "genomes in the file are scanned.")
     ap.add_argument("--sim-features", action="store_true",
                     help="append one feature: max identity to the class's KEPT training positives (self and exact "
                          "duplicates masked for training rows; for a scored genome, only positives surviving that "
@@ -208,6 +212,8 @@ def main():
                 dict(HP), a.endolysin_positives, a.spanin_positives, EXTRA or None)
     print(f"checkpoints: {CK}", flush=True)
     paths = sorted({p for g in a.genbanks for p in glob.glob(str(B / g))})
+    TF = json.load(open(B / a.truth_file)) if a.truth_file else None
+    if TF is not None: paths = [p for p in paths if Path(p).stem in TF]
     esm = F.ESM(B / "models/esm_cache")
     feats = lambda ss: (np.hstack([np.array([F.handcrafted(s) for s in ss]), esm.embed(ss)])
                         if ss else np.zeros((0, 516)))
@@ -221,7 +227,15 @@ def main():
             continue
         if not ps: continue
         tr = {c: [] for c in CLASSES}
-        for i, x in enumerate(ps):
+        if TF is not None:                          # truth from evidence, matched by protein id, never by name
+            want = TF[Path(p).stem]
+            idx = {x["id"]: i for i, x in enumerate(ps)}
+            for c in CLASSES:
+                for pid in want.get(c, []):
+                    if pid in idx: tr[c].append(idx[pid])
+                    else: print(f"WARNING {Path(p).stem}: validated {c} {pid} not scorable (length filter?)", flush=True)
+        else:
+          for i, x in enumerate(ps):
             prod = x.get("product") or ""
             if ANTI.search(prod): continue
             for c in CLASSES:
@@ -359,6 +373,10 @@ def main():
             print(f"  {mode:<9} AP={v['AP']:.4f} CI={v['CI95_by_genome']} top1={v['top1']} "
                   f"r@5={v['recall_at5']} ({len(cache)} fits, {resumed} resumed, "
                   f"{int(time.time()-t)}s)", flush=True)
+            res[f"{mode}_removal"]["truth_ranks"] = sorted(
+                [{"genome": r["genome"], "id": r["id"], "rank": r["rank"], "score": round(r["score"], 4),
+                  "of": sum(1 for q in rows if q["genome"] == r["genome"])} for r in rows if r["y"]],
+                key=lambda r: (r["genome"], r["rank"]))
             res[f"{mode}_removal"]["missed_truths"] = sorted(
                 [{"genome": r["genome"], "id": r["id"], "rank": r["rank"], "score": round(r["score"], 4),
                   "product": r["product"]} for r in rows if r["y"] and r["rank"] > 5],
