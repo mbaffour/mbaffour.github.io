@@ -253,8 +253,9 @@ def main():
                     help="weight training positives by homology family so the model cannot lean on a few large ones: "
                          "cluster = each family carries equal total weight (1/size); sqrt = 1/sqrt(size). Total positive "
                          "weight is kept equal to the number of positives.")
-    ap.add_argument("--features", default="both", choices=["both", "hand", "esm"],
-                    help="hand = only the 36 biophysical sequence features; esm = only the ESM-2 embedding")
+    ap.add_argument("--features", default="both", choices=["both", "hand", "esm", "hand+topo", "both+topo"],
+                    help="hand = only the 36 biophysical sequence features; esm = only the ESM-2 embedding; +topo adds the "
+                         "27 membrane-topology descriptors of features.topology_features")
     ap.add_argument("--sim-features", action="store_true",
                     help="append one feature: max identity to the class's KEPT training positives (self and exact "
                          "duplicates masked for training rows; for a scored genome, only positives surviving that "
@@ -288,9 +289,13 @@ def main():
     TF = json.load(open(B / a.truth_file)) if a.truth_file else None
     if TF is not None: paths = [p for p in paths if Path(p).stem in TF]
     esm = F.ESM(B / "models/esm_cache")
-    FSEL = {"both": slice(0, 516), "hand": slice(0, 36), "esm": slice(36, 516)}[a.features]
-    feats = lambda ss: ((np.hstack([np.array([F.handcrafted(s) for s in ss]), esm.embed(ss)])
-                         if ss else np.zeros((0, 516)))[:, FSEL])
+    FSEL = {"both": slice(0, 516), "hand": slice(0, 36), "esm": slice(36, 516),
+            "hand+topo": slice(0, 36), "both+topo": slice(0, 516)}[a.features]
+    TOPO = a.features.endswith("+topo")
+    def feats(ss):
+        if not ss: return np.zeros((0, (FSEL.stop - FSEL.start) + (len(F.TOPO_NAMES) if TOPO else 0)))
+        base = np.hstack([np.array([F.handcrafted(s) for s in ss]), esm.embed(ss)])[:, FSEL]
+        return np.hstack([base, np.array([F.topology_features(s) for s in ss], float)]) if TOPO else base
 
     # ---- genomes and ground truth ----
     genomes = []; _seen_dna = {}

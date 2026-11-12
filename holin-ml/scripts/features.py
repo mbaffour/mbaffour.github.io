@@ -156,3 +156,53 @@ def local(seq, flank=40):
          float(sum(1 for s, e in segs if s <= 100)), tm_res / max(L, 1)]
     w0, w1 = max(0, a_s - 1 - flank), min(L, a_e + flank)
     return v, seq[w0:w1]
+
+
+# ---------------------------------------------------------------------------------------------------------------------
+# Membrane-topology descriptors: the arrangement that makes a protein a holin across families, rather than the
+# composition of any one family. Built on the same Kyte-Doolittle scan as tm_segments(). Not used by the shipped
+# 516-feature models; selected with scripts/40 --features ...+topo.
+TOPO_NAMES = ["topo_n_tm", "topo_tm1_len", "topo_tm_len_mean", "topo_tm_len_sd", "topo_loop_len_mean", "topo_loop_len_max",
+              "topo_nterm_len", "topo_cterm_len", "topo_largest_soluble_len", "topo_largest_soluble_frac",
+              "topo_largest_soluble_pos", "topo_largest_soluble_net", "topo_kr_inside_bias", "topo_tm_kr", "topo_tm_de",
+              "topo_flank_kr_n", "topo_flank_kr_c", "topo_cterm_kr_density", "topo_cterm_de_density",
+              "topo_cterm_net_density", "topo_nterm_net_density", "topo_max_hydro", "topo_tm_hydro_mean",
+              "topo_amphipathic_moment", "topo_gly_in_tm", "topo_pro_in_tm", "topo_aromatic_belt"]
+
+
+def _charge(s):
+    return sum(c in "KR" for c in s) - sum(c in "DE" for c in s)
+
+
+def topology_features(seq):
+    n = len(seq); segs = tm_segments(seq); h = np.array([KD.get(a, 0.0) for a in seq])
+    tml = [j - i + 1 for i, j in segs]
+    # soluble stretches: before the first TM, between TMs, after the last TM
+    bounds = [-1] + [x for seg in segs for x in seg] + [n]
+    sol = [(bounds[k] + 1, bounds[k + 1] - 1) for k in range(0, len(bounds), 2)]
+    sol = [(a, b) for a, b in sol if b >= a]
+    loops = [segs[k + 1][0] - segs[k][1] - 1 for k in range(len(segs) - 1)]
+    big = max(sol, key=lambda ab: ab[1] - ab[0], default=(0, -1)); big_len = big[1] - big[0] + 1
+    nterm = segs[0][0] if segs else n; cterm = n - 1 - segs[-1][1] if segs else n
+    # positive-inside bias: K+R on the odd-numbered soluble stretches minus the even ones (orientation-free magnitude)
+    odd = sum(seq[a:b + 1].count("K") + seq[a:b + 1].count("R") for k, (a, b) in enumerate(sol) if k % 2 == 0)
+    even = sum(seq[a:b + 1].count("K") + seq[a:b + 1].count("R") for k, (a, b) in enumerate(sol) if k % 2 == 1)
+    tm_res = "".join(seq[i:j + 1] for i, j in segs)
+    fl_n = sum(seq[max(0, i - 10):i].count(c) for i, _ in segs for c in "KR")
+    fl_c = sum(seq[j + 1:j + 11].count(c) for _, j in segs for c in "KR")
+    ct = seq[-25:]; nt = seq[:25]
+    # helical hydrophobic moment (100 degrees per residue), best 18-residue window
+    ang = np.deg2rad(100) * np.arange(n); mom = 0.0
+    for i in range(0, max(1, n - 17)):
+        w = slice(i, i + 18); m = np.hypot((h[w] * np.cos(ang[w])).sum(), (h[w] * np.sin(ang[w])).sum()) / 18
+        mom = max(mom, m)
+    win = np.convolve(h, np.ones(19) / 19, mode="valid") if n >= 19 else np.array([h.mean() if n else 0])
+    return [len(segs), tml[0] if tml else 0, float(np.mean(tml)) if tml else 0, float(np.std(tml)) if tml else 0,
+            float(np.mean(loops)) if loops else 0, max(loops) if loops else 0, nterm, cterm, big_len, big_len / n,
+            ((big[0] + big[1]) / 2) / n if big_len > 0 else 0.5, _charge(seq[big[0]:big[1] + 1]) / max(big_len, 1),
+            abs(odd - even), sum(c in "KR" for c in tm_res), sum(c in "DE" for c in tm_res), fl_n, fl_c,
+            sum(c in "KR" for c in ct) / max(len(ct), 1), sum(c in "DE" for c in ct) / max(len(ct), 1),
+            _charge(ct) / max(len(ct), 1), _charge(nt) / max(len(nt), 1), float(win.max()),
+            float(np.mean([h[i:j + 1].mean() for i, j in segs])) if segs else 0, mom,
+            tm_res.count("G") / max(len(tm_res), 1), tm_res.count("P") / max(len(tm_res), 1),
+            sum(seq[max(0, i - 3):i + 3].count(c) + seq[max(0, j - 2):j + 4].count(c) for i, j in segs for c in "WY")]
