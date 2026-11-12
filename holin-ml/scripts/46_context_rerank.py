@@ -31,21 +31,30 @@ SETS = {  # name: (genome glob, truth file, checkpoint root, de novo?)
     "cpt": ("data/raw/cpt/genomes/*.gb", "data/raw/cpt/truth.json", ".fitckpt_cpt", False),
     "validated": ("data/raw/validated/genomes/*.gb", "data/raw/validated/truth.json", ".fitckpt_validated", False),
     "validated_denovo": ("data/raw/validated/genomes/*.gb", "data/raw/validated/truth.json", ".fitckpt_validated_denovo", True)}
-SHIPPED = {"endolysin": ("endolysin_positives_v1.json", False), "holin": ("endolysin_positives.json", "auto"),
-           "spanin": ("endolysin_positives.json", "auto")}
-# --endo-positives FILE: read the endolysin scores of a candidate training set instead of the shipped one
+SHIPPED = {"endolysin": ("endolysin_positives_v1.json", False, "spanin_positives.json"),
+           "holin": ("endolysin_positives.json", "auto", "spanin_positives.json"),
+           "spanin": ("endolysin_positives.json", "auto", "spanin_positives.json")}
+# --endo-positives FILE / --spanin-positives FILE: read a candidate training set's scores instead of the shipped one
 if "--endo-positives" in sys.argv:
-    SHIPPED["endolysin"] = (sys.argv[sys.argv.index("--endo-positives") + 1], False)
+    SHIPPED["endolysin"] = (sys.argv[sys.argv.index("--endo-positives") + 1], False, "spanin_positives.json")
+if "--spanin-positives" in sys.argv:
+    SHIPPED["spanin"] = ("endolysin_positives.json", "auto", sys.argv[sys.argv.index("--spanin-positives") + 1])
 
 
 def ckdirs(root):
+    """the checkpoint directory of each class's model: matched on BOTH training files and the early-stopping setting,
+    and required to hold that class's scores -- several runs share an estimator setting, so matching on one file alone
+    could silently read another model's scores"""
     out = {}
-    for d in glob.glob(str(B / root / "*")):
+    for d in sorted(glob.glob(str(B / root / "*"))):
         c = json.load(open(Path(d) / "config.json"))
-        for cls, (epos, es) in SHIPPED.items():
-            if c["endolysin"].endswith(epos) and c["hp"]["early_stopping"] == es and not c.get("extra"): out[cls] = Path(d)
+        for cls, (epos, es, spos) in SHIPPED.items():
+            if (c["endolysin"].endswith(epos) and c.get("spanin", "").endswith(spos) and c["hp"]["early_stopping"] == es
+                    and not c.get("extra") and glob.glob(str(Path(d) / f"{cls}__*.json"))):
+                if cls in out and out[cls] != Path(d): raise SystemExit(f"ambiguous checkpoints for {cls}: {out[cls]} {d}")
+                out[cls] = Path(d)
+    print(f"  checkpoints ({root}): " + ", ".join(f"{c}={p.name}" for c, p in sorted(out.items())), flush=True)
     return out
-
 
 def load(name):
     pat, tf, root, denovo = SETS[name]
@@ -102,7 +111,8 @@ def summary(rk):
 
 
 def main():
-    ap = argparse.ArgumentParser(); ap.add_argument("--endo-positives"); ap.add_argument("--tune", default="cpt"); ap.add_argument("--test", nargs="+",
+    ap = argparse.ArgumentParser(); ap.add_argument("--endo-positives"); ap.add_argument("--spanin-positives")
+    ap.add_argument("--tune", default="cpt"); ap.add_argument("--test", nargs="+",
         default=["validated_denovo", "validated"]); ap.add_argument("--out", default="reports/context_rerank.json")
     a = ap.parse_args()
     T = load(a.tune); print(f"tune set {a.tune}: {len(T)} genomes", flush=True)
@@ -133,7 +143,8 @@ if __name__ == "__main__" and "--cv" not in sys.argv and "--calls" not in sys.ar
 
 
 def cross_validate(name="cpt", k=5, seed=0, out=None):
-    out = out or ("reports/context_rerank_cv.json" if "--endo-positives" not in sys.argv else "reports/context_rerank_cv_evidence.json")
+    out = out or ("reports/context_rerank_cv" + ("_evidence" if "--endo-positives" in sys.argv else "")
+                  + ("_spaninsignal" if "--spanin-positives" in sys.argv else "") + ".json")
     """Honest estimate on the large set: genomes split into k folds; for each fold, beta and W are chosen on the other
     k-1 folds only, then frozen and applied to the held-out fold. Paired genome-bootstrap CI on the difference."""
     G = load(name); rng = np.random.default_rng(seed); fold = rng.permutation(len(G)) % k
@@ -176,7 +187,8 @@ if __name__ == "__main__" and "--cv" in sys.argv:
 
 
 def call_curve(name="cpt", k=5, seed=0, out=None):
-    out = out or ("reports/context_calls_cv.json" if "--endo-positives" not in sys.argv else "reports/context_calls_cv_evidence.json")
+    out = out or ("reports/context_calls_cv" + ("_evidence" if "--endo-positives" in sys.argv else "")
+                  + ("_spaninsignal" if "--spanin-positives" in sys.argv else "") + ".json")
     """What a CALL is worth. Per genome and class, the caller names the top context-ranked protein if its context score
     z clears a cut-off. Out-of-fold only (context parameters chosen on the other folds). For each cut-off: precision =
     calls that are the curated gene; recall = genomes whose curated gene was called. Genomes are those with a curated

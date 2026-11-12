@@ -46,6 +46,32 @@ The name-labelled TrEMBL spanins supply close relatives of known spanins. Withou
 to unseen spanin families (experimental set: 7/7 in the top 5 under both protocols, against 6/7) but ranks known
 families first less often. The known-family CI lies wholly below zero, so the rule keeps the shipped spanin model.
 
+**Resolved by a middle path (adopted).** Keep a name-labelled TrEMBL spanin only where an independent sequence signal
+agrees: an o-spanin lipobox (`[LVI][ASTVI][GAS]C`) in the first 35 aa, or a single N-terminal transmembrane segment
+(i-spanin topology). 692 of 1,023 pass (84% of CPT's own curated spanins pass the same test). Paired on 90 CPT genomes
+against the shipped model: novel-family top 5 **+5.6 [+0.6, +10.9], p = 0.049**; known-family ranked first -0.6
+[-1.9, 0.0], n.s. It keeps evidence-only's gain on new families and recovers its known-family loss (+3.7 vs
+evidence-only, p = 0.03). Experimental set: 7/7 in the top 5 under both protocols. Installed as
+`models/spanin_model.pkl`; the previous one is `spanin_model_v2_retired.pkl`.
+
+## The whole system, before and after (cross-validated, with context)
+
+`scripts/47_system_compare.py`: both systems on the same five folds, context parameters chosen per fold for each.
+
+| class | measure | previous | current | difference (95% CI) |
+|---|---|---|---|---|
+| spanin | top 5, novel family | 0.852 | 0.914 | **+0.062 [+0.012, +0.114]**, p = 0.02 |
+| spanin | top 5, known family | 0.969 | 0.932 | -0.037 [-0.075, 0.000], p = 0.06 |
+| holin | ranked 1st, novel / known | 0.641 / 0.808 | 0.603 / 0.782 | -0.038 / -0.026, n.s. |
+| endolysin | ranked 1st, novel / known | 0.744 / 0.848 | 0.720 / 0.864 | -0.024 / +0.016, n.s. |
+
+The one significant change is better spanin discovery in new families. Holin ranking dips (not significantly) because
+the evidence-only endolysin model scores the endolysins next to holins slightly less extremely, which weakens the
+context they lend. Adopted under the pre-set rule, and in line with the two stated priorities: evidence-based labels,
+and finding genes in new phages.
+
+The original trade-off note follows, for the record.
+
 This is a genuine trade-off, not a failure. If the priority is discovering spanins in unusual phages, the evidence-only
 spanin model is the better one; for routine annotation of familiar phages the shipped one is. A middle path worth
 testing: keep the TrEMBL spanins only where an independent sequence signal agrees (an o-spanin lipobox, i-spanin

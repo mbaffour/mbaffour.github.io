@@ -1,5 +1,5 @@
 {
- "note": "Genomic-context re-ranking and calling, scripts/46_context_rerank.py. z_c(i) = logit(P_c(i)) + beta * max over neighbours j within W genes (j != i) of max over other classes c' of P_c'(j). beta and W chosen on the 130-genome CPT-curated benchmark (grid beta 0-16, W 1-6). 5-fold cross-validated gain in genes ranked first: holin +10 points (both protocols, CIs exclude 0), endolysin (evidence-only model) +5.6 novel / +1.6 known, spanin best-per-genome +4.4 novel and top-5 +4.3 known; no measure got worse. A class's top context-ranked protein is called CONFIDENT when z >= call_z (or, with --domains, when it carries a catalytic/family-defining lysis domain), else CANDIDATE. Out-of-fold precision / recall of confident calls, known family | novel family: endolysin 0.95/0.88 | 0.83/0.61; holin 0.90/0.68 | 0.80/0.31; spanin 0.96/0.83 | 0.82/0.46. Precision is against CPT curation, so a 'wrong' call can be a real but unannotated gene.",
+ "note": "Genomic-context re-ranking and calling, scripts/46_context_rerank.py, for the CURRENT models (evidence-only endolysin, signal-filtered spanin). z_c(i) = logit(P_c(i)) + beta * max over neighbours j within W genes (j != i) of max over other classes c' of P_c'(j). beta and W chosen on the 130-genome CPT-curated benchmark. 5-fold cross-validated, genes ranked first without -> with context: holin 0.538 -> 0.603 (novel) / 0.705 -> 0.782 (known); endolysin 0.664 -> 0.720 / 0.848 -> 0.864; spanin best-per-genome 0.711 -> 0.733 / 0.844 -> 0.844, top 5 novel 0.914. A class's top context-ranked protein is CONFIDENT when z >= call_z (or, with --domains, when it carries a catalytic/family-defining lysis domain), else CANDIDATE. Out-of-fold precision / recall of confident calls, known | novel family: endolysin 0.94/0.86 | 0.82/0.61; holin 0.89/0.62 | 0.83/0.31; spanin 1.00/0.80 | 0.86/0.42. Precision is against CPT curation.",
  "holin": {
   "beta": 6,
   "W": 2,
@@ -11,7 +11,7 @@
   "call_z": 0
  },
  "spanin": {
-  "beta": 2,
+  "beta": 1,
   "W": 3,
   "call_z": 2
  }
