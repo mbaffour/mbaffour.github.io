@@ -13,34 +13,57 @@
     "negatives_phage": 3382
   },
   "honest_performance_leave_one_genome_out": {
-    "note": "measured in scripts/22 by removing each genome's holin family before scoring it; this deployment model trains on everything, so these are the estimate, not its own score",
+    "note": "Leave-one-genome-out over every annotated holin in a 66-genome panel (scripts/40_logo_benchmark.py, reports/logo_benchmark.json): 53 holins in 50 genomes. For each genome the holin's homologues are removed from training before it is scored. This deployment model trains on everything, so these are the estimate, not its own score.",
     "realistic_>=95pct_identity_removed": {
-      "genome_AP": 0.9647,
+      "genome_AP": 0.7544,
       "CI95": [
-        0.8928,
-        1.0
+        0.656,
+        0.8437
       ],
-      "recall_at_0.9": 0.923,
-      "precision_at_0.9": 0.75,
-      "top1_per_genome": 1.0
+      "top1_per_genome": 0.698,
+      "recall_at_5": 0.981
     },
     "strict_>=30pct_identity_family_removed": {
-      "genome_AP": 0.7847,
+      "genome_AP": 0.6128,
       "CI95": [
-        0.5381,
-        0.9619
+        0.4945,
+        0.7416
       ],
-      "recall_at_0.9": 0.692,
-      "precision_at_0.9": 0.75,
-      "top1_per_genome": 0.8
+      "top1_per_genome": 0.66,
+      "recall_at_5": 0.925
+    },
+    "superseded_small_benchmark": {
+      "note": "Earlier figures from scripts/22 on 13 annotated holins in 16 genomes. Kept for the record; they did not hold up on the larger panel and should not be quoted.",
+      "realistic_>=95pct_identity_removed": {
+        "genome_AP": 0.9647,
+        "CI95": [
+          0.8928,
+          1.0
+        ],
+        "recall_at_0.9": 0.923,
+        "precision_at_0.9": 0.75,
+        "top1_per_genome": 1.0
+      },
+      "strict_>=30pct_identity_family_removed": {
+        "genome_AP": 0.7847,
+        "CI95": [
+          0.5381,
+          0.9619
+        ],
+        "recall_at_0.9": 0.692,
+        "precision_at_0.9": 0.75,
+        "top1_per_genome": 0.8
+      }
     }
   },
   "known_limits": [
     "profile-match evidence: only 7 of 2,886 curated holins are Swiss-Prot reviewed",
     "Pfam is exhausted as a source: 4,700 of 4,701 curated records joined existing families",
     "P1 lydD remains the weakest annotated holin (0.60, rank 3/110)",
-    "precision falls vs the pre-curation model (0.75 vs 0.82 at >=0.9); use the 0.95 threshold for high-confidence calls",
-    "a genuinely novel holin family gets a shortlist, not an answer (strict AP 0.785)"
+    "the true holin is top-ranked in its genome only 66-70% of the time (in the top 5: 93-98%): use the output as a ranked shortlist",
+    "high-confidence cut-off for this model is 0.95 (the endolysin model uses 0.9995; read the per-class high_conf column)",
+    "a genuinely novel holin family gets a shortlist, not an answer (strict AP 0.613)",
+    "the 66-genome panel resolves differences only above ~0.05 AP"
   ],
   "usage": "import pickle, features as F; m=pickle.load(open('models/holin_model_curated.pkl','rb')); X=hstack([handcrafted, esm.embed(seqs)]); m['model'].predict_proba(X)[:,1]"
 }

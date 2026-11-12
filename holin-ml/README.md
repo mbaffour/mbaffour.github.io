@@ -40,7 +40,7 @@ Then point it at your own sequences:
 ```bash
 python scripts/32_predict_lysis.py --genome my_phage.fna --show-cassettes         # raw assembly, no annotation
 python scripts/32_predict_lysis.py --proteins my_proteins.faa --out hits.tsv      # protein FASTA
-python scripts/32_predict_lysis.py --genbank my_phage.gb --threshold 0.95         # annotated genome
+python scripts/32_predict_lysis.py --genbank my_phage.gb --domains               # annotated genome
 python scripts/32_predict_lysis.py --acc NC_008720.1                              # fetch from NCBI
 python scripts/30_scan_many.py --accessions my_list.txt --out reports/my_scan     # many genomes at once
 ```
@@ -52,10 +52,13 @@ Things worth knowing:
   build by default.
 - **First run** downloads the ESM-2 protein language model (~130 MB) from HuggingFace. After that it runs offline;
   set `HF_HUB_OFFLINE=1` to make sure it never tries the network.
-- **Output** is one TSV row per protein: `P_holin`, `P_endolysin`, `P_spanin` are independent probabilities, `call` is
-  the strongest class above the threshold, and `cassette` groups genes that co-locate as a full lysis cassette.
-- **Reading the scores:** precision is about 0.75 at a score of 0.9, so use `--threshold 0.95` when you need
-  high-confidence calls. A gene from a family the model has never seen gets a ranked shortlist, not a verdict.
+- **Output** is one TSV row per protein: `P_holin`, `P_endolysin`, `P_spanin` are independent probabilities, `rank_*`
+  is each protein's rank in the genome, `call` is the strongest class above the threshold, `high_conf` lists classes
+  above their own high-confidence cut-off, and `cassette` groups genes that co-locate as a full lysis cassette.
+- **Reading the scores:** read the output as a ranked shortlist -- the true gene is in the top five of its genome
+  87-100% of the time but ranked first only 50-70%. For high-confidence calls use the `high_conf` column: cut-offs
+  are per class (holin and spanin 0.95, endolysin 0.9995), because the endolysin model's probabilities run higher. A
+  gene from a family the model has never seen gets a ranked shortlist, not a verdict.
 - **If the models fail to load,** check `pip show scikit-learn` reports exactly 1.9.1. The models are saved
   scikit-learn objects and need that version (`pip install scikit-learn==1.9.1`).
 - **Windows:** if PowerShell refuses to activate the environment, run
@@ -224,15 +227,17 @@ python3 scripts/23_train_production.py    # saves the deployable model and model
 
 ## Limitations
 
-- **Strict-protocol performance is modest.** From a genuinely unseen family you get a shortlist (AP 0.7847, recall 9/13
-  at 0.9), not an answer. Only 13 annotated holins in 16 genomes support these numbers.
+- **Strict-protocol performance is modest.** From a genuinely unseen family you get a shortlist, not an answer: holin
+  strict AP is 0.613 (95% CI 0.49-0.74) over 53 annotated holins in 50 genomes. The 0.7847 reported earlier came from
+  13 holins in 16 genomes and did not hold up on the larger panel (see `MANUSCRIPT.md` section 3.1).
 - **Most positives are profile matches.** 4,497 of the positives are Pfam members of which only a handful are reviewed;
   "holin" for these means "matches a holin profile", and Pfam membership can be wrong.
 - **Positives are biased toward studied families** and "putative" TCDB families are predictions themselves. Only 8
   entries have direct protein-level evidence.
 - **Negatives are unlabelled, not verified non-holins:** Swiss-Prot phage proteins may include unrecognised holins, so
   measured precision is a lower bound and some "false positives" may be real.
-- **Precision is the weak side:** 0.75 at score 0.9 under both protocols, and curation lowered it.
+- **Precision is the weak side:** the true gene is top-ranked in its genome only 50-70% of the time, and curation
+  lowered holin precision. Use the per-class `high_conf` cut-offs for calls you will act on.
 - **Long single-TM holins** (T4 t, T5 C1) are found only if their family is in training.
 - The model scores proteins independently. It does not use genomic context (holins sit next to endolysin and spanin
   genes), which is the strongest signal a human curator uses.

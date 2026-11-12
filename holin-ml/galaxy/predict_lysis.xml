@@ -49,7 +49,7 @@ python3 "\${LYSIS_CALLER_HOME}/scripts/32_predict_lysis.py"
                 <param name="genbank" type="data" format="genbank" label="GenBank file" help="Annotated CDS proteins are scored in genome order."/>
             </when>
         </conditional>
-        <param name="threshold" type="float" value="0.5" min="0" max="1" label="Call threshold" help="Minimum probability for a protein to receive a holin/endolysin/spanin call. Use 0.95 for high-confidence calls."/>
+        <param name="threshold" type="float" value="0.5" min="0" max="1" label="Call threshold" help="Minimum probability for a protein to receive a holin/endolysin/spanin call. For high-confidence calls use the high_conf column, whose cut-offs are set per class."/>
         <param name="cassette_window" type="integer" value="6" min="1" label="Cassette window (genes)" help="Holin, endolysin and spanin calls within this many genes are grouped as a lysis cassette (genome and GenBank input only)."/>
     </inputs>
     <outputs>
@@ -65,8 +65,8 @@ python3 "\${LYSIS_CALLER_HOME}/scripts/32_predict_lysis.py"
             <param name="cassette_window" value="6"/>
             <output name="output">
                 <assert_contents>
-                    <has_text text="id&#9;gene&#9;product&#9;start&#9;stop&#9;strand&#9;length&#9;P_holin&#9;P_endolysin&#9;P_spanin&#9;call&#9;cassette"/>
-                    <has_n_columns n="12"/>
+                    <has_text text="id&#9;gene&#9;product&#9;start&#9;stop&#9;strand&#9;length&#9;P_holin&#9;P_endolysin&#9;P_spanin&#9;rank_holin&#9;rank_endolysin&#9;rank_spanin&#9;call&#9;high_conf&#9;cassette"/>
+                    <has_n_columns n="16"/>
                     <has_n_lines n="6"/>
                     <has_text text="EPNV4_gp62"/>
                     <has_text text="EPNV4_gp61"/>
@@ -91,27 +91,32 @@ independently, wherever they sit in the genome.
 
 **Output (tabular)**
 
-Columns: ``id, gene, product, start, stop, strand, length, P_holin, P_endolysin, P_spanin, call, cassette``.
+Columns: ``id, gene, product, start, stop, strand, length, P_holin, P_endolysin, P_spanin, rank_holin, rank_endolysin,
+rank_spanin, call, high_conf, cassette``.
 
 - ``P_holin``, ``P_endolysin``, ``P_spanin`` are independent probabilities (0 to 1) that the protein belongs to each class.
   They do not sum to 1.
+- ``rank_holin``, ``rank_endolysin``, ``rank_spanin`` give each protein's rank within this genome for that class (1 = highest).
 - ``call`` is the class with the highest probability if it reaches the threshold, otherwise ``none``.
+- ``high_conf`` lists the classes whose probability clears that class's own high-confidence cut-off: 0.95 for holin and
+  spanin, 0.9995 for endolysin (its probabilities run higher). Use it for calls you will act on.
 - ``cassette`` is a number shared by genes that form a lysis cassette (holin, endolysin and spanin co-located within the
   cassette window). It is empty for protein FASTA input and for genes outside any cassette.
 
 **How well it works**
 
-Leave-one-genome-out average precision:
+Leave-one-genome-out average precision over 66 genomes and 180 annotated lysis genes:
 
-==========  ===================================  ===========================
-Gene        Realistic (known family, new phage)  Strict (never-seen family)
-==========  ===================================  ===========================
-Holin       0.965                                0.785
-Endolysin   0.843                                0.729
-Spanin      0.834                                0.729
-==========  ===================================  ===========================
+==========  ===================================  ===========================  =====================
+Gene        Realistic (known family, new phage)  Strict (never-seen family)   True gene in top 5
+==========  ===================================  ===========================  =====================
+Holin       0.754                                0.613                        98% / 93%
+Endolysin   0.809                                0.614                        93% / 87%
+Spanin      0.800                                0.568                        100% / 97%
+==========  ===================================  ===========================  =====================
 
-Precision is about 0.75 at P >= 0.9, so use a threshold of **0.95** for high-confidence calls.
+Read the output as a ranked shortlist: the true gene is in the top five almost always, but ranked first only 50-70%
+of the time. For high-confidence calls use the ``high_conf`` column rather than one threshold for all classes.
 
 A hit in a novel family is a **shortlist, not a verdict**: confirm by synteny, domain/topology analysis and, ideally,
 experiment.

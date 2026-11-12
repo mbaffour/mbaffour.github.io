@@ -11,9 +11,14 @@ For every protein it reports independent probabilities P(holin), P(endolysin), P
 called INDEPENDENTLY, wherever they sit -- and, when positions are known, flags lysis cassettes where all three
 co-locate. Output is TSV (stdout or --out), plus a short summary and optional --show-cassettes to stderr.
 
-Honest performance (leave-one-genome-out, reports/*_eval.json): holin realistic 0.965 / strict 0.785; endolysin
-0.843 / 0.729; spanin 0.834 / 0.729. "Strict" (a family the model has never seen) gives a shortlist, not a verdict.
-Precision ~0.75 at P>=0.9, so use --threshold 0.95 for high-confidence calls.
+Honest performance (leave-one-genome-out over 63 genomes, reports/logo_benchmark.json and capacity_sweep.md):
+genome-scan AP, realistic / strict --  holin 0.754 / 0.613, endolysin 0.809 / 0.614, spanin 0.800 / 0.568.
+The true gene is in the top 5 of its genome 87-100% of the time but ranked first only 50-70%: this is a SHORTLIST
+generator, not a caller. "Strict" means a family the model has never seen.
+
+High confidence is PER CLASS, read from each model bundle (column high_conf): holin and spanin 0.95; endolysin
+0.9995, because the shipped endolysin model trains without early stopping and its probabilities are more
+extreme -- at 0.9995 it beats the previous model's 0.95 on both precision and recall (see models bundle note).
 
 Dependencies: numpy, scikit-learn (must match the version the models were pickled with), torch + transformers
 (ESM-2 facebook/esm2_t12_35M_UR50D, ~130 MB, downloaded on first run), and pyrodigal for --genome. See DEPLOY.md.
@@ -82,7 +87,10 @@ def main():
     if positional: ps.sort(key=lambda p: p["start"])
     print(f"# {src}: {len(ps)} proteins", file=sys.stderr)
 
-    models = {c: pickle.load(open(B / "models" / MODELS[c], "rb"))["model"] for c in CLASSES}
+    bundles = {c: pickle.load(open(B / "models" / MODELS[c], "rb")) for c in CLASSES}
+    models = {c: bundles[c]["model"] for c in CLASSES}
+    # high-confidence cut-off per class: probabilities are not on a common scale across the three models
+    HC = {c: float(bundles[c].get("high_confidence_threshold", 0.95)) for c in CLASSES}
     esm = F.ESM(B / "models/esm_cache")
     X = np.hstack([np.array([F.handcrafted(p["sequence"]) for p in ps]), esm.embed([p["sequence"] for p in ps])])
     assert X.shape[1] == 516, X.shape
@@ -90,6 +98,7 @@ def main():
     for i, p in enumerate(ps):
         p["P"] = {c: float(P[c][i]) for c in CLASSES}
         b = max(CLASSES, key=lambda c: p["P"][c]); p["call"] = b if p["P"][b] >= a.threshold else "none"
+        p["high_conf"] = ",".join(c for c in CLASSES if p["P"][c] >= HC[c])
         p["cassette"] = ""
     # rank within this run, per class: 1 = highest P. Ranks are reported alongside the probabilities because the
     # probability alone is not safe to read as a verdict out of distribution -- the honest use of this tool is a
@@ -126,14 +135,15 @@ def main():
 
     cols = ["id", "gene", "product", "start", "stop", "strand", "length",
             "P_holin", "P_endolysin", "P_spanin", "rank_holin", "rank_endolysin", "rank_spanin",
-            "call", "cassette"] + (["pfam_lysis", "dom_tier_holin", "dom_tier_endolysin", "dom_tier_spanin",
+            "call", "high_conf", "cassette"] + (["pfam_lysis", "dom_tier_holin", "dom_tier_endolysin", "dom_tier_spanin",
                                     "ev_rank_holin", "ev_rank_endolysin", "ev_rank_spanin"] if a.domains else [])
     lines = ["\t".join(cols)]
     for p in ps:
         row = [p["id"], p.get("gene", ""), (p.get("product") or "").replace("\t", " "),
                p["start"], p["stop"], p["strand"], len(p["sequence"]),
                f"{p['P']['holin']:.4f}", f"{p['P']['endolysin']:.4f}", f"{p['P']['spanin']:.4f}",
-               p["rank"]["holin"], p["rank"]["endolysin"], p["rank"]["spanin"], p["call"], p["cassette"]]
+               p["rank"]["holin"], p["rank"]["endolysin"], p["rank"]["spanin"], p["call"], p["high_conf"],
+               p["cassette"]]
         if a.domains:
             row.append(dom.get(p["id"], ""))
             row += [dtier[p["id"]][c] for c in CLASSES] + [p["ev_rank"][c] for c in CLASSES]
@@ -143,6 +153,9 @@ def main():
     called = {c: sum(1 for p in ps if p["call"] == c) for c in CLASSES}
     print(f"# called at >={a.threshold}: " + ", ".join(f"{c} {called[c]}" for c in CLASSES) +
           f"; cassettes {len(cass)}" + ("" if positional else " (n/a for protein FASTA)"), file=sys.stderr)
+    hc = {c: sum(1 for p in ps if c in p["high_conf"].split(",")) for c in CLASSES}
+    print("# high confidence (per-class cut-offs " + ", ".join(f"{c} >={HC[c]:g}" for c in CLASSES) + "): "
+          + ", ".join(f"{c} {hc[c]}" for c in CLASSES), file=sys.stderr)
     # ranked shortlist per class, printed whatever the threshold
     for c in CLASSES:
         key = (lambda p: (-dtier[p["id"]][c], -p["P"][c])) if a.domains else (lambda p: -p["P"][c])

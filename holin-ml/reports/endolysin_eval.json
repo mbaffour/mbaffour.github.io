@@ -3,53 +3,58 @@
   "n_atlas_genomes": 12,
   "n_annotated_in_atlas": 19,
   "family_removal": {
-    "genome_AP": 0.7286,
+    "genome_AP": 0.7094,
     "CI95_by_genome": [
-      0.5229,
-      0.8814
+      0.5095,
+      0.908
     ],
     "at_thresholds": {
       "0.5": {
-        "called": 9,
-        "true": 9,
-        "precision": 1.0,
-        "recall": 0.474
-      },
-      "0.9": {
-        "called": 6,
-        "true": 6,
-        "precision": 1.0,
-        "recall": 0.316
-      }
-    },
-    "top1_per_genome": 0.667
-  },
-  "sequence_removal": {
-    "genome_AP": 0.843,
-    "CI95_by_genome": [
-      0.6955,
-      0.9733
-    ],
-    "at_thresholds": {
-      "0.5": {
-        "called": 13,
-        "true": 13,
-        "precision": 1.0,
-        "recall": 0.684
+        "called": 12,
+        "true": 11,
+        "precision": 0.917,
+        "recall": 0.579
       },
       "0.9": {
         "called": 10,
-        "true": 10,
-        "precision": 1.0,
-        "recall": 0.526
+        "true": 9,
+        "precision": 0.9,
+        "recall": 0.474
       }
     },
-    "top1_per_genome": 0.833
+    "top1_per_genome": 0.75
+  },
+  "sequence_removal": {
+    "genome_AP": 0.8162,
+    "CI95_by_genome": [
+      0.66,
+      0.9498
+    ],
+    "at_thresholds": {
+      "0.5": {
+        "called": 16,
+        "true": 15,
+        "precision": 0.938,
+        "recall": 0.789
+      },
+      "0.9": {
+        "called": 15,
+        "true": 14,
+        "precision": 0.933,
+        "recall": 0.737
+      }
+    },
+    "top1_per_genome": 0.75
   },
   "gold_holdout": {
-    "AP": 0.8006,
+    "AP": 0.831,
     "n_pos": 192,
-    "n_neg": 3997,
+    "n_neg": 4020,
     "note": "class gold-holdout clusters vs held-out negative sample; this model trains on all"
+  },
+  "config": {
+    "confusable_negatives": 0,
+    "train_positives": 1337,
+    "train_negatives": 16080
   }
 }
