@@ -9,7 +9,7 @@ or in the top 5 -- the fair measure for spanins, where an i/o pair cannot both r
 
 Usage: python3 scripts/45_rank_report.py --truth-file data/raw/cpt/truth.json --results reports/cpt_*.json
 """
-import argparse, glob, json
+import argparse, glob, json, sys
 from collections import defaultdict
 from pathlib import Path
 import numpy as np
@@ -56,5 +56,45 @@ def main():
     if a.out: (B / a.out).write_text(json.dumps(out, indent=1))
 
 
-if __name__ == "__main__":
+if __name__ == "__main__" and "--compare" not in sys.argv:
     main()
+
+
+def compare(truth_file, base_file, new_file, cls):
+    """Paired comparison of two runs on the same truth set: per genome the same curated genes, ranked by each model;
+    genome-bootstrap 95% CI and two-sided p on the difference (new - base)."""
+    keep = set(json.load(open(B / truth_file)))
+    get = lambda f, proto: {(t["genome"], t["id"]): t["rank"] for t in json.load(open(B / f))["classes"][cls][proto]["truth_ranks"]
+                            if t["genome"] in keep}
+    out = {}
+    for proto, lab in (("family_removal", "novel_family"), ("sequence_removal", "known_family")):
+        a_, b_ = get(base_file, proto), get(new_file, proto)
+        keys = sorted(set(a_) & set(b_)); byg = defaultdict(list)
+        for k in keys: byg[k[0]].append(k)
+        gs = sorted(byg)
+        def stat(sel, R, f):
+            if f == "best1": return float(np.mean([min(R[k] for k in byg[g]) == 1 for g in sel]))
+            ks = [k for g in sel for k in byg[g]]
+            return float(np.mean([R[k] == 1 for k in ks])) if f == "top1" else float(np.mean([R[k] <= 5 for k in ks]))
+        row = {"genomes": len(gs), "genes": len(keys)}
+        for f in ("top1", "top5", "best1"):
+            rng = np.random.default_rng(0); d = []
+            for _ in range(4000):
+                sel = [gs[i] for i in rng.integers(0, len(gs), len(gs))]; d.append(stat(sel, b_, f) - stat(sel, a_, f))
+            d = np.array(d); p = 2 * min((d <= 0).mean(), (d >= 0).mean())
+            row[f] = {"base": round(stat(gs, a_, f), 3), "new": round(stat(gs, b_, f), 3),
+                      "delta": round(stat(gs, b_, f) - stat(gs, a_, f), 3),
+                      "CI95": [round(float(np.percentile(d, 2.5)), 3), round(float(np.percentile(d, 97.5)), 3)],
+                      "p": round(float(min(p, 1.0)), 4)}
+        out[lab] = row
+        print(f"  {cls:<9} {lab:<13} genomes {len(gs):>3} | " + " | ".join(
+            f"{f} {row[f]['base']:.3f}->{row[f]['new']:.3f} ({row[f]['delta']:+.3f} {row[f]['CI95']} p={row[f]['p']})"
+            for f in ("top1", "top5", "best1")))
+    return out
+
+
+if __name__ == "__main__" and "--compare" in sys.argv:
+    # usage: 45_rank_report.py --compare TRUTH BASE.json NEW.json CLASS [OUT.json]
+    i = sys.argv.index("--compare"); args = sys.argv[i + 1:]
+    res = compare(*args[:4])
+    if len(args) > 4: (B / args[4]).write_text(json.dumps(res, indent=1))
