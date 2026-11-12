@@ -52,7 +52,18 @@ FEATURES = (["lP_holin", "lP_endolysin", "lP_spanin", "rank_frac", "log_rank", "
 def lg(p): p = np.clip(p, 1e-6, 1 - 1e-6); return np.log(p / (1 - p))
 
 
+# --no-shape: drop the protein-shape features (length, TM segments, lipobox). With family-grouped folds the full feature
+# set let the second stage recognise a family from shape alone and did worse than the context rule on new families;
+# without them it can only learn genome logic (scores, ranks, neighbours).
+SHAPE = ("length", "log_length", "tm_segments", "lipobox")
+KEEP = [i for i, f in enumerate(FEATURES) if not ("--no-shape" in sys.argv and f in SHAPE)]
+
+
 def genome_features(P, pos, seqs, cls):
+    return _genome_features(P, pos, seqs, cls)[:, KEEP]
+
+
+def _genome_features(P, pos, seqs, cls):
     """feature matrix (n x len(FEATURES)) for one genome and target class; P: {class: probabilities}, pos: positions"""
     n = len(seqs); order = np.argsort(pos); byp = {c: P[c][order] for c in CLASSES}   # by genomic position
     rk = np.empty(n); rk[np.argsort(-P[cls], kind="stable")] = np.arange(1, n + 1)
@@ -180,14 +191,45 @@ def summarise(R, label):
     return res
 
 
+def family_folds(G, cls, k=5, seed=0):
+    """Folds that never split a FAMILY: genomes whose curated genes of this class are >= 30% identical (the novel-family
+    protocol's own rule: coverage >= 0.5, SW score >= 80) are joined into one group, and whole groups are assigned to
+    folds. Without this, a related phage in the training folds lets the second stage learn the family from simple
+    features (e.g. 'a 218-aa one-TM protein is the holin' from Marfa, applied to its sibling pKp20)."""
+    seqs, owner = [], []
+    for k_, g in enumerate(G):
+        for t in g["truth"][cls]: seqs.append(g["ps"][t]["sequence"]); owner.append(k_)
+    M = L.pos_truth_matrix(seqs, seqs)
+    parent = list(range(len(G)))
+    def find(x):
+        while parent[x] != x: parent[x] = parent[parent[x]]; x = parent[x]
+        return x
+    for i in range(len(seqs)):
+        for j in range(len(seqs)):
+            if i != j and M[i, j] >= 0.3: parent[find(owner[i])] = find(owner[j])
+    groups = {}
+    for k_ in range(len(G)): groups.setdefault(find(k_), []).append(k_)
+    order = sorted(groups.values(), key=len, reverse=True); load_ = [0] * k; fold = {}
+    rng = np.random.default_rng(seed); rng.shuffle(order); order = sorted(order, key=len, reverse=True)
+    for grp in order:                                   # largest groups first, each to the emptiest fold
+        f = int(np.argmin(load_)); load_[f] += len(grp)
+        for k_ in grp: fold[G[k_]["name"]] = f
+    sizes = sorted((len(v) for v in groups.values()), reverse=True)
+    print(f"  {cls}: {len(groups)} family groups (largest {sizes[:5]}), fold sizes {load_}", flush=True)
+    return fold
+
+
 def main():
     G = load("cpt"); print(f"CPT: {len(G)} genomes with all three classes scored under both protocols", flush=True)
     names = sorted(g["name"] for g in G); fold_of = {n: f for n, f in zip(names, np.random.default_rng(0).permutation(len(names)) % 5)}
+    grouped = "--genome-folds" not in sys.argv
     report = {"note": "columns: model_only / context rule / integrated caller; CI and p for integrated - context, paired by genome",
               "cv_cpt": {}, "heldout_validated": {}}
-    print("\n== 5-fold CV on CPT (model only / context rule / integrated)")
+    print(f"\n== 5-fold CV on CPT, {'FAMILY-GROUPED' if grouped else 'by genome'} folds (model only / context rule / integrated)")
+    report["folds"] = "family-grouped" if grouped else "by genome"
     for cls in CLASSES:
         R = {}
+        if grouped: fold_of = family_folds(G, cls)
         for f in range(5):
             tr = [g for g in G if fold_of[g["name"]] != f]; te = [g for g in G if fold_of[g["name"]] == f]
             o, _, _ = evaluate(tr, te, cls)
@@ -198,14 +240,14 @@ def main():
     for cls in CLASSES:
         o, model, bw = evaluate(G, V, cls)
         report["heldout_validated"][cls] = summarise(o, cls); final[cls] = {"model": model, "context_beta_W": bw}
-    (B / "reports/integrated_caller.json").write_text(json.dumps(report, indent=1))
-    print("wrote reports/integrated_caller.json")
+    out = ("reports/integrated_caller" + ("" if grouped else "_genomefolds") + ("_noshape" if "--no-shape" in sys.argv else "") + ".json")
+    (B / out).write_text(json.dumps(report, indent=1)); print(f"wrote {out}")
     if "--final" in sys.argv:
-        pickle.dump({"features": FEATURES, "windows": WINDOWS, "models": {c: final[c]["model"] for c in CLASSES},
+        pickle.dump({"features": [FEATURES[i] for i in KEEP], "windows": WINDOWS, "models": {c: final[c]["model"] for c in CLASSES},
                      "note": "integrated second-stage caller, scripts/48; trained on leave-one-genome-out first-stage "
                              "scores of the 130 CPT-curated genomes (both protocols pooled). See reports/integrated_caller.json."},
-                    open(B / "models/integrated_caller.pkl", "wb"))
-        print("saved models/integrated_caller.pkl")
+                    open(B / ("models/integrated_caller" + ("_noshape" if "--no-shape" in sys.argv else "") + ".pkl"), "wb"))
+        print("saved the integrated caller")
 
 
 if __name__ == "__main__":

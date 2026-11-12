@@ -99,8 +99,8 @@ rank_spanin, call, high_conf, lysis_call, cassette``.
 - ``rank_holin``, ``rank_endolysin``, ``rank_spanin`` give each protein's rank within this genome for that class (1 = highest).
 - ``call`` is the class with the highest probability if it reaches the threshold, otherwise ``none``.
 - ``lysis_call`` (genome input only) names the single gene called for each class -- the top-ranked protein once
-  neighbouring lysis genes are taken into account -- as ``confident`` or ``candidate``. Confident calls were 89-100%
-  correct for known families and 82-86% for novel ones when tested on 130 CPT-curated phages.
+  neighbouring lysis genes are taken into account -- as ``confident`` or ``candidate``. Confident calls were 93-98%
+  correct for known families and 85-98% for novel ones when tested on 130 CPT-curated phages.
 - ``high_conf`` lists the classes whose probability clears that class's own high-confidence cut-off: 0.95 for holin and
   spanin, 0.9995 for endolysin (its probabilities run higher). Use it for calls you will act on.
 - ``cassette`` is a number shared by genes that form a lysis cassette (holin, endolysin and spanin co-located within the

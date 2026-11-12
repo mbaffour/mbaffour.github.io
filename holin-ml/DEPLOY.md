@@ -32,8 +32,10 @@ rank_spanin, call, high_conf, lysis_call, cassette` — plus `pfam_lysis`, `dom_
 summary: the top-ranked protein once its neighbours are taken into account (a candidate beside a strong holin,
 endolysin or spanin is lifted; `models/context_params.json`). It is **confident** when its score clears that class's
 measured cut-off or, with `--domains`, when it carries a catalytic lysis domain; otherwise **candidate**. On 130
-CPT-curated phages, cross-validated, confident calls were correct 94% (endolysin), 89% (holin) and 100% (spanin) of
-the time for known families, and 82-86% for novel ones. Ranks are context-aware; `--no-context` turns that off.
+CPT-curated phages, cross-validated with related phages kept out of each other's training folds, confident calls were
+correct 95% (endolysin), 93% (holin) and 98% (spanin) of the time for known families, and 85%, 90% and 98% for novel
+ones. Holins and endolysins are called by the context rule; spanins by a learned second-stage caller
+(`models/spanin_caller.pkl`) that uses lipobox and membrane-topology features. See `reports/integrated_caller.md`. Ranks are context-aware; `--no-context` turns that off.
 
 `high_conf` lists the classes whose probability clears that class's **own** high-confidence cut-off, stored in each
 model file: 0.95 for holin and spanin, 0.9995 for endolysin. Use it instead of a single `--threshold 0.95`, which no

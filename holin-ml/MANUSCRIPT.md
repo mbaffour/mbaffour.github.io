@@ -83,8 +83,13 @@ class with the strongest other-class score among a protein's neighbours (z = log
 5-fold cross-validation over CPT genomes, by 10 points for holins (54 -> 64 % novel family; 71 -> 81 % known; 95 % CIs
 exclude zero), 4-6 points for endolysins and 4 points for spanins (best per genome), with no measure made worse. The
 predictor now names one gene per class per genome, **confident** when its context score clears a measured cut-off or
-it carries a catalytic lysis domain: out-of-fold, confident calls are correct 94 % (endolysin), 89 % (holin) and 100 %
-(spanin) of the time for known families, and 82-86 % for novel ones.
+it carries a catalytic lysis domain. A learned second-stage caller over all three scores, neighbour scores, genome
+rank and protein shape was also built. Cross-validated by genome it appeared to raise novel-family holins ranked first
+from 62 % to 82 %, but with related phages kept in the same fold that gain vanished: it had learned families from shape
+in sibling genomes. It is used only for spanins, where lipobox and membrane topology generalise across families (top
+pick correct 0.91 known / 0.80 novel, against 0.83 / 0.73 for the context rule). Family-grouped, out of fold, confident
+calls are correct 95 % (endolysin), 93 % (holin) and 98 % (spanin) of the time for known families, and 85 %, 90 % and
+98 % for novel ones (`reports/integrated_caller.md`).
 
 **Training on evidence only.** The shipped endolysin model is trained only on evidence-backed labels -- UniProt
 protein-level evidence, Swiss-Prot review, or a lysis Pfam domain -- with the 368 positives labelled from genome

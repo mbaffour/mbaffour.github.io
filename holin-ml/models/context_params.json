@@ -1,5 +1,5 @@
 {
- "note": "Genomic-context re-ranking and calling, scripts/46_context_rerank.py, for the CURRENT models (evidence-only endolysin, signal-filtered spanin). z_c(i) = logit(P_c(i)) + beta * max over neighbours j within W genes (j != i) of max over other classes c' of P_c'(j). beta and W chosen on the 130-genome CPT-curated benchmark. 5-fold cross-validated, genes ranked first without -> with context: holin 0.538 -> 0.603 (novel) / 0.705 -> 0.782 (known); endolysin 0.664 -> 0.720 / 0.848 -> 0.864; spanin best-per-genome 0.711 -> 0.733 / 0.844 -> 0.844, top 5 novel 0.914. A class's top context-ranked protein is CONFIDENT when z >= call_z (or, with --domains, when it carries a catalytic/family-defining lysis domain), else CANDIDATE. Out-of-fold precision / recall of confident calls, known | novel family: endolysin 0.94/0.86 | 0.82/0.61; holin 0.89/0.62 | 0.83/0.31; spanin 1.00/0.80 | 0.86/0.42. Precision is against CPT curation.",
+ "note": "Per-class calling, chosen by family-grouped 5-fold cross-validation over the 130 CPT-curated genomes (genomes whose curated genes are >= 30% identical never split across folds). HOLIN and ENDOLYSIN: context rule, z = logit(P) + beta * strongest other-class P within W genes; confident when z >= call_z (or, with --domains, a catalytic/family lysis domain). SPANIN: learned second-stage caller (models/spanin_caller.pkl); confident when its score >= 0.02. Top pick correct, known | novel family: holin 0.81 | 0.62; endolysin 0.92 | 0.79; spanin 0.91 | 0.80. Confident calls, precision / recall, known | novel: holin 0.93/0.64 | 0.90/0.33; endolysin 0.95/0.87 | 0.85/0.64; spanin 0.98/0.69 | 0.98/0.51. Precision is against CPT curation.",
  "holin": {
   "beta": 6,
   "W": 2,
@@ -13,6 +13,7 @@
  "spanin": {
   "beta": 1,
   "W": 3,
-  "call_z": 2
+  "call_z": 2,
+  "caller": "models/spanin_caller.pkl"
  }
 }

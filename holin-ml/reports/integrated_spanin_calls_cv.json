@@ -1,0 +1,92 @@
+{
+ "known": {
+  "genomes": 90,
+  "curve": [
+   {
+    "cutoff": 0.0,
+    "precision": 0.911,
+    "recall": 0.911
+   },
+   {
+    "cutoff": 0.1,
+    "precision": 0.981,
+    "recall": 0.567
+   },
+   {
+    "cutoff": 0.2,
+    "precision": 0.978,
+    "recall": 0.5
+   },
+   {
+    "cutoff": 0.3,
+    "precision": 0.976,
+    "recall": 0.456
+   },
+   {
+    "cutoff": 0.4,
+    "precision": 0.974,
+    "recall": 0.422
+   },
+   {
+    "cutoff": 0.5,
+    "precision": 0.974,
+    "recall": 0.422
+   },
+   {
+    "cutoff": 0.6,
+    "precision": 0.974,
+    "recall": 0.422
+   },
+   {
+    "cutoff": 0.7,
+    "precision": 0.974,
+    "recall": 0.422
+   }
+  ]
+ },
+ "novel": {
+  "genomes": 90,
+  "curve": [
+   {
+    "cutoff": 0.0,
+    "precision": 0.8,
+    "recall": 0.8
+   },
+   {
+    "cutoff": 0.1,
+    "precision": 0.974,
+    "recall": 0.411
+   },
+   {
+    "cutoff": 0.2,
+    "precision": 0.971,
+    "recall": 0.378
+   },
+   {
+    "cutoff": 0.3,
+    "precision": 0.97,
+    "recall": 0.356
+   },
+   {
+    "cutoff": 0.4,
+    "precision": 0.969,
+    "recall": 0.344
+   },
+   {
+    "cutoff": 0.5,
+    "precision": 0.966,
+    "recall": 0.311
+   },
+   {
+    "cutoff": 0.6,
+    "precision": 0.964,
+    "recall": 0.3
+   },
+   {
+    "cutoff": 0.7,
+    "precision": 0.958,
+    "recall": 0.256
+   }
+  ]
+ }
+}

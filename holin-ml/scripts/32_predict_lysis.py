@@ -115,7 +115,19 @@ def main():
                 nb = [max(ps[j]["P"][o] for o in CLASSES if o != c)
                       for j in range(max(0, i - w), min(len(ps), i + w + 1)) if j != i]
                 p_["z"][c] += b * (max(nb) if nb else 0.0)
-    # rank within this run, per class: 1 = highest P (with context: highest z). Ranks are reported alongside the probabilities because the
+    # SPANIN: learned second-stage caller (models/spanin_caller.pkl, scripts/48), which beat the context rule for
+    # spanins on unseen families; its score S replaces z for spanin ranking and calling. Holin and endolysin keep the
+    # context rule, which the learned caller did not beat once related phages were kept out of its training folds.
+    SPC = None
+    if CTX and CTX["spanin"].get("caller") and (B / CTX["spanin"]["caller"]).exists():
+        SPC = pickle.load(open(B / CTX["spanin"]["caller"], "rb"))
+        I48 = importlib.import_module("48_integrated_caller")
+        Pm = {c: np.array([q["P"][c] for q in ps]) for c in CLASSES}
+        Xs = I48._genome_features(Pm, np.arange(len(ps)), [q["sequence"] for q in ps], "spanin")
+        Xs = Xs[:, [I48.FEATURES.index(f) for f in SPC["features"]]]
+        S = SPC["model"].predict_proba(Xs)[:, 1]
+        for q, sv in zip(ps, S): q["S_spanin"] = float(sv); q["z"]["spanin"] = lg(float(sv))
+    # rank within this run, per class: 1 = highest P (with context: highest z; spanin: highest S). Ranks are reported alongside the probabilities because the
     # probability alone is not safe to read as a verdict out of distribution -- the honest use of this tool is a
     # ranked shortlist per class, which is what the leave-one-genome-out numbers actually measure.
     for c in CLASSES:
@@ -159,7 +171,11 @@ def main():
             key = (lambda q: q["ev_rank"][c]) if a.domains else (lambda q: q["rank"][c])
             top = min(ps, key=key)
             dom_ok = a.domains and dtier[top["id"]][c] >= 2
-            tier = "confident" if (CTX and top["z"][c] >= CTX[c]["call_z"]) or dom_ok else "candidate"
+            if c == "spanin" and SPC:
+                score_ok = top["S_spanin"] >= SPC["call_S"]
+            else:
+                score_ok = bool(CTX) and top["z"][c] >= CTX[c]["call_z"]
+            tier = "confident" if score_ok or dom_ok else "candidate"
             calls[c] = (top, tier, "domain" if dom_ok else "context score")
             top["lysis_call"] = (top["lysis_call"] + "," if top["lysis_call"] else "") + f"{c}:{tier}"
 
@@ -189,7 +205,8 @@ def main():
         for c in CLASSES:
             q, tier, why = calls[c]
             print(f"#   {c:<10} {tier.upper():<10} {(q.get('gene') or q['id'])[:24]:<24} {q['start']}..{q['stop']}{q['strand']}"
-                  f"  {len(q['sequence'])} aa  P={q['P'][c]:.4f}  z={q['z'][c]:.2f}"
+                  f"  {len(q['sequence'])} aa  P={q['P'][c]:.4f}  "
+                  + (f"S={q['S_spanin']:.3f}" if c == "spanin" and SPC else f"z={q['z'][c]:.2f}")
                   + (f"  [{why}: {dom.get(q['id'])}]" if why == "domain" else ""), file=sys.stderr)
     hc = {c: sum(1 for p in ps if c in p["high_conf"].split(",")) for c in CLASSES}
     print("# high confidence (per-class cut-offs " + ", ".join(f"{c} >={HC[c]:g}" for c in CLASSES) + "): "

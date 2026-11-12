@@ -1,0 +1,584 @@
+{
+ "note": "columns: model_only / context rule / integrated caller; CI and p for integrated - context, paired by genome",
+ "cv_cpt": {
+  "holin": {
+   "novel": {
+    "top1": {
+     "model_only": 0.538,
+     "context": 0.615,
+     "integrated": 0.551,
+     "integrated_minus_context": -0.064,
+     "CI95": [
+      -0.154,
+      0.026
+     ],
+     "p": 0.1955
+    },
+    "top5": {
+     "model_only": 0.846,
+     "context": 0.859,
+     "integrated": 0.795,
+     "integrated_minus_context": -0.064,
+     "CI95": [
+      -0.128,
+      -0.013
+     ],
+     "p": 0.014
+    },
+    "best1": {
+     "model_only": 0.538,
+     "context": 0.615,
+     "integrated": 0.551,
+     "integrated_minus_context": -0.064,
+     "CI95": [
+      -0.154,
+      0.026
+     ],
+     "p": 0.1955
+    },
+    "same_gene_top1": {
+     "model_only": 0.577,
+     "context": 0.615,
+     "integrated": 0.551,
+     "integrated_minus_context": -0.064,
+     "CI95": [
+      -0.154,
+      0.026
+     ],
+     "p": 0.1955
+    },
+    "genomes": 78
+   },
+   "known": {
+    "top1": {
+     "model_only": 0.705,
+     "context": 0.808,
+     "integrated": 0.769,
+     "integrated_minus_context": -0.039,
+     "CI95": [
+      -0.103,
+      0.026
+     ],
+     "p": 0.33
+    },
+    "top5": {
+     "model_only": 0.936,
+     "context": 0.936,
+     "integrated": 0.949,
+     "integrated_minus_context": 0.013,
+     "CI95": [
+      -0.026,
+      0.051
+     ],
+     "p": 0.7825
+    },
+    "best1": {
+     "model_only": 0.705,
+     "context": 0.808,
+     "integrated": 0.769,
+     "integrated_minus_context": -0.039,
+     "CI95": [
+      -0.103,
+      0.026
+     ],
+     "p": 0.33
+    },
+    "same_gene_top1": {
+     "model_only": 0.718,
+     "context": 0.808,
+     "integrated": 0.769,
+     "integrated_minus_context": -0.039,
+     "CI95": [
+      -0.103,
+      0.026
+     ],
+     "p": 0.33
+    },
+    "genomes": 78
+   }
+  },
+  "endolysin": {
+   "novel": {
+    "top1": {
+     "model_only": 0.664,
+     "context": 0.752,
+     "integrated": 0.696,
+     "integrated_minus_context": -0.056,
+     "CI95": [
+      -0.114,
+      0.0
+     ],
+     "p": 0.061
+    },
+    "top5": {
+     "model_only": 0.888,
+     "context": 0.912,
+     "integrated": 0.912,
+     "integrated_minus_context": 0.0,
+     "CI95": [
+      -0.04,
+      0.04
+     ],
+     "p": 1.0
+    },
+    "best1": {
+     "model_only": 0.697,
+     "context": 0.79,
+     "integrated": 0.731,
+     "integrated_minus_context": -0.059,
+     "CI95": [
+      -0.118,
+      0.0
+     ],
+     "p": 0.061
+    },
+    "same_gene_top1": {
+     "model_only": 0.697,
+     "context": 0.79,
+     "integrated": 0.731,
+     "integrated_minus_context": -0.059,
+     "CI95": [
+      -0.118,
+      0.0
+     ],
+     "p": 0.061
+    },
+    "genomes": 119
+   },
+   "known": {
+    "top1": {
+     "model_only": 0.848,
+     "context": 0.88,
+     "integrated": 0.848,
+     "integrated_minus_context": -0.032,
+     "CI95": [
+      -0.081,
+      0.016
+     ],
+     "p": 0.2735
+    },
+    "top5": {
+     "model_only": 0.96,
+     "context": 0.968,
+     "integrated": 0.952,
+     "integrated_minus_context": -0.016,
+     "CI95": [
+      -0.048,
+      0.016
+     ],
+     "p": 0.4455
+    },
+    "best1": {
+     "model_only": 0.891,
+     "context": 0.924,
+     "integrated": 0.891,
+     "integrated_minus_context": -0.033,
+     "CI95": [
+      -0.084,
+      0.017
+     ],
+     "p": 0.2735
+    },
+    "same_gene_top1": {
+     "model_only": 0.891,
+     "context": 0.924,
+     "integrated": 0.891,
+     "integrated_minus_context": -0.033,
+     "CI95": [
+      -0.084,
+      0.017
+     ],
+     "p": 0.2735
+    },
+    "genomes": 119
+   }
+  },
+  "spanin": {
+   "novel": {
+    "top1": {
+     "model_only": 0.395,
+     "context": 0.407,
+     "integrated": 0.401,
+     "integrated_minus_context": -0.006,
+     "CI95": [
+      -0.043,
+      0.031
+     ],
+     "p": 0.87
+    },
+    "top5": {
+     "model_only": 0.907,
+     "context": 0.932,
+     "integrated": 0.926,
+     "integrated_minus_context": -0.006,
+     "CI95": [
+      -0.063,
+      0.048
+     ],
+     "p": 0.9245
+    },
+    "best1": {
+     "model_only": 0.711,
+     "context": 0.733,
+     "integrated": 0.722,
+     "integrated_minus_context": -0.011,
+     "CI95": [
+      -0.078,
+      0.056
+     ],
+     "p": 0.87
+    },
+    "same_gene_top1": {
+     "model_only": 0.711,
+     "context": 0.733,
+     "integrated": 0.722,
+     "integrated_minus_context": -0.011,
+     "CI95": [
+      -0.078,
+      0.056
+     ],
+     "p": 0.87
+    },
+    "genomes": 90
+   },
+   "known": {
+    "top1": {
+     "model_only": 0.469,
+     "context": 0.463,
+     "integrated": 0.494,
+     "integrated_minus_context": 0.031,
+     "CI95": [
+      -0.006,
+      0.071
+     ],
+     "p": 0.1495
+    },
+    "top5": {
+     "model_only": 0.926,
+     "context": 0.938,
+     "integrated": 0.975,
+     "integrated_minus_context": 0.037,
+     "CI95": [
+      0.006,
+      0.072
+     ],
+     "p": 0.0325
+    },
+    "best1": {
+     "model_only": 0.844,
+     "context": 0.833,
+     "integrated": 0.889,
+     "integrated_minus_context": 0.056,
+     "CI95": [
+      -0.011,
+      0.122
+     ],
+     "p": 0.1495
+    },
+    "same_gene_top1": {
+     "model_only": 0.844,
+     "context": 0.833,
+     "integrated": 0.889,
+     "integrated_minus_context": 0.056,
+     "CI95": [
+      -0.011,
+      0.122
+     ],
+     "p": 0.1495
+    },
+    "genomes": 90
+   }
+  }
+ },
+ "heldout_validated": {
+  "holin": {
+   "novel": {
+    "top1": {
+     "model_only": 0.875,
+     "context": 0.75,
+     "integrated": 0.75,
+     "integrated_minus_context": 0.0,
+     "CI95": [
+      0.0,
+      0.0
+     ],
+     "p": 1.0
+    },
+    "top5": {
+     "model_only": 0.875,
+     "context": 0.875,
+     "integrated": 1.0,
+     "integrated_minus_context": 0.125,
+     "CI95": [
+      0.0,
+      0.375
+     ],
+     "p": 0.6795
+    },
+    "best1": {
+     "model_only": 0.875,
+     "context": 0.75,
+     "integrated": 0.75,
+     "integrated_minus_context": 0.0,
+     "CI95": [
+      0.0,
+      0.0
+     ],
+     "p": 1.0
+    },
+    "same_gene_top1": {
+     "model_only": 0.875,
+     "context": 0.875,
+     "integrated": 0.875,
+     "integrated_minus_context": 0.0,
+     "CI95": [
+      0.0,
+      0.0
+     ],
+     "p": 1.0
+    },
+    "genomes": 8
+   },
+   "known": {
+    "top1": {
+     "model_only": 0.875,
+     "context": 0.875,
+     "integrated": 0.875,
+     "integrated_minus_context": 0.0,
+     "CI95": [
+      0.0,
+      0.0
+     ],
+     "p": 1.0
+    },
+    "top5": {
+     "model_only": 1.0,
+     "context": 1.0,
+     "integrated": 1.0,
+     "integrated_minus_context": 0.0,
+     "CI95": [
+      0.0,
+      0.0
+     ],
+     "p": 1.0
+    },
+    "best1": {
+     "model_only": 0.875,
+     "context": 0.875,
+     "integrated": 0.875,
+     "integrated_minus_context": 0.0,
+     "CI95": [
+      0.0,
+      0.0
+     ],
+     "p": 1.0
+    },
+    "same_gene_top1": {
+     "model_only": 1.0,
+     "context": 1.0,
+     "integrated": 1.0,
+     "integrated_minus_context": 0.0,
+     "CI95": [
+      0.0,
+      0.0
+     ],
+     "p": 1.0
+    },
+    "genomes": 8
+   }
+  },
+  "endolysin": {
+   "novel": {
+    "top1": {
+     "model_only": 0.545,
+     "context": 0.591,
+     "integrated": 0.636,
+     "integrated_minus_context": 0.045,
+     "CI95": [
+      -0.091,
+      0.182
+     ],
+     "p": 0.7975
+    },
+    "top5": {
+     "model_only": 0.955,
+     "context": 0.955,
+     "integrated": 0.909,
+     "integrated_minus_context": -0.046,
+     "CI95": [
+      -0.182,
+      0.091
+     ],
+     "p": 0.7715
+    },
+    "best1": {
+     "model_only": 0.545,
+     "context": 0.591,
+     "integrated": 0.636,
+     "integrated_minus_context": 0.045,
+     "CI95": [
+      -0.091,
+      0.182
+     ],
+     "p": 0.7975
+    },
+    "same_gene_top1": {
+     "model_only": 0.545,
+     "context": 0.591,
+     "integrated": 0.636,
+     "integrated_minus_context": 0.045,
+     "CI95": [
+      -0.091,
+      0.182
+     ],
+     "p": 0.7975
+    },
+    "genomes": 22
+   },
+   "known": {
+    "top1": {
+     "model_only": 0.682,
+     "context": 0.773,
+     "integrated": 0.773,
+     "integrated_minus_context": 0.0,
+     "CI95": [
+      0.0,
+      0.0
+     ],
+     "p": 1.0
+    },
+    "top5": {
+     "model_only": 1.0,
+     "context": 1.0,
+     "integrated": 0.909,
+     "integrated_minus_context": -0.091,
+     "CI95": [
+      -0.227,
+      0.0
+     ],
+     "p": 0.242
+    },
+    "best1": {
+     "model_only": 0.682,
+     "context": 0.773,
+     "integrated": 0.773,
+     "integrated_minus_context": 0.0,
+     "CI95": [
+      0.0,
+      0.0
+     ],
+     "p": 1.0
+    },
+    "same_gene_top1": {
+     "model_only": 0.682,
+     "context": 0.773,
+     "integrated": 0.773,
+     "integrated_minus_context": 0.0,
+     "CI95": [
+      0.0,
+      0.0
+     ],
+     "p": 1.0
+    },
+    "genomes": 22
+   }
+  },
+  "spanin": {
+   "novel": {
+    "top1": {
+     "model_only": 0.429,
+     "context": 0.429,
+     "integrated": 0.571,
+     "integrated_minus_context": 0.142,
+     "CI95": [
+      0.0,
+      0.6
+     ],
+     "p": 0.6465
+    },
+    "top5": {
+     "model_only": 1.0,
+     "context": 1.0,
+     "integrated": 1.0,
+     "integrated_minus_context": 0.0,
+     "CI95": [
+      0.0,
+      0.0
+     ],
+     "p": 1.0
+    },
+    "best1": {
+     "model_only": 0.75,
+     "context": 0.75,
+     "integrated": 1.0,
+     "integrated_minus_context": 0.25,
+     "CI95": [
+      0.0,
+      0.75
+     ],
+     "p": 0.6465
+    },
+    "same_gene_top1": {
+     "model_only": 0.75,
+     "context": 0.75,
+     "integrated": 1.0,
+     "integrated_minus_context": 0.25,
+     "CI95": [
+      0.0,
+      0.75
+     ],
+     "p": 0.6465
+    },
+    "genomes": 4
+   },
+   "known": {
+    "top1": {
+     "model_only": 0.429,
+     "context": 0.429,
+     "integrated": 0.571,
+     "integrated_minus_context": 0.142,
+     "CI95": [
+      0.0,
+      0.6
+     ],
+     "p": 0.6465
+    },
+    "top5": {
+     "model_only": 1.0,
+     "context": 1.0,
+     "integrated": 1.0,
+     "integrated_minus_context": 0.0,
+     "CI95": [
+      0.0,
+      0.0
+     ],
+     "p": 1.0
+    },
+    "best1": {
+     "model_only": 0.75,
+     "context": 0.75,
+     "integrated": 1.0,
+     "integrated_minus_context": 0.25,
+     "CI95": [
+      0.0,
+      0.75
+     ],
+     "p": 0.6465
+    },
+    "same_gene_top1": {
+     "model_only": 0.75,
+     "context": 0.75,
+     "integrated": 1.0,
+     "integrated_minus_context": 0.25,
+     "CI95": [
+      0.0,
+      0.75
+     ],
+     "p": 0.6465
+    },
+    "genomes": 4
+   }
+  }
+ },
+ "folds": "family-grouped"
+}
