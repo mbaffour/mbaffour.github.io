@@ -26,7 +26,14 @@ python3 scripts/32_predict_lysis.py --acc NC_008720.1
 ```
 Output is TSV:
 `id, gene, product, start, stop, strand, length, P_holin, P_endolysin, P_spanin, rank_holin, rank_endolysin,
-rank_spanin, call, high_conf, cassette` — plus `pfam_lysis`, `dom_tier_*` and `ev_rank_*` with `--domains`.
+rank_spanin, call, high_conf, lysis_call, cassette` — plus `pfam_lysis`, `dom_tier_*` and `ev_rank_*` with `--domains`.
+
+**The call.** For genome and GenBank input the tool names one gene per class in `lysis_call` and in a `LYSIS GENE CALLS`
+summary: the top-ranked protein once its neighbours are taken into account (a candidate beside a strong holin,
+endolysin or spanin is lifted; `models/context_params.json`). It is **confident** when its score clears that class's
+measured cut-off or, with `--domains`, when it carries a catalytic lysis domain; otherwise **candidate**. On 130
+CPT-curated phages, cross-validated, confident calls were correct 92% (endolysin), 90% (holin) and 96% (spanin) of the
+time for known families, about 80% for novel ones. Ranks are context-aware; `--no-context` turns that off.
 
 `high_conf` lists the classes whose probability clears that class's **own** high-confidence cut-off, stored in each
 model file: 0.95 for holin and spanin, 0.9995 for endolysin. Use it instead of a single `--threshold 0.95`, which no

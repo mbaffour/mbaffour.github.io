@@ -54,7 +54,8 @@ Things worth knowing:
   set `HF_HUB_OFFLINE=1` to make sure it never tries the network.
 - **Output** is one TSV row per protein: `P_holin`, `P_endolysin`, `P_spanin` are independent probabilities, `rank_*`
   is each protein's rank in the genome, `call` is the strongest class above the threshold, `high_conf` lists classes
-  above their own high-confidence cut-off, and `cassette` groups genes that co-locate as a full lysis cassette.
+  above their own high-confidence cut-off, `lysis_call` names the one gene called per class (confident or candidate,
+  using neighbouring genes as context), and `cassette` groups genes that co-locate as a full lysis cassette.
 - **Reading the scores:** read the output as a ranked shortlist -- the true gene is in the top five of its genome
   87-100% of the time but ranked first only 50-70%. For high-confidence calls use the `high_conf` column: cut-offs
   are per class (holin and spanin 0.95, endolysin 0.9995), because the endolysin model's probabilities run higher. A

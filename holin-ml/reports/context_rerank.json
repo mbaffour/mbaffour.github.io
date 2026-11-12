@@ -1,0 +1,367 @@
+{
+ "chosen_on": "cpt",
+ "params": {
+  "holin": {
+   "beta": 6,
+   "W": 2
+  },
+  "endolysin": {
+   "beta": 10,
+   "W": 1
+  },
+  "spanin": {
+   "beta": 2,
+   "W": 3
+  }
+ },
+ "sets": {
+  "cpt": {
+   "holin": {
+    "novel": {
+     "model_only": {
+      "genes": 78,
+      "genomes": 78,
+      "top1": 0.5384615384615384,
+      "top5": 0.8461538461538461,
+      "best1": 0.5384615384615384,
+      "best5": 0.8461538461538461
+     },
+     "with_context": {
+      "genes": 78,
+      "genomes": 78,
+      "top1": 0.6410256410256411,
+      "top5": 0.8717948717948718,
+      "best1": 0.6410256410256411,
+      "best5": 0.8717948717948718
+     }
+    },
+    "known": {
+     "model_only": {
+      "genes": 78,
+      "genomes": 78,
+      "top1": 0.7051282051282052,
+      "top5": 0.9358974358974359,
+      "best1": 0.7051282051282052,
+      "best5": 0.9358974358974359
+     },
+     "with_context": {
+      "genes": 78,
+      "genomes": 78,
+      "top1": 0.8461538461538461,
+      "top5": 0.9615384615384616,
+      "best1": 0.8461538461538461,
+      "best5": 0.9615384615384616
+     }
+    }
+   },
+   "endolysin": {
+    "novel": {
+     "model_only": {
+      "genes": 125,
+      "genomes": 119,
+      "top1": 0.688,
+      "top5": 0.912,
+      "best1": 0.7226890756302521,
+      "best5": 0.9411764705882353
+     },
+     "with_context": {
+      "genes": 125,
+      "genomes": 119,
+      "top1": 0.76,
+      "top5": 0.92,
+      "best1": 0.7983193277310925,
+      "best5": 0.9495798319327731
+     }
+    },
+    "known": {
+     "model_only": {
+      "genes": 125,
+      "genomes": 119,
+      "top1": 0.808,
+      "top5": 0.952,
+      "best1": 0.8487394957983193,
+      "best5": 0.9747899159663865
+     },
+     "with_context": {
+      "genes": 125,
+      "genomes": 119,
+      "top1": 0.864,
+      "top5": 0.968,
+      "best1": 0.907563025210084,
+      "best5": 0.9831932773109243
+     }
+    }
+   },
+   "spanin": {
+    "novel": {
+     "model_only": {
+      "genes": 162,
+      "genomes": 90,
+      "top1": 0.38271604938271603,
+      "top5": 0.8518518518518519,
+      "best1": 0.6888888888888889,
+      "best5": 0.8777777777777778
+     },
+     "with_context": {
+      "genes": 162,
+      "genomes": 90,
+      "top1": 0.41358024691358025,
+      "top5": 0.8518518518518519,
+      "best1": 0.7444444444444445,
+      "best5": 0.8777777777777778
+     }
+    },
+    "known": {
+     "model_only": {
+      "genes": 162,
+      "genomes": 90,
+      "top1": 0.47530864197530864,
+      "top5": 0.9259259259259259,
+      "best1": 0.8555555555555555,
+      "best5": 0.9555555555555556
+     },
+     "with_context": {
+      "genes": 162,
+      "genomes": 90,
+      "top1": 0.47530864197530864,
+      "top5": 0.9691358024691358,
+      "best1": 0.8555555555555555,
+      "best5": 0.9666666666666667
+     }
+    }
+   }
+  },
+  "validated_denovo": {
+   "holin": {
+    "novel": {
+     "model_only": {
+      "genes": 8,
+      "genomes": 8,
+      "top1": 0.875,
+      "top5": 0.875,
+      "best1": 0.875,
+      "best5": 0.875
+     },
+     "with_context": {
+      "genes": 8,
+      "genomes": 8,
+      "top1": 0.875,
+      "top5": 0.875,
+      "best1": 0.875,
+      "best5": 0.875
+     }
+    },
+    "known": {
+     "model_only": {
+      "genes": 8,
+      "genomes": 8,
+      "top1": 1.0,
+      "top5": 1.0,
+      "best1": 1.0,
+      "best5": 1.0
+     },
+     "with_context": {
+      "genes": 8,
+      "genomes": 8,
+      "top1": 1.0,
+      "top5": 1.0,
+      "best1": 1.0,
+      "best5": 1.0
+     }
+    }
+   },
+   "endolysin": {
+    "novel": {
+     "model_only": {
+      "genes": 21,
+      "genomes": 21,
+      "top1": 0.47619047619047616,
+      "top5": 0.9523809523809523,
+      "best1": 0.47619047619047616,
+      "best5": 0.9523809523809523
+     },
+     "with_context": {
+      "genes": 21,
+      "genomes": 21,
+      "top1": 0.47619047619047616,
+      "top5": 1.0,
+      "best1": 0.47619047619047616,
+      "best5": 1.0
+     }
+    },
+    "known": {
+     "model_only": {
+      "genes": 21,
+      "genomes": 21,
+      "top1": 0.5714285714285714,
+      "top5": 1.0,
+      "best1": 0.5714285714285714,
+      "best5": 1.0
+     },
+     "with_context": {
+      "genes": 21,
+      "genomes": 21,
+      "top1": 0.6190476190476191,
+      "top5": 1.0,
+      "best1": 0.6190476190476191,
+      "best5": 1.0
+     }
+    }
+   },
+   "spanin": {
+    "novel": {
+     "model_only": {
+      "genes": 4,
+      "genomes": 4,
+      "top1": 0.75,
+      "top5": 0.75,
+      "best1": 0.75,
+      "best5": 0.75
+     },
+     "with_context": {
+      "genes": 4,
+      "genomes": 4,
+      "top1": 0.75,
+      "top5": 0.75,
+      "best1": 0.75,
+      "best5": 0.75
+     }
+    },
+    "known": {
+     "model_only": {
+      "genes": 4,
+      "genomes": 4,
+      "top1": 0.75,
+      "top5": 1.0,
+      "best1": 0.75,
+      "best5": 1.0
+     },
+     "with_context": {
+      "genes": 4,
+      "genomes": 4,
+      "top1": 0.75,
+      "top5": 1.0,
+      "best1": 0.75,
+      "best5": 1.0
+     }
+    }
+   }
+  },
+  "validated": {
+   "holin": {
+    "novel": {
+     "model_only": {
+      "genes": 8,
+      "genomes": 8,
+      "top1": 0.875,
+      "top5": 0.875,
+      "best1": 0.875,
+      "best5": 0.875
+     },
+     "with_context": {
+      "genes": 8,
+      "genomes": 8,
+      "top1": 0.875,
+      "top5": 0.875,
+      "best1": 0.875,
+      "best5": 0.875
+     }
+    },
+    "known": {
+     "model_only": {
+      "genes": 8,
+      "genomes": 8,
+      "top1": 0.875,
+      "top5": 1.0,
+      "best1": 0.875,
+      "best5": 1.0
+     },
+     "with_context": {
+      "genes": 8,
+      "genomes": 8,
+      "top1": 0.875,
+      "top5": 1.0,
+      "best1": 0.875,
+      "best5": 1.0
+     }
+    }
+   },
+   "endolysin": {
+    "novel": {
+     "model_only": {
+      "genes": 22,
+      "genomes": 22,
+      "top1": 0.45454545454545453,
+      "top5": 0.9545454545454546,
+      "best1": 0.45454545454545453,
+      "best5": 0.9545454545454546
+     },
+     "with_context": {
+      "genes": 22,
+      "genomes": 22,
+      "top1": 0.45454545454545453,
+      "top5": 1.0,
+      "best1": 0.45454545454545453,
+      "best5": 1.0
+     }
+    },
+    "known": {
+     "model_only": {
+      "genes": 22,
+      "genomes": 22,
+      "top1": 0.5454545454545454,
+      "top5": 1.0,
+      "best1": 0.5454545454545454,
+      "best5": 1.0
+     },
+     "with_context": {
+      "genes": 22,
+      "genomes": 22,
+      "top1": 0.5909090909090909,
+      "top5": 1.0,
+      "best1": 0.5909090909090909,
+      "best5": 1.0
+     }
+    }
+   },
+   "spanin": {
+    "novel": {
+     "model_only": {
+      "genes": 7,
+      "genomes": 4,
+      "top1": 0.42857142857142855,
+      "top5": 0.8571428571428571,
+      "best1": 0.75,
+      "best5": 0.75
+     },
+     "with_context": {
+      "genes": 7,
+      "genomes": 4,
+      "top1": 0.42857142857142855,
+      "top5": 0.8571428571428571,
+      "best1": 0.75,
+      "best5": 0.75
+     }
+    },
+    "known": {
+     "model_only": {
+      "genes": 7,
+      "genomes": 4,
+      "top1": 0.42857142857142855,
+      "top5": 1.0,
+      "best1": 0.75,
+      "best5": 1.0
+     },
+     "with_context": {
+      "genes": 7,
+      "genomes": 4,
+      "top1": 0.42857142857142855,
+      "top5": 1.0,
+      "best1": 0.75,
+      "best5": 1.0
+     }
+    }
+   }
+  }
+ }
+}

@@ -1,0 +1,6 @@
+{
+ "note": "Genomic-context re-ranking and calling, scripts/46_context_rerank.py. z_c(i) = logit(P_c(i)) + beta * max over neighbours j within W genes (j != i) of max over other classes c' of P_c'(j). beta and W chosen on the 130-genome CPT-curated benchmark (grid beta 0-16, W 1-6). 5-fold cross-validated gain in genes ranked first: holin +10 points (both protocols, CIs exclude 0), endolysin +5.6 novel / +4.0 known, spanin best-per-genome +4.4 novel and top-5 +4.3 known; no measure got worse. A class's top context-ranked protein is called CONFIDENT when z >= call_z (or, with --domains, when it carries a catalytic/family-defining lysis domain), else CANDIDATE. Out-of-fold precision / recall of confident calls, known family | novel family: endolysin 0.92/0.88 | 0.81/0.63; holin 0.90/0.68 | 0.80/0.31; spanin 0.96/0.83 | 0.82/0.46. Precision is against CPT curation, so a 'wrong' call can be a real but unannotated gene.",
+ "holin":     {"beta": 6,  "W": 2, "call_z": 6},
+ "endolysin": {"beta": 10, "W": 1, "call_z": 2},
+ "spanin":    {"beta": 2,  "W": 3, "call_z": 2}
+}

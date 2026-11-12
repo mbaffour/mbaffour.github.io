@@ -65,8 +65,8 @@ python3 "\${LYSIS_CALLER_HOME}/scripts/32_predict_lysis.py"
             <param name="cassette_window" value="6"/>
             <output name="output">
                 <assert_contents>
-                    <has_text text="id&#9;gene&#9;product&#9;start&#9;stop&#9;strand&#9;length&#9;P_holin&#9;P_endolysin&#9;P_spanin&#9;rank_holin&#9;rank_endolysin&#9;rank_spanin&#9;call&#9;high_conf&#9;cassette"/>
-                    <has_n_columns n="16"/>
+                    <has_text text="id&#9;gene&#9;product&#9;start&#9;stop&#9;strand&#9;length&#9;P_holin&#9;P_endolysin&#9;P_spanin&#9;rank_holin&#9;rank_endolysin&#9;rank_spanin&#9;call&#9;high_conf&#9;lysis_call&#9;cassette"/>
+                    <has_n_columns n="17"/>
                     <has_n_lines n="6"/>
                     <has_text text="EPNV4_gp62"/>
                     <has_text text="EPNV4_gp61"/>
@@ -92,12 +92,15 @@ independently, wherever they sit in the genome.
 **Output (tabular)**
 
 Columns: ``id, gene, product, start, stop, strand, length, P_holin, P_endolysin, P_spanin, rank_holin, rank_endolysin,
-rank_spanin, call, high_conf, cassette``.
+rank_spanin, call, high_conf, lysis_call, cassette``.
 
 - ``P_holin``, ``P_endolysin``, ``P_spanin`` are independent probabilities (0 to 1) that the protein belongs to each class.
   They do not sum to 1.
 - ``rank_holin``, ``rank_endolysin``, ``rank_spanin`` give each protein's rank within this genome for that class (1 = highest).
 - ``call`` is the class with the highest probability if it reaches the threshold, otherwise ``none``.
+- ``lysis_call`` (genome input only) names the single gene called for each class -- the top-ranked protein once
+  neighbouring lysis genes are taken into account -- as ``confident`` or ``candidate``. Confident calls were 90-96%
+  correct for known families and about 80% for novel ones when tested on 130 CPT-curated phages.
 - ``high_conf`` lists the classes whose probability clears that class's own high-confidence cut-off: 0.95 for holin and
   spanin, 0.9995 for endolysin (its probabilities run higher). Use it for calls you will act on.
 - ``cassette`` is a number shared by genes that form a lysis cassette (holin, endolysin and spanin co-located within the

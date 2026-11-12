@@ -56,6 +56,8 @@ def main():
     g = ap.add_mutually_exclusive_group(required=True)
     g.add_argument("--proteins"); g.add_argument("--genome"); g.add_argument("--genbank"); g.add_argument("--acc")
     ap.add_argument("--threshold", type=float, default=0.5)
+    ap.add_argument("--no-context", action="store_true",
+                    help="rank by each model's P alone, ignoring neighbouring genes (genome/GenBank input only)")
     ap.add_argument("--cassette-window", type=int, default=6)
     ap.add_argument("--show-cassettes", action="store_true")
     ap.add_argument("--top", type=int, default=5,
@@ -100,11 +102,24 @@ def main():
         b = max(CLASSES, key=lambda c: p["P"][c]); p["call"] = b if p["P"][b] >= a.threshold else "none"
         p["high_conf"] = ",".join(c for c in CLASSES if p["P"][c] >= HC[c])
         p["cassette"] = ""
-    # rank within this run, per class: 1 = highest P. Ranks are reported alongside the probabilities because the
+    # genomic context (positional input only): a candidate next to a strong gene of another lysis class is lifted.
+    # z = logit(P) + beta * strongest other-class P within W genes; parameters and measured gains in
+    # models/context_params.json. Raw P columns are unchanged; ranks and calls use z.
+    CTX = json.load(open(B / "models/context_params.json")) if (positional and not a.no_context) else None
+    lg = lambda v: float(np.log(max(min(v, 1 - 1e-6), 1e-6) / (1 - max(min(v, 1 - 1e-6), 1e-6))))
+    for p_ in ps: p_["z"] = {c: lg(p_["P"][c]) for c in CLASSES}
+    if CTX:
+        for c in CLASSES:
+            b, w = CTX[c]["beta"], CTX[c]["W"]
+            for i, p_ in enumerate(ps):
+                nb = [max(ps[j]["P"][o] for o in CLASSES if o != c)
+                      for j in range(max(0, i - w), min(len(ps), i + w + 1)) if j != i]
+                p_["z"][c] += b * (max(nb) if nb else 0.0)
+    # rank within this run, per class: 1 = highest P (with context: highest z). Ranks are reported alongside the probabilities because the
     # probability alone is not safe to read as a verdict out of distribution -- the honest use of this tool is a
     # ranked shortlist per class, which is what the leave-one-genome-out numbers actually measure.
     for c in CLASSES:
-        for r, i in enumerate(sorted(range(len(ps)), key=lambda i: -ps[i]["P"][c]), 1):
+        for r, i in enumerate(sorted(range(len(ps)), key=lambda i: -ps[i]["z"][c]), 1):
             ps[i].setdefault("rank", {})[c] = r
     cass = SC.find_cassettes(ps, a.threshold, a.cassette_window) if positional else []
     for k, cs in enumerate(cass, 1):
@@ -130,12 +145,27 @@ def main():
     # gp039 from model rank 25 to evidence rank 1 for endolysin, which is the whole point.
     if a.domains:
         for c in CLASSES:
-            order = sorted(range(len(ps)), key=lambda i: (-dtier[ps[i]["id"]][c], -ps[i]["P"][c]))
+            order = sorted(range(len(ps)), key=lambda i: (-dtier[ps[i]["id"]][c], -ps[i]["z"][c]))
             for r, i in enumerate(order, 1): ps[i].setdefault("ev_rank", {})[c] = r
+
+    # the CALL: per class, the top protein -- by domain evidence then context score with --domains, else by context
+    # score. CONFIDENT if its z clears the class's measured cut-off (models/context_params.json) or, with --domains, it
+    # carries a catalytic/family-defining lysis domain; otherwise CANDIDATE. One gene per class per genome; a spanin
+    # pair's partner is usually ranked second.
+    calls = {}
+    for p_ in ps: p_["lysis_call"] = ""
+    if positional:
+        for c in CLASSES:
+            key = (lambda q: q["ev_rank"][c]) if a.domains else (lambda q: q["rank"][c])
+            top = min(ps, key=key)
+            dom_ok = a.domains and dtier[top["id"]][c] >= 2
+            tier = "confident" if (CTX and top["z"][c] >= CTX[c]["call_z"]) or dom_ok else "candidate"
+            calls[c] = (top, tier, "domain" if dom_ok else "context score")
+            top["lysis_call"] = (top["lysis_call"] + "," if top["lysis_call"] else "") + f"{c}:{tier}"
 
     cols = ["id", "gene", "product", "start", "stop", "strand", "length",
             "P_holin", "P_endolysin", "P_spanin", "rank_holin", "rank_endolysin", "rank_spanin",
-            "call", "high_conf", "cassette"] + (["pfam_lysis", "dom_tier_holin", "dom_tier_endolysin", "dom_tier_spanin",
+            "call", "high_conf", "lysis_call", "cassette"] + (["pfam_lysis", "dom_tier_holin", "dom_tier_endolysin", "dom_tier_spanin",
                                     "ev_rank_holin", "ev_rank_endolysin", "ev_rank_spanin"] if a.domains else [])
     lines = ["\t".join(cols)]
     for p in ps:
@@ -143,7 +173,7 @@ def main():
                p["start"], p["stop"], p["strand"], len(p["sequence"]),
                f"{p['P']['holin']:.4f}", f"{p['P']['endolysin']:.4f}", f"{p['P']['spanin']:.4f}",
                p["rank"]["holin"], p["rank"]["endolysin"], p["rank"]["spanin"], p["call"], p["high_conf"],
-               p["cassette"]]
+               p["lysis_call"], p["cassette"]]
         if a.domains:
             row.append(dom.get(p["id"], ""))
             row += [dtier[p["id"]][c] for c in CLASSES] + [p["ev_rank"][c] for c in CLASSES]
@@ -153,14 +183,22 @@ def main():
     called = {c: sum(1 for p in ps if p["call"] == c) for c in CLASSES}
     print(f"# called at >={a.threshold}: " + ", ".join(f"{c} {called[c]}" for c in CLASSES) +
           f"; cassettes {len(cass)}" + ("" if positional else " (n/a for protein FASTA)"), file=sys.stderr)
+    if calls:
+        print("#\n# LYSIS GENE CALLS (top context-ranked protein per class; confident = clears the measured cut-off)",
+              file=sys.stderr)
+        for c in CLASSES:
+            q, tier, why = calls[c]
+            print(f"#   {c:<10} {tier.upper():<10} {(q.get('gene') or q['id'])[:24]:<24} {q['start']}..{q['stop']}{q['strand']}"
+                  f"  {len(q['sequence'])} aa  P={q['P'][c]:.4f}  z={q['z'][c]:.2f}"
+                  + (f"  [{why}: {dom.get(q['id'])}]" if why == "domain" else ""), file=sys.stderr)
     hc = {c: sum(1 for p in ps if c in p["high_conf"].split(",")) for c in CLASSES}
     print("# high confidence (per-class cut-offs " + ", ".join(f"{c} >={HC[c]:g}" for c in CLASSES) + "): "
           + ", ".join(f"{c} {hc[c]}" for c in CLASSES), file=sys.stderr)
     # ranked shortlist per class, printed whatever the threshold
     for c in CLASSES:
-        key = (lambda p: (-dtier[p["id"]][c], -p["P"][c])) if a.domains else (lambda p: -p["P"][c])
+        key = (lambda p: (-dtier[p["id"]][c], -p["z"][c])) if a.domains else (lambda p: -p["z"][c])
         top = sorted(ps, key=key)[:a.top]
-        how = "by domain evidence, then P" if a.domains else f"by P({c})"
+        how = ("by domain evidence, then " if a.domains else "by ") + ("context-adjusted score" if CTX else f"P({c})")
         print(f"#\n# {c.upper()} -- top {len(top)} of {len(ps)} {how}", file=sys.stderr)
         print(f"# {'rank':>4} {'gene/id':<20} {'location':>22} {'len':>5} {'P':>8}"
               f"{'  ev  domain' if a.domains else ''}", file=sys.stderr)

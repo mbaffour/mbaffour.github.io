@@ -77,6 +77,15 @@ is in the top five for 20 of 21 endolysins, 7 of 8 holins and 3 of 4 spanins und
 Two genomes in the 66-genome panel were present twice (an accession with and without its version suffix); removing the
 copies lowers the endolysin figures by 0.005-0.009 AP, below the panel's resolution.
 
+**Genomic context and calling.** Lysis genes sit together, but each model scores a protein alone. Re-ranking each
+class with the strongest other-class score among a protein's neighbours (z = logit P + beta x neighbouring score;
+`scripts/46_context_rerank.py`, parameters tuned on the CPT set) raises the fraction of curated genes ranked first, in
+5-fold cross-validation over CPT genomes, by 10 points for holins (54 -> 64 % novel family; 71 -> 81 % known; 95 % CIs
+exclude zero), 4-6 points for endolysins and 4 points for spanins (best per genome), with no measure made worse. The
+predictor now names one gene per class per genome, **confident** when its context score clears a measured cut-off or
+it carries a catalytic lysis domain: out-of-fold, confident calls are correct 92 % (endolysin), 90 % (holin) and 96 %
+(spanin) of the time for known families, about 80 % for novel ones.
+
 ### 3.2 What worked and what did not
 
 Four interventions were attempted under the same guards; two were adopted and two rejected, each on its own evidence:
