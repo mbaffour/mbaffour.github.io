@@ -208,6 +208,188 @@
     ],
     "missed_truths": []
    }
+  },
+  "spanin": {
+   "family_removal": {
+    "all": {
+     "AP": 0.8466,
+     "CI95_by_genome": [
+      0.5111,
+      1.0
+     ],
+     "n_truths": 7,
+     "n_scored": 267,
+     "n_genomes": 4,
+     "median_rank": 2.0,
+     "top1": 0.429,
+     "recall_at5": 0.857,
+     "recall_at0.5": 0.714
+    },
+    "exit_only": {
+     "AP": 0.8466,
+     "CI95_by_genome": [
+      0.5111,
+      1.0
+     ],
+     "n_truths": 7,
+     "n_scored": 267,
+     "n_genomes": 4,
+     "median_rank": 2.0,
+     "top1": 0.429,
+     "recall_at5": 0.857,
+     "recall_at0.5": 0.714
+    },
+    "unique_models_fitted": 4,
+    "genomes_from_checkpoint": 0,
+    "fits_note": "unique_models_fitted counts fits done in THIS process; with genomes_from_checkpoint > 0 the run resumed and earlier fits are not counted. Scores are identical either way.",
+    "seconds": 30,
+    "truth_ranks": [
+     {
+      "genome": "AF083977",
+      "id": "Mu_23",
+      "rank": 1,
+      "score": 0.7858,
+      "of": 55
+     },
+     {
+      "genome": "AF083977",
+      "id": "Mu_55",
+      "rank": 2,
+      "score": 0.7564,
+      "of": 55
+     },
+     {
+      "genome": "AY216660",
+      "id": "CPTT1_069",
+      "rank": 6,
+      "score": 0.0075,
+      "of": 79
+     },
+     {
+      "genome": "V01146",
+      "id": "CAA24438.1",
+      "rank": 1,
+      "score": 0.9372,
+      "of": 60
+     },
+     {
+      "genome": "V01146",
+      "id": "CAA24439.1",
+      "rank": 2,
+      "score": 0.9066,
+      "of": 60
+     },
+     {
+      "genome": "gi9626243",
+      "id": "lambdap76",
+      "rank": 1,
+      "score": 0.5537,
+      "of": 73
+     },
+     {
+      "genome": "gi9626243",
+      "id": "lambdap91",
+      "rank": 3,
+      "score": 0.0899,
+      "of": 73
+     }
+    ],
+    "missed_truths": [
+     {
+      "genome": "AY216660",
+      "id": "CPTT1_069",
+      "rank": 6,
+      "score": 0.0075,
+      "product": "u-spanin"
+     }
+    ]
+   },
+   "sequence_removal": {
+    "all": {
+     "AP": 0.9683,
+     "CI95_by_genome": [
+      0.775,
+      1.0
+     ],
+     "n_truths": 7,
+     "n_scored": 267,
+     "n_genomes": 4,
+     "median_rank": 2.0,
+     "top1": 0.429,
+     "recall_at5": 1.0,
+     "recall_at0.5": 0.857
+    },
+    "exit_only": {
+     "AP": 0.9683,
+     "CI95_by_genome": [
+      0.775,
+      1.0
+     ],
+     "n_truths": 7,
+     "n_scored": 267,
+     "n_genomes": 4,
+     "median_rank": 2.0,
+     "top1": 0.429,
+     "recall_at5": 1.0,
+     "recall_at0.5": 0.857
+    },
+    "unique_models_fitted": 4,
+    "genomes_from_checkpoint": 0,
+    "fits_note": "unique_models_fitted counts fits done in THIS process; with genomes_from_checkpoint > 0 the run resumed and earlier fits are not counted. Scores are identical either way.",
+    "seconds": 28,
+    "truth_ranks": [
+     {
+      "genome": "AF083977",
+      "id": "Mu_55",
+      "rank": 1,
+      "score": 0.9746,
+      "of": 55
+     },
+     {
+      "genome": "AF083977",
+      "id": "Mu_23",
+      "rank": 2,
+      "score": 0.9456,
+      "of": 55
+     },
+     {
+      "genome": "AY216660",
+      "id": "CPTT1_069",
+      "rank": 2,
+      "score": 0.1944,
+      "of": 79
+     },
+     {
+      "genome": "V01146",
+      "id": "CAA24438.1",
+      "rank": 1,
+      "score": 0.9895,
+      "of": 60
+     },
+     {
+      "genome": "V01146",
+      "id": "CAA24439.1",
+      "rank": 2,
+      "score": 0.9203,
+      "of": 60
+     },
+     {
+      "genome": "gi9626243",
+      "id": "lambdap76",
+      "rank": 1,
+      "score": 0.966,
+      "of": 73
+     },
+     {
+      "genome": "gi9626243",
+      "id": "lambdap91",
+      "rank": 2,
+      "score": 0.8972,
+      "of": 73
+     }
+    ],
+    "missed_truths": []
+   }
   }
  }
 }
