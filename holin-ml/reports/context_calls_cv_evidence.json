@@ -1,0 +1,368 @@
+{
+ "holin": {
+  "novel": {
+   "genomes": 78,
+   "top1_correct_if_always_called": 0.641,
+   "curve": [
+    {
+     "z_cutoff": -6,
+     "calls": 78,
+     "precision": 0.641,
+     "recall": 0.641
+    },
+    {
+     "z_cutoff": -4,
+     "calls": 78,
+     "precision": 0.641,
+     "recall": 0.641
+    },
+    {
+     "z_cutoff": -2,
+     "calls": 78,
+     "precision": 0.641,
+     "recall": 0.641
+    },
+    {
+     "z_cutoff": 0,
+     "calls": 76,
+     "precision": 0.645,
+     "recall": 0.628
+    },
+    {
+     "z_cutoff": 2,
+     "calls": 60,
+     "precision": 0.683,
+     "recall": 0.526
+    },
+    {
+     "z_cutoff": 4,
+     "calls": 46,
+     "precision": 0.783,
+     "recall": 0.462
+    },
+    {
+     "z_cutoff": 6,
+     "calls": 30,
+     "precision": 0.8,
+     "recall": 0.308
+    },
+    {
+     "z_cutoff": 8,
+     "calls": 18,
+     "precision": 0.778,
+     "recall": 0.179
+    },
+    {
+     "z_cutoff": 10,
+     "calls": 7,
+     "precision": 0.571,
+     "recall": 0.051
+    }
+   ]
+  },
+  "known": {
+   "genomes": 78,
+   "top1_correct_if_always_called": 0.808,
+   "curve": [
+    {
+     "z_cutoff": -6,
+     "calls": 78,
+     "precision": 0.808,
+     "recall": 0.808
+    },
+    {
+     "z_cutoff": -4,
+     "calls": 78,
+     "precision": 0.808,
+     "recall": 0.808
+    },
+    {
+     "z_cutoff": -2,
+     "calls": 78,
+     "precision": 0.808,
+     "recall": 0.808
+    },
+    {
+     "z_cutoff": 0,
+     "calls": 78,
+     "precision": 0.808,
+     "recall": 0.808
+    },
+    {
+     "z_cutoff": 2,
+     "calls": 76,
+     "precision": 0.816,
+     "recall": 0.795
+    },
+    {
+     "z_cutoff": 4,
+     "calls": 74,
+     "precision": 0.811,
+     "recall": 0.769
+    },
+    {
+     "z_cutoff": 6,
+     "calls": 60,
+     "precision": 0.9,
+     "recall": 0.692
+    },
+    {
+     "z_cutoff": 8,
+     "calls": 39,
+     "precision": 0.872,
+     "recall": 0.436
+    },
+    {
+     "z_cutoff": 10,
+     "calls": 29,
+     "precision": 0.862,
+     "recall": 0.321
+    }
+   ]
+  }
+ },
+ "endolysin": {
+  "novel": {
+   "genomes": 119,
+   "top1_correct_if_always_called": 0.756,
+   "curve": [
+    {
+     "z_cutoff": -6,
+     "calls": 111,
+     "precision": 0.775,
+     "recall": 0.723
+    },
+    {
+     "z_cutoff": -4,
+     "calls": 102,
+     "precision": 0.784,
+     "recall": 0.672
+    },
+    {
+     "z_cutoff": -2,
+     "calls": 96,
+     "precision": 0.781,
+     "recall": 0.63
+    },
+    {
+     "z_cutoff": 0,
+     "calls": 87,
+     "precision": 0.828,
+     "recall": 0.605
+    },
+    {
+     "z_cutoff": 2,
+     "calls": 78,
+     "precision": 0.859,
+     "recall": 0.563
+    },
+    {
+     "z_cutoff": 4,
+     "calls": 62,
+     "precision": 0.887,
+     "recall": 0.462
+    },
+    {
+     "z_cutoff": 6,
+     "calls": 49,
+     "precision": 0.939,
+     "recall": 0.387
+    },
+    {
+     "z_cutoff": 8,
+     "calls": 40,
+     "precision": 0.925,
+     "recall": 0.311
+    },
+    {
+     "z_cutoff": 10,
+     "calls": 29,
+     "precision": 0.966,
+     "recall": 0.235
+    }
+   ]
+  },
+  "known": {
+   "genomes": 119,
+   "top1_correct_if_always_called": 0.908,
+   "curve": [
+    {
+     "z_cutoff": -6,
+     "calls": 119,
+     "precision": 0.908,
+     "recall": 0.908
+    },
+    {
+     "z_cutoff": -4,
+     "calls": 117,
+     "precision": 0.923,
+     "recall": 0.908
+    },
+    {
+     "z_cutoff": -2,
+     "calls": 117,
+     "precision": 0.923,
+     "recall": 0.908
+    },
+    {
+     "z_cutoff": 0,
+     "calls": 111,
+     "precision": 0.946,
+     "recall": 0.882
+    },
+    {
+     "z_cutoff": 2,
+     "calls": 106,
+     "precision": 0.943,
+     "recall": 0.84
+    },
+    {
+     "z_cutoff": 4,
+     "calls": 101,
+     "precision": 0.941,
+     "recall": 0.798
+    },
+    {
+     "z_cutoff": 6,
+     "calls": 90,
+     "precision": 0.944,
+     "recall": 0.714
+    },
+    {
+     "z_cutoff": 8,
+     "calls": 76,
+     "precision": 0.947,
+     "recall": 0.605
+    },
+    {
+     "z_cutoff": 10,
+     "calls": 65,
+     "precision": 0.969,
+     "recall": 0.529
+    }
+   ]
+  }
+ },
+ "spanin": {
+  "novel": {
+   "genomes": 90,
+   "top1_correct_if_always_called": 0.733,
+   "curve": [
+    {
+     "z_cutoff": -6,
+     "calls": 90,
+     "precision": 0.733,
+     "recall": 0.733
+    },
+    {
+     "z_cutoff": -4,
+     "calls": 90,
+     "precision": 0.733,
+     "recall": 0.733
+    },
+    {
+     "z_cutoff": -2,
+     "calls": 90,
+     "precision": 0.733,
+     "recall": 0.733
+    },
+    {
+     "z_cutoff": 0,
+     "calls": 74,
+     "precision": 0.784,
+     "recall": 0.644
+    },
+    {
+     "z_cutoff": 2,
+     "calls": 50,
+     "precision": 0.82,
+     "recall": 0.456
+    },
+    {
+     "z_cutoff": 4,
+     "calls": 11,
+     "precision": 1.0,
+     "recall": 0.122
+    },
+    {
+     "z_cutoff": 6,
+     "calls": 0,
+     "precision": null,
+     "recall": 0.0
+    },
+    {
+     "z_cutoff": 8,
+     "calls": 0,
+     "precision": null,
+     "recall": 0.0
+    },
+    {
+     "z_cutoff": 10,
+     "calls": 0,
+     "precision": null,
+     "recall": 0.0
+    }
+   ]
+  },
+  "known": {
+   "genomes": 90,
+   "top1_correct_if_always_called": 0.856,
+   "curve": [
+    {
+     "z_cutoff": -6,
+     "calls": 90,
+     "precision": 0.856,
+     "recall": 0.856
+    },
+    {
+     "z_cutoff": -4,
+     "calls": 90,
+     "precision": 0.856,
+     "recall": 0.856
+    },
+    {
+     "z_cutoff": -2,
+     "calls": 90,
+     "precision": 0.856,
+     "recall": 0.856
+    },
+    {
+     "z_cutoff": 0,
+     "calls": 85,
+     "precision": 0.894,
+     "recall": 0.844
+    },
+    {
+     "z_cutoff": 2,
+     "calls": 78,
+     "precision": 0.962,
+     "recall": 0.833
+    },
+    {
+     "z_cutoff": 4,
+     "calls": 51,
+     "precision": 1.0,
+     "recall": 0.567
+    },
+    {
+     "z_cutoff": 6,
+     "calls": 4,
+     "precision": 1.0,
+     "recall": 0.044
+    },
+    {
+     "z_cutoff": 8,
+     "calls": 0,
+     "precision": null,
+     "recall": 0.0
+    },
+    {
+     "z_cutoff": 10,
+     "calls": 0,
+     "precision": null,
+     "recall": 0.0
+    }
+   ]
+  }
+ }
+}

@@ -1,0 +1,320 @@
+{
+ "holin": {
+  "novel": {
+   "genomes": 78,
+   "chosen_per_fold": [
+    [
+     6,
+     2
+    ],
+    [
+     6,
+     2
+    ],
+    [
+     6,
+     2
+    ],
+    [
+     6,
+     2
+    ],
+    [
+     4,
+     1
+    ]
+   ],
+   "top1": {
+    "model_only": 0.538,
+    "with_context": 0.641,
+    "delta": 0.103,
+    "delta_CI95": [
+     0.013,
+     0.205
+    ]
+   },
+   "top5": {
+    "model_only": 0.846,
+    "with_context": 0.859,
+    "delta": 0.013,
+    "delta_CI95": [
+     -0.038,
+     0.064
+    ]
+   },
+   "best1": {
+    "model_only": 0.538,
+    "with_context": 0.641,
+    "delta": 0.103,
+    "delta_CI95": [
+     0.013,
+     0.205
+    ]
+   }
+  },
+  "known": {
+   "genomes": 78,
+   "chosen_per_fold": [
+    [
+     6,
+     2
+    ],
+    [
+     6,
+     2
+    ],
+    [
+     6,
+     2
+    ],
+    [
+     6,
+     2
+    ],
+    [
+     4,
+     1
+    ]
+   ],
+   "top1": {
+    "model_only": 0.705,
+    "with_context": 0.808,
+    "delta": 0.103,
+    "delta_CI95": [
+     0.038,
+     0.179
+    ]
+   },
+   "top5": {
+    "model_only": 0.936,
+    "with_context": 0.962,
+    "delta": 0.026,
+    "delta_CI95": [
+     -0.026,
+     0.077
+    ]
+   },
+   "best1": {
+    "model_only": 0.705,
+    "with_context": 0.808,
+    "delta": 0.103,
+    "delta_CI95": [
+     0.038,
+     0.179
+    ]
+   }
+  }
+ },
+ "endolysin": {
+  "novel": {
+   "genomes": 119,
+   "chosen_per_fold": [
+    [
+     4,
+     1
+    ],
+    [
+     6,
+     3
+    ],
+    [
+     6,
+     3
+    ],
+    [
+     8,
+     4
+    ],
+    [
+     6,
+     2
+    ]
+   ],
+   "top1": {
+    "model_only": 0.664,
+    "with_context": 0.72,
+    "delta": 0.056,
+    "delta_CI95": [
+     -0.008,
+     0.114
+    ]
+   },
+   "top5": {
+    "model_only": 0.888,
+    "with_context": 0.912,
+    "delta": 0.024,
+    "delta_CI95": [
+     -0.008,
+     0.063
+    ]
+   },
+   "best1": {
+    "model_only": 0.697,
+    "with_context": 0.756,
+    "delta": 0.059,
+    "delta_CI95": [
+     -0.008,
+     0.118
+    ]
+   }
+  },
+  "known": {
+   "genomes": 119,
+   "chosen_per_fold": [
+    [
+     4,
+     1
+    ],
+    [
+     6,
+     3
+    ],
+    [
+     6,
+     3
+    ],
+    [
+     8,
+     4
+    ],
+    [
+     6,
+     2
+    ]
+   ],
+   "top1": {
+    "model_only": 0.848,
+    "with_context": 0.864,
+    "delta": 0.016,
+    "delta_CI95": [
+     -0.025,
+     0.058
+    ]
+   },
+   "top5": {
+    "model_only": 0.96,
+    "with_context": 0.984,
+    "delta": 0.024,
+    "delta_CI95": [
+     0.0,
+     0.055
+    ]
+   },
+   "best1": {
+    "model_only": 0.891,
+    "with_context": 0.908,
+    "delta": 0.017,
+    "delta_CI95": [
+     -0.025,
+     0.059
+    ]
+   }
+  }
+ },
+ "spanin": {
+  "novel": {
+   "genomes": 90,
+   "chosen_per_fold": [
+    [
+     2,
+     2
+    ],
+    [
+     2,
+     3
+    ],
+    [
+     2,
+     3
+    ],
+    [
+     2,
+     3
+    ],
+    [
+     2,
+     3
+    ]
+   ],
+   "top1": {
+    "model_only": 0.383,
+    "with_context": 0.407,
+    "delta": 0.025,
+    "delta_CI95": [
+     0.0,
+     0.056
+    ]
+   },
+   "top5": {
+    "model_only": 0.852,
+    "with_context": 0.852,
+    "delta": 0.0,
+    "delta_CI95": [
+     -0.018,
+     0.018
+    ]
+   },
+   "best1": {
+    "model_only": 0.689,
+    "with_context": 0.733,
+    "delta": 0.044,
+    "delta_CI95": [
+     0.0,
+     0.1
+    ]
+   }
+  },
+  "known": {
+   "genomes": 90,
+   "chosen_per_fold": [
+    [
+     2,
+     2
+    ],
+    [
+     2,
+     3
+    ],
+    [
+     2,
+     3
+    ],
+    [
+     2,
+     3
+    ],
+    [
+     2,
+     3
+    ]
+   ],
+   "top1": {
+    "model_only": 0.475,
+    "with_context": 0.475,
+    "delta": 0.0,
+    "delta_CI95": [
+     0.0,
+     0.0
+    ]
+   },
+   "top5": {
+    "model_only": 0.926,
+    "with_context": 0.944,
+    "delta": 0.019,
+    "delta_CI95": [
+     0.0,
+     0.041
+    ]
+   },
+   "best1": {
+    "model_only": 0.856,
+    "with_context": 0.856,
+    "delta": 0.0,
+    "delta_CI95": [
+     0.0,
+     0.0
+    ]
+   }
+  }
+ }
+}
