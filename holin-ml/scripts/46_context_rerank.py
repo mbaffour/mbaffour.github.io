@@ -33,6 +33,9 @@ SETS = {  # name: (genome glob, truth file, checkpoint root, de novo?)
     "validated_denovo": ("data/raw/validated/genomes/*.gb", "data/raw/validated/truth.json", ".fitckpt_validated_denovo", True)}
 SHIPPED = {"endolysin": ("endolysin_positives_v1.json", False), "holin": ("endolysin_positives.json", "auto"),
            "spanin": ("endolysin_positives.json", "auto")}
+# --endo-positives FILE: read the endolysin scores of a candidate training set instead of the shipped one
+if "--endo-positives" in sys.argv:
+    SHIPPED["endolysin"] = (sys.argv[sys.argv.index("--endo-positives") + 1], False)
 
 
 def ckdirs(root):
@@ -99,7 +102,7 @@ def summary(rk):
 
 
 def main():
-    ap = argparse.ArgumentParser(); ap.add_argument("--tune", default="cpt"); ap.add_argument("--test", nargs="+",
+    ap = argparse.ArgumentParser(); ap.add_argument("--endo-positives"); ap.add_argument("--tune", default="cpt"); ap.add_argument("--test", nargs="+",
         default=["validated_denovo", "validated"]); ap.add_argument("--out", default="reports/context_rerank.json")
     a = ap.parse_args()
     T = load(a.tune); print(f"tune set {a.tune}: {len(T)} genomes", flush=True)
@@ -129,7 +132,8 @@ if __name__ == "__main__" and "--cv" not in sys.argv and "--calls" not in sys.ar
     main()
 
 
-def cross_validate(name="cpt", k=5, seed=0, out="reports/context_rerank_cv.json"):
+def cross_validate(name="cpt", k=5, seed=0, out=None):
+    out = out or ("reports/context_rerank_cv.json" if "--endo-positives" not in sys.argv else "reports/context_rerank_cv_evidence.json")
     """Honest estimate on the large set: genomes split into k folds; for each fold, beta and W are chosen on the other
     k-1 folds only, then frozen and applied to the held-out fold. Paired genome-bootstrap CI on the difference."""
     G = load(name); rng = np.random.default_rng(seed); fold = rng.permutation(len(G)) % k
@@ -171,7 +175,8 @@ if __name__ == "__main__" and "--cv" in sys.argv:
     cross_validate()
 
 
-def call_curve(name="cpt", k=5, seed=0, out="reports/context_calls_cv.json"):
+def call_curve(name="cpt", k=5, seed=0, out=None):
+    out = out or ("reports/context_calls_cv.json" if "--endo-positives" not in sys.argv else "reports/context_calls_cv_evidence.json")
     """What a CALL is worth. Per genome and class, the caller names the top context-ranked protein if its context score
     z clears a cut-off. Out-of-fold only (context parameters chosen on the other folds). For each cut-off: precision =
     calls that are the curated gene; recall = genomes whose curated gene was called. Genomes are those with a curated
