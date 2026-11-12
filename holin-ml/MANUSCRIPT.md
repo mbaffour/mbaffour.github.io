@@ -121,7 +121,7 @@ A single command, `scripts/32_predict_lysis.py`, accepts protein FASTA, nucleoti
 ## 5. Limitations
 
 - Strict (never-seen-family) AP of 0.57–0.61 means the tool is a ranked shortlist for genuinely novel families, not a definitive caller.
-- More data of the same kind did not help the endolysin model, more capacity did not help, and adding domain-mined positives from new families made it worse. The remaining limit appears to be the representation (a mean-pooled embedding); explicit homology to the training set is the most promising untested input.
+- More data of the same kind did not help the endolysin model, more capacity did not help, and adding domain-mined positives from new families made it worse. The remaining limit appears to be the representation (a mean-pooled embedding). Explicit similarity to the training set does not help: as an input it halves novel-family AP through shortcut learning, and as a promotion rule it adds nothing for known families (`reports/similarity_features.md`). Genomic context, which the models never see, is the main untested signal.
 - Some genuine lysis genes have no recognisable domain at all: the *Escherichia* phage Serwaa endolysin matches nothing in any of 23 InterPro member databases, so domain search cannot rescue it and only homology or genomic context can.
 - Spanin's honest generalisation number is the 0.57 strict figure, on only 32 annotated genes in 19 genomes.
 - The 66-genome panel resolves paired differences only above ~0.05 AP.

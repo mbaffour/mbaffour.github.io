@@ -247,9 +247,11 @@ scored 0.0059; its 80%-identical relative only entered training with v2. Serwaa'
 0.3641 with a 50%-identical relative in training all along, and InterProScan finds no domain in it in
 any of 23 member databases, so nothing but homology or genomic context can find it.
 
-Untested and cheapest to test: similarity features -- maximum Smith-Waterman identity to each class's
-training set, as explicit model inputs. The information that rescued both failures was homology, and
-the model currently has no direct access to it.
+Similarity features -- maximum identity to the class's training set -- were the obvious next test, and
+were tested (`reports/similarity_features.md`). As a model input they cut strict AP from 0.614 to 0.306
+(shortcut learning: real endolysins in training nearly always have close relatives, so the model learns to
+distrust genes without one). As a promotion rule they add nothing for known families. The model already
+uses homology implicitly. Genomic context is the remaining untested signal.
 
 ## Benchmark power
 

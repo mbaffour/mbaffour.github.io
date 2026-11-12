@@ -1,0 +1,61 @@
+{
+ "A": {
+  "endolysin": "data/processed/endolysin_positives_v1.json",
+  "hp": {
+   "early_stopping": false,
+   "learning_rate": 0.06,
+   "max_iter": 400,
+   "max_leaf_nodes": 31
+  },
+  "spanin": "data/processed/spanin_positives.json"
+ },
+ "B": {
+  "hp": {
+   "max_iter": 400,
+   "max_leaf_nodes": 31,
+   "early_stopping": false
+  },
+  "endolysin": "data/processed/endolysin_positives_v1.json",
+  "extra": {
+   "tier": "shipped P + 1 if identity>=0.5"
+  }
+ },
+ "class": "endolysin",
+ "boot": 4000,
+ "protocols": {
+  "family": {
+   "AP_A": 0.6141,
+   "AP_B": 0.5099,
+   "AP_B_per_replicate": [
+    0.5099
+   ],
+   "delta_B_minus_A": -0.1042,
+   "delta_CI95": [
+    -0.1594,
+    -0.0448
+   ],
+   "p_two_sided": 0.0005,
+   "n_genomes": 63,
+   "n_truths": 95,
+   "n_resamples_used": 4000,
+   "frac_resamples_B_worse": 0.9998
+  },
+  "sequence": {
+   "AP_A": 0.8092,
+   "AP_B": 0.8068,
+   "AP_B_per_replicate": [
+    0.8068
+   ],
+   "delta_B_minus_A": -0.0024,
+   "delta_CI95": [
+    -0.0433,
+    0.0444
+   ],
+   "p_two_sided": 0.9,
+   "n_genomes": 63,
+   "n_truths": 95,
+   "n_resamples_used": 4000,
+   "frac_resamples_B_worse": 0.55
+  }
+ }
+}

@@ -108,9 +108,9 @@ yet it is 50.4% identical, at coverage >=0.8, to an endolysin in our own trainin
 each part of the pipeline can do with it:
 
 - **The HMM layer can never catch it.** There is no signature to match, in our 74 HMMs or in InterPro.
-- **Homology can.** A training relative at 50% identity is a strong signal, and the model does not see it
-  directly -- it sees a mean-pooled embedding, and scored this gene 0.3641. This is the clearest case for
-  giving the model its nearest-neighbour identity to each class as an explicit input.
+- **Homology can.** A training relative at 50% identity is a strong signal, which the earlier model scored
+  only 0.3641. (Follow-up: the current endolysin model scores it 0.894 without any similarity input, and an
+  explicit similarity input was tested and rejected -- `reports/similarity_features.md`.)
 - **Genomic context can.** It sits inside a complete holin / endolysin / i-spanin / o-spanin cassette, the
   position an endolysin occupies; the annotation most likely rests on exactly that synteny.
 
