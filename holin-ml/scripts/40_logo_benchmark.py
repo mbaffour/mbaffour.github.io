@@ -115,6 +115,35 @@ def sim_matrix(queries, targets, cache_dir, procs=4):
     return M
 
 
+def denovo_from_genbank(gb):
+    """genes called from the bare DNA of a GenBank record with Pyrodigal (meta mode); no annotation is read"""
+    import pyrodigal
+    from Bio import SeqIO
+    out = []
+    for rec in SeqIO.parse(gb, "genbank"):
+        for i, g in enumerate(pyrodigal.GeneFinder(meta=True).find_genes(bytes(rec.seq)), 1):
+            out.append({"id": f"{rec.id}_orf{i:04d}", "product": "", "start": g.begin, "stop": g.end,
+                        "strand": "+" if g.strand == 1 else "-", "sequence": g.translate().rstrip("*")})
+    return out
+
+
+def seq_place(target, ps):
+    """index of the called protein carrying the target sequence: identical, or one contains the other (a different
+    start codon gives the same C-terminal sequence), else >= 90% identity over the shorter end-aligned stretch"""
+    if not target: return None
+    for i, x in enumerate(ps):
+        q = x["sequence"]
+        if q == target or ((q.endswith(target) or target.endswith(q)) and min(len(q), len(target)) >= 0.7 * max(len(q), len(target))):
+            return i
+    best = (None, 0.0)
+    for i, x in enumerate(ps):
+        q = x["sequence"]; n = min(len(q), len(target))
+        if n < 0.7 * max(len(q), len(target)): continue
+        m = sum(a == b for a, b in zip(q[-n:], target[-n:])) / n
+        if m > best[1]: best = (i, m)
+    return best[0] if best[1] >= 0.9 else None
+
+
 def stratified_subsample(recs, n, seed, field):
     """Exactly n records, each stratum of `field` kept in proportion (largest-remainder rounding).
     Deterministic: records are ordered by id inside each stratum before the seeded draw."""
@@ -184,6 +213,10 @@ def main():
                     help="JSON {genome_stem: {class: [protein ids]}}: take truth from this file (e.g. experimentally "
                          "validated genes placed by sequence, scripts/43) instead of from GenBank product names. Only "
                          "genomes in the file are scanned.")
+    ap.add_argument("--de-novo", action="store_true",
+                    help="ignore the GenBank annotation entirely: call genes from the bare DNA with Pyrodigal, score "
+                         "those proteins, and place --truth-file genes on them by amino-acid SEQUENCE (needs --truth-file)."
+                         " This is how a newly sequenced, unannotated phage is handled.")
     ap.add_argument("--sim-features", action="store_true",
                     help="append one feature: max identity to the class's KEPT training positives (self and exact "
                          "duplicates masked for training rows; for a scored genome, only positives surviving that "
@@ -222,7 +255,11 @@ def main():
     genomes = []
     for p in paths:
         try:
-            ps = [x for x in S5.annotated_proteins(p) if x.get("sequence") and 20 <= len(x["sequence"]) <= 2000]
+            ann = [x for x in S5.annotated_proteins(p) if x.get("sequence")]
+            if a.de_novo:
+                ps = [x for x in denovo_from_genbank(p) if 20 <= len(x["sequence"]) <= 2000]
+            else:
+                ps = [x for x in ann if 20 <= len(x["sequence"]) <= 2000]
         except Exception:
             continue
         if not ps: continue
@@ -230,9 +267,14 @@ def main():
         if TF is not None:                          # truth from evidence, matched by protein id, never by name
             want = TF[Path(p).stem]
             idx = {x["id"]: i for i, x in enumerate(ps)}
+            aseq = {x["id"]: x["sequence"] for x in ann}
             for c in CLASSES:
                 for pid in want.get(c, []):
-                    if pid in idx: tr[c].append(idx[pid])
+                    if a.de_novo:                   # place the proven protein on a gene-caller protein by sequence
+                        j = seq_place(aseq.get(pid, ""), ps)
+                        if j is not None: tr[c].append(j)
+                        else: print(f"WARNING {Path(p).stem}: validated {c} {pid} not found by de novo gene calling", flush=True)
+                    elif pid in idx: tr[c].append(idx[pid])
                     else: print(f"WARNING {Path(p).stem}: validated {c} {pid} not scorable (length filter?)", flush=True)
         else:
           for i, x in enumerate(ps):
