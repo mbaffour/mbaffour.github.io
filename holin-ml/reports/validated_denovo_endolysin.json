@@ -1,0 +1,395 @@
+{
+ "n_genomes_scanned": 24,
+ "boot": 2000,
+ "hyperparameters": {
+  "max_iter": 400,
+  "learning_rate": 0.06,
+  "max_leaf_nodes": 31,
+  "early_stopping": false
+ },
+ "datasets": {
+  "endolysin": "data/processed/endolysin_positives_v1.json",
+  "spanin": "data/processed/spanin_positives.json"
+ },
+ "note": "Expanded LOGO: the atlas evaluation used 19 endolysins/12 genomes and 15 spanins/9 genomes, which left every model comparison inside its confidence interval. This uses all annotated lysis genes in the scanned panel. Protocol and negative recipes are unchanged from scripts/22 and scripts/28, so the figures describe the models as deployed.",
+ "classes": {
+  "endolysin": {
+   "family_removal": {
+    "all": {
+     "AP": 0.3609,
+     "CI95_by_genome": [
+      0.2746,
+      0.5419
+     ],
+     "n_truths": 21,
+     "n_scored": 2050,
+     "n_genomes": 21,
+     "median_rank": 2.0,
+     "top1": 0.476,
+     "recall_at5": 0.952,
+     "recall_at0.5": 0.619
+    },
+    "exit_only": {
+     "AP": 0.3609,
+     "CI95_by_genome": [
+      0.2746,
+      0.5419
+     ],
+     "n_truths": 21,
+     "n_scored": 2050,
+     "n_genomes": 21,
+     "median_rank": 2.0,
+     "top1": 0.476,
+     "recall_at5": 0.952,
+     "recall_at0.5": 0.619
+    },
+    "unique_models_fitted": 21,
+    "genomes_from_checkpoint": 0,
+    "fits_note": "unique_models_fitted counts fits done in THIS process; with genomes_from_checkpoint > 0 the run resumed and earlier fits are not counted. Scores are identical either way.",
+    "seconds": 302,
+    "truth_ranks": [
+     {
+      "genome": "AF022214",
+      "id": "AF022214.2_orf0006",
+      "rank": 3,
+      "score": 0.0137,
+      "of": 76
+     },
+     {
+      "genome": "AF083977",
+      "id": "AF083977.1_orf0023",
+      "rank": 1,
+      "score": 0.0015,
+      "of": 55
+     },
+     {
+      "genome": "AF158101",
+      "id": "AF158101.6_orf0123",
+      "rank": 1,
+      "score": 0.0026,
+      "of": 265
+     },
+     {
+      "genome": "AF234172",
+      "id": "AF234172.1_orf0015",
+      "rank": 2,
+      "score": 0.4154,
+      "of": 99
+     },
+     {
+      "genome": "AF399011",
+      "id": "AF399011.1_orf0173",
+      "rank": 1,
+      "score": 0.9999,
+      "of": 365
+     },
+     {
+      "genome": "AJ505558",
+      "id": "AJ505558.1_orf0049",
+      "rank": 3,
+      "score": 0.0845,
+      "of": 52
+     },
+     {
+      "genome": "AY212251",
+      "id": "AY212251.1_orf0016",
+      "rank": 2,
+      "score": 0.0005,
+      "of": 26
+     },
+     {
+      "genome": "AY587007",
+      "id": "AY587007.1_orf0046",
+      "rank": 2,
+      "score": 0.9979,
+      "of": 187
+     },
+     {
+      "genome": "AY848689",
+      "id": "AY848689.1_orf0003",
+      "rank": 2,
+      "score": 0.9998,
+      "of": 26
+     },
+     {
+      "genome": "AY954954",
+      "id": "AY954954.1_orf0021",
+      "rank": 1,
+      "score": 0.9772,
+      "of": 54
+     },
+     {
+      "genome": "BK000583",
+      "id": "BK000583.1_orf0060",
+      "rank": 9,
+      "score": 0.0,
+      "of": 66
+     },
+     {
+      "genome": "EU771092",
+      "id": "EU771092.1_orf0019",
+      "rank": 1,
+      "score": 0.9999,
+      "of": 25
+     },
+     {
+      "genome": "GQ413937",
+      "id": "GQ413937.1_orf0017",
+      "rank": 2,
+      "score": 0.3297,
+      "of": 49
+     },
+     {
+      "genome": "JQ686190",
+      "id": "JQ686190.1_orf0071",
+      "rank": 4,
+      "score": 0.9775,
+      "of": 213
+     },
+     {
+      "genome": "MT151386",
+      "id": "MT151386.1_orf0065",
+      "rank": 4,
+      "score": 0.9423,
+      "of": 202
+     },
+     {
+      "genome": "V01146",
+      "id": "V01146.1_orf0019",
+      "rank": 1,
+      "score": 0.6629,
+      "of": 51
+     },
+     {
+      "genome": "Z47794",
+      "id": "Z47794.1_orf0022",
+      "rank": 1,
+      "score": 0.9999,
+      "of": 27
+     },
+     {
+      "genome": "gi1631945938",
+      "id": "NC_042114.1_orf0023",
+      "rank": 1,
+      "score": 0.7524,
+      "of": 29
+     },
+     {
+      "genome": "gi194100415",
+      "id": "NC_011043.1_orf0017",
+      "rank": 2,
+      "score": 0.6785,
+      "of": 48
+     },
+     {
+      "genome": "gi327198314",
+      "id": "NC_015274.1_orf0060",
+      "rank": 1,
+      "score": 0.998,
+      "of": 73
+     },
+     {
+      "genome": "gi9626243",
+      "id": "NC_001416.1_orf0058",
+      "rank": 1,
+      "score": 0.9991,
+      "of": 62
+     }
+    ],
+    "missed_truths": [
+     {
+      "genome": "BK000583",
+      "id": "BK000583.1_orf0060",
+      "rank": 9,
+      "score": 0.0,
+      "product": ""
+     }
+    ]
+   },
+   "sequence_removal": {
+    "all": {
+     "AP": 0.5173,
+     "CI95_by_genome": [
+      0.3925,
+      0.7467
+     ],
+     "n_truths": 21,
+     "n_scored": 2050,
+     "n_genomes": 21,
+     "median_rank": 1.0,
+     "top1": 0.571,
+     "recall_at5": 1.0,
+     "recall_at0.5": 0.857
+    },
+    "exit_only": {
+     "AP": 0.5173,
+     "CI95_by_genome": [
+      0.3925,
+      0.7467
+     ],
+     "n_truths": 21,
+     "n_scored": 2050,
+     "n_genomes": 21,
+     "median_rank": 1.0,
+     "top1": 0.571,
+     "recall_at5": 1.0,
+     "recall_at0.5": 0.857
+    },
+    "unique_models_fitted": 19,
+    "genomes_from_checkpoint": 0,
+    "fits_note": "unique_models_fitted counts fits done in THIS process; with genomes_from_checkpoint > 0 the run resumed and earlier fits are not counted. Scores are identical either way.",
+    "seconds": 278,
+    "truth_ranks": [
+     {
+      "genome": "AF022214",
+      "id": "AF022214.2_orf0006",
+      "rank": 2,
+      "score": 0.9966,
+      "of": 76
+     },
+     {
+      "genome": "AF083977",
+      "id": "AF083977.1_orf0023",
+      "rank": 1,
+      "score": 0.1691,
+      "of": 55
+     },
+     {
+      "genome": "AF158101",
+      "id": "AF158101.6_orf0123",
+      "rank": 2,
+      "score": 0.9761,
+      "of": 265
+     },
+     {
+      "genome": "AF234172",
+      "id": "AF234172.1_orf0015",
+      "rank": 1,
+      "score": 0.9985,
+      "of": 99
+     },
+     {
+      "genome": "AF399011",
+      "id": "AF399011.1_orf0173",
+      "rank": 1,
+      "score": 0.9999,
+      "of": 365
+     },
+     {
+      "genome": "AJ505558",
+      "id": "AJ505558.1_orf0049",
+      "rank": 2,
+      "score": 0.9914,
+      "of": 52
+     },
+     {
+      "genome": "AY212251",
+      "id": "AY212251.1_orf0016",
+      "rank": 2,
+      "score": 0.0005,
+      "of": 26
+     },
+     {
+      "genome": "AY587007",
+      "id": "AY587007.1_orf0046",
+      "rank": 2,
+      "score": 0.9999,
+      "of": 187
+     },
+     {
+      "genome": "AY848689",
+      "id": "AY848689.1_orf0003",
+      "rank": 2,
+      "score": 0.9989,
+      "of": 26
+     },
+     {
+      "genome": "AY954954",
+      "id": "AY954954.1_orf0021",
+      "rank": 1,
+      "score": 0.9992,
+      "of": 54
+     },
+     {
+      "genome": "BK000583",
+      "id": "BK000583.1_orf0060",
+      "rank": 2,
+      "score": 0.0001,
+      "of": 66
+     },
+     {
+      "genome": "EU771092",
+      "id": "EU771092.1_orf0019",
+      "rank": 1,
+      "score": 1.0,
+      "of": 25
+     },
+     {
+      "genome": "GQ413937",
+      "id": "GQ413937.1_orf0017",
+      "rank": 1,
+      "score": 0.9999,
+      "of": 49
+     },
+     {
+      "genome": "JQ686190",
+      "id": "JQ686190.1_orf0071",
+      "rank": 2,
+      "score": 0.9998,
+      "of": 213
+     },
+     {
+      "genome": "MT151386",
+      "id": "MT151386.1_orf0065",
+      "rank": 2,
+      "score": 0.9998,
+      "of": 202
+     },
+     {
+      "genome": "V01146",
+      "id": "V01146.1_orf0019",
+      "rank": 1,
+      "score": 1.0,
+      "of": 51
+     },
+     {
+      "genome": "Z47794",
+      "id": "Z47794.1_orf0022",
+      "rank": 1,
+      "score": 1.0,
+      "of": 27
+     },
+     {
+      "genome": "gi1631945938",
+      "id": "NC_042114.1_orf0023",
+      "rank": 1,
+      "score": 0.7866,
+      "of": 29
+     },
+     {
+      "genome": "gi194100415",
+      "id": "NC_011043.1_orf0017",
+      "rank": 1,
+      "score": 1.0,
+      "of": 48
+     },
+     {
+      "genome": "gi327198314",
+      "id": "NC_015274.1_orf0060",
+      "rank": 1,
+      "score": 0.9988,
+      "of": 73
+     },
+     {
+      "genome": "gi9626243",
+      "id": "NC_001416.1_orf0058",
+      "rank": 1,
+      "score": 1.0,
+      "of": 62
+     }
+    ],
+    "missed_truths": []
+   }
+  }
+ }
+}
