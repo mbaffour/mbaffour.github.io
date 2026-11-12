@@ -29,7 +29,11 @@ DSC = "/home/user/mbaffour.github.io/dirty-science-canvas"
 NAME = {"endolysin": re.compile(r"endolysin|lysozyme|muramidase|amidase|peptidoglycan|murein|glucosaminidase|\blysin\b|"
                                 r"transglycosylase|glycoside hydrolase", re.I),
         "spanin": re.compile(r"spanin|\bRz\b|\bRz1\b", re.I)}
-def hgb(): return HistGradientBoostingClassifier(max_iter=400, learning_rate=0.06, max_leaf_nodes=31, random_state=0)
+ES = "auto"   # sklearn default; --early-stopping False overrides. 'auto' turns early stopping ON above 10k rows,
+              # which every lysis training set exceeds, and its validation split is a RANDOM 10% -- full of
+              # homologs of the training rows. reports/capacity_sweep.md measures what that costs.
+def hgb(): return HistGradientBoostingClassifier(max_iter=400, learning_rate=0.06, max_leaf_nodes=31,
+                                                 random_state=0, early_stopping=ES)
 
 
 def atlas_phages(cls):
@@ -59,13 +63,20 @@ def main():
                                                      "for ablation datasets built by scripts/27 --suffix")
     ap.add_argument("--tag", default="", help="suffix for model/report filenames, so an ablation run does not "
                                               "overwrite the shipped model")
+    ap.add_argument("--other-suffix", default=None,
+                    help="suffix for the OTHER lysis class's positives (the cross-class negatives); defaults to "
+                         "--pos-suffix. Lets the endolysin model take v1 positives with the current spanin set")
+    ap.add_argument("--early-stopping", default="auto", help="auto (sklearn default) or False")
     a = ap.parse_args(); cls = a.cls
+    global ES
+    ES = False if str(a.early_stopping).lower() in ("false", "0", "no") else a.early_stopping
+    other_suffix = a.pos_suffix if a.other_suffix is None else a.other_suffix
     esm = F.ESM(B / "models/esm_cache")
     feats = lambda ss: np.hstack([np.array([F.handcrafted(s) for s in ss]), esm.embed(ss)]) if ss else np.zeros((0, 516))
 
     pos = json.load(open(B / f"data/processed/{cls}_positives{a.pos_suffix}.json"))
     other = "spanin" if cls == "endolysin" else "endolysin"
-    other_pos = json.load(open(B / f"data/processed/{other}_positives{a.pos_suffix}.json"))
+    other_pos = json.load(open(B / f"data/processed/{other}_positives{other_suffix}.json"))
     base = json.load(open(B / "data/processed/dataset.json"))
     cur = json.load(open(B / "data/processed/holins_extra_clustered.json"))
     negs = json.load(open(B / "data/processed/phage_negatives.json"))
@@ -163,7 +174,10 @@ def main():
     mprod = hgb().fit(np.vstack([X, Xgp]), np.concatenate([y, np.ones(len(gold_pos), int)]))  # ship on everything
     bundle = {"model": mprod, "features": "both", "algorithm": "hgb", "class": cls,
               "hand_feature_names": list(F.HAND_NAMES), "esm_model": F.ESM.MODEL,
-              "trained_on": {"positives": len(pos), "negatives": len(negpool), "confusable_negatives": n_conf},
+              "trained_on": {"positives": len(pos), "negatives": len(negpool), "confusable_negatives": n_conf,
+                             "positives_file": f"{cls}_positives{a.pos_suffix}.json",
+                             "other_class_file": f"{other}_positives{other_suffix}.json",
+                             "early_stopping": ES},
               "note": f"one-vs-rest {cls}; negatives include holins and {other}s. Honest estimate = leave-one-genome-out above."}
     out["config"] = {"confusable_negatives": n_conf, "train_positives": len(tr_pos), "train_negatives": len(tr_neg)}
     pickle.dump(bundle, open(B / f"models/{cls}_model{a.tag}.pkl", "wb"))
