@@ -74,6 +74,13 @@ protein level), reduced to bare DNA and re-called with Pyrodigal so that no anno
 is in the top five for 20 of 21 endolysins, 7 of 8 holins and 3 of 4 spanins under the same protocol
 (`reports/validated_benchmark.md`). The two sets agree.
 
+A blind scan of 152 phage genomes published after the training data (DNA only, calls frozen before the annotations
+were read) put the annotated holin, endolysin and spanin in the top five ~96% of the time. Its main confident error,
+calling tail lysozymes as endolysins, traced to 51 virion proteins among the endolysin training positives; moving them
+to the negatives raised unseen-family ranked-first on CPT from 0.664 to 0.720 (+0.056, 95% CI +0.016 to +0.103) and,
+on a second fresh blind set of 123 genomes, the share of genomes where the endolysin call is the annotated one from
+0.860 to 0.921 (+0.061, +0.018 to +0.114) (`reports/blind/blind_scan.md`, `reports/endolysin_virion_fix.md`).
+
 Standard gene finders do not call genes embedded in another gene's reading frame, and embedded o-spanins are exactly
 that: from bare DNA, Pyrodigal does not produce 48 of CPT's 162 curated spanins. A narrow finder for nested ORFs that
 begin with a lipoprotein signal (0.5 extra ORFs per genome) recovers 24 of them, and raises the share of curated

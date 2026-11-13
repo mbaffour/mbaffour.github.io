@@ -68,17 +68,22 @@ def boot_ci(x, n=2000, seed=0):
 
 
 def main():
-    sel = json.load(open(B / "data/raw/blind/selection.json"))["accessions"]
+    import argparse
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--set", default="blind"); ap.add_argument("--pred", default="pred")
+    a = ap.parse_args()
+    SET, PRED = a.set, a.pred
+    sel = json.load(open(B / f"data/raw/{SET}/selection.json"))["accessions"]
     G = []
     for acc in sel:
-        pf = B / "reports/blind/pred" / f"{acc}.tsv"
+        pf = B / f"reports/{SET}/{PRED}" / f"{acc}.tsv"
         if not pf.exists(): continue
         hdr = pf.read_text().splitlines()[0].split("\t")
         rows = [dict(zip(hdr, l.split("\t"))) for l in pf.read_text().splitlines()[1:] if l.strip()]
-        ann = [x for x in S5.annotated_proteins(B / "data/raw/blind/sealed" / f"{acc}.gb") if x.get("sequence")]
+        ann = [x for x in S5.annotated_proteins(B / f"data/raw/{SET}/sealed" / f"{acc}.gb") if x.get("sequence")]
         aseq = {}
         from Bio import SeqIO
-        rec = next(SeqIO.parse(B / "data/raw/blind/fna" / f"{acc}.fna", "fasta"))
+        rec = next(SeqIO.parse(B / f"data/raw/{SET}/fna" / f"{acc}.fna", "fasta"))
         # de novo protein sequences are not in the TSV; recompute them the same way the predictor did
         import genecall
         prot = {p["id"]: p["sequence"] for p in genecall.denovo([(rec.id, str(rec.seq))], nested=True)}
@@ -147,8 +152,9 @@ def main():
               f"{R['annotated_in_top5']} {R['annotated_in_top5_CI']}", flush=True)
         print(f"          confident calls: {R['confident_calls']}", flush=True)
         for k, v in sorted(strat.items()): print(f"          {k:24s} {v}", flush=True)
-    (B / "reports/blind/score.json").write_text(json.dumps(res, indent=1, default=str))
-    print("wrote reports/blind/score.json")
+    outp = B / f"reports/{SET}" / ("score.json" if PRED == "pred" else f"score_{PRED}.json")
+    outp.write_text(json.dumps(res, indent=1, default=str))
+    print(f"wrote {outp.relative_to(B)}")
 
 
 if __name__ == "__main__":

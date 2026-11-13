@@ -37,7 +37,7 @@ time and named outright 71-80% of the time. New families are too few here to mea
 **Confident calls on genes annotated with another function:** endolysin 19, holin 2, spanin 5.
 - 12 of the 19 endolysin conflicts are virion-associated lytic enzymes: T4-type "baseplate hub subunit and tail
   lysozyme" (8) and T7-type internal virion proteins (4). They do cut peptidoglycan, but at infection, not lysis; this
-  is the endolysin model's known blind spot. A few others (D-Ala-D-Ala carboxypeptidase, Peptidase M37, chitinase) are
+  is the endolysin model's known blind spot. **Since fixed:** the cause was 51 virion proteins in the endolysin training positives; see `../endolysin_virion_fix.md` (on a second blind set the endolysin call is right in 92% of genomes, up from 86%). A few others (D-Ala-D-Ala carboxypeptidase, Peptidase M37, chitinase) are
   plausible endolysins under another name.
 
 **Confident calls on genes the annotation calls hypothetical, or does not have at all, in genomes whose annotation has
