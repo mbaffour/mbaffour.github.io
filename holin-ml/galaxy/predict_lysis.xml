@@ -43,7 +43,7 @@ python3 "\${LYSIS_CALLER_HOME}/scripts/32_predict_lysis.py"
                 <param name="proteins" type="data" format="fasta" label="Protein FASTA" help="One row is reported per sequence (20-2000 aa). No positions, so no cassette calls."/>
             </when>
             <when value="genome">
-                <param name="genome" type="data" format="fasta" label="Nucleotide FASTA" help="Genes are called de novo with Pyrodigal, then scored."/>
+                <param name="genome" type="data" format="fasta" label="Nucleotide FASTA" help="Genes are called de novo with Pyrodigal, plus nested lipoprotein ORFs (embedded o-spanins standard gene finders miss), then scored."/>
             </when>
             <when value="genbank">
                 <param name="genbank" type="data" format="genbank" label="GenBank file" help="Annotated CDS proteins are scored in genome order."/>
