@@ -32,6 +32,9 @@ def main():
                     help="add the scripts/27 endolysin and spanin positives plus the scripts/26 confusables as "
                          "negatives, so this model is held to the same three-class discrimination as the other "
                          "two. Ship it only if scripts/22 arm C beats arm B on leave-one-genome-out.")
+    ap.add_argument("--extra-positives", default=None,
+                    help="JSON of additional holin positives (scripts/49 output, list or {records: [...]}). Used to "
+                         "build models/holin_model_mined.pkl, the second half of the predictor's --holin-mode t4aware.")
     ap.add_argument("--out", default="models/holin_model_curated.pkl")
     a = ap.parse_args()
     base = json.load(open(B / "data/processed/dataset.json"))
@@ -40,7 +43,13 @@ def main():
 
     pos = [r for r in base if r["label"] == "holin"] + [r for r in cur if r["label"] == "holin"]
     neg = [r for r in base if r["label"] == "negative"] + negs
-    n_x = 0
+    n_x = 0; n_extra = 0
+    if a.extra_positives:
+        ex = json.load(open(B / a.extra_positives)); ex = ex["records"] if isinstance(ex, dict) else ex
+        have = {r["sequence"] for r in pos}
+        ex = [r for r in ex if r["sequence"] not in have]
+        pos += ex; n_extra = len(ex)
+        print(f"+ {n_extra} extra holin positives from {a.extra_positives}", flush=True)
     if a.crossclass:
         hol = {r["sequence"] for r in pos}
         xc = []
@@ -68,7 +77,8 @@ def main():
                              "holins_original": sum(r["label"] == "holin" for r in base),
                              "holins_curated": sum(r["label"] == "holin" for r in cur),
                              "negatives_bacterial": sum(r["label"] == "negative" for r in base),
-                             "negatives_phage": len(negs), "negatives_crossclass": n_x},
+                             "negatives_phage": len(negs), "negatives_crossclass": n_x,
+                             "holins_extra": n_extra, "extra_positives": a.extra_positives},
               "note": "DEPLOYMENT model: trained on all labels including the gold holdout. Do not quote a "
                       "gold-holdout score from it. Honest estimate = leave-one-genome-out in "
                       "reports/curated_retrain_eval.json (AP 0.965 realistic / 0.785 strict)."}
@@ -96,6 +106,15 @@ def main():
                              "a genuinely novel holin family gets a shortlist, not an answer (strict AP 0.785)"],
             "usage": "import pickle, features as F; m=pickle.load(open('models/holin_model_curated.pkl','rb')); "
                      "X=hstack([handcrafted, esm.embed(seqs)]); m['model'].predict_proba(X)[:,1]"}
+    if a.extra_positives:
+        card["honest_performance_leave_one_genome_out"] = {
+            "note": "this model is used only AVERAGED with holin_model_curated.pkl (predictor --holin-mode t4aware). "
+                    "Leave-one-genome-out on 78 CPT genomes, novel family, for that average (scripts/50, "
+                    "reports/holin_generalisation.md): ranked 1st 0.513 vs 0.538 for the standard model "
+                    "(-0.026 [-0.064, 0.000]), top 5 0.846 vs 0.846, T4-type holins ranked 3-30 vs 10-67; "
+                    "experimental set 6/8 vs 7/8 ranked 1st."}
+        card["known_limits"] = ["about one mined positive in five is not a holin (rule precision 76-82% on CPT)",
+                                "not better than the standard model overall; use it for T4-like phages"]
     cardp = "reports/model_card.json" if a.out == "models/holin_model_curated.pkl" else \
             f"reports/model_card_{Path(a.out).stem}.json"
     (B / cardp).write_text(json.dumps(card, indent=2))

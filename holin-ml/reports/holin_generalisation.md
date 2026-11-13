@@ -90,6 +90,10 @@ almost intact (ranks 10-67 -> 3-30) at a cost inside the noise on CPT and one ho
 three-model ensemble is the best point estimate on both novel-family figures, but it was a secondary test, its
 intervals include zero, and it could not be checked on the experimental set.
 
+**Offered as an option.** The primary ensemble is available as `scripts/32_predict_lysis.py --holin-mode t4aware`
+(production model `models/holin_model_mined.pkl`, built by `scripts/23 --extra-positives`), for T4-like phages. The
+default stays the standard model.
+
 ## Where that leaves the holin signal
 
 Ten variants tried (eight model changes, two mined-data sets); the shipped 35M model remains best. What is left that could plausibly move unseen-family

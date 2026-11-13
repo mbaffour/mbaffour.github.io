@@ -1,0 +1,26 @@
+{
+  "model": "holin_model_mined.pkl",
+  "sha256": "86df31f4d441ecfae8d2998b97b61fd6c1a7eb9a2e99fcca356d25358be4d794",
+  "trained_utc": "2026-11-13T18:05:01Z",
+  "purpose": "rank the proteins of a phage genome by probability of being a holin",
+  "recipe": "HistGradientBoosting over 36 handcrafted features + 480-d mean-pooled ESM-2 (t12_35M). TM-anchored local features were tested and rejected (scripts/15).",
+  "training_composition": {
+    "rows": 18017,
+    "holins": 5132,
+    "holins_original": 558,
+    "holins_curated": 4497,
+    "negatives_bacterial": 9503,
+    "negatives_phage": 3382,
+    "negatives_crossclass": 0,
+    "holins_extra": 77,
+    "extra_positives": "data/processed/holins_context_mined.json"
+  },
+  "honest_performance_leave_one_genome_out": {
+    "note": "this model is used only AVERAGED with holin_model_curated.pkl (predictor --holin-mode t4aware). Leave-one-genome-out on 78 CPT genomes, novel family, for that average (scripts/50, reports/holin_generalisation.md): ranked 1st 0.513 vs 0.538 for the standard model (-0.026 [-0.064, 0.000]), top 5 0.846 vs 0.846, T4-type holins ranked 3-30 vs 10-67; experimental set 6/8 vs 7/8 ranked 1st."
+  },
+  "known_limits": [
+    "about one mined positive in five is not a holin (rule precision 76-82% on CPT)",
+    "not better than the standard model overall; use it for T4-like phages"
+  ],
+  "usage": "import pickle, features as F; m=pickle.load(open('models/holin_model_curated.pkl','rb')); X=hstack([handcrafted, esm.embed(seqs)]); m['model'].predict_proba(X)[:,1]"
+}

@@ -25,6 +25,10 @@ extreme -- at 0.9995 it beats the previous model's 0.95 on both precision and re
 Dependencies: numpy, scikit-learn (must match the version the models were pickled with), torch + transformers
 (ESM-2 facebook/esm2_t12_35M_UR50D, ~130 MB, downloaded on first run), and pyrodigal for --genome. See DEPLOY.md.
 
+Holin mode: --holin-mode t4aware averages the standard holin model with one that also learned 37 holin families mined
+by genomic context. It ranks T4-type holins far higher (3-30 instead of 10-67 in their genomes, unseen-family test)
+and is otherwise within noise of the standard model; see reports/holin_generalisation.md.
+
 Usage: python3 scripts/32_predict_lysis.py (--proteins F | --genome F | --genbank F | --acc ACC) [--threshold 0.5]
                                            [--out F.tsv] [--show-cassettes] [--cassette-window 6]
 """
@@ -76,6 +80,13 @@ def main():
                                       "(one-off). Pre-populate it and pass this for an offline or HPC run.")
     ap.add_argument("--no-nested", action="store_true",
                     help="--genome only: do not add nested lipoprotein ORFs (embedded o-spanins) to the Pyrodigal genes")
+    ap.add_argument("--holin-mode", choices=["standard", "t4aware"], default="standard",
+                    help="t4aware: P(holin) is the mean of the standard holin model and models/holin_model_mined.pkl "
+                         "(the same recipe plus 77 holins from 37 families mined by genomic context, scripts/49). "
+                         "Leave-one-genome-out on 78 CPT genomes, unseen families: T4-type holins ranked 3-30 in "
+                         "their genomes instead of 10-67; overall ranked 1st 0.513 vs 0.538 and top 5 0.846 vs "
+                         "0.846 (difference within noise). Use it for T4-like phages; standard is the default "
+                         "because it is not better overall (reports/holin_generalisation.md).")
     ap.add_argument("--out")
     a = ap.parse_args()
 
@@ -106,6 +117,10 @@ def main():
     X = np.hstack([np.array([F.handcrafted(p["sequence"]) for p in ps]), esm.embed([p["sequence"] for p in ps])])
     assert X.shape[1] == 516, X.shape
     P = {c: models[c].predict_proba(X)[:, 1] for c in CLASSES}
+    if a.holin_mode == "t4aware":
+        mined = pickle.load(open(B / "models/holin_model_mined.pkl", "rb"))["model"]
+        P["holin"] = 0.5 * (P["holin"] + mined.predict_proba(X)[:, 1])
+        print("# holin mode: t4aware (mean of the standard and mined-family holin models)", file=sys.stderr)
     for i, p in enumerate(ps):
         p["P"] = {c: float(P[c][i]) for c in CLASSES}
         b = max(CLASSES, key=lambda c: p["P"][c]); p["call"] = b if p["P"][b] >= a.threshold else "none"

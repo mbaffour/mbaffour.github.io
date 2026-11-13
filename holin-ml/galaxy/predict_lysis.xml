@@ -29,6 +29,7 @@ python3 "\${LYSIS_CALLER_HOME}/scripts/32_predict_lysis.py"
 #end if
     --threshold $threshold
     --cassette-window $cassette_window
+    --holin-mode $holin_mode
     --show-cassettes
     --out '$output'
     ]]></command>
@@ -51,6 +52,10 @@ python3 "\${LYSIS_CALLER_HOME}/scripts/32_predict_lysis.py"
         </conditional>
         <param name="threshold" type="float" value="0.5" min="0" max="1" label="Call threshold" help="Minimum probability for a protein to receive a holin/endolysin/spanin call. For high-confidence calls use the high_conf column, whose cut-offs are set per class."/>
         <param name="cassette_window" type="integer" value="6" min="1" label="Cassette window (genes)" help="Holin, endolysin and spanin calls within this many genes are grouped as a lysis cassette (genome and GenBank input only)."/>
+        <param name="holin_mode" type="select" label="Holin model" help="T4-aware averages the standard holin model with one that also learned 37 holin families mined by genomic context. It ranks T4-type holins far higher and is otherwise within noise of the standard model.">
+            <option value="standard" selected="true">Standard</option>
+            <option value="t4aware">T4-aware</option>
+        </param>
     </inputs>
     <outputs>
         <data name="output" format="tabular" label="Lysis gene calls on ${on_string}"/>

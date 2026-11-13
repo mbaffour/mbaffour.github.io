@@ -20,6 +20,7 @@ gp63 holin cassette as the annotated GenBank, from the bare genome sequence.
 ## Run it
 ```
 python3 scripts/32_predict_lysis.py --genome my_phage.fna                 # raw assembly
+python3 scripts/32_predict_lysis.py --genome my_phage.fna --holin-mode t4aware   # T4-like phages: see below
 python3 scripts/32_predict_lysis.py --proteins proteins.faa --out hits.tsv
 python3 scripts/32_predict_lysis.py --genbank phage.gb --show-cassettes --domains    # high_conf column = confident calls
 python3 scripts/32_predict_lysis.py --acc NC_008720.1
@@ -109,3 +110,12 @@ These replace earlier figures (holin 0.965 / 0.785, endolysin 0.843 / 0.729, spa
 - **Galaxy (CPT):** `scripts/32_predict_lysis.py` is a clean single-command tool with FASTA in / TSV out, so it
   wraps directly as a Galaxy tool; ask and I will scaffold the `.xml` wrapper.
 - **Reproducibility:** every data source has provenance (URL + SHA-256); `PROTOCOL.md` documents the full pipeline.
+
+## Holin mode
+
+`--holin-mode t4aware` averages the standard holin model with `models/holin_model_mined.pkl`, the same recipe plus
+77 holins from 37 families mined by genomic context (`scripts/49`, `scripts/23 --extra-positives`). Leave-one-genome-out
+on 78 CPT genomes, unseen families: T4-type holins rank 3-30 in their genomes instead of 10-67; overall, ranked 1st
+0.513 vs 0.538 and top 5 0.846 vs 0.846, within noise; 6 of 8 experimentally proven holins ranked first vs 7 of 8.
+Use it for T4-like phages (large phages whose holin has one TM helix and a long periplasmic domain); the standard
+mode stays the default because it is not better overall. Details: `reports/holin_generalisation.md`.
