@@ -70,8 +70,10 @@ def hgb():
     return HistGradientBoostingClassifier(random_state=0, **HP)
 
 
-def load_sets(cls, endo_pos_path, spa_pos_path):
-    """(training positives, negatives) for one class, using that class's SHIPPED negative recipe."""
+def load_sets(cls, endo_pos_path, spa_pos_path, holin_extra=None):
+    """(training positives, negatives) for one class, using that class's SHIPPED negative recipe.
+    holin_extra: a JSON of additional holin positives (e.g. scripts/49's context-mined new families), either a list
+    of records or {"records": [...]}; each needs sequence and cluster, so family removal drops whole families."""
     base = json.load(open(B / "data/processed/dataset.json"))
     cur = json.load(open(B / "data/processed/holins_extra_clustered.json"))
     negs = json.load(open(B / "data/processed/phage_negatives.json"))
@@ -84,6 +86,9 @@ def load_sets(cls, endo_pos_path, spa_pos_path):
         pos = [r for r in base if r["label"] == "holin" and r["id"] not in gold_ids] \
               + [r for r in cur if r["label"] == "holin" and not r.get("excluded_gold_cluster")]
         neg = bact + negs                      # arm B recipe, as shipped (no cross-class)
+        if holin_extra:
+            ex = json.load(open(B / holin_extra)); ex = ex["records"] if isinstance(ex, dict) else ex
+            pos = pos + [r for r in ex if r.get("label", "holin") == "holin"]
     elif cls == "endolysin":
         pos = [r for r in endo if not r["in_gold_holdout"]]
         neg = spa + holins_all + bact + negs
@@ -265,6 +270,8 @@ def main():
     ap.add_argument("--features", default="both", choices=["both", "hand", "esm", "hand+topo", "both+topo"],
                     help="hand = only the 36 biophysical sequence features; esm = only the ESM-2 embedding; +topo adds the "
                          "27 membrane-topology descriptors of features.topology_features")
+    ap.add_argument("--holin-extra", default=None,
+                    help="JSON of extra holin training positives (scripts/49 output); joins the checkpoint key")
     ap.add_argument("--esm-model", default=None,
                     help="a different ESM-2 checkpoint for the embedding (own cache: models/esm_cache_<name>)")
     ap.add_argument("--sim-features", action="store_true",
@@ -293,6 +300,9 @@ def main():
     if a.pos_weight != "none": EXTRA["pos_weight"] = a.pos_weight + "_resample"   # see weighted_rows()
     if a.features != "both": EXTRA["features"] = a.features
     if a.esm_model: EXTRA["esm_model"] = a.esm_model
+    if a.holin_extra:
+        EXTRA["holin_extra"] = a.holin_extra
+        EXTRA["holin_extra_sha"] = hashlib.sha256((B / a.holin_extra).read_bytes()).hexdigest()[:16]
     if a.sim_features: EXTRA["sim"] = "target_class_max_identity_v1"
     CK = ck_dir(B / a.checkpoint if not Path(a.checkpoint).is_absolute() else a.checkpoint,
                 dict(HP), a.endolysin_positives, a.spanin_positives, EXTRA or None)
@@ -317,7 +327,6 @@ def main():
         # one record per genome: the same DNA saved twice (an accession with and without its version, or a GenBank
         # record and its RefSeq copy) would be scored twice and tighten every interval for nothing
         try:
-            import hashlib
             from Bio import SeqIO
             _r = next(SeqIO.parse(p, "genbank"))
             _k = hashlib.sha1(min(str(_r.seq).upper(), str(_r.seq.reverse_complement()).upper()).encode()).hexdigest()
@@ -374,7 +383,7 @@ def main():
     for cls in a.classes:
         gs = [g for g in genomes if g["truth"][cls]]
         if not gs: print(f"{cls}: no truths, skipped"); continue
-        pos, neg = load_sets(cls, a.endolysin_positives, a.spanin_positives)
+        pos, neg = load_sets(cls, a.endolysin_positives, a.spanin_positives, a.holin_extra)
         if SUB:
             n_before = len(pos)
             pos, strata = stratified_subsample(pos, SUB["n"], SUB["seed"], SUB["strata"])

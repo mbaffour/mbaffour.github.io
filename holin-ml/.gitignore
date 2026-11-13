@@ -25,3 +25,6 @@ data/raw/validated/genomes/
 data/raw/cpt/genomes/
 .fitckpt_cpt/
 models/esm_cache_*/
+
+# genomes mined for new holin families (scripts/49a): regenerable from data/raw/mine/accessions.json
+data/raw/mine/*.gb

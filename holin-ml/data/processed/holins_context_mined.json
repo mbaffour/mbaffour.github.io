@@ -1,0 +1,7245 @@
+{
+ "rule": "Mine candidate holins from NEW families by genomic context, without using the holin model.\n\nWhy. Eight changes to the holin model (bigger embeddings, biophysical/topology features, family reweighting) left\nunseen-family performance where it was (reports/holin_generalisation.md). What the model lacks is training diversity:\nthe 3,250 training holins sit in 99 families. This script looks for holins from OTHER families, using the lysis genes\nwe already detect reliably as a guide.\n\nThe rule (sequence only; annotations are recorded for provenance and NEVER used to select):\n  anchor     a protein carrying a catalytic endolysin Pfam domain (domains.tier >= 2), at most 500 aa (larger\n             proteins with a lysozyme domain are tail spikes, e.g. T4 gp5, which sit next to unrelated genes)\n  candidate  the gene IMMEDIATELY UPSTREAM of the anchor in its direction of transcription (the holin-endolysin\n             order of most lysis cassettes), on the same strand, 50-250 aa, 1-3 hydrophobic TM segments, no\n             catalytic endolysin domain itself, and no lipobox in its first 35 residues (that is an o-spanin)\n  new family max identity < 0.30 (coverage >= 0.5) to every training holin, endolysin and spanin -- the same bar the\n             novel-family protocol uses -- so only proteins from families absent from training are kept\n\nMeasured precision of the rule before mining (scratch analysis on the 78 CPT genomes with a curated holin): the\nupstream neighbour of a catalytic-domain endolysin is the curated holin in 31 of 41 picks (76%), 31 of 38 (82%) once\nthe 500-aa anchor cap removes tail-spike anchors. So roughly one pick in five is not a holin; the decision on whether\nthe mined set helps is made by the novel-family benchmark, not assumed.\n\nEvaluation genomes (CPT, the experimental set, the name-graded panel) are excluded by accession and by DNA hash, so\nnothing mined comes from a genome that is later scored.",
+ "n_genomes": 5111,
+ "n_picks": 1272,
+ "known_family_picks": [
+  {
+   "id": "ctxmined_NC_000871_Sfi19p20",
+   "genome": "NC_000871",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_000896_phiadhp61",
+   "genome": "NC_000896",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_000902_VT2-Sap46",
+   "genome": "NC_000902",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_001317_NP_052257.1",
+   "genome": "NC_001317",
+   "max_id_training_holin": 0.923
+  },
+  {
+   "id": "ctxmined_NC_001423_H3027_gp19",
+   "genome": "NC_001423",
+   "max_id_training_holin": 0.977
+  },
+  {
+   "id": "ctxmined_NC_001835_sk1p19",
+   "genome": "NC_001835",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_001909_bIL170p21",
+   "genome": "NC_001909",
+   "max_id_training_holin": 0.949
+  },
+  {
+   "id": "ctxmined_NC_002072_DT1p22",
+   "genome": "NC_002072",
+   "max_id_training_holin": 0.95
+  },
+  {
+   "id": "ctxmined_NC_002166_HK022p53",
+   "genome": "NC_002166",
+   "max_id_training_holin": 0.981
+  },
+  {
+   "id": "ctxmined_NC_002185_ST7201p45",
+   "genome": "NC_002185",
+   "max_id_training_holin": 0.667
+  },
+  {
+   "id": "ctxmined_NC_002214_Sfi11p28",
+   "genome": "NC_002214",
+   "max_id_training_holin": 0.989
+  },
+  {
+   "id": "ctxmined_NC_002486_phiPV83p59",
+   "genome": "NC_002486",
+   "max_id_training_holin": 0.988
+  },
+  {
+   "id": "ctxmined_NC_002649_GA-1p35",
+   "genome": "NC_002649",
+   "max_id_training_holin": 0.948
+  },
+  {
+   "id": "ctxmined_NC_002661_phiSLTp59",
+   "genome": "NC_002661",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_002666_bIL285p61",
+   "genome": "NC_002666",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_002668_bIL309p55",
+   "genome": "NC_002668",
+   "max_id_training_holin": 0.968
+  },
+  {
+   "id": "ctxmined_NC_002703_Tuc2009_54",
+   "genome": "NC_002703",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_002730_HK620p35",
+   "genome": "NC_002730",
+   "max_id_training_holin": 0.981
+  },
+  {
+   "id": "ctxmined_NC_003050_MM1p52",
+   "genome": "NC_003050",
+   "max_id_training_holin": 0.991
+  },
+  {
+   "id": "ctxmined_NC_003085_Mx8p71",
+   "genome": "NC_003085",
+   "max_id_training_holin": 0.432
+  },
+  {
+   "id": "ctxmined_NC_003157_phiNIH1.1_p50",
+   "genome": "NC_003157",
+   "max_id_training_holin": 0.593
+  },
+  {
+   "id": "ctxmined_NC_003197_STM1027",
+   "genome": "NC_003197",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_003197_STM2213",
+   "genome": "NC_003197",
+   "max_id_training_holin": 0.356
+  },
+  {
+   "id": "ctxmined_NC_003197_STM2613",
+   "genome": "NC_003197",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_003197_STM2716",
+   "genome": "NC_003197",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_003197_STM4218",
+   "genome": "NC_003197",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_003216_A118p24",
+   "genome": "NC_003216",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_003278_phiCTXp11",
+   "genome": "NC_003278",
+   "max_id_training_holin": 0.978
+  },
+  {
+   "id": "ctxmined_NC_003288_phiETA_64",
+   "genome": "NC_003288",
+   "max_id_training_holin": 0.989
+  },
+  {
+   "id": "ctxmined_NC_003291_ST2389gp22",
+   "genome": "NC_003291",
+   "max_id_training_holin": 0.843
+  },
+  {
+   "id": "ctxmined_NC_003309_phiE125p24",
+   "genome": "NC_003309",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_003313_K139p32",
+   "genome": "NC_003313",
+   "max_id_training_holin": 0.5
+  },
+  {
+   "id": "ctxmined_NC_003356_P27p29",
+   "genome": "NC_003356",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_003444_SfVp49",
+   "genome": "NC_003444",
+   "max_id_training_holin": 0.964
+  },
+  {
+   "id": "ctxmined_NC_003524_phi3626p19",
+   "genome": "NC_003524",
+   "max_id_training_holin": 0.61
+  },
+  {
+   "id": "ctxmined_NC_004066_ul36_57",
+   "genome": "NC_004066",
+   "max_id_training_holin": 0.973
+  },
+  {
+   "id": "ctxmined_NC_004112_A2p17",
+   "genome": "NC_004112",
+   "max_id_training_holin": 0.904
+  },
+  {
+   "id": "ctxmined_NC_004165_B103_14",
+   "genome": "NC_004165",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_004302_r1tp48",
+   "genome": "NC_004302",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_004303_O1205p50",
+   "genome": "NC_004303",
+   "max_id_training_holin": 0.938
+  },
+  {
+   "id": "ctxmined_NC_004305_phig1ep15",
+   "genome": "NC_004305",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_004348_ST64Tp45",
+   "genome": "NC_004348",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_004456_VHMLp18",
+   "genome": "NC_004456",
+   "max_id_training_holin": 0.374
+  },
+  {
+   "id": "ctxmined_NC_004584_SpyM3_0730",
+   "genome": "NC_004584",
+   "max_id_training_holin": 0.987
+  },
+  {
+   "id": "ctxmined_NC_004585_SpyM3_0923",
+   "genome": "NC_004585",
+   "max_id_training_holin": 0.987
+  },
+  {
+   "id": "ctxmined_NC_004586_SpyM3_1097",
+   "genome": "NC_004586",
+   "max_id_training_holin": 0.536
+  },
+  {
+   "id": "ctxmined_NC_004588_SpyM3_1307",
+   "genome": "NC_004588",
+   "max_id_training_holin": 0.959
+  },
+  {
+   "id": "ctxmined_NC_004589_SpyM3_1413",
+   "genome": "NC_004589",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_004616_phi12p48",
+   "genome": "NC_004616",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_004617_phi13_46",
+   "genome": "NC_004617",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_004678_ST44AHJD_12",
+   "genome": "NC_004678",
+   "max_id_training_holin": 0.641
+  },
+  {
+   "id": "ctxmined_NC_004681_CJW1_gp31",
+   "genome": "NC_004681",
+   "max_id_training_holin": 0.328
+  },
+  {
+   "id": "ctxmined_NC_004683_Che9cp25",
+   "genome": "NC_004683",
+   "max_id_training_holin": 0.385
+  },
+  {
+   "id": "ctxmined_NC_004745_L-413Cp08",
+   "genome": "NC_004745",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_004746_P335p48",
+   "genome": "NC_004746",
+   "max_id_training_holin": 0.737
+  },
+  {
+   "id": "ctxmined_NC_004820_BC1910",
+   "genome": "NC_004820",
+   "max_id_training_holin": 0.835
+  },
+  {
+   "id": "ctxmined_NC_004821_BC2599",
+   "genome": "NC_004821",
+   "max_id_training_holin": 0.587
+  },
+  {
+   "id": "ctxmined_NC_004996_SM1p55",
+   "genome": "NC_004996",
+   "max_id_training_holin": 0.873
+  },
+  {
+   "id": "ctxmined_NC_005056_AVU75_gp08",
+   "genome": "NC_005056",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_005066_RB49p103",
+   "genome": "NC_005066",
+   "max_id_training_holin": 0.435
+  },
+  {
+   "id": "ctxmined_NC_005069_PY54p60",
+   "genome": "NC_005069",
+   "max_id_training_holin": 0.795
+  },
+  {
+   "id": "ctxmined_NC_005091_Nazgul39",
+   "genome": "NC_005091",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_005260_Aeh1p338",
+   "genome": "NC_005260",
+   "max_id_training_holin": 0.32
+  },
+  {
+   "id": "ctxmined_NC_005262_Bcep22_gp78",
+   "genome": "NC_005262",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_005263_BCPBV1_gp27",
+   "genome": "NC_005263",
+   "max_id_training_holin": 0.364
+  },
+  {
+   "id": "ctxmined_NC_005294_EJ-1p72",
+   "genome": "NC_005294",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_005340_PSP3p09",
+   "genome": "NC_005340",
+   "max_id_training_holin": 0.891
+  },
+  {
+   "id": "ctxmined_NC_005344_Sf6p61",
+   "genome": "NC_005344",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_005354_Ljo_1419",
+   "genome": "NC_005354",
+   "max_id_training_holin": 0.54
+  },
+  {
+   "id": "ctxmined_NC_005355_Ljo_0328",
+   "genome": "NC_005355",
+   "max_id_training_holin": 0.817
+  },
+  {
+   "id": "ctxmined_NC_005356_ST77p20",
+   "genome": "NC_005356",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_005357_bbp3",
+   "genome": "NC_005357",
+   "max_id_training_holin": 0.338
+  },
+  {
+   "id": "ctxmined_NC_005822_phiLC3p47",
+   "genome": "NC_005822",
+   "max_id_training_holin": 0.977
+  },
+  {
+   "id": "ctxmined_NC_005841_ST104p40",
+   "genome": "NC_005841",
+   "max_id_training_holin": 0.91
+  },
+  {
+   "id": "ctxmined_NC_005882_BcepMu21",
+   "genome": "NC_005882",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_005884_PaP2_gp16",
+   "genome": "NC_005884",
+   "max_id_training_holin": 0.33
+  },
+  {
+   "id": "ctxmined_NC_005887_BcepC6B_gp21",
+   "genome": "NC_005887",
+   "max_id_training_holin": 0.383
+  },
+  {
+   "id": "ctxmined_NC_005893_phiAT3gORF17",
+   "genome": "NC_005893",
+   "max_id_training_holin": 0.927
+  },
+  {
+   "id": "ctxmined_NC_006548_B3ORF24",
+   "genome": "NC_006548",
+   "max_id_training_holin": 0.939
+  },
+  {
+   "id": "ctxmined_NC_006552_F116p61",
+   "genome": "NC_006552",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_006565_LP65_gp089",
+   "genome": "NC_006565",
+   "max_id_training_holin": 0.621
+  },
+  {
+   "id": "ctxmined_NC_006936_phiJL1_ORF147",
+   "genome": "NC_006936",
+   "max_id_training_holin": 0.545
+  },
+  {
+   "id": "ctxmined_NC_006938_JL001p89",
+   "genome": "NC_006938",
+   "max_id_training_holin": 0.346
+  },
+  {
+   "id": "ctxmined_NC_006940_BPKS7gp26",
+   "genome": "NC_006940",
+   "max_id_training_holin": 0.333
+  },
+  {
+   "id": "ctxmined_NC_006949_STBEV18gp75",
+   "genome": "NC_006949",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_007019_SPV2972_gp25",
+   "genome": "NC_007019",
+   "max_id_training_holin": 0.934
+  },
+  {
+   "id": "ctxmined_NC_007021_TwortORF176",
+   "genome": "NC_007021",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_007048_ST69ORF028",
+   "genome": "NC_007048",
+   "max_id_training_holin": 0.945
+  },
+  {
+   "id": "ctxmined_NC_007050_ST85ORF032",
+   "genome": "NC_007050",
+   "max_id_training_holin": 0.952
+  },
+  {
+   "id": "ctxmined_NC_007053_ST3AORF035",
+   "genome": "NC_007053",
+   "max_id_training_holin": 0.99
+  },
+  {
+   "id": "ctxmined_NC_007056_EWORF027",
+   "genome": "NC_007056",
+   "max_id_training_holin": 0.921
+  },
+  {
+   "id": "ctxmined_NC_007060_ST55ORF031",
+   "genome": "NC_007060",
+   "max_id_training_holin": 0.966
+  },
+  {
+   "id": "ctxmined_NC_007061_ST29ORF029",
+   "genome": "NC_007061",
+   "max_id_training_holin": 0.972
+  },
+  {
+   "id": "ctxmined_NC_007062_ST52AORF031",
+   "genome": "NC_007062",
+   "max_id_training_holin": 0.938
+  },
+  {
+   "id": "ctxmined_NC_007065_X2ORF026",
+   "genome": "NC_007065",
+   "max_id_training_holin": 0.931
+  },
+  {
+   "id": "ctxmined_NC_007066_G1ORF083",
+   "genome": "NC_007066",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_007145_BPSphi5223_0036",
+   "genome": "NC_007145",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_007291_JK_5",
+   "genome": "NC_007291",
+   "max_id_training_holin": 0.379
+  },
+  {
+   "id": "ctxmined_NC_007457_P9C58_gp16",
+   "genome": "NC_007457",
+   "max_id_training_holin": 0.587
+  },
+  {
+   "id": "ctxmined_NC_007497_BCPBV176_gp59",
+   "genome": "NC_007497",
+   "max_id_training_holin": 0.943
+  },
+  {
+   "id": "ctxmined_NC_007501_LcNu_gp20",
+   "genome": "NC_007501",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_007603_rtp63",
+   "genome": "NC_007603",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_007806_PaP73_gp002",
+   "genome": "NC_007806",
+   "max_id_training_holin": 0.554
+  },
+  {
+   "id": "ctxmined_NC_007807_PP119X_gp16.1",
+   "genome": "NC_007807",
+   "max_id_training_holin": 0.325
+  },
+  {
+   "id": "ctxmined_NC_007902_SGPHI_0034",
+   "genome": "NC_007902",
+   "max_id_training_holin": 0.585
+  },
+  {
+   "id": "ctxmined_NC_007917_CDBPCV119_gp34",
+   "genome": "NC_007917",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_008193_F108p28",
+   "genome": "NC_008193",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_008201_MhaA1p08",
+   "genome": "NC_008201",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_008363_LPPV008_gp21",
+   "genome": "NC_008363",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_008364_Q54_gp33",
+   "genome": "NC_008364",
+   "max_id_training_holin": 0.383
+  },
+  {
+   "id": "ctxmined_NC_008370_LPV712_gp020",
+   "genome": "NC_008370",
+   "max_id_training_holin": 0.991
+  },
+  {
+   "id": "ctxmined_NC_008371_LPJV50_ORF19",
+   "genome": "NC_008371",
+   "max_id_training_holin": 0.983
+  },
+  {
+   "id": "ctxmined_NC_008376_GPGV1_gp34",
+   "genome": "NC_008376",
+   "max_id_training_holin": 0.771
+  },
+  {
+   "id": "ctxmined_NC_008721_B189_gp06",
+   "genome": "NC_008721",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_008722_cn29",
+   "genome": "NC_008722",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_008723_ph27",
+   "genome": "NC_008723",
+   "max_id_training_holin": 0.989
+  },
+  {
+   "id": "ctxmined_NC_008798_phiETA2_gp67",
+   "genome": "NC_008798",
+   "max_id_training_holin": 0.978
+  },
+  {
+   "id": "ctxmined_NC_009014_Era103g48",
+   "genome": "NC_009014",
+   "max_id_training_holin": 0.329
+  },
+  {
+   "id": "ctxmined_NC_009016_VPVV882_gp69",
+   "genome": "NC_009016",
+   "max_id_training_holin": 0.304
+  },
+  {
+   "id": "ctxmined_NC_009018_phi3396_55",
+   "genome": "NC_009018",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_009232_SPSV3_gp54",
+   "genome": "NC_009232",
+   "max_id_training_holin": 0.319
+  },
+  {
+   "id": "ctxmined_NC_009235_BPSphi6442_0025",
+   "genome": "NC_009235",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_009237_BTHphiE255_0051",
+   "genome": "NC_009237",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_009382_RPRSA1_gp13",
+   "genome": "NC_009382",
+   "max_id_training_holin": 0.981
+  },
+  {
+   "id": "ctxmined_NC_009514_PcdtI_gp57",
+   "genome": "NC_009514",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_009540_PTLS_gp68",
+   "genome": "NC_009540",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_009543_XPphiXo411_gp27.1",
+   "genome": "NC_009543",
+   "max_id_training_holin": 0.318
+  },
+  {
+   "id": "ctxmined_NC_009552_GBVE2_p23",
+   "genome": "NC_009552",
+   "max_id_training_holin": 0.659
+  },
+  {
+   "id": "ctxmined_NC_009554_LPLLH_ORF107",
+   "genome": "NC_009554",
+   "max_id_training_holin": 0.676
+  },
+  {
+   "id": "ctxmined_NC_009604_BcepNY3gene25",
+   "genome": "NC_009604",
+   "max_id_training_holin": 0.362
+  },
+  {
+   "id": "ctxmined_NC_009803_P23p107",
+   "genome": "NC_009803",
+   "max_id_training_holin": 0.343
+  },
+  {
+   "id": "ctxmined_NC_009810_LiPA500_gp24",
+   "genome": "NC_009810",
+   "max_id_training_holin": 0.957
+  },
+  {
+   "id": "ctxmined_NC_009812_LiPB025_gp24",
+   "genome": "NC_009812",
+   "max_id_training_holin": 0.561
+  },
+  {
+   "id": "ctxmined_NC_009813_LiPB054_gp32",
+   "genome": "NC_009813",
+   "max_id_training_holin": 0.94
+  },
+  {
+   "id": "ctxmined_NC_009815_LiPA006_gp19",
+   "genome": "NC_009815",
+   "max_id_training_holin": 0.5
+  },
+  {
+   "id": "ctxmined_NC_009817_KSY1p072",
+   "genome": "NC_009817",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_009821_phi1p103",
+   "genome": "NC_009821",
+   "max_id_training_holin": 0.318
+  },
+  {
+   "id": "ctxmined_NC_009875_SAP2_gp11",
+   "genome": "NC_009875",
+   "max_id_training_holin": 0.656
+  },
+  {
+   "id": "ctxmined_NC_009935_PPLKD16_gp44",
+   "genome": "NC_009935",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_010106_phiEcoMGJ1_gp73",
+   "genome": "NC_010106",
+   "max_id_training_holin": 0.973
+  },
+  {
+   "id": "ctxmined_NC_010179_LJ771_053",
+   "genome": "NC_010179",
+   "max_id_training_holin": 0.971
+  },
+  {
+   "id": "ctxmined_NC_010237_pMIN27_46",
+   "genome": "NC_010237",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_010324_phi32_16",
+   "genome": "NC_010324",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_010353_SP858_gp27",
+   "genome": "NC_010353",
+   "max_id_training_holin": 0.861
+  },
+  {
+   "id": "ctxmined_NC_010393_STM1028.2n.Gifsy2",
+   "genome": "NC_010393",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_010808_phiMR25_gp67",
+   "genome": "NC_010808",
+   "max_id_training_holin": 0.966
+  },
+  {
+   "id": "ctxmined_NC_010945_phiPH15_gp53",
+   "genome": "NC_010945",
+   "max_id_training_holin": 0.816
+  },
+  {
+   "id": "ctxmined_NC_011046_bIBB29_gp20",
+   "genome": "NC_011046",
+   "max_id_training_holin": 0.974
+  },
+  {
+   "id": "ctxmined_NC_011104_Lrm1_gp18",
+   "genome": "NC_011104",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_011167_IEBH_gp67",
+   "genome": "NC_011167",
+   "max_id_training_holin": 0.556
+  },
+  {
+   "id": "ctxmined_NC_011216_KS10_gp10",
+   "genome": "NC_011216",
+   "max_id_training_holin": 0.984
+  },
+  {
+   "id": "ctxmined_NC_011373_PAJU2_gp73",
+   "genome": "NC_011373",
+   "max_id_training_holin": 0.391
+  },
+  {
+   "id": "ctxmined_NC_011398_phiCD27_gp33",
+   "genome": "NC_011398",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_011421_SPO1_106",
+   "genome": "NC_011421",
+   "max_id_training_holin": 0.45
+  },
+  {
+   "id": "ctxmined_NC_011551_APSE211",
+   "genome": "NC_011551",
+   "max_id_training_holin": 0.671
+  },
+  {
+   "id": "ctxmined_NC_011614_SauSIPLA88_gp60",
+   "genome": "NC_011614",
+   "max_id_training_holin": 0.924
+  },
+  {
+   "id": "ctxmined_NC_011801_Lv-1_gp17",
+   "genome": "NC_011801",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_012223_AV954_gp62",
+   "genome": "NC_012223",
+   "max_id_training_holin": 0.324
+  },
+  {
+   "id": "ctxmined_NC_012418_PPphikF77_gp48",
+   "genome": "NC_012418",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_012419_EFAP1_gp03",
+   "genome": "NC_012419",
+   "max_id_training_holin": 0.987
+  },
+  {
+   "id": "ctxmined_NC_012530_lb338_phage_126",
+   "genome": "NC_012530",
+   "max_id_training_holin": 0.417
+  },
+  {
+   "id": "ctxmined_NC_012696_EE36P1_gp70",
+   "genome": "NC_012696",
+   "max_id_training_holin": 0.327
+  },
+  {
+   "id": "ctxmined_NC_012740_EpJSE_00107",
+   "genome": "NC_012740",
+   "max_id_training_holin": 0.457
+  },
+  {
+   "id": "ctxmined_NC_012742_phiL7_gp27",
+   "genome": "NC_012742",
+   "max_id_training_holin": 0.306
+  },
+  {
+   "id": "ctxmined_NC_012753_st5093phage_34",
+   "genome": "NC_012753",
+   "max_id_training_holin": 0.875
+  },
+  {
+   "id": "ctxmined_NC_012756_PH10_gp50",
+   "genome": "NC_012756",
+   "max_id_training_holin": 0.6
+  },
+  {
+   "id": "ctxmined_NC_012884_M102_gp18",
+   "genome": "NC_012884",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_013021_PSS2_gp013",
+   "genome": "NC_013021",
+   "max_id_training_holin": 0.342
+  },
+  {
+   "id": "ctxmined_NC_013055_BuPhKS9_gp41",
+   "genome": "NC_013055",
+   "max_id_training_holin": 0.947
+  },
+  {
+   "id": "ctxmined_NC_013152_AVT72_gp21",
+   "genome": "NC_013152",
+   "max_id_training_holin": 0.94
+  },
+  {
+   "id": "ctxmined_NC_013153_FDI55_p21",
+   "genome": "NC_013153",
+   "max_id_training_holin": 0.923
+  },
+  {
+   "id": "ctxmined_NC_013195_StPhP954_gp66",
+   "genome": "NC_013195",
+   "max_id_training_holin": 0.988
+  },
+  {
+   "id": "ctxmined_NC_013598_SP-ALQ13.2_gp23",
+   "genome": "NC_013598",
+   "max_id_training_holin": 0.925
+  },
+  {
+   "id": "ctxmined_NC_013599_Xfas53_gene25",
+   "genome": "NC_013599",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_013600_SoPhSO1_gp55",
+   "genome": "NC_013600",
+   "max_id_training_holin": 0.324
+  },
+  {
+   "id": "ctxmined_NC_013643_EP-phiFL2A_gp60",
+   "genome": "NC_013643",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_013644_EP-phiFL1A_gp54",
+   "genome": "NC_013644",
+   "max_id_training_holin": 0.944
+  },
+  {
+   "id": "ctxmined_NC_013645_SP-Abc2_gp21",
+   "genome": "NC_013645",
+   "max_id_training_holin": 0.925
+  },
+  {
+   "id": "ctxmined_NC_013648_EP-phiFL3A_gp62",
+   "genome": "NC_013648",
+   "max_id_training_holin": 0.6
+  },
+  {
+   "id": "ctxmined_NC_013696_PHIEF11_0025",
+   "genome": "NC_013696",
+   "max_id_training_holin": 0.955
+  },
+  {
+   "id": "ctxmined_NC_014457_phiCTP1_gp28",
+   "genome": "NC_014457",
+   "max_id_training_holin": 0.574
+  },
+  {
+   "id": "ctxmined_NC_015252_BrPhNF5_gp23",
+   "genome": "NC_015252",
+   "max_id_training_holin": 0.593
+  },
+  {
+   "id": "ctxmined_NC_015254_BrPhBL3_gp24",
+   "genome": "NC_015254",
+   "max_id_training_holin": 0.611
+  },
+  {
+   "id": "ctxmined_NC_015266_BuPhKL3_gp34",
+   "genome": "NC_015266",
+   "max_id_training_holin": 0.978
+  },
+  {
+   "id": "ctxmined_NC_015269_SPC35_0040",
+   "genome": "NC_015269",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_015453_PaP-PAS50_gp19",
+   "genome": "NC_015453",
+   "max_id_training_holin": 0.308
+  },
+  {
+   "id": "ctxmined_NC_015454_PaP-PAD20_gp19",
+   "genome": "NC_015454",
+   "max_id_training_holin": 0.307
+  },
+  {
+   "id": "ctxmined_NC_015456_Shfl1p69",
+   "genome": "NC_015456",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_015568_phiCD38-2_gp22",
+   "genome": "NC_015568",
+   "max_id_training_holin": 0.345
+  },
+  {
+   "id": "ctxmined_NC_015933_gp62",
+   "genome": "NC_015933",
+   "max_id_training_holin": 0.378
+  },
+  {
+   "id": "ctxmined_NC_016161_clP1_048",
+   "genome": "NC_016161",
+   "max_id_training_holin": 0.404
+  },
+  {
+   "id": "ctxmined_NC_016565_StPhS24-1_gp12",
+   "genome": "NC_016565",
+   "max_id_training_holin": 0.664
+  },
+  {
+   "id": "ctxmined_NC_016566_EP23p53",
+   "genome": "NC_016566",
+   "max_id_training_holin": 0.311
+  },
+  {
+   "id": "ctxmined_NC_016763_SaPhSE2_gp21",
+   "genome": "NC_016763",
+   "max_id_training_holin": 0.404
+  },
+  {
+   "id": "ctxmined_NC_016770_B124-14_018",
+   "genome": "NC_016770",
+   "max_id_training_holin": 0.324
+  },
+  {
+   "id": "ctxmined_NC_017688_AVV53_gp22",
+   "genome": "NC_017688",
+   "max_id_training_holin": 0.949
+  },
+  {
+   "id": "ctxmined_NC_017696_LLAPH_532_0022",
+   "genome": "NC_017696",
+   "max_id_training_holin": 0.923
+  },
+  {
+   "id": "ctxmined_NC_017698_LLAPH_465_0022",
+   "genome": "NC_017698",
+   "max_id_training_holin": 0.915
+  },
+  {
+   "id": "ctxmined_NC_017732_EF62_phi0031",
+   "genome": "NC_017732",
+   "max_id_training_holin": 0.56
+  },
+  {
+   "id": "ctxmined_NC_017864_KAK25_0002",
+   "genome": "NC_017864",
+   "max_id_training_holin": 0.554
+  },
+  {
+   "id": "ctxmined_NC_017969_A318_gp042",
+   "genome": "NC_017969",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_017978_A324_gp20",
+   "genome": "NC_017978",
+   "max_id_training_holin": 0.839
+  },
+  {
+   "id": "ctxmined_NC_017981_DIBBI_gp77",
+   "genome": "NC_017981",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_017984_A323_gp56",
+   "genome": "NC_017984",
+   "max_id_training_holin": 0.316
+  },
+  {
+   "id": "ctxmined_NC_018088_COPG_00043",
+   "genome": "NC_018088",
+   "max_id_training_holin": 0.329
+  },
+  {
+   "id": "ctxmined_NC_018273_B616_gp39",
+   "genome": "NC_018273",
+   "max_id_training_holin": 0.343
+  },
+  {
+   "id": "ctxmined_NC_018278_B612_gp01",
+   "genome": "NC_018278",
+   "max_id_training_holin": 0.418
+  },
+  {
+   "id": "ctxmined_NC_018285_Ssal_phage00006",
+   "genome": "NC_018285",
+   "max_id_training_holin": 0.817
+  },
+  {
+   "id": "ctxmined_NC_018454_B887_gp23",
+   "genome": "NC_018454",
+   "max_id_training_holin": 0.377
+  },
+  {
+   "id": "ctxmined_NC_018831_P70_005",
+   "genome": "NC_018831",
+   "max_id_training_holin": 0.529
+  },
+  {
+   "id": "ctxmined_NC_018836_phiHau3_27",
+   "genome": "NC_018836",
+   "max_id_training_holin": 0.375
+  },
+  {
+   "id": "ctxmined_NC_018837_My1_039",
+   "genome": "NC_018837",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_018845_D289_gp19",
+   "genome": "NC_018845",
+   "max_id_training_holin": 0.301
+  },
+  {
+   "id": "ctxmined_NC_018846_D300_gp48",
+   "genome": "NC_018846",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_018859_ECBP2_0014",
+   "genome": "NC_018859",
+   "max_id_training_holin": 0.986
+  },
+  {
+   "id": "ctxmined_NC_019404_D861_gp13",
+   "genome": "NC_019404",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_019418_phiNJ2_004",
+   "genome": "NC_019418",
+   "max_id_training_holin": 0.924
+  },
+  {
+   "id": "ctxmined_NC_019422_D864_gp26",
+   "genome": "NC_019422",
+   "max_id_training_holin": 0.813
+  },
+  {
+   "id": "ctxmined_NC_019423_IME11_4",
+   "genome": "NC_019423",
+   "max_id_training_holin": 0.375
+  },
+  {
+   "id": "ctxmined_NC_019442_F366_gp42",
+   "genome": "NC_019442",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_019449_F368_gp48",
+   "genome": "NC_019449",
+   "max_id_training_holin": 0.452
+  },
+  {
+   "id": "ctxmined_NC_019454_F370_gp54",
+   "genome": "NC_019454",
+   "max_id_training_holin": 0.425
+  },
+  {
+   "id": "ctxmined_NC_019456_F367_gp28",
+   "genome": "NC_019456",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_019486_F374_gp24",
+   "genome": "NC_019486",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_019490_F372_gp03",
+   "genome": "NC_019490",
+   "max_id_training_holin": 0.344
+  },
+  {
+   "id": "ctxmined_NC_019501_F415_gp24",
+   "genome": "NC_019501",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_019504_F411_gp87",
+   "genome": "NC_019504",
+   "max_id_training_holin": 0.708
+  },
+  {
+   "id": "ctxmined_NC_019511_F422_gp170",
+   "genome": "NC_019511",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_019514_F410_gp092",
+   "genome": "NC_019514",
+   "max_id_training_holin": 0.351
+  },
+  {
+   "id": "ctxmined_NC_019522_F396_gp33",
+   "genome": "NC_019522",
+   "max_id_training_holin": 0.957
+  },
+  {
+   "id": "ctxmined_NC_019527_F394_gp05",
+   "genome": "NC_019527",
+   "max_id_training_holin": 0.31
+  },
+  {
+   "id": "ctxmined_NC_019529_F404_gp082",
+   "genome": "NC_019529",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_019539_F491_gp51",
+   "genome": "NC_019539",
+   "max_id_training_holin": 0.317
+  },
+  {
+   "id": "ctxmined_NC_019540_F490_gp05",
+   "genome": "NC_019540",
+   "max_id_training_holin": 0.311
+  },
+  {
+   "id": "ctxmined_NC_019541_BPABA456_00500",
+   "genome": "NC_019541",
+   "max_id_training_holin": 0.4
+  },
+  {
+   "id": "ctxmined_NC_019544_F494_gp19",
+   "genome": "NC_019544",
+   "max_id_training_holin": 0.651
+  },
+  {
+   "id": "ctxmined_NC_019545_F482_gp66",
+   "genome": "NC_019545",
+   "max_id_training_holin": 0.418
+  },
+  {
+   "id": "ctxmined_NC_019708_F851_gp56",
+   "genome": "NC_019708",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_019713_F862_gp052",
+   "genome": "NC_019713",
+   "max_id_training_holin": 0.342
+  },
+  {
+   "id": "ctxmined_NC_019714_F846_gp55",
+   "genome": "NC_019714",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_019718_F856_gp62",
+   "genome": "NC_019718",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_019723_F847_gp63",
+   "genome": "NC_019723",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_019724_F843_gp56",
+   "genome": "NC_019724",
+   "max_id_training_holin": 0.315
+  },
+  {
+   "id": "ctxmined_NC_019725_B508_00375",
+   "genome": "NC_019725",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_019726_F867_gp120",
+   "genome": "NC_019726",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_019782_BN107_000034",
+   "genome": "NC_019782",
+   "max_id_training_holin": 0.41
+  },
+  {
+   "id": "ctxmined_NC_019915_G174_gp62",
+   "genome": "NC_019915",
+   "max_id_training_holin": 0.587
+  },
+  {
+   "id": "ctxmined_NC_019916_G168_gp21",
+   "genome": "NC_019916",
+   "max_id_training_holin": 0.394
+  },
+  {
+   "id": "ctxmined_NC_019919_BN79_034",
+   "genome": "NC_019919",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_019921_G183_gp37",
+   "genome": "NC_019921",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_019926_G172_gp49",
+   "genome": "NC_019926",
+   "max_id_training_holin": 0.329
+  },
+  {
+   "id": "ctxmined_NC_020197_H316_gp52",
+   "genome": "NC_020197",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_020477_I907_gp30",
+   "genome": "NC_020477",
+   "max_id_training_holin": 0.351
+  },
+  {
+   "id": "ctxmined_NC_020478_I905_gp31",
+   "genome": "NC_020478",
+   "max_id_training_holin": 0.353
+  },
+  {
+   "id": "ctxmined_NC_020480_FINN_29",
+   "genome": "NC_020480",
+   "max_id_training_holin": 0.333
+  },
+  {
+   "id": "ctxmined_NC_020489_I920_gp26",
+   "genome": "NC_020489",
+   "max_id_training_holin": 0.764
+  },
+  {
+   "id": "ctxmined_NC_020490_I921_gp71",
+   "genome": "NC_020490",
+   "max_id_training_holin": 0.68
+  },
+  {
+   "id": "ctxmined_NC_020870_phiLN04_038",
+   "genome": "NC_020870",
+   "max_id_training_holin": 0.333
+  },
+  {
+   "id": "ctxmined_NC_021061_K768_gp25",
+   "genome": "NC_021061",
+   "max_id_training_holin": 0.4
+  },
+  {
+   "id": "ctxmined_NC_021190_ABF05_gp57",
+   "genome": "NC_021190",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_021302_PBI_FISHBURNE_25",
+   "genome": "NC_021302",
+   "max_id_training_holin": 0.36
+  },
+  {
+   "id": "ctxmined_NC_021323_M191_gp58",
+   "genome": "NC_021323",
+   "max_id_training_holin": 0.917
+  },
+  {
+   "id": "ctxmined_NC_021331_pSf1_0011",
+   "genome": "NC_021331",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_021332_M174_gp65",
+   "genome": "NC_021332",
+   "max_id_training_holin": 0.903
+  },
+  {
+   "id": "ctxmined_NC_021334_M184_gp52",
+   "genome": "NC_021334",
+   "max_id_training_holin": 0.987
+  },
+  {
+   "id": "ctxmined_NC_021343_M190_gp25",
+   "genome": "NC_021343",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_021563_Eta_0046",
+   "genome": "NC_021563",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_021772_SP058_00350",
+   "genome": "NC_021772",
+   "max_id_training_holin": 0.568
+  },
+  {
+   "id": "ctxmined_NC_021774_N272_gp08",
+   "genome": "NC_021774",
+   "max_id_training_holin": 0.902
+  },
+  {
+   "id": "ctxmined_NC_021775_N275_gp23",
+   "genome": "NC_021775",
+   "max_id_training_holin": 0.367
+  },
+  {
+   "id": "ctxmined_NC_021777_N271_gp63",
+   "genome": "NC_021777",
+   "max_id_training_holin": 0.313
+  },
+  {
+   "id": "ctxmined_NC_021784_N352_gp03",
+   "genome": "NC_021784",
+   "max_id_training_holin": 0.649
+  },
+  {
+   "id": "ctxmined_NC_021785_LP110_065",
+   "genome": "NC_021785",
+   "max_id_training_holin": 0.529
+  },
+  {
+   "id": "ctxmined_NC_021790_Phi18:1_gp63",
+   "genome": "NC_021790",
+   "max_id_training_holin": 0.397
+  },
+  {
+   "id": "ctxmined_NC_021791_Phi12:1_gp62",
+   "genome": "NC_021791",
+   "max_id_training_holin": 0.397
+  },
+  {
+   "id": "ctxmined_NC_021795_Phi17:1_gp63",
+   "genome": "NC_021795",
+   "max_id_training_holin": 0.397
+  },
+  {
+   "id": "ctxmined_NC_021800_Phi46:1_gp11",
+   "genome": "NC_021800",
+   "max_id_training_holin": 0.372
+  },
+  {
+   "id": "ctxmined_NC_021801_SA12_049",
+   "genome": "NC_021801",
+   "max_id_training_holin": 0.959
+  },
+  {
+   "id": "ctxmined_NC_021852_HYO76_gp20",
+   "genome": "NC_021852",
+   "max_id_training_holin": 0.923
+  },
+  {
+   "id": "ctxmined_NC_021853_HYO71_gp21",
+   "genome": "NC_021853",
+   "max_id_training_holin": 0.957
+  },
+  {
+   "id": "ctxmined_NC_021854_N390_gp20",
+   "genome": "NC_021854",
+   "max_id_training_holin": 0.923
+  },
+  {
+   "id": "ctxmined_NC_021855_N388_gp21",
+   "genome": "NC_021855",
+   "max_id_training_holin": 0.923
+  },
+  {
+   "id": "ctxmined_NC_021857_SfII_51",
+   "genome": "NC_021857",
+   "max_id_training_holin": 0.991
+  },
+  {
+   "id": "ctxmined_NC_021860_N389_gp20",
+   "genome": "NC_021860",
+   "max_id_training_holin": 0.949
+  },
+  {
+   "id": "ctxmined_NC_021861_N391_gp53",
+   "genome": "NC_021861",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_021865_IBBPl23_20",
+   "genome": "NC_021865",
+   "max_id_training_holin": 0.959
+  },
+  {
+   "id": "ctxmined_NC_022066_N860_gp044",
+   "genome": "NC_022066",
+   "max_id_training_holin": 0.324
+  },
+  {
+   "id": "ctxmined_NC_022069_N850_gp036",
+   "genome": "NC_022069",
+   "max_id_training_holin": 0.317
+  },
+  {
+   "id": "ctxmined_NC_022338_P764_gp19",
+   "genome": "NC_022338",
+   "max_id_training_holin": 0.309
+  },
+  {
+   "id": "ctxmined_NC_022749_V416_gp50",
+   "genome": "NC_022749",
+   "max_id_training_holin": 0.981
+  },
+  {
+   "id": "ctxmined_NC_022756_J1_22",
+   "genome": "NC_022756",
+   "max_id_training_holin": 0.388
+  },
+  {
+   "id": "ctxmined_NC_022762_phiLdb_00057",
+   "genome": "NC_022762",
+   "max_id_training_holin": 0.438
+  },
+  {
+   "id": "ctxmined_NC_022775_phiJB_00006",
+   "genome": "NC_022775",
+   "max_id_training_holin": 0.618
+  },
+  {
+   "id": "ctxmined_NC_022776_V442_gp47",
+   "genome": "NC_022776",
+   "max_id_training_holin": 0.938
+  },
+  {
+   "id": "ctxmined_NC_022791_V504_gp47",
+   "genome": "NC_022791",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_022914_phiRS7_0024",
+   "genome": "NC_022914",
+   "max_id_training_holin": 0.759
+  },
+  {
+   "id": "ctxmined_NC_022980_DAVIES_35",
+   "genome": "NC_022980",
+   "max_id_training_holin": 0.912
+  },
+  {
+   "id": "ctxmined_NC_022989_X813_gp49",
+   "genome": "NC_022989",
+   "max_id_training_holin": 0.458
+  },
+  {
+   "id": "ctxmined_NC_023550_GRCS_0012",
+   "genome": "NC_023550",
+   "max_id_training_holin": 0.656
+  },
+  {
+   "id": "ctxmined_NC_023551_CH14_gp43",
+   "genome": "NC_023551",
+   "max_id_training_holin": 0.961
+  },
+  {
+   "id": "ctxmined_NC_023573_CF75_gp052",
+   "genome": "NC_023573",
+   "max_id_training_holin": 0.994
+  },
+  {
+   "id": "ctxmined_NC_023579_Ea92_81",
+   "genome": "NC_023579",
+   "max_id_training_holin": 0.333
+  },
+  {
+   "id": "ctxmined_NC_023595_CF83_gp24",
+   "genome": "NC_023595",
+   "max_id_training_holin": 0.987
+  },
+  {
+   "id": "ctxmined_NC_023599_CH06_gp21",
+   "genome": "NC_023599",
+   "max_id_training_holin": 0.565
+  },
+  {
+   "id": "ctxmined_NC_023608_CF94_gp50",
+   "genome": "NC_023608",
+   "max_id_training_holin": 0.367
+  },
+  {
+   "id": "ctxmined_NC_023612_GBK2_21",
+   "genome": "NC_023612",
+   "max_id_training_holin": 0.407
+  },
+  {
+   "id": "ctxmined_NC_023614_P2559Y_0021",
+   "genome": "NC_023614",
+   "max_id_training_holin": 0.353
+  },
+  {
+   "id": "ctxmined_NC_023692_PBI_BIGNUZ_25",
+   "genome": "NC_023692",
+   "max_id_training_holin": 0.442
+  },
+  {
+   "id": "ctxmined_NC_023697_CM06_gp25",
+   "genome": "NC_023697",
+   "max_id_training_holin": 0.38
+  },
+  {
+   "id": "ctxmined_NC_023706_CL85_gp026",
+   "genome": "NC_023706",
+   "max_id_training_holin": 0.351
+  },
+  {
+   "id": "ctxmined_NC_023734_CJ96_gp21",
+   "genome": "NC_023734",
+   "max_id_training_holin": 0.515
+  },
+  {
+   "id": "ctxmined_NC_023738_CL87_gp040",
+   "genome": "NC_023738",
+   "max_id_training_holin": 0.324
+  },
+  {
+   "id": "ctxmined_NC_023743_CJ99_gp09",
+   "genome": "NC_023743",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_023863_CHOED_072",
+   "genome": "NC_023863",
+   "max_id_training_holin": 0.353
+  },
+  {
+   "id": "ctxmined_NC_023865_PM1_062",
+   "genome": "NC_023865",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_024139_FG39_gp042",
+   "genome": "NC_024139",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_024142_EpBp4_0016",
+   "genome": "NC_024142",
+   "max_id_training_holin": 0.396
+  },
+  {
+   "id": "ctxmined_NC_024144_FG38_gp33",
+   "genome": "NC_024144",
+   "max_id_training_holin": 0.813
+  },
+  {
+   "id": "ctxmined_NC_024204_FP71_gp51",
+   "genome": "NC_024204",
+   "max_id_training_holin": 0.337
+  },
+  {
+   "id": "ctxmined_NC_024206_YP_009035519.1",
+   "genome": "NC_024206",
+   "max_id_training_holin": 0.685
+  },
+  {
+   "id": "ctxmined_NC_024210_e41c_0051",
+   "genome": "NC_024210",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_024356_IME_023",
+   "genome": "NC_024356",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_024367_HL13_gp09",
+   "genome": "NC_024367",
+   "max_id_training_holin": 0.316
+  },
+  {
+   "id": "ctxmined_NC_024378_HL53_gp34",
+   "genome": "NC_024378",
+   "max_id_training_holin": 0.333
+  },
+  {
+   "id": "ctxmined_NC_024381_HL17_gp01",
+   "genome": "NC_024381",
+   "max_id_training_holin": 0.578
+  },
+  {
+   "id": "ctxmined_NC_024384_LP030-3_048",
+   "genome": "NC_024384",
+   "max_id_training_holin": 0.5
+  },
+  {
+   "id": "ctxmined_NC_024386_HL61_gp37",
+   "genome": "NC_024386",
+   "max_id_training_holin": 0.34
+  },
+  {
+   "id": "ctxmined_NC_024387_LP101_020",
+   "genome": "NC_024387",
+   "max_id_training_holin": 0.931
+  },
+  {
+   "id": "ctxmined_NC_024388_HL52_gp34",
+   "genome": "NC_024388",
+   "max_id_training_holin": 0.343
+  },
+  {
+   "id": "ctxmined_NC_024391_HL47_gp61",
+   "genome": "NC_024391",
+   "max_id_training_holin": 0.931
+  },
+  {
+   "id": "ctxmined_NC_024783_LD29_gp57",
+   "genome": "NC_024783",
+   "max_id_training_holin": 0.316
+  },
+  {
+   "id": "ctxmined_NC_024790_LD35_gp69",
+   "genome": "NC_024790",
+   "max_id_training_holin": 0.359
+  },
+  {
+   "id": "ctxmined_NC_025115_MA18_gp14",
+   "genome": "NC_025115",
+   "max_id_training_holin": 0.952
+  },
+  {
+   "id": "ctxmined_NC_025415_LDB25A_049",
+   "genome": "NC_025415",
+   "max_id_training_holin": 0.411
+  },
+  {
+   "id": "ctxmined_NC_025420_LDB17_048",
+   "genome": "NC_025420",
+   "max_id_training_holin": 0.438
+  },
+  {
+   "id": "ctxmined_NC_025423_OZ73_gp043",
+   "genome": "NC_025423",
+   "max_id_training_holin": 0.33
+  },
+  {
+   "id": "ctxmined_NC_025424_Waukesha92_50",
+   "genome": "NC_025424",
+   "max_id_training_holin": 0.947
+  },
+  {
+   "id": "ctxmined_NC_025425_BN201_0104",
+   "genome": "NC_025425",
+   "max_id_training_holin": 0.457
+  },
+  {
+   "id": "ctxmined_NC_025430_ep3_0023",
+   "genome": "NC_025430",
+   "max_id_training_holin": 0.369
+  },
+  {
+   "id": "ctxmined_NC_025434_PI30_gp40",
+   "genome": "NC_025434",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_025450_phD2B_0045",
+   "genome": "NC_025450",
+   "max_id_training_holin": 0.312
+  },
+  {
+   "id": "ctxmined_NC_025453_PI32_gp54",
+   "genome": "NC_025453",
+   "max_id_training_holin": 0.62
+  },
+  {
+   "id": "ctxmined_NC_025460_PI31_gp65",
+   "genome": "NC_025460",
+   "max_id_training_holin": 0.99
+  },
+  {
+   "id": "ctxmined_NC_025467_vB_Efae230P-4.9",
+   "genome": "NC_025467",
+   "max_id_training_holin": 0.985
+  },
+  {
+   "id": "ctxmined_NC_026010_pSf2_04",
+   "genome": "NC_026010",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_026014_SF19_gp30",
+   "genome": "NC_026014",
+   "max_id_training_holin": 0.916
+  },
+  {
+   "id": "ctxmined_NC_026016_SF20_gp05",
+   "genome": "NC_026016",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_026017_LSPA1_52",
+   "genome": "NC_026017",
+   "max_id_training_holin": 0.323
+  },
+  {
+   "id": "ctxmined_NC_026590_VC46_gp031",
+   "genome": "NC_026590",
+   "max_id_training_holin": 0.333
+  },
+  {
+   "id": "ctxmined_NC_026594_VC52_gp73",
+   "genome": "NC_026594",
+   "max_id_training_holin": 0.326
+  },
+  {
+   "id": "ctxmined_NC_026602_VC53_gp49",
+   "genome": "NC_026602",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_026605_MALITHI_25",
+   "genome": "NC_026605",
+   "max_id_training_holin": 0.36
+  },
+  {
+   "id": "ctxmined_NC_027125_ABG42_gp15",
+   "genome": "NC_027125",
+   "max_id_training_holin": 0.348
+  },
+  {
+   "id": "ctxmined_NC_027297_CPT_Stitch40",
+   "genome": "NC_027297",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_027339_ACQ56_gp66",
+   "genome": "NC_027339",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_027342_ACQ55_gp43",
+   "genome": "NC_027342",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_027348_RG2014_081",
+   "genome": "NC_027348",
+   "max_id_training_holin": 0.324
+  },
+  {
+   "id": "ctxmined_NC_027350_ACQ45_gp38",
+   "genome": "NC_027350",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_027356_ACQ32_gp036",
+   "genome": "NC_027356",
+   "max_id_training_holin": 0.984
+  },
+  {
+   "id": "ctxmined_NC_027358_ACQ47_gp40",
+   "genome": "NC_027358",
+   "max_id_training_holin": 0.35
+  },
+  {
+   "id": "ctxmined_NC_027372_CPT_Pascal21",
+   "genome": "NC_027372",
+   "max_id_training_holin": 0.5
+  },
+  {
+   "id": "ctxmined_NC_027377_ACQ48_gp39",
+   "genome": "NC_027377",
+   "max_id_training_holin": 0.324
+  },
+  {
+   "id": "ctxmined_NC_027381_ACQ44_gp70",
+   "genome": "NC_027381",
+   "max_id_training_holin": 0.5
+  },
+  {
+   "id": "ctxmined_NC_027383_EpYD_46",
+   "genome": "NC_027383",
+   "max_id_training_holin": 0.338
+  },
+  {
+   "id": "ctxmined_NC_027386_ACQ67_gp19",
+   "genome": "NC_027386",
+   "max_id_training_holin": 0.32
+  },
+  {
+   "id": "ctxmined_NC_027396_ACQ35_gp19",
+   "genome": "NC_027396",
+   "max_id_training_holin": 0.976
+  },
+  {
+   "id": "ctxmined_NC_027622_AFL91_gp19",
+   "genome": "NC_027622",
+   "max_id_training_holin": 0.327
+  },
+  {
+   "id": "ctxmined_NC_027623_SEA_PIRATE_19",
+   "genome": "NC_027623",
+   "max_id_training_holin": 0.317
+  },
+  {
+   "id": "ctxmined_NC_027980_HOQ86_gp60",
+   "genome": "NC_027980",
+   "max_id_training_holin": 0.653
+  },
+  {
+   "id": "ctxmined_NC_027982_APL49_gp25",
+   "genome": "NC_027982",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_027988_APL39_gp16",
+   "genome": "NC_027988",
+   "max_id_training_holin": 0.396
+  },
+  {
+   "id": "ctxmined_NC_027990_APL41_gp07",
+   "genome": "NC_027990",
+   "max_id_training_holin": 0.919
+  },
+  {
+   "id": "ctxmined_NC_027993_APL43_gp49",
+   "genome": "NC_027993",
+   "max_id_training_holin": 0.354
+  },
+  {
+   "id": "ctxmined_NC_027994_APL42_gp47",
+   "genome": "NC_027994",
+   "max_id_training_holin": 0.369
+  },
+  {
+   "id": "ctxmined_NC_028449_AS349_gp78",
+   "genome": "NC_028449",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_028666_AU157_gp15",
+   "genome": "NC_028666",
+   "max_id_training_holin": 0.576
+  },
+  {
+   "id": "ctxmined_NC_028671_AU086_gp24",
+   "genome": "NC_028671",
+   "max_id_training_holin": 0.985
+  },
+  {
+   "id": "ctxmined_NC_028692_SEA_DECURRO_15",
+   "genome": "NC_028692",
+   "max_id_training_holin": 0.316
+  },
+  {
+   "id": "ctxmined_NC_028693_AU087_gp19",
+   "genome": "NC_028693",
+   "max_id_training_holin": 0.985
+  },
+  {
+   "id": "ctxmined_NC_028695_ABY59_0200007",
+   "genome": "NC_028695",
+   "max_id_training_holin": 0.327
+  },
+  {
+   "id": "ctxmined_NC_028698_TZ45_gp46",
+   "genome": "NC_028698",
+   "max_id_training_holin": 0.404
+  },
+  {
+   "id": "ctxmined_NC_028701_SEN5_8",
+   "genome": "NC_028701",
+   "max_id_training_holin": 0.964
+  },
+  {
+   "id": "ctxmined_NC_028748_BMBtpLA_22",
+   "genome": "NC_028748",
+   "max_id_training_holin": 0.861
+  },
+  {
+   "id": "ctxmined_NC_028749_AVT09_gp058",
+   "genome": "NC_028749",
+   "max_id_training_holin": 0.31
+  },
+  {
+   "id": "ctxmined_NC_028754_AVR77_gp042",
+   "genome": "NC_028754",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_028760_AVT39_gp59",
+   "genome": "NC_028760",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_028765_AVU41_gp058",
+   "genome": "NC_028765",
+   "max_id_training_holin": 0.988
+  },
+  {
+   "id": "ctxmined_NC_028767_VEGAS_20",
+   "genome": "NC_028767",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_028770_AVV52_gp34",
+   "genome": "NC_028770",
+   "max_id_training_holin": 0.326
+  },
+  {
+   "id": "ctxmined_NC_028774_AVT24_gp40",
+   "genome": "NC_028774",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_028777_CPT_Stills55",
+   "genome": "NC_028777",
+   "max_id_training_holin": 0.324
+  },
+  {
+   "id": "ctxmined_NC_028783_iLp84_22",
+   "genome": "NC_028783",
+   "max_id_training_holin": 0.942
+  },
+  {
+   "id": "ctxmined_NC_028786_AVV16_gp55",
+   "genome": "NC_028786",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_028805_AVV11_gp136",
+   "genome": "NC_028805",
+   "max_id_training_holin": 0.325
+  },
+  {
+   "id": "ctxmined_NC_028821_AVU83_gp02",
+   "genome": "NC_028821",
+   "max_id_training_holin": 0.57
+  },
+  {
+   "id": "ctxmined_NC_028826_AVU90_gp32",
+   "genome": "NC_028826",
+   "max_id_training_holin": 0.978
+  },
+  {
+   "id": "ctxmined_NC_028834_AVV27_gp32",
+   "genome": "NC_028834",
+   "max_id_training_holin": 0.31
+  },
+  {
+   "id": "ctxmined_NC_028835_CL2_27",
+   "genome": "NC_028835",
+   "max_id_training_holin": 0.974
+  },
+  {
+   "id": "ctxmined_NC_028836_AVU26_gp50",
+   "genome": "NC_028836",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_028838_PHICD506_20026",
+   "genome": "NC_028838",
+   "max_id_training_holin": 0.929
+  },
+  {
+   "id": "ctxmined_NC_028841_AVV24_gp28",
+   "genome": "NC_028841",
+   "max_id_training_holin": 0.937
+  },
+  {
+   "id": "ctxmined_NC_028853_AVV64_gp54",
+   "genome": "NC_028853",
+   "max_id_training_holin": 0.392
+  },
+  {
+   "id": "ctxmined_NC_028856_CPT_Stahl57",
+   "genome": "NC_028856",
+   "max_id_training_holin": 0.354
+  },
+  {
+   "id": "ctxmined_NC_028862_AVU17_gp23",
+   "genome": "NC_028862",
+   "max_id_training_holin": 0.945
+  },
+  {
+   "id": "ctxmined_NC_028871_AVV22_gp23",
+   "genome": "NC_028871",
+   "max_id_training_holin": 0.5
+  },
+  {
+   "id": "ctxmined_NC_028879_AVV50_gp02",
+   "genome": "NC_028879",
+   "max_id_training_holin": 0.507
+  },
+  {
+   "id": "ctxmined_NC_028886_XO26_0022",
+   "genome": "NC_028886",
+   "max_id_training_holin": 0.462
+  },
+  {
+   "id": "ctxmined_NC_028888_CL1_26",
+   "genome": "NC_028888",
+   "max_id_training_holin": 0.967
+  },
+  {
+   "id": "ctxmined_NC_028892_AVT22_gp25",
+   "genome": "NC_028892",
+   "max_id_training_holin": 0.365
+  },
+  {
+   "id": "ctxmined_NC_028895_AVV29_gp046",
+   "genome": "NC_028895",
+   "max_id_training_holin": 0.982
+  },
+  {
+   "id": "ctxmined_NC_028897_AVV06_gp05",
+   "genome": "NC_028897",
+   "max_id_training_holin": 0.426
+  },
+  {
+   "id": "ctxmined_NC_028900_AVT80_gp21",
+   "genome": "NC_028900",
+   "max_id_training_holin": 0.949
+  },
+  {
+   "id": "ctxmined_NC_028903_AVV18_gp032",
+   "genome": "NC_028903",
+   "max_id_training_holin": 0.986
+  },
+  {
+   "id": "ctxmined_NC_028904_AVT29_gp26",
+   "genome": "NC_028904",
+   "max_id_training_holin": 0.354
+  },
+  {
+   "id": "ctxmined_NC_028905_PHICD111_20023",
+   "genome": "NC_028905",
+   "max_id_training_holin": 0.369
+  },
+  {
+   "id": "ctxmined_NC_028913_AVT76_gp65",
+   "genome": "NC_028913",
+   "max_id_training_holin": 0.91
+  },
+  {
+   "id": "ctxmined_NC_028915_AVU29_gp65",
+   "genome": "NC_028915",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_028930_TRIPP_20",
+   "genome": "NC_028930",
+   "max_id_training_holin": 0.659
+  },
+  {
+   "id": "ctxmined_NC_028951_PHICD48101_20026",
+   "genome": "NC_028951",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_028962_AVU40_gp195",
+   "genome": "NC_028962",
+   "max_id_training_holin": 0.48
+  },
+  {
+   "id": "ctxmined_NC_028969_AVV10_gp039",
+   "genome": "NC_028969",
+   "max_id_training_holin": 0.38
+  },
+  {
+   "id": "ctxmined_NC_028976_AVT27_gp26",
+   "genome": "NC_028976",
+   "max_id_training_holin": 0.395
+  },
+  {
+   "id": "ctxmined_NC_028982_AVV47_gp179",
+   "genome": "NC_028982",
+   "max_id_training_holin": 0.33
+  },
+  {
+   "id": "ctxmined_NC_028990_AVT93_gp20",
+   "genome": "NC_028990",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_028991_phiCT453A_56",
+   "genome": "NC_028991",
+   "max_id_training_holin": 0.583
+  },
+  {
+   "id": "ctxmined_NC_028996_AVU44_gp38",
+   "genome": "NC_028996",
+   "max_id_training_holin": 0.835
+  },
+  {
+   "id": "ctxmined_NC_029001_AVU69_gp24",
+   "genome": "NC_029001",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_029003_SEN1_9",
+   "genome": "NC_029003",
+   "max_id_training_holin": 0.923
+  },
+  {
+   "id": "ctxmined_NC_029004_phiCT453B_56",
+   "genome": "NC_029004",
+   "max_id_training_holin": 0.583
+  },
+  {
+   "id": "ctxmined_NC_029005_AVT91_p34",
+   "genome": "NC_029005",
+   "max_id_training_holin": 0.426
+  },
+  {
+   "id": "ctxmined_NC_029006_phiCT19406C_55",
+   "genome": "NC_029006",
+   "max_id_training_holin": 0.711
+  },
+  {
+   "id": "ctxmined_NC_029008_XO28_0019",
+   "genome": "NC_029008",
+   "max_id_training_holin": 0.565
+  },
+  {
+   "id": "ctxmined_NC_029019_AVU20_gp02",
+   "genome": "NC_029019",
+   "max_id_training_holin": 0.554
+  },
+  {
+   "id": "ctxmined_NC_029022_phiCT9441A_73",
+   "genome": "NC_029022",
+   "max_id_training_holin": 0.72
+  },
+  {
+   "id": "ctxmined_NC_029024_AVT71_gp25",
+   "genome": "NC_029024",
+   "max_id_training_holin": 0.556
+  },
+  {
+   "id": "ctxmined_NC_029030_AVT41_gp18",
+   "genome": "NC_029030",
+   "max_id_training_holin": 0.897
+  },
+  {
+   "id": "ctxmined_NC_029058_AXJ15_gp112",
+   "genome": "NC_029058",
+   "max_id_training_holin": 0.407
+  },
+  {
+   "id": "ctxmined_NC_029068_AXJ17_gp23",
+   "genome": "NC_029068",
+   "max_id_training_holin": 0.559
+  },
+  {
+   "id": "ctxmined_NC_029071_SP36_80",
+   "genome": "NC_029071",
+   "max_id_training_holin": 0.69
+  },
+  {
+   "id": "ctxmined_NC_029073_AXJ14_gp052",
+   "genome": "NC_029073",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_029081_AXI77_gp55",
+   "genome": "NC_029081",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_030904_BH781_gp28",
+   "genome": "NC_030904",
+   "max_id_training_holin": 0.682
+  },
+  {
+   "id": "ctxmined_NC_030923_BH776_gp10",
+   "genome": "NC_030923",
+   "max_id_training_holin": 0.562
+  },
+  {
+   "id": "ctxmined_NC_030930_BH770_gp20",
+   "genome": "NC_030930",
+   "max_id_training_holin": 0.321
+  },
+  {
+   "id": "ctxmined_NC_030933_BH792_gp178",
+   "genome": "NC_030933",
+   "max_id_training_holin": 0.994
+  },
+  {
+   "id": "ctxmined_NC_030946_BH783_gp02",
+   "genome": "NC_030946",
+   "max_id_training_holin": 0.982
+  },
+  {
+   "id": "ctxmined_NC_030947_phiCT19406B_60",
+   "genome": "NC_030947",
+   "max_id_training_holin": 0.671
+  },
+  {
+   "id": "ctxmined_NC_031008_BI069_gp10",
+   "genome": "NC_031008",
+   "max_id_training_holin": 0.656
+  },
+  {
+   "id": "ctxmined_NC_031014_BI052_gp44",
+   "genome": "NC_031014",
+   "max_id_training_holin": 0.343
+  },
+  {
+   "id": "ctxmined_NC_031016_BI048_gp08",
+   "genome": "NC_031016",
+   "max_id_training_holin": 0.587
+  },
+  {
+   "id": "ctxmined_NC_031019_BI085_gp17",
+   "genome": "NC_031019",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_031021_BI170_gp17",
+   "genome": "NC_031021",
+   "max_id_training_holin": 0.328
+  },
+  {
+   "id": "ctxmined_NC_031023_BIZ98_gp22",
+   "genome": "NC_031023",
+   "max_id_training_holin": 0.85
+  },
+  {
+   "id": "ctxmined_NC_031036_BIZ65_gp22",
+   "genome": "NC_031036",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_031040_BI030_gp48",
+   "genome": "NC_031040",
+   "max_id_training_holin": 0.966
+  },
+  {
+   "id": "ctxmined_NC_031042_BI021_gp132",
+   "genome": "NC_031042",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_031046_BIZ97_gp11",
+   "genome": "NC_031046",
+   "max_id_training_holin": 0.656
+  },
+  {
+   "id": "ctxmined_NC_031048_BI096_gp36",
+   "genome": "NC_031048",
+   "max_id_training_holin": 0.3
+  },
+  {
+   "id": "ctxmined_NC_031050_BI040_gp43",
+   "genome": "NC_031050",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_031051_BI091_gp18",
+   "genome": "NC_031051",
+   "max_id_training_holin": 0.961
+  },
+  {
+   "id": "ctxmined_NC_031055_BI093_gp23",
+   "genome": "NC_031055",
+   "max_id_training_holin": 0.591
+  },
+  {
+   "id": "ctxmined_NC_031064_BI027_gp51",
+   "genome": "NC_031064",
+   "max_id_training_holin": 0.98
+  },
+  {
+   "id": "ctxmined_NC_031068_PP16_gp55",
+   "genome": "NC_031068",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_031069_BI000_gp22",
+   "genome": "NC_031069",
+   "max_id_training_holin": 0.848
+  },
+  {
+   "id": "ctxmined_NC_031076_BI042_gp20",
+   "genome": "NC_031076",
+   "max_id_training_holin": 0.346
+  },
+  {
+   "id": "ctxmined_NC_031078_BI024_gp27",
+   "genome": "NC_031078",
+   "max_id_training_holin": 0.403
+  },
+  {
+   "id": "ctxmined_NC_031081_BI090_gp49",
+   "genome": "NC_031081",
+   "max_id_training_holin": 0.318
+  },
+  {
+   "id": "ctxmined_NC_031096_BI050_gp54",
+   "genome": "NC_031096",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_031101_BI065_gp27",
+   "genome": "NC_031101",
+   "max_id_training_holin": 0.382
+  },
+  {
+   "id": "ctxmined_NC_031113_BI089_gp30",
+   "genome": "NC_031113",
+   "max_id_training_holin": 0.377
+  },
+  {
+   "id": "ctxmined_NC_031250_BJD50_gp47",
+   "genome": "NC_031250",
+   "max_id_training_holin": 0.415
+  },
+  {
+   "id": "ctxmined_NC_031255_BJD60_gp20",
+   "genome": "NC_031255",
+   "max_id_training_holin": 0.323
+  },
+  {
+   "id": "ctxmined_NC_031260_BJD48_gp21",
+   "genome": "NC_031260",
+   "max_id_training_holin": 0.974
+  },
+  {
+   "id": "ctxmined_NC_031262_BJD73_gp24",
+   "genome": "NC_031262",
+   "max_id_training_holin": 0.782
+  },
+  {
+   "id": "ctxmined_NC_031901_BOX02_gp08",
+   "genome": "NC_031901",
+   "max_id_training_holin": 0.964
+  },
+  {
+   "id": "ctxmined_NC_031902_BOW73_gp044",
+   "genome": "NC_031902",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_031905_BOW77_gp16",
+   "genome": "NC_031905",
+   "max_id_training_holin": 0.333
+  },
+  {
+   "id": "ctxmined_NC_031910_BOX03_gp03",
+   "genome": "NC_031910",
+   "max_id_training_holin": 0.991
+  },
+  {
+   "id": "ctxmined_NC_031913_BOX00_gp02",
+   "genome": "NC_031913",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_031920_BOX04_gp03",
+   "genome": "NC_031920",
+   "max_id_training_holin": 0.991
+  },
+  {
+   "id": "ctxmined_NC_031941_BOX01_gp02",
+   "genome": "NC_031941",
+   "max_id_training_holin": 0.955
+  },
+  {
+   "id": "ctxmined_NC_031942_BOW99_gp03",
+   "genome": "NC_031942",
+   "max_id_training_holin": 0.991
+  },
+  {
+   "id": "ctxmined_NC_034248_B7L88_gp025",
+   "genome": "NC_034248",
+   "max_id_training_holin": 0.431
+  },
+  {
+   "id": "ctxmined_NC_041845_FDG55_gp15",
+   "genome": "NC_041845",
+   "max_id_training_holin": 0.327
+  },
+  {
+   "id": "ctxmined_NC_041848_FDG58_gp23",
+   "genome": "NC_041848",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_041854_FDG64_gp41",
+   "genome": "NC_041854",
+   "max_id_training_holin": 0.898
+  },
+  {
+   "id": "ctxmined_NC_041856_FDG66_gp27",
+   "genome": "NC_041856",
+   "max_id_training_holin": 0.343
+  },
+  {
+   "id": "ctxmined_NC_041857_FDG67_gp69",
+   "genome": "NC_041857",
+   "max_id_training_holin": 0.329
+  },
+  {
+   "id": "ctxmined_NC_041879_FDG96_gp34",
+   "genome": "NC_041879",
+   "max_id_training_holin": 0.641
+  },
+  {
+   "id": "ctxmined_NC_041890_FDH07_gp23",
+   "genome": "NC_041890",
+   "max_id_training_holin": 0.34
+  },
+  {
+   "id": "ctxmined_NC_041891_FDH08_gp23",
+   "genome": "NC_041891",
+   "max_id_training_holin": 0.333
+  },
+  {
+   "id": "ctxmined_NC_041893_FDH10_gp23",
+   "genome": "NC_041893",
+   "max_id_training_holin": 0.328
+  },
+  {
+   "id": "ctxmined_NC_041894_FDH11_gp24",
+   "genome": "NC_041894",
+   "max_id_training_holin": 0.333
+  },
+  {
+   "id": "ctxmined_NC_041895_FDH12_gp23",
+   "genome": "NC_041895",
+   "max_id_training_holin": 0.352
+  },
+  {
+   "id": "ctxmined_NC_041898_FDH15_gp43",
+   "genome": "NC_041898",
+   "max_id_training_holin": 0.319
+  },
+  {
+   "id": "ctxmined_NC_041899_FDH16_gp037",
+   "genome": "NC_041899",
+   "max_id_training_holin": 0.977
+  },
+  {
+   "id": "ctxmined_NC_041906_FDH23_gp68",
+   "genome": "NC_041906",
+   "max_id_training_holin": 0.396
+  },
+  {
+   "id": "ctxmined_NC_041910_FDH27_gp051",
+   "genome": "NC_041910",
+   "max_id_training_holin": 0.365
+  },
+  {
+   "id": "ctxmined_NC_041925_QIH99_gp49",
+   "genome": "NC_041925",
+   "max_id_training_holin": 0.344
+  },
+  {
+   "id": "ctxmined_NC_041935_FDH52_gp81",
+   "genome": "NC_041935",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_041936_FDH53_gp103",
+   "genome": "NC_041936",
+   "max_id_training_holin": 0.457
+  },
+  {
+   "id": "ctxmined_NC_041938_FDH55_gp20",
+   "genome": "NC_041938",
+   "max_id_training_holin": 0.413
+  },
+  {
+   "id": "ctxmined_NC_041992_FDI19_gp15",
+   "genome": "NC_041992",
+   "max_id_training_holin": 0.319
+  },
+  {
+   "id": "ctxmined_NC_042001_FDI28_gp69",
+   "genome": "NC_042001",
+   "max_id_training_holin": 0.329
+  },
+  {
+   "id": "ctxmined_NC_042012_FDI39_gp118",
+   "genome": "NC_042012",
+   "max_id_training_holin": 0.383
+  },
+  {
+   "id": "ctxmined_NC_042021_FDI48_gp20",
+   "genome": "NC_042021",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_042023_FDI50_gp50",
+   "genome": "NC_042023",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_042043_FDI72_gp74",
+   "genome": "NC_042043",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_042047_FDI76_gp113",
+   "genome": "NC_042047",
+   "max_id_training_holin": 0.307
+  },
+  {
+   "id": "ctxmined_NC_042052_FDI81_gp27",
+   "genome": "NC_042052",
+   "max_id_training_holin": 0.365
+  },
+  {
+   "id": "ctxmined_NC_042057_FDI87_gp29",
+   "genome": "NC_042057",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_042074_FDI98_gp006",
+   "genome": "NC_042074",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_042084_FDJ09_gp67",
+   "genome": "NC_042084",
+   "max_id_training_holin": 0.319
+  },
+  {
+   "id": "ctxmined_NC_042090_FDJ15_gp083",
+   "genome": "NC_042090",
+   "max_id_training_holin": 0.567
+  },
+  {
+   "id": "ctxmined_NC_042091_FDJ16_gp122",
+   "genome": "NC_042091",
+   "max_id_training_holin": 0.646
+  },
+  {
+   "id": "ctxmined_NC_042093_FDJ18_gp044",
+   "genome": "NC_042093",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_042094_FDJ19_gp166",
+   "genome": "NC_042094",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_042095_FDJ20_gp168",
+   "genome": "NC_042095",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_042101_FDJ26_gp19",
+   "genome": "NC_042101",
+   "max_id_training_holin": 0.987
+  },
+  {
+   "id": "ctxmined_NC_042115_FDJ40_gp75",
+   "genome": "NC_042115",
+   "max_id_training_holin": 0.326
+  },
+  {
+   "id": "ctxmined_NC_042122_FDJ47_gp12",
+   "genome": "NC_042122",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_042125_FDJ50_gp46",
+   "genome": "NC_042125",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_042126_FDJ51_gp20",
+   "genome": "NC_042126",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_042127_FDJ52_gp43",
+   "genome": "NC_042127",
+   "max_id_training_holin": 0.948
+  },
+  {
+   "id": "ctxmined_NC_042137_FDJ62_gp50",
+   "genome": "NC_042137",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_042307_FGG59_gp028",
+   "genome": "NC_042307",
+   "max_id_training_holin": 0.991
+  },
+  {
+   "id": "ctxmined_NC_042322_FGG27_gp050",
+   "genome": "NC_042322",
+   "max_id_training_holin": 0.314
+  },
+  {
+   "id": "ctxmined_NC_042342_FGG48_gp61",
+   "genome": "NC_042342",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_047730_QLX44_gp173",
+   "genome": "NC_047730",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_047742_HOQ93_gp05",
+   "genome": "NC_047742",
+   "max_id_training_holin": 0.449
+  },
+  {
+   "id": "ctxmined_NC_047749_HOR00_gp034",
+   "genome": "NC_047749",
+   "max_id_training_holin": 0.984
+  },
+  {
+   "id": "ctxmined_NC_047754_HOR05_gp128",
+   "genome": "NC_047754",
+   "max_id_training_holin": 0.992
+  },
+  {
+   "id": "ctxmined_NC_047757_HOR08_gp043",
+   "genome": "NC_047757",
+   "max_id_training_holin": 0.333
+  },
+  {
+   "id": "ctxmined_NC_047758_HOR09_gp52",
+   "genome": "NC_047758",
+   "max_id_training_holin": 0.875
+  },
+  {
+   "id": "ctxmined_NC_047759_HOR10_gp07",
+   "genome": "NC_047759",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_047779_HOR30_gp46",
+   "genome": "NC_047779",
+   "max_id_training_holin": 0.988
+  },
+  {
+   "id": "ctxmined_NC_047784_HOR35_gp61",
+   "genome": "NC_047784",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_047791_HOR42_gp78",
+   "genome": "NC_047791",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_047800_HOR51_gp50",
+   "genome": "NC_047800",
+   "max_id_training_holin": 0.5
+  },
+  {
+   "id": "ctxmined_NC_047810_HOR61_gp09",
+   "genome": "NC_047810",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_047812_HOR63_gp27",
+   "genome": "NC_047812",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_047813_HOR64_gp11",
+   "genome": "NC_047813",
+   "max_id_training_holin": 0.685
+  },
+  {
+   "id": "ctxmined_NC_047814_HOR65_gp12",
+   "genome": "NC_047814",
+   "max_id_training_holin": 0.652
+  },
+  {
+   "id": "ctxmined_NC_047817_HOR68_gp19",
+   "genome": "NC_047817",
+   "max_id_training_holin": 0.387
+  },
+  {
+   "id": "ctxmined_NC_047818_HOR69_gp19",
+   "genome": "NC_047818",
+   "max_id_training_holin": 0.986
+  },
+  {
+   "id": "ctxmined_NC_047820_HOR71_gp32",
+   "genome": "NC_047820",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_047825_HOR76_gp38",
+   "genome": "NC_047825",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_047828_HOR79_gp65",
+   "genome": "NC_047828",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_047830_HOR81_gp77",
+   "genome": "NC_047830",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_047833_HOR84_gp09",
+   "genome": "NC_047833",
+   "max_id_training_holin": 0.776
+  },
+  {
+   "id": "ctxmined_NC_047835_HOR86_gp147",
+   "genome": "NC_047835",
+   "max_id_training_holin": 0.991
+  },
+  {
+   "id": "ctxmined_NC_047850_HOS01_gp34",
+   "genome": "NC_047850",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_047857_HOS10_gp51",
+   "genome": "NC_047857",
+   "max_id_training_holin": 0.988
+  },
+  {
+   "id": "ctxmined_NC_047862_HOS15_gp09",
+   "genome": "NC_047862",
+   "max_id_training_holin": 0.408
+  },
+  {
+   "id": "ctxmined_NC_047863_HOS16_gp05",
+   "genome": "NC_047863",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_047875_HOS28_gp26",
+   "genome": "NC_047875",
+   "max_id_training_holin": 0.678
+  },
+  {
+   "id": "ctxmined_NC_047880_HOS33_gp198",
+   "genome": "NC_047880",
+   "max_id_training_holin": 0.338
+  },
+  {
+   "id": "ctxmined_NC_047884_HOS37_gp034",
+   "genome": "NC_047884",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_047887_HOS40_gp029",
+   "genome": "NC_047887",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_047891_HOS44_gp021",
+   "genome": "NC_047891",
+   "max_id_training_holin": 0.354
+  },
+  {
+   "id": "ctxmined_NC_047893_HOS46_gp05",
+   "genome": "NC_047893",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_047894_HOS47_gp44",
+   "genome": "NC_047894",
+   "max_id_training_holin": 0.424
+  },
+  {
+   "id": "ctxmined_NC_047898_HOS51_gp21",
+   "genome": "NC_047898",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_047907_HOS60_gp76",
+   "genome": "NC_047907",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_047910_HOS63_gp64",
+   "genome": "NC_047910",
+   "max_id_training_holin": 0.382
+  },
+  {
+   "id": "ctxmined_NC_047914_HOS67_gp74",
+   "genome": "NC_047914",
+   "max_id_training_holin": 0.348
+  },
+  {
+   "id": "ctxmined_NC_047917_HOS70_gp44",
+   "genome": "NC_047917",
+   "max_id_training_holin": 0.34
+  },
+  {
+   "id": "ctxmined_NC_047919_HOS72_gp11",
+   "genome": "NC_047919",
+   "max_id_training_holin": 0.664
+  },
+  {
+   "id": "ctxmined_NC_047924_HOS78_gp030",
+   "genome": "NC_047924",
+   "max_id_training_holin": 0.356
+  },
+  {
+   "id": "ctxmined_NC_047926_HOS80_gp035",
+   "genome": "NC_047926",
+   "max_id_training_holin": 0.339
+  },
+  {
+   "id": "ctxmined_NC_047929_HOS83_gp47",
+   "genome": "NC_047929",
+   "max_id_training_holin": 0.988
+  },
+  {
+   "id": "ctxmined_NC_047933_HOS87_gp43",
+   "genome": "NC_047933",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_047938_HOS92_gp06",
+   "genome": "NC_047938",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_047945_HOS99_gp199",
+   "genome": "NC_047945",
+   "max_id_training_holin": 0.437
+  },
+  {
+   "id": "ctxmined_NC_047947_HOT01_gp11",
+   "genome": "NC_047947",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_047955_HOT09_gp43",
+   "genome": "NC_047955",
+   "max_id_training_holin": 0.366
+  },
+  {
+   "id": "ctxmined_NC_047957_HOT11_gp45",
+   "genome": "NC_047957",
+   "max_id_training_holin": 0.408
+  },
+  {
+   "id": "ctxmined_NC_047959_HOT13_gp48",
+   "genome": "NC_047959",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_047960_HOT14_gp71",
+   "genome": "NC_047960",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_047972_HOT26_gp27",
+   "genome": "NC_047972",
+   "max_id_training_holin": 0.373
+  },
+  {
+   "id": "ctxmined_NC_047978_HOT32_gp74",
+   "genome": "NC_047978",
+   "max_id_training_holin": 0.814
+  },
+  {
+   "id": "ctxmined_NC_047983_HOT37_gp59",
+   "genome": "NC_047983",
+   "max_id_training_holin": 0.326
+  },
+  {
+   "id": "ctxmined_NC_047985_HOT39_gp70",
+   "genome": "NC_047985",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_047988_HOT42_gp43",
+   "genome": "NC_047988",
+   "max_id_training_holin": 0.318
+  },
+  {
+   "id": "ctxmined_NC_048006_HOT60_gp120",
+   "genome": "NC_048006",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_048009_HOT63_gp115",
+   "genome": "NC_048009",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_048012_HOT66_gp123",
+   "genome": "NC_048012",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_048013_HOT67_gp118",
+   "genome": "NC_048013",
+   "max_id_training_holin": 0.992
+  },
+  {
+   "id": "ctxmined_NC_048022_HOT76_gp29",
+   "genome": "NC_048022",
+   "max_id_training_holin": 0.419
+  },
+  {
+   "id": "ctxmined_NC_048058_HOU13_gp55",
+   "genome": "NC_048058",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_048061_HOU16_gp51",
+   "genome": "NC_048061",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_048067_HOU22_gp12",
+   "genome": "NC_048067",
+   "max_id_training_holin": 0.614
+  },
+  {
+   "id": "ctxmined_NC_048083_HOU38_gp022",
+   "genome": "NC_048083",
+   "max_id_training_holin": 0.354
+  },
+  {
+   "id": "ctxmined_NC_048084_HOU39_gp033",
+   "genome": "NC_048084",
+   "max_id_training_holin": 0.339
+  },
+  {
+   "id": "ctxmined_NC_048085_HOU40_gp034",
+   "genome": "NC_048085",
+   "max_id_training_holin": 0.356
+  },
+  {
+   "id": "ctxmined_NC_048088_HOU43_gp60",
+   "genome": "NC_048088",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_048098_HOU53_gp22",
+   "genome": "NC_048098",
+   "max_id_training_holin": 0.328
+  },
+  {
+   "id": "ctxmined_NC_048099_HOU54_gp22",
+   "genome": "NC_048099",
+   "max_id_training_holin": 0.328
+  },
+  {
+   "id": "ctxmined_NC_048103_HOU58_gp58",
+   "genome": "NC_048103",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_048107_HOU62_gp12",
+   "genome": "NC_048107",
+   "max_id_training_holin": 0.649
+  },
+  {
+   "id": "ctxmined_NC_048109_HOU64_gp12",
+   "genome": "NC_048109",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_048112_HOU67_gp55",
+   "genome": "NC_048112",
+   "max_id_training_holin": 0.324
+  },
+  {
+   "id": "ctxmined_NC_048118_HOU73_gp48",
+   "genome": "NC_048118",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_048132_HOU88_gp10",
+   "genome": "NC_048132",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_048137_HOU93_gp44",
+   "genome": "NC_048137",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_048141_HOU97_gp20",
+   "genome": "NC_048141",
+   "max_id_training_holin": 0.354
+  },
+  {
+   "id": "ctxmined_NC_048143_HOU99_gp67",
+   "genome": "NC_048143",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_048148_HOV05_gp50",
+   "genome": "NC_048148",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_048152_HOV09_gp22",
+   "genome": "NC_048152",
+   "max_id_training_holin": 0.37
+  },
+  {
+   "id": "ctxmined_NC_048159_HOV16_gp10",
+   "genome": "NC_048159",
+   "max_id_training_holin": 0.634
+  },
+  {
+   "id": "ctxmined_NC_048174_HOV31_gp50",
+   "genome": "NC_048174",
+   "max_id_training_holin": 0.529
+  },
+  {
+   "id": "ctxmined_NC_048178_HOV35_gp09",
+   "genome": "NC_048178",
+   "max_id_training_holin": 0.449
+  },
+  {
+   "id": "ctxmined_NC_048179_HOV36_gp25",
+   "genome": "NC_048179",
+   "max_id_training_holin": 0.455
+  },
+  {
+   "id": "ctxmined_NC_048181_HOV38_gp57",
+   "genome": "NC_048181",
+   "max_id_training_holin": 0.325
+  },
+  {
+   "id": "ctxmined_NC_048192_HOV49_gp20",
+   "genome": "NC_048192",
+   "max_id_training_holin": 0.976
+  },
+  {
+   "id": "ctxmined_NC_048197_HOV54_gp74",
+   "genome": "NC_048197",
+   "max_id_training_holin": 0.667
+  },
+  {
+   "id": "ctxmined_NC_048208_HOV01_gp14",
+   "genome": "NC_048208",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_048625_HWA80_gp36",
+   "genome": "NC_048625",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_048627_HWA82_gp041",
+   "genome": "NC_048627",
+   "max_id_training_holin": 0.995
+  },
+  {
+   "id": "ctxmined_NC_048631_HWA84_gp23",
+   "genome": "NC_048631",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_048638_HWA93_gp27",
+   "genome": "NC_048638",
+   "max_id_training_holin": 0.418
+  },
+  {
+   "id": "ctxmined_NC_048640_HWA95_gp74",
+   "genome": "NC_048640",
+   "max_id_training_holin": 0.422
+  },
+  {
+   "id": "ctxmined_NC_048642_HWA97_gp31",
+   "genome": "NC_048642",
+   "max_id_training_holin": 0.806
+  },
+  {
+   "id": "ctxmined_NC_048651_HWD36_gp66",
+   "genome": "NC_048651",
+   "max_id_training_holin": 0.651
+  },
+  {
+   "id": "ctxmined_NC_048670_HWB25_gp45",
+   "genome": "NC_048670",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_048680_HWB35_gp55",
+   "genome": "NC_048680",
+   "max_id_training_holin": 0.924
+  },
+  {
+   "id": "ctxmined_NC_048700_HWB55_gp080",
+   "genome": "NC_048700",
+   "max_id_training_holin": 0.31
+  },
+  {
+   "id": "ctxmined_NC_048705_HWB60_gp029",
+   "genome": "NC_048705",
+   "max_id_training_holin": 0.317
+  },
+  {
+   "id": "ctxmined_NC_048732_HWB88_gp36",
+   "genome": "NC_048732",
+   "max_id_training_holin": 0.918
+  },
+  {
+   "id": "ctxmined_NC_048735_HWB91_gp19",
+   "genome": "NC_048735",
+   "max_id_training_holin": 0.32
+  },
+  {
+   "id": "ctxmined_NC_048737_HWB93_gp20",
+   "genome": "NC_048737",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_048739_HWB95_gp19",
+   "genome": "NC_048739",
+   "max_id_training_holin": 0.346
+  },
+  {
+   "id": "ctxmined_NC_048748_HWC04_gp043",
+   "genome": "NC_048748",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_048753_HWC09_gp135",
+   "genome": "NC_048753",
+   "max_id_training_holin": 0.308
+  },
+  {
+   "id": "ctxmined_NC_048753_HWC09_gp101",
+   "genome": "NC_048753",
+   "max_id_training_holin": 0.399
+  },
+  {
+   "id": "ctxmined_NC_048762_HWC18_gp25",
+   "genome": "NC_048762",
+   "max_id_training_holin": 0.475
+  },
+  {
+   "id": "ctxmined_NC_048763_HWC19_gp48",
+   "genome": "NC_048763",
+   "max_id_training_holin": 0.415
+  },
+  {
+   "id": "ctxmined_NC_048764_HWC20_gp34",
+   "genome": "NC_048764",
+   "max_id_training_holin": 0.421
+  },
+  {
+   "id": "ctxmined_NC_048766_HWC22_gp81",
+   "genome": "NC_048766",
+   "max_id_training_holin": 0.982
+  },
+  {
+   "id": "ctxmined_NC_048786_HWC42_gp077",
+   "genome": "NC_048786",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_048803_HWC59_gp37",
+   "genome": "NC_048803",
+   "max_id_training_holin": 0.664
+  },
+  {
+   "id": "ctxmined_NC_048831_HWC87_gp67",
+   "genome": "NC_048831",
+   "max_id_training_holin": 0.329
+  },
+  {
+   "id": "ctxmined_NC_048833_HWC89_gp69",
+   "genome": "NC_048833",
+   "max_id_training_holin": 0.329
+  },
+  {
+   "id": "ctxmined_NC_048834_HWC90_gp41",
+   "genome": "NC_048834",
+   "max_id_training_holin": 0.317
+  },
+  {
+   "id": "ctxmined_NC_048842_HWC98_gp68",
+   "genome": "NC_048842",
+   "max_id_training_holin": 0.36
+  },
+  {
+   "id": "ctxmined_NC_048843_HWC99_gp59",
+   "genome": "NC_048843",
+   "max_id_training_holin": 0.326
+  },
+  {
+   "id": "ctxmined_NC_048845_HWD01_gp28",
+   "genome": "NC_048845",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_048848_HWD04_gp23",
+   "genome": "NC_048848",
+   "max_id_training_holin": 0.321
+  },
+  {
+   "id": "ctxmined_NC_048852_HWD08_gp043",
+   "genome": "NC_048852",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_048853_HWD09_gp044",
+   "genome": "NC_048853",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_048857_HWD13_gp145",
+   "genome": "NC_048857",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_048858_HWD14_gp03",
+   "genome": "NC_048858",
+   "max_id_training_holin": 0.432
+  },
+  {
+   "id": "ctxmined_NC_048859_HWD15_gp04",
+   "genome": "NC_048859",
+   "max_id_training_holin": 0.435
+  },
+  {
+   "id": "ctxmined_NC_048875_HWD31_gp94",
+   "genome": "NC_048875",
+   "max_id_training_holin": 0.699
+  },
+  {
+   "id": "ctxmined_NC_049341_HYO66_gp28",
+   "genome": "NC_049341",
+   "max_id_training_holin": 0.907
+  },
+  {
+   "id": "ctxmined_NC_049342_HYO67_gp20",
+   "genome": "NC_049342",
+   "max_id_training_holin": 0.986
+  },
+  {
+   "id": "ctxmined_NC_049343_HYO68_gp13",
+   "genome": "NC_049343",
+   "max_id_training_holin": 0.882
+  },
+  {
+   "id": "ctxmined_NC_049346_HYO72_gp19",
+   "genome": "NC_049346",
+   "max_id_training_holin": 0.923
+  },
+  {
+   "id": "ctxmined_NC_049347_HYO73_gp21",
+   "genome": "NC_049347",
+   "max_id_training_holin": 0.932
+  },
+  {
+   "id": "ctxmined_NC_049348_HYO74_gp20",
+   "genome": "NC_049348",
+   "max_id_training_holin": 0.966
+  },
+  {
+   "id": "ctxmined_NC_049349_HYO75_gp21",
+   "genome": "NC_049349",
+   "max_id_training_holin": 0.923
+  },
+  {
+   "id": "ctxmined_NC_049351_HYO78_gp20",
+   "genome": "NC_049351",
+   "max_id_training_holin": 0.932
+  },
+  {
+   "id": "ctxmined_NC_049352_HYO79_gp21",
+   "genome": "NC_049352",
+   "max_id_training_holin": 0.915
+  },
+  {
+   "id": "ctxmined_NC_049353_HYO80_gp22",
+   "genome": "NC_049353",
+   "max_id_training_holin": 0.94
+  },
+  {
+   "id": "ctxmined_NC_049354_HYO81_gp20",
+   "genome": "NC_049354",
+   "max_id_training_holin": 0.94
+  },
+  {
+   "id": "ctxmined_NC_049355_HYO82_gp21",
+   "genome": "NC_049355",
+   "max_id_training_holin": 0.889
+  },
+  {
+   "id": "ctxmined_NC_049357_HYO84_gp21",
+   "genome": "NC_049357",
+   "max_id_training_holin": 0.949
+  },
+  {
+   "id": "ctxmined_NC_049359_HYO86_gp22",
+   "genome": "NC_049359",
+   "max_id_training_holin": 0.932
+  },
+  {
+   "id": "ctxmined_NC_049361_HYO88_gp22",
+   "genome": "NC_049361",
+   "max_id_training_holin": 0.932
+  },
+  {
+   "id": "ctxmined_NC_049362_HYO89_gp22",
+   "genome": "NC_049362",
+   "max_id_training_holin": 0.956
+  },
+  {
+   "id": "ctxmined_NC_049364_HYO91_gp22",
+   "genome": "NC_049364",
+   "max_id_training_holin": 0.947
+  },
+  {
+   "id": "ctxmined_NC_049365_HYO92_gp22",
+   "genome": "NC_049365",
+   "max_id_training_holin": 0.923
+  },
+  {
+   "id": "ctxmined_NC_049367_HYO94_gp21",
+   "genome": "NC_049367",
+   "max_id_training_holin": 0.929
+  },
+  {
+   "id": "ctxmined_NC_049368_HYO95_gp23",
+   "genome": "NC_049368",
+   "max_id_training_holin": 0.932
+  },
+  {
+   "id": "ctxmined_NC_049370_HYO97_gp20",
+   "genome": "NC_049370",
+   "max_id_training_holin": 0.949
+  },
+  {
+   "id": "ctxmined_NC_049373_HYP00_gp21",
+   "genome": "NC_049373",
+   "max_id_training_holin": 0.923
+  },
+  {
+   "id": "ctxmined_NC_049374_HYP01_gp22",
+   "genome": "NC_049374",
+   "max_id_training_holin": 0.966
+  },
+  {
+   "id": "ctxmined_NC_049375_HYP02_gp20",
+   "genome": "NC_049375",
+   "max_id_training_holin": 0.932
+  },
+  {
+   "id": "ctxmined_NC_049381_HYP08_gp20",
+   "genome": "NC_049381",
+   "max_id_training_holin": 0.934
+  },
+  {
+   "id": "ctxmined_NC_049397_HYP24_gp19",
+   "genome": "NC_049397",
+   "max_id_training_holin": 0.949
+  },
+  {
+   "id": "ctxmined_NC_049398_HYP25_gp20",
+   "genome": "NC_049398",
+   "max_id_training_holin": 0.932
+  },
+  {
+   "id": "ctxmined_NC_049399_HYP26_gp21",
+   "genome": "NC_049399",
+   "max_id_training_holin": 0.957
+  },
+  {
+   "id": "ctxmined_NC_049400_HYP27_gp23",
+   "genome": "NC_049400",
+   "max_id_training_holin": 0.915
+  },
+  {
+   "id": "ctxmined_NC_049401_HYP28_gp19",
+   "genome": "NC_049401",
+   "max_id_training_holin": 0.872
+  },
+  {
+   "id": "ctxmined_NC_049402_HYP29_gp20",
+   "genome": "NC_049402",
+   "max_id_training_holin": 0.88
+  },
+  {
+   "id": "ctxmined_NC_049403_HYP30_gp23",
+   "genome": "NC_049403",
+   "max_id_training_holin": 0.949
+  },
+  {
+   "id": "ctxmined_NC_049404_HYP31_gp21",
+   "genome": "NC_049404",
+   "max_id_training_holin": 0.983
+  },
+  {
+   "id": "ctxmined_NC_049405_HYP32_gp19",
+   "genome": "NC_049405",
+   "max_id_training_holin": 0.94
+  },
+  {
+   "id": "ctxmined_NC_049406_HYP33_gp21",
+   "genome": "NC_049406",
+   "max_id_training_holin": 0.915
+  },
+  {
+   "id": "ctxmined_NC_049407_HYP34_gp20",
+   "genome": "NC_049407",
+   "max_id_training_holin": 0.94
+  },
+  {
+   "id": "ctxmined_NC_049408_HYP35_gp19",
+   "genome": "NC_049408",
+   "max_id_training_holin": 0.932
+  },
+  {
+   "id": "ctxmined_NC_049409_HYP36_gp20",
+   "genome": "NC_049409",
+   "max_id_training_holin": 0.923
+  },
+  {
+   "id": "ctxmined_NC_049410_HYP37_gp21",
+   "genome": "NC_049410",
+   "max_id_training_holin": 0.94
+  },
+  {
+   "id": "ctxmined_NC_049411_HYP38_gp21",
+   "genome": "NC_049411",
+   "max_id_training_holin": 0.932
+  },
+  {
+   "id": "ctxmined_NC_049412_HYP39_gp22",
+   "genome": "NC_049412",
+   "max_id_training_holin": 0.966
+  },
+  {
+   "id": "ctxmined_NC_049413_HYP40_gp19",
+   "genome": "NC_049413",
+   "max_id_training_holin": 0.932
+  },
+  {
+   "id": "ctxmined_NC_049414_HYP41_gp19",
+   "genome": "NC_049414",
+   "max_id_training_holin": 0.923
+  },
+  {
+   "id": "ctxmined_NC_049415_HYP42_gp23",
+   "genome": "NC_049415",
+   "max_id_training_holin": 0.923
+  },
+  {
+   "id": "ctxmined_NC_049416_HYP43_gp21",
+   "genome": "NC_049416",
+   "max_id_training_holin": 0.957
+  },
+  {
+   "id": "ctxmined_NC_049417_HYP44_gp22",
+   "genome": "NC_049417",
+   "max_id_training_holin": 0.949
+  },
+  {
+   "id": "ctxmined_NC_049418_HYP45_gp22",
+   "genome": "NC_049418",
+   "max_id_training_holin": 0.949
+  },
+  {
+   "id": "ctxmined_NC_049419_HYP46_gp21",
+   "genome": "NC_049419",
+   "max_id_training_holin": 0.94
+  },
+  {
+   "id": "ctxmined_NC_049424_HYP51_gp21",
+   "genome": "NC_049424",
+   "max_id_training_holin": 0.932
+  },
+  {
+   "id": "ctxmined_NC_049429_HYP56_gp29",
+   "genome": "NC_049429",
+   "max_id_training_holin": 0.489
+  },
+  {
+   "id": "ctxmined_NC_049432_HYP59_gp14",
+   "genome": "NC_049432",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_049434_HYP61_gp23",
+   "genome": "NC_049434",
+   "max_id_training_holin": 0.932
+  },
+  {
+   "id": "ctxmined_NC_049444_HYP73_gp76",
+   "genome": "NC_049444",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_049448_HYP77_gp24",
+   "genome": "NC_049448",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_049449_HYP78_gp06",
+   "genome": "NC_049449",
+   "max_id_training_holin": 0.984
+  },
+  {
+   "id": "ctxmined_NC_049450_HYP79_gp26",
+   "genome": "NC_049450",
+   "max_id_training_holin": 0.946
+  },
+  {
+   "id": "ctxmined_NC_049451_HYP80_gp14",
+   "genome": "NC_049451",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_049453_HYP82_gp29",
+   "genome": "NC_049453",
+   "max_id_training_holin": 0.676
+  },
+  {
+   "id": "ctxmined_NC_049454_HYP83_gp24",
+   "genome": "NC_049454",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_049460_HYP90_gp11",
+   "genome": "NC_049460",
+   "max_id_training_holin": 0.837
+  },
+  {
+   "id": "ctxmined_NC_049465_HYP95_gp26",
+   "genome": "NC_049465",
+   "max_id_training_holin": 0.34
+  },
+  {
+   "id": "ctxmined_NC_049466_HYP96_gp78",
+   "genome": "NC_049466",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_049467_HYP97_gp73",
+   "genome": "NC_049467",
+   "max_id_training_holin": 0.99
+  },
+  {
+   "id": "ctxmined_NC_049470_HYQ00_gp23",
+   "genome": "NC_049470",
+   "max_id_training_holin": 0.5
+  },
+  {
+   "id": "ctxmined_NC_049473_HYQ03_gp22",
+   "genome": "NC_049473",
+   "max_id_training_holin": 0.407
+  },
+  {
+   "id": "ctxmined_NC_049474_HYQ04_gp20",
+   "genome": "NC_049474",
+   "max_id_training_holin": 0.932
+  },
+  {
+   "id": "ctxmined_NC_049475_HYQ05_gp19",
+   "genome": "NC_049475",
+   "max_id_training_holin": 0.906
+  },
+  {
+   "id": "ctxmined_NC_049476_HYQ06_gp22",
+   "genome": "NC_049476",
+   "max_id_training_holin": 0.932
+  },
+  {
+   "id": "ctxmined_NC_049478_HYQ08_gp022",
+   "genome": "NC_049478",
+   "max_id_training_holin": 0.406
+  },
+  {
+   "id": "ctxmined_NC_049480_HYQ10_gp20",
+   "genome": "NC_049480",
+   "max_id_training_holin": 0.949
+  },
+  {
+   "id": "ctxmined_NC_049481_HYQ11_gp22",
+   "genome": "NC_049481",
+   "max_id_training_holin": 0.94
+  },
+  {
+   "id": "ctxmined_NC_049482_HYQ12_gp20",
+   "genome": "NC_049482",
+   "max_id_training_holin": 0.932
+  },
+  {
+   "id": "ctxmined_NC_049483_HYQ13_gp21",
+   "genome": "NC_049483",
+   "max_id_training_holin": 0.932
+  },
+  {
+   "id": "ctxmined_NC_049484_HYQ14_gp21",
+   "genome": "NC_049484",
+   "max_id_training_holin": 0.915
+  },
+  {
+   "id": "ctxmined_NC_049485_HYQ15_gp21",
+   "genome": "NC_049485",
+   "max_id_training_holin": 0.947
+  },
+  {
+   "id": "ctxmined_NC_049486_HYQ16_gp22",
+   "genome": "NC_049486",
+   "max_id_training_holin": 0.932
+  },
+  {
+   "id": "ctxmined_NC_049487_HYQ17_gp21",
+   "genome": "NC_049487",
+   "max_id_training_holin": 0.94
+  },
+  {
+   "id": "ctxmined_NC_049488_HYQ18_gp21",
+   "genome": "NC_049488",
+   "max_id_training_holin": 0.931
+  },
+  {
+   "id": "ctxmined_NC_049510_HYP64_gp09",
+   "genome": "NC_049510",
+   "max_id_training_holin": 0.386
+  },
+  {
+   "id": "ctxmined_NC_049812_H1N76_gp51",
+   "genome": "NC_049812",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_049813_H1N77_gp44",
+   "genome": "NC_049813",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_049820_H1N84_gp41",
+   "genome": "NC_049820",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_049821_H1N85_gp50",
+   "genome": "NC_049821",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_049822_H1N86_gp68",
+   "genome": "NC_049822",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_049829_H1N95_gp69",
+   "genome": "NC_049829",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_049831_H1N97_gp57",
+   "genome": "NC_049831",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_049832_H1N98_gp48",
+   "genome": "NC_049832",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_049833_H1N99_gp41",
+   "genome": "NC_049833",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_049837_H1O03_gp40",
+   "genome": "NC_049837",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_049848_H1O14_gp34",
+   "genome": "NC_049848",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_049856_H1Z35_gp023",
+   "genome": "NC_049856",
+   "max_id_training_holin": 0.328
+  },
+  {
+   "id": "ctxmined_NC_049900_H2675_gp41",
+   "genome": "NC_049900",
+   "max_id_training_holin": 0.619
+  },
+  {
+   "id": "ctxmined_NC_049932_H3T65_gp18",
+   "genome": "NC_049932",
+   "max_id_training_holin": 0.985
+  },
+  {
+   "id": "ctxmined_NC_049933_H3T66_gp14",
+   "genome": "NC_049933",
+   "max_id_training_holin": 0.311
+  },
+  {
+   "id": "ctxmined_NC_049933_H3T66_gp18",
+   "genome": "NC_049933",
+   "max_id_training_holin": 0.992
+  },
+  {
+   "id": "ctxmined_NC_049934_H3T67_gp21",
+   "genome": "NC_049934",
+   "max_id_training_holin": 0.977
+  },
+  {
+   "id": "ctxmined_NC_049935_H3T68_gp16",
+   "genome": "NC_049935",
+   "max_id_training_holin": 0.992
+  },
+  {
+   "id": "ctxmined_NC_049939_H3T72_gp19",
+   "genome": "NC_049939",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_049940_H3T73_gp13",
+   "genome": "NC_049940",
+   "max_id_training_holin": 0.368
+  },
+  {
+   "id": "ctxmined_NC_049943_H3V25_gp69",
+   "genome": "NC_049943",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_049965_H3014_gp09",
+   "genome": "NC_049965",
+   "max_id_training_holin": 0.985
+  },
+  {
+   "id": "ctxmined_NC_049970_H3019_gp22",
+   "genome": "NC_049970",
+   "max_id_training_holin": 0.5
+  },
+  {
+   "id": "ctxmined_NC_049971_H3020_gp20",
+   "genome": "NC_049971",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_049972_H3021_gp22",
+   "genome": "NC_049972",
+   "max_id_training_holin": 0.939
+  },
+  {
+   "id": "ctxmined_NC_049973_H3022_gp13",
+   "genome": "NC_049973",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_049974_H3023_gp20",
+   "genome": "NC_049974",
+   "max_id_training_holin": 0.992
+  },
+  {
+   "id": "ctxmined_NC_049975_H3024_gp07",
+   "genome": "NC_049975",
+   "max_id_training_holin": 0.962
+  },
+  {
+   "id": "ctxmined_NC_049976_H3025_gp10",
+   "genome": "NC_049976",
+   "max_id_training_holin": 0.955
+  },
+  {
+   "id": "ctxmined_NC_051731_I5J42_gp25",
+   "genome": "NC_051731",
+   "max_id_training_holin": 0.375
+  },
+  {
+   "id": "ctxmined_NC_053015_JT357_gp06",
+   "genome": "NC_053015",
+   "max_id_training_holin": 0.481
+  },
+  {
+   "id": "ctxmined_NC_054146_KB679_gp04",
+   "genome": "NC_054146",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_054148_KB681_gp34",
+   "genome": "NC_054148",
+   "max_id_training_holin": 0.439
+  },
+  {
+   "id": "ctxmined_NC_054149_KB682_gp06",
+   "genome": "NC_054149",
+   "max_id_training_holin": 0.339
+  },
+  {
+   "id": "ctxmined_NC_054465_KE335_gp04",
+   "genome": "NC_054465",
+   "max_id_training_holin": 0.301
+  },
+  {
+   "id": "ctxmined_NC_054655_KGG70_gp54",
+   "genome": "NC_054655",
+   "max_id_training_holin": 0.386
+  },
+  {
+   "id": "ctxmined_NC_054656_KGG71_gp27",
+   "genome": "NC_054656",
+   "max_id_training_holin": 0.379
+  },
+  {
+   "id": "ctxmined_NC_054657_KGG72_gp20",
+   "genome": "NC_054657",
+   "max_id_training_holin": 0.353
+  },
+  {
+   "id": "ctxmined_NC_054658_KGG73_gp20",
+   "genome": "NC_054658",
+   "max_id_training_holin": 0.372
+  },
+  {
+   "id": "ctxmined_NC_054659_KGG74_gp21",
+   "genome": "NC_054659",
+   "max_id_training_holin": 0.362
+  },
+  {
+   "id": "ctxmined_NC_054660_KGG75_gp26",
+   "genome": "NC_054660",
+   "max_id_training_holin": 0.356
+  },
+  {
+   "id": "ctxmined_NC_054661_KGG76_gp26",
+   "genome": "NC_054661",
+   "max_id_training_holin": 0.378
+  },
+  {
+   "id": "ctxmined_NC_054662_KGG77_gp58",
+   "genome": "NC_054662",
+   "max_id_training_holin": 0.397
+  },
+  {
+   "id": "ctxmined_NC_054663_KGG78_gp25",
+   "genome": "NC_054663",
+   "max_id_training_holin": 0.345
+  },
+  {
+   "id": "ctxmined_NC_054664_KGG83_gp25",
+   "genome": "NC_054664",
+   "max_id_training_holin": 0.359
+  },
+  {
+   "id": "ctxmined_NC_054665_KGG85_gp25",
+   "genome": "NC_054665",
+   "max_id_training_holin": 0.359
+  },
+  {
+   "id": "ctxmined_NC_054666_KGG86_gp26",
+   "genome": "NC_054666",
+   "max_id_training_holin": 0.376
+  },
+  {
+   "id": "ctxmined_NC_054667_KGG87_gp26",
+   "genome": "NC_054667",
+   "max_id_training_holin": 0.343
+  },
+  {
+   "id": "ctxmined_NC_054668_KGG88_gp25",
+   "genome": "NC_054668",
+   "max_id_training_holin": 0.353
+  },
+  {
+   "id": "ctxmined_NC_054669_KGG89_gp67",
+   "genome": "NC_054669",
+   "max_id_training_holin": 0.337
+  },
+  {
+   "id": "ctxmined_NC_054670_KGG90_gp60",
+   "genome": "NC_054670",
+   "max_id_training_holin": 0.337
+  },
+  {
+   "id": "ctxmined_NC_054671_KGG91_gp25",
+   "genome": "NC_054671",
+   "max_id_training_holin": 0.443
+  },
+  {
+   "id": "ctxmined_NC_054672_KGG92_gp25",
+   "genome": "NC_054672",
+   "max_id_training_holin": 0.364
+  },
+  {
+   "id": "ctxmined_NC_054673_KGG93_gp26",
+   "genome": "NC_054673",
+   "max_id_training_holin": 0.349
+  },
+  {
+   "id": "ctxmined_NC_054674_KGG94_gp28",
+   "genome": "NC_054674",
+   "max_id_training_holin": 0.333
+  },
+  {
+   "id": "ctxmined_NC_054675_KGG95_gp26",
+   "genome": "NC_054675",
+   "max_id_training_holin": 0.35
+  },
+  {
+   "id": "ctxmined_NC_054676_KGG96_gp21",
+   "genome": "NC_054676",
+   "max_id_training_holin": 0.337
+  },
+  {
+   "id": "ctxmined_NC_054677_KGG97_gp27",
+   "genome": "NC_054677",
+   "max_id_training_holin": 0.354
+  },
+  {
+   "id": "ctxmined_NC_054797_KIY71_gp07",
+   "genome": "NC_054797",
+   "max_id_training_holin": 0.404
+  },
+  {
+   "id": "ctxmined_NC_054804_KIY78_gp06",
+   "genome": "NC_054804",
+   "max_id_training_holin": 0.387
+  },
+  {
+   "id": "ctxmined_NC_054814_KI247_gp91",
+   "genome": "NC_054814",
+   "max_id_training_holin": 0.365
+  },
+  {
+   "id": "ctxmined_NC_054892_KMB84_gp69",
+   "genome": "NC_054892",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_054893_KMB85_gp55",
+   "genome": "NC_054893",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_054894_KMB86_gp12",
+   "genome": "NC_054894",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_054897_KMB89_gp58",
+   "genome": "NC_054897",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_054955_KMC43_gp53",
+   "genome": "NC_054955",
+   "max_id_training_holin": 0.382
+  },
+  {
+   "id": "ctxmined_NC_054974_KMC62_gp27",
+   "genome": "NC_054974",
+   "max_id_training_holin": 0.945
+  },
+  {
+   "id": "ctxmined_NC_054977_KMC65_gp62",
+   "genome": "NC_054977",
+   "max_id_training_holin": 0.952
+  },
+  {
+   "id": "ctxmined_NC_054981_KMC69_gp47",
+   "genome": "NC_054981",
+   "max_id_training_holin": 0.924
+  },
+  {
+   "id": "ctxmined_NC_054986_KMC74_gp39",
+   "genome": "NC_054986",
+   "max_id_training_holin": 0.375
+  },
+  {
+   "id": "ctxmined_NC_054988_KMC76_gp40",
+   "genome": "NC_054988",
+   "max_id_training_holin": 0.324
+  },
+  {
+   "id": "ctxmined_NC_055019_KMD08_gp61",
+   "genome": "NC_055019",
+   "max_id_training_holin": 0.952
+  },
+  {
+   "id": "ctxmined_NC_055020_KMD09_gp24",
+   "genome": "NC_055020",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_055021_KMD10_gp14",
+   "genome": "NC_055021",
+   "max_id_training_holin": 0.988
+  },
+  {
+   "id": "ctxmined_NC_055022_KMD11_gp45",
+   "genome": "NC_055022",
+   "max_id_training_holin": 0.952
+  },
+  {
+   "id": "ctxmined_NC_055029_KMD18_gp22",
+   "genome": "NC_055029",
+   "max_id_training_holin": 0.65
+  },
+  {
+   "id": "ctxmined_NC_055035_KMD24_gp179",
+   "genome": "NC_055035",
+   "max_id_training_holin": 0.307
+  },
+  {
+   "id": "ctxmined_NC_055036_KMD25_gp61",
+   "genome": "NC_055036",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_055045_KMD34_gp61",
+   "genome": "NC_055045",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_055047_KMD46_gp61",
+   "genome": "NC_055047",
+   "max_id_training_holin": 0.991
+  },
+  {
+   "id": "ctxmined_NC_055050_KMD50_gp23",
+   "genome": "NC_055050",
+   "max_id_training_holin": 0.649
+  },
+  {
+   "id": "ctxmined_NC_055711_KNT55_gp16",
+   "genome": "NC_055711",
+   "max_id_training_holin": 0.325
+  },
+  {
+   "id": "ctxmined_NC_055722_KNT66_gp34",
+   "genome": "NC_055722",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_055729_KNT73_gp35",
+   "genome": "NC_055729",
+   "max_id_training_holin": 0.323
+  },
+  {
+   "id": "ctxmined_NC_055757_KNU01_gp255",
+   "genome": "NC_055757",
+   "max_id_training_holin": 0.457
+  },
+  {
+   "id": "ctxmined_NC_055794_KNU52_gp145",
+   "genome": "NC_055794",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_055802_KNU60_gp10",
+   "genome": "NC_055802",
+   "max_id_training_holin": 0.644
+  },
+  {
+   "id": "ctxmined_NC_055809_KNU67_gp120",
+   "genome": "NC_055809",
+   "max_id_training_holin": 0.358
+  },
+  {
+   "id": "ctxmined_NC_055814_KNU72_gp10",
+   "genome": "NC_055814",
+   "max_id_training_holin": 0.656
+  },
+  {
+   "id": "ctxmined_NC_055815_KNU73_gp23",
+   "genome": "NC_055815",
+   "max_id_training_holin": 0.4
+  },
+  {
+   "id": "ctxmined_NC_055822_KNU80_gp124",
+   "genome": "NC_055822",
+   "max_id_training_holin": 0.373
+  },
+  {
+   "id": "ctxmined_NC_055826_KNU84_gp092",
+   "genome": "NC_055826",
+   "max_id_training_holin": 0.318
+  },
+  {
+   "id": "ctxmined_NC_055833_KNU91_gp106",
+   "genome": "NC_055833",
+   "max_id_training_holin": 0.397
+  },
+  {
+   "id": "ctxmined_NC_055834_KNU92_gp114",
+   "genome": "NC_055834",
+   "max_id_training_holin": 0.397
+  },
+  {
+   "id": "ctxmined_NC_055835_KNU93_gp34",
+   "genome": "NC_055835",
+   "max_id_training_holin": 0.405
+  },
+  {
+   "id": "ctxmined_NC_055842_KNV00_gp119",
+   "genome": "NC_055842",
+   "max_id_training_holin": 0.354
+  },
+  {
+   "id": "ctxmined_NC_055847_KNV05_gp166",
+   "genome": "NC_055847",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_055848_KNV06_gp158",
+   "genome": "NC_055848",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_055862_KNV20_gp15",
+   "genome": "NC_055862",
+   "max_id_training_holin": 0.913
+  },
+  {
+   "id": "ctxmined_NC_055866_KNV24_gp16",
+   "genome": "NC_055866",
+   "max_id_training_holin": 0.35
+  },
+  {
+   "id": "ctxmined_NC_055866_KNV24_gp20",
+   "genome": "NC_055866",
+   "max_id_training_holin": 0.985
+  },
+  {
+   "id": "ctxmined_NC_055884_KNV42_gp041",
+   "genome": "NC_055884",
+   "max_id_training_holin": 0.328
+  },
+  {
+   "id": "ctxmined_NC_055888_KNV46_gp13",
+   "genome": "NC_055888",
+   "max_id_training_holin": 0.4
+  },
+  {
+   "id": "ctxmined_NC_055896_KNV54_gp54",
+   "genome": "NC_055896",
+   "max_id_training_holin": 0.308
+  },
+  {
+   "id": "ctxmined_NC_055906_KNV64_gp11",
+   "genome": "NC_055906",
+   "max_id_training_holin": 0.649
+  },
+  {
+   "id": "ctxmined_NC_055907_KNV65_gp079",
+   "genome": "NC_055907",
+   "max_id_training_holin": 0.418
+  },
+  {
+   "id": "ctxmined_NC_055908_KNV66_gp15",
+   "genome": "NC_055908",
+   "max_id_training_holin": 0.792
+  },
+  {
+   "id": "ctxmined_NC_055916_KNV74_gp10",
+   "genome": "NC_055916",
+   "max_id_training_holin": 0.641
+  },
+  {
+   "id": "ctxmined_NC_055917_KNV75_gp21",
+   "genome": "NC_055917",
+   "max_id_training_holin": 0.917
+  },
+  {
+   "id": "ctxmined_NC_055921_KNV79_gp73",
+   "genome": "NC_055921",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_055956_LG639_gp18",
+   "genome": "NC_055956",
+   "max_id_training_holin": 0.986
+  },
+  {
+   "id": "ctxmined_NC_061450_MPK73_gp201",
+   "genome": "NC_061450",
+   "max_id_training_holin": 0.365
+  },
+  {
+   "id": "ctxmined_NC_061451_MPK74_gp202",
+   "genome": "NC_061451",
+   "max_id_training_holin": 0.333
+  },
+  {
+   "id": "ctxmined_NC_062750_M1M28_gp10",
+   "genome": "NC_062750",
+   "max_id_training_holin": 0.315
+  },
+  {
+   "id": "ctxmined_NC_062770_M1M48_gp82",
+   "genome": "NC_062770",
+   "max_id_training_holin": 0.343
+  },
+  {
+   "id": "ctxmined_NC_069146_PF617_gp22",
+   "genome": "NC_069146",
+   "max_id_training_holin": 0.338
+  },
+  {
+   "id": "ctxmined_NC_069147_PF619_gp33",
+   "genome": "NC_069147",
+   "max_id_training_holin": 0.325
+  },
+  {
+   "id": "ctxmined_NC_069150_PF622_gp02",
+   "genome": "NC_069150",
+   "max_id_training_holin": 0.325
+  },
+  {
+   "id": "ctxmined_NC_069151_PF623_gp02",
+   "genome": "NC_069151",
+   "max_id_training_holin": 0.346
+  },
+  {
+   "id": "ctxmined_NC_069153_PF627_gp62",
+   "genome": "NC_069153",
+   "max_id_training_holin": 0.325
+  },
+  {
+   "id": "ctxmined_NC_069155_PF629_gp21",
+   "genome": "NC_069155",
+   "max_id_training_holin": 0.367
+  },
+  {
+   "id": "ctxmined_NC_069156_PF631_gp35",
+   "genome": "NC_069156",
+   "max_id_training_holin": 0.313
+  },
+  {
+   "id": "ctxmined_NC_069746_PM397_gp30",
+   "genome": "NC_069746",
+   "max_id_training_holin": 0.542
+  },
+  {
+   "id": "ctxmined_NC_069747_PM398_gp30",
+   "genome": "NC_069747",
+   "max_id_training_holin": 0.542
+  },
+  {
+   "id": "ctxmined_NC_069751_PM404_gp02",
+   "genome": "NC_069751",
+   "max_id_training_holin": 0.554
+  },
+  {
+   "id": "ctxmined_NC_070622_PPK13_gp51",
+   "genome": "NC_070622",
+   "max_id_training_holin": 0.687
+  },
+  {
+   "id": "ctxmined_NC_070623_PPK14_gp51",
+   "genome": "NC_070623",
+   "max_id_training_holin": 0.699
+  },
+  {
+   "id": "ctxmined_NC_070624_PPK15_gp32",
+   "genome": "NC_070624",
+   "max_id_training_holin": 0.94
+  },
+  {
+   "id": "ctxmined_NC_070625_PPK16_gp26",
+   "genome": "NC_070625",
+   "max_id_training_holin": 0.867
+  },
+  {
+   "id": "ctxmined_NC_070651_PP189_gp20",
+   "genome": "NC_070651",
+   "max_id_training_holin": 0.95
+  },
+  {
+   "id": "ctxmined_NC_070652_PP190_gp21",
+   "genome": "NC_070652",
+   "max_id_training_holin": 0.95
+  },
+  {
+   "id": "ctxmined_NC_070653_PP191_gp20",
+   "genome": "NC_070653",
+   "max_id_training_holin": 0.938
+  },
+  {
+   "id": "ctxmined_NC_070654_PP192_gp20",
+   "genome": "NC_070654",
+   "max_id_training_holin": 0.963
+  },
+  {
+   "id": "ctxmined_NC_070656_PP194_gp24",
+   "genome": "NC_070656",
+   "max_id_training_holin": 0.887
+  },
+  {
+   "id": "ctxmined_NC_070657_PP195_gp22",
+   "genome": "NC_070657",
+   "max_id_training_holin": 0.988
+  },
+  {
+   "id": "ctxmined_NC_070658_PP196_gp22",
+   "genome": "NC_070658",
+   "max_id_training_holin": 0.925
+  },
+  {
+   "id": "ctxmined_NC_070660_PP198_gp21",
+   "genome": "NC_070660",
+   "max_id_training_holin": 0.938
+  },
+  {
+   "id": "ctxmined_NC_070661_PP199_gp21",
+   "genome": "NC_070661",
+   "max_id_training_holin": 0.9
+  },
+  {
+   "id": "ctxmined_NC_070662_PP200_gp21",
+   "genome": "NC_070662",
+   "max_id_training_holin": 0.91
+  },
+  {
+   "id": "ctxmined_NC_070663_PP201_gp21",
+   "genome": "NC_070663",
+   "max_id_training_holin": 0.95
+  },
+  {
+   "id": "ctxmined_NC_070664_PP202_gp22",
+   "genome": "NC_070664",
+   "max_id_training_holin": 0.863
+  },
+  {
+   "id": "ctxmined_NC_070665_PP203_gp22",
+   "genome": "NC_070665",
+   "max_id_training_holin": 0.95
+  },
+  {
+   "id": "ctxmined_NC_070666_PP204_gp21",
+   "genome": "NC_070666",
+   "max_id_training_holin": 0.885
+  },
+  {
+   "id": "ctxmined_NC_070667_PP205_gp21",
+   "genome": "NC_070667",
+   "max_id_training_holin": 0.963
+  },
+  {
+   "id": "ctxmined_NC_070668_PP206_gp22",
+   "genome": "NC_070668",
+   "max_id_training_holin": 0.863
+  },
+  {
+   "id": "ctxmined_NC_070670_PP208_gp22",
+   "genome": "NC_070670",
+   "max_id_training_holin": 0.938
+  },
+  {
+   "id": "ctxmined_NC_070671_PP209_gp22",
+   "genome": "NC_070671",
+   "max_id_training_holin": 0.883
+  },
+  {
+   "id": "ctxmined_NC_070672_PP210_gp22",
+   "genome": "NC_070672",
+   "max_id_training_holin": 0.899
+  },
+  {
+   "id": "ctxmined_NC_070673_PP211_gp24",
+   "genome": "NC_070673",
+   "max_id_training_holin": 0.89
+  },
+  {
+   "id": "ctxmined_NC_070674_PP212_gp22",
+   "genome": "NC_070674",
+   "max_id_training_holin": 0.897
+  },
+  {
+   "id": "ctxmined_NC_070675_PP213_gp22",
+   "genome": "NC_070675",
+   "max_id_training_holin": 0.9
+  },
+  {
+   "id": "ctxmined_NC_070676_PP214_gp20",
+   "genome": "NC_070676",
+   "max_id_training_holin": 0.875
+  },
+  {
+   "id": "ctxmined_NC_070677_PP215_gp21",
+   "genome": "NC_070677",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_070681_PP219_gp21",
+   "genome": "NC_070681",
+   "max_id_training_holin": 0.9
+  },
+  {
+   "id": "ctxmined_NC_070682_PP220_gp22",
+   "genome": "NC_070682",
+   "max_id_training_holin": 0.875
+  },
+  {
+   "id": "ctxmined_NC_070684_PP222_gp24",
+   "genome": "NC_070684",
+   "max_id_training_holin": 0.9
+  },
+  {
+   "id": "ctxmined_NC_070685_PP223_gp21",
+   "genome": "NC_070685",
+   "max_id_training_holin": 0.912
+  },
+  {
+   "id": "ctxmined_NC_070686_PP224_gp22",
+   "genome": "NC_070686",
+   "max_id_training_holin": 0.887
+  },
+  {
+   "id": "ctxmined_NC_070688_PP226_gp21",
+   "genome": "NC_070688",
+   "max_id_training_holin": 0.887
+  },
+  {
+   "id": "ctxmined_NC_070689_PP227_gp21",
+   "genome": "NC_070689",
+   "max_id_training_holin": 0.925
+  },
+  {
+   "id": "ctxmined_NC_070690_PP228_gp21",
+   "genome": "NC_070690",
+   "max_id_training_holin": 0.863
+  },
+  {
+   "id": "ctxmined_NC_070691_PP229_gp24",
+   "genome": "NC_070691",
+   "max_id_training_holin": 0.912
+  },
+  {
+   "id": "ctxmined_NC_070692_PP230_gp22",
+   "genome": "NC_070692",
+   "max_id_training_holin": 0.912
+  },
+  {
+   "id": "ctxmined_NC_070693_PP231_gp22",
+   "genome": "NC_070693",
+   "max_id_training_holin": 0.904
+  },
+  {
+   "id": "ctxmined_NC_070694_PP232_gp23",
+   "genome": "NC_070694",
+   "max_id_training_holin": 0.988
+  },
+  {
+   "id": "ctxmined_NC_070695_PP233_gp22",
+   "genome": "NC_070695",
+   "max_id_training_holin": 0.887
+  },
+  {
+   "id": "ctxmined_NC_070696_PP234_gp21",
+   "genome": "NC_070696",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_070698_PP236_gp25",
+   "genome": "NC_070698",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_070702_PP240_gp22",
+   "genome": "NC_070702",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_070703_PP241_gp24",
+   "genome": "NC_070703",
+   "max_id_training_holin": 0.923
+  },
+  {
+   "id": "ctxmined_NC_070704_PP242_gp21",
+   "genome": "NC_070704",
+   "max_id_training_holin": 0.873
+  },
+  {
+   "id": "ctxmined_NC_070708_PP246_gp21",
+   "genome": "NC_070708",
+   "max_id_training_holin": 0.875
+  },
+  {
+   "id": "ctxmined_NC_070710_PP248_gp21",
+   "genome": "NC_070710",
+   "max_id_training_holin": 0.912
+  },
+  {
+   "id": "ctxmined_NC_070711_PP249_gp21",
+   "genome": "NC_070711",
+   "max_id_training_holin": 0.899
+  },
+  {
+   "id": "ctxmined_NC_070712_PP250_gp23",
+   "genome": "NC_070712",
+   "max_id_training_holin": 0.949
+  },
+  {
+   "id": "ctxmined_NC_070714_PP252_gp21",
+   "genome": "NC_070714",
+   "max_id_training_holin": 0.932
+  },
+  {
+   "id": "ctxmined_NC_070715_PP253_gp21",
+   "genome": "NC_070715",
+   "max_id_training_holin": 0.938
+  },
+  {
+   "id": "ctxmined_NC_070717_PP255_gp24",
+   "genome": "NC_070717",
+   "max_id_training_holin": 0.938
+  },
+  {
+   "id": "ctxmined_NC_070721_if_gp22",
+   "genome": "NC_070721",
+   "max_id_training_holin": 0.912
+  },
+  {
+   "id": "ctxmined_NC_070725_PP261_gp31",
+   "genome": "NC_070725",
+   "max_id_training_holin": 0.912
+  },
+  {
+   "id": "ctxmined_NC_070727_PP279_gp63",
+   "genome": "NC_070727",
+   "max_id_training_holin": 0.618
+  },
+  {
+   "id": "ctxmined_NC_070760_PP291_gp23",
+   "genome": "NC_070760",
+   "max_id_training_holin": 0.308
+  },
+  {
+   "id": "ctxmined_NC_070833_PP636_gp69",
+   "genome": "NC_070833",
+   "max_id_training_holin": 0.981
+  },
+  {
+   "id": "ctxmined_NC_070834_PP637_gp25",
+   "genome": "NC_070834",
+   "max_id_training_holin": 0.479
+  },
+  {
+   "id": "ctxmined_NC_070835_PP638_gp77",
+   "genome": "NC_070835",
+   "max_id_training_holin": 0.98
+  },
+  {
+   "id": "ctxmined_NC_070836_PP639_gp027",
+   "genome": "NC_070836",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_070837_PP640_gp23",
+   "genome": "NC_070837",
+   "max_id_training_holin": 0.333
+  },
+  {
+   "id": "ctxmined_NC_070841_PP653_gp114",
+   "genome": "NC_070841",
+   "max_id_training_holin": 0.345
+  },
+  {
+   "id": "ctxmined_NC_070843_PP655_gp024",
+   "genome": "NC_070843",
+   "max_id_training_holin": 0.327
+  },
+  {
+   "id": "ctxmined_NC_070844_PP656_gp082",
+   "genome": "NC_070844",
+   "max_id_training_holin": 0.327
+  },
+  {
+   "id": "ctxmined_NC_070847_PP740_gp059",
+   "genome": "NC_070847",
+   "max_id_training_holin": 0.468
+  },
+  {
+   "id": "ctxmined_NC_070849_PP742_gp12",
+   "genome": "NC_070849",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_070850_PP743_gp72",
+   "genome": "NC_070850",
+   "max_id_training_holin": 0.347
+  },
+  {
+   "id": "ctxmined_NC_070858_PP752_gp86",
+   "genome": "NC_070858",
+   "max_id_training_holin": 0.465
+  },
+  {
+   "id": "ctxmined_NC_070867_PP761_gp49",
+   "genome": "NC_070867",
+   "max_id_training_holin": 0.367
+  },
+  {
+   "id": "ctxmined_NC_070870_PP764_gp03",
+   "genome": "NC_070870",
+   "max_id_training_holin": 0.349
+  },
+  {
+   "id": "ctxmined_NC_070873_PP767_gp73",
+   "genome": "NC_070873",
+   "max_id_training_holin": 0.396
+  },
+  {
+   "id": "ctxmined_NC_070874_PP768_gp30",
+   "genome": "NC_070874",
+   "max_id_training_holin": 0.396
+  },
+  {
+   "id": "ctxmined_NC_070879_PP916_gp11",
+   "genome": "NC_070879",
+   "max_id_training_holin": 0.63
+  },
+  {
+   "id": "ctxmined_NC_070880_PP917_gp10",
+   "genome": "NC_070880",
+   "max_id_training_holin": 0.702
+  },
+  {
+   "id": "ctxmined_NC_070881_PP918_gp55",
+   "genome": "NC_070881",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_070899_PQA00_gp21",
+   "genome": "NC_070899",
+   "max_id_training_holin": 0.863
+  },
+  {
+   "id": "ctxmined_NC_070900_PQA01_gp20",
+   "genome": "NC_070900",
+   "max_id_training_holin": 0.838
+  },
+  {
+   "id": "ctxmined_NC_070901_PQA02_gp21",
+   "genome": "NC_070901",
+   "max_id_training_holin": 0.872
+  },
+  {
+   "id": "ctxmined_NC_070909_PQA61_gp09",
+   "genome": "NC_070909",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_070910_PQA62_gp11",
+   "genome": "NC_070910",
+   "max_id_training_holin": 0.954
+  },
+  {
+   "id": "ctxmined_NC_070911_PQA63_gp08",
+   "genome": "NC_070911",
+   "max_id_training_holin": 0.91
+  },
+  {
+   "id": "ctxmined_NC_070913_PQA65_gp31",
+   "genome": "NC_070913",
+   "max_id_training_holin": 0.977
+  },
+  {
+   "id": "ctxmined_NC_070914_PQA66_gp28",
+   "genome": "NC_070914",
+   "max_id_training_holin": 0.913
+  },
+  {
+   "id": "ctxmined_NC_070915_PQA67_gp28",
+   "genome": "NC_070915",
+   "max_id_training_holin": 0.913
+  },
+  {
+   "id": "ctxmined_NC_070917_PQA69_gp22",
+   "genome": "NC_070917",
+   "max_id_training_holin": 0.812
+  },
+  {
+   "id": "ctxmined_NC_070918_PQA70_gp25",
+   "genome": "NC_070918",
+   "max_id_training_holin": 0.971
+  },
+  {
+   "id": "ctxmined_NC_070919_PQA71_gp22",
+   "genome": "NC_070919",
+   "max_id_training_holin": 0.524
+  },
+  {
+   "id": "ctxmined_NC_070920_PQA72_gp28",
+   "genome": "NC_070920",
+   "max_id_training_holin": 0.452
+  },
+  {
+   "id": "ctxmined_NC_070923_PQB24_gp54",
+   "genome": "NC_070923",
+   "max_id_training_holin": 0.982
+  },
+  {
+   "id": "ctxmined_NC_070925_PQB27_gp48",
+   "genome": "NC_070925",
+   "max_id_training_holin": 0.991
+  },
+  {
+   "id": "ctxmined_NC_070927_PQB29_gp52",
+   "genome": "NC_070927",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_070928_PQB30_gp51",
+   "genome": "NC_070928",
+   "max_id_training_holin": 0.991
+  },
+  {
+   "id": "ctxmined_NC_070929_PQB31_gp51",
+   "genome": "NC_070929",
+   "max_id_training_holin": 0.991
+  },
+  {
+   "id": "ctxmined_NC_070968_PQC18_gp25",
+   "genome": "NC_070968",
+   "max_id_training_holin": 0.392
+  },
+  {
+   "id": "ctxmined_NC_070979_PQC40_gp014",
+   "genome": "NC_070979",
+   "max_id_training_holin": 0.986
+  },
+  {
+   "id": "ctxmined_NC_070980_PQC41_gp013",
+   "genome": "NC_070980",
+   "max_id_training_holin": 0.778
+  },
+  {
+   "id": "ctxmined_NC_070983_PQC44_gp015",
+   "genome": "NC_070983",
+   "max_id_training_holin": 0.792
+  },
+  {
+   "id": "ctxmined_NC_070984_PQC45_gp015",
+   "genome": "NC_070984",
+   "max_id_training_holin": 0.972
+  },
+  {
+   "id": "ctxmined_NC_070986_PQC47_gp009",
+   "genome": "NC_070986",
+   "max_id_training_holin": 0.972
+  },
+  {
+   "id": "ctxmined_NC_070991_PQC57_gp013",
+   "genome": "NC_070991",
+   "max_id_training_holin": 0.931
+  },
+  {
+   "id": "ctxmined_NC_070993_PQC59_gp013",
+   "genome": "NC_070993",
+   "max_id_training_holin": 0.931
+  },
+  {
+   "id": "ctxmined_NC_071002_PQD11_gp10",
+   "genome": "NC_071002",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_071003_PQD12_gp80",
+   "genome": "NC_071003",
+   "max_id_training_holin": 0.4
+  },
+  {
+   "id": "ctxmined_NC_071012_PQD68_gp004",
+   "genome": "NC_071012",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_071013_PQD69_gp004",
+   "genome": "NC_071013",
+   "max_id_training_holin": 0.988
+  },
+  {
+   "id": "ctxmined_NC_071029_PQE13_gp24",
+   "genome": "NC_071029",
+   "max_id_training_holin": 0.393
+  },
+  {
+   "id": "ctxmined_NC_071031_PQE15_gp23",
+   "genome": "NC_071031",
+   "max_id_training_holin": 0.381
+  },
+  {
+   "id": "ctxmined_NC_071035_PQE19_gp23",
+   "genome": "NC_071035",
+   "max_id_training_holin": 0.369
+  },
+  {
+   "id": "ctxmined_NC_071051_PQE77_gp20",
+   "genome": "NC_071051",
+   "max_id_training_holin": 0.975
+  },
+  {
+   "id": "ctxmined_NC_071052_PQE78_gp20",
+   "genome": "NC_071052",
+   "max_id_training_holin": 0.975
+  },
+  {
+   "id": "ctxmined_NC_071053_PQE79_gp20",
+   "genome": "NC_071053",
+   "max_id_training_holin": 0.925
+  },
+  {
+   "id": "ctxmined_NC_071054_PQE80_gp21",
+   "genome": "NC_071054",
+   "max_id_training_holin": 0.988
+  },
+  {
+   "id": "ctxmined_NC_071056_PQE82_gp21",
+   "genome": "NC_071056",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_071059_PQE85_gp21",
+   "genome": "NC_071059",
+   "max_id_training_holin": 0.938
+  },
+  {
+   "id": "ctxmined_NC_071060_PQE86_gp20",
+   "genome": "NC_071060",
+   "max_id_training_holin": 0.963
+  },
+  {
+   "id": "ctxmined_NC_071062_PQE88_gp20",
+   "genome": "NC_071062",
+   "max_id_training_holin": 0.61
+  },
+  {
+   "id": "ctxmined_NC_071063_PQE89_gp26",
+   "genome": "NC_071063",
+   "max_id_training_holin": 0.925
+  },
+  {
+   "id": "ctxmined_NC_071066_PQE92_gp24",
+   "genome": "NC_071066",
+   "max_id_training_holin": 0.912
+  },
+  {
+   "id": "ctxmined_NC_071068_PQE94_gp26",
+   "genome": "NC_071068",
+   "max_id_training_holin": 0.863
+  },
+  {
+   "id": "ctxmined_NC_071069_PQE95_gp25",
+   "genome": "NC_071069",
+   "max_id_training_holin": 0.938
+  },
+  {
+   "id": "ctxmined_NC_071071_PQE97_gp25",
+   "genome": "NC_071071",
+   "max_id_training_holin": 0.925
+  },
+  {
+   "id": "ctxmined_NC_071072_PQE98_gp24",
+   "genome": "NC_071072",
+   "max_id_training_holin": 0.875
+  },
+  {
+   "id": "ctxmined_NC_071073_PQE99_gp25",
+   "genome": "NC_071073",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_071074_PQF00_gp24",
+   "genome": "NC_071074",
+   "max_id_training_holin": 0.925
+  },
+  {
+   "id": "ctxmined_NC_071075_PQF01_gp23",
+   "genome": "NC_071075",
+   "max_id_training_holin": 0.932
+  },
+  {
+   "id": "ctxmined_NC_071076_PQF02_gp24",
+   "genome": "NC_071076",
+   "max_id_training_holin": 0.877
+  },
+  {
+   "id": "ctxmined_NC_071077_PQF03_gp24",
+   "genome": "NC_071077",
+   "max_id_training_holin": 0.932
+  },
+  {
+   "id": "ctxmined_NC_071079_PQF05_gp23",
+   "genome": "NC_071079",
+   "max_id_training_holin": 0.91
+  },
+  {
+   "id": "ctxmined_NC_071080_PQF06_gp24",
+   "genome": "NC_071080",
+   "max_id_training_holin": 0.936
+  },
+  {
+   "id": "ctxmined_NC_071081_PQF07_gp25",
+   "genome": "NC_071081",
+   "max_id_training_holin": 0.887
+  },
+  {
+   "id": "ctxmined_NC_071082_PQF08_gp25",
+   "genome": "NC_071082",
+   "max_id_training_holin": 0.877
+  },
+  {
+   "id": "ctxmined_NC_071084_PQF10_gp26",
+   "genome": "NC_071084",
+   "max_id_training_holin": 0.897
+  },
+  {
+   "id": "ctxmined_NC_071085_PQF11_gp25",
+   "genome": "NC_071085",
+   "max_id_training_holin": 0.863
+  },
+  {
+   "id": "ctxmined_NC_071086_PQF12_gp50",
+   "genome": "NC_071086",
+   "max_id_training_holin": 0.85
+  },
+  {
+   "id": "ctxmined_NC_072500_P6F32_gp27",
+   "genome": "NC_072500",
+   "max_id_training_holin": 0.386
+  },
+  {
+   "id": "ctxmined_NC_072809_P7H99_gp02",
+   "genome": "NC_072809",
+   "max_id_training_holin": 0.554
+  },
+  {
+   "id": "ctxmined_NC_072810_P7I00_gp36",
+   "genome": "NC_072810",
+   "max_id_training_holin": 0.494
+  },
+  {
+   "id": "ctxmined_NC_072811_P7I17_gp25",
+   "genome": "NC_072811",
+   "max_id_training_holin": 0.493
+  },
+  {
+   "id": "ctxmined_NC_073022_P9A27_gp42",
+   "genome": "NC_073022",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_073031_P9A49_gp19",
+   "genome": "NC_073031",
+   "max_id_training_holin": 0.557
+  },
+  {
+   "id": "ctxmined_NC_073040_P9C57_gp16",
+   "genome": "NC_073040",
+   "max_id_training_holin": 0.587
+  },
+  {
+   "id": "ctxmined_NC_073042_P9C60_gp17",
+   "genome": "NC_073042",
+   "max_id_training_holin": 0.924
+  },
+  {
+   "id": "ctxmined_NC_073043_P9C71_gp17",
+   "genome": "NC_073043",
+   "max_id_training_holin": 0.987
+  },
+  {
+   "id": "ctxmined_NC_073044_P9C72_gp16",
+   "genome": "NC_073044",
+   "max_id_training_holin": 0.937
+  },
+  {
+   "id": "ctxmined_NC_073045_P9C73_gp17",
+   "genome": "NC_073045",
+   "max_id_training_holin": 0.899
+  },
+  {
+   "id": "ctxmined_NC_073046_P9C74_gp17",
+   "genome": "NC_073046",
+   "max_id_training_holin": 0.911
+  },
+  {
+   "id": "ctxmined_NC_073048_P9C77_gp17",
+   "genome": "NC_073048",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_073051_P9595_gp06",
+   "genome": "NC_073051",
+   "max_id_training_holin": 0.33
+  },
+  {
+   "id": "ctxmined_NC_073052_P9596_gp59",
+   "genome": "NC_073052",
+   "max_id_training_holin": 0.362
+  },
+  {
+   "id": "ctxmined_NC_073054_P9599_gp48",
+   "genome": "NC_073054",
+   "max_id_training_holin": 0.333
+  },
+  {
+   "id": "ctxmined_NC_073055_P9600_gp08",
+   "genome": "NC_073055",
+   "max_id_training_holin": 0.3
+  },
+  {
+   "id": "ctxmined_NC_073056_P9601_gp29",
+   "genome": "NC_073056",
+   "max_id_training_holin": 0.325
+  },
+  {
+   "id": "ctxmined_NC_073057_P9602_gp61",
+   "genome": "NC_073057",
+   "max_id_training_holin": 0.324
+  },
+  {
+   "id": "ctxmined_NC_073058_P9603_gp08",
+   "genome": "NC_073058",
+   "max_id_training_holin": 0.338
+  },
+  {
+   "id": "ctxmined_NC_073059_P9604_gp27",
+   "genome": "NC_073059",
+   "max_id_training_holin": 0.324
+  },
+  {
+   "id": "ctxmined_NC_073060_P9605_gp08",
+   "genome": "NC_073060",
+   "max_id_training_holin": 0.333
+  },
+  {
+   "id": "ctxmined_NC_073062_P9607_gp61",
+   "genome": "NC_073062",
+   "max_id_training_holin": 0.3
+  },
+  {
+   "id": "ctxmined_NC_073063_P9608_gp37",
+   "genome": "NC_073063",
+   "max_id_training_holin": 0.311
+  },
+  {
+   "id": "ctxmined_NC_073068_P9614_gp59",
+   "genome": "NC_073068",
+   "max_id_training_holin": 0.333
+  },
+  {
+   "id": "ctxmined_NC_073071_P9617_gp14",
+   "genome": "NC_073071",
+   "max_id_training_holin": 0.326
+  },
+  {
+   "id": "ctxmined_NC_073072_P9619_gp42",
+   "genome": "NC_073072",
+   "max_id_training_holin": 0.311
+  },
+  {
+   "id": "ctxmined_NC_073074_P9621_gp21",
+   "genome": "NC_073074",
+   "max_id_training_holin": 0.311
+  },
+  {
+   "id": "ctxmined_NC_073075_P9622_gp12",
+   "genome": "NC_073075",
+   "max_id_training_holin": 0.371
+  },
+  {
+   "id": "ctxmined_NC_073076_P9623_gp10",
+   "genome": "NC_073076",
+   "max_id_training_holin": 0.324
+  },
+  {
+   "id": "ctxmined_NC_073083_P9630_gp27",
+   "genome": "NC_073083",
+   "max_id_training_holin": 0.315
+  },
+  {
+   "id": "ctxmined_NC_073084_P9631_gp35",
+   "genome": "NC_073084",
+   "max_id_training_holin": 0.311
+  },
+  {
+   "id": "ctxmined_NC_073091_P9653_gp24",
+   "genome": "NC_073091",
+   "max_id_training_holin": 0.379
+  },
+  {
+   "id": "ctxmined_NC_073093_QAY89_gp22",
+   "genome": "NC_073093",
+   "max_id_training_holin": 0.403
+  },
+  {
+   "id": "ctxmined_NC_073095_QAY91_gp35",
+   "genome": "NC_073095",
+   "max_id_training_holin": 0.41
+  },
+  {
+   "id": "ctxmined_NC_073169_QA018_gp55",
+   "genome": "NC_073169",
+   "max_id_training_holin": 0.404
+  },
+  {
+   "id": "ctxmined_NC_073171_QA020_gp06",
+   "genome": "NC_073171",
+   "max_id_training_holin": 0.386
+  },
+  {
+   "id": "ctxmined_NC_073172_QA021_gp08",
+   "genome": "NC_073172",
+   "max_id_training_holin": 0.337
+  },
+  {
+   "id": "ctxmined_NC_073173_QA022_gp06",
+   "genome": "NC_073173",
+   "max_id_training_holin": 0.386
+  },
+  {
+   "id": "ctxmined_NC_073175_QA024_gp51",
+   "genome": "NC_073175",
+   "max_id_training_holin": 0.386
+  },
+  {
+   "id": "ctxmined_NC_073176_QA025_gp54",
+   "genome": "NC_073176",
+   "max_id_training_holin": 0.325
+  },
+  {
+   "id": "ctxmined_NC_073179_QA028_gp55",
+   "genome": "NC_073179",
+   "max_id_training_holin": 0.386
+  },
+  {
+   "id": "ctxmined_NC_073180_QA029_gp06",
+   "genome": "NC_073180",
+   "max_id_training_holin": 0.386
+  },
+  {
+   "id": "ctxmined_NC_073182_QA031_gp52",
+   "genome": "NC_073182",
+   "max_id_training_holin": 0.386
+  },
+  {
+   "id": "ctxmined_NC_073185_QA034_gp15",
+   "genome": "NC_073185",
+   "max_id_training_holin": 0.373
+  },
+  {
+   "id": "ctxmined_NC_073186_QA035_gp08",
+   "genome": "NC_073186",
+   "max_id_training_holin": 0.404
+  },
+  {
+   "id": "ctxmined_NC_073188_QA037_gp10",
+   "genome": "NC_073188",
+   "max_id_training_holin": 0.347
+  },
+  {
+   "id": "ctxmined_NC_073189_QA038_gp28",
+   "genome": "NC_073189",
+   "max_id_training_holin": 0.347
+  },
+  {
+   "id": "ctxmined_NC_073191_QA040_gp65",
+   "genome": "NC_073191",
+   "max_id_training_holin": 0.367
+  },
+  {
+   "id": "ctxmined_NC_073194_QA043_gp40",
+   "genome": "NC_073194",
+   "max_id_training_holin": 0.319
+  },
+  {
+   "id": "ctxmined_NC_073198_QA047_gp48",
+   "genome": "NC_073198",
+   "max_id_training_holin": 0.386
+  },
+  {
+   "id": "ctxmined_NC_073202_QA051_gp13",
+   "genome": "NC_073202",
+   "max_id_training_holin": 0.404
+  },
+  {
+   "id": "ctxmined_NC_073203_QA052_gp67",
+   "genome": "NC_073203",
+   "max_id_training_holin": 0.404
+  },
+  {
+   "id": "ctxmined_NC_073204_QA053_gp15",
+   "genome": "NC_073204",
+   "max_id_training_holin": 0.353
+  },
+  {
+   "id": "ctxmined_NC_073205_QA054_gp56",
+   "genome": "NC_073205",
+   "max_id_training_holin": 0.361
+  },
+  {
+   "id": "ctxmined_NC_073206_QA055_gp24",
+   "genome": "NC_073206",
+   "max_id_training_holin": 0.367
+  },
+  {
+   "id": "ctxmined_NC_073208_QA057_gp02",
+   "genome": "NC_073208",
+   "max_id_training_holin": 0.319
+  },
+  {
+   "id": "ctxmined_NC_073210_QA059_gp08",
+   "genome": "NC_073210",
+   "max_id_training_holin": 0.319
+  },
+  {
+   "id": "ctxmined_NC_073211_QA060_gp05",
+   "genome": "NC_073211",
+   "max_id_training_holin": 0.361
+  },
+  {
+   "id": "ctxmined_NC_073212_QA061_gp56",
+   "genome": "NC_073212",
+   "max_id_training_holin": 0.337
+  },
+  {
+   "id": "ctxmined_NC_073214_QA063_gp03",
+   "genome": "NC_073214",
+   "max_id_training_holin": 0.386
+  },
+  {
+   "id": "ctxmined_NC_073218_QA068_gp05",
+   "genome": "NC_073218",
+   "max_id_training_holin": 0.337
+  },
+  {
+   "id": "ctxmined_NC_073315_QCF70_gp67",
+   "genome": "NC_073315",
+   "max_id_training_holin": 0.333
+  },
+  {
+   "id": "ctxmined_NC_073316_QCF71_gp68",
+   "genome": "NC_073316",
+   "max_id_training_holin": 0.325
+  },
+  {
+   "id": "ctxmined_NC_073318_QCF73_gp23",
+   "genome": "NC_073318",
+   "max_id_training_holin": 0.325
+  },
+  {
+   "id": "ctxmined_NC_073319_QCF74_gp15",
+   "genome": "NC_073319",
+   "max_id_training_holin": 0.364
+  },
+  {
+   "id": "ctxmined_NC_073320_QCF75_gp26",
+   "genome": "NC_073320",
+   "max_id_training_holin": 0.338
+  },
+  {
+   "id": "ctxmined_NC_073322_QCF77_gp10",
+   "genome": "NC_073322",
+   "max_id_training_holin": 0.325
+  },
+  {
+   "id": "ctxmined_NC_073323_QCF78_gp67",
+   "genome": "NC_073323",
+   "max_id_training_holin": 0.333
+  },
+  {
+   "id": "ctxmined_NC_073324_QCF79_gp03",
+   "genome": "NC_073324",
+   "max_id_training_holin": 0.307
+  },
+  {
+   "id": "ctxmined_NC_073325_QCF80_gp42",
+   "genome": "NC_073325",
+   "max_id_training_holin": 0.319
+  },
+  {
+   "id": "ctxmined_NC_073373_QDA09_gp41",
+   "genome": "NC_073373",
+   "max_id_training_holin": 0.323
+  },
+  {
+   "id": "ctxmined_NC_073462_QEH36_gp081",
+   "genome": "NC_073462",
+   "max_id_training_holin": 0.354
+  },
+  {
+   "id": "ctxmined_NC_073463_QEH37_gp24",
+   "genome": "NC_073463",
+   "max_id_training_holin": 0.324
+  },
+  {
+   "id": "ctxmined_NC_073464_QEH38_gp30",
+   "genome": "NC_073464",
+   "max_id_training_holin": 0.744
+  },
+  {
+   "id": "ctxmined_NC_073478_QEJ63_gp19",
+   "genome": "NC_073478",
+   "max_id_training_holin": 0.342
+  },
+  {
+   "id": "ctxmined_NC_073590_QEO76_gp22",
+   "genome": "NC_073590",
+   "max_id_training_holin": 0.324
+  },
+  {
+   "id": "ctxmined_NC_073593_QEO79_gp23",
+   "genome": "NC_073593",
+   "max_id_training_holin": 0.303
+  },
+  {
+   "id": "ctxmined_NC_073594_QEO99_gp24",
+   "genome": "NC_073594",
+   "max_id_training_holin": 0.333
+  },
+  {
+   "id": "ctxmined_NC_073595_QEX65_gp13",
+   "genome": "NC_073595",
+   "max_id_training_holin": 0.364
+  },
+  {
+   "id": "ctxmined_NC_073672_QGM55_gp64",
+   "genome": "NC_073672",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_074751_QJS24_gp47",
+   "genome": "NC_074751",
+   "max_id_training_holin": 0.473
+  },
+  {
+   "id": "ctxmined_NC_074752_QJS25_gp63",
+   "genome": "NC_074752",
+   "max_id_training_holin": 0.354
+  },
+  {
+   "id": "ctxmined_NC_074754_QJS27_gp62",
+   "genome": "NC_074754",
+   "max_id_training_holin": 0.346
+  },
+  {
+   "id": "ctxmined_NC_079174_QNG95_gp75",
+   "genome": "NC_079174",
+   "max_id_training_holin": 0.655
+  },
+  {
+   "id": "ctxmined_NC_079175_QNG96_gp03",
+   "genome": "NC_079175",
+   "max_id_training_holin": 0.912
+  },
+  {
+   "id": "ctxmined_NC_079176_QNG97_gp25",
+   "genome": "NC_079176",
+   "max_id_training_holin": 0.991
+  },
+  {
+   "id": "ctxmined_NC_079177_QNG98_gp82",
+   "genome": "NC_079177",
+   "max_id_training_holin": 0.982
+  },
+  {
+   "id": "ctxmined_NC_079178_QNG99_gp78",
+   "genome": "NC_079178",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_079180_QNH01_gp61",
+   "genome": "NC_079180",
+   "max_id_training_holin": 0.991
+  },
+  {
+   "id": "ctxmined_NC_079181_QNH02_gp62",
+   "genome": "NC_079181",
+   "max_id_training_holin": 0.991
+  },
+  {
+   "id": "ctxmined_NC_092900_ende_139",
+   "genome": "NC_092900",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_093711_G_36",
+   "genome": "NC_093711",
+   "max_id_training_holin": 0.325
+  },
+  {
+   "id": "ctxmined_NC_093712_L_36",
+   "genome": "NC_093712",
+   "max_id_training_holin": 0.314
+  },
+  {
+   "id": "ctxmined_NC_093713_P_40",
+   "genome": "NC_093713",
+   "max_id_training_holin": 0.369
+  },
+  {
+   "id": "ctxmined_NC_095599_YP_011360406.1",
+   "genome": "NC_095599",
+   "max_id_training_holin": 0.957
+  },
+  {
+   "id": "ctxmined_NC_100129_YP_011540334.1",
+   "genome": "NC_100129",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_100739_YP_011630897.1",
+   "genome": "NC_100739",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_101653_YP_011680238.1",
+   "genome": "NC_101653",
+   "max_id_training_holin": 0.763
+  },
+  {
+   "id": "ctxmined_NC_102113_rutana_140",
+   "genome": "NC_102113",
+   "max_id_training_holin": 0.995
+  },
+  {
+   "id": "ctxmined_NC_102114_smaug_135",
+   "genome": "NC_102114",
+   "max_id_training_holin": 0.995
+  },
+  {
+   "id": "ctxmined_NC_102127_Sam46_gp27",
+   "genome": "NC_102127",
+   "max_id_training_holin": 0.36
+  },
+  {
+   "id": "ctxmined_NC_102382_Novomoskovsk_34",
+   "genome": "NC_102382",
+   "max_id_training_holin": 0.365
+  },
+  {
+   "id": "ctxmined_NC_103145_CPT_Solomon_040",
+   "genome": "NC_103145",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_103213_GECvBN5_gp055c",
+   "genome": "NC_103213",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_103329_YP_011825541.1",
+   "genome": "NC_103329",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_104190_YP_011891888.1",
+   "genome": "NC_104190",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_104261_YP_011898256.1",
+   "genome": "NC_104261",
+   "max_id_training_holin": 0.963
+  },
+  {
+   "id": "ctxmined_NC_104262_YP_011898315.1",
+   "genome": "NC_104262",
+   "max_id_training_holin": 0.939
+  },
+  {
+   "id": "ctxmined_NC_104264_YP_011898424.1",
+   "genome": "NC_104264",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_104266_YP_011898538.1",
+   "genome": "NC_104266",
+   "max_id_training_holin": 0.531
+  },
+  {
+   "id": "ctxmined_NC_104395_YP_011915913.1",
+   "genome": "NC_104395",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_104613_YP_011935668.1",
+   "genome": "NC_104613",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_104627_YP_011936801.1",
+   "genome": "NC_104627",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_104629_YP_011936952.1",
+   "genome": "NC_104629",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_104637_AH03_28",
+   "genome": "NC_104637",
+   "max_id_training_holin": 0.528
+  },
+  {
+   "id": "ctxmined_NC_104876_YP_011965742.1",
+   "genome": "NC_104876",
+   "max_id_training_holin": 0.325
+  },
+  {
+   "id": "ctxmined_NC_105102_bas08_0042",
+   "genome": "NC_105102",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_105104_bas11_0042",
+   "genome": "NC_105104",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_105105_bas12_0043",
+   "genome": "NC_105105",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_105114_bas27_0156",
+   "genome": "NC_105114",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_105119_bas33_0142",
+   "genome": "NC_105119",
+   "max_id_training_holin": 0.992
+  },
+  {
+   "id": "ctxmined_NC_105154_YP_012000724.1",
+   "genome": "NC_105154",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_105416_FAIRDINKUM_40",
+   "genome": "NC_105416",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_105433_POKY_40",
+   "genome": "NC_105433",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_105494_PETECAROL_41",
+   "genome": "NC_105494",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_105513_JLBYU41_78",
+   "genome": "NC_105513",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_105587_YP_012026609.1",
+   "genome": "NC_105587",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_105611_kps4_67",
+   "genome": "NC_105611",
+   "max_id_training_holin": 0.986
+  },
+  {
+   "id": "ctxmined_NC_105638_PWKp15_00072",
+   "genome": "NC_105638",
+   "max_id_training_holin": 0.986
+  },
+  {
+   "id": "ctxmined_NC_105724_BMKJMICM_00058",
+   "genome": "NC_105724",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_105760_PK7R_68",
+   "genome": "NC_105760",
+   "max_id_training_holin": 0.732
+  },
+  {
+   "id": "ctxmined_NC_105792_YP_012046176.1",
+   "genome": "NC_105792",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_106494_YP_012079355.1",
+   "genome": "NC_106494",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_106513_ESCO30_00157",
+   "genome": "NC_106513",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_106518_BMac_gp38",
+   "genome": "NC_106518",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_106835_YP_012153636.1",
+   "genome": "NC_106835",
+   "max_id_training_holin": 0.946
+  },
+  {
+   "id": "ctxmined_NC_107013_UTI89UKE1_002",
+   "genome": "NC_107013",
+   "max_id_training_holin": 0.325
+  },
+  {
+   "id": "ctxmined_NC_107481_phageB13_18",
+   "genome": "NC_107481",
+   "max_id_training_holin": 0.553
+  },
+  {
+   "id": "ctxmined_NC_107482_YP_012208614.1",
+   "genome": "NC_107482",
+   "max_id_training_holin": 0.989
+  },
+  {
+   "id": "ctxmined_NC_107940_D7c_00065",
+   "genome": "NC_107940",
+   "max_id_training_holin": 0.986
+  },
+  {
+   "id": "ctxmined_NC_107952_YP_012274299.1",
+   "genome": "NC_107952",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_108342_YP_012319067.1",
+   "genome": "NC_108342",
+   "max_id_training_holin": 0.902
+  },
+  {
+   "id": "ctxmined_NC_108349_YP_012319506.1",
+   "genome": "NC_108349",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_108593_SYYB1_21",
+   "genome": "NC_108593",
+   "max_id_training_holin": 0.933
+  },
+  {
+   "id": "ctxmined_NC_109362_A051pD_gene0004",
+   "genome": "NC_109362",
+   "max_id_training_holin": 0.515
+  },
+  {
+   "id": "ctxmined_NC_109368_EEPDABAO_00012",
+   "genome": "NC_109368",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_110358_YP_012600595.1",
+   "genome": "NC_110358",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_111368_vBBcePLY3_00038",
+   "genome": "NC_111368",
+   "max_id_training_holin": 0.689
+  },
+  {
+   "id": "ctxmined_NC_111398_YP_012772481.1",
+   "genome": "NC_111398",
+   "max_id_training_holin": 0.992
+  },
+  {
+   "id": "ctxmined_NC_111484_PJM39_0067",
+   "genome": "NC_111484",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_111487_PJM41_0041",
+   "genome": "NC_111487",
+   "max_id_training_holin": 0.992
+  },
+  {
+   "id": "ctxmined_NC_112025_YP_012856279.1",
+   "genome": "NC_112025",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_129902_YP_013421641.1",
+   "genome": "NC_129902",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_129957_KpP1_039",
+   "genome": "NC_129957",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_130051_bas10_0044",
+   "genome": "NC_130051",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_130053_bas32_0147",
+   "genome": "NC_130053",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_130755_FP3_000037",
+   "genome": "NC_130755",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_133303_PVA66_000043",
+   "genome": "NC_133303",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_135368_phi9184_ORF021",
+   "genome": "NC_135368",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NC_135495_ARAMI_24",
+   "genome": "NC_135495",
+   "max_id_training_holin": 0.989
+  },
+  {
+   "id": "ctxmined_NC_141872_YP_013613464.1",
+   "genome": "NC_141872",
+   "max_id_training_holin": 0.33
+  },
+  {
+   "id": "ctxmined_NZ_CP007800_BSUA_RS07085",
+   "genome": "NZ_CP007800",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NZ_CP007800_BSUA_RS12500",
+   "genome": "NZ_CP007800",
+   "max_id_training_holin": 0.346
+  },
+  {
+   "id": "ctxmined_NZ_CP007800_BSUA_RS14050",
+   "genome": "NZ_CP007800",
+   "max_id_training_holin": 1.0
+  },
+  {
+   "id": "ctxmined_NZ_CP011102_UE46_RS05410",
+   "genome": "NZ_CP011102",
+   "max_id_training_holin": 0.731
+  },
+  {
+   "id": "ctxmined_NZ_CP011102_UE46_RS08200",
+   "genome": "NZ_CP011102",
+   "max_id_training_holin": 0.325
+  },
+  {
+   "id": "ctxmined_NZ_CP011102_UE46_RS11590",
+   "genome": "NZ_CP011102",
+   "max_id_training_holin": 0.355
+  },
+  {
+   "id": "ctxmined_NZ_CP019649_B0X74_RS06995",
+   "genome": "NZ_CP019649",
+   "max_id_training_holin": 0.991
+  },
+  {
+   "id": "ctxmined_NZ_CP019649_B0X74_RS19170",
+   "genome": "NZ_CP019649",
+   "max_id_training_holin": 0.918
+  },
+  {
+   "id": "ctxmined_NZ_CP029707_DCS61_RS24185",
+   "genome": "NZ_CP029707",
+   "max_id_training_holin": 0.635
+  },
+  {
+   "id": "ctxmined_NZ_CP045110_FQU82_RS05860",
+   "genome": "NZ_CP045110",
+   "max_id_training_holin": 0.4
+  },
+  {
+   "id": "ctxmined_NZ_CP045110_FQU82_RS07165",
+   "genome": "NZ_CP045110",
+   "max_id_training_holin": 0.368
+  },
+  {
+   "id": "ctxmined_NZ_CP045110_FQU82_RS07485",
+   "genome": "NZ_CP045110",
+   "max_id_training_holin": 0.339
+  },
+  {
+   "id": "ctxmined_NZ_CP045110_FQU82_RS13420",
+   "genome": "NZ_CP045110",
+   "max_id_training_holin": 0.4
+  },
+  {
+   "id": "ctxmined_NZ_CP139039_SID94_RS07890",
+   "genome": "NZ_CP139039",
+   "max_id_training_holin": 0.321
+  },
+  {
+   "id": "ctxmined_NZ_CP139039_SID94_RS13105",
+   "genome": "NZ_CP139039",
+   "max_id_training_holin": 1.0
+  }
+ ],
+ "records": [
+  {
+   "id": "ctxmined_NC_003197_STM1941",
+   "sequence": "MLICFMPALLKRVGLPVKYTDNAKLFISFINIGIVGCALLLFFILYEPESAIVTYSFPGELSSSTCDARNFIGYVDENDFAEYIKKVELTRYSMYCLKKTGAGQWSIYAN",
+   "length": 110,
+   "label": "holin",
+   "n_tm": 1,
+   "genome": "NC_003197",
+   "anchor": {
+    "id": "STM1940",
+    "length": 479,
+    "domains": "PF00877:endolysin/catalytic(7.6e-06)"
+   },
+   "provenance_product_not_used": "putative inner membrane protein",
+   "max_id_training_holin": 0.247,
+   "max_id_endolysin": 0.0,
+   "max_id_spanin": 0.258,
+   "cluster": 1054
+  },
+  {
+   "id": "ctxmined_NC_009814_LiPP35_gp27",
+   "sequence": "MLGAVIFTIVIIVYRLIFLKETTSLLGIGWYIFLYYLFRHILFTITGGDLTWF",
+   "length": 53,
+   "label": "holin",
+   "n_tm": 1,
+   "genome": "NC_009814",
+   "anchor": {
+    "id": "LiPP35_gp28",
+    "length": 291,
+    "domains": "PF13539:endolysin/catalytic(3.5e-18);PF02557:endolysin/catalytic(8.6e-12)"
+   },
+   "provenance_product_not_used": "gp27",
+   "max_id_training_holin": 0.0,
+   "max_id_endolysin": 0.0,
+   "max_id_spanin": 0.0,
+   "cluster": 1037
+  },
+  {
+   "id": "ctxmined_NC_011222_B40-8009",
+   "sequence": "MFVFNIICGMRADGVSVSVRGIQRFTIFKFISALQEFLLYMMIIVVLFSTVTKMGDKDAAIMCAKTITYVFIYVYLCNGFRNLCTTYPKNNGFKLIYHIIRFEFKRLMGEHSAKIIEEQEEKEKQGIHNGV",
+   "length": 131,
+   "label": "holin",
+   "n_tm": 2,
+   "genome": "NC_011222",
+   "anchor": {
+    "id": "B40-8010",
+    "length": 132,
+    "domains": "PF08291:endolysin/catalytic(2.1e-24)"
+   },
+   "provenance_product_not_used": "hypothetical protein",
+   "max_id_training_holin": 0.247,
+   "max_id_endolysin": 0.22,
+   "max_id_spanin": 0.0,
+   "cluster": 1048
+  },
+  {
+   "id": "ctxmined_NC_012697_DSS3P2_gp72",
+   "sequence": "MSKTMIPQLRVEKSGNKNKDDFRVLLAGIILCVLMIFGHRTYLGLYDTFIAERPFITATIEVVHVDAEVNPLILYDADPNQNVNGVWIASVYHEDGTRLTSRRGMGNYRVADDIPRFWAWEAFFDNEQSDPPAIPEEPFYVCVRYDVMANDTQVTDSTDDFCSNVYDPENPSTTISKILSDGIIR",
+   "length": 185,
+   "label": "holin",
+   "n_tm": 1,
+   "genome": "NC_012697",
+   "anchor": {
+    "id": "DSS3P2_gp71",
+    "length": 190,
+    "domains": "PF01510:endolysin/catalytic(1.0e-06)"
+   },
+   "provenance_product_not_used": "hypothetical protein",
+   "max_id_training_holin": 0.244,
+   "max_id_endolysin": 0.268,
+   "max_id_spanin": 0.288,
+   "cluster": 1041
+  },
+  {
+   "id": "ctxmined_NC_015250_Acj133p009",
+   "sequence": "MNVSLIELQYFQDLHDRRYHADIYGLPLMRRMAHLHNHMVKYSANKVRRLDSHCDAIACLLSMANALNISLSAALSKWSGEFVTDMTEVPLMYRTDRLESQLSNVLGQMAKIIEGHDHTESIDYRDDLREAVIELFIVYSGIRVELDQHFWATTQTEYIQRMFDLKSKHIFYGFFTELDTQDKVYLSFFRMWQAAQQ",
+   "length": 197,
+   "label": "holin",
+   "n_tm": 1,
+   "genome": "NC_015250",
+   "anchor": {
+    "id": "Acj133p008",
+    "length": 173,
+    "domains": "PF01520:endolysin/catalytic(1.2e-21)"
+   },
+   "provenance_product_not_used": "conserved hypothetical bacterial protein",
+   "max_id_training_holin": 0.277,
+   "max_id_endolysin": 0.271,
+   "max_id_spanin": 0.242,
+   "cluster": 1039
+  },
+  {
+   "id": "ctxmined_NC_015250_Acj133p125",
+   "sequence": "MMDYENLFYIFAVFMAIHFLCDYPLQGDFIAKYKARWVNDGPNEFWLHCITAHAAIHALPVLLITKSLYLGLFMFVTHWVIDTLKCEGKINLHVDQALHFIVIAIISAFYYTG",
+   "length": 113,
+   "label": "holin",
+   "n_tm": 2,
+   "genome": "NC_015250",
+   "anchor": {
+    "id": "Acj133p124",
+    "length": 168,
+    "domains": "PF01464:endolysin/catalytic(1.7e-06)"
+   },
+   "provenance_product_not_used": "membrane protein",
+   "max_id_training_holin": 0.279,
+   "max_id_endolysin": 0.0,
+   "max_id_spanin": 0.0,
+   "cluster": 1053
+  },
+  {
+   "id": "ctxmined_NC_015585_LIMEzero_ORF54",
+   "sequence": "MENLEARVDVHERRITALEQGDAAMLLKLSENDARWQQVNAKLQVVDQIQDIQQTMSTIGKIFVNGAKVIRWCITTGALVCGIYIALHSGDLASLTTLIGQLIGMP",
+   "length": 106,
+   "label": "holin",
+   "n_tm": 1,
+   "genome": "NC_015585",
+   "anchor": {
+    "id": "LIMEzero_ORF55",
+    "length": 175,
+    "domains": "PF05838:endolysin/catalytic(2.1e-24)"
+   },
+   "provenance_product_not_used": "hypothetical protein",
+   "max_id_training_holin": 0.283,
+   "max_id_endolysin": 0.218,
+   "max_id_spanin": 0.263,
+   "cluster": 1050
+  },
+  {
+   "id": "ctxmined_NC_017975_TSMG0050",
+   "sequence": "MSIKKYYVELVELKRTLAQLKLPKPRTSSNKHEFNYIRECLEDYLYITNYLFEDIKSPNNKPYYLDSQVNLIVRINVNNIGYIKERTIRTTALFTPLTREESKELRRMAQELSDAALTIVVNPNLTDYVGTRNKFDYESIVVYLESLILYLNSVYMVLNVDNV",
+   "length": 163,
+   "label": "holin",
+   "n_tm": 1,
+   "genome": "NC_017975",
+   "anchor": {
+    "id": "TSMG0051",
+    "length": 199,
+    "domains": "PF09374:endolysin/binding(1.6e-09);PF05838:endolysin/catalytic(1.4e-08)"
+   },
+   "provenance_product_not_used": "hypothetical protein",
+   "max_id_training_holin": 0.242,
+   "max_id_endolysin": 0.27,
+   "max_id_spanin": 0.235,
+   "cluster": 1045
+  },
+  {
+   "id": "ctxmined_NC_018269_B621_gp22",
+   "sequence": "MTPFEYIAVAWIINVSLNALIAEKPKPICYVQEFIAEKETYVPRFCEDLEGKAK",
+   "length": 54,
+   "label": "holin",
+   "n_tm": 1,
+   "genome": "NC_018269",
+   "anchor": {
+    "id": "B621_gp23",
+    "length": 131,
+    "domains": "PF01510:endolysin/catalytic(4.3e-16)"
+   },
+   "provenance_product_not_used": "hypothetical protein",
+   "max_id_training_holin": 0.0,
+   "max_id_endolysin": 0.0,
+   "max_id_spanin": 0.0,
+   "cluster": 1044
+  },
+  {
+   "id": "ctxmined_NC_018271_B617_gp12",
+   "sequence": "MEKWKELLIIVKSLRWYTIIIIFLAGVLFSFETDIKRLIELKWSEKDVVISSLENDLLIERALKTLLNETNADRAYIFRFHNGVTYYNGTHKSKMSNDYEVVREGITTQAEALQDLPTSLYLSWIKNVINLEMFLTDIDGMEDLRVKYMLKQQGIEAIAVAPYYRDGKLFALIGVDYIRKQTALEIDNFMSNSHAKKNKFLKRTQGIGELLL",
+   "length": 212,
+   "label": "holin",
+   "n_tm": 1,
+   "genome": "NC_018271",
+   "anchor": {
+    "id": "B617_gp13",
+    "length": 127,
+    "domains": "PF08291:endolysin/catalytic(2.4e-25)"
+   },
+   "provenance_product_not_used": "hypothetical protein",
+   "max_id_training_holin": 0.264,
+   "max_id_endolysin": 0.28,
+   "max_id_spanin": 0.296,
+   "cluster": 1035
+  },
+  {
+   "id": "ctxmined_NC_019542_F486_gp45",
+   "sequence": "MANYGDAGTVTGKVFVAKVKQGYATDTPIPVIEEADLKKLSHPVNITLQSGKQLGALVIAKLTSGGFALCMATGSLPDSPWKTMTLNTDLTPA",
+   "length": 93,
+   "label": "holin",
+   "n_tm": 1,
+   "genome": "NC_019542",
+   "anchor": {
+    "id": "F486_gp46",
+    "length": 115,
+    "domains": "PF08291:endolysin/catalytic(3.6e-34)"
+   },
+   "provenance_product_not_used": "acetyl-CoA acetyltransferase",
+   "max_id_training_holin": 0.0,
+   "max_id_endolysin": 0.239,
+   "max_id_spanin": 0.0,
+   "cluster": 1061
+  },
+  {
+   "id": "ctxmined_NC_019924_G166_gp21",
+   "sequence": "MINNKIVNAKIEIINILNGLEVPIAVSQLIVNEVKQIIDTQTAKVLTEELDKED",
+   "length": 54,
+   "label": "holin",
+   "n_tm": 1,
+   "genome": "NC_019924",
+   "anchor": {
+    "id": "G166_gp22",
+    "length": 264,
+    "domains": "PF01520:endolysin/catalytic(4.4e-33)"
+   },
+   "provenance_product_not_used": "hypothetical protein",
+   "max_id_training_holin": 0.0,
+   "max_id_endolysin": 0.0,
+   "max_id_spanin": 0.0,
+   "cluster": 1040
+  },
+  {
+   "id": "ctxmined_NC_020883_K203_gp80",
+   "sequence": "MAQGAEKGFVRWDDFHKEHRKMENKFDRKIEHINHEMSSMKEIVLPLAVNMENISKNTEEMKEAFKEFTKEQKESNKIIQQHTTDIITLKENTQVRVENTKGKWNVYSVIATSVFGGTGLLLAIGKPLAEFFFGK",
+   "length": 135,
+   "label": "holin",
+   "n_tm": 1,
+   "genome": "NC_020883",
+   "anchor": {
+    "id": "K203_gp81",
+    "length": 275,
+    "domains": "PF01520:endolysin/catalytic(5.1e-51)"
+   },
+   "provenance_product_not_used": "hypothetical protein",
+   "max_id_training_holin": 0.265,
+   "max_id_endolysin": 0.28,
+   "max_id_spanin": 0.297,
+   "cluster": 1047
+  },
+  {
+   "id": "ctxmined_NC_021788_Phi4:1_gp059",
+   "sequence": "MKNDLLSTIADYKAQRKVAMDNFRDVEYIKNNNLADYFYNIFQKGQDVPFSMLDAIEVGEFVPLPVVHGGAIITMRQEVEEKDKIQYRTKWSAGSTLTYHYHSDCTEEIVVAIGEIKIYLQGEVLILKEGDAVEIAPNTGHQITALTPSELDIFFQKASNVKVKIK",
+   "length": 166,
+   "label": "holin",
+   "n_tm": 1,
+   "genome": "NC_021788",
+   "anchor": {
+    "id": "Phi4:1_gp058",
+    "length": 209,
+    "domains": "PF01520:endolysin/catalytic(8.9e-31)"
+   },
+   "provenance_product_not_used": "cupin domain containing protein",
+   "max_id_training_holin": 0.269,
+   "max_id_endolysin": 0.276,
+   "max_id_spanin": 0.26,
+   "cluster": 1043
+  },
+  {
+   "id": "ctxmined_NC_021796_Phi38:1_gp082",
+   "sequence": "MEFEVIEKIGIGVLGLVSTIIALNKDMIQSSFSRKSNTVSIDVSKEDLESMQLKNVEHEINIYRGLLDDMVTRHKATIIDLQDSFAESLSRLEGKIEELNNLVLEQKGFIEKQSKRLHFYEKKFGKINDHI",
+   "length": 131,
+   "label": "holin",
+   "n_tm": 1,
+   "genome": "NC_021796",
+   "anchor": {
+    "id": "Phi38:1_gp083",
+    "length": 208,
+    "domains": "PF01520:endolysin/catalytic(2.2e-39)"
+   },
+   "provenance_product_not_used": "hypothetical protein",
+   "max_id_training_holin": 0.299,
+   "max_id_endolysin": 0.287,
+   "max_id_spanin": 0.261,
+   "cluster": 1049
+  },
+  {
+   "id": "ctxmined_NC_022052_N852_gp025",
+   "sequence": "MSLQLGKPRTAFKPVKRRKEQMKLKAILFVLGLAVKVIPGKVDDEAYELIKKLLGQ",
+   "length": 56,
+   "label": "holin",
+   "n_tm": 1,
+   "genome": "NC_022052",
+   "anchor": {
+    "id": "N852_gp026",
+    "length": 490,
+    "domains": "PF13539:endolysin/catalytic(2.6e-13)"
+   },
+   "provenance_product_not_used": "hypothetical protein",
+   "max_id_training_holin": 0.0,
+   "max_id_endolysin": 0.0,
+   "max_id_spanin": 0.0,
+   "cluster": 1035
+  },
+  {
+   "id": "ctxmined_NC_022096_O152_gp045",
+   "sequence": "MNNQKGSGLVVSMVLGALTALLLIVFVSKYNGYVNIEEGIIASDRSRQTVLNNLSQKVKEVIGIRQLSVDDIKQTVTEQIKARSGDGGYKAYVLMLKEHNVAPDPAIYQKIINIIDVGRSGFENAEKMLIDRKQIACVRARQVPDKWILGLMGMPTLNIGCAGGPDDYPVIMSESVKTTFETGVDGGLY",
+   "length": 189,
+   "label": "holin",
+   "n_tm": 1,
+   "genome": "NC_022096",
+   "anchor": {
+    "id": "O152_gp044",
+    "length": 207,
+    "domains": "PF05838:endolysin/catalytic(1.9e-21);PF09374:endolysin/binding(8.2e-17)"
+   },
+   "provenance_product_not_used": "virion structural protein",
+   "max_id_training_holin": 0.255,
+   "max_id_endolysin": 0.261,
+   "max_id_spanin": 0.271,
+   "cluster": 1040
+  },
+  {
+   "id": "ctxmined_NC_023552_PBI_DONOVAN_25",
+   "sequence": "MDRYTVFGIEKPFPWVGVALAAGLLGGGILTALLSWGFATGTLPLVERIIDDRPSF",
+   "length": 56,
+   "label": "holin",
+   "n_tm": 1,
+   "genome": "NC_023552",
+   "anchor": {
+    "id": "PBI_DONOVAN_26",
+    "length": 311,
+    "domains": "PF31067:endolysin/catalytic(1.1e-48);PF01471:endolysin/binding(6.3e-19)"
+   },
+   "provenance_product_not_used": "hypothetical protein",
+   "max_id_training_holin": 0.0,
+   "max_id_endolysin": 0.0,
+   "max_id_spanin": 0.0,
+   "cluster": 1039
+  },
+  {
+   "id": "ctxmined_NC_023589_psb1_0015",
+   "sequence": "MVRRLKRRVELVPNWKRCWKWASIQISTFGLIMFSAIDIIQPMLTGLPRHILEDIPHGSNIAIALFALNIVGRLIRFRPKEDSHES",
+   "length": 86,
+   "label": "holin",
+   "n_tm": 1,
+   "genome": "NC_023589",
+   "anchor": {
+    "id": "psb1_0014",
+    "length": 211,
+    "domains": "PF05838:endolysin/catalytic(3.8e-22);PF09374:endolysin/binding(9.9e-10)"
+   },
+   "provenance_product_not_used": "holin",
+   "max_id_training_holin": 0.293,
+   "max_id_endolysin": 0.0,
+   "max_id_spanin": 0.0,
+   "cluster": 1046
+  },
+  {
+   "id": "ctxmined_NC_023594_Spp001_64",
+   "sequence": "MSALVTGLLSAVKSVAIRILVATFSEKMLMKTALMAAEAIVAKTDTNKDDLWLKDLKETLEGK",
+   "length": 63,
+   "label": "holin",
+   "n_tm": 1,
+   "genome": "NC_023594",
+   "anchor": {
+    "id": "Spp001_63",
+    "length": 122,
+    "domains": "PF08291:endolysin/catalytic(2.4e-12)"
+   },
+   "provenance_product_not_used": "hypothetical protein",
+   "max_id_training_holin": 0.0,
+   "max_id_endolysin": 0.0,
+   "max_id_spanin": 0.0,
+   "cluster": 1048
+  },
+  {
+   "id": "ctxmined_NC_023688_CL89_gp161",
+   "sequence": "MVLIRMIQHLVLLPIHLFMCLTCWVLSPVLPLFAINKETLPNWLSWYQTPDAPLDGDSGHVERCQGYPRYIQRVLWLIRNPAYGFAWSVLAYQPKTPEFKWKGSLGYTNGDESKFGWYFITQESGHFQYSVRYPSVFEKQFRLRFGWKMIGIATAGTWHERKKFVFTLNPLDGG",
+   "length": 174,
+   "label": "holin",
+   "n_tm": 1,
+   "genome": "NC_023688",
+   "anchor": {
+    "id": "CL89_gp160",
+    "length": 165,
+    "domains": "PF00959:endolysin/catalytic(1.2e-11)"
+   },
+   "provenance_product_not_used": "hypothetical protein",
+   "max_id_training_holin": 0.264,
+   "max_id_endolysin": 0.292,
+   "max_id_spanin": 0.284,
+   "cluster": 1042
+  },
+  {
+   "id": "ctxmined_NC_024217_GJ22_gp006",
+   "sequence": "MSVLIILLVIFSAISVMSIFYCFADDFSGGSLVILMGCILMCVLITFAMYEVSTKYVLKGQCAEIIVEELK",
+   "length": 71,
+   "label": "holin",
+   "n_tm": 1,
+   "genome": "NC_024217",
+   "anchor": {
+    "id": "GJ22_gp007",
+    "length": 155,
+    "domains": "PF07486:endolysin/catalytic(8.9e-21)"
+   },
+   "provenance_product_not_used": "hypothetical protein",
+   "max_id_training_holin": 0.0,
+   "max_id_endolysin": 0.0,
+   "max_id_spanin": 0.0,
+   "cluster": 1067
+  },
+  {
+   "id": "ctxmined_NC_024785_LD30_gp43",
+   "sequence": "MFVVFHPKISFPVHVDVIMFMLAIGVTAMFINTLQGRDFYGHMQDAEILVRLGLGCLTVRFIHEYLKVKKHEND",
+   "length": 74,
+   "label": "holin",
+   "n_tm": 1,
+   "genome": "NC_024785",
+   "anchor": {
+    "id": "LD30_gp42",
+    "length": 184,
+    "domains": "PF00959:endolysin/catalytic(8.8e-53)"
+   },
+   "provenance_product_not_used": "hypothetical protein",
+   "max_id_training_holin": 0.0,
+   "max_id_endolysin": 0.0,
+   "max_id_spanin": 0.0,
+   "cluster": 1035
+  },
+  {
+   "id": "ctxmined_NC_025456_S-CBP1_0039",
+   "sequence": "MITILGIKVSYEALAFFALFIGSEIVGASKLRENSIVQVLLRGIEAIKPHRTEDDKIQRIKDTFK",
+   "length": 65,
+   "label": "holin",
+   "n_tm": 1,
+   "genome": "NC_025456",
+   "anchor": {
+    "id": "S-CBP1_0040",
+    "length": 300,
+    "domains": "PF01832:endolysin/catalytic(6.1e-23)"
+   },
+   "provenance_product_not_used": "hypothetical protein",
+   "max_id_training_holin": 0.0,
+   "max_id_endolysin": 0.0,
+   "max_id_spanin": 0.0,
+   "cluster": 1035
+  },
+  {
+   "id": "ctxmined_NC_025461_S-CBP3_0004",
+   "sequence": "MLTFLGIKVSYEALAFFALFIGSEIIGASKLRENSIVQILLRGVDAMKAHRTEDDKIQRIKDTFK",
+   "length": 65,
+   "label": "holin",
+   "n_tm": 1,
+   "genome": "NC_025461",
+   "anchor": {
+    "id": "S-CBP3_0005",
+    "length": 322,
+    "domains": "PF01832:endolysin/catalytic(1.4e-22)"
+   },
+   "provenance_product_not_used": "hypothetical protein",
+   "max_id_training_holin": 0.0,
+   "max_id_endolysin": 0.0,
+   "max_id_spanin": 0.0,
+   "cluster": 1068
+  },
+  {
+   "id": "ctxmined_NC_026589_VC60_gp24",
+   "sequence": "MMDHPDNYAVFGIEKPFPWVAALSAGLLGGLVLTALLNLAFVRGSWPVDQIIEGESLFHF",
+   "length": 60,
+   "label": "holin",
+   "n_tm": 1,
+   "genome": "NC_026589",
+   "anchor": {
+    "id": "VC60_gp25",
+    "length": 311,
+    "domains": "PF31067:endolysin/catalytic(1.7e-47);PF01471:endolysin/binding(1.3e-18)"
+   },
+   "provenance_product_not_used": "hypothetical protein",
+   "max_id_training_holin": 0.0,
+   "max_id_endolysin": 0.0,
+   "max_id_spanin": 0.0,
+   "cluster": 1049
+  },
+  {
+   "id": "ctxmined_NC_026926_AAJ61_gp175",
+   "sequence": "MSMWQKIKSIQIPGSIMAASLTGLLLGTTMVLFTKLPVAPPTVPTSVENTSGKNESLEVIILLASGEELQVRVTGESTLEVVQSLKRILNSMDGSLLLEKSSPYTPHQDESTTKRPANSSYMVF",
+   "length": 124,
+   "label": "holin",
+   "n_tm": 1,
+   "genome": "NC_026926",
+   "anchor": {
+    "id": "AAJ61_gp176",
+    "length": 149,
+    "domains": "PF07486:endolysin/catalytic(3.9e-10)"
+   },
+   "provenance_product_not_used": "hypothetical protein",
+   "max_id_training_holin": 0.283,
+   "max_id_endolysin": 0.226,
+   "max_id_spanin": 0.0,
+   "cluster": 1051
+  },
+  {
+   "id": "ctxmined_NC_027986_HMPREFV_HMPID9843gp0022",
+   "sequence": "MGAPQIIWIVLAAVVLVTSYACDGLTNVISFKQRVFDVIAMTALVWWGGFFG",
+   "length": 52,
+   "label": "holin",
+   "n_tm": 1,
+   "genome": "NC_027986",
+   "anchor": {
+    "id": "HMPREFV_HMPID9843gp0023",
+    "length": 209,
+    "domains": "PF01464:endolysin/catalytic(5.2e-17)"
+   },
+   "provenance_product_not_used": "hypothetical protein",
+   "max_id_training_holin": 0.0,
+   "max_id_endolysin": 0.0,
+   "max_id_spanin": 0.0,
+   "cluster": 1035
+  },
+  {
+   "id": "ctxmined_NC_027995_ECOPH_gp34",
+   "sequence": "MTTFAINFIAVCFIFIWASWCVVYSGVKDGIVGKLFFSLVAISALAIIIHTITGHYSQRPFVTMNVSIALVGARHVFLSWLKRFKTAHERY",
+   "length": 91,
+   "label": "holin",
+   "n_tm": 1,
+   "genome": "NC_027995",
+   "anchor": {
+    "id": "ECOPH_gp33",
+    "length": 162,
+    "domains": "PF31186:endolysin/catalytic(2.1e-71)"
+   },
+   "provenance_product_not_used": "holin",
+   "max_id_training_holin": 0.298,
+   "max_id_endolysin": 0.0,
+   "max_id_spanin": 0.0,
+   "cluster": 1062
+  },
+  {
+   "id": "ctxmined_NC_028747_SEA_BRUSACORAM_25",
+   "sequence": "MMDRYTVFGIEKPFPWVGVALAAGLLGGGILTALLSWAFATGTLPLVERIIDDRPSF",
+   "length": 57,
+   "label": "holin",
+   "n_tm": 1,
+   "genome": "NC_028747",
+   "anchor": {
+    "id": "SEA_BRUSACORAM_26",
+    "length": 309,
+    "domains": "PF31067:endolysin/catalytic(3.0e-48);PF01471:endolysin/binding(5.9e-19)"
+   },
+   "provenance_product_not_used": "hypothetical protein",
+   "max_id_training_holin": 0.0,
+   "max_id_endolysin": 0.0,
+   "max_id_spanin": 0.0,
+   "cluster": 1039
+  },
+  {
+   "id": "ctxmined_NC_028796_SEA_PHAYONCE_25",
+   "sequence": "MDHPDNYTVLGIEKPFPMVGAIGGGLLISLAVMALAHVAFIRGWWPIDEIIEGEPLFHF",
+   "length": 59,
+   "label": "holin",
+   "n_tm": 1,
+   "genome": "NC_028796",
+   "anchor": {
+    "id": "SEA_PHAYONCE_26",
+    "length": 314,
+    "domains": "PF01471:endolysin/binding(2.9e-16);PF13539:endolysin/catalytic(5.5e-13)"
+   },
+   "provenance_product_not_used": "hypothetical protein",
+   "max_id_training_holin": 0.0,
+   "max_id_endolysin": 0.0,
+   "max_id_spanin": 0.0,
+   "cluster": 1058
+  },
+  {
+   "id": "ctxmined_NC_028899_AVU11_agp15",
+   "sequence": "MLRIQEEFKITNVDPHAMELPIACADKIWGKRPVEDLVCPVQLSEKSDHDMTRVARQIVVMMPCWLVYDEIFRVVIEVRDLLEKREQLFQPQHG",
+   "length": 94,
+   "label": "holin",
+   "n_tm": 1,
+   "genome": "NC_028899",
+   "anchor": {
+    "id": "AVU11_agp14",
+    "length": 143,
+    "domains": "PF01464:endolysin/catalytic(8.6e-21)"
+   },
+   "provenance_product_not_used": "hypothetical protein",
+   "max_id_training_holin": 0.0,
+   "max_id_endolysin": 0.0,
+   "max_id_spanin": 0.0,
+   "cluster": 1060
+  },
+  {
+   "id": "ctxmined_NC_029061_AXJ08_gp23",
+   "sequence": "MEAQVEQLTKDVHALKETVETMRDMMQQAQGGWRAIAMLSGIAGVVGAGVTWVATHIKFS",
+   "length": 60,
+   "label": "holin",
+   "n_tm": 1,
+   "genome": "NC_029061",
+   "anchor": {
+    "id": "AXJ08_gp22",
+    "length": 181,
+    "domains": "PF05838:endolysin/catalytic(9.8e-26);PF09374:endolysin/binding(3.2e-19)"
+   },
+   "provenance_product_not_used": "hypothetical protein",
+   "max_id_training_holin": 0.279,
+   "max_id_endolysin": 0.0,
+   "max_id_spanin": 0.0,
+   "cluster": 1071
+  },
+  {
+   "id": "ctxmined_NC_029097_RCTITAN_1",
+   "sequence": "MNEGLGMTEEEKRRFEAMERQIAEIHSAFFKPQIGEKLSMVEKLSALVDVSEKGQWVVSWAVKGLLTLGAVVAAVVAIKNGVFTK",
+   "length": 85,
+   "label": "holin",
+   "n_tm": 1,
+   "genome": "NC_029097",
+   "anchor": {
+    "id": "RCTITAN_2",
+    "length": 218,
+    "domains": "PF08291:endolysin/catalytic(3.0e-26)"
+   },
+   "provenance_product_not_used": "hypothetical protein",
+   "max_id_training_holin": 0.291,
+   "max_id_endolysin": 0.0,
+   "max_id_spanin": 0.0,
+   "cluster": 1064
+  },
+  {
+   "id": "ctxmined_NC_029098_AXJ18_gp127",
+   "sequence": "MPKWMRLESTRDAPFSDRFWSAFENGYGDEGPLAKASLIGCMFGCLGVCLAIIGVPLAFLLMWIF",
+   "length": 65,
+   "label": "holin",
+   "n_tm": 1,
+   "genome": "NC_029098",
+   "anchor": {
+    "id": "AXJ18_gp126",
+    "length": 152,
+    "domains": "PF00877:endolysin/catalytic(4.2e-24)"
+   },
+   "provenance_product_not_used": "hypothetical protein",
+   "max_id_training_holin": 0.0,
+   "max_id_endolysin": 0.0,
+   "max_id_spanin": 0.0,
+   "cluster": 1036
+  },
+  {
+   "id": "ctxmined_NC_031266_BJD68_gp24",
+   "sequence": "MMDRYTVFGIEKPFPWVGVALGAGLLGGIVLSVLLSWGFATGTLPLVERIIDDRPSF",
+   "length": 57,
+   "label": "holin",
+   "n_tm": 1,
+   "genome": "NC_031266",
+   "anchor": {
+    "id": "BJD68_gp25",
+    "length": 311,
+    "domains": "PF31067:endolysin/catalytic(6.3e-49);PF01471:endolysin/binding(6.3e-19)"
+   },
+   "provenance_product_not_used": "hypothetical protein",
+   "max_id_training_holin": 0.264,
+   "max_id_endolysin": 0.0,
+   "max_id_spanin": 0.0,
+   "cluster": 1041
+  },
+  {
+   "id": "ctxmined_NC_031900_BOQ05_gp085",
+   "sequence": "MSMWQKIKSIQIPGSIMAASLTGLLLGTTMVLFTKLPVAPPTVPTSVENTSGKNESLEVIILLASGEELQVRVTGETTMEVVQSLKRILNSMDGSLLLEKSSPYTPHQDESTTKRPANSSYMVF",
+   "length": 124,
+   "label": "holin",
+   "n_tm": 1,
+   "genome": "NC_031900",
+   "anchor": {
+    "id": "BOQ05_gp084",
+    "length": 149,
+    "domains": "PF07486:endolysin/catalytic(3.9e-10)"
+   },
+   "provenance_product_not_used": "hypothetical protein",
+   "max_id_training_holin": 0.283,
+   "max_id_endolysin": 0.254,
+   "max_id_spanin": 0.0,
+   "cluster": 1051
+  },
+  {
+   "id": "ctxmined_NC_041926_FDH43_gp04",
+   "sequence": "MTTFAINFIAVCFIFIWASWCVVYSGVKDGVVGKLFFSLVAISALAIIIHTITGHYSQRPFVTMNVSIALVGARHVFLSWLKHFKAAHERY",
+   "length": 91,
+   "label": "holin",
+   "n_tm": 1,
+   "genome": "NC_041926",
+   "anchor": {
+    "id": "FDH43_gp03",
+    "length": 162,
+    "domains": "PF31186:endolysin/catalytic(1.4e-70)"
+   },
+   "provenance_product_not_used": "holin",
+   "max_id_training_holin": 0.298,
+   "max_id_endolysin": 0.25,
+   "max_id_spanin": 0.0,
+   "cluster": 1062
+  },
+  {
+   "id": "ctxmined_NC_041963_FDH88_gp01",
+   "sequence": "MTEGLGMTEEEKRRFEAMERQIAEIHSAFFKPQIGEKLSMVEKLSALVDVSEKGQWVVSWAVKGLLTLGAVVAAVVAIKNGVFTK",
+   "length": 85,
+   "label": "holin",
+   "n_tm": 1,
+   "genome": "NC_041963",
+   "anchor": {
+    "id": "FDH88_gp02",
+    "length": 218,
+    "domains": "PF08291:endolysin/catalytic(1.3e-26)"
+   },
+   "provenance_product_not_used": "hypothetical protein",
+   "max_id_training_holin": 0.291,
+   "max_id_endolysin": 0.0,
+   "max_id_spanin": 0.0,
+   "cluster": 1064
+  },
+  {
+   "id": "ctxmined_NC_047824_HOR75_gp66",
+   "sequence": "MSAVVAGLLSAAKSVAIRILVATFSEKMLMKTALMVGEAIVEKTPTEKDNIWFAELKKSLAEKS",
+   "length": 64,
+   "label": "holin",
+   "n_tm": 1,
+   "genome": "NC_047824",
+   "anchor": {
+    "id": "HOR75_gp65",
+    "length": 122,
+    "domains": "PF08291:endolysin/catalytic(1.3e-15)"
+   },
+   "provenance_product_not_used": "hypothetical protein",
+   "max_id_training_holin": 0.0,
+   "max_id_endolysin": 0.0,
+   "max_id_spanin": 0.0,
+   "cluster": 1043
+  },
+  {
+   "id": "ctxmined_NC_047851_HOS02_gp31",
+   "sequence": "MDSELIKFIIGGGLTVLVGAVGKFIYDIIQGRVIKEDSAVAQWKGIAESRLQEIRELKIELQWYRGFYPRLWHAYQRLPPDDKEKFPTVPPPPEEPRNPSV",
+   "length": 101,
+   "label": "holin",
+   "n_tm": 1,
+   "genome": "NC_047851",
+   "anchor": {
+    "id": "HOS02_gp32",
+    "length": 342,
+    "domains": "PF01510:endolysin/catalytic(2.6e-11)"
+   },
+   "provenance_product_not_used": "hypothetical protein",
+   "max_id_training_holin": 0.287,
+   "max_id_endolysin": 0.293,
+   "max_id_spanin": 0.0,
+   "cluster": 1058
+  },
+  {
+   "id": "ctxmined_NC_047909_HOS62_gp64",
+   "sequence": "MDQPITRAEHEEFKRRLEEENARQDRRIALLEESVSKMGALSTSVEKLALSMESMVKEQEKQGRRLETLEDHDGEMWRKAVGYVVSAVIGAFVGFLFTQIGF",
+   "length": 102,
+   "label": "holin",
+   "n_tm": 1,
+   "genome": "NC_047909",
+   "anchor": {
+    "id": "HOS62_gp65",
+    "length": 217,
+    "domains": "PF08291:endolysin/catalytic(1.8e-23);PF01471:endolysin/binding(2.9e-13)"
+   },
+   "provenance_product_not_used": "hemolysin",
+   "max_id_training_holin": 0.268,
+   "max_id_endolysin": 0.233,
+   "max_id_spanin": 0.233,
+   "cluster": 1035
+  },
+  {
+   "id": "ctxmined_NC_048177_HOV34_gp53",
+   "sequence": "MTEQKKEPTPNNHSRMGAVEARMQSVETRLDKHEIQIANLEKGDAAMIAKLAENDSRWVEIQQQLRVVEQIQDIQKTMSHIGKLFTYTAHAVKWCLLTASLVSGIYLAIKAGDLASLLAFIQALMGM",
+   "length": 127,
+   "label": "holin",
+   "n_tm": 1,
+   "genome": "NC_048177",
+   "anchor": {
+    "id": "HOV34_gp54",
+    "length": 178,
+    "domains": "PF05838:endolysin/catalytic(1.7e-24);PF09374:endolysin/binding(6.9e-06)"
+   },
+   "provenance_product_not_used": "hypothetical protein",
+   "max_id_training_holin": 0.292,
+   "max_id_endolysin": 0.273,
+   "max_id_spanin": 0.295,
+   "cluster": 1050
+  },
+  {
+   "id": "ctxmined_NC_048827_HWC83_gp161",
+   "sequence": "MTKIHSHKLKKLAVKFLEHCFVAVLLSIGYLIHLLLETKRNWKNLSFHQVIMNDSDFHEDEISLLKFIWLLCNLVPLNGYYVSVNPVKRGLYIVNGRINRISFESNFINQVKSEEL",
+   "length": 116,
+   "label": "holin",
+   "n_tm": 1,
+   "genome": "NC_048827",
+   "anchor": {
+    "id": "HWC83_gp160",
+    "length": 170,
+    "domains": "PF01464:endolysin/catalytic(2.6e-06)"
+   },
+   "provenance_product_not_used": "hypothetical protein",
+   "max_id_training_holin": 0.26,
+   "max_id_endolysin": 0.0,
+   "max_id_spanin": 0.0,
+   "cluster": 1053
+  },
+  {
+   "id": "ctxmined_NC_049939_H3T72_gp15",
+   "sequence": "MNLIKTFIWLLMIIMNVLTIIVIYSDVTGNNFNSSTIIVPLVVVFLDVFAFYTYFIMEGDL",
+   "length": 61,
+   "label": "holin",
+   "n_tm": 2,
+   "genome": "NC_049939",
+   "anchor": {
+    "id": "H3T72_gp16",
+    "length": 472,
+    "domains": "PF05257:endolysin/catalytic(1.5e-07)"
+   },
+   "provenance_product_not_used": "hypothetical protein",
+   "max_id_training_holin": 0.277,
+   "max_id_endolysin": 0.0,
+   "max_id_spanin": 0.0,
+   "cluster": 1035
+  },
+  {
+   "id": "ctxmined_NC_049977_H3300_gp019",
+   "sequence": "MYNGMKGSEEHDIEIPLWMLCVLLLVELIPLINIMAFIGFVVWYVILYNTTPEQWLVKYTFRLQGKTYVGRAVLAIINFLNIKV",
+   "length": 84,
+   "label": "holin",
+   "n_tm": 1,
+   "genome": "NC_049977",
+   "anchor": {
+    "id": "H3300_gp020",
+    "length": 157,
+    "domains": "PF01832:endolysin/catalytic(8.5e-23)"
+   },
+   "provenance_product_not_used": "hypothetical protein",
+   "max_id_training_holin": 0.277,
+   "max_id_endolysin": 0.0,
+   "max_id_spanin": 0.0,
+   "cluster": 1065
+  },
+  {
+   "id": "ctxmined_NC_051729_I5J40_gp25",
+   "sequence": "MDRYTVFGIEKPFPWVGVALGAGLLGGIVVSVLLSWGFATGTLPLVERIIDDRPSF",
+   "length": 56,
+   "label": "holin",
+   "n_tm": 1,
+   "genome": "NC_051729",
+   "anchor": {
+    "id": "I5J40_gp26",
+    "length": 309,
+    "domains": "PF31067:endolysin/catalytic(5.4e-48);PF01471:endolysin/binding(5.9e-19)"
+   },
+   "provenance_product_not_used": "hypothetical protein",
+   "max_id_training_holin": 0.264,
+   "max_id_endolysin": 0.0,
+   "max_id_spanin": 0.0,
+   "cluster": 1041
+  },
+  {
+   "id": "ctxmined_NC_051738_I5J49_gp25",
+   "sequence": "MDHPDNYTVFGIEKPFPMVGAIGGGLLIGLAVMALAHVAFIRGWWPIDEIIEGEPLFHF",
+   "length": 59,
+   "label": "holin",
+   "n_tm": 1,
+   "genome": "NC_051738",
+   "anchor": {
+    "id": "I5J49_gp26",
+    "length": 314,
+    "domains": "PF01471:endolysin/binding(2.9e-16);PF13539:endolysin/catalytic(5.5e-13)"
+   },
+   "provenance_product_not_used": "hypothetical protein",
+   "max_id_training_holin": 0.0,
+   "max_id_endolysin": 0.0,
+   "max_id_spanin": 0.0,
+   "cluster": 1042
+  },
+  {
+   "id": "ctxmined_NC_054464_KE334_gp70",
+   "sequence": "MENQNNKSDKEAGRMDFALKIIKYVNTPKRLVMLVALIVSLTFCYSLWESRREVSFWAMSNFGIPTIDEASIDHAAVKLMADVGALSITVWSVNLNQNRRNAMYFRVGQNRMQFLEGTGDLALRPYSEQSANLIKVITDKTLCTKLIANTAVGEAARKQGVNYVCYAAIPPGYGHMVGLLVAGFTQKPDNEDYVKLRMVSAAEEIIR",
+   "length": 207,
+   "label": "holin",
+   "n_tm": 1,
+   "genome": "NC_054464",
+   "anchor": {
+    "id": "KE334_gp71",
+    "length": 146,
+    "domains": "PF00959:endolysin/catalytic(4.3e-50)"
+   },
+   "provenance_product_not_used": "hypothetical protein",
+   "max_id_training_holin": 0.286,
+   "max_id_endolysin": 0.273,
+   "max_id_spanin": 0.286,
+   "cluster": 1036
+  },
+  {
+   "id": "ctxmined_NC_054898_KMB90_gp35",
+   "sequence": "MIYYKYKKRLAKSKPFFVSAFIIIMSLTIIYFQDLIMREFQRFQRNELETLKRHSENWYRNEHRKPRLRDPLCGVHCAPGFKEAYAGNLASRNARFMCWMQDRKDDYVAMRRYNVQKNYCTGGYSILDQDDFTDFIVSV",
+   "length": 139,
+   "label": "holin",
+   "n_tm": 1,
+   "genome": "NC_054898",
+   "anchor": {
+    "id": "KMB90_gp36",
+    "length": 129,
+    "domains": "PF00959:endolysin/catalytic(1.4e-13)"
+   },
+   "provenance_product_not_used": "hypothetical protein",
+   "max_id_training_holin": 0.0,
+   "max_id_endolysin": 0.236,
+   "max_id_spanin": 0.26,
+   "cluster": 1046
+  },
+  {
+   "id": "ctxmined_NC_055852_KNV10_gp39",
+   "sequence": "MSINDLKIYGLNSIAMAVSFSNVESTLKIFLLCVSIVYTILKTIELLKNRKNDNKGDNF",
+   "length": 59,
+   "label": "holin",
+   "n_tm": 1,
+   "genome": "NC_055852",
+   "anchor": {
+    "id": "KNV10_gp38",
+    "length": 154,
+    "domains": "PF13539:endolysin/catalytic(3.1e-18)"
+   },
+   "provenance_product_not_used": "hypothetical protein",
+   "max_id_training_holin": 0.0,
+   "max_id_endolysin": 0.0,
+   "max_id_spanin": 0.0,
+   "cluster": 1053
+  },
+  {
+   "id": "ctxmined_NC_055893_KNV51_gp10",
+   "sequence": "MNPYLVHMSDRELLELIYMLLLLINVKVSEIDNDSKQFGMNLAADLLGNMIDDLSNNNRKQQKE",
+   "length": 64,
+   "label": "holin",
+   "n_tm": 1,
+   "genome": "NC_055893",
+   "anchor": {
+    "id": "KNV51_gp11",
+    "length": 131,
+    "domains": "PF08291:endolysin/catalytic(7.2e-24)"
+   },
+   "provenance_product_not_used": "hypothetical protein",
+   "max_id_training_holin": 0.0,
+   "max_id_endolysin": 0.0,
+   "max_id_spanin": 0.0,
+   "cluster": 1069
+  },
+  {
+   "id": "ctxmined_NC_055897_KNV55_gp036",
+   "sequence": "MNPYLVHMSDRELLELIYMLLLLINVKVSEIDNDSKQFGMNLAADLLGNMMDDLSNNNRKQQKE",
+   "length": 64,
+   "label": "holin",
+   "n_tm": 1,
+   "genome": "NC_055897",
+   "anchor": {
+    "id": "KNV55_gp035",
+    "length": 131,
+    "domains": "PF08291:endolysin/catalytic(3.2e-25)"
+   },
+   "provenance_product_not_used": "hypothetical protein",
+   "max_id_training_holin": 0.0,
+   "max_id_endolysin": 0.0,
+   "max_id_spanin": 0.0,
+   "cluster": 1069
+  },
+  {
+   "id": "ctxmined_NC_062743_M1M21_gp38",
+   "sequence": "MSISDLKIYGLNSIAMAVSFSNVEATLKIFLLCVSIVYTILKTIELLKNRKNDNKGDNF",
+   "length": 59,
+   "label": "holin",
+   "n_tm": 1,
+   "genome": "NC_062743",
+   "anchor": {
+    "id": "M1M21_gp37",
+    "length": 153,
+    "domains": "PF13539:endolysin/catalytic(6.0e-18)"
+   },
+   "provenance_product_not_used": "hypothetical protein",
+   "max_id_training_holin": 0.0,
+   "max_id_endolysin": 0.0,
+   "max_id_spanin": 0.0,
+   "cluster": 1050
+  },
+  {
+   "id": "ctxmined_NC_062744_M1M22_gp020",
+   "sequence": "MEFEVIEKIGIGVLGLVSTIIALNKDMIQSSFSRKSNTVSIDASKEDLESMQLKNVEHEINIYRGLLDDMVTRHKATIIDLQDSFAESLSRLEGKIEELNNLVLEQKGFIEKQSKRLHFYEKKFGKINDHI",
+   "length": 131,
+   "label": "holin",
+   "n_tm": 1,
+   "genome": "NC_062744",
+   "anchor": {
+    "id": "M1M22_gp019",
+    "length": 208,
+    "domains": "PF01520:endolysin/catalytic(3.0e-39)"
+   },
+   "provenance_product_not_used": "hypothetical protein",
+   "max_id_training_holin": 0.291,
+   "max_id_endolysin": 0.287,
+   "max_id_spanin": 0.27,
+   "cluster": 1049
+  },
+  {
+   "id": "ctxmined_NC_062745_M1M23_gp20",
+   "sequence": "MKNKTIIILFTITLIALAATGIKRANEAKQENKRLQEKIDYRYTSYDNMFMVENMVVVDSAGVILGNLMLNVNDSIIDAFYSSNKDWRKTRVYDNLKKGRLRILKKTE",
+   "length": 108,
+   "label": "holin",
+   "n_tm": 1,
+   "genome": "NC_062745",
+   "anchor": {
+    "id": "M1M23_gp21",
+    "length": 185,
+    "domains": "PF11860:endolysin/catalytic(1.8e-63)"
+   },
+   "provenance_product_not_used": "hypothetical protein",
+   "max_id_training_holin": 0.0,
+   "max_id_endolysin": 0.26,
+   "max_id_spanin": 0.277,
+   "cluster": 1055
+  },
+  {
+   "id": "ctxmined_NC_069154_PF628_gp06",
+   "sequence": "MLSAFCLSVIAMTALFNIYAHWVDDGLLGRLVFMGLFLTCGAGLIHIYKDGSAPLFIWSTLLVLVTLSFLRSACVKSVRYIKYRRLIHAKNSQR",
+   "length": 94,
+   "label": "holin",
+   "n_tm": 3,
+   "genome": "NC_069154",
+   "anchor": {
+    "id": "PF628_gp05",
+    "length": 164,
+    "domains": "PF00959:endolysin/catalytic(9.6e-23)"
+   },
+   "provenance_product_not_used": "holin",
+   "max_id_training_holin": 0.292,
+   "max_id_endolysin": 0.0,
+   "max_id_spanin": 0.0,
+   "cluster": 1056
+  },
+  {
+   "id": "ctxmined_NC_070852_PP745_gp081",
+   "sequence": "MEVTRKKVTVELSAEEMDHFRDWQRLSNDEKEAITKLAKALGSEDRRKSFYSLLEAQSTINQMVVTANHIAWITKMFFKAGAVAGVIIGVFTAVKLLMVK",
+   "length": 100,
+   "label": "holin",
+   "n_tm": 1,
+   "genome": "NC_070852",
+   "anchor": {
+    "id": "PP745_gp080",
+    "length": 376,
+    "domains": "PF11860:endolysin/catalytic(1.0e-47);PF01471:endolysin/binding(2.7e-18);PF09374:endolysin/binding(4.6e-06)"
+   },
+   "provenance_product_not_used": "hypothetical protein",
+   "max_id_training_holin": 0.0,
+   "max_id_endolysin": 0.0,
+   "max_id_spanin": 0.275,
+   "cluster": 1059
+  },
+  {
+   "id": "ctxmined_NC_070853_PP747_gp088",
+   "sequence": "MEVTRKKVVVELSAEEMDHFRDWQRLSNDEKEAITKLAKALGSEDRRKSFYSLLEAQSTINQMVVTANHIAWITKLFFKAGAVAGVIVGVFTAVKLLMVK",
+   "length": 100,
+   "label": "holin",
+   "n_tm": 1,
+   "genome": "NC_070853",
+   "anchor": {
+    "id": "PP747_gp087",
+    "length": 376,
+    "domains": "PF11860:endolysin/catalytic(4.5e-47);PF01471:endolysin/binding(2.8e-20);PF09374:endolysin/binding(7.3e-06)"
+   },
+   "provenance_product_not_used": "hypothetical protein",
+   "max_id_training_holin": 0.0,
+   "max_id_endolysin": 0.0,
+   "max_id_spanin": 0.29,
+   "cluster": 1059
+  },
+  {
+   "id": "ctxmined_NC_070854_PP748_gp086",
+   "sequence": "MEVTRKKVVVELTPQELDHFRDWQRLSNDEKEAITKLAKALGSEDRRKSFYSLLEAQSTINQMVVTANHIAWLTKMFFKAGAVAGVIVGVFTAIKLLMVK",
+   "length": 100,
+   "label": "holin",
+   "n_tm": 1,
+   "genome": "NC_070854",
+   "anchor": {
+    "id": "PP748_gp085",
+    "length": 376,
+    "domains": "PF11860:endolysin/catalytic(5.5e-47);PF01471:endolysin/binding(1.5e-19)"
+   },
+   "provenance_product_not_used": "hypothetical protein",
+   "max_id_training_holin": 0.238,
+   "max_id_endolysin": 0.0,
+   "max_id_spanin": 0.275,
+   "cluster": 1059
+  },
+  {
+   "id": "ctxmined_NC_070875_PP898_gp15",
+   "sequence": "MSNLYPFWNTATGITCLIVIGAASVFNIACGYVKDTLLDRLYYWAMLCTCVAGLFQVTNHQNHYVLVQTFTVLVAMRFVQMVSLRLWFIYRHRREFKPKPKD",
+   "length": 102,
+   "label": "holin",
+   "n_tm": 1,
+   "genome": "NC_070875",
+   "anchor": {
+    "id": "PP898_gp16",
+    "length": 126,
+    "domains": "PF13539:endolysin/catalytic(1.9e-17)"
+   },
+   "provenance_product_not_used": "holin/antiholin",
+   "max_id_training_holin": 0.271,
+   "max_id_endolysin": 0.0,
+   "max_id_spanin": 0.0,
+   "cluster": 1056
+  },
+  {
+   "id": "ctxmined_NC_070993_PQC59_gp108",
+   "sequence": "MGIIKFIVKMVVGFFLVILLLGVLLSAMGSVKAATFSPDTVEGLQCTYLIENYSTGKKSPKVIILHINDFDHVQSDSKMILLVNESTGKQITVDHLMRSSLTLFDESMNEIASGNGQCVNP",
+   "length": 121,
+   "label": "holin",
+   "n_tm": 1,
+   "genome": "NC_070993",
+   "anchor": {
+    "id": "PQC59_gp109",
+    "length": 129,
+    "domains": "PF07486:endolysin/catalytic(2.1e-10)"
+   },
+   "provenance_product_not_used": "terminase",
+   "max_id_training_holin": 0.0,
+   "max_id_endolysin": 0.282,
+   "max_id_spanin": 0.254,
+   "cluster": 1052
+  },
+  {
+   "id": "ctxmined_NC_071008_PQD17_gp26",
+   "sequence": "MPLNPEIKYVYARIWLMRKVWMPAALIMICMVAIGFIMGNTSATNHYKQSLAELEVSYKTAGDKRRVILEQCLANNDKLTSRLAELGDKTANVLDKLSTERK",
+   "length": 102,
+   "label": "holin",
+   "n_tm": 1,
+   "genome": "NC_071008",
+   "anchor": {
+    "id": "PQD17_gp27",
+    "length": 155,
+    "domains": "PF00959:endolysin/catalytic(5.3e-08)"
+   },
+   "provenance_product_not_used": "protein of unknown function DUF1043",
+   "max_id_training_holin": 0.278,
+   "max_id_endolysin": 0.27,
+   "max_id_spanin": 0.295,
+   "cluster": 1057
+  },
+  {
+   "id": "ctxmined_NC_071022_PQD78_gp20",
+   "sequence": "MNEHEAHMSTSSESAQMLVALTRMEAKMDVGFARIGAVTDKHAASIDDHEERIRTLEQKPTVSPRTLWTTITAGGGLLVALMTIAEKLLGG",
+   "length": 91,
+   "label": "holin",
+   "n_tm": 1,
+   "genome": "NC_071022",
+   "anchor": {
+    "id": "PQD78_gp21",
+    "length": 278,
+    "domains": "PF13539:endolysin/catalytic(8.3e-11);PF01471:endolysin/binding(1.5e-08)"
+   },
+   "provenance_product_not_used": "tail needle protein",
+   "max_id_training_holin": 0.271,
+   "max_id_endolysin": 0.0,
+   "max_id_spanin": 0.0,
+   "cluster": 1063
+  },
+  {
+   "id": "ctxmined_NC_071033_PQE17_gp25",
+   "sequence": "MSPKTRVRLAWFLLVASILGWPLSALTFAAEEPPTVLGLSWFAITLTALDVLFTADVRRNQDED",
+   "length": 64,
+   "label": "holin",
+   "n_tm": 2,
+   "genome": "NC_071033",
+   "anchor": {
+    "id": "PQE17_gp26",
+    "length": 484,
+    "domains": "PF01551:endolysin/catalytic(1.2e-24);PF01510:endolysin/catalytic(7.0e-10)"
+   },
+   "provenance_product_not_used": "membrane protein",
+   "max_id_training_holin": 0.0,
+   "max_id_endolysin": 0.0,
+   "max_id_spanin": 0.0,
+   "cluster": 1035
+  },
+  {
+   "id": "ctxmined_NC_071041_PQE67_gp015",
+   "sequence": "MANATMSFKRKGNDLVWSREENVMMVMQKSLPLSTAYVVDVPLIKESIKAYAKKGLGDGRFATIAVGSSGVFWKAFLVYIFPWMLDIAKVYCAIKICQAFYEEKRGGREGGTGFGALVQYGKWYLVFWLIPWGVELIDQLGGQMFNDLKTKGLEIDNPTFSPYKK",
+   "length": 165,
+   "label": "holin",
+   "n_tm": 1,
+   "genome": "NC_071041",
+   "anchor": {
+    "id": "PQE67_gp016",
+    "length": 231,
+    "domains": "PF01551:endolysin/catalytic(8.9e-20)"
+   },
+   "provenance_product_not_used": "hypothetical protein",
+   "max_id_training_holin": 0.276,
+   "max_id_endolysin": 0.273,
+   "max_id_spanin": 0.0,
+   "cluster": 1044
+  },
+  {
+   "id": "ctxmined_NC_071049_PQE75_gp094",
+   "sequence": "MSNTMTFRIGEGNILREVKRNNIIDEMRNTLPLSTAYIVDVPMIKERIKQGSNNKNRLLSVSAPLVIGVASTAVGGGIFWHSFMTYIFPYMLDIAKVFCAIKIAQAFYQERQGGREQGSGMSAMVTYGKWYLLFALMPWVVELFDQLGARMLIDLRTNS",
+   "length": 159,
+   "label": "holin",
+   "n_tm": 1,
+   "genome": "NC_071049",
+   "anchor": {
+    "id": "PQE75_gp095",
+    "length": 250,
+    "domains": "PF01551:endolysin/catalytic(1.0e-21)"
+   },
+   "provenance_product_not_used": "hypothetical protein",
+   "max_id_training_holin": 0.286,
+   "max_id_endolysin": 0.261,
+   "max_id_spanin": 0.0,
+   "cluster": 1044
+  },
+  {
+   "id": "ctxmined_NC_072499_P6F31_gp71",
+   "sequence": "MRSRCVRWLLPLRWGIGSRTKRINLQALARACYTRASFREGLTMEDDLDAARGVVNGVLLSIPLWAVIILAINLIRSWI",
+   "length": 79,
+   "label": "holin",
+   "n_tm": 1,
+   "genome": "NC_072499",
+   "anchor": {
+    "id": "P6F31_gp72",
+    "length": 174,
+    "domains": "PF01464:endolysin/catalytic(2.9e-07)"
+   },
+   "provenance_product_not_used": "hypothetical protein",
+   "max_id_training_holin": 0.0,
+   "max_id_endolysin": 0.0,
+   "max_id_spanin": 0.0,
+   "cluster": 1066
+  },
+  {
+   "id": "ctxmined_NC_072501_P6F33_gp33",
+   "sequence": "MHRLARACYTRASFREGLTMEDDLDAARGVVNGVLLSIPLWAVIILAINLIRSWI",
+   "length": 55,
+   "label": "holin",
+   "n_tm": 1,
+   "genome": "NC_072501",
+   "anchor": {
+    "id": "P6F33_gp32",
+    "length": 174,
+    "domains": "PF01464:endolysin/catalytic(2.9e-07)"
+   },
+   "provenance_product_not_used": "hypothetical protein",
+   "max_id_training_holin": 0.0,
+   "max_id_endolysin": 0.0,
+   "max_id_spanin": 0.0,
+   "cluster": 1044
+  },
+  {
+   "id": "ctxmined_NC_073196_QA045_gp42",
+   "sequence": "MDDKYLWLSVAGLAGGAVSQIKKREAISPWLRLCHLTASACCAVYASPIIISYYELSQSEGQYLVPFGVGMFWLKLFEAADSSLSNFKLPWGK",
+   "length": 93,
+   "label": "holin",
+   "n_tm": 1,
+   "genome": "NC_073196",
+   "anchor": {
+    "id": "QA045_gp41",
+    "length": 162,
+    "domains": "PF00959:endolysin/catalytic(1.2e-32)"
+   },
+   "provenance_product_not_used": "hypothetical protein",
+   "max_id_training_holin": 0.297,
+   "max_id_endolysin": 0.265,
+   "max_id_spanin": 0.0,
+   "cluster": 1039
+  },
+  {
+   "id": "ctxmined_NC_074743_QJS16_gp23",
+   "sequence": "MGTPQIIWIVLAAVVLVTSYACDGLTNVISFKLRVFDVIAMTALVWWGGFFG",
+   "length": 52,
+   "label": "holin",
+   "n_tm": 1,
+   "genome": "NC_074743",
+   "anchor": {
+    "id": "QJS16_gp24",
+    "length": 209,
+    "domains": "PF01464:endolysin/catalytic(2.9e-17)"
+   },
+   "provenance_product_not_used": "hypothetical protein",
+   "max_id_training_holin": 0.0,
+   "max_id_endolysin": 0.0,
+   "max_id_spanin": 0.0,
+   "cluster": 1035
+  },
+  {
+   "id": "ctxmined_NC_074748_QJS21_gp24",
+   "sequence": "MGVPQIIWIVLASVVLVTSYACDGLTNVISFKQRVFDVIAMTALVWWGGFFG",
+   "length": 52,
+   "label": "holin",
+   "n_tm": 1,
+   "genome": "NC_074748",
+   "anchor": {
+    "id": "QJS21_gp25",
+    "length": 209,
+    "domains": "PF01464:endolysin/catalytic(2.2e-17)"
+   },
+   "provenance_product_not_used": "hypothetical protein",
+   "max_id_training_holin": 0.0,
+   "max_id_endolysin": 0.0,
+   "max_id_spanin": 0.0,
+   "cluster": 1035
+  },
+  {
+   "id": "ctxmined_NC_074749_QJS22_gp50",
+   "sequence": "MGAPQIIWIVLASVVLVTSYACDGLTNVISFKQRVFDVIAMTALVWWGGFFG",
+   "length": 52,
+   "label": "holin",
+   "n_tm": 1,
+   "genome": "NC_074749",
+   "anchor": {
+    "id": "QJS22_gp51",
+    "length": 209,
+    "domains": "PF01464:endolysin/catalytic(2.2e-17)"
+   },
+   "provenance_product_not_used": "holin",
+   "max_id_training_holin": 0.0,
+   "max_id_endolysin": 0.0,
+   "max_id_spanin": 0.0,
+   "cluster": 1035
+  },
+  {
+   "id": "ctxmined_NC_079186_QNH07_gp67",
+   "sequence": "MQAILLQILKVVGSRILMGLLQEGIKELEKRTDNTVGKKDVERVREIAKNNLVKDKPVKVTV",
+   "length": 62,
+   "label": "holin",
+   "n_tm": 1,
+   "genome": "NC_079186",
+   "anchor": {
+    "id": "QNH07_gp68",
+    "length": 115,
+    "domains": "PF13539:endolysin/catalytic(5.9e-08)"
+   },
+   "provenance_product_not_used": "integral component of membrane",
+   "max_id_training_holin": 0.0,
+   "max_id_endolysin": 0.0,
+   "max_id_spanin": 0.0,
+   "cluster": 1070
+  },
+  {
+   "id": "ctxmined_NC_079187_QNH08_gp14",
+   "sequence": "MNAVVAGLLKTLASRALMALLEAGVEELKKREDNTVDQNDVDRVKFIKDNNVFPKE",
+   "length": 56,
+   "label": "holin",
+   "n_tm": 1,
+   "genome": "NC_079187",
+   "anchor": {
+    "id": "QNH08_gp15",
+    "length": 122,
+    "domains": "PF08291:endolysin/catalytic(1.9e-16)"
+   },
+   "provenance_product_not_used": "hypothetical protein",
+   "max_id_training_holin": 0.0,
+   "max_id_endolysin": 0.0,
+   "max_id_spanin": 0.0,
+   "cluster": 1035
+  },
+  {
+   "id": "ctxmined_NC_135452_YP_013607432.1",
+   "sequence": "MNEVESTLKIAQGISEFGFMTIVCSIFLILSASLMIVSFKWFKGIIEQIIKDFSAQLETLQQTANRNGEAMVDIAEGLMPETQLRIKNTSGVYFDLATEKVCRMIKKIREENHIIDKEATKAKIRKLLTNLYNDRNSRFDFYRYRGKKLSEYCNPEWIEWVAKVIEDELYNEAGANNGRAYTNVSAVYENIKLDFYHRLNQ",
+   "length": 201,
+   "label": "holin",
+   "n_tm": 1,
+   "genome": "NC_135452",
+   "anchor": {
+    "id": "YP_013607433.1",
+    "length": 198,
+    "domains": "PF01520:endolysin/catalytic(2.3e-29)"
+   },
+   "provenance_product_not_used": "hypothetical protein",
+   "max_id_training_holin": 0.261,
+   "max_id_endolysin": 0.275,
+   "max_id_spanin": 0.286,
+   "cluster": 1037
+  },
+  {
+   "id": "ctxmined_NZ_CP045110_FQU82_RS07930",
+   "sequence": "MAQEKPTSIRVLQSNKKKSRSPVIYIIIGIIAGVFVSISLFLFLSQPYSSDPTSVESKSNQDQELDQVLMTNSSAHDQAVSDQQEQTDPMSHDGFEQPKENELSNIFKPAPHKEAVPNPQRVSPFDAQLTGEQVVPKQQAVAKPVQPKLQVVQQKPATQTKVVQAKPAEVNKAPVEQEADVEPPKASVDIKITRSPFAVN",
+   "length": 200,
+   "label": "holin",
+   "n_tm": 1,
+   "genome": "NZ_CP045110",
+   "anchor": {
+    "id": "FQU82_RS07935",
+    "length": 317,
+    "domains": "PF13539:endolysin/catalytic(5.5e-17)"
+   },
+   "provenance_product_not_used": "hypothetical protein",
+   "max_id_training_holin": 0.286,
+   "max_id_endolysin": 0.272,
+   "max_id_spanin": 0.283,
+   "cluster": 1038
+  }
+ ]
+}

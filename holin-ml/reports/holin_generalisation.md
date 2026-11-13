@@ -62,9 +62,16 @@ signal; with ~3,000 training holins in 99 families the extra 160 dimensions most
 fit the families it has. (The 8-holin experimental check was not completed: with 8 genomes it cannot overturn a
 significant 78-genome result.)
 
+## New training diversity: context-mined families (tested, rejected)
+
+Holins from 37 families absent from training were mined from 5,111 phage genomes by genomic context, without the
+holin model (`holin_context_mining.md`). Neither variant improved the headline figures; one was significantly worse on
+known families. The first variant did lift all six T4-type holins (ranks 10-67 -> 3-28), which suggests the signal is
+there but the ~20% of mined picks that are not holins cost as much as the new families give.
+
 ## Where that leaves the holin signal
 
-Eight variants tried; the shipped 35M model remains best. What is left that could plausibly move unseen-family
+Ten variants tried (eight model changes, two mined-data sets); the shipped 35M model remains best. What is left that could plausibly move unseen-family
 performance is new training diversity, not new features: holins from families absent from the training set
 (e.g. experimentally characterised holins from the literature outside CPT, or class II/III/T4-type holins mined by
 topology and then confirmed), added and re-tested under the same protocol.
