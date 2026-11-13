@@ -302,9 +302,9 @@ def main():
     if TF is not None: paths = [p for p in paths if Path(p).stem in TF]
     esm = (F.ESM(B / f"models/esm_cache_{a.esm_model.split('/')[-1]}", a.esm_model) if a.esm_model
            else F.ESM(B / "models/esm_cache"))
-    D = 36 + esm.dim
-    FSEL = {"both": slice(0, D), "hand": slice(0, 36), "esm": slice(36, D),
-            "hand+topo": slice(0, 36), "both+topo": slice(0, D)}[a.features]
+    EMB_D = 36 + esm.dim                     # NOT "D": that name is the domains module
+    FSEL = {"both": slice(0, EMB_D), "hand": slice(0, 36), "esm": slice(36, EMB_D),
+            "hand+topo": slice(0, 36), "both+topo": slice(0, EMB_D)}[a.features]
     TOPO = a.features.endswith("+topo")
     def feats(ss):
         if not ss: return np.zeros((0, (FSEL.stop - FSEL.start) + (len(F.TOPO_NAMES) if TOPO else 0)))
