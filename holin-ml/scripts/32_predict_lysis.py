@@ -2,8 +2,10 @@
 
 Input (choose one):
   --proteins FILE.faa    protein FASTA: scored directly (one row per sequence). No positions, so no cassette calls.
-  --genome   FILE.fna    nucleotide FASTA (genome/contig/MAG bin): genes are called de novo with Pyrodigal, then
-                         scored. This is how you run it on a raw assembly with no annotation.
+  --genome   FILE.fna    nucleotide FASTA (genome/contig/MAG bin): genes are called de novo with Pyrodigal, plus
+                         nested lipoprotein ORFs (embedded o-spanins such as lambda Rz1, which standard gene finders
+                         never call; scripts/genecall.py; --no-nested to skip), then scored. This is how you run it on
+                         a raw assembly with no annotation.
   --genbank  FILE.gb     GenBank with CDS annotations: the annotated proteins are scored in genome order.
   --acc      ACCESSION   fetch that nucleotide record from NCBI and treat as --genbank.
 
@@ -72,6 +74,8 @@ def main():
     ap.add_argument("--hmm-dir", help="directory of lysis Pfam .hmm files for --domains. Defaults to "
                                       "data/raw/pfam_hmm, downloading any that are missing from InterPro "
                                       "(one-off). Pre-populate it and pass this for an offline or HPC run.")
+    ap.add_argument("--no-nested", action="store_true",
+                    help="--genome only: do not add nested lipoprotein ORFs (embedded o-spanins) to the Pyrodigal genes")
     ap.add_argument("--out")
     a = ap.parse_args()
 
@@ -79,7 +83,12 @@ def main():
     if a.proteins:
         ps = read_faa(a.proteins); positional = False; src = a.proteins
     elif a.genome:
-        ps = S5.denovo_proteins(a.genome); src = a.genome
+        import genecall
+        from Bio import SeqIO
+        ps = genecall.denovo([(r.id, str(r.seq)) for r in SeqIO.parse(a.genome, "fasta")], nested=not a.no_nested)
+        for q in ps:                       # say where the extra ORFs came from; nothing else in a de novo run has a product
+            if q.get("caller") == "nested-lipoprotein": q["product"] = f"nested lipoprotein ORF in {q['host']}"
+        src = a.genome
     elif a.genbank:
         ps = S5.annotated_proteins(a.genbank); src = a.genbank
     else:

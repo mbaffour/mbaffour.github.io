@@ -10,7 +10,7 @@ Yes — the classifiers operate on **protein** sequence (36 hand-crafted feature
 | input | how it is handled |
 |---|---|
 | **protein FASTA** (`--proteins`) | scored directly, one row per sequence (no positions → no cassette calls) |
-| **nucleotide FASTA** (`--genome`) | genes called **de novo with Pyrodigal**, translated, then scored — works on a raw assembly, contig or MAG bin with no annotation |
+| **nucleotide FASTA** (`--genome`) | genes called **de novo with Pyrodigal**, plus nested lipoprotein ORFs (embedded o-spanins standard gene finders never call; `--no-nested` to skip; `reports/denovo_gene_calling.md`), translated, then scored — works on a raw assembly, contig or MAG bin with no annotation |
 | **GenBank** (`--genbank`) | annotated CDS translations scored in genome order |
 | **NCBI accession** (`--acc`) | record fetched, then treated as GenBank |
 

@@ -139,16 +139,12 @@ def pos_truth_matrix(pos_seqs, truth_seqs, procs=4):
         return np.vstack(pool.map(_pt_row, pos_seqs, chunksize=8))
 
 
-def denovo_from_genbank(gb):
-    """genes called from the bare DNA of a GenBank record with Pyrodigal (meta mode); no annotation is read"""
-    import pyrodigal
+def denovo_from_genbank(gb, nested=False):
+    """genes called from the bare DNA of a GenBank record with Pyrodigal (meta mode); no annotation is read.
+    nested: also the nested lipoprotein ORFs (embedded o-spanins) of scripts/genecall.py"""
+    import genecall
     from Bio import SeqIO
-    out = []
-    for rec in SeqIO.parse(gb, "genbank"):
-        for i, g in enumerate(pyrodigal.GeneFinder(meta=True).find_genes(bytes(rec.seq)), 1):
-            out.append({"id": f"{rec.id}_orf{i:04d}", "product": "", "start": g.begin, "stop": g.end,
-                        "strand": "+" if g.strand == 1 else "-", "sequence": g.translate().rstrip("*")})
-    return out
+    return genecall.denovo([(rec.id, str(rec.seq)) for rec in SeqIO.parse(gb, "genbank")], nested=nested)
 
 
 def seq_place(target, ps):
@@ -166,6 +162,27 @@ def seq_place(target, ps):
         m = sum(a == b for a, b in zip(q[-n:], target[-n:])) / n
         if m > best[1]: best = (i, m)
     return best[0] if best[1] >= 0.9 else None
+
+
+def frag_place(target, ps, min_frac=0.3):
+    """For a proven gene the gene caller splits in two (an intron, e.g. phage K LysK; a frameshift): the called
+    protein sharing the longest contiguous stretch with it, if that stretch is at least min_frac of the gene. The
+    stretch is measured from residue 11 of the called protein (a different start codon is tolerated) to the point
+    where it leaves the gene -- an N-terminal fragment reads on into the intron, so only its prefix matches. Used only
+    when seq_place finds nothing, and reported as such."""
+    if not target: return None
+    best = (None, 0)
+    for i, x in enumerate(ps):
+        q = x["sequence"]
+        core = q[10:] if len(q) > 40 else q
+        if len(core) < 10 or core[:10] not in target: continue
+        lo, hi = 10, len(core)                          # longest prefix of core contained in target (monotone)
+        while lo < hi:
+            mid = (lo + hi + 1) // 2
+            if core[:mid] in target: lo = mid
+            else: hi = mid - 1
+        if lo >= min_frac * len(target) and lo > best[1]: best = (i, lo)
+    return best[0]
 
 
 def pos_weights(cl, mode):
@@ -270,6 +287,8 @@ def main():
     ap.add_argument("--features", default="both", choices=["both", "hand", "esm", "hand+topo", "both+topo"],
                     help="hand = only the 36 biophysical sequence features; esm = only the ESM-2 embedding; +topo adds the "
                          "27 membrane-topology descriptors of features.topology_features")
+    ap.add_argument("--nested-orfs", action="store_true",
+                    help="with --de-novo: also call nested lipoprotein ORFs (embedded o-spanins), scripts/genecall.py")
     ap.add_argument("--holin-extra", default=None,
                     help="JSON of extra holin training positives (scripts/49 output); joins the checkpoint key")
     ap.add_argument("--esm-model", default=None,
@@ -300,6 +319,7 @@ def main():
     if a.pos_weight != "none": EXTRA["pos_weight"] = a.pos_weight + "_resample"   # see weighted_rows()
     if a.features != "both": EXTRA["features"] = a.features
     if a.esm_model: EXTRA["esm_model"] = a.esm_model
+    if a.nested_orfs: EXTRA["nested_orfs"] = "genecall_v1"
     if a.holin_extra:
         EXTRA["holin_extra"] = a.holin_extra
         EXTRA["holin_extra_sha"] = hashlib.sha256((B / a.holin_extra).read_bytes()).hexdigest()[:16]
@@ -322,7 +342,7 @@ def main():
         return np.hstack([base, np.array([F.topology_features(s) for s in ss], float)]) if TOPO else base
 
     # ---- genomes and ground truth ----
-    genomes = []; _seen_dna = {}
+    genomes = []; _seen_dna = {}; FRAG = []; MISS = []
     for p in paths:
         # one record per genome: the same DNA saved twice (an accession with and without its version, or a GenBank
         # record and its RefSeq copy) would be scored twice and tighten every interval for nothing
@@ -338,7 +358,7 @@ def main():
         try:
             ann = [x for x in S5.annotated_proteins(p) if x.get("sequence")]
             if a.de_novo:
-                ps = [x for x in denovo_from_genbank(p) if 20 <= len(x["sequence"]) <= 2000]
+                ps = [x for x in denovo_from_genbank(p, a.nested_orfs) if 20 <= len(x["sequence"]) <= 2000]
             else:
                 ps = [x for x in ann if 20 <= len(x["sequence"]) <= 2000]
         except Exception:
@@ -353,8 +373,17 @@ def main():
                 for pid in want.get(c, []):
                     if a.de_novo:                   # place the proven protein on a gene-caller protein by sequence
                         j = seq_place(aseq.get(pid, ""), ps)
+                        if j is None:
+                            j = frag_place(aseq.get(pid, ""), ps)
+                            if j is not None:
+                                FRAG.append({"genome": Path(p).stem, "class": c, "id": pid, "placed_on": ps[j]["id"],
+                                             "fragment_aa": len(ps[j]["sequence"]), "gene_aa": len(aseq[pid])})
+                                print(f"NOTE {Path(p).stem}: {c} {pid} split by the gene caller; placed on fragment "
+                                      f"{ps[j]['id']} ({len(ps[j]['sequence'])} of {len(aseq[pid])} aa)", flush=True)
                         if j is not None: tr[c].append(j)
-                        else: print(f"WARNING {Path(p).stem}: validated {c} {pid} not found by de novo gene calling", flush=True)
+                        else:
+                            MISS.append({"genome": Path(p).stem, "class": c, "id": pid})
+                            print(f"WARNING {Path(p).stem}: validated {c} {pid} not found by de novo gene calling", flush=True)
                     elif pid in idx: tr[c].append(idx[pid])
                     else: print(f"WARNING {Path(p).stem}: validated {c} {pid} not scorable (length filter?)", flush=True)
         else:
@@ -373,6 +402,8 @@ def main():
     print(f"genome features in {int(time.time()-t)}s", flush=True)
 
     out = {"n_genomes_scanned": len(genomes), "boot": a.boot, "hyperparameters": dict(HP),
+           **({"de_novo": {"nested_orfs": a.nested_orfs, "not_found_by_gene_calling": MISS,
+                           "placed_on_fragment": FRAG}} if a.de_novo else {}),
            "datasets": {"endolysin": a.endolysin_positives, "spanin": a.spanin_positives},
            "note": "Expanded LOGO: the atlas evaluation used 19 endolysins/12 genomes and 15 spanins/9 genomes, "
                    "which left every model comparison inside its confidence interval. This uses all annotated "

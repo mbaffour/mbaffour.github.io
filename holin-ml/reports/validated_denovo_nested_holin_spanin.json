@@ -1,0 +1,409 @@
+{
+ "n_genomes_scanned": 24,
+ "boot": 2000,
+ "hyperparameters": {
+  "max_iter": 400,
+  "learning_rate": 0.06,
+  "max_leaf_nodes": 31,
+  "early_stopping": "auto"
+ },
+ "de_novo": {
+  "nested_orfs": true,
+  "not_found_by_gene_calling": [],
+  "placed_on_fragment": [
+   {
+    "genome": "KF766114",
+    "class": "endolysin",
+    "id": "PhageK_071",
+    "placed_on": "KF766114.1_orf0074",
+    "fragment_aa": 267,
+    "gene_aa": 495
+   }
+  ]
+ },
+ "datasets": {
+  "endolysin": "data/processed/endolysin_positives.json",
+  "spanin": "data/processed/spanin_positives.json"
+ },
+ "note": "Expanded LOGO: the atlas evaluation used 19 endolysins/12 genomes and 15 spanins/9 genomes, which left every model comparison inside its confidence interval. This uses all annotated lysis genes in the scanned panel. Protocol and negative recipes are unchanged from scripts/22 and scripts/28, so the figures describe the models as deployed.",
+ "classes": {
+  "holin": {
+   "family_removal": {
+    "all": {
+     "AP": 0.8379,
+     "CI95_by_genome": [
+      0.6228,
+      1.0
+     ],
+     "n_truths": 8,
+     "n_scored": 665,
+     "n_genomes": 8,
+     "median_rank": 1.0,
+     "top1": 0.875,
+     "recall_at5": 0.875,
+     "recall_at0.5": 0.875
+    },
+    "exit_only": {
+     "AP": 0.8379,
+     "CI95_by_genome": [
+      0.6228,
+      1.0
+     ],
+     "n_truths": 8,
+     "n_scored": 665,
+     "n_genomes": 8,
+     "median_rank": 1.0,
+     "top1": 0.875,
+     "recall_at5": 0.875,
+     "recall_at0.5": 0.875
+    },
+    "unique_models_fitted": 8,
+    "genomes_from_checkpoint": 0,
+    "fits_note": "unique_models_fitted counts fits done in THIS process; with genomes_from_checkpoint > 0 the run resumed and earlier fits are not counted. Scores are identical either way.",
+    "seconds": 51,
+    "truth_ranks": [
+     {
+      "genome": "AF022214",
+      "id": "AF022214.2_orf0007",
+      "rank": 1,
+      "score": 0.5504,
+      "of": 76
+     },
+     {
+      "genome": "AF063097",
+      "id": "AF063097.1_orf0009",
+      "rank": 1,
+      "score": 0.9178,
+      "of": 43
+     },
+     {
+      "genome": "AF158101",
+      "id": "AF158101.6_orf0247",
+      "rank": 13,
+      "score": 0.0015,
+      "of": 265
+     },
+     {
+      "genome": "AJ505558",
+      "id": "AJ505558.1_orf0048",
+      "rank": 1,
+      "score": 0.9996,
+      "of": 52
+     },
+     {
+      "genome": "BK000583",
+      "id": "BK000583.1_orf0059",
+      "rank": 1,
+      "score": 1.0,
+      "of": 66
+     },
+     {
+      "genome": "Z47794",
+      "id": "Z47794.1_orf0021",
+      "rank": 1,
+      "score": 0.8711,
+      "of": 27
+     },
+     {
+      "genome": "gi327198314",
+      "id": "NC_015274.1_orf0059",
+      "rank": 1,
+      "score": 0.9995,
+      "of": 73
+     },
+     {
+      "genome": "gi9626243",
+      "id": "NC_001416.1_orf0057",
+      "rank": 1,
+      "score": 0.9966,
+      "of": 63
+     }
+    ],
+    "missed_truths": [
+     {
+      "genome": "AF158101",
+      "id": "AF158101.6_orf0247",
+      "rank": 13,
+      "score": 0.0015,
+      "product": ""
+     }
+    ]
+   },
+   "sequence_removal": {
+    "all": {
+     "AP": 0.9861,
+     "CI95_by_genome": [
+      0.95,
+      1.0
+     ],
+     "n_truths": 8,
+     "n_scored": 665,
+     "n_genomes": 8,
+     "median_rank": 1.0,
+     "top1": 1.0,
+     "recall_at5": 1.0,
+     "recall_at0.5": 1.0
+    },
+    "exit_only": {
+     "AP": 0.9861,
+     "CI95_by_genome": [
+      0.95,
+      1.0
+     ],
+     "n_truths": 8,
+     "n_scored": 665,
+     "n_genomes": 8,
+     "median_rank": 1.0,
+     "top1": 1.0,
+     "recall_at5": 1.0,
+     "recall_at0.5": 1.0
+    },
+    "unique_models_fitted": 5,
+    "genomes_from_checkpoint": 0,
+    "fits_note": "unique_models_fitted counts fits done in THIS process; with genomes_from_checkpoint > 0 the run resumed and earlier fits are not counted. Scores are identical either way.",
+    "seconds": 39,
+    "truth_ranks": [
+     {
+      "genome": "AF022214",
+      "id": "AF022214.2_orf0007",
+      "rank": 1,
+      "score": 0.997,
+      "of": 76
+     },
+     {
+      "genome": "AF063097",
+      "id": "AF063097.1_orf0009",
+      "rank": 1,
+      "score": 0.9934,
+      "of": 43
+     },
+     {
+      "genome": "AF158101",
+      "id": "AF158101.6_orf0247",
+      "rank": 1,
+      "score": 0.999,
+      "of": 265
+     },
+     {
+      "genome": "AJ505558",
+      "id": "AJ505558.1_orf0048",
+      "rank": 1,
+      "score": 0.9996,
+      "of": 52
+     },
+     {
+      "genome": "BK000583",
+      "id": "BK000583.1_orf0059",
+      "rank": 1,
+      "score": 0.9997,
+      "of": 66
+     },
+     {
+      "genome": "Z47794",
+      "id": "Z47794.1_orf0021",
+      "rank": 1,
+      "score": 0.9338,
+      "of": 27
+     },
+     {
+      "genome": "gi327198314",
+      "id": "NC_015274.1_orf0059",
+      "rank": 1,
+      "score": 0.9991,
+      "of": 73
+     },
+     {
+      "genome": "gi9626243",
+      "id": "NC_001416.1_orf0057",
+      "rank": 1,
+      "score": 0.9997,
+      "of": 63
+     }
+    ],
+    "missed_truths": []
+   }
+  },
+  "spanin": {
+   "family_removal": {
+    "all": {
+     "AP": 0.8495,
+     "CI95_by_genome": [
+      0.5111,
+      1.0
+     ],
+     "n_truths": 7,
+     "n_scored": 244,
+     "n_genomes": 4,
+     "median_rank": 2.0,
+     "top1": 0.429,
+     "recall_at5": 0.857,
+     "recall_at0.5": 0.714
+    },
+    "exit_only": {
+     "AP": 0.8495,
+     "CI95_by_genome": [
+      0.5111,
+      1.0
+     ],
+     "n_truths": 7,
+     "n_scored": 244,
+     "n_genomes": 4,
+     "median_rank": 2.0,
+     "top1": 0.429,
+     "recall_at5": 0.857,
+     "recall_at0.5": 0.714
+    },
+    "unique_models_fitted": 4,
+    "genomes_from_checkpoint": 0,
+    "fits_note": "unique_models_fitted counts fits done in THIS process; with genomes_from_checkpoint > 0 the run resumed and earlier fits are not counted. Scores are identical either way.",
+    "seconds": 18,
+    "truth_ranks": [
+     {
+      "genome": "AF083977",
+      "id": "AF083977.1_orf0024",
+      "rank": 1,
+      "score": 0.7858,
+      "of": 56
+     },
+     {
+      "genome": "AF083977",
+      "id": "AF083977.1_nested001",
+      "rank": 2,
+      "score": 0.781,
+      "of": 56
+     },
+     {
+      "genome": "AY216660",
+      "id": "AY216660.1_orf0063",
+      "rank": 6,
+      "score": 0.0075,
+      "of": 73
+     },
+     {
+      "genome": "V01146",
+      "id": "V01146.1_nested001",
+      "rank": 1,
+      "score": 0.9389,
+      "of": 52
+     },
+     {
+      "genome": "V01146",
+      "id": "V01146.1_orf0049",
+      "rank": 2,
+      "score": 0.9199,
+      "of": 52
+     },
+     {
+      "genome": "gi9626243",
+      "id": "NC_001416.1_orf0059",
+      "rank": 1,
+      "score": 0.5537,
+      "of": 63
+     },
+     {
+      "genome": "gi9626243",
+      "id": "NC_001416.1_nested001",
+      "rank": 2,
+      "score": 0.0899,
+      "of": 63
+     }
+    ],
+    "missed_truths": [
+     {
+      "genome": "AY216660",
+      "id": "AY216660.1_orf0063",
+      "rank": 6,
+      "score": 0.0075,
+      "product": ""
+     }
+    ]
+   },
+   "sequence_removal": {
+    "all": {
+     "AP": 0.9683,
+     "CI95_by_genome": [
+      0.775,
+      1.0
+     ],
+     "n_truths": 7,
+     "n_scored": 244,
+     "n_genomes": 4,
+     "median_rank": 2.0,
+     "top1": 0.429,
+     "recall_at5": 1.0,
+     "recall_at0.5": 0.857
+    },
+    "exit_only": {
+     "AP": 0.9683,
+     "CI95_by_genome": [
+      0.775,
+      1.0
+     ],
+     "n_truths": 7,
+     "n_scored": 244,
+     "n_genomes": 4,
+     "median_rank": 2.0,
+     "top1": 0.429,
+     "recall_at5": 1.0,
+     "recall_at0.5": 0.857
+    },
+    "unique_models_fitted": 4,
+    "genomes_from_checkpoint": 0,
+    "fits_note": "unique_models_fitted counts fits done in THIS process; with genomes_from_checkpoint > 0 the run resumed and earlier fits are not counted. Scores are identical either way.",
+    "seconds": 17,
+    "truth_ranks": [
+     {
+      "genome": "AF083977",
+      "id": "AF083977.1_nested001",
+      "rank": 1,
+      "score": 0.9775,
+      "of": 56
+     },
+     {
+      "genome": "AF083977",
+      "id": "AF083977.1_orf0024",
+      "rank": 2,
+      "score": 0.9456,
+      "of": 56
+     },
+     {
+      "genome": "AY216660",
+      "id": "AY216660.1_orf0063",
+      "rank": 2,
+      "score": 0.1944,
+      "of": 73
+     },
+     {
+      "genome": "V01146",
+      "id": "V01146.1_orf0049",
+      "rank": 1,
+      "score": 0.9895,
+      "of": 52
+     },
+     {
+      "genome": "V01146",
+      "id": "V01146.1_nested001",
+      "rank": 2,
+      "score": 0.95,
+      "of": 52
+     },
+     {
+      "genome": "gi9626243",
+      "id": "NC_001416.1_orf0059",
+      "rank": 1,
+      "score": 0.966,
+      "of": 63
+     },
+     {
+      "genome": "gi9626243",
+      "id": "NC_001416.1_nested001",
+      "rank": 2,
+      "score": 0.8972,
+      "of": 63
+     }
+    ],
+    "missed_truths": []
+   }
+  }
+ }
+}

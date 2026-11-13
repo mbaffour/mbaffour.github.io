@@ -60,6 +60,10 @@ Twort 4/202 · **P22 9/66**
     gene finders do not call nested genes;
   - phage K's endolysin LysK: its gene contains an intron, so from bare DNA it appears as two fragments (267 and 209 aa).
 
+  **Fixed since** (`denovo_gene_calling.md`): a nested lipoprotein-ORF finder now recovers all three o-spanins (bare
+  DNA, novel family: spanins in top 5 3/7 -> 6/7), and LysK is placed on its 267-aa catalytic fragment, ranked 3rd
+  (endolysins in top 5 20/22 -> 21/22). On CPT the same finder lifts curated spanins in the top 5 from 61% to 76%.
+
 ## How to read a score on a novel phage
 
 Under novel-family conditions many proven genes rank at or near the top **while scoring far below any threshold**: the

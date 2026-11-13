@@ -74,6 +74,13 @@ protein level), reduced to bare DNA and re-called with Pyrodigal so that no anno
 is in the top five for 20 of 21 endolysins, 7 of 8 holins and 3 of 4 spanins under the same protocol
 (`reports/validated_benchmark.md`). The two sets agree.
 
+Standard gene finders do not call genes embedded in another gene's reading frame, and embedded o-spanins are exactly
+that: from bare DNA, Pyrodigal does not produce 48 of CPT's 162 curated spanins. A narrow finder for nested ORFs that
+begin with a lipoprotein signal (0.5 extra ORFs per genome) recovers 24 of them, and raises the share of curated
+spanins in their genome's top five, from bare DNA under the novel-family protocol, from 61 % to 76 % (+14.8 points,
+95 % CI +9.9 to +19.9); on the experimental set it recovers all three missed o-spanins (6 of 7 spanins in the top
+five) (`reports/denovo_gene_calling.md`). It is on by default for raw assemblies.
+
 Two genomes in the 66-genome panel were present twice (an accession with and without its version suffix); removing the
 copies lowers the endolysin figures by 0.005-0.009 AP, below the panel's resolution.
 
