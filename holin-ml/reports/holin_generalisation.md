@@ -69,6 +69,27 @@ holin model (`holin_context_mining.md`). Neither variant improved the headline f
 known families. The first variant did lift all six T4-type holins (ranks 10-67 -> 3-28), which suggests the signal is
 there but the ~20% of mined picks that are not holins cost as much as the new families give.
 
+## Ensembles of the variants (tested, not adopted)
+
+Averaging models that fail on different holins costs no new training: probabilities averaged per protein from the
+saved leave-one-genome-out scores (`scripts/50_holin_ensemble.py`), which reproduce the shipped figures exactly.
+Primary test declared before looking: shipped + mined-v1.
+
+| CPT, 78 genomes, novel family | ranked 1st | top 5 | T4-type ranks |
+|---|---|---|---|
+| shipped | 0.538 | 0.846 | 10-67 |
+| **shipped + mined-v1 (primary)** | 0.513 (-0.026 [-0.064, 0.000]) | 0.846 (0.000) | **3-30** |
+| shipped + ESM-150M | 0.551 (+0.013) | 0.795 (-0.051 [-0.115, 0.000]) | 19-80 |
+| shipped + mined-v1 + ESM-150M | 0.551 (+0.013 [-0.026, +0.051]) | 0.872 (+0.026 [-0.026, +0.077]) | 4-33 |
+
+Known family: every ensemble within +/-0.013 of the shipped model. Experimental set (8 proven holins), primary
+ensemble: 6/8 ranked first under the novel-family protocol vs 7/8 (the 150M runs there were not completed).
+
+**Not adopted:** no ensemble improves the headline beyond noise. The primary one keeps the T4-type gain of mined-v1
+almost intact (ranks 10-67 -> 3-30) at a cost inside the noise on CPT and one holin on the experimental set. The
+three-model ensemble is the best point estimate on both novel-family figures, but it was a secondary test, its
+intervals include zero, and it could not be checked on the experimental set.
+
 ## Where that leaves the holin signal
 
 Ten variants tried (eight model changes, two mined-data sets); the shipped 35M model remains best. What is left that could plausibly move unseen-family
