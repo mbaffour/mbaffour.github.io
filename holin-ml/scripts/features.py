@@ -60,13 +60,17 @@ class ESM:
     MODEL = "facebook/esm2_t12_35M_UR50D"
     MAXLEN = 1022
 
-    def __init__(self, cache_dir):
+    def __init__(self, cache_dir, model=None):
+        """model: another ESM-2 checkpoint (e.g. facebook/esm2_t30_150M_UR50D). The cache is keyed by sequence only, so a
+        non-default model MUST get its own cache_dir -- callers pass one; the default model keeps models/esm_cache."""
         import torch
         from transformers import AutoTokenizer, EsmModel
         torch.set_num_threads(4)
         self.torch = torch
+        if model: self.MODEL = model
         self.tok = AutoTokenizer.from_pretrained(self.MODEL)
         self.model = EsmModel.from_pretrained(self.MODEL, use_safetensors=True, add_pooling_layer=False).eval()
+        self.dim = self.model.config.hidden_size
         self.cache = Path(cache_dir); self.cache.mkdir(parents=True, exist_ok=True)
 
     def embed(self, seqs, batch_tokens=12000):

@@ -265,6 +265,8 @@ def main():
     ap.add_argument("--features", default="both", choices=["both", "hand", "esm", "hand+topo", "both+topo"],
                     help="hand = only the 36 biophysical sequence features; esm = only the ESM-2 embedding; +topo adds the "
                          "27 membrane-topology descriptors of features.topology_features")
+    ap.add_argument("--esm-model", default=None,
+                    help="a different ESM-2 checkpoint for the embedding (own cache: models/esm_cache_<name>)")
     ap.add_argument("--sim-features", action="store_true",
                     help="append one feature: max identity to the class's KEPT training positives (self and exact "
                          "duplicates masked for training rows; for a scored genome, only positives surviving that "
@@ -290,6 +292,7 @@ def main():
     EXTRA = dict(SUB or {})
     if a.pos_weight != "none": EXTRA["pos_weight"] = a.pos_weight + "_resample"   # see weighted_rows()
     if a.features != "both": EXTRA["features"] = a.features
+    if a.esm_model: EXTRA["esm_model"] = a.esm_model
     if a.sim_features: EXTRA["sim"] = "target_class_max_identity_v1"
     CK = ck_dir(B / a.checkpoint if not Path(a.checkpoint).is_absolute() else a.checkpoint,
                 dict(HP), a.endolysin_positives, a.spanin_positives, EXTRA or None)
@@ -297,9 +300,11 @@ def main():
     paths = sorted({p for g in a.genbanks for p in glob.glob(str(B / g))})
     TF = json.load(open(B / a.truth_file)) if a.truth_file else None
     if TF is not None: paths = [p for p in paths if Path(p).stem in TF]
-    esm = F.ESM(B / "models/esm_cache")
-    FSEL = {"both": slice(0, 516), "hand": slice(0, 36), "esm": slice(36, 516),
-            "hand+topo": slice(0, 36), "both+topo": slice(0, 516)}[a.features]
+    esm = (F.ESM(B / f"models/esm_cache_{a.esm_model.split('/')[-1]}", a.esm_model) if a.esm_model
+           else F.ESM(B / "models/esm_cache"))
+    D = 36 + esm.dim
+    FSEL = {"both": slice(0, D), "hand": slice(0, 36), "esm": slice(36, D),
+            "hand+topo": slice(0, 36), "both+topo": slice(0, D)}[a.features]
     TOPO = a.features.endswith("+topo")
     def feats(ss):
         if not ss: return np.zeros((0, (FSEL.stop - FSEL.start) + (len(F.TOPO_NAMES) if TOPO else 0)))
