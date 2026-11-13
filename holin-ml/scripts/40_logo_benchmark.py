@@ -171,6 +171,15 @@ def pos_weights(cl, mode):
     return w * (len(cl) / w.sum())
 
 
+def weighted_rows(Xp_keep, cl_keep, mode, seed=0):
+    """Family weighting by RESAMPLING the kept positives (with replacement, probability proportional to pos_weights),
+    the same number of rows as before. Equivalent to sample weights in expectation, and fast: passing sample_weight
+    makes this scikit-learn compute weighted quantiles for every feature before each fit, which was ~10x slower."""
+    if mode == "none": return Xp_keep
+    w = pos_weights(cl_keep, mode); rng = np.random.default_rng(seed)
+    return Xp_keep[rng.choice(len(w), size=len(w), replace=True, p=w / w.sum())]
+
+
 def stratified_subsample(recs, n, seed, field):
     """Exactly n records, each stratum of `field` kept in proportion (largest-remainder rounding).
     Deterministic: records are ordered by id inside each stratum before the seeded draw."""
@@ -279,7 +288,7 @@ def main():
     SUB = ({"n": a.pos_subsample, "seed": a.pos_subsample_seed, "strata": a.pos_subsample_strata}
            if a.pos_subsample else None)
     EXTRA = dict(SUB or {})
-    if a.pos_weight != "none": EXTRA["pos_weight"] = a.pos_weight
+    if a.pos_weight != "none": EXTRA["pos_weight"] = a.pos_weight + "_resample"   # see weighted_rows()
     if a.features != "both": EXTRA["features"] = a.features
     if a.sim_features: EXTRA["sim"] = "target_class_max_identity_v1"
     CK = ck_dir(B / a.checkpoint if not Path(a.checkpoint).is_absolute() else a.checkpoint,
@@ -406,10 +415,9 @@ def main():
                     key = drop.tobytes()
                     if key not in fcache:
                         keep = ~drop
-                        X = np.vstack([Xp[keep], Xn])
+                        X = np.vstack([weighted_rows(Xp[keep], cl_ids[keep], a.pos_weight), Xn])
                         y = np.concatenate([np.ones(int(keep.sum()), int), np.zeros(len(neg), int)])
-                        sw = np.concatenate([pos_weights(cl_ids[keep], a.pos_weight), np.ones(len(neg))])
-                        fcache[key] = hgb().fit(X, y, sample_weight=sw)
+                        fcache[key] = hgb().fit(X, y)
                     sc = fcache[key].predict_proba(g["X"])[:, 1]
                     for m in ("family", "sequence"): ck_save(CK, cls, m, g["name"], sc)
             print(f"{cls}: context scores for {len(rest)} genomes without a curated {cls} "
@@ -437,13 +445,11 @@ def main():
                             fn = S_neg[:, keep].max(1)[:, None]
                             X = np.vstack([np.hstack([Xp[keep], fp]), np.hstack([Xn, fn])])
                             y = np.concatenate([np.ones(int(keep.sum()), int), np.zeros(len(neg), int)])
-                            sw = np.concatenate([pos_weights(cl_ids[keep], a.pos_weight), np.ones(len(neg))])
-                            cache[key] = hgb().fit(X, y, sample_weight=sw)
+                            cache[key] = hgb().fit(X, y)
                         else:
-                            X = np.vstack([Xp[keep], Xn])
+                            X = np.vstack([weighted_rows(Xp[keep], cl_ids[keep], a.pos_weight), Xn])
                             y = np.concatenate([np.ones(int(keep.sum()), int), np.zeros(len(neg), int)])
-                            sw = np.concatenate([pos_weights(cl_ids[keep], a.pos_weight), np.ones(len(neg))])
-                            cache[key] = hgb().fit(X, y, sample_weight=sw)
+                            cache[key] = hgb().fit(X, y)
                     m = cache[key]
                     Xg = g["X"]
                     if a.sim_features:
