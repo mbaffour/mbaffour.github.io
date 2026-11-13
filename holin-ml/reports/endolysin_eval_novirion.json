@@ -1,0 +1,60 @@
+{
+  "class": "endolysin",
+  "n_atlas_genomes": 12,
+  "n_annotated_in_atlas": 19,
+  "family_removal": {
+    "genome_AP": 0.648,
+    "CI95_by_genome": [
+      0.3978,
+      0.8471
+    ],
+    "at_thresholds": {
+      "0.5": {
+        "called": 8,
+        "true": 7,
+        "precision": 0.875,
+        "recall": 0.368
+      },
+      "0.9": {
+        "called": 7,
+        "true": 6,
+        "precision": 0.857,
+        "recall": 0.316
+      }
+    },
+    "top1_per_genome": 0.75
+  },
+  "sequence_removal": {
+    "genome_AP": 0.7656,
+    "CI95_by_genome": [
+      0.6083,
+      0.9301
+    ],
+    "at_thresholds": {
+      "0.5": {
+        "called": 12,
+        "true": 11,
+        "precision": 0.917,
+        "recall": 0.579
+      },
+      "0.9": {
+        "called": 10,
+        "true": 9,
+        "precision": 0.9,
+        "recall": 0.474
+      }
+    },
+    "top1_per_genome": 0.917
+  },
+  "gold_holdout": {
+    "AP": 0.8236,
+    "n_pos": 123,
+    "n_neg": 4030,
+    "note": "class gold-holdout clusters vs held-out negative sample; this model trains on all"
+  },
+  "config": {
+    "confusable_negatives": 0,
+    "train_positives": 937,
+    "train_negatives": 16121
+  }
+}

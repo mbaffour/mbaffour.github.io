@@ -21,7 +21,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 B = Path(__file__).resolve().parent.parent
 EU = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils"
 QUERY = '"Caudoviricetes"[Organism] AND complete genome[Title] AND 2026/06/01:3000/12/31[PDAT] NOT srcdb_refseq[PROP]'
-OUT = B / "data/raw/blind"
+OUT = B / "data/raw/blind"          # --name blind2 etc. writes data/raw/<name>/ instead
 EXCLUDE = ["data/raw/cpt/genomes/*.gb", "data/raw/validated/genomes/*.gb", "data/raw/panel/*.gb",
            "data/raw/genomes/*.gb", "data/raw/pool/*.gb", "data/raw/mine/*.gb"]
 
@@ -44,7 +44,12 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--n", type=int, default=200); ap.add_argument("--seed", type=int, default=0)
     ap.add_argument("--per-genus", type=int, default=15)
+    ap.add_argument("--name", default="blind", help="output set name: data/raw/<name>/")
+    ap.add_argument("--exclude-selection", nargs="*", default=[],
+                    help="earlier selection.json files whose genomes must not be picked again")
     a = ap.parse_args()
+    global OUT
+    OUT = B / "data/raw" / a.name
     from Bio import SeqIO
     import io
     for d in ("fna", "sealed", "_all"): (OUT / d).mkdir(parents=True, exist_ok=True)
@@ -55,13 +60,22 @@ def main():
             try:
                 r = next(SeqIO.parse(p, "genbank")); ex_acc.add(r.id.split(".")[0]); ex_dna.add(dna_hash(str(r.seq)))
             except Exception: pass
+    for sf in a.exclude_selection:
+        for acc in json.load(open(B / sf))["accessions"]:
+            ex_acc.add(acc.split(".")[0])
+            gp = B / Path(sf).parent / "sealed" / f"{acc}.gb"
+            if gp.exists(): ex_dna.add(dna_hash(str(next(SeqIO.parse(gp, "genbank")).seq)))
     print(f"excluded: {len(ex_acc)} accessions already used for evaluation, training or mining", flush=True)
 
     q = urllib.parse.quote(QUERY)
     accs = json.loads(get(f"{EU}/esearch.fcgi?db=nuccore&term={q}&retmax=5000&retmode=json&idtype=acc"))["esearchresult"]["idlist"]
     print(f"{len(accs)} genomes match the query", flush=True)
     for i in range(0, len(accs), 100):
-        batch = [x for x in accs[i:i + 100] if not (OUT / "_all" / f"{x}.gb").exists()]
+        batch = [x for x in accs[i:i + 100] if not (OUT / "_all" / f"{x}.gb").exists()
+                 and not (B / "data/raw/blind/_all" / f"{x}.gb").exists()]
+        for x in accs[i:i + 100]:                  # reuse records already downloaded for the first blind set
+            src = B / "data/raw/blind/_all" / f"{x}.gb"
+            if src.exists() and not (OUT / "_all" / f"{x}.gb").exists(): (OUT / "_all" / f"{x}.gb").write_text(src.read_text())
         if not batch: continue
         txt = get(f"{EU}/efetch.fcgi?db=nuccore&id={','.join(batch)}&rettype=gbwithparts&retmode=text")
         for rec in txt.split("\n//\n"):

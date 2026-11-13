@@ -70,7 +70,7 @@ def hgb():
     return HistGradientBoostingClassifier(random_state=0, **HP)
 
 
-def load_sets(cls, endo_pos_path, spa_pos_path, holin_extra=None):
+def load_sets(cls, endo_pos_path, spa_pos_path, holin_extra=None, endo_extra_neg=None):
     """(training positives, negatives) for one class, using that class's SHIPPED negative recipe.
     holin_extra: a JSON of additional holin positives (e.g. scripts/49's context-mined new families), either a list
     of records or {"records": [...]}; each needs sequence and cluster, so family removal drops whole families."""
@@ -92,6 +92,8 @@ def load_sets(cls, endo_pos_path, spa_pos_path, holin_extra=None):
     elif cls == "endolysin":
         pos = [r for r in endo if not r["in_gold_holdout"]]
         neg = spa + holins_all + bact + negs
+        if endo_extra_neg:                     # e.g. virion lytic proteins (tail lysozymes) as hard negatives
+            neg = neg + json.load(open(B / endo_extra_neg))
     else:
         pos = [r for r in spa if not r["in_gold_holdout"]]
         neg = endo + holins_all + bact + negs
@@ -289,6 +291,8 @@ def main():
                          "27 membrane-topology descriptors of features.topology_features")
     ap.add_argument("--nested-orfs", action="store_true",
                     help="with --de-novo: also call nested lipoprotein ORFs (embedded o-spanins), scripts/genecall.py")
+    ap.add_argument("--endolysin-extra-negatives", default=None,
+                    help="JSON of extra endolysin negatives (e.g. virion lytic proteins); joins the checkpoint key")
     ap.add_argument("--holin-extra", default=None,
                     help="JSON of extra holin training positives (scripts/49 output); joins the checkpoint key")
     ap.add_argument("--esm-model", default=None,
@@ -320,6 +324,9 @@ def main():
     if a.features != "both": EXTRA["features"] = a.features
     if a.esm_model: EXTRA["esm_model"] = a.esm_model
     if a.nested_orfs: EXTRA["nested_orfs"] = "genecall_v1"
+    if a.endolysin_extra_negatives:
+        EXTRA["endolysin_extra_negatives"] = a.endolysin_extra_negatives
+        EXTRA["endolysin_extra_negatives_sha"] = hashlib.sha256((B / a.endolysin_extra_negatives).read_bytes()).hexdigest()[:16]
     if a.holin_extra:
         EXTRA["holin_extra"] = a.holin_extra
         EXTRA["holin_extra_sha"] = hashlib.sha256((B / a.holin_extra).read_bytes()).hexdigest()[:16]
@@ -414,7 +421,7 @@ def main():
     for cls in a.classes:
         gs = [g for g in genomes if g["truth"][cls]]
         if not gs: print(f"{cls}: no truths, skipped"); continue
-        pos, neg = load_sets(cls, a.endolysin_positives, a.spanin_positives, a.holin_extra)
+        pos, neg = load_sets(cls, a.endolysin_positives, a.spanin_positives, a.holin_extra, a.endolysin_extra_negatives)
         if SUB:
             n_before = len(pos)
             pos, strata = stratified_subsample(pos, SUB["n"], SUB["seed"], SUB["strata"])

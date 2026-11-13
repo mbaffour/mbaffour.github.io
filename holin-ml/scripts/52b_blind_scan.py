@@ -26,17 +26,23 @@ def _cached_esm(cache_dir, model=None):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--time-limit", type=float, default=1e9)
+    ap.add_argument("--set", default="blind", help="data/raw/<set>/ (scripts/52a --name)")
+    ap.add_argument("--endolysin-model", default=None,
+                    help="score with this endolysin model file in models/ instead of the shipped one (for a paired "
+                         "before/after comparison); predictions go to reports/<set>/pred_<tag>/")
+    ap.add_argument("--tag", default=None)
     a = ap.parse_args()
     P32.F.ESM = _cached_esm
-    sel = json.load(open(B / "data/raw/blind/selection.json"))["accessions"]
-    out = B / "reports/blind/pred"; out.mkdir(parents=True, exist_ok=True)
+    if a.endolysin_model: P32.MODELS["endolysin"] = a.endolysin_model
+    sel = json.load(open(B / f"data/raw/{a.set}/selection.json"))["accessions"]
+    out = B / f"reports/{a.set}" / (f"pred_{a.tag}" if a.tag else "pred"); out.mkdir(parents=True, exist_ok=True)
     todo = [x for x in sel if not (out / f"{x}.tsv").exists()]
     print(f"{len(sel)} genomes selected, {len(todo)} to scan", flush=True)
     t0 = time.time()
     for k, acc in enumerate(todo, 1):
         if time.time() - t0 > a.time_limit: print("time limit; rerun to resume", flush=True); break
         t = time.time(); tmp = out / f"{acc}.tsv.part"
-        sys.argv = ["32_predict_lysis.py", "--genome", str(B / "data/raw/blind/fna" / f"{acc}.fna"), "--out", str(tmp)]
+        sys.argv = ["32_predict_lysis.py", "--genome", str(B / f"data/raw/{a.set}/fna" / f"{acc}.fna"), "--out", str(tmp)]
         err = io.StringIO()
         with contextlib.redirect_stderr(err): P32.main()
         tmp.replace(out / f"{acc}.tsv")

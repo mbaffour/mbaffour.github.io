@@ -67,6 +67,9 @@ def main():
                     help="suffix for the OTHER lysis class's positives (the cross-class negatives); defaults to "
                          "--pos-suffix. Lets the endolysin model take v1 positives with the current spanin set")
     ap.add_argument("--early-stopping", default="auto", help="auto (sklearn default) or False")
+    ap.add_argument("--extra-negatives", default=None,
+                    help="JSON of extra negatives added to the pool, e.g. data/processed/endolysin_virion_negatives.json "
+                         "(virion lytic proteins moved out of the endolysin positives)")
     a = ap.parse_args(); cls = a.cls
     global ES
     ES = False if str(a.early_stopping).lower() in ("false", "0", "no") else a.early_stopping
@@ -100,6 +103,10 @@ def main():
         negpool += [("confusable", r) for r in cf]; n_conf = len(cf)
         print(f"{cls}: + {n_conf} confusable negatives (entry lysins, single-gene lysis proteins); "
               f"{n_drop} dropped as exact matches to a scored atlas protein", flush=True)
+    n_extra = 0
+    if a.extra_negatives:
+        ex = json.load(open(B / a.extra_negatives)); negpool += [("extra", r) for r in ex]; n_extra = len(ex)
+        print(f"{cls}: + {n_extra} extra negatives from {a.extra_negatives}", flush=True)
     rng = np.random.default_rng(0); idx = rng.permutation(len(negpool))
     n_gold_neg = int(0.2 * len(negpool))
     gold_neg = [negpool[i][1] for i in idx[:n_gold_neg]]
@@ -175,6 +182,7 @@ def main():
     bundle = {"model": mprod, "features": "both", "algorithm": "hgb", "class": cls,
               "hand_feature_names": list(F.HAND_NAMES), "esm_model": F.ESM.MODEL,
               "trained_on": {"positives": len(pos), "negatives": len(negpool), "confusable_negatives": n_conf,
+                             "extra_negatives": n_extra, "extra_negatives_file": a.extra_negatives,
                              "positives_file": f"{cls}_positives{a.pos_suffix}.json",
                              "other_class_file": f"{other}_positives{other_suffix}.json",
                              "early_stopping": ES},
