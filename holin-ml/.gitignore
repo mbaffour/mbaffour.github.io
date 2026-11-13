@@ -29,3 +29,8 @@ models/esm_cache_*/
 # genomes mined for new holin families (scripts/49a): regenerable from data/raw/mine/accessions.json
 data/raw/mine/*.gb
 .fitckpt_cpt_denovo/
+
+# blind scan (scripts/52): genomes regenerable from data/raw/blind/selection.json
+data/raw/blind/_all/
+data/raw/blind/fna/
+data/raw/blind/sealed/
