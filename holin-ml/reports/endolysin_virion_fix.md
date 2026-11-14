@@ -46,3 +46,31 @@ DNA alone with each model and frozen (commit 45a360e) before scoring against the
 What remains: T7-type internal virion proteins (2) and short "baseplate hub" proteins (2-3). From the first blind
 scan, short (~165 aa) lysozymes beside the holin, annotated after gp5's lysozyme domain, look like real endolysins
 misnamed by the annotation pipeline rather than model errors.
+
+## The remaining cases (diagnosed after the fix; both blind sets had been opened by then)
+
+With the new model, blind set 1 rescored: the endolysin call is the annotated one in 0.900 of genomes (0.838 with the
+old model); the long T7-type internal virion proteins and the 541-aa gp5 spikes no longer appear. Each remaining
+confident call on a gene annotated with another function was checked against its genomic neighbourhood:
+
+- **Annotation errors, model right** -- PZ402314.1: 166 aa, 70% identical over its full length to T4 gene e (the T4
+  endolysin), annotated "baseplate hub subunit and tail lysozyme", no other endolysin annotated. PZ789121/2.1: the
+  called lysozyme sits between the spanin and the holin; the gene annotated "endolysin" is 96 aa, 8 genes away,
+  P = 0.0000. PZ585203/30.1 (174 aa) sit beside the holin/spanin in genomes annotated with no endolysin at all.
+- **Real errors, pattern 1: proximity ignores distance** -- PZ476258.1 (a 607-aa cell-wall hydrolase three genes
+  from the holin beats the amidase immediately after it; both P = 0.9994) and PZ897549.1 (a tail hydrolase three
+  genes away collects the same holin bonus as the real endolysin next to it).
+- **Real errors, pattern 2: a weakly modelled endolysin family** -- PZ445420/22/25.1 (related phages): the call is a
+  140-aa virion protein inside the tail module; the true endolysins sit beside the holin and spanin but score only
+  P = 0.12-0.16.
+
+**Distance-weighted proximity, tested, not adopted.** A neighbour d genes away counts decay^(d-1) (predictor option
+`--context-decay`, default 1.0 = unchanged). On CPT (leave-one-genome-out, beta 6, W 3) decay 0.5 left unseen-family
+ranked-first unchanged (0.815) and moved known-family 0.933 -> 0.941 (one genome); stronger bonuses lowered
+unseen-family. Rescanning both blind sets with decay 0.5: endolysin fixed 3 genomes and broke 3 (net zero), holin +1,
+spanin unchanged. No net gain, so the default stays.
+
+**Where that leaves it.** On blind set 2 the new model makes 5 confident endolysin calls on genes annotated as
+something else; 3 look like annotation errors (above) and 2 are real (the PZ445 tail-module family): about 2 real
+virion mistakes per 114 genomes. Fixing that family needs better training data for its real endolysins, not a
+calling rule; one family in three related genomes is too narrow to train against without overfitting.

@@ -31,6 +31,7 @@ def main():
                     help="score with this endolysin model file in models/ instead of the shipped one (for a paired "
                          "before/after comparison); predictions go to reports/<set>/pred_<tag>/")
     ap.add_argument("--tag", default=None)
+    ap.add_argument("--context-decay", default=None, help="passed to the predictor (scripts/32 --context-decay)")
     a = ap.parse_args()
     P32.F.ESM = _cached_esm
     if a.endolysin_model: P32.MODELS["endolysin"] = a.endolysin_model
@@ -42,7 +43,7 @@ def main():
     for k, acc in enumerate(todo, 1):
         if time.time() - t0 > a.time_limit: print("time limit; rerun to resume", flush=True); break
         t = time.time(); tmp = out / f"{acc}.tsv.part"
-        sys.argv = ["32_predict_lysis.py", "--genome", str(B / f"data/raw/{a.set}/fna" / f"{acc}.fna"), "--out", str(tmp)]
+        sys.argv = ["32_predict_lysis.py", "--genome", str(B / f"data/raw/{a.set}/fna" / f"{acc}.fna"), "--out", str(tmp)] + (["--context-decay", a.context_decay] if a.context_decay else [])
         err = io.StringIO()
         with contextlib.redirect_stderr(err): P32.main()
         tmp.replace(out / f"{acc}.tsv")

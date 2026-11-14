@@ -80,6 +80,9 @@ def main():
                                       "(one-off). Pre-populate it and pass this for an offline or HPC run.")
     ap.add_argument("--no-nested", action="store_true",
                     help="--genome only: do not add nested lipoprotein ORFs (embedded o-spanins) to the Pyrodigal genes")
+    ap.add_argument("--context-decay", type=float, default=None,
+                    help="override the context rule's distance weighting (models/context_params.json 'decay'; "
+                         "1.0 = every neighbour within the window counts equally)")
     ap.add_argument("--holin-mode", choices=["standard", "t4aware"], default="standard",
                     help="t4aware: P(holin) is the mean of the standard holin model and models/holin_model_mined.pkl "
                          "(the same recipe plus 77 holins from 37 families mined by genomic context, scripts/49). "
@@ -135,8 +138,10 @@ def main():
     if CTX:
         for c in CLASSES:
             b, w = CTX[c]["beta"], CTX[c]["W"]
+            # distance weighting: a neighbour d genes away counts decay**(d-1) (1.0 = every gene in the window equal)
+            dk = a.context_decay if a.context_decay is not None else CTX[c].get("decay", 1.0)
             for i, p_ in enumerate(ps):
-                nb = [max(ps[j]["P"][o] for o in CLASSES if o != c)
+                nb = [max(ps[j]["P"][o] for o in CLASSES if o != c) * dk ** (abs(i - j) - 1)
                       for j in range(max(0, i - w), min(len(ps), i + w + 1)) if j != i]
                 p_["z"][c] += b * (max(nb) if nb else 0.0)
     # SPANIN: learned second-stage caller (models/spanin_caller.pkl, scripts/48), which beat the context rule for
