@@ -28,7 +28,7 @@ INK, MUTED, GRID = "#1f2328", "#6b7280", "#e5e7eb"
 plt.rcParams.update({"font.family": "DejaVu Sans", "font.size": 10, "axes.edgecolor": MUTED, "axes.labelcolor": INK,
                      "xtick.color": INK, "ytick.color": INK, "axes.spines.top": False, "axes.spines.right": False,
                      "figure.dpi": 100, "savefig.dpi": 200, "savefig.bbox": "tight"})
-LABEL = {"n4": "N4-like (Schitoviridae)", "lambda": "λ-like (Lambdavirus)", "t4": "T4-like (Straboviridae)",
+LABEL = {"n4": "N4-like (Schitoviridae)", "lambda": "Lambdoid (λ, P22, HK97-like)", "t4": "T4-like (Straboviridae)",
          "t7": "T7-like (Autographiviridae)", "t5": "T5-like (Demerecviridae)", "drexler": "Drexlerviridae",
          "herelle": "Herelleviridae", "p2": "P2-like (Peduoviridae)", "jumbo": "Jumbo (> 200 kb)",
          "blind": "Recent genomes, set 1", "blind2": "Recent genomes, set 2"}

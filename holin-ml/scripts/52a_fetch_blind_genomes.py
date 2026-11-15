@@ -6,6 +6,7 @@ Selection, fixed before any genome is scanned or any annotation is read:
   - not an evaluation or training-pool genome (CPT, experimental set, panels, pool, the 5,247 mining genomes), by
     accession and by DNA
   - at least 10 annotated CDS (counted, product names not read), so the annotation can score the scan afterwards
+  - at most 800 kb (some "complete genome" records under phage taxa are whole bacterial chromosomes)
   - at most 15 genomes per host genus (first word of the organism name), then a seeded random sample of --n
 
 Outputs:
@@ -95,6 +96,7 @@ def main():
         if r.id.split(".")[0] in ex_acc or k in ex_dna or k in seen: continue
         n_cds = sum(1 for f in r.features if f.type == "CDS")          # counted only; products are not read
         if n_cds < 10 or not str(r.seq).strip("Nn"): continue
+        if len(r.seq) > 800_000: continue      # bacterial chromosomes filed under a phage taxon (largest phages ~750 kb)
         seen.add(k)
         genus = (r.annotations.get("organism", "") or "unknown").split()[0]
         elig[genus].append(r.id)
