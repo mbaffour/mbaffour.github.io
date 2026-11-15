@@ -45,6 +45,9 @@ def main():
     ap.add_argument("--n", type=int, default=200); ap.add_argument("--seed", type=int, default=0)
     ap.add_argument("--per-genus", type=int, default=15)
     ap.add_argument("--name", default="blind", help="output set name: data/raw/<name>/")
+    ap.add_argument("--query", default=None, help="NCBI nuccore query instead of the recent-genomes default")
+    ap.add_argument("--allow-mining-genomes", action="store_true",
+                    help="keep the RefSeq mining genomes (scripts/49a) eligible; they never trained a shipped model")
     ap.add_argument("--exclude-selection", nargs="*", default=[],
                     help="earlier selection.json files whose genomes must not be picked again")
     a = ap.parse_args()
@@ -55,7 +58,7 @@ def main():
     for d in ("fna", "sealed", "_all"): (OUT / d).mkdir(parents=True, exist_ok=True)
 
     ex_acc, ex_dna = set(), set()
-    for g in EXCLUDE:
+    for g in [e for e in EXCLUDE if not (a.allow_mining_genomes and "raw/mine" in e)]:
         for p in glob.glob(str(B / g)):
             try:
                 r = next(SeqIO.parse(p, "genbank")); ex_acc.add(r.id.split(".")[0]); ex_dna.add(dna_hash(str(r.seq)))
@@ -67,7 +70,8 @@ def main():
             if gp.exists(): ex_dna.add(dna_hash(str(next(SeqIO.parse(gp, "genbank")).seq)))
     print(f"excluded: {len(ex_acc)} accessions already used for evaluation, training or mining", flush=True)
 
-    q = urllib.parse.quote(QUERY)
+    query = a.query or QUERY
+    q = urllib.parse.quote(query)
     accs = json.loads(get(f"{EU}/esearch.fcgi?db=nuccore&term={q}&retmax=5000&retmode=json&idtype=acc"))["esearchresult"]["idlist"]
     print(f"{len(accs)} genomes match the query", flush=True)
     for i in range(0, len(accs), 100):
@@ -103,7 +107,7 @@ def main():
         (OUT / "fna" / f"{acc}.fna").write_text(f">{acc}\n{str(r.seq)}\n")
         (OUT / "sealed" / f"{acc}.gb").write_text((OUT / "_all" / f"{acc}.gb").read_text())
     (OUT / "selection.json").write_text(json.dumps({
-        "query": QUERY, "date": time.strftime("%Y-%m-%d"), "seed": a.seed, "per_genus_cap": a.per_genus,
+        "query": query, "date": time.strftime("%Y-%m-%d"), "seed": a.seed, "per_genus_cap": a.per_genus,
         "n_matching": len(accs), "n_eligible": sum(len(v) for v in elig.values()), "n_genera": len(elig),
         "genera_in_sample": dict(sorted(defaultdict(int, {g: sum(1 for x in pick if x in elig[g]) for g in elig}).items())),
         "accessions": pick}, indent=1))

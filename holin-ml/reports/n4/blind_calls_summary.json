@@ -1,0 +1,29 @@
+{
+ "genomes": 255,
+ "nested_orfs": 164,
+ "holin:confident": 240,
+ "holin:candidate": 15,
+ "endolysin:confident": 250,
+ "endolysin:candidate": 5,
+ "spanin:confident": 252,
+ "spanin:candidate": 3,
+ "all_three_confident": 237,
+ "all_three_within_6_genes": 210,
+ "cassette_order_in_transcription_direction": {
+  "HES": 115,
+  "ESH": 72,
+  "EHS": 22,
+  "SHE": 1
+ },
+ "median_length": {
+  "holin": 105,
+  "endolysin": 189,
+  "spanin": 108
+ },
+ "holin_TM_counts": {
+  "0": 36,
+  "1": 113,
+  "2": 73,
+  "3": 18
+ }
+}
