@@ -67,3 +67,8 @@ data/raw/jumbo/sealed/
 models/esm_res_cache/
 reports/distribution/cache_topology/
 reports/distribution/cache/
+reports/external/signalp/**/output_*_plot.txt
+reports/external/signalp/**/*.png
+reports/external/signalp/**/*.eps
+reports/external/deeptmhmm/**/*.png
+reports/external/*/chunk_*/in.fasta

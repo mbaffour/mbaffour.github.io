@@ -1,0 +1,1015 @@
+{
+ "n_proteins": 2693,
+ "n_deeptmhmm": 2693,
+ "n_signalp": 2693,
+ "curated_benchmark": {
+  "proteins": 59,
+  "ours": [
+   0.644,
+   59
+  ],
+  "deeptmhmm": [
+   0.525,
+   59
+  ],
+  "heuristic": [
+   0.695,
+   59
+  ],
+  "ours_vs_deeptmhmm_helix_count_agree": 0.814,
+  "rows": [
+   {
+    "acc": "P03639",
+    "name": "Lysis protein E (Protein E) (GPE)",
+    "curated": 1,
+    "ours": 1,
+    "deeptmhmm": 0,
+    "heuristic": 1,
+    "ours_nterm": "out",
+    "deeptmhmm_nterm": "out",
+    "signalp": "OTHER"
+   },
+   {
+    "acc": "P07930",
+    "name": "Lysis protein (E protein) (GPE)",
+    "curated": 1,
+    "ours": 1,
+    "deeptmhmm": 0,
+    "heuristic": 1,
+    "ours_nterm": "out",
+    "deeptmhmm_nterm": "out",
+    "signalp": "OTHER"
+   },
+   {
+    "acc": "P03705",
+    "name": "Antiholin (Lysis inhibitor S-107)",
+    "curated": 2,
+    "ours": 3,
+    "deeptmhmm": 3,
+    "heuristic": 1,
+    "ours_nterm": "out",
+    "deeptmhmm_nterm": "out",
+    "signalp": "OTHER"
+   },
+   {
+    "acc": "Q37875",
+    "name": "SAR-endolysin (EC 3.2.1.17) (Endolysin) (Gene product 17) (gp17) (Lysis protein)",
+    "curated": 1,
+    "ours": 1,
+    "deeptmhmm": 0,
+    "heuristic": 1,
+    "ours_nterm": "in",
+    "deeptmhmm_nterm": "out",
+    "signalp": "SP"
+   },
+   {
+    "acc": "P06808",
+    "name": "Holin (Lysis protein) (Protein rV)",
+    "curated": 1,
+    "ours": 1,
+    "deeptmhmm": 1,
+    "heuristic": 1,
+    "ours_nterm": "in",
+    "deeptmhmm_nterm": "in",
+    "signalp": "OTHER"
+   },
+   {
+    "acc": "P27360",
+    "name": "Antiholin",
+    "curated": 2,
+    "ours": 2,
+    "deeptmhmm": 2,
+    "heuristic": 1,
+    "ours_nterm": "in",
+    "deeptmhmm_nterm": "in",
+    "signalp": "OTHER"
+   },
+   {
+    "acc": "P00726",
+    "name": "Spanin, inner membrane subunit (i-spanin) (Lysis protein Rz)",
+    "curated": 1,
+    "ours": 1,
+    "deeptmhmm": 1,
+    "heuristic": 1,
+    "ours_nterm": "out",
+    "deeptmhmm_nterm": "in",
+    "signalp": "OTHER"
+   },
+   {
+    "acc": "Q9T1X2",
+    "name": "SAR-endolysin (EC 3.2.1.17) (Endolysin) (Gene product 22) (gp22) (Lysis protein)",
+    "curated": 1,
+    "ours": 0,
+    "deeptmhmm": 0,
+    "heuristic": 0,
+    "ours_nterm": null,
+    "deeptmhmm_nterm": "out",
+    "signalp": "OTHER"
+   },
+   {
+    "acc": "Q6XQ97",
+    "name": "U-spanin (Gene product 11) (Unimolecular spanin) (gp11)",
+    "curated": 1,
+    "ours": 1,
+    "deeptmhmm": 1,
+    "heuristic": 2,
+    "ours_nterm": "out",
+    "deeptmhmm_nterm": "out",
+    "signalp": "LIPO"
+   },
+   {
+    "acc": "O64362",
+    "name": "SAR-endolysin (EC 3.2.1.17) (Endolysin) (Gene product 54) (gp54) (Lysis protein)",
+    "curated": 1,
+    "ours": 0,
+    "deeptmhmm": 0,
+    "heuristic": 1,
+    "ours_nterm": null,
+    "deeptmhmm_nterm": "out",
+    "signalp": "SP"
+   },
+   {
+    "acc": "O80292",
+    "name": "SAR-endolysin (EC 3.2.1.17) (Endolysin) (Gene product 19) (gp19) (Lysis protein)",
+    "curated": 1,
+    "ours": 0,
+    "deeptmhmm": 0,
+    "heuristic": 1,
+    "ours_nterm": null,
+    "deeptmhmm_nterm": "out",
+    "signalp": "OTHER"
+   },
+   {
+    "acc": "P39504",
+    "name": "Spanin, inner membrane subunit (i-spanin)",
+    "curated": 1,
+    "ours": 1,
+    "deeptmhmm": 1,
+    "heuristic": 1,
+    "ours_nterm": "out",
+    "deeptmhmm_nterm": "in",
+    "signalp": "OTHER"
+   },
+   {
+    "acc": "Q3T4L9",
+    "name": "Holin (Protein P35)",
+    "curated": 3,
+    "ours": 3,
+    "deeptmhmm": 3,
+    "heuristic": 1,
+    "ours_nterm": "out",
+    "deeptmhmm_nterm": "out",
+    "signalp": "OTHER"
+   },
+   {
+    "acc": "P09962",
+    "name": "Antiholin (Lysis inhibitor 13-108)",
+    "curated": 2,
+    "ours": 3,
+    "deeptmhmm": 3,
+    "heuristic": 1,
+    "ours_nterm": "out",
+    "deeptmhmm_nterm": "out",
+    "signalp": "OTHER"
+   },
+   {
+    "acc": "P27358",
+    "name": "Spanin, inner membrane subunit (i-spanin) (Lysis protein Rz)",
+    "curated": 1,
+    "ours": 1,
+    "deeptmhmm": 1,
+    "heuristic": 1,
+    "ours_nterm": "out",
+    "deeptmhmm_nterm": "in",
+    "signalp": "OTHER"
+   },
+   {
+    "acc": "P27359",
+    "name": "SAR-endolysin (EC 3.2.1.17) (Endolysin) (Lysis protein) (Lysozyme) (Muramidase)",
+    "curated": 1,
+    "ours": 1,
+    "deeptmhmm": 0,
+    "heuristic": 1,
+    "ours_nterm": "in",
+    "deeptmhmm_nterm": "out",
+    "signalp": "OTHER"
+   },
+   {
+    "acc": "P68921",
+    "name": "SAR-endolysin (EC 3.2.1.17) (Endolysin) (Lysis protein) (Lysozyme) (Muramidase)",
+    "curated": 1,
+    "ours": 0,
+    "deeptmhmm": 0,
+    "heuristic": 1,
+    "ours_nterm": null,
+    "deeptmhmm_nterm": "out",
+    "signalp": "SP"
+   },
+   {
+    "acc": "P68920",
+    "name": "SAR-endolysin (EC 3.2.1.17) (Endolysin) (Lysis protein) (Lysozyme) (Muramidase)",
+    "curated": 1,
+    "ours": 0,
+    "deeptmhmm": 0,
+    "heuristic": 1,
+    "ours_nterm": null,
+    "deeptmhmm_nterm": "out",
+    "signalp": "SP"
+   },
+   {
+    "acc": "Q37895",
+    "name": "Antiholin (Gene product 14) (gp14) (Protein p14) [Includes: Holin]",
+    "curated": 2,
+    "ours": 3,
+    "deeptmhmm": 3,
+    "heuristic": 2,
+    "ours_nterm": "out",
+    "deeptmhmm_nterm": "out",
+    "signalp": "OTHER"
+   },
+   {
+    "acc": "Q7Y2C0",
+    "name": "SAR-endolysin (EC 3.2.1.17) (Endolysin) (Gene product 45) (gp45) (KMV45) (Lysis ",
+    "curated": 1,
+    "ours": 0,
+    "deeptmhmm": 0,
+    "heuristic": 0,
+    "ours_nterm": null,
+    "deeptmhmm_nterm": "out",
+    "signalp": "SP"
+   },
+   {
+    "acc": "O64204",
+    "name": "Holin (Gene product 11) (gp11)",
+    "curated": 2,
+    "ours": 2,
+    "deeptmhmm": 2,
+    "heuristic": 2,
+    "ours_nterm": "in",
+    "deeptmhmm_nterm": "in",
+    "signalp": "OTHER"
+   },
+   {
+    "acc": "O80288",
+    "name": "SAR-endolysin (EC 3.2.1.17) (Endolysin) (Gene product 19) (gp19) (Lysis protein)",
+    "curated": 1,
+    "ours": 1,
+    "deeptmhmm": 0,
+    "heuristic": 1,
+    "ours_nterm": "out",
+    "deeptmhmm_nterm": "out",
+    "signalp": "OTHER"
+   },
+   {
+    "acc": "Q6R6U4",
+    "name": "Holin",
+    "curated": 1,
+    "ours": 1,
+    "deeptmhmm": 1,
+    "heuristic": 1,
+    "ours_nterm": "in",
+    "deeptmhmm_nterm": "in",
+    "signalp": "OTHER"
+   },
+   {
+    "acc": "O48472",
+    "name": "Putative antiholin",
+    "curated": 2,
+    "ours": 2,
+    "deeptmhmm": 2,
+    "heuristic": 1,
+    "ours_nterm": "in",
+    "deeptmhmm_nterm": "in",
+    "signalp": "OTHER"
+   },
+   {
+    "acc": "P03609",
+    "name": "Lysis protein (L protein)",
+    "curated": 1,
+    "ours": 0,
+    "deeptmhmm": 1,
+    "heuristic": 1,
+    "ours_nterm": null,
+    "deeptmhmm_nterm": "in",
+    "signalp": "OTHER"
+   },
+   {
+    "acc": "P07539",
+    "name": "Antiholin (Gene product 14) (gp14) (Lysis inhibitor 14-131) (Protein p14) [Inclu",
+    "curated": 2,
+    "ours": 3,
+    "deeptmhmm": 3,
+    "heuristic": 2,
+    "ours_nterm": "out",
+    "deeptmhmm_nterm": "out",
+    "signalp": "OTHER"
+   },
+   {
+    "acc": "P51728",
+    "name": "SAR-endolysin (EC 3.2.1.17) (Endolysin) (Lysis protein) (Lysozyme) (Muramidase)",
+    "curated": 1,
+    "ours": 0,
+    "deeptmhmm": 0,
+    "heuristic": 1,
+    "ours_nterm": null,
+    "deeptmhmm_nterm": "out",
+    "signalp": "OTHER"
+   },
+   {
+    "acc": "P10439",
+    "name": "SAR-endolysin (EC 3.2.1.17) (Endolysin) (Lysis protein) (Lysozyme) (Muramidase)",
+    "curated": 1,
+    "ours": 0,
+    "deeptmhmm": 0,
+    "heuristic": 1,
+    "ours_nterm": null,
+    "deeptmhmm_nterm": "out",
+    "signalp": "OTHER"
+   },
+   {
+    "acc": "P11188",
+    "name": "Antiholin (Gene product 14) (gp14) (Lysis inhibitor 14-131) (Protein p14) [Inclu",
+    "curated": 2,
+    "ours": 3,
+    "deeptmhmm": 3,
+    "heuristic": 2,
+    "ours_nterm": "out",
+    "deeptmhmm_nterm": "out",
+    "signalp": "OTHER"
+   },
+   {
+    "acc": "Q37975",
+    "name": "Putative antiholin",
+    "curated": 2,
+    "ours": 3,
+    "deeptmhmm": 3,
+    "heuristic": 2,
+    "ours_nterm": "out",
+    "deeptmhmm_nterm": "out",
+    "signalp": "OTHER"
+   },
+   {
+    "acc": "Q6XQ98",
+    "name": "SAR-endolysin (EC 3.2.1.17) (Endolysin) (Lysis protein) (Lysozyme) (Muramidase)",
+    "curated": 1,
+    "ours": 0,
+    "deeptmhmm": 0,
+    "heuristic": 0,
+    "ours_nterm": null,
+    "deeptmhmm_nterm": "out",
+    "signalp": "OTHER"
+   },
+   {
+    "acc": "Q9ZXB7",
+    "name": "SAR-endolysin (EC 3.2.1.17) (Endolysin) (Lysis protein) (Lysozyme) (Muramidase)",
+    "curated": 1,
+    "ours": 0,
+    "deeptmhmm": 0,
+    "heuristic": 1,
+    "ours_nterm": null,
+    "deeptmhmm_nterm": "out",
+    "signalp": "SP"
+   },
+   {
+    "acc": "P03803",
+    "name": "Spanin, inner membrane subunit (i-spanin) (Gene product 18.5) (Gp18.5)",
+    "curated": 1,
+    "ours": 1,
+    "deeptmhmm": 1,
+    "heuristic": 0,
+    "ours_nterm": "in",
+    "deeptmhmm_nterm": "in",
+    "signalp": "OTHER"
+   },
+   {
+    "acc": "P13583",
+    "name": "Spanin, inner membrane subunit (i-spanin) (Gene product 15) (Gp15) (Lysis protei",
+    "curated": 1,
+    "ours": 1,
+    "deeptmhmm": 1,
+    "heuristic": 1,
+    "ours_nterm": "out",
+    "deeptmhmm_nterm": "in",
+    "signalp": "OTHER"
+   },
+   {
+    "acc": "P19903",
+    "name": "Lysis protein",
+    "curated": 1,
+    "ours": 0,
+    "deeptmhmm": 0,
+    "heuristic": 1,
+    "ours_nterm": null,
+    "deeptmhmm_nterm": "in",
+    "signalp": "OTHER"
+   },
+   {
+    "acc": "P51769",
+    "name": "Putative antiholin (Protein lysA)",
+    "curated": 3,
+    "ours": 3,
+    "deeptmhmm": 4,
+    "heuristic": 2,
+    "ours_nterm": "in",
+    "deeptmhmm_nterm": "in",
+    "signalp": "OTHER"
+   },
+   {
+    "acc": "P51770",
+    "name": "Probable spanin, inner membrane subunit (i-spanin) (Protein lysB)",
+    "curated": 1,
+    "ours": 1,
+    "deeptmhmm": 1,
+    "heuristic": 1,
+    "ours_nterm": "out",
+    "deeptmhmm_nterm": "in",
+    "signalp": "OTHER"
+   },
+   {
+    "acc": "Q37977",
+    "name": "Antiholin",
+    "curated": 2,
+    "ours": 3,
+    "deeptmhmm": 3,
+    "heuristic": 2,
+    "ours_nterm": "out",
+    "deeptmhmm_nterm": "out",
+    "signalp": "OTHER"
+   },
+   {
+    "acc": "Q6XQ99",
+    "name": "Holin (Pinholin)",
+    "curated": 1,
+    "ours": 1,
+    "deeptmhmm": 1,
+    "heuristic": 1,
+    "ours_nterm": "out",
+    "deeptmhmm_nterm": "out",
+    "signalp": "OTHER"
+   },
+   {
+    "acc": "O48470",
+    "name": "Holin-like protein 24.1 (Gene product 24.1) (gp24.1)",
+    "curated": 1,
+    "ours": 1,
+    "deeptmhmm": 1,
+    "heuristic": 1,
+    "ours_nterm": "in",
+    "deeptmhmm_nterm": "in",
+    "signalp": "OTHER"
+   },
+   {
+    "acc": "P07233",
+    "name": "Lysis protein",
+    "curated": 1,
+    "ours": 1,
+    "deeptmhmm": 1,
+    "heuristic": 1,
+    "ours_nterm": "in",
+    "deeptmhmm_nterm": "in",
+    "signalp": "OTHER"
+   },
+   {
+    "acc": "P51773",
+    "name": "Holin",
+    "curated": 3,
+    "ours": 3,
+    "deeptmhmm": 3,
+    "heuristic": 2,
+    "ours_nterm": "out",
+    "deeptmhmm_nterm": "out",
+    "signalp": "OTHER"
+   },
+   {
+    "acc": "Q05296",
+    "name": "Holin (Gene product 11) (gp11)",
+    "curated": 2,
+    "ours": 2,
+    "deeptmhmm": 2,
+    "heuristic": 2,
+    "ours_nterm": "in",
+    "deeptmhmm_nterm": "in",
+    "signalp": "OTHER"
+   },
+   {
+    "acc": "Q38134",
+    "name": "Holin",
+    "curated": 2,
+    "ours": 2,
+    "deeptmhmm": 2,
+    "heuristic": 1,
+    "ours_nterm": "in",
+    "deeptmhmm_nterm": "in",
+    "signalp": "OTHER"
+   },
+   {
+    "acc": "Q9T1X1",
+    "name": "Spanin, inner membrane subunit (i-spanin) (gene product 23) (gp23)",
+    "curated": 1,
+    "ours": 1,
+    "deeptmhmm": 0,
+    "heuristic": 1,
+    "ours_nterm": "out",
+    "deeptmhmm_nterm": "out",
+    "signalp": "OTHER"
+   },
+   {
+    "acc": "O03978",
+    "name": "Holin",
+    "curated": 2,
+    "ours": 2,
+    "deeptmhmm": 2,
+    "heuristic": 2,
+    "ours_nterm": "in",
+    "deeptmhmm_nterm": "in",
+    "signalp": "OTHER"
+   },
+   {
+    "acc": "P03802",
+    "name": "Holin (Gene product 17.5) (Gp17.5)",
+    "curated": 1,
+    "ours": 1,
+    "deeptmhmm": 2,
+    "heuristic": 0,
+    "ours_nterm": "out",
+    "deeptmhmm_nterm": "in",
+    "signalp": "OTHER"
+   },
+   {
+    "acc": "P10305",
+    "name": "Spanin, inner membrane subunit (i-spanin) (Gene product 18.5) (Gp18.5)",
+    "curated": 1,
+    "ours": 1,
+    "deeptmhmm": 1,
+    "heuristic": 0,
+    "ours_nterm": "in",
+    "deeptmhmm_nterm": "in",
+    "signalp": "OTHER"
+   },
+   {
+    "acc": "P10438",
+    "name": "Spanin, inner membrane subunit (i-spanin) (Lysis protein)",
+    "curated": 1,
+    "ours": 1,
+    "deeptmhmm": 1,
+    "heuristic": 1,
+    "ours_nterm": "out",
+    "deeptmhmm_nterm": "in",
+    "signalp": "OTHER"
+   },
+   {
+    "acc": "P34702",
+    "name": "Lysis protein",
+    "curated": 1,
+    "ours": 1,
+    "deeptmhmm": 0,
+    "heuristic": 2,
+    "ours_nterm": "in",
+    "deeptmhmm_nterm": "out",
+    "signalp": "OTHER"
+   },
+   {
+    "acc": "Q38008",
+    "name": "Holin (Lysis protein)",
+    "curated": 3,
+    "ours": 3,
+    "deeptmhmm": 3,
+    "heuristic": 2,
+    "ours_nterm": "out",
+    "deeptmhmm_nterm": "out",
+    "signalp": "OTHER"
+   },
+   {
+    "acc": "Q7Y2B9",
+    "name": "Probable spanin, inner membrane subunit (i-spanin)",
+    "curated": 1,
+    "ours": 1,
+    "deeptmhmm": 1,
+    "heuristic": 1,
+    "ours_nterm": "out",
+    "deeptmhmm_nterm": "in",
+    "signalp": "OTHER"
+   },
+   {
+    "acc": "Q9XJJ6",
+    "name": "Spanin, inner membrane subunit (i-spanin) (Lysis protein Rz)",
+    "curated": 1,
+    "ours": 1,
+    "deeptmhmm": 1,
+    "heuristic": 1,
+    "ours_nterm": "out",
+    "deeptmhmm_nterm": "in",
+    "signalp": "OTHER"
+   },
+   {
+    "acc": "Q9ZXD8",
+    "name": "Probable holin (Lysis protein)",
+    "curated": 2,
+    "ours": 3,
+    "deeptmhmm": 3,
+    "heuristic": 2,
+    "ours_nterm": "out",
+    "deeptmhmm_nterm": "out",
+    "signalp": "OTHER"
+   },
+   {
+    "acc": "P10393",
+    "name": "Holin (Lysis protein)",
+    "curated": 1,
+    "ours": 1,
+    "deeptmhmm": 1,
+    "heuristic": 1,
+    "ours_nterm": "in",
+    "deeptmhmm_nterm": "in",
+    "signalp": "OTHER"
+   },
+   {
+    "acc": "P11127",
+    "name": "Envelope protein P10",
+    "curated": 1,
+    "ours": 1,
+    "deeptmhmm": 1,
+    "heuristic": 1,
+    "ours_nterm": "in",
+    "deeptmhmm_nterm": "in",
+    "signalp": "OTHER"
+   },
+   {
+    "acc": "P51727",
+    "name": "Holin (Pinholin)",
+    "curated": 2,
+    "ours": 2,
+    "deeptmhmm": 2,
+    "heuristic": 0,
+    "ours_nterm": "in",
+    "deeptmhmm_nterm": "in",
+    "signalp": "OTHER"
+   },
+   {
+    "acc": "Q7Y2C1",
+    "name": "Holin (KMV44) (Pinholin)",
+    "curated": 1,
+    "ours": 2,
+    "deeptmhmm": 1,
+    "heuristic": 1,
+    "ours_nterm": "in",
+    "deeptmhmm_nterm": "out",
+    "signalp": "OTHER"
+   },
+   {
+    "acc": "Q9T1W9",
+    "name": "Releasin protein (Gene product 25) (gp25)",
+    "curated": 1,
+    "ours": 1,
+    "deeptmhmm": 1,
+    "heuristic": 1,
+    "ours_nterm": "out",
+    "deeptmhmm_nterm": "out",
+    "signalp": "OTHER"
+   }
+  ]
+ },
+ "holins_by_family": {
+  "n4": {
+   "n": 240,
+   "ours": {
+    "I": 97,
+    "II": 65,
+    "III": 77,
+    "4+": 1
+   },
+   "deeptmhmm": {
+    "I": 90,
+    "II": 68,
+    "III": 74,
+    "4+": 8
+   },
+   "class_agreement": 0.95,
+   "n_in_ours": 0.554,
+   "n_in_deeptmhmm": 0.596
+  },
+  "lambda": {
+   "n": 112,
+   "ours": {
+    "I": 64,
+    "III": 38,
+    "II": 6,
+    "4+": 4
+   },
+   "deeptmhmm": {
+    "I": 67,
+    "II": 18,
+    "III": 24,
+    "4+": 3
+   },
+   "class_agreement": 0.848,
+   "n_in_ours": 0.107,
+   "n_in_deeptmhmm": 0.214
+  },
+  "p2": {
+   "n": 110,
+   "ours": {
+    "I": 57,
+    "III": 22,
+    "II": 30,
+    "4+": 1
+   },
+   "deeptmhmm": {
+    "I": 45,
+    "4+": 14,
+    "III": 15,
+    "II": 36
+   },
+   "class_agreement": 0.755,
+   "n_in_ours": 0.309,
+   "n_in_deeptmhmm": 0.473
+  },
+  "drexler": {
+   "n": 90,
+   "ours": {
+    "III": 89,
+    "II": 1
+   },
+   "deeptmhmm": {
+    "III": 83,
+    "II": 7
+   },
+   "class_agreement": 0.933,
+   "n_in_ours": 0.011,
+   "n_in_deeptmhmm": 0.078
+  },
+  "t7": {
+   "n": 94,
+   "ours": {
+    "III": 64,
+    "II": 24,
+    "I": 6
+   },
+   "deeptmhmm": {
+    "II": 60,
+    "none": 3,
+    "III": 25,
+    "I": 6
+   },
+   "class_agreement": 0.479,
+   "n_in_ours": 0.287,
+   "n_in_deeptmhmm": 0.681
+  },
+  "t5": {
+   "n": 101,
+   "ours": {
+    "III": 94,
+    "II": 6,
+    "none": 1
+   },
+   "deeptmhmm": {
+    "none": 16,
+    "III": 79,
+    "II": 5,
+    "4+": 1
+   },
+   "class_agreement": 0.842,
+   "n_in_ours": 0.98,
+   "n_in_deeptmhmm": 0.97
+  },
+  "t4": {
+   "n": 76,
+   "ours": {
+    "III": 63,
+    "II": 12,
+    "I": 1
+   },
+   "deeptmhmm": {
+    "III": 52,
+    "II": 19,
+    "none": 4,
+    "I": 1
+   },
+   "class_agreement": 0.855,
+   "n_in_ours": 0.921,
+   "n_in_deeptmhmm": 0.829
+  },
+  "herelle": {
+   "n": 79,
+   "ours": {
+    "II": 72,
+    "III": 6,
+    "4+": 1
+   },
+   "deeptmhmm": {
+    "II": 72,
+    "III": 6,
+    "4+": 1
+   },
+   "class_agreement": 1.0,
+   "n_in_ours": 0.924,
+   "n_in_deeptmhmm": 0.924
+  },
+  "jumbo": {
+   "n": 46,
+   "ours": {
+    "III": 13,
+    "II": 27,
+    "I": 5,
+    "4+": 1
+   },
+   "deeptmhmm": {
+    "none": 2,
+    "II": 28,
+    "III": 8,
+    "I": 7,
+    "4+": 1
+   },
+   "class_agreement": 0.848,
+   "n_in_ours": 0.63,
+   "n_in_deeptmhmm": 0.761
+  }
+ },
+ "signalp": {
+  "Swiss-Prot holin/antiholin": {
+   "SP": 1,
+   "OTHER": 26
+  },
+  "holin": {
+   "OTHER": 1363,
+   "LIPO": 3
+  },
+  "endolysin": {
+   "OTHER": 840,
+   "SP": 184,
+   "LIPO": 1
+  },
+  "Swiss-Prot SAR endolysin": {
+   "SP": 6,
+   "OTHER": 7
+  },
+  "Swiss-Prot o-spanin": {
+   "LIPO": 7,
+   "SP": 1,
+   "OTHER": 1
+  },
+  "spanin member, lipobox (our rule)": {
+   "LIPO": 577,
+   "SP": 2
+  },
+  "Swiss-Prot i-spanin": {
+   "OTHER": 11
+  },
+  "spanin member, N-terminal helix (i-spanin-like)": {
+   "OTHER": 648,
+   "LIPO": 31,
+   "SP": 11
+  },
+  "Swiss-Prot u-spanin": {
+   "LIPO": 1
+  },
+  "spanin member, neither": {
+   "OTHER": 107,
+   "SP": 41,
+   "LIPO": 72
+  }
+ },
+ "endolysins": {
+  "t7": {
+   "ours": {
+    "canonical": 71,
+    "SAR": 36
+   },
+   "deeptmhmm": {
+    "GLOB": 63,
+    "SP": 38,
+    "TM": 6
+   },
+   "signalp": {
+    "OTHER": 97,
+    "SP": 10
+   }
+  },
+  "lambda": {
+   "ours": {
+    "canonical": 75,
+    "SAR": 37
+   },
+   "deeptmhmm": {
+    "GLOB": 74,
+    "SP": 38
+   },
+   "signalp": {
+    "OTHER": 106,
+    "SP": 6
+   }
+  },
+  "Swiss-Prot SAR endolysins": {
+   "ours": {
+    "SAR": 13
+   },
+   "deeptmhmm": {
+    "SP": 13
+   },
+   "signalp": {
+    "SP": 6,
+    "OTHER": 7
+   }
+  },
+  "p2": {
+   "ours": {
+    "canonical": 57,
+    "SAR": 47
+   },
+   "deeptmhmm": {
+    "GLOB": 58,
+    "SP": 46
+   },
+   "signalp": {
+    "OTHER": 85,
+    "LIPO": 1,
+    "SP": 18
+   }
+  },
+  "t5": {
+   "ours": {
+    "canonical": 103,
+    "SAR": 1
+   },
+   "deeptmhmm": {
+    "GLOB": 103,
+    "SP": 1
+   },
+   "signalp": {
+    "OTHER": 103,
+    "SP": 1
+   }
+  },
+  "n4": {
+   "ours": {
+    "canonical": 153,
+    "SAR": 97
+   },
+   "deeptmhmm": {
+    "SP": 2,
+    "GLOB": 238,
+    "TM": 10
+   },
+   "signalp": {
+    "OTHER": 239,
+    "SP": 11
+   }
+  },
+  "drexler": {
+   "ours": {
+    "SAR": 94,
+    "canonical": 6
+   },
+   "deeptmhmm": {
+    "SP": 98,
+    "GLOB": 2
+   },
+   "signalp": {
+    "OTHER": 39,
+    "SP": 61
+   }
+  },
+  "jumbo": {
+   "ours": {
+    "canonical": 50,
+    "SAR": 10
+   },
+   "deeptmhmm": {
+    "GLOB": 48,
+    "SP": 12
+   },
+   "signalp": {
+    "OTHER": 52,
+    "SP": 8
+   }
+  },
+  "herelle": {
+   "ours": {
+    "canonical": 73,
+    "SAR": 15
+   },
+   "deeptmhmm": {
+    "GLOB": 73,
+    "SP": 15
+   },
+   "signalp": {
+    "OTHER": 74,
+    "SP": 14
+   }
+  },
+  "t4": {
+   "ours": {
+    "canonical": 72,
+    "SAR": 28
+   },
+   "deeptmhmm": {
+    "SP": 55,
+    "GLOB": 45
+   },
+   "signalp": {
+    "SP": 55,
+    "OTHER": 45
+   }
+  }
+ }
+}
