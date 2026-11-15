@@ -34,10 +34,45 @@ a sequence property, so it carries the predictor's error rates for that group (l
   rarely co-located (10%).
 - **Herelleviridae:** 74% carry two or more strong holin-like genes.
 
+## Membrane topology: holin classes, spanin types, SAR endolysins
+
+A transmembrane-helix predictor was trained for this (`scripts/55_tm_predictor.py`, report `../tm_predictor.json`):
+ESM-2 per-residue embeddings plus local hydropathy, logistic regression, trained on 3,225 Swiss-Prot bacterial and
+viral proteins with helical topology, soluble proteins, and signal-peptide proteins (so a signal peptide is not called
+a helix). All phage lysis proteins were held out.
+
+| held-out test | this predictor | old hydropathy heuristic |
+|---|---|---|
+| Swiss-Prot proteins: exact helix count | **0.88** | 0.56 |
+| Swiss-Prot proteins: helices recovered | **0.96** | 0.74 |
+| signal-peptide proteins correctly given no helix | **0.95** | 0.35 |
+| N-terminus side, positive-inside rule (465 independent proteins) | **0.87** | – |
+| lambda S / T4 t | **3 helices N-out / 1 helix N-in** (as published) | 1 / 1 |
+
+On the 59 held-out phage lysis proteins it disagrees with UniProt mostly where UniProt is behind the literature
+(lambda S, P22 gp13 and related holins: 3 helices, UniProt lists 2; pinholin KMV44: 2, UniProt 1). Its blind spot is
+the SAR domain of SAR endolysins, read as a signal rather than a helix, so SAR endolysins have their own rule (helix
+probability >= 0.06 over the first 50 residues, or a hydropathy N-terminal segment): it separates all 13 Swiss-Prot
+SAR endolysins from all 31 canonical ones, but was set on those same proteins, so it is calibrated, not independently
+tested.
+
+![holin topology](figures/6_holin_topology.png)
+![spanin types](figures/7_spanin_types_SAR.png)
+
+- **Holin classes follow the family.** Lambdoid and P2-like: mostly class I (3 helices; 57% and 52%), N terminus out
+  (lambda S topology). T4-like and T5-like: class III (1 helix; 83% and 93%), N terminus in (T4 t topology).
+  Herelleviridae (Gram-positive): class II (2 helices) in 91%, both termini in. N4-like: a mix (I 40%, II 27%,
+  III 32%), and their second strong holin-like gene is again mixed -- the two-holin N4 cassettes pair different classes.
+- **Spanin types.** Two-component (i-spanin + o-spanin) dominate lambdoid (69%) and T4-like (67%) phages;
+  Drexlerviridae are 93% unimolecular (u-spanin: lipobox signal plus a C-terminal helix), as T1 is.
+- **SAR endolysins** are most common in Drexlerviridae (94%) and P2-like phages (45%), rare in T5-like (1%).
+  Drexlerviridae combine SAR endolysins with single-helix holins whose N terminus faces out -- the arrangement expected
+  of a pinholin whose first, SAR-like helix is not detected; worth testing.
+
 ## Caveats
 
-- Membrane-segment counts are not used to classify holins: the hydropathy heuristic reads lambda S (3 TM) as 1 TM.
-  The "SAR-like N terminus" column uses the same heuristic and is a lower bound.
+- Holin class = predicted helix count; a weak first helix (as in pinholins) can be missed, moving a class II holin to
+  class III. Spanin "other" means a member could not be typed (e.g. no lipobox and no N-terminal helix).
 - Spanin architecture uses confident spanin calls and the nearest strong partner; a missed partner shows as "single".
 - Groups are samples (at most 15 genomes per host genus); counts are in the figures.
 

@@ -1,0 +1,610 @@
+{
+ "validation (held-out Swiss-Prot)": {
+  "esm_predictor": {
+   "proteins": 808,
+   "helix_count_exact": 0.877,
+   "helix_precision": 0.955,
+   "helix_recall": 0.955
+  },
+  "hydropathy_heuristic": {
+   "proteins": 808,
+   "helix_count_exact": 0.556,
+   "helix_precision": 0.878,
+   "helix_recall": 0.738
+  }
+ },
+ "validation, membrane proteins only": {
+  "esm_predictor": {
+   "proteins": 487,
+   "helix_count_exact": 0.809,
+   "helix_precision": 0.958,
+   "helix_recall": 0.955
+  },
+  "hydropathy_heuristic": {
+   "proteins": 487,
+   "helix_count_exact": 0.454,
+   "helix_precision": 0.936,
+   "helix_recall": 0.738
+  }
+ },
+ "validation, signal-peptide proteins": {
+  "esm_predictor": {
+   "proteins": 119,
+   "helix_count_exact": 0.95,
+   "helix_precision": 0.0,
+   "helix_recall": 0.0
+  },
+  "hydropathy_heuristic": {
+   "proteins": 119,
+   "helix_count_exact": 0.353,
+   "helix_precision": 0.0,
+   "helix_recall": 0.0
+  }
+ },
+ "phage lysis proteins with curated helices (never trained on)": {
+  "esm_predictor": {
+   "proteins": 59,
+   "helix_count_exact": 0.644,
+   "helix_precision": 0.886,
+   "helix_recall": 0.854
+  },
+  "hydropathy_heuristic": {
+   "proteins": 59,
+   "helix_count_exact": 0.695,
+   "helix_precision": 0.879,
+   "helix_recall": 0.707
+  }
+ },
+ "lysis_proteins": [
+  {
+   "acc": "P03639",
+   "name": "Lysis protein E (Protein E) (GPE)",
+   "length": 91,
+   "curated": 1,
+   "predicted": 1,
+   "heuristic": 1,
+   "n_terminus": "out"
+  },
+  {
+   "acc": "P03705",
+   "name": "Antiholin (Lysis inhibitor S-107)",
+   "length": 107,
+   "curated": 2,
+   "predicted": 3,
+   "heuristic": 1,
+   "n_terminus": "out"
+  },
+  {
+   "acc": "Q37875",
+   "name": "SAR-endolysin (EC 3.2.1.17) (Endolysin) (Gene product 17) (gp17) (Lysis protein)",
+   "length": 185,
+   "curated": 1,
+   "predicted": 1,
+   "heuristic": 1,
+   "n_terminus": "out"
+  },
+  {
+   "acc": "P06808",
+   "name": "Holin (Lysis protein) (Protein rV)",
+   "length": 218,
+   "curated": 1,
+   "predicted": 1,
+   "heuristic": 1,
+   "n_terminus": "out"
+  },
+  {
+   "acc": "P27360",
+   "name": "Antiholin",
+   "length": 71,
+   "curated": 2,
+   "predicted": 2,
+   "heuristic": 1,
+   "n_terminus": "in"
+  },
+  {
+   "acc": "P00726",
+   "name": "Spanin, inner membrane subunit (i-spanin) (Lysis protein Rz)",
+   "length": 153,
+   "curated": 1,
+   "predicted": 1,
+   "heuristic": 1,
+   "n_terminus": "out"
+  },
+  {
+   "acc": "Q9T1X2",
+   "name": "SAR-endolysin (EC 3.2.1.17) (Endolysin) (Gene product 22) (gp22) (Lysis protein)",
+   "length": 171,
+   "curated": 1,
+   "predicted": 0,
+   "heuristic": 0,
+   "n_terminus": null
+  },
+  {
+   "acc": "Q6XQ97",
+   "name": "U-spanin (Gene product 11) (Unimolecular spanin) (gp11)",
+   "length": 133,
+   "curated": 1,
+   "predicted": 1,
+   "heuristic": 2,
+   "n_terminus": "out"
+  },
+  {
+   "acc": "O64362",
+   "name": "SAR-endolysin (EC 3.2.1.17) (Endolysin) (Gene product 54) (gp54) (Lysis protein)",
+   "length": 178,
+   "curated": 1,
+   "predicted": 0,
+   "heuristic": 1,
+   "n_terminus": null
+  },
+  {
+   "acc": "O80292",
+   "name": "SAR-endolysin (EC 3.2.1.17) (Endolysin) (Gene product 19) (gp19) (Lysis protein)",
+   "length": 167,
+   "curated": 1,
+   "predicted": 0,
+   "heuristic": 1,
+   "n_terminus": null
+  },
+  {
+   "acc": "P39504",
+   "name": "Spanin, inner membrane subunit (i-spanin)",
+   "length": 117,
+   "curated": 1,
+   "predicted": 1,
+   "heuristic": 1,
+   "n_terminus": "out"
+  },
+  {
+   "acc": "Q3T4L9",
+   "name": "Holin (Protein P35)",
+   "length": 117,
+   "curated": 3,
+   "predicted": 3,
+   "heuristic": 1,
+   "n_terminus": "out"
+  },
+  {
+   "acc": "P09962",
+   "name": "Antiholin (Lysis inhibitor 13-108)",
+   "length": 108,
+   "curated": 2,
+   "predicted": 3,
+   "heuristic": 1,
+   "n_terminus": "out"
+  },
+  {
+   "acc": "P27358",
+   "name": "Spanin, inner membrane subunit (i-spanin) (Lysis protein Rz)",
+   "length": 153,
+   "curated": 1,
+   "predicted": 1,
+   "heuristic": 1,
+   "n_terminus": "out"
+  },
+  {
+   "acc": "P27359",
+   "name": "SAR-endolysin (EC 3.2.1.17) (Endolysin) (Lysis protein) (Lysozyme) (Muramidase)",
+   "length": 165,
+   "curated": 1,
+   "predicted": 1,
+   "heuristic": 1,
+   "n_terminus": "in"
+  },
+  {
+   "acc": "P68921",
+   "name": "SAR-endolysin (EC 3.2.1.17) (Endolysin) (Lysis protein) (Lysozyme) (Muramidase)",
+   "length": 177,
+   "curated": 1,
+   "predicted": 0,
+   "heuristic": 1,
+   "n_terminus": null
+  },
+  {
+   "acc": "Q37895",
+   "name": "Antiholin (Gene product 14) (gp14) (Protein p14) [Includes: Holin]",
+   "length": 132,
+   "curated": 2,
+   "predicted": 3,
+   "heuristic": 2,
+   "n_terminus": "out"
+  },
+  {
+   "acc": "Q7Y2C0",
+   "name": "SAR-endolysin (EC 3.2.1.17) (Endolysin) (Gene product 45) (gp45) (KMV45) (Lysis ",
+   "length": 160,
+   "curated": 1,
+   "predicted": 0,
+   "heuristic": 0,
+   "n_terminus": null
+  },
+  {
+   "acc": "O64204",
+   "name": "Holin (Gene product 11) (gp11)",
+   "length": 141,
+   "curated": 2,
+   "predicted": 2,
+   "heuristic": 2,
+   "n_terminus": "in"
+  },
+  {
+   "acc": "O80288",
+   "name": "SAR-endolysin (EC 3.2.1.17) (Endolysin) (Gene product 19) (gp19) (Lysis protein)",
+   "length": 167,
+   "curated": 1,
+   "predicted": 1,
+   "heuristic": 1,
+   "n_terminus": "out"
+  },
+  {
+   "acc": "Q6R6U4",
+   "name": "Holin",
+   "length": 227,
+   "curated": 1,
+   "predicted": 1,
+   "heuristic": 1,
+   "n_terminus": "in"
+  },
+  {
+   "acc": "O48472",
+   "name": "Putative antiholin",
+   "length": 82,
+   "curated": 2,
+   "predicted": 2,
+   "heuristic": 1,
+   "n_terminus": "in"
+  },
+  {
+   "acc": "P03609",
+   "name": "Lysis protein (L protein)",
+   "length": 75,
+   "curated": 1,
+   "predicted": 0,
+   "heuristic": 1,
+   "n_terminus": null
+  },
+  {
+   "acc": "P07539",
+   "name": "Antiholin (Gene product 14) (gp14) (Lysis inhibitor 14-131) (Protein p14) [Inclu",
+   "length": 131,
+   "curated": 2,
+   "predicted": 3,
+   "heuristic": 2,
+   "n_terminus": "out"
+  },
+  {
+   "acc": "P51728",
+   "name": "SAR-endolysin (EC 3.2.1.17) (Endolysin) (Lysis protein) (Lysozyme) (Muramidase)",
+   "length": 186,
+   "curated": 1,
+   "predicted": 0,
+   "heuristic": 1,
+   "n_terminus": null
+  },
+  {
+   "acc": "P68920",
+   "name": "SAR-endolysin (EC 3.2.1.17) (Endolysin) (Lysis protein) (Lysozyme) (Muramidase)",
+   "length": 177,
+   "curated": 1,
+   "predicted": 0,
+   "heuristic": 1,
+   "n_terminus": null
+  },
+  {
+   "acc": "P10439",
+   "name": "SAR-endolysin (EC 3.2.1.17) (Endolysin) (Lysis protein) (Lysozyme) (Muramidase)",
+   "length": 165,
+   "curated": 1,
+   "predicted": 0,
+   "heuristic": 1,
+   "n_terminus": null
+  },
+  {
+   "acc": "P11188",
+   "name": "Antiholin (Gene product 14) (gp14) (Lysis inhibitor 14-131) (Protein p14) [Inclu",
+   "length": 131,
+   "curated": 2,
+   "predicted": 3,
+   "heuristic": 2,
+   "n_terminus": "out"
+  },
+  {
+   "acc": "Q37975",
+   "name": "Putative antiholin",
+   "length": 96,
+   "curated": 2,
+   "predicted": 3,
+   "heuristic": 2,
+   "n_terminus": "out"
+  },
+  {
+   "acc": "Q6XQ98",
+   "name": "SAR-endolysin (EC 3.2.1.17) (Endolysin) (Lysis protein) (Lysozyme) (Muramidase)",
+   "length": 162,
+   "curated": 1,
+   "predicted": 0,
+   "heuristic": 0,
+   "n_terminus": null
+  },
+  {
+   "acc": "Q9ZXB7",
+   "name": "SAR-endolysin (EC 3.2.1.17) (Endolysin) (Lysis protein) (Lysozyme) (Muramidase)",
+   "length": 177,
+   "curated": 1,
+   "predicted": 0,
+   "heuristic": 1,
+   "n_terminus": null
+  },
+  {
+   "acc": "P03803",
+   "name": "Spanin, inner membrane subunit (i-spanin) (Gene product 18.5) (Gp18.5)",
+   "length": 143,
+   "curated": 1,
+   "predicted": 1,
+   "heuristic": 0,
+   "n_terminus": "out"
+  },
+  {
+   "acc": "P13583",
+   "name": "Spanin, inner membrane subunit (i-spanin) (Gene product 15) (Gp15) (Lysis protei",
+   "length": 145,
+   "curated": 1,
+   "predicted": 1,
+   "heuristic": 1,
+   "n_terminus": "out"
+  },
+  {
+   "acc": "P19903",
+   "name": "Lysis protein",
+   "length": 71,
+   "curated": 1,
+   "predicted": 0,
+   "heuristic": 1,
+   "n_terminus": null
+  },
+  {
+   "acc": "P51769",
+   "name": "Putative antiholin (Protein lysA)",
+   "length": 141,
+   "curated": 3,
+   "predicted": 3,
+   "heuristic": 2,
+   "n_terminus": "in"
+  },
+  {
+   "acc": "P51770",
+   "name": "Probable spanin, inner membrane subunit (i-spanin) (Protein lysB)",
+   "length": 141,
+   "curated": 1,
+   "predicted": 1,
+   "heuristic": 1,
+   "n_terminus": "out"
+  },
+  {
+   "acc": "Q37977",
+   "name": "Antiholin",
+   "length": 96,
+   "curated": 2,
+   "predicted": 3,
+   "heuristic": 2,
+   "n_terminus": "out"
+  },
+  {
+   "acc": "Q6XQ99",
+   "name": "Holin (Pinholin)",
+   "length": 71,
+   "curated": 1,
+   "predicted": 1,
+   "heuristic": 1,
+   "n_terminus": "out"
+  },
+  {
+   "acc": "O48470",
+   "name": "Holin-like protein 24.1 (Gene product 24.1) (gp24.1)",
+   "length": 83,
+   "curated": 1,
+   "predicted": 1,
+   "heuristic": 1,
+   "n_terminus": "in"
+  },
+  {
+   "acc": "P07233",
+   "name": "Lysis protein",
+   "length": 63,
+   "curated": 1,
+   "predicted": 1,
+   "heuristic": 1,
+   "n_terminus": "in"
+  },
+  {
+   "acc": "P51773",
+   "name": "Holin",
+   "length": 93,
+   "curated": 3,
+   "predicted": 3,
+   "heuristic": 2,
+   "n_terminus": "out"
+  },
+  {
+   "acc": "Q05296",
+   "name": "Holin (Gene product 11) (gp11)",
+   "length": 131,
+   "curated": 2,
+   "predicted": 2,
+   "heuristic": 2,
+   "n_terminus": "in"
+  },
+  {
+   "acc": "Q38134",
+   "name": "Holin",
+   "length": 75,
+   "curated": 2,
+   "predicted": 2,
+   "heuristic": 1,
+   "n_terminus": "in"
+  },
+  {
+   "acc": "Q9T1X1",
+   "name": "Spanin, inner membrane subunit (i-spanin) (gene product 23) (gp23)",
+   "length": 128,
+   "curated": 1,
+   "predicted": 1,
+   "heuristic": 1,
+   "n_terminus": "out"
+  },
+  {
+   "acc": "O03978",
+   "name": "Holin",
+   "length": 74,
+   "curated": 2,
+   "predicted": 2,
+   "heuristic": 2,
+   "n_terminus": "in"
+  },
+  {
+   "acc": "P03802",
+   "name": "Holin (Gene product 17.5) (Gp17.5)",
+   "length": 67,
+   "curated": 1,
+   "predicted": 1,
+   "heuristic": 0,
+   "n_terminus": "out"
+  },
+  {
+   "acc": "P10305",
+   "name": "Spanin, inner membrane subunit (i-spanin) (Gene product 18.5) (Gp18.5)",
+   "length": 147,
+   "curated": 1,
+   "predicted": 1,
+   "heuristic": 0,
+   "n_terminus": "out"
+  },
+  {
+   "acc": "P10438",
+   "name": "Spanin, inner membrane subunit (i-spanin) (Lysis protein)",
+   "length": 64,
+   "curated": 1,
+   "predicted": 1,
+   "heuristic": 1,
+   "n_terminus": "out"
+  },
+  {
+   "acc": "P34702",
+   "name": "Lysis protein",
+   "length": 63,
+   "curated": 1,
+   "predicted": 1,
+   "heuristic": 2,
+   "n_terminus": "in"
+  },
+  {
+   "acc": "Q38008",
+   "name": "Holin (Lysis protein)",
+   "length": 134,
+   "curated": 3,
+   "predicted": 3,
+   "heuristic": 2,
+   "n_terminus": "out"
+  },
+  {
+   "acc": "Q7Y2B9",
+   "name": "Probable spanin, inner membrane subunit (i-spanin)",
+   "length": 109,
+   "curated": 1,
+   "predicted": 1,
+   "heuristic": 1,
+   "n_terminus": "out"
+  },
+  {
+   "acc": "Q9XJJ6",
+   "name": "Spanin, inner membrane subunit (i-spanin) (Lysis protein Rz)",
+   "length": 154,
+   "curated": 1,
+   "predicted": 1,
+   "heuristic": 1,
+   "n_terminus": "out"
+  },
+  {
+   "acc": "Q9ZXD8",
+   "name": "Probable holin (Lysis protein)",
+   "length": 135,
+   "curated": 2,
+   "predicted": 3,
+   "heuristic": 2,
+   "n_terminus": "out"
+  },
+  {
+   "acc": "P07930",
+   "name": "Lysis protein (E protein) (GPE)",
+   "length": 91,
+   "curated": 1,
+   "predicted": 1,
+   "heuristic": 1,
+   "n_terminus": "out"
+  },
+  {
+   "acc": "P10393",
+   "name": "Holin (Lysis protein)",
+   "length": 218,
+   "curated": 1,
+   "predicted": 1,
+   "heuristic": 1,
+   "n_terminus": "out"
+  },
+  {
+   "acc": "P11127",
+   "name": "Envelope protein P10",
+   "length": 42,
+   "curated": 1,
+   "predicted": 1,
+   "heuristic": 1,
+   "n_terminus": "in"
+  },
+  {
+   "acc": "P51727",
+   "name": "Holin (Pinholin)",
+   "length": 78,
+   "curated": 2,
+   "predicted": 2,
+   "heuristic": 0,
+   "n_terminus": "in"
+  },
+  {
+   "acc": "Q7Y2C1",
+   "name": "Holin (KMV44) (Pinholin)",
+   "length": 66,
+   "curated": 1,
+   "predicted": 2,
+   "heuristic": 1,
+   "n_terminus": "in"
+  },
+  {
+   "acc": "Q9T1W9",
+   "name": "Releasin protein (Gene product 25) (gp25)",
+   "length": 99,
+   "curated": 1,
+   "predicted": 1,
+   "heuristic": 1,
+   "n_terminus": "out"
+  }
+ ],
+ "n_terminus_orientation": {
+  "rule": "positive-inside, K+R within 15 residues of each helix end",
+  "independent_swissprot_with_topology": {
+   "correct": 405,
+   "n": 465,
+   "fraction": 0.87
+  },
+  "trained_on_proteins": {
+   "correct": 358,
+   "n": 440,
+   "fraction": 0.81
+  },
+  "T4_t": "1 helix, N-in (expected 1, in)",
+  "lambda_S": "3 helices, N-out (expected 3, out)"
+ },
+ "sar_endolysin_rule": {
+  "rule": "smoothed helix probability >= 0.06 in the first 50 residues, or a hydropathy segment starting < 30",
+  "swissprot_phage_endolysins": "13/13 SAR detected, 0/31 canonical flagged; calibrated on these proteins (narrow gap: max 0.05 canonical vs min 0.07 SAR)"
+ }
+}
