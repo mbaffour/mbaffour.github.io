@@ -34,6 +34,44 @@ LABEL = {"n4": "N4-like (Schitoviridae)", "lambda": "Lambdoid (λ, P22, HK97-lik
          "blind": "Recent genomes, set 1", "blind2": "Recent genomes, set 2"}
 
 
+def drawn_texts(fig):
+    """the text artists matplotlib actually draws: every visible non-tick text, plus only the tick labels of ticks
+    inside each axis's view (findobj also returns labels of ticks outside the limits, which are never drawn)"""
+    tick_lbls, keep = set(), []
+    for ax in fig.axes:
+        for axis in (ax.xaxis, ax.yaxis):
+            for tk in axis.get_major_ticks() + axis.get_minor_ticks():
+                tick_lbls |= {id(tk.label1), id(tk.label2)}
+            for tk in axis._update_ticks():
+                keep += [l for l in (tk.label1, tk.label2) if l.get_visible() and l.get_text().strip()]
+    others = [t for t in fig.findobj(matplotlib.text.Text)
+              if id(t) not in tick_lbls and t.get_visible() and t.get_text().strip()]
+    return others + keep
+
+
+def text_overlaps(fig, pad=1.0):
+    """Every pair of drawn text labels whose rendered boxes overlap (display pixels, after drawing). Labels outside
+    the nominal canvas are not flagged: figures are saved with a tight bounding box, which keeps them."""
+    fig.canvas.draw(); r = fig.canvas.get_renderer()
+    boxes = [(t, t.get_window_extent(r)) for t in drawn_texts(fig)]
+    bad = []
+    for i in range(len(boxes)):
+        a, ba = boxes[i]
+        for j in range(i + 1, len(boxes)):
+            b, bb = boxes[j]
+            if ba.x0 < bb.x1 - pad and bb.x0 < ba.x1 - pad and ba.y0 < bb.y1 - pad and bb.y0 < ba.y1 - pad:
+                bad.append(("overlap", a.get_text(), b.get_text()))
+    return bad
+
+
+def save(fig, path):
+    """save, refusing silently-broken layouts: report any overlapping or clipped text"""
+    bad = text_overlaps(fig)
+    for kind, a, b in bad: print(f"  LAYOUT {path.name}: {kind}: {a[:40]!r} {('x ' + repr(b[:40])) if b else ''}")
+    fig.savefig(path); plt.close(fig)
+    return not bad
+
+
 def boot(x, n=2000, seed=0):
     x = np.asarray(x, float)
     if not len(x): return (np.nan, np.nan, np.nan)
@@ -105,7 +143,7 @@ def fig_agreement(s, M, out):
     ax.set_xlabel("fraction of genomes whose annotation has the gene (95% bootstrap CI)")
     ax.set_title(f"{LABEL.get(s, s)}: blind calls from DNA vs the genomes' annotations", loc="left", fontsize=11, color=INK)
     ax.set_ylim(y0 - 1.2, -0.9)
-    fig.savefig(out / "1_agreement.png"); plt.close(fig)
+    save(fig, out / "1_agreement.png")
 
 
 def fig_novelty(s, out):
@@ -120,8 +158,9 @@ def fig_novelty(s, out):
             if n:
                 ax.bar(k - 0.18, d["call_correct"] / n, 0.34, color=COL[c])
                 ax.bar(k + 0.18, d["top5"] / n, 0.34, color=COL[c], alpha=0.35)
-            ax.text(k, 1.03, f"n={n}", ha="center", fontsize=8, color=MUTED)
-        ax.set_xticks(range(3)); ax.set_xticklabels(short, fontsize=8); ax.set_ylim(0, 1.1)
+        ns = [st.get(o, {"n": 0})["n"] for o in order]
+        ax.set_xticks(range(3)); ax.set_xticklabels([f"{lb}\nn = {n_}" for lb, n_ in zip(short, ns)], fontsize=8)
+        ax.set_ylim(0, 1.05)
         ax.set_xlabel("identity to the closest training gene", fontsize=8.5, color=MUTED)
         ax.set_title(c, color=COL[c], fontweight="bold", fontsize=10); ax.yaxis.grid(True, color=GRID); ax.set_axisbelow(True)
     axs[0].set_ylabel("fraction of annotated genes")
@@ -130,7 +169,7 @@ def fig_novelty(s, out):
                loc="upper left", frameon=False, fontsize=8.5, ncol=2, bbox_to_anchor=(0.005, 1.04))
     fig.suptitle(f"{LABEL.get(s, s)}: agreement by how similar each annotated gene is to the training data", x=0.01,
                  ha="left", fontsize=11, color=INK, y=1.12)
-    fig.savefig(out / "2_novelty.png"); plt.close(fig)
+    save(fig, out / "2_novelty.png")
 
 
 def fig_cassette(s, G, out):
@@ -163,7 +202,7 @@ def fig_cassette(s, G, out):
     fig.suptitle(f"{LABEL.get(s, s)}: lysis cassettes found from DNA\n"
                  f"all three genes confident in {n3} of {len(G)} genomes; co-located in {nco}", x=0.01, ha="left",
                  fontsize=11, color=INK, y=1.16, linespacing=1.5)
-    fig.savefig(out / "3_cassette.png"); plt.close(fig)
+    save(fig, out / "3_cassette.png")
 
 
 def fig_holin_pair(s, G, out):
@@ -190,7 +229,7 @@ def fig_holin_pair(s, G, out):
     a2.set_xlabel("rank of the annotated holin"); a2.set_ylabel("genomes")
     a2.set_title("where the annotated holin ranks instead", fontsize=9.5, loc="left"); a2.yaxis.grid(True, color=GRID); a2.set_axisbelow(True)
     fig.suptitle(f"{LABEL.get(s, s)}: two adjacent holin-family genes", x=0.01, ha="left", fontsize=11, y=1.04)
-    fig.savefig(out / "4_holin_pair.png"); plt.close(fig)
+    save(fig, out / "4_holin_pair.png")
     return True
 
 
@@ -223,7 +262,7 @@ def compare(sets):
                       "grey number: genomes with that gene annotated", fontsize=8.5)
     fig.suptitle("Blind lysis-gene calls from DNA, scored against each group's annotations", x=0.01, ha="left",
                  fontsize=11.5, y=1.0)
-    fig.savefig(out / "groups_agreement.png"); plt.close(fig)
+    save(fig, out / "groups_agreement.png")
     summ = {s: {"genomes": n, "all_three_confident": n3,
                 **{f"{c}_{m}": round(float(np.mean(M[c][m])), 3) if M[c][m] else None
                    for c in CLASSES for m in ("call", "top5", "pair")},
