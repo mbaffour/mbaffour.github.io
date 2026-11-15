@@ -206,12 +206,16 @@ def compare(sets):
     for ax, c in zip(axs, CLASSES):
         for k, (s, n, M, _) in enumerate(rows):
             m = "pair" if c == "spanin" else "call"
+            if not M[c][m]:
+                ax.text(0.02, k, "none annotated" + (" (Gram-positive hosts: no outer membrane)" if s == "herelle" else ""),
+                        va="center", fontsize=7.5, color=MUTED, style="italic")
+                continue
             v, lo, hi = boot(M[c][m]); t5 = np.mean(M[c]["top5"]) if M[c]["top5"] else np.nan
             ax.barh(k, t5, color=COL[c], alpha=0.25, height=0.7)
             ax.barh(k, v, color=COL[c], height=0.42)
             ax.errorbar(v, k, xerr=[[v - lo], [hi - v]], fmt="none", ecolor=INK, elinewidth=0.8, capsize=1.5)
-            ax.text(1.01, k, f"{len(M[c]['call'])}", va="center", fontsize=7.5, color=MUTED)
-        ax.set_xlim(0, 1.08); ax.xaxis.grid(True, color=GRID); ax.set_axisbelow(True)
+            ax.text(1.06, k, f"{len(M[c]['call'])}", va="center", fontsize=7.5, color=MUTED)
+        ax.set_xlim(0, 1.15); ax.set_xticks([0, 0.25, 0.5, 0.75, 1.0]); ax.xaxis.grid(True, color=GRID); ax.set_axisbelow(True)
         ax.set_title(c + (" (pair level)" if c == "spanin" else ""), color=COL[c], fontweight="bold", fontsize=10)
     axs[0].set_yticks(range(len(rows)))
     axs[0].set_yticklabels([f"{LABEL.get(s, s)}  ({n})" for s, n, _, _ in rows], fontsize=8.5); axs[0].invert_yaxis()

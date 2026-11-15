@@ -1,0 +1,5488 @@
+{
+ "n_genomes": 101,
+ "classes": {
+  "holin": {
+   "genomes_with_annotated": 80,
+   "per_genome": [
+    {
+     "genome": "JQ182736.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "KC333879.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "KX015770.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "KX015771.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "KX828710.1",
+     "call_correct": false,
+     "best_rank": null,
+     "annotated_found_by_genefinder": false
+    },
+    {
+     "genome": "KY657202.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "KY694971.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "MF158039.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "MF468274.1",
+     "call_correct": false,
+     "best_rank": null,
+     "annotated_found_by_genefinder": false
+    },
+    {
+     "genome": "MG049919.1",
+     "call_correct": false,
+     "best_rank": null,
+     "annotated_found_by_genefinder": false
+    },
+    {
+     "genome": "MG241338.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "MG732930.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "MH051911.1",
+     "call_correct": false,
+     "best_rank": null,
+     "annotated_found_by_genefinder": false
+    },
+    {
+     "genome": "MH051912.1",
+     "call_correct": false,
+     "best_rank": null,
+     "annotated_found_by_genefinder": false
+    },
+    {
+     "genome": "MH102284.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "MH729819.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "MH917278.1",
+     "call_correct": false,
+     "best_rank": null,
+     "annotated_found_by_genefinder": false
+    },
+    {
+     "genome": "MK095606.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "MK962751.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "MN013076.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "MN013087.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "MN019128.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "MN153797.1",
+     "call_correct": false,
+     "best_rank": null,
+     "annotated_found_by_genefinder": false
+    },
+    {
+     "genome": "MN158207.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "MN337573.1",
+     "call_correct": false,
+     "best_rank": null,
+     "annotated_found_by_genefinder": false
+    },
+    {
+     "genome": "MN432485.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "MN545971.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "MN840485.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "MN994500.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "MT023084.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "MT074433.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "MT360682.2",
+     "call_correct": false,
+     "best_rank": 4,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "MT500539.1",
+     "call_correct": false,
+     "best_rank": 4,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "MW021748.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "MW021750.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "MW689258.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "MZ398242.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "MZ501077.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "MZ501080.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "MZ501099.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "MZ634346.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "MZ634351.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "MZ669808.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "OK499973.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "OL449681.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "OL539443.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "OL539457.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "OL539461.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "OL539462.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "OL539465.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "OL539466.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "OL539467.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "OM735690.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "ON843697.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "OP292673.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "OP292674.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "OQ359885.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "OR896827.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "OR896836.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "OR896845.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "OR896846.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "PP235089.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "PP503414.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "PP556865.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "PQ306538.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "PQ306539.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "PQ505130.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "PQ811887.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "PV007924.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "PV081216.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "PV090993.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "PV153712.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "PV615260.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "PZ099263.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "PZ445493.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "PZ445518.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "PZ452600.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "PZ534514.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "QB005381.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "QB005389.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    }
+   ],
+   "confident_calls": {
+    "agrees": 70,
+    "annotated hypothetical/unknown": 20
+   },
+   "calls": [
+    {
+     "genome": "JQ182736.1",
+     "tier": "confident",
+     "id": "JQ182736.1_orf0058",
+     "start": "40419",
+     "stop": "40634",
+     "strand": "+",
+     "length": "71",
+     "P_holin": "0.9995",
+     "annotation": "putative holin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "KC333879.1",
+     "tier": "confident",
+     "id": "KC333879.1_orf0044",
+     "start": "29561",
+     "stop": "29776",
+     "strand": "-",
+     "length": "71",
+     "P_holin": "0.9995",
+     "annotation": "putative holin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "KP085586.1",
+     "tier": "candidate",
+     "id": "KP085586.1_orf0003",
+     "start": "738",
+     "stop": "1139",
+     "strand": "-",
+     "length": "133",
+     "P_holin": "0.0061",
+     "annotation": "hypothetical protein",
+     "verdict": "annotated hypothetical/unknown",
+     "genome_has_annotated": false
+    },
+    {
+     "genome": "KR296690.1",
+     "tier": "confident",
+     "id": "KR296690.1_orf0071",
+     "start": "37009",
+     "stop": "37233",
+     "strand": "+",
+     "length": "74",
+     "P_holin": "0.9986",
+     "annotation": "hypothetical protein",
+     "verdict": "annotated hypothetical/unknown",
+     "genome_has_annotated": false
+    },
+    {
+     "genome": "KX015770.1",
+     "tier": "confident",
+     "id": "KX015770.1_orf0051",
+     "start": "36814",
+     "stop": "37038",
+     "strand": "+",
+     "length": "74",
+     "P_holin": "0.9987",
+     "annotation": "holin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "KX015771.1",
+     "tier": "confident",
+     "id": "KX015771.1_orf0068",
+     "start": "36686",
+     "stop": "36910",
+     "strand": "-",
+     "length": "74",
+     "P_holin": "0.9987",
+     "annotation": "holin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "KX828710.1",
+     "tier": "candidate",
+     "id": "KX828710.1_orf0064",
+     "start": "43055",
+     "stop": "43456",
+     "strand": "+",
+     "length": "133",
+     "P_holin": "0.0033",
+     "annotation": "spanin",
+     "verdict": "annotated as another lysis class",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "KY657202.1",
+     "tier": "confident",
+     "id": "KY657202.1_orf0072",
+     "start": "42326",
+     "stop": "42541",
+     "strand": "-",
+     "length": "71",
+     "P_holin": "0.9917",
+     "annotation": "putative holin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "KY694971.1",
+     "tier": "confident",
+     "id": "KY694971.1_orf0026",
+     "start": "23530",
+     "stop": "23754",
+     "strand": "+",
+     "length": "74",
+     "P_holin": "0.9987",
+     "annotation": "holin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "MF093736.1",
+     "tier": "candidate",
+     "id": "MF093736.1_orf0004",
+     "start": "908",
+     "stop": "1435",
+     "strand": "-",
+     "length": "175",
+     "P_holin": "0.0283",
+     "annotation": "hypothetical protein",
+     "verdict": "annotated hypothetical/unknown",
+     "genome_has_annotated": false
+    },
+    {
+     "genome": "MF158039.1",
+     "tier": "confident",
+     "id": "MF158039.1_orf0009",
+     "start": "4283",
+     "stop": "4498",
+     "strand": "-",
+     "length": "71",
+     "P_holin": "0.9995",
+     "annotation": "holin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "MF468274.1",
+     "tier": "candidate",
+     "id": "MF468274.1_orf0044",
+     "start": "22542",
+     "stop": "22943",
+     "strand": "-",
+     "length": "133",
+     "P_holin": "0.0084",
+     "annotation": "hypothetical protein",
+     "verdict": "annotated hypothetical/unknown",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "MG049919.1",
+     "tier": "candidate",
+     "id": "MG049919.1_orf0004",
+     "start": "1035",
+     "stop": "1436",
+     "strand": "-",
+     "length": "133",
+     "P_holin": "0.1124",
+     "annotation": "hypothetical protein",
+     "verdict": "annotated hypothetical/unknown",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "MG241338.1",
+     "tier": "confident",
+     "id": "MG241338.1_orf0019",
+     "start": "8135",
+     "stop": "8350",
+     "strand": "-",
+     "length": "71",
+     "P_holin": "0.9917",
+     "annotation": "holin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "MG732930.1",
+     "tier": "confident",
+     "id": "MG732930.1_orf0012",
+     "start": "7272",
+     "stop": "7487",
+     "strand": "+",
+     "length": "71",
+     "P_holin": "0.9924",
+     "annotation": "holin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "MH051911.1",
+     "tier": "candidate",
+     "id": "MH051911.1_orf0045",
+     "start": "21651",
+     "stop": "22052",
+     "strand": "-",
+     "length": "133",
+     "P_holin": "0.0077",
+     "annotation": "hypothetical protein",
+     "verdict": "annotated hypothetical/unknown",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "MH051912.1",
+     "tier": "candidate",
+     "id": "MH051912.1_orf0014",
+     "start": "5920",
+     "stop": "6321",
+     "strand": "-",
+     "length": "133",
+     "P_holin": "0.0030",
+     "annotation": "hypothetical protein",
+     "verdict": "annotated hypothetical/unknown",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "MH102284.1",
+     "tier": "confident",
+     "id": "MH102284.1_orf0010",
+     "start": "5199",
+     "stop": "5414",
+     "strand": "-",
+     "length": "71",
+     "P_holin": "0.9827",
+     "annotation": "holin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "MH729819.1",
+     "tier": "confident",
+     "id": "MH729819.1_orf0066",
+     "start": "41780",
+     "stop": "42004",
+     "strand": "+",
+     "length": "74",
+     "P_holin": "0.9987",
+     "annotation": "putative holin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "MH845412.1",
+     "tier": "confident",
+     "id": "MH845412.1_orf0061",
+     "start": "35666",
+     "stop": "35899",
+     "strand": "-",
+     "length": "77",
+     "P_holin": "0.9997",
+     "annotation": "hypothetical protein",
+     "verdict": "annotated hypothetical/unknown",
+     "genome_has_annotated": false
+    },
+    {
+     "genome": "MH917278.1",
+     "tier": "candidate",
+     "id": "MH917278.1_orf0064",
+     "start": "43577",
+     "stop": "43978",
+     "strand": "+",
+     "length": "133",
+     "P_holin": "0.0084",
+     "annotation": "hypothetical protein",
+     "verdict": "annotated hypothetical/unknown",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "MK095606.1",
+     "tier": "confident",
+     "id": "MK095606.1_orf0037",
+     "start": "33566",
+     "stop": "33784",
+     "strand": "+",
+     "length": "72",
+     "P_holin": "0.9994",
+     "annotation": "holin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "MK335533.1",
+     "tier": "candidate",
+     "id": "MK335533.1_orf0082",
+     "start": "45502",
+     "stop": "45942",
+     "strand": "+",
+     "length": "146",
+     "P_holin": "0.0842",
+     "annotation": "endolysin",
+     "verdict": "annotated as another lysis class",
+     "genome_has_annotated": false
+    },
+    {
+     "genome": "MK907235.1",
+     "tier": "confident",
+     "id": "MK907235.1_orf0057",
+     "start": "38587",
+     "stop": "38802",
+     "strand": "-",
+     "length": "71",
+     "P_holin": "0.9983",
+     "annotation": "hypothetical protein",
+     "verdict": "annotated hypothetical/unknown",
+     "genome_has_annotated": false
+    },
+    {
+     "genome": "MK907241.1",
+     "tier": "confident",
+     "id": "MK907241.1_orf0056",
+     "start": "38071",
+     "stop": "38286",
+     "strand": "-",
+     "length": "71",
+     "P_holin": "0.9983",
+     "annotation": "hypothetical protein",
+     "verdict": "annotated hypothetical/unknown",
+     "genome_has_annotated": false
+    },
+    {
+     "genome": "MK907248.1",
+     "tier": "confident",
+     "id": "MK907248.1_orf0006",
+     "start": "1730",
+     "stop": "1945",
+     "strand": "-",
+     "length": "71",
+     "P_holin": "0.9983",
+     "annotation": "hypothetical protein",
+     "verdict": "annotated hypothetical/unknown",
+     "genome_has_annotated": false
+    },
+    {
+     "genome": "MK907253.1",
+     "tier": "confident",
+     "id": "MK907253.1_orf0045",
+     "start": "26925",
+     "stop": "27140",
+     "strand": "-",
+     "length": "71",
+     "P_holin": "0.9983",
+     "annotation": "hypothetical protein",
+     "verdict": "annotated hypothetical/unknown",
+     "genome_has_annotated": false
+    },
+    {
+     "genome": "MK907264.1",
+     "tier": "confident",
+     "id": "MK907264.1_orf0050",
+     "start": "32347",
+     "stop": "32562",
+     "strand": "-",
+     "length": "71",
+     "P_holin": "0.9983",
+     "annotation": "hypothetical protein",
+     "verdict": "annotated hypothetical/unknown",
+     "genome_has_annotated": false
+    },
+    {
+     "genome": "MK907272.1",
+     "tier": "confident",
+     "id": "MK907272.1_orf0060",
+     "start": "41342",
+     "stop": "41557",
+     "strand": "-",
+     "length": "71",
+     "P_holin": "0.9983",
+     "annotation": "hypothetical protein",
+     "verdict": "annotated hypothetical/unknown",
+     "genome_has_annotated": false
+    },
+    {
+     "genome": "MK962751.1",
+     "tier": "confident",
+     "id": "MK962751.1_orf0010",
+     "start": "6877",
+     "stop": "7092",
+     "strand": "+",
+     "length": "71",
+     "P_holin": "0.9995",
+     "annotation": "holin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "MN013076.1",
+     "tier": "confident",
+     "id": "MN013076.1_orf0040",
+     "start": "35686",
+     "stop": "35901",
+     "strand": "+",
+     "length": "71",
+     "P_holin": "0.9996",
+     "annotation": "putative holin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "MN013087.1",
+     "tier": "confident",
+     "id": "MN013087.1_orf0039",
+     "start": "34914",
+     "stop": "35129",
+     "strand": "+",
+     "length": "71",
+     "P_holin": "0.9996",
+     "annotation": "putative holin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "MN019128.1",
+     "tier": "confident",
+     "id": "MN019128.1_orf0016",
+     "start": "10509",
+     "stop": "10724",
+     "strand": "+",
+     "length": "71",
+     "P_holin": "0.9999",
+     "annotation": "holin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "MN153797.1",
+     "tier": "candidate",
+     "id": "MN153797.1_orf0064",
+     "start": "43567",
+     "stop": "43968",
+     "strand": "+",
+     "length": "133",
+     "P_holin": "0.0039",
+     "annotation": "hypothetical protein",
+     "verdict": "annotated hypothetical/unknown",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "MN158207.1",
+     "tier": "confident",
+     "id": "MN158207.1_orf0048",
+     "start": "36178",
+     "stop": "36393",
+     "strand": "+",
+     "length": "71",
+     "P_holin": "0.9984",
+     "annotation": "holin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "MN337573.1",
+     "tier": "candidate",
+     "id": "MN337573.1_orf0075",
+     "start": "47546",
+     "stop": "47947",
+     "strand": "+",
+     "length": "133",
+     "P_holin": "0.0084",
+     "annotation": "lipoprotein",
+     "verdict": "annotated with another function",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "MN432485.1",
+     "tier": "confident",
+     "id": "MN432485.1_orf0007",
+     "start": "3674",
+     "stop": "3889",
+     "strand": "-",
+     "length": "71",
+     "P_holin": "0.9999",
+     "annotation": "holin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "MN545971.1",
+     "tier": "confident",
+     "id": "MN545971.1_orf0051",
+     "start": "38363",
+     "stop": "38662",
+     "strand": "+",
+     "length": "99",
+     "P_holin": "0.9909",
+     "annotation": "holin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "MN840485.1",
+     "tier": "confident",
+     "id": "MN840485.1_orf0063",
+     "start": "41600",
+     "stop": "41815",
+     "strand": "-",
+     "length": "71",
+     "P_holin": "0.9979",
+     "annotation": "holin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "MN994500.1",
+     "tier": "confident",
+     "id": "MN994500.1_orf0066",
+     "start": "40649",
+     "stop": "40873",
+     "strand": "-",
+     "length": "74",
+     "P_holin": "0.9971",
+     "annotation": "holin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "MT023084.1",
+     "tier": "confident",
+     "id": "MT023084.1_orf0073",
+     "start": "44665",
+     "stop": "44880",
+     "strand": "-",
+     "length": "71",
+     "P_holin": "0.9992",
+     "annotation": "holin protein",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "MT074433.1",
+     "tier": "confident",
+     "id": "MT074433.1_orf0051",
+     "start": "37581",
+     "stop": "37796",
+     "strand": "+",
+     "length": "71",
+     "P_holin": "1.0000",
+     "annotation": "holin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "MT360682.2",
+     "tier": "confident",
+     "id": "MT360682.2_orf0055",
+     "start": "46509",
+     "stop": "46703",
+     "strand": "+",
+     "length": "64",
+     "P_holin": "0.9988",
+     "annotation": "hypothetical protein",
+     "verdict": "annotated hypothetical/unknown",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "MT500539.1",
+     "tier": "confident",
+     "id": "MT500539.1_orf0021",
+     "start": "19229",
+     "stop": "19528",
+     "strand": "+",
+     "length": "99",
+     "P_holin": "0.9878",
+     "annotation": "hypothetical protein",
+     "verdict": "annotated hypothetical/unknown",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "MW021748.1",
+     "tier": "confident",
+     "id": "MW021748.1_orf0038",
+     "start": "32743",
+     "stop": "32967",
+     "strand": "+",
+     "length": "74",
+     "P_holin": "0.9987",
+     "annotation": "putative holin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "MW021750.1",
+     "tier": "confident",
+     "id": "MW021750.1_orf0038",
+     "start": "32654",
+     "stop": "32878",
+     "strand": "+",
+     "length": "74",
+     "P_holin": "0.9987",
+     "annotation": "putative holin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "MW032452.1",
+     "tier": "confident",
+     "id": "MW032452.1_orf0101",
+     "start": "47615",
+     "stop": "47824",
+     "strand": "-",
+     "length": "69",
+     "P_holin": "0.9994",
+     "annotation": "hypothetical protein",
+     "verdict": "annotated hypothetical/unknown",
+     "genome_has_annotated": false
+    },
+    {
+     "genome": "MW689258.1",
+     "tier": "confident",
+     "id": "MW689258.1_orf0065",
+     "start": "41354",
+     "stop": "41569",
+     "strand": "+",
+     "length": "71",
+     "P_holin": "0.9964",
+     "annotation": "holin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "MZ333132.1",
+     "tier": "confident",
+     "id": "MZ333132.1_orf0012",
+     "start": "6013",
+     "stop": "6258",
+     "strand": "-",
+     "length": "81",
+     "P_holin": "0.9991",
+     "annotation": "hypothetical protein",
+     "verdict": "annotated hypothetical/unknown",
+     "genome_has_annotated": false
+    },
+    {
+     "genome": "MZ398242.1",
+     "tier": "confident",
+     "id": "MZ398242.1_orf0062",
+     "start": "42856",
+     "stop": "43071",
+     "strand": "+",
+     "length": "71",
+     "P_holin": "0.9996",
+     "annotation": "holin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "MZ501077.1",
+     "tier": "confident",
+     "id": "MZ501077.1_orf0044",
+     "start": "34143",
+     "stop": "34358",
+     "strand": "+",
+     "length": "71",
+     "P_holin": "0.9995",
+     "annotation": "holin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "MZ501080.1",
+     "tier": "confident",
+     "id": "MZ501080.1_orf0049",
+     "start": "35590",
+     "stop": "35805",
+     "strand": "+",
+     "length": "71",
+     "P_holin": "0.9985",
+     "annotation": "holin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "MZ501099.1",
+     "tier": "confident",
+     "id": "MZ501099.1_orf0044",
+     "start": "35366",
+     "stop": "35581",
+     "strand": "+",
+     "length": "71",
+     "P_holin": "0.9998",
+     "annotation": "holin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "MZ634346.1",
+     "tier": "confident",
+     "id": "MZ634346.1_orf0073",
+     "start": "47332",
+     "stop": "47547",
+     "strand": "-",
+     "length": "71",
+     "P_holin": "0.9995",
+     "annotation": "putative holin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "MZ634351.1",
+     "tier": "confident",
+     "id": "MZ634351.1_orf0073",
+     "start": "47130",
+     "stop": "47345",
+     "strand": "-",
+     "length": "71",
+     "P_holin": "0.9996",
+     "annotation": "putative holin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "MZ669808.1",
+     "tier": "confident",
+     "id": "MZ669808.1_orf0054",
+     "start": "39211",
+     "stop": "39426",
+     "strand": "+",
+     "length": "71",
+     "P_holin": "0.9972",
+     "annotation": "holin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "OK499973.1",
+     "tier": "confident",
+     "id": "OK499973.1_orf0033",
+     "start": "28169",
+     "stop": "28393",
+     "strand": "+",
+     "length": "74",
+     "P_holin": "0.9987",
+     "annotation": "holin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "OL449681.1",
+     "tier": "confident",
+     "id": "OL449681.1_orf0055",
+     "start": "35225",
+     "stop": "35440",
+     "strand": "-",
+     "length": "71",
+     "P_holin": "0.9979",
+     "annotation": "holin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "OL539443.1",
+     "tier": "confident",
+     "id": "OL539443.1_orf0038",
+     "start": "32682",
+     "stop": "32906",
+     "strand": "+",
+     "length": "74",
+     "P_holin": "0.9987",
+     "annotation": "pinholin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "OL539457.1",
+     "tier": "confident",
+     "id": "OL539457.1_orf0041",
+     "start": "33798",
+     "stop": "34013",
+     "strand": "+",
+     "length": "71",
+     "P_holin": "0.9996",
+     "annotation": "putative holin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "OL539461.1",
+     "tier": "confident",
+     "id": "OL539461.1_orf0039",
+     "start": "32855",
+     "stop": "33079",
+     "strand": "+",
+     "length": "74",
+     "P_holin": "0.9982",
+     "annotation": "holin protein",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "OL539462.1",
+     "tier": "confident",
+     "id": "OL539462.1_orf0038",
+     "start": "32602",
+     "stop": "32826",
+     "strand": "+",
+     "length": "74",
+     "P_holin": "0.9987",
+     "annotation": "putative pinholin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "OL539465.1",
+     "tier": "confident",
+     "id": "OL539465.1_orf0038",
+     "start": "32730",
+     "stop": "32954",
+     "strand": "+",
+     "length": "74",
+     "P_holin": "0.9987",
+     "annotation": "holin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "OL539466.1",
+     "tier": "confident",
+     "id": "OL539466.1_orf0039",
+     "start": "33318",
+     "stop": "33542",
+     "strand": "+",
+     "length": "74",
+     "P_holin": "0.9987",
+     "annotation": "putative holin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "OL539467.1",
+     "tier": "confident",
+     "id": "OL539467.1_orf0050",
+     "start": "37664",
+     "stop": "37936",
+     "strand": "+",
+     "length": "90",
+     "P_holin": "0.9996",
+     "annotation": "holin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "OM735690.1",
+     "tier": "confident",
+     "id": "OM735690.1_orf0062",
+     "start": "41887",
+     "stop": "42102",
+     "strand": "+",
+     "length": "71",
+     "P_holin": "0.9991",
+     "annotation": "holin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "ON843697.1",
+     "tier": "confident",
+     "id": "ON843697.1_orf0037",
+     "start": "32668",
+     "stop": "32892",
+     "strand": "+",
+     "length": "74",
+     "P_holin": "0.9996",
+     "annotation": "putative holin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "ON979384.1",
+     "tier": "confident",
+     "id": "ON979384.1_orf0038",
+     "start": "32942",
+     "stop": "33175",
+     "strand": "+",
+     "length": "77",
+     "P_holin": "0.9997",
+     "annotation": "hypothetical protein",
+     "verdict": "annotated hypothetical/unknown",
+     "genome_has_annotated": false
+    },
+    {
+     "genome": "ON979385.1",
+     "tier": "confident",
+     "id": "ON979385.1_orf0038",
+     "start": "32942",
+     "stop": "33175",
+     "strand": "+",
+     "length": "77",
+     "P_holin": "0.9997",
+     "annotation": "hypothetical protein",
+     "verdict": "annotated hypothetical/unknown",
+     "genome_has_annotated": false
+    },
+    {
+     "genome": "OP120783.1",
+     "tier": "confident",
+     "id": "OP120783.1_orf0039",
+     "start": "30969",
+     "stop": "31202",
+     "strand": "+",
+     "length": "77",
+     "P_holin": "0.9997",
+     "annotation": "hypothetical protein",
+     "verdict": "annotated hypothetical/unknown",
+     "genome_has_annotated": false
+    },
+    {
+     "genome": "OP292673.1",
+     "tier": "confident",
+     "id": "OP292673.1_orf0063",
+     "start": "38008",
+     "stop": "38232",
+     "strand": "-",
+     "length": "74",
+     "P_holin": "0.9971",
+     "annotation": "holin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "OP292674.1",
+     "tier": "confident",
+     "id": "OP292674.1_orf0062",
+     "start": "36481",
+     "stop": "36705",
+     "strand": "-",
+     "length": "74",
+     "P_holin": "0.9971",
+     "annotation": "holin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "OP902292.1",
+     "tier": "confident",
+     "id": "OP902292.1_orf0071",
+     "start": "38563",
+     "stop": "38787",
+     "strand": "+",
+     "length": "74",
+     "P_holin": "0.9987",
+     "annotation": "hypothetical protein",
+     "verdict": "annotated hypothetical/unknown",
+     "genome_has_annotated": false
+    },
+    {
+     "genome": "OQ359885.1",
+     "tier": "confident",
+     "id": "OQ359885.1_orf0065",
+     "start": "41518",
+     "stop": "41742",
+     "strand": "+",
+     "length": "74",
+     "P_holin": "0.9965",
+     "annotation": "holin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "OR753409.1",
+     "tier": "confident",
+     "id": "OR753409.1_orf0017",
+     "start": "10819",
+     "stop": "11034",
+     "strand": "+",
+     "length": "71",
+     "P_holin": "0.9999",
+     "annotation": "hypothetical protein",
+     "verdict": "annotated hypothetical/unknown",
+     "genome_has_annotated": false
+    },
+    {
+     "genome": "OR786094.1",
+     "tier": "confident",
+     "id": "OR786094.1_orf0064",
+     "start": "41502",
+     "stop": "41726",
+     "strand": "+",
+     "length": "74",
+     "P_holin": "0.9982",
+     "annotation": "hypothetical protein",
+     "verdict": "annotated hypothetical/unknown",
+     "genome_has_annotated": false
+    },
+    {
+     "genome": "OR896827.1",
+     "tier": "confident",
+     "id": "OR896827.1_orf0037",
+     "start": "32449",
+     "stop": "32664",
+     "strand": "+",
+     "length": "71",
+     "P_holin": "0.9995",
+     "annotation": "holin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "OR896836.1",
+     "tier": "confident",
+     "id": "OR896836.1_orf0040",
+     "start": "33662",
+     "stop": "33877",
+     "strand": "+",
+     "length": "71",
+     "P_holin": "0.9995",
+     "annotation": "holin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "OR896845.1",
+     "tier": "confident",
+     "id": "OR896845.1_orf0039",
+     "start": "34375",
+     "stop": "34590",
+     "strand": "+",
+     "length": "71",
+     "P_holin": "0.9997",
+     "annotation": "holin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "OR896846.1",
+     "tier": "confident",
+     "id": "OR896846.1_orf0036",
+     "start": "34151",
+     "stop": "34366",
+     "strand": "+",
+     "length": "71",
+     "P_holin": "0.9994",
+     "annotation": "holin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "PP235089.1",
+     "tier": "confident",
+     "id": "PP235089.1_orf0038",
+     "start": "33876",
+     "stop": "34091",
+     "strand": "+",
+     "length": "71",
+     "P_holin": "0.9997",
+     "annotation": "holin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "PP503414.1",
+     "tier": "confident",
+     "id": "PP503414.1_orf0062",
+     "start": "40919",
+     "stop": "41143",
+     "strand": "+",
+     "length": "74",
+     "P_holin": "0.9971",
+     "annotation": "holin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "PP556865.1",
+     "tier": "confident",
+     "id": "PP556865.1_orf0045",
+     "start": "36655",
+     "stop": "36870",
+     "strand": "+",
+     "length": "71",
+     "P_holin": "0.9996",
+     "annotation": "holin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "PQ133004.1",
+     "tier": "confident",
+     "id": "PQ133004.1_orf0021",
+     "start": "9059",
+     "stop": "9274",
+     "strand": "-",
+     "length": "71",
+     "P_holin": "0.9991",
+     "annotation": "hypothetical protein",
+     "verdict": "annotated hypothetical/unknown",
+     "genome_has_annotated": false
+    },
+    {
+     "genome": "PQ306538.1",
+     "tier": "confident",
+     "id": "PQ306538.1_orf0015",
+     "start": "10573",
+     "stop": "10788",
+     "strand": "+",
+     "length": "71",
+     "P_holin": "0.9999",
+     "annotation": "holin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "PQ306539.1",
+     "tier": "confident",
+     "id": "PQ306539.1_orf0015",
+     "start": "10538",
+     "stop": "10753",
+     "strand": "+",
+     "length": "71",
+     "P_holin": "0.9995",
+     "annotation": "holin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "PQ505130.1",
+     "tier": "confident",
+     "id": "PQ505130.1_orf0045",
+     "start": "21273",
+     "stop": "21488",
+     "strand": "-",
+     "length": "71",
+     "P_holin": "0.9997",
+     "annotation": "holin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "PQ811887.1",
+     "tier": "confident",
+     "id": "PQ811887.1_orf0042",
+     "start": "34073",
+     "stop": "34288",
+     "strand": "+",
+     "length": "71",
+     "P_holin": "0.9995",
+     "annotation": "holin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "PV007924.1",
+     "tier": "confident",
+     "id": "PV007924.1_orf0067",
+     "start": "42216",
+     "stop": "42431",
+     "strand": "+",
+     "length": "71",
+     "P_holin": "0.9701",
+     "annotation": "holin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "PV081216.1",
+     "tier": "confident",
+     "id": "PV081216.1_orf0051",
+     "start": "39181",
+     "stop": "39396",
+     "strand": "+",
+     "length": "71",
+     "P_holin": "0.9997",
+     "annotation": "holin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "PV090993.1",
+     "tier": "confident",
+     "id": "PV090993.1_orf0059",
+     "start": "40897",
+     "stop": "41121",
+     "strand": "+",
+     "length": "74",
+     "P_holin": "0.9971",
+     "annotation": "holin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "PV153712.1",
+     "tier": "confident",
+     "id": "PV153712.1_orf0062",
+     "start": "41774",
+     "stop": "41998",
+     "strand": "+",
+     "length": "74",
+     "P_holin": "0.9971",
+     "annotation": "holin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "PV615260.1",
+     "tier": "confident",
+     "id": "PV615260.1_orf0006",
+     "start": "3035",
+     "stop": "3250",
+     "strand": "+",
+     "length": "71",
+     "P_holin": "0.9998",
+     "annotation": "holin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "PZ099263.1",
+     "tier": "confident",
+     "id": "PZ099263.1_orf0034",
+     "start": "27907",
+     "stop": "28122",
+     "strand": "+",
+     "length": "71",
+     "P_holin": "0.9993",
+     "annotation": "holin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "PZ099264.1",
+     "tier": "confident",
+     "id": "PZ099264.1_orf0062",
+     "start": "41360",
+     "stop": "41575",
+     "strand": "+",
+     "length": "71",
+     "P_holin": "0.9999",
+     "annotation": "hypothetical protein",
+     "verdict": "annotated hypothetical/unknown",
+     "genome_has_annotated": false
+    },
+    {
+     "genome": "PZ445493.1",
+     "tier": "confident",
+     "id": "PZ445493.1_orf0050",
+     "start": "37227",
+     "stop": "37442",
+     "strand": "+",
+     "length": "71",
+     "P_holin": "0.9994",
+     "annotation": "holin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "PZ445518.1",
+     "tier": "confident",
+     "id": "PZ445518.1_orf0040",
+     "start": "33646",
+     "stop": "33861",
+     "strand": "+",
+     "length": "71",
+     "P_holin": "0.9995",
+     "annotation": "holin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "PZ452600.1",
+     "tier": "confident",
+     "id": "PZ452600.1_orf0039",
+     "start": "33426",
+     "stop": "33641",
+     "strand": "+",
+     "length": "71",
+     "P_holin": "0.9995",
+     "annotation": "holin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "PZ534514.1",
+     "tier": "confident",
+     "id": "PZ534514.1_orf0076",
+     "start": "43744",
+     "stop": "43959",
+     "strand": "-",
+     "length": "71",
+     "P_holin": "0.9999",
+     "annotation": "holin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "QB005381.1",
+     "tier": "confident",
+     "id": "QB005381.1_orf0038",
+     "start": "34195",
+     "stop": "34410",
+     "strand": "+",
+     "length": "71",
+     "P_holin": "0.9995",
+     "annotation": "holin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "QB005389.1",
+     "tier": "confident",
+     "id": "QB005389.1_orf0037",
+     "start": "33344",
+     "stop": "33559",
+     "strand": "+",
+     "length": "71",
+     "P_holin": "0.9997",
+     "annotation": "holin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    }
+   ],
+   "call_is_annotated_gene": 0.875,
+   "call_is_annotated_gene_CI": [
+    0.8,
+    0.938
+   ],
+   "annotated_in_top5": 0.9,
+   "annotated_in_top5_CI": [
+    0.838,
+    0.963
+   ],
+   "by_novelty": {
+    "near-copy (>=95%)": {
+     "n": 75,
+     "call_correct": 67,
+     "top5": 67,
+     "not_called_by_genefinder": 8
+    },
+    "new family (<30%)": {
+     "n": 2,
+     "call_correct": 0,
+     "top5": 2,
+     "not_called_by_genefinder": 0
+    },
+    "known family (30-95%)": {
+     "n": 3,
+     "call_correct": 3,
+     "top5": 3,
+     "not_called_by_genefinder": 0
+    }
+   }
+  },
+  "endolysin": {
+   "genomes_with_annotated": 96,
+   "per_genome": [
+    {
+     "genome": "JQ182736.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "KC333879.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "KR296690.1",
+     "call_correct": false,
+     "best_rank": null,
+     "annotated_found_by_genefinder": false
+    },
+    {
+     "genome": "KX015770.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "KX015771.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "KX828710.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "KY657202.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "KY694971.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "MF158039.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "MF468274.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "MG049919.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "MG241338.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "MG732930.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "MH051911.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "MH051912.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "MH102284.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "MH729819.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "MH845412.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "MH917278.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "MK095606.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "MK335533.1",
+     "call_correct": false,
+     "best_rank": 2,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "MK907235.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "MK907241.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "MK907248.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "MK907253.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "MK907264.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "MK907272.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "MK962751.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "MN013076.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "MN013087.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "MN019128.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "MN153797.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "MN158207.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "MN432485.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "MN545971.1",
+     "call_correct": false,
+     "best_rank": 19,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "MN840485.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "MN994500.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "MT023084.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "MT074433.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "MT360682.2",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "MT500539.1",
+     "call_correct": false,
+     "best_rank": 14,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "MW021748.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "MW021750.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "MW032452.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "MW689258.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "MZ333132.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "MZ398242.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "MZ501077.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "MZ501080.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "MZ501099.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "MZ634346.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "MZ634351.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "MZ669808.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "OK499973.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "OL449681.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "OL539443.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "OL539457.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "OL539461.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "OL539462.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "OL539465.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "OL539466.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "OL539467.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "OM735690.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "ON843697.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "ON979384.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "ON979385.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "OP120783.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "OP292673.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "OP292674.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "OQ359885.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "OR753409.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "OR896827.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "OR896836.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "OR896845.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "OR896846.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "PP235089.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "PP503414.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "PP556865.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "PQ133004.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "PQ306538.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "PQ306539.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "PQ505130.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "PQ811887.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "PV007924.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "PV081216.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "PV090993.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "PV153712.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "PV615260.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "PZ099263.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "PZ099264.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "PZ445493.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "PZ445518.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "PZ452600.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "PZ534514.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "QB005381.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "QB005389.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    }
+   ],
+   "confident_calls": {
+    "agrees": 92,
+    "annotated hypothetical/unknown": 6,
+    "annotated with another function": 1,
+    "unannotated gene (not in the annotation)": 1
+   },
+   "calls": [
+    {
+     "genome": "JQ182736.1",
+     "tier": "confident",
+     "id": "JQ182736.1_orf0059",
+     "start": "40634",
+     "stop": "41116",
+     "strand": "+",
+     "length": "160",
+     "P_endolysin": "1.0000",
+     "annotation": "putative endolysin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "KC333879.1",
+     "tier": "confident",
+     "id": "KC333879.1_orf0043",
+     "start": "29169",
+     "stop": "29561",
+     "strand": "-",
+     "length": "130",
+     "P_endolysin": "0.9998",
+     "annotation": "putative phage-related lysozyme",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "KP085586.1",
+     "tier": "confident",
+     "id": "KP085586.1_orf0004",
+     "start": "1139",
+     "stop": "1627",
+     "strand": "-",
+     "length": "162",
+     "P_endolysin": "1.0000",
+     "annotation": "hypothetical protein",
+     "verdict": "annotated hypothetical/unknown",
+     "genome_has_annotated": false
+    },
+    {
+     "genome": "KR296690.1",
+     "tier": "candidate",
+     "id": "KR296690.1_orf0037",
+     "start": "17076",
+     "stop": "17765",
+     "strand": "+",
+     "length": "229",
+     "P_endolysin": "0.0413",
+     "annotation": "tail tip assembly protein",
+     "verdict": "annotated with another function",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "KX015770.1",
+     "tier": "confident",
+     "id": "KX015770.1_orf0052",
+     "start": "37038",
+     "stop": "37529",
+     "strand": "+",
+     "length": "163",
+     "P_endolysin": "0.9990",
+     "annotation": "lysin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "KX015771.1",
+     "tier": "confident",
+     "id": "KX015771.1_orf0067",
+     "start": "36195",
+     "stop": "36686",
+     "strand": "-",
+     "length": "163",
+     "P_endolysin": "0.9990",
+     "annotation": "lysin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "KX828710.1",
+     "tier": "confident",
+     "id": "KX828710.1_orf0063",
+     "start": "42567",
+     "stop": "43055",
+     "strand": "+",
+     "length": "162",
+     "P_endolysin": "1.0000",
+     "annotation": "endolysin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "KY657202.1",
+     "tier": "confident",
+     "id": "KY657202.1_orf0071",
+     "start": "41819",
+     "stop": "42313",
+     "strand": "-",
+     "length": "164",
+     "P_endolysin": "0.9999",
+     "annotation": "putative endolysin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "KY694971.1",
+     "tier": "confident",
+     "id": "KY694971.1_orf0027",
+     "start": "23754",
+     "stop": "24248",
+     "strand": "+",
+     "length": "164",
+     "P_endolysin": "1.0000",
+     "annotation": "lysin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "MF093736.1",
+     "tier": "confident",
+     "id": "MF093736.1_orf0005",
+     "start": "1435",
+     "stop": "1923",
+     "strand": "-",
+     "length": "162",
+     "P_endolysin": "1.0000",
+     "annotation": "hypothetical protein",
+     "verdict": "annotated hypothetical/unknown",
+     "genome_has_annotated": false
+    },
+    {
+     "genome": "MF158039.1",
+     "tier": "confident",
+     "id": "MF158039.1_orf0008",
+     "start": "3801",
+     "stop": "4283",
+     "strand": "-",
+     "length": "160",
+     "P_endolysin": "1.0000",
+     "annotation": "lysozyme",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "MF468274.1",
+     "tier": "confident",
+     "id": "MF468274.1_orf0045",
+     "start": "22943",
+     "stop": "23431",
+     "strand": "-",
+     "length": "162",
+     "P_endolysin": "0.9999",
+     "annotation": "lysozyme",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "MG049919.1",
+     "tier": "confident",
+     "id": "MG049919.1_orf0005",
+     "start": "1436",
+     "stop": "1924",
+     "strand": "-",
+     "length": "162",
+     "P_endolysin": "1.0000",
+     "annotation": "endolysin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "MG241338.1",
+     "tier": "confident",
+     "id": "MG241338.1_orf0018",
+     "start": "7628",
+     "stop": "8122",
+     "strand": "-",
+     "length": "164",
+     "P_endolysin": "0.9999",
+     "annotation": "lysin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "MG732930.1",
+     "tier": "confident",
+     "id": "MG732930.1_orf0013",
+     "start": "7488",
+     "stop": "7970",
+     "strand": "+",
+     "length": "160",
+     "P_endolysin": "0.9966",
+     "annotation": "lysin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "MH051911.1",
+     "tier": "confident",
+     "id": "MH051911.1_orf0046",
+     "start": "22052",
+     "stop": "22540",
+     "strand": "-",
+     "length": "162",
+     "P_endolysin": "0.9985",
+     "annotation": "endolysin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "MH051912.1",
+     "tier": "confident",
+     "id": "MH051912.1_orf0015",
+     "start": "6321",
+     "stop": "6809",
+     "strand": "-",
+     "length": "162",
+     "P_endolysin": "1.0000",
+     "annotation": "endolysin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "MH102284.1",
+     "tier": "confident",
+     "id": "MH102284.1_orf0009",
+     "start": "4692",
+     "stop": "5186",
+     "strand": "-",
+     "length": "164",
+     "P_endolysin": "0.9988",
+     "annotation": "lysin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "MH729819.1",
+     "tier": "confident",
+     "id": "MH729819.1_orf0067",
+     "start": "42004",
+     "stop": "42495",
+     "strand": "+",
+     "length": "163",
+     "P_endolysin": "1.0000",
+     "annotation": "putative soluble endolysin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "MH845412.1",
+     "tier": "confident",
+     "id": "MH845412.1_orf0060",
+     "start": "35157",
+     "stop": "35666",
+     "strand": "-",
+     "length": "169",
+     "P_endolysin": "0.9964",
+     "annotation": "endolysin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "MH917278.1",
+     "tier": "confident",
+     "id": "MH917278.1_orf0063",
+     "start": "43089",
+     "stop": "43577",
+     "strand": "+",
+     "length": "162",
+     "P_endolysin": "0.9998",
+     "annotation": "lysin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "MK095606.1",
+     "tier": "confident",
+     "id": "MK095606.1_orf0038",
+     "start": "33786",
+     "stop": "34280",
+     "strand": "+",
+     "length": "164",
+     "P_endolysin": "0.9990",
+     "annotation": "endolysin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "MK335533.1",
+     "tier": "confident",
+     "id": "MK335533.1_orf0063",
+     "start": "32627",
+     "stop": "33127",
+     "strand": "-",
+     "length": "166",
+     "P_endolysin": "0.7384",
+     "annotation": "hypothetical protein",
+     "verdict": "annotated hypothetical/unknown",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "MK907235.1",
+     "tier": "confident",
+     "id": "MK907235.1_orf0056",
+     "start": "38101",
+     "stop": "38586",
+     "strand": "-",
+     "length": "161",
+     "P_endolysin": "1.0000",
+     "annotation": "SAR endolysin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "MK907241.1",
+     "tier": "confident",
+     "id": "MK907241.1_orf0055",
+     "start": "37585",
+     "stop": "38070",
+     "strand": "-",
+     "length": "161",
+     "P_endolysin": "1.0000",
+     "annotation": "SAR endolysin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "MK907248.1",
+     "tier": "confident",
+     "id": "MK907248.1_orf0005",
+     "start": "1244",
+     "stop": "1729",
+     "strand": "-",
+     "length": "161",
+     "P_endolysin": "1.0000",
+     "annotation": "SAR endolysin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "MK907253.1",
+     "tier": "confident",
+     "id": "MK907253.1_orf0044",
+     "start": "26439",
+     "stop": "26924",
+     "strand": "-",
+     "length": "161",
+     "P_endolysin": "1.0000",
+     "annotation": "SAR endolysin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "MK907264.1",
+     "tier": "confident",
+     "id": "MK907264.1_orf0049",
+     "start": "31861",
+     "stop": "32346",
+     "strand": "-",
+     "length": "161",
+     "P_endolysin": "1.0000",
+     "annotation": "SAR endolysin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "MK907272.1",
+     "tier": "confident",
+     "id": "MK907272.1_orf0059",
+     "start": "40856",
+     "stop": "41341",
+     "strand": "-",
+     "length": "161",
+     "P_endolysin": "1.0000",
+     "annotation": "SAR endolysin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "MK962751.1",
+     "tier": "confident",
+     "id": "MK962751.1_orf0011",
+     "start": "7092",
+     "stop": "7583",
+     "strand": "+",
+     "length": "163",
+     "P_endolysin": "1.0000",
+     "annotation": "lysozyme",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "MN013076.1",
+     "tier": "confident",
+     "id": "MN013076.1_orf0041",
+     "start": "35903",
+     "stop": "36385",
+     "strand": "+",
+     "length": "160",
+     "P_endolysin": "1.0000",
+     "annotation": "putative endolysin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "MN013087.1",
+     "tier": "confident",
+     "id": "MN013087.1_orf0040",
+     "start": "35131",
+     "stop": "35613",
+     "strand": "+",
+     "length": "160",
+     "P_endolysin": "1.0000",
+     "annotation": "putative endolysin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "MN019128.1",
+     "tier": "confident",
+     "id": "MN019128.1_orf0017",
+     "start": "10727",
+     "stop": "11221",
+     "strand": "+",
+     "length": "164",
+     "P_endolysin": "1.0000",
+     "annotation": "putative lysozyme",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "MN153797.1",
+     "tier": "confident",
+     "id": "MN153797.1_orf0063",
+     "start": "43079",
+     "stop": "43567",
+     "strand": "+",
+     "length": "162",
+     "P_endolysin": "0.9999",
+     "annotation": "lysin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "MN158207.1",
+     "tier": "confident",
+     "id": "MN158207.1_orf0049",
+     "start": "36394",
+     "stop": "36879",
+     "strand": "+",
+     "length": "161",
+     "P_endolysin": "0.9995",
+     "annotation": "lysin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "MN337573.1",
+     "tier": "confident",
+     "id": "MN337573.1_orf0074",
+     "start": "47058",
+     "stop": "47546",
+     "strand": "+",
+     "length": "162",
+     "P_endolysin": "0.9999",
+     "annotation": "hypothetical protein",
+     "verdict": "annotated hypothetical/unknown",
+     "genome_has_annotated": false
+    },
+    {
+     "genome": "MN432485.1",
+     "tier": "confident",
+     "id": "MN432485.1_orf0006",
+     "start": "3186",
+     "stop": "3674",
+     "strand": "-",
+     "length": "162",
+     "P_endolysin": "1.0000",
+     "annotation": "endolysin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "MN545971.1",
+     "tier": "confident",
+     "id": "MN545971.1_orf0056",
+     "start": "40413",
+     "stop": "41600",
+     "strand": "+",
+     "length": "395",
+     "P_endolysin": "0.6828",
+     "annotation": "helicase",
+     "verdict": "annotated with another function",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "MN840485.1",
+     "tier": "confident",
+     "id": "MN840485.1_orf0062",
+     "start": "41114",
+     "stop": "41599",
+     "strand": "-",
+     "length": "161",
+     "P_endolysin": "0.9999",
+     "annotation": "endolysin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "MN994500.1",
+     "tier": "confident",
+     "id": "MN994500.1_orf0065",
+     "start": "40155",
+     "stop": "40649",
+     "strand": "-",
+     "length": "164",
+     "P_endolysin": "1.0000",
+     "annotation": "lysin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "MT023084.1",
+     "tier": "confident",
+     "id": "MT023084.1_orf0072",
+     "start": "44165",
+     "stop": "44662",
+     "strand": "-",
+     "length": "165",
+     "P_endolysin": "0.9812",
+     "annotation": "putative endolysin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "MT074433.1",
+     "tier": "confident",
+     "id": "MT074433.1_orf0052",
+     "start": "37796",
+     "stop": "38284",
+     "strand": "+",
+     "length": "162",
+     "P_endolysin": "1.0000",
+     "annotation": "endolysin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "MT360682.2",
+     "tier": "confident",
+     "id": "MT360682.2_orf0034",
+     "start": "32781",
+     "stop": "33263",
+     "strand": "+",
+     "length": "160",
+     "P_endolysin": "0.0115",
+     "annotation": "endolysin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "MT500539.1",
+     "tier": "confident",
+     "id": "MT500539.1_orf0002",
+     "start": "886",
+     "stop": "1755",
+     "strand": "+",
+     "length": "289",
+     "P_endolysin": "0.9731",
+     "annotation": null,
+     "verdict": "unannotated gene (not in the annotation)",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "MW021748.1",
+     "tier": "confident",
+     "id": "MW021748.1_orf0039",
+     "start": "32967",
+     "stop": "33458",
+     "strand": "+",
+     "length": "163",
+     "P_endolysin": "0.9990",
+     "annotation": "putative lysin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "MW021750.1",
+     "tier": "confident",
+     "id": "MW021750.1_orf0039",
+     "start": "32878",
+     "stop": "33369",
+     "strand": "+",
+     "length": "163",
+     "P_endolysin": "0.9990",
+     "annotation": "putative lysin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "MW032452.1",
+     "tier": "confident",
+     "id": "MW032452.1_orf0024",
+     "start": "7707",
+     "stop": "8243",
+     "strand": "-",
+     "length": "178",
+     "P_endolysin": "0.9997",
+     "annotation": "lysin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "MW689258.1",
+     "tier": "confident",
+     "id": "MW689258.1_orf0066",
+     "start": "41575",
+     "stop": "42063",
+     "strand": "+",
+     "length": "162",
+     "P_endolysin": "1.0000",
+     "annotation": "endolysin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "MZ333132.1",
+     "tier": "confident",
+     "id": "MZ333132.1_orf0011",
+     "start": "5538",
+     "stop": "6029",
+     "strand": "-",
+     "length": "163",
+     "P_endolysin": "1.0000",
+     "annotation": "lysin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "MZ398242.1",
+     "tier": "confident",
+     "id": "MZ398242.1_orf0063",
+     "start": "43073",
+     "stop": "43555",
+     "strand": "+",
+     "length": "160",
+     "P_endolysin": "1.0000",
+     "annotation": "endolysin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "MZ501077.1",
+     "tier": "confident",
+     "id": "MZ501077.1_orf0045",
+     "start": "34361",
+     "stop": "34855",
+     "strand": "+",
+     "length": "164",
+     "P_endolysin": "1.0000",
+     "annotation": "endolysin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "MZ501080.1",
+     "tier": "confident",
+     "id": "MZ501080.1_orf0050",
+     "start": "35806",
+     "stop": "36291",
+     "strand": "+",
+     "length": "161",
+     "P_endolysin": "0.9998",
+     "annotation": "endolysin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "MZ501099.1",
+     "tier": "confident",
+     "id": "MZ501099.1_orf0045",
+     "start": "35581",
+     "stop": "36075",
+     "strand": "+",
+     "length": "164",
+     "P_endolysin": "1.0000",
+     "annotation": "endolysin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "MZ634346.1",
+     "tier": "confident",
+     "id": "MZ634346.1_orf0072",
+     "start": "46848",
+     "stop": "47330",
+     "strand": "-",
+     "length": "160",
+     "P_endolysin": "1.0000",
+     "annotation": "lysozyme",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "MZ634351.1",
+     "tier": "confident",
+     "id": "MZ634351.1_orf0072",
+     "start": "46646",
+     "stop": "47128",
+     "strand": "-",
+     "length": "160",
+     "P_endolysin": "1.0000",
+     "annotation": "lysozyme",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "MZ669808.1",
+     "tier": "confident",
+     "id": "MZ669808.1_orf0055",
+     "start": "39427",
+     "stop": "39909",
+     "strand": "+",
+     "length": "160",
+     "P_endolysin": "0.9989",
+     "annotation": "lysin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "OK499973.1",
+     "tier": "confident",
+     "id": "OK499973.1_orf0034",
+     "start": "28393",
+     "stop": "28887",
+     "strand": "+",
+     "length": "164",
+     "P_endolysin": "0.9999",
+     "annotation": "putative endolysin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "OL449681.1",
+     "tier": "confident",
+     "id": "OL449681.1_orf0054",
+     "start": "34739",
+     "stop": "35224",
+     "strand": "-",
+     "length": "161",
+     "P_endolysin": "1.0000",
+     "annotation": "lysin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "OL539443.1",
+     "tier": "confident",
+     "id": "OL539443.1_orf0039",
+     "start": "32906",
+     "stop": "33397",
+     "strand": "+",
+     "length": "163",
+     "P_endolysin": "0.9990",
+     "annotation": "lysin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "OL539457.1",
+     "tier": "confident",
+     "id": "OL539457.1_orf0042",
+     "start": "34010",
+     "stop": "34501",
+     "strand": "+",
+     "length": "163",
+     "P_endolysin": "0.9995",
+     "annotation": "putative lysozyme",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "OL539461.1",
+     "tier": "confident",
+     "id": "OL539461.1_orf0040",
+     "start": "33079",
+     "stop": "33573",
+     "strand": "+",
+     "length": "164",
+     "P_endolysin": "1.0000",
+     "annotation": "SAR endolysin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "OL539462.1",
+     "tier": "confident",
+     "id": "OL539462.1_orf0039",
+     "start": "32826",
+     "stop": "33317",
+     "strand": "+",
+     "length": "163",
+     "P_endolysin": "0.9990",
+     "annotation": "putative lysin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "OL539465.1",
+     "tier": "confident",
+     "id": "OL539465.1_orf0039",
+     "start": "32954",
+     "stop": "33445",
+     "strand": "+",
+     "length": "163",
+     "P_endolysin": "0.9990",
+     "annotation": "lysin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "OL539466.1",
+     "tier": "confident",
+     "id": "OL539466.1_orf0040",
+     "start": "33542",
+     "stop": "34033",
+     "strand": "+",
+     "length": "163",
+     "P_endolysin": "0.9990",
+     "annotation": "lysozyme",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "OL539467.1",
+     "tier": "confident",
+     "id": "OL539467.1_orf0051",
+     "start": "37936",
+     "stop": "38418",
+     "strand": "+",
+     "length": "160",
+     "P_endolysin": "1.0000",
+     "annotation": "endolysin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "OM735690.1",
+     "tier": "confident",
+     "id": "OM735690.1_orf0063",
+     "start": "42104",
+     "stop": "42586",
+     "strand": "+",
+     "length": "160",
+     "P_endolysin": "1.0000",
+     "annotation": "lysozyme",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "ON843697.1",
+     "tier": "confident",
+     "id": "ON843697.1_orf0038",
+     "start": "32893",
+     "stop": "33387",
+     "strand": "+",
+     "length": "164",
+     "P_endolysin": "0.9964",
+     "annotation": "putative SAR endolysin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "ON979384.1",
+     "tier": "confident",
+     "id": "ON979384.1_orf0039",
+     "start": "33175",
+     "stop": "33684",
+     "strand": "+",
+     "length": "169",
+     "P_endolysin": "0.9936",
+     "annotation": "lysin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "ON979385.1",
+     "tier": "confident",
+     "id": "ON979385.1_orf0039",
+     "start": "33175",
+     "stop": "33684",
+     "strand": "+",
+     "length": "169",
+     "P_endolysin": "0.9936",
+     "annotation": "lysin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "OP120783.1",
+     "tier": "confident",
+     "id": "OP120783.1_orf0040",
+     "start": "31202",
+     "stop": "31711",
+     "strand": "+",
+     "length": "169",
+     "P_endolysin": "0.9964",
+     "annotation": "endolysin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "OP292673.1",
+     "tier": "confident",
+     "id": "OP292673.1_orf0062",
+     "start": "37514",
+     "stop": "38008",
+     "strand": "-",
+     "length": "164",
+     "P_endolysin": "1.0000",
+     "annotation": "lysin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "OP292674.1",
+     "tier": "confident",
+     "id": "OP292674.1_orf0061",
+     "start": "35987",
+     "stop": "36481",
+     "strand": "-",
+     "length": "164",
+     "P_endolysin": "1.0000",
+     "annotation": "lysin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "OP902292.1",
+     "tier": "confident",
+     "id": "OP902292.1_orf0072",
+     "start": "38787",
+     "stop": "39227",
+     "strand": "+",
+     "length": "146",
+     "P_endolysin": "1.0000",
+     "annotation": "hypothetical protein",
+     "verdict": "annotated hypothetical/unknown",
+     "genome_has_annotated": false
+    },
+    {
+     "genome": "OQ359885.1",
+     "tier": "confident",
+     "id": "OQ359885.1_orf0066",
+     "start": "41742",
+     "stop": "42233",
+     "strand": "+",
+     "length": "163",
+     "P_endolysin": "0.9994",
+     "annotation": "lysin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "OR753409.1",
+     "tier": "confident",
+     "id": "OR753409.1_orf0018",
+     "start": "11037",
+     "stop": "11531",
+     "strand": "+",
+     "length": "164",
+     "P_endolysin": "1.0000",
+     "annotation": "lysin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "OR786094.1",
+     "tier": "confident",
+     "id": "OR786094.1_orf0065",
+     "start": "41726",
+     "stop": "42217",
+     "strand": "+",
+     "length": "163",
+     "P_endolysin": "0.9994",
+     "annotation": "hypothetical protein",
+     "verdict": "annotated hypothetical/unknown",
+     "genome_has_annotated": false
+    },
+    {
+     "genome": "OR896827.1",
+     "tier": "confident",
+     "id": "OR896827.1_orf0038",
+     "start": "32664",
+     "stop": "33155",
+     "strand": "+",
+     "length": "163",
+     "P_endolysin": "1.0000",
+     "annotation": "endolysin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "OR896836.1",
+     "tier": "confident",
+     "id": "OR896836.1_orf0041",
+     "start": "33877",
+     "stop": "34368",
+     "strand": "+",
+     "length": "163",
+     "P_endolysin": "1.0000",
+     "annotation": "endolysin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "OR896845.1",
+     "tier": "confident",
+     "id": "OR896845.1_orf0040",
+     "start": "34592",
+     "stop": "35074",
+     "strand": "+",
+     "length": "160",
+     "P_endolysin": "1.0000",
+     "annotation": "endolysin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "OR896846.1",
+     "tier": "confident",
+     "id": "OR896846.1_orf0037",
+     "start": "34368",
+     "stop": "34850",
+     "strand": "+",
+     "length": "160",
+     "P_endolysin": "1.0000",
+     "annotation": "endolysin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "PP235089.1",
+     "tier": "confident",
+     "id": "PP235089.1_orf0039",
+     "start": "34093",
+     "stop": "34575",
+     "strand": "+",
+     "length": "160",
+     "P_endolysin": "0.9999",
+     "annotation": "endolysin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "PP503414.1",
+     "tier": "confident",
+     "id": "PP503414.1_orf0063",
+     "start": "41143",
+     "stop": "41637",
+     "strand": "+",
+     "length": "164",
+     "P_endolysin": "1.0000",
+     "annotation": "endolysin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "PP556865.1",
+     "tier": "confident",
+     "id": "PP556865.1_orf0046",
+     "start": "36873",
+     "stop": "37367",
+     "strand": "+",
+     "length": "164",
+     "P_endolysin": "1.0000",
+     "annotation": "SAR-endolysin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "PQ133004.1",
+     "tier": "confident",
+     "id": "PQ133004.1_orf0020",
+     "start": "8575",
+     "stop": "9057",
+     "strand": "-",
+     "length": "160",
+     "P_endolysin": "1.0000",
+     "annotation": "lysozyme",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "PQ306538.1",
+     "tier": "confident",
+     "id": "PQ306538.1_orf0016",
+     "start": "10791",
+     "stop": "11285",
+     "strand": "+",
+     "length": "164",
+     "P_endolysin": "1.0000",
+     "annotation": "endolysin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "PQ306539.1",
+     "tier": "confident",
+     "id": "PQ306539.1_orf0016",
+     "start": "10756",
+     "stop": "11250",
+     "strand": "+",
+     "length": "164",
+     "P_endolysin": "1.0000",
+     "annotation": "endolysin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "PQ505130.1",
+     "tier": "confident",
+     "id": "PQ505130.1_orf0044",
+     "start": "20789",
+     "stop": "21271",
+     "strand": "-",
+     "length": "160",
+     "P_endolysin": "1.0000",
+     "annotation": "lysozyme",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "PQ811887.1",
+     "tier": "confident",
+     "id": "PQ811887.1_orf0043",
+     "start": "34291",
+     "stop": "34785",
+     "strand": "+",
+     "length": "164",
+     "P_endolysin": "1.0000",
+     "annotation": "endolysin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "PV007924.1",
+     "tier": "confident",
+     "id": "PV007924.1_orf0068",
+     "start": "42444",
+     "stop": "42938",
+     "strand": "+",
+     "length": "164",
+     "P_endolysin": "0.9991",
+     "annotation": "endolysin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "PV081216.1",
+     "tier": "confident",
+     "id": "PV081216.1_orf0052",
+     "start": "39398",
+     "stop": "39880",
+     "strand": "+",
+     "length": "160",
+     "P_endolysin": "1.0000",
+     "annotation": "endolysin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "PV090993.1",
+     "tier": "confident",
+     "id": "PV090993.1_orf0060",
+     "start": "41121",
+     "stop": "41615",
+     "strand": "+",
+     "length": "164",
+     "P_endolysin": "1.0000",
+     "annotation": "endolysin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "PV153712.1",
+     "tier": "confident",
+     "id": "PV153712.1_orf0063",
+     "start": "41998",
+     "stop": "42492",
+     "strand": "+",
+     "length": "164",
+     "P_endolysin": "1.0000",
+     "annotation": "endolysin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "PV615260.1",
+     "tier": "confident",
+     "id": "PV615260.1_orf0007",
+     "start": "3252",
+     "stop": "3734",
+     "strand": "+",
+     "length": "160",
+     "P_endolysin": "1.0000",
+     "annotation": "endolysin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "PZ099263.1",
+     "tier": "confident",
+     "id": "PZ099263.1_orf0035",
+     "start": "28122",
+     "stop": "28619",
+     "strand": "+",
+     "length": "165",
+     "P_endolysin": "0.9999",
+     "annotation": "lysin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "PZ099264.1",
+     "tier": "confident",
+     "id": "PZ099264.1_orf0063",
+     "start": "41575",
+     "stop": "42063",
+     "strand": "+",
+     "length": "162",
+     "P_endolysin": "1.0000",
+     "annotation": "lysin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "PZ445493.1",
+     "tier": "confident",
+     "id": "PZ445493.1_orf0051",
+     "start": "37442",
+     "stop": "37927",
+     "strand": "+",
+     "length": "161",
+     "P_endolysin": "1.0000",
+     "annotation": "endolysin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "PZ445518.1",
+     "tier": "confident",
+     "id": "PZ445518.1_orf0041",
+     "start": "33861",
+     "stop": "34352",
+     "strand": "+",
+     "length": "163",
+     "P_endolysin": "1.0000",
+     "annotation": "endolysin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "PZ452600.1",
+     "tier": "confident",
+     "id": "PZ452600.1_orf0040",
+     "start": "33641",
+     "stop": "34132",
+     "strand": "+",
+     "length": "163",
+     "P_endolysin": "1.0000",
+     "annotation": "endolysin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "PZ534514.1",
+     "tier": "confident",
+     "id": "PZ534514.1_orf0075",
+     "start": "43256",
+     "stop": "43744",
+     "strand": "-",
+     "length": "162",
+     "P_endolysin": "1.0000",
+     "annotation": "endolysin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "QB005381.1",
+     "tier": "confident",
+     "id": "QB005381.1_orf0039",
+     "start": "34412",
+     "stop": "34894",
+     "strand": "+",
+     "length": "160",
+     "P_endolysin": "1.0000",
+     "annotation": "endolysin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "QB005389.1",
+     "tier": "confident",
+     "id": "QB005389.1_orf0038",
+     "start": "33561",
+     "stop": "34043",
+     "strand": "+",
+     "length": "160",
+     "P_endolysin": "0.9999",
+     "annotation": "endolysin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    }
+   ],
+   "call_is_annotated_gene": 0.958,
+   "call_is_annotated_gene_CI": [
+    0.917,
+    0.99
+   ],
+   "annotated_in_top5": 0.969,
+   "annotated_in_top5_CI": [
+    0.927,
+    1.0
+   ],
+   "by_novelty": {
+    "known family (30-95%)": {
+     "n": 41,
+     "call_correct": 39,
+     "top5": 40,
+     "not_called_by_genefinder": 0
+    },
+    "near-copy (>=95%)": {
+     "n": 54,
+     "call_correct": 53,
+     "top5": 53,
+     "not_called_by_genefinder": 1
+    },
+    "new family (<30%)": {
+     "n": 1,
+     "call_correct": 0,
+     "top5": 0,
+     "not_called_by_genefinder": 0
+    }
+   }
+  },
+  "spanin": {
+   "genomes_with_annotated": 60,
+   "per_genome": [
+    {
+     "genome": "JQ182736.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "KX828710.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "KY657202.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "MF158039.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "MH729819.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "MK095606.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "MK335533.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "MN013076.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "MN013087.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "MN432485.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "MN545971.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "MN994500.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "MT360682.2",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "MT500539.1",
+     "call_correct": false,
+     "best_rank": 38,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "MW021748.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "MW689258.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "MZ333132.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "MZ398242.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "MZ501077.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "MZ501080.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "MZ501099.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "MZ634346.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "MZ634351.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "OK499973.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "OL449681.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "OL539443.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "OL539461.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "OL539462.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "OL539465.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "OL539467.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "OM735690.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "ON843697.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "OP292673.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "OP292674.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "OP902292.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "OQ359885.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "OR896827.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "OR896836.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "OR896845.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "OR896846.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "PP235089.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "PP503414.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "PP556865.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "PQ133004.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "PQ306538.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "PQ306539.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "PQ505130.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "PQ811887.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "PV007924.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "PV081216.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "PV090993.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "PV153712.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "PV615260.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "PZ099263.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "PZ445493.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "PZ445518.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "PZ452600.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "PZ534514.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "QB005381.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    },
+    {
+     "genome": "QB005389.1",
+     "call_correct": true,
+     "best_rank": 1,
+     "annotated_found_by_genefinder": true
+    }
+   ],
+   "confident_calls": {
+    "agrees": 59,
+    "annotated hypothetical/unknown": 30,
+    "annotated with another function": 8,
+    "unannotated gene (not in the annotation)": 2,
+    "annotated as another lysis class": 1
+   },
+   "calls": [
+    {
+     "genome": "JQ182736.1",
+     "tier": "confident",
+     "id": "JQ182736.1_orf0060",
+     "start": "41098",
+     "stop": "41502",
+     "strand": "+",
+     "length": "134",
+     "P_spanin": "0.9515",
+     "annotation": "putative Rz1 protein",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "KC333879.1",
+     "tier": "confident",
+     "id": "KC333879.1_orf0042",
+     "start": "28695",
+     "stop": "29099",
+     "strand": "-",
+     "length": "134",
+     "P_spanin": "0.9913",
+     "annotation": "hypothetical protein",
+     "verdict": "annotated hypothetical/unknown",
+     "genome_has_annotated": false
+    },
+    {
+     "genome": "KP085586.1",
+     "tier": "confident",
+     "id": "KP085586.1_orf0003",
+     "start": "738",
+     "stop": "1139",
+     "strand": "-",
+     "length": "133",
+     "P_spanin": "0.9805",
+     "annotation": "hypothetical protein",
+     "verdict": "annotated hypothetical/unknown",
+     "genome_has_annotated": false
+    },
+    {
+     "genome": "KR296690.1",
+     "tier": "confident",
+     "id": "KR296690.1_orf0072",
+     "start": "37723",
+     "stop": "38112",
+     "strand": "+",
+     "length": "129",
+     "P_spanin": "0.9755",
+     "annotation": "putative bdr repeat protein",
+     "verdict": "annotated with another function",
+     "genome_has_annotated": false
+    },
+    {
+     "genome": "KX015770.1",
+     "tier": "confident",
+     "id": "KX015770.1_orf0053",
+     "start": "37526",
+     "stop": "37915",
+     "strand": "+",
+     "length": "129",
+     "P_spanin": "0.9790",
+     "annotation": "hypothetical protein",
+     "verdict": "annotated hypothetical/unknown",
+     "genome_has_annotated": false
+    },
+    {
+     "genome": "KX015771.1",
+     "tier": "confident",
+     "id": "KX015771.1_orf0066",
+     "start": "35809",
+     "stop": "36198",
+     "strand": "-",
+     "length": "129",
+     "P_spanin": "0.9790",
+     "annotation": "hypothetical protein",
+     "verdict": "annotated hypothetical/unknown",
+     "genome_has_annotated": false
+    },
+    {
+     "genome": "KX828710.1",
+     "tier": "confident",
+     "id": "KX828710.1_orf0064",
+     "start": "43055",
+     "stop": "43456",
+     "strand": "+",
+     "length": "133",
+     "P_spanin": "0.9678",
+     "annotation": "spanin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "KY657202.1",
+     "tier": "confident",
+     "id": "KY657202.1_orf0070",
+     "start": "41433",
+     "stop": "41822",
+     "strand": "-",
+     "length": "129",
+     "P_spanin": "0.6339",
+     "annotation": "putative unimolecular spanin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "KY694971.1",
+     "tier": "confident",
+     "id": "KY694971.1_orf0028",
+     "start": "24245",
+     "stop": "24634",
+     "strand": "+",
+     "length": "129",
+     "P_spanin": "0.6339",
+     "annotation": "hypothetical protein",
+     "verdict": "annotated hypothetical/unknown",
+     "genome_has_annotated": false
+    },
+    {
+     "genome": "MF093736.1",
+     "tier": "candidate",
+     "id": "MF093736.1_orf0004",
+     "start": "908",
+     "stop": "1435",
+     "strand": "-",
+     "length": "175",
+     "P_spanin": "0.7240",
+     "annotation": "hypothetical protein",
+     "verdict": "annotated hypothetical/unknown",
+     "genome_has_annotated": false
+    },
+    {
+     "genome": "MF158039.1",
+     "tier": "confident",
+     "id": "MF158039.1_orf0007",
+     "start": "3415",
+     "stop": "3819",
+     "strand": "-",
+     "length": "134",
+     "P_spanin": "0.9845",
+     "annotation": "putative Rz1 protein",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "MF468274.1",
+     "tier": "confident",
+     "id": "MF468274.1_orf0044",
+     "start": "22542",
+     "stop": "22943",
+     "strand": "-",
+     "length": "133",
+     "P_spanin": "0.9797",
+     "annotation": "hypothetical protein",
+     "verdict": "annotated hypothetical/unknown",
+     "genome_has_annotated": false
+    },
+    {
+     "genome": "MG049919.1",
+     "tier": "confident",
+     "id": "MG049919.1_orf0004",
+     "start": "1035",
+     "stop": "1436",
+     "strand": "-",
+     "length": "133",
+     "P_spanin": "0.9539",
+     "annotation": "hypothetical protein",
+     "verdict": "annotated hypothetical/unknown",
+     "genome_has_annotated": false
+    },
+    {
+     "genome": "MG241338.1",
+     "tier": "confident",
+     "id": "MG241338.1_orf0017",
+     "start": "7242",
+     "stop": "7631",
+     "strand": "-",
+     "length": "129",
+     "P_spanin": "0.6339",
+     "annotation": "hypothetical protein",
+     "verdict": "annotated hypothetical/unknown",
+     "genome_has_annotated": false
+    },
+    {
+     "genome": "MG732930.1",
+     "tier": "confident",
+     "id": "MG732930.1_orf0014",
+     "start": "7967",
+     "stop": "8374",
+     "strand": "+",
+     "length": "135",
+     "P_spanin": "0.9878",
+     "annotation": "hypothetical protein",
+     "verdict": "annotated hypothetical/unknown",
+     "genome_has_annotated": false
+    },
+    {
+     "genome": "MH051911.1",
+     "tier": "confident",
+     "id": "MH051911.1_orf0045",
+     "start": "21651",
+     "stop": "22052",
+     "strand": "-",
+     "length": "133",
+     "P_spanin": "0.9689",
+     "annotation": "hypothetical protein",
+     "verdict": "annotated hypothetical/unknown",
+     "genome_has_annotated": false
+    },
+    {
+     "genome": "MH051912.1",
+     "tier": "confident",
+     "id": "MH051912.1_orf0014",
+     "start": "5920",
+     "stop": "6321",
+     "strand": "-",
+     "length": "133",
+     "P_spanin": "0.9682",
+     "annotation": "hypothetical protein",
+     "verdict": "annotated hypothetical/unknown",
+     "genome_has_annotated": false
+    },
+    {
+     "genome": "MH102284.1",
+     "tier": "confident",
+     "id": "MH102284.1_orf0008",
+     "start": "4306",
+     "stop": "4695",
+     "strand": "-",
+     "length": "129",
+     "P_spanin": "0.9656",
+     "annotation": "hypothetical protein",
+     "verdict": "annotated hypothetical/unknown",
+     "genome_has_annotated": false
+    },
+    {
+     "genome": "MH729819.1",
+     "tier": "confident",
+     "id": "MH729819.1_orf0068",
+     "start": "42492",
+     "stop": "42881",
+     "strand": "+",
+     "length": "129",
+     "P_spanin": "0.9790",
+     "annotation": "unimolecular spanin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "MH845412.1",
+     "tier": "confident",
+     "id": "MH845412.1_orf0059",
+     "start": "34750",
+     "stop": "35160",
+     "strand": "-",
+     "length": "136",
+     "P_spanin": "0.9878",
+     "annotation": "RzlA",
+     "verdict": "annotated with another function",
+     "genome_has_annotated": false
+    },
+    {
+     "genome": "MH917278.1",
+     "tier": "confident",
+     "id": "MH917278.1_orf0064",
+     "start": "43577",
+     "stop": "43978",
+     "strand": "+",
+     "length": "133",
+     "P_spanin": "0.9797",
+     "annotation": "hypothetical protein",
+     "verdict": "annotated hypothetical/unknown",
+     "genome_has_annotated": false
+    },
+    {
+     "genome": "MK095606.1",
+     "tier": "confident",
+     "id": "MK095606.1_orf0039",
+     "start": "34277",
+     "stop": "34678",
+     "strand": "+",
+     "length": "133",
+     "P_spanin": "0.9206",
+     "annotation": "spanin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "MK335533.1",
+     "tier": "confident",
+     "id": "MK335533.1_orf0083",
+     "start": "45942",
+     "stop": "46322",
+     "strand": "+",
+     "length": "126",
+     "P_spanin": "0.6870",
+     "annotation": "spanin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "MK907235.1",
+     "tier": "confident",
+     "id": "MK907235.1_orf0055",
+     "start": "37736",
+     "stop": "38125",
+     "strand": "-",
+     "length": "129",
+     "P_spanin": "0.9889",
+     "annotation": "hypothetical protein",
+     "verdict": "annotated hypothetical/unknown",
+     "genome_has_annotated": false
+    },
+    {
+     "genome": "MK907241.1",
+     "tier": "confident",
+     "id": "MK907241.1_orf0054",
+     "start": "37220",
+     "stop": "37609",
+     "strand": "-",
+     "length": "129",
+     "P_spanin": "0.9889",
+     "annotation": "hypothetical protein",
+     "verdict": "annotated hypothetical/unknown",
+     "genome_has_annotated": false
+    },
+    {
+     "genome": "MK907248.1",
+     "tier": "confident",
+     "id": "MK907248.1_orf0004",
+     "start": "879",
+     "stop": "1268",
+     "strand": "-",
+     "length": "129",
+     "P_spanin": "0.9889",
+     "annotation": "hypothetical protein",
+     "verdict": "annotated hypothetical/unknown",
+     "genome_has_annotated": false
+    },
+    {
+     "genome": "MK907253.1",
+     "tier": "confident",
+     "id": "MK907253.1_orf0043",
+     "start": "26074",
+     "stop": "26463",
+     "strand": "-",
+     "length": "129",
+     "P_spanin": "0.9889",
+     "annotation": "hypothetical protein",
+     "verdict": "annotated hypothetical/unknown",
+     "genome_has_annotated": false
+    },
+    {
+     "genome": "MK907264.1",
+     "tier": "confident",
+     "id": "MK907264.1_orf0048",
+     "start": "31496",
+     "stop": "31885",
+     "strand": "-",
+     "length": "129",
+     "P_spanin": "0.9889",
+     "annotation": "hypothetical protein",
+     "verdict": "annotated hypothetical/unknown",
+     "genome_has_annotated": false
+    },
+    {
+     "genome": "MK907272.1",
+     "tier": "confident",
+     "id": "MK907272.1_orf0058",
+     "start": "40491",
+     "stop": "40880",
+     "strand": "-",
+     "length": "129",
+     "P_spanin": "0.9889",
+     "annotation": "hypothetical protein",
+     "verdict": "annotated hypothetical/unknown",
+     "genome_has_annotated": false
+    },
+    {
+     "genome": "MK962751.1",
+     "tier": "confident",
+     "id": "MK962751.1_orf0012",
+     "start": "7580",
+     "stop": "7975",
+     "strand": "+",
+     "length": "131",
+     "P_spanin": "0.9233",
+     "annotation": "RzlA",
+     "verdict": "annotated with another function",
+     "genome_has_annotated": false
+    },
+    {
+     "genome": "MN013076.1",
+     "tier": "confident",
+     "id": "MN013076.1_orf0042",
+     "start": "36382",
+     "stop": "36807",
+     "strand": "+",
+     "length": "141",
+     "P_spanin": "0.9927",
+     "annotation": "putative spanin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "MN013087.1",
+     "tier": "confident",
+     "id": "MN013087.1_orf0041",
+     "start": "35610",
+     "stop": "36035",
+     "strand": "+",
+     "length": "141",
+     "P_spanin": "0.9927",
+     "annotation": "putative spanin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "MN019128.1",
+     "tier": "confident",
+     "id": "MN019128.1_orf0018",
+     "start": "11218",
+     "stop": "11613",
+     "strand": "+",
+     "length": "131",
+     "P_spanin": "0.9822",
+     "annotation": null,
+     "verdict": "unannotated gene (not in the annotation)",
+     "genome_has_annotated": false
+    },
+    {
+     "genome": "MN153797.1",
+     "tier": "confident",
+     "id": "MN153797.1_orf0064",
+     "start": "43567",
+     "stop": "43968",
+     "strand": "+",
+     "length": "133",
+     "P_spanin": "0.9795",
+     "annotation": "hypothetical protein",
+     "verdict": "annotated hypothetical/unknown",
+     "genome_has_annotated": false
+    },
+    {
+     "genome": "MN158207.1",
+     "tier": "confident",
+     "id": "MN158207.1_orf0050",
+     "start": "36855",
+     "stop": "37244",
+     "strand": "+",
+     "length": "129",
+     "P_spanin": "0.9681",
+     "annotation": "hypothetical protein",
+     "verdict": "annotated hypothetical/unknown",
+     "genome_has_annotated": false
+    },
+    {
+     "genome": "MN337573.1",
+     "tier": "confident",
+     "id": "MN337573.1_orf0075",
+     "start": "47546",
+     "stop": "47947",
+     "strand": "+",
+     "length": "133",
+     "P_spanin": "0.9797",
+     "annotation": "lipoprotein",
+     "verdict": "annotated with another function",
+     "genome_has_annotated": false
+    },
+    {
+     "genome": "MN432485.1",
+     "tier": "confident",
+     "id": "MN432485.1_orf0005",
+     "start": "2785",
+     "stop": "3183",
+     "strand": "-",
+     "length": "132",
+     "P_spanin": "0.9810",
+     "annotation": "Rz1-like protein",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "MN545971.1",
+     "tier": "confident",
+     "id": "MN545971.1_orf0053",
+     "start": "39068",
+     "stop": "39613",
+     "strand": "+",
+     "length": "181",
+     "P_spanin": "0.8777",
+     "annotation": "unimolecular spanin protein",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "MN840485.1",
+     "tier": "confident",
+     "id": "MN840485.1_orf0061",
+     "start": "40749",
+     "stop": "41138",
+     "strand": "-",
+     "length": "129",
+     "P_spanin": "0.9841",
+     "annotation": "putative membrane protein",
+     "verdict": "annotated with another function",
+     "genome_has_annotated": false
+    },
+    {
+     "genome": "MN994500.1",
+     "tier": "confident",
+     "id": "MN994500.1_orf0064",
+     "start": "39769",
+     "stop": "40158",
+     "strand": "-",
+     "length": "129",
+     "P_spanin": "0.9748",
+     "annotation": "putative spanin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "MT023084.1",
+     "tier": "confident",
+     "id": "MT023084.1_orf0071",
+     "start": "43785",
+     "stop": "44165",
+     "strand": "-",
+     "length": "126",
+     "P_spanin": "0.9740",
+     "annotation": "hypothetical protein",
+     "verdict": "annotated hypothetical/unknown",
+     "genome_has_annotated": false
+    },
+    {
+     "genome": "MT074433.1",
+     "tier": "confident",
+     "id": "MT074433.1_orf0053",
+     "start": "38287",
+     "stop": "38673",
+     "strand": "+",
+     "length": "128",
+     "P_spanin": "0.9280",
+     "annotation": "hypothetical protein",
+     "verdict": "annotated hypothetical/unknown",
+     "genome_has_annotated": false
+    },
+    {
+     "genome": "MT360682.2",
+     "tier": "confident",
+     "id": "MT360682.2_orf0035",
+     "start": "33260",
+     "stop": "33682",
+     "strand": "+",
+     "length": "140",
+     "P_spanin": "0.9862",
+     "annotation": "putative u-spanin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "MT500539.1",
+     "tier": "confident",
+     "id": "MT500539.1_orf0023",
+     "start": "19935",
+     "stop": "20303",
+     "strand": "+",
+     "length": "122",
+     "P_spanin": "0.6159",
+     "annotation": "holin",
+     "verdict": "annotated as another lysis class",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "MW021748.1",
+     "tier": "confident",
+     "id": "MW021748.1_orf0040",
+     "start": "33455",
+     "stop": "33844",
+     "strand": "+",
+     "length": "129",
+     "P_spanin": "0.9790",
+     "annotation": "putative unimolecular spanin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "MW021750.1",
+     "tier": "confident",
+     "id": "MW021750.1_orf0040",
+     "start": "33366",
+     "stop": "33755",
+     "strand": "+",
+     "length": "129",
+     "P_spanin": "0.9761",
+     "annotation": "hypothetical protein",
+     "verdict": "annotated hypothetical/unknown",
+     "genome_has_annotated": false
+    },
+    {
+     "genome": "MW032452.1",
+     "tier": "confident",
+     "id": "MW032452.1_orf0023",
+     "start": "7477",
+     "stop": "7710",
+     "strand": "-",
+     "length": "77",
+     "P_spanin": "0.9636",
+     "annotation": "lipoprotein",
+     "verdict": "annotated with another function",
+     "genome_has_annotated": false
+    },
+    {
+     "genome": "MW689258.1",
+     "tier": "confident",
+     "id": "MW689258.1_orf0067",
+     "start": "42060",
+     "stop": "42440",
+     "strand": "+",
+     "length": "126",
+     "P_spanin": "0.9847",
+     "annotation": "u-spanin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "MZ333132.1",
+     "tier": "confident",
+     "id": "MZ333132.1_orf0010",
+     "start": "5149",
+     "stop": "5541",
+     "strand": "-",
+     "length": "130",
+     "P_spanin": "0.7672",
+     "annotation": "putative spanin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "MZ398242.1",
+     "tier": "confident",
+     "id": "MZ398242.1_orf0064",
+     "start": "43552",
+     "stop": "43977",
+     "strand": "+",
+     "length": "141",
+     "P_spanin": "0.9946",
+     "annotation": "putative spanin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "MZ501077.1",
+     "tier": "confident",
+     "id": "MZ501077.1_orf0046",
+     "start": "34852",
+     "stop": "35247",
+     "strand": "+",
+     "length": "131",
+     "P_spanin": "0.9870",
+     "annotation": "u-spanin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "MZ501080.1",
+     "tier": "confident",
+     "id": "MZ501080.1_orf0051",
+     "start": "36267",
+     "stop": "36656",
+     "strand": "+",
+     "length": "129",
+     "P_spanin": "0.9791",
+     "annotation": "u-spanin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "MZ501099.1",
+     "tier": "confident",
+     "id": "MZ501099.1_orf0046",
+     "start": "36072",
+     "stop": "36464",
+     "strand": "+",
+     "length": "130",
+     "P_spanin": "0.9827",
+     "annotation": "u-spanin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "MZ634346.1",
+     "tier": "confident",
+     "id": "MZ634346.1_orf0071",
+     "start": "46426",
+     "stop": "46851",
+     "strand": "-",
+     "length": "141",
+     "P_spanin": "0.9946",
+     "annotation": "U-spanin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "MZ634351.1",
+     "tier": "confident",
+     "id": "MZ634351.1_orf0071",
+     "start": "46224",
+     "stop": "46649",
+     "strand": "-",
+     "length": "141",
+     "P_spanin": "0.9924",
+     "annotation": "putative spanin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "MZ669808.1",
+     "tier": "confident",
+     "id": "MZ669808.1_orf0056",
+     "start": "39906",
+     "stop": "40313",
+     "strand": "+",
+     "length": "135",
+     "P_spanin": "0.9874",
+     "annotation": "hypothetical protein",
+     "verdict": "annotated hypothetical/unknown",
+     "genome_has_annotated": false
+    },
+    {
+     "genome": "OK499973.1",
+     "tier": "confident",
+     "id": "OK499973.1_orf0035",
+     "start": "28884",
+     "stop": "29273",
+     "strand": "+",
+     "length": "129",
+     "P_spanin": "0.9373",
+     "annotation": "putative spanin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "OL449681.1",
+     "tier": "confident",
+     "id": "OL449681.1_orf0053",
+     "start": "34374",
+     "stop": "34763",
+     "strand": "-",
+     "length": "129",
+     "P_spanin": "0.9823",
+     "annotation": "putative spanin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "OL539443.1",
+     "tier": "confident",
+     "id": "OL539443.1_orf0040",
+     "start": "33394",
+     "stop": "33783",
+     "strand": "+",
+     "length": "129",
+     "P_spanin": "0.9763",
+     "annotation": "unimolecular spanin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "OL539457.1",
+     "tier": "confident",
+     "id": "OL539457.1_orf0043",
+     "start": "34498",
+     "stop": "34917",
+     "strand": "+",
+     "length": "139",
+     "P_spanin": "0.9792",
+     "annotation": "hypothetical protein",
+     "verdict": "annotated hypothetical/unknown",
+     "genome_has_annotated": false
+    },
+    {
+     "genome": "OL539461.1",
+     "tier": "confident",
+     "id": "OL539461.1_orf0041",
+     "start": "33570",
+     "stop": "33959",
+     "strand": "+",
+     "length": "129",
+     "P_spanin": "0.6339",
+     "annotation": "unimolecular spanin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "OL539462.1",
+     "tier": "confident",
+     "id": "OL539462.1_orf0040",
+     "start": "33314",
+     "stop": "33703",
+     "strand": "+",
+     "length": "129",
+     "P_spanin": "0.9790",
+     "annotation": "putative unimolecular spanin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "OL539465.1",
+     "tier": "confident",
+     "id": "OL539465.1_orf0040",
+     "start": "33442",
+     "stop": "33831",
+     "strand": "+",
+     "length": "129",
+     "P_spanin": "0.9790",
+     "annotation": "putative unimolecular spanin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "OL539466.1",
+     "tier": "confident",
+     "id": "OL539466.1_orf0041",
+     "start": "34030",
+     "stop": "34419",
+     "strand": "+",
+     "length": "129",
+     "P_spanin": "0.9735",
+     "annotation": "hypothetical protein",
+     "verdict": "annotated hypothetical/unknown",
+     "genome_has_annotated": false
+    },
+    {
+     "genome": "OL539467.1",
+     "tier": "confident",
+     "id": "OL539467.1_orf0052",
+     "start": "38400",
+     "stop": "38804",
+     "strand": "+",
+     "length": "134",
+     "P_spanin": "0.9743",
+     "annotation": "putative U-spanin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "OM735690.1",
+     "tier": "confident",
+     "id": "OM735690.1_orf0064",
+     "start": "42583",
+     "stop": "43008",
+     "strand": "+",
+     "length": "141",
+     "P_spanin": "0.9924",
+     "annotation": "putative spanin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "ON843697.1",
+     "tier": "confident",
+     "id": "ON843697.1_orf0039",
+     "start": "33384",
+     "stop": "33806",
+     "strand": "+",
+     "length": "140",
+     "P_spanin": "0.9273",
+     "annotation": "putative u-spanin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "ON979384.1",
+     "tier": "confident",
+     "id": "ON979384.1_orf0040",
+     "start": "33681",
+     "stop": "34091",
+     "strand": "+",
+     "length": "136",
+     "P_spanin": "0.9461",
+     "annotation": "hypothetical protein",
+     "verdict": "annotated hypothetical/unknown",
+     "genome_has_annotated": false
+    },
+    {
+     "genome": "ON979385.1",
+     "tier": "confident",
+     "id": "ON979385.1_orf0040",
+     "start": "33681",
+     "stop": "34091",
+     "strand": "+",
+     "length": "136",
+     "P_spanin": "0.9461",
+     "annotation": "hypothetical protein",
+     "verdict": "annotated hypothetical/unknown",
+     "genome_has_annotated": false
+    },
+    {
+     "genome": "OP120783.1",
+     "tier": "confident",
+     "id": "OP120783.1_orf0041",
+     "start": "31708",
+     "stop": "32118",
+     "strand": "+",
+     "length": "136",
+     "P_spanin": "0.9878",
+     "annotation": null,
+     "verdict": "unannotated gene (not in the annotation)",
+     "genome_has_annotated": false
+    },
+    {
+     "genome": "OP292673.1",
+     "tier": "confident",
+     "id": "OP292673.1_orf0061",
+     "start": "37128",
+     "stop": "37517",
+     "strand": "-",
+     "length": "129",
+     "P_spanin": "0.9762",
+     "annotation": "putative spanin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "OP292674.1",
+     "tier": "confident",
+     "id": "OP292674.1_orf0060",
+     "start": "35601",
+     "stop": "35990",
+     "strand": "-",
+     "length": "129",
+     "P_spanin": "0.9762",
+     "annotation": "putative spanin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "OP902292.1",
+     "tier": "confident",
+     "id": "OP902292.1_orf0073",
+     "start": "39274",
+     "stop": "39708",
+     "strand": "+",
+     "length": "144",
+     "P_spanin": "0.8769",
+     "annotation": "U-spanin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "OQ359885.1",
+     "tier": "confident",
+     "id": "OQ359885.1_orf0067",
+     "start": "42230",
+     "stop": "42646",
+     "strand": "+",
+     "length": "138",
+     "P_spanin": "0.9844",
+     "annotation": "putative spanin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "OR753409.1",
+     "tier": "confident",
+     "id": "OR753409.1_orf0019",
+     "start": "11528",
+     "stop": "11923",
+     "strand": "+",
+     "length": "131",
+     "P_spanin": "0.9915",
+     "annotation": "lipoprotein",
+     "verdict": "annotated with another function",
+     "genome_has_annotated": false
+    },
+    {
+     "genome": "OR786094.1",
+     "tier": "confident",
+     "id": "OR786094.1_orf0066",
+     "start": "42214",
+     "stop": "42618",
+     "strand": "+",
+     "length": "134",
+     "P_spanin": "0.9537",
+     "annotation": "hypothetical protein",
+     "verdict": "annotated hypothetical/unknown",
+     "genome_has_annotated": false
+    },
+    {
+     "genome": "OR896827.1",
+     "tier": "confident",
+     "id": "OR896827.1_orf0039",
+     "start": "33152",
+     "stop": "33547",
+     "strand": "+",
+     "length": "131",
+     "P_spanin": "0.9332",
+     "annotation": "Rz-like spanin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "OR896836.1",
+     "tier": "confident",
+     "id": "OR896836.1_orf0042",
+     "start": "34365",
+     "stop": "34760",
+     "strand": "+",
+     "length": "131",
+     "P_spanin": "0.9448",
+     "annotation": "Rz-like spanin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "OR896845.1",
+     "tier": "confident",
+     "id": "OR896845.1_orf0041",
+     "start": "35071",
+     "stop": "35496",
+     "strand": "+",
+     "length": "141",
+     "P_spanin": "0.9947",
+     "annotation": "Rz-like spanin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "OR896846.1",
+     "tier": "confident",
+     "id": "OR896846.1_orf0038",
+     "start": "34847",
+     "stop": "35272",
+     "strand": "+",
+     "length": "141",
+     "P_spanin": "0.9925",
+     "annotation": "Rz-like spanin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "PP235089.1",
+     "tier": "confident",
+     "id": "PP235089.1_orf0040",
+     "start": "34572",
+     "stop": "34997",
+     "strand": "+",
+     "length": "141",
+     "P_spanin": "0.9947",
+     "annotation": "Rz-like spanin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "PP503414.1",
+     "tier": "confident",
+     "id": "PP503414.1_orf0064",
+     "start": "41634",
+     "stop": "42023",
+     "strand": "+",
+     "length": "129",
+     "P_spanin": "0.9762",
+     "annotation": "Rz-like spanin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "PP556865.1",
+     "tier": "confident",
+     "id": "PP556865.1_orf0047",
+     "start": "37364",
+     "stop": "37756",
+     "strand": "+",
+     "length": "130",
+     "P_spanin": "0.9642",
+     "annotation": "U-spanin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "PQ133004.1",
+     "tier": "confident",
+     "id": "PQ133004.1_orf0019",
+     "start": "8153",
+     "stop": "8578",
+     "strand": "-",
+     "length": "141",
+     "P_spanin": "0.9924",
+     "annotation": "Rz-like spanin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "PQ306538.1",
+     "tier": "confident",
+     "id": "PQ306538.1_orf0017",
+     "start": "11282",
+     "stop": "11677",
+     "strand": "+",
+     "length": "131",
+     "P_spanin": "0.9855",
+     "annotation": "Rz-like spanin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "PQ306539.1",
+     "tier": "confident",
+     "id": "PQ306539.1_orf0017",
+     "start": "11247",
+     "stop": "11642",
+     "strand": "+",
+     "length": "131",
+     "P_spanin": "0.9900",
+     "annotation": "Rz-like spanin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "PQ505130.1",
+     "tier": "confident",
+     "id": "PQ505130.1_orf0043",
+     "start": "20367",
+     "stop": "20792",
+     "strand": "-",
+     "length": "141",
+     "P_spanin": "0.9914",
+     "annotation": "Rz-like spanin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "PQ811887.1",
+     "tier": "confident",
+     "id": "PQ811887.1_orf0044",
+     "start": "34782",
+     "stop": "35183",
+     "strand": "+",
+     "length": "133",
+     "P_spanin": "0.9849",
+     "annotation": "u-spanin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "PV007924.1",
+     "tier": "confident",
+     "id": "PV007924.1_orf0069",
+     "start": "42935",
+     "stop": "43324",
+     "strand": "+",
+     "length": "129",
+     "P_spanin": "0.9792",
+     "annotation": "putative spanin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "PV081216.1",
+     "tier": "confident",
+     "id": "PV081216.1_orf0053",
+     "start": "39877",
+     "stop": "40302",
+     "strand": "+",
+     "length": "141",
+     "P_spanin": "0.9924",
+     "annotation": "Rz-like spanin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "PV090993.1",
+     "tier": "confident",
+     "id": "PV090993.1_orf0061",
+     "start": "41612",
+     "stop": "42001",
+     "strand": "+",
+     "length": "129",
+     "P_spanin": "0.9762",
+     "annotation": "Rz-like spanin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "PV153712.1",
+     "tier": "confident",
+     "id": "PV153712.1_orf0064",
+     "start": "42489",
+     "stop": "42878",
+     "strand": "+",
+     "length": "129",
+     "P_spanin": "0.9762",
+     "annotation": "Rz-like spanin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "PV615260.1",
+     "tier": "confident",
+     "id": "PV615260.1_orf0008",
+     "start": "3731",
+     "stop": "4156",
+     "strand": "+",
+     "length": "141",
+     "P_spanin": "0.9937",
+     "annotation": "Rz-like spanin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "PZ099263.1",
+     "tier": "confident",
+     "id": "PZ099263.1_orf0036",
+     "start": "28616",
+     "stop": "29029",
+     "strand": "+",
+     "length": "137",
+     "P_spanin": "0.9907",
+     "annotation": "putative spanin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "PZ099264.1",
+     "tier": "confident",
+     "id": "PZ099264.1_orf0064",
+     "start": "42066",
+     "stop": "42464",
+     "strand": "+",
+     "length": "132",
+     "P_spanin": "0.9889",
+     "annotation": "lipoprotein",
+     "verdict": "annotated with another function",
+     "genome_has_annotated": false
+    },
+    {
+     "genome": "PZ445493.1",
+     "tier": "confident",
+     "id": "PZ445493.1_orf0052",
+     "start": "37906",
+     "stop": "38310",
+     "strand": "+",
+     "length": "134",
+     "P_spanin": "0.9638",
+     "annotation": "Rz-like spanin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "PZ445518.1",
+     "tier": "confident",
+     "id": "PZ445518.1_orf0042",
+     "start": "34349",
+     "stop": "34744",
+     "strand": "+",
+     "length": "131",
+     "P_spanin": "0.9233",
+     "annotation": "Rz-like spanin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "PZ452600.1",
+     "tier": "confident",
+     "id": "PZ452600.1_orf0041",
+     "start": "34129",
+     "stop": "34524",
+     "strand": "+",
+     "length": "131",
+     "P_spanin": "0.9673",
+     "annotation": "Rz-like spanin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "PZ534514.1",
+     "tier": "confident",
+     "id": "PZ534514.1_orf0074",
+     "start": "42855",
+     "stop": "43253",
+     "strand": "-",
+     "length": "132",
+     "P_spanin": "0.9804",
+     "annotation": "Rz-like spanin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "QB005381.1",
+     "tier": "confident",
+     "id": "QB005381.1_orf0040",
+     "start": "34891",
+     "stop": "35316",
+     "strand": "+",
+     "length": "141",
+     "P_spanin": "0.9791",
+     "annotation": "Rz-like spanin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    },
+    {
+     "genome": "QB005389.1",
+     "tier": "confident",
+     "id": "QB005389.1_orf0039",
+     "start": "34040",
+     "stop": "34465",
+     "strand": "+",
+     "length": "141",
+     "P_spanin": "0.9947",
+     "annotation": "Rz-like spanin",
+     "verdict": "agrees",
+     "genome_has_annotated": true
+    }
+   ],
+   "call_is_annotated_gene": 0.983,
+   "call_is_annotated_gene_CI": [
+    0.95,
+    1.0
+   ],
+   "annotated_in_top5": 0.983,
+   "annotated_in_top5_CI": [
+    0.95,
+    1.0
+   ],
+   "by_novelty": {
+    "near-copy (>=95%)": {
+     "n": 49,
+     "call_correct": 49,
+     "top5": 49,
+     "not_called_by_genefinder": 0
+    },
+    "known family (30-95%)": {
+     "n": 10,
+     "call_correct": 10,
+     "top5": 10,
+     "not_called_by_genefinder": 0
+    },
+    "new family (<30%)": {
+     "n": 1,
+     "call_correct": 0,
+     "top5": 0,
+     "not_called_by_genefinder": 0
+    }
+   }
+  }
+ }
+}
