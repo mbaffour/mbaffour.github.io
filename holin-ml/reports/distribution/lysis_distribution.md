@@ -69,6 +69,35 @@ tested.
   Drexlerviridae combine SAR endolysins with single-helix holins whose N terminus faces out -- the arrangement expected
   of a pinholin whose first, SAR-like helix is not detected; worth testing.
 
+## Consensus with DeepTMHMM and SignalP 6.0 (applied to the figures)
+
+After comparing our predictor with DeepTMHMM and SignalP 6.0 (`../external/comparison.md`), the figures now use
+(`scripts/57_consensus_topology.py`, `topology_consensus_by_genome.csv`):
+
+- **Holin class:** ours, with DeepTMHMM's agreement shown per family (76-100% in eight families; T7-like 48%, marked
+  unresolved).
+- **SAR endolysins:** only where our rule and DeepTMHMM agree. This removes the N4-like SAR calls entirely (39% by our
+  rule alone, 0% by consensus); elsewhere the two agree almost everywhere (lambdoid 32%, P2-like 44%, Drexlerviridae
+  94%, T7-like 34%), except T4-like, where DeepTMHMM alone calls another 27%.
+- **Spanin types:** lipoproteins by SignalP 6.0 (more sensitive than our lipobox motif), helices by our predictor.
+  More pairs resolve as two-component: T5-like 39% -> 63%, T4-like 67% -> 83%, jumbo 37% -> 43%; Drexlerviridae
+  unimolecular 93% -> 95%.
+
+## How the figures are checked
+
+Every figure is written through one function (`scripts/53_set_figures.py` `save()`) that refuses to pass a layout
+with, in rendered pixels:
+- text overlapping text (tick labels, titles, labels, legends);
+- text or a legend on top of data -- a bar it does not label, an error bar or line, a scatter point (only the drawn,
+  clipped part of each artist counts); a value label may sit only fully inside the one bar it labels;
+- a value label with too little contrast against its bar (WCAG ratio < 3; label colours are now chosen from the bar
+  colour automatically);
+- data clipped by the axis limits.
+The checks were verified on figures with planted faults (a label spilling across a stacked segment, text on an error
+bar, text and a legend over points, white text on a near-white bar, a bar beyond the axis limit): each is caught, and
+correctly placed labels are not flagged. Visual review found three faults the earlier checks missed (a clipped bar,
+unreadable labels on pale segments, a large gap under the heatmap title); the last two checks were added for them.
+
 ## Caveats
 
 - Holin class = predicted helix count; a weak first helix (as in pinholins) can be missed, moving a class II holin to

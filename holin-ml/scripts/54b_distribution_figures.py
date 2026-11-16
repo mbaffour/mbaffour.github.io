@@ -24,8 +24,8 @@ OUT = B / "reports/distribution/figures"
 
 def load():
     R = list(csv.DictReader(open(B / "reports/distribution/lysis_by_genome.csv")))
-    tp = B / "reports/distribution/topology_by_genome.csv"
-    if tp.exists():
+    for tp in (B / "reports/distribution/topology_by_genome.csv", B / "reports/distribution/topology_consensus_by_genome.csv"):
+      if tp.exists():
         T = {(r["set"], r["genome"]): r for r in csv.DictReader(open(tp))}
         for r in R:
             for k, v in T.get((r["set"], r["genome"]), {}).items():
@@ -56,6 +56,8 @@ def heatmap(by):
         ("class II (2 helices)", "holin", HOL, lambda r: r["holin_class"].startswith("II ")),
         ("class III (1 helix)", "holin", HOL, lambda r: r["holin_class"].startswith("III ")),
         ("N terminus inside", "holin", HOL, lambda r: r.get("holin_nterm") == "in"),
+        ("class agrees with DeepTMHMM", "holin", lambda r: bool(r.get("holin_class_ours")),
+         lambda r: r.get("holin_class_agree") == "True"),
         ("known Pfam holin family", "holin", HOL, lambda r: r.get("holin_pfam") not in ("", "none", None)),
         ("≥ 2 strong holin genes", "holin", ALL, lambda r: int(r["holin_copies_P90"]) >= 2),
         ("glycosidase", "endolysin", END, lambda r: r["endolysin_class"] == "glycosidase"),
@@ -64,9 +66,10 @@ def heatmap(by):
         ("peptidase", "endolysin", END, lambda r: r["endolysin_class"] == "peptidase"),
         ("no domain detected", "endolysin", END, lambda r: r["endolysin_class"] == "no domain detected"),
         ("cell-wall binding", "endolysin", END, lambda r: r.get("endolysin_binding") == "True"),
-        ("SAR endolysin", "endolysin", ENC, lambda r: r["endolysin_type"] == "SAR"),
-        ("two-component (i + o)", "spanin", ALL, lambda r: r.get("spanin_type") == "two-component (i + o)"),
-        ("unimolecular (u)", "spanin", ALL, lambda r: r.get("spanin_type") == "unimolecular (u)"),
+        ("SAR (ours + DeepTMHMM agree)", "endolysin", lambda r: bool(r.get("endolysin_SAR")),
+         lambda r: r["endolysin_SAR"] == "SAR (both)"),
+        ("two-component (i + o)", "spanin", ALL, lambda r: r.get("spanin_type_signalp") == "two-component (i + o)"),
+        ("unimolecular (u)", "spanin", ALL, lambda r: r.get("spanin_type_signalp") == "unimolecular (u)"),
         ("embedded pair", "spanin", ALL, lambda r: r.get("spanin_arch") == "embedded"),
         ("overlapping pair", "spanin", ALL, lambda r: r.get("spanin_arch") == "overlapping"),
         ("no confident spanin", "spanin", ALL, lambda r: r.get("spanin_arch") == "no confident spanin")]
@@ -94,7 +97,7 @@ def heatmap(by):
     ax.set_ylim(len(SETS) + 0.5, -0.5)
     ax.set_title("The lysis toolkit of each phage family, as called from DNA\n"
                  "% of genomes (cassette, spanin) · % of confident holin calls (holin) · % of called endolysins (endolysin)",
-                 loc="left", fontsize=11.5, pad=128, x=-0.2, linespacing=1.6)
+                 loc="left", fontsize=11.5, pad=12, x=-0.2, linespacing=1.6)
     return save(fig, OUT / "1_toolkit_heatmap.png")
 
 
@@ -104,8 +107,7 @@ def stacked(ax, by, cats, colors, key, title):
         v = np.array([frac(by[s], lambda r: key(r) == c) for s in SETS])
         ax.barh(range(len(SETS)), v, left=left, color=col, height=0.7, label=c, edgecolor="white", linewidth=0.6)
         for i, (l, w) in enumerate(zip(left, v)):
-            if w >= 9: ax.text(l + w / 2, i, f"{w:.0f}", ha="center", va="center", fontsize=7.5,
-                               color="white" if col not in ("#d9d9d9", "#eeeeee", "#c9c9c9") else INK)
+            if w >= 9: ax.text(l + w / 2, i, f"{w:.0f}", ha="center", va="center", fontsize=7.5, color=FG.ink_on(col))
         left += v
     ax.set_xlim(0, 100); ax.set_yticks(range(len(SETS))); ax.invert_yaxis()
     ax.set_xlabel("% of genomes"); ax.set_title(title, loc="left", fontsize=10, color=INK)
@@ -122,13 +124,13 @@ def endolysin_fig(by):
     a1.legend(h[:-1], l[:-1], loc="upper center", bbox_to_anchor=(0.5, -0.16), ncol=4, frameon=False, fontsize=8)
     y = np.arange(len(SETS))
     b = [frac([r for r in by[s] if r.get("endolysin_class")], lambda r: r["endolysin_binding"] == "True") for s in SETS]
-    sar = [frac([r for r in by[s] if r.get("endolysin_type")], lambda r: r["endolysin_type"] == "SAR") for s in SETS]
+    sar = [frac([r for r in by[s] if r.get("endolysin_SAR")], lambda r: r["endolysin_SAR"] == "SAR (both)") for s in SETS]
     a2.barh(y - 0.18, b, 0.34, color=COL["endolysin"], label="cell-wall-binding domain")
-    a2.barh(y + 0.18, sar, 0.34, color=COL["endolysin"], alpha=0.4, label="SAR endolysin (topology predictor)")
+    a2.barh(y + 0.18, sar, 0.34, color=COL["endolysin"], alpha=0.4, label="SAR endolysin (ours + DeepTMHMM agree)")
     for i in range(len(SETS)):
         a2.text(b[i] + 1, y[i] - 0.18, f"{b[i]:.0f}", va="center", fontsize=7.5)
         a2.text(sar[i] + 1, y[i] + 0.18, f"{sar[i]:.0f}", va="center", fontsize=7.5)
-    a2.set_yticks(y); a2.set_yticklabels([]); a2.invert_yaxis(); a2.set_xlim(0, 60)
+    a2.set_yticks(y); a2.set_yticklabels([]); a2.invert_yaxis(); a2.set_xlim(0, 108); a2.set_xticks([0, 25, 50, 75, 100])
     a2.set_xlabel("% of called endolysins"); a2.set_title("modules", loc="left", fontsize=10)
     a2.legend(loc="upper center", bbox_to_anchor=(0.5, -0.16), frameon=False, fontsize=8)
     a2.xaxis.grid(True, color=GRID); a2.set_axisbelow(True)
@@ -177,7 +179,7 @@ def holin_fig(by):
         v = np.array([frac(by[s], f) for s in SETS])
         a2.barh(range(len(SETS)), v, left=left, color=col, height=0.7, label=c, edgecolor="white", linewidth=0.6)
         for i, (l, w) in enumerate(zip(left, v)):
-            if w >= 9: ax_c = "white" if col in ("#2171b5", "#08306b") else INK; a2.text(l + w / 2, i, f"{w:.0f}", ha="center", va="center", fontsize=7.5, color=ax_c)
+            if w >= 9: a2.text(l + w / 2, i, f"{w:.0f}", ha="center", va="center", fontsize=7.5, color=FG.ink_on(col))
         left += v
     a2.set_yticks(range(len(SETS))); a2.set_yticklabels([]); a2.invert_yaxis(); a2.set_xlim(0, 100)
     a2.set_xlabel("% of genomes (rest: none at P ≥ 0.9)")
@@ -202,7 +204,7 @@ def cassette_fig(by):
         v = np.nan_to_num(v)
         a2.barh(range(len(SETS)), v, left=left, color=col, height=0.7, label=o, edgecolor="white", linewidth=0.6)
         for i, (l, w) in enumerate(zip(left, v)):
-            if w >= 12: a2.text(l + w / 2, i, f"{w:.0f}", ha="center", va="center", fontsize=7.5, color="white")
+            if w >= 12: a2.text(l + w / 2, i, f"{w:.0f}", ha="center", va="center", fontsize=7.5, color=FG.ink_on(col))
         left += v
     for i, s in enumerate(SETS):
         n = sum(r["cassette"] == "co-located" for r in by[s])
@@ -222,7 +224,11 @@ def holin_topology_fig(by):
     fig, (a1, a2, a3) = plt.subplots(1, 3, figsize=(14.2, 4.8), gridspec_kw={"width_ratios": [2.0, 0.9, 1.6]})
     sub = {s: [r for r in by[s] if r.get("holin_class")] for s in SETS}
     stacked(a1, sub, cats, cols, lambda r: r["holin_class"], "class of the called holin (predicted helices)")
-    a1.set_yticklabels([f"{SHORT[s]}  (n={len(sub[s])})" for s in SETS], fontsize=8.5)
+    def agree(s):
+        rr = [r for r in by[s] if r.get("holin_class_ours")]
+        return 100 * sum(r["holin_class_agree"] == "True" for r in rr) / max(len(rr), 1)
+    a1.set_yticklabels([f"{SHORT[s]}  (n={len(sub[s])}; DeepTMHMM agrees {agree(s):.0f}%{' · unresolved' if agree(s) < 60 else ''})"
+                        for s in SETS], fontsize=8.5)
     a1.set_xlabel("% of confident holin calls")
     a1.legend(["class I (3)", "class II (2)", "class III (1)", "no helix", "4+"], loc="upper center",
               bbox_to_anchor=(0.5, -0.16), ncol=5, frameon=False, fontsize=8)
@@ -237,7 +243,7 @@ def holin_topology_fig(by):
     a3.set_yticklabels([]); a3.set_xlabel("% of genomes with ≥ 2 strong holin-like genes")
     for i, s in enumerate(SETS): a3.text(101, i, f"n={len(sub2[s])}", va="center", fontsize=7.5, color=MUTED)
     a3.set_xlim(0, 115); a3.set_xticks([0, 25, 50, 75, 100])
-    fig.suptitle("Holin membrane topology by phage family (ESM transmembrane predictor; validated on Swiss-Prot)",
+    fig.suptitle("Holin membrane topology by phage family (our ESM predictor; class checked against DeepTMHMM)",
                  x=0.01, ha="left", fontsize=12, y=1.0)
     return save(fig, OUT / "6_holin_topology.png")
 
@@ -246,18 +252,18 @@ def spanin_type_fig(by):
     cats = ["two-component (i + o)", "unimolecular (u)", "i-spanin only", "other", "no confident spanin"]
     cols = ["#1b5e20", "#8d6e63", "#a5d6a7", "#c9c9c9", "#eeeeee"]
     fig, (a1, a2) = plt.subplots(1, 2, figsize=(12.6, 4.6), gridspec_kw={"width_ratios": [2.0, 1]})
-    stacked(a1, by, cats, cols, lambda r: r.get("spanin_type") or "no confident spanin",
-            "spanin type, from the topology of the pair")
+    stacked(a1, by, cats, cols, lambda r: r.get("spanin_type_signalp") or "no confident spanin",
+            "spanin type (lipoproteins by SignalP 6.0, helices by our predictor)")
     a1.set_yticklabels(ylabels(by), fontsize=8.5)
     h, l = a1.get_legend_handles_labels()
     a1.legend(h[:4] + [h[4]], ["two-component (i-spanin + o-spanin)", "unimolecular (u-spanin)", "i-spanin, no partner found",
               "other", "no confident spanin"], loc="upper center", bbox_to_anchor=(0.5, -0.16), ncol=3, frameon=False, fontsize=8)
-    y = np.arange(len(SETS))
-    v = [frac([r for r in by[s] if r.get("endolysin_type")], lambda r: r["endolysin_type"] == "SAR") for s in SETS]
-    a2.barh(y, v, 0.6, color=COL["endolysin"])
-    for i, x in enumerate(v): a2.text(x + 1.5, i, f"{x:.0f}", va="center", fontsize=7.5)
-    a2.set_yticks(y); a2.set_yticklabels([]); a2.invert_yaxis(); a2.set_xlim(0, 118); a2.set_xticks([0, 25, 50, 75, 100])
-    a2.set_xlabel("% of confident endolysin calls"); a2.set_title("SAR endolysins (membrane-anchored)", loc="left", fontsize=10)
+    sub = {s: [r for r in by[s] if r.get("endolysin_SAR")] for s in SETS}
+    stacked(a2, sub, ["SAR (both)", "SAR, ours only", "SAR, DeepTMHMM only", "canonical (both)"],
+            ["#C8553D", "#e8a596", "#b0b0b0", "#f2efee"], lambda r: r["endolysin_SAR"], "SAR endolysins: two tools")
+    a2.set_yticklabels([]); a2.set_xlabel("% of confident endolysin calls")
+    a2.legend(["both tools", "ours only", "DeepTMHMM only", "canonical (both)"], loc="upper center",
+              bbox_to_anchor=(0.5, -0.16), ncol=2, frameon=False, fontsize=8)
     a2.xaxis.grid(True, color=GRID); a2.set_axisbelow(True)
     fig.suptitle("Spanin types and SAR endolysins by phage family", x=0.01, ha="left", fontsize=12, y=1.0)
     return save(fig, OUT / "7_spanin_types_SAR.png")

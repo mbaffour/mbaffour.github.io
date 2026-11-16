@@ -67,8 +67,7 @@ def figures(res, ours, DT, SP, roles, seqs):
                 w = 100 * f[tool].get(c, 0) / max(n, 1)
                 ax.barh(y, w, left=left, color=col, height=0.8, edgecolor="white", linewidth=0.5,
                         label=(f"class {c}" if c in ("I", "II", "III") else c) if y == 0 else None)
-                if w >= 9: ax.text(left + w / 2, y, f"{w:.0f}", ha="center", va="center", fontsize=7,
-                                   color="white" if c in ("I", "II") else INK)
+                if w >= 9: ax.text(left + w / 2, y, f"{w:.0f}", ha="center", va="center", fontsize=7, color=FG.ink_on(col))
                 left += w
             ticks.append((y, f"{SHORT[s]} · {lab}")); y += 1
         ax.text(101.5, y - 1.5, f"agree {100 * f['class_agreement']:.0f}%\n(n={f['n']})", va="center", fontsize=7.5, color=MUTED)
@@ -91,8 +90,7 @@ def figures(res, ours, DT, SP, roles, seqs):
             for cat, col in zip(cs, cl):
                 w = 100 * c.get(cat, 0) / max(n, 1)
                 ax.barh(i, w, left=left, color=col, height=0.7, edgecolor="white", linewidth=0.5, label=cat if i == 0 else None)
-                if w >= 12: ax.text(left + w / 2, i, f"{w:.0f}", ha="center", va="center", fontsize=7,
-                                    color="white" if col in ("#8c2d04", "#d94801", "#C8553D") else INK)
+                if w >= 12: ax.text(left + w / 2, i, f"{w:.0f}", ha="center", va="center", fontsize=7, color=FG.ink_on(col))
                 left += w
         ax.set_xlim(0, 100); ax.set_title(title, loc="left", fontsize=10); ax.set_xlabel("% of called endolysins")
         ax.legend(loc="upper center", bbox_to_anchor=(0.5, -0.17), ncol=4, frameon=False, fontsize=7.5)

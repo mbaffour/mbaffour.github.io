@@ -34,6 +34,25 @@ LABEL = {"n4": "N4-like (Schitoviridae)", "lambda": "Lambdoid (λ, P22, HK97-lik
          "blind": "Recent genomes, set 1", "blind2": "Recent genomes, set 2"}
 
 
+def _lum(c):
+    import matplotlib.colors as mc
+    r, g, b, a = mc.to_rgba(c)
+    r, g, b = (a * x + (1 - a) for x in (r, g, b))            # blend on a white background
+    f = lambda x: x / 12.92 if x <= 0.03928 else ((x + 0.055) / 1.055) ** 2.4
+    return 0.2126 * f(r) + 0.7152 * f(g) + 0.0722 * f(b)
+
+
+def contrast(c1, c2):
+    """WCAG contrast ratio between two colours (1 = none, 21 = black on white)"""
+    l1, l2 = sorted((_lum(c1), _lum(c2)), reverse=True)
+    return (l1 + 0.05) / (l2 + 0.05)
+
+
+def ink_on(face):
+    """text colour for a label printed on a bar of colour `face`: whichever of white / dark ink contrasts more"""
+    return "white" if contrast("white", face) >= contrast(INK, face) else INK
+
+
 def drawn_texts(fig):
     """the text artists matplotlib actually draws: every visible non-tick text, plus only the tick labels of ticks
     inside each axis's view (findobj also returns labels of ticks outside the limits, which are never drawn)"""
@@ -64,9 +83,86 @@ def text_overlaps(fig, pad=1.0):
     return bad
 
 
+def obstructions(fig, pad=1.5):
+    """Text or legends drawn ON TOP of data, hiding part of it. For every annotation text, every legend and the
+    titles, checks the rendered box against every data artist in every axes:
+      bars / boxes   a text may sit inside the ONE bar it labels (box fully inside that bar); touching any other bar,
+                     or only partly covering one (a number wider than its stacked segment), is an obstruction
+      lines          error bars, whiskers, reference lines and plotted lines crossing a text box
+      points         scatter points inside a text box
+    Images (heatmap cells) are not checked: their numbers are meant to be printed on them."""
+    from matplotlib.transforms import Bbox
+    fig.canvas.draw(); r = fig.canvas.get_renderer()
+    def area(a, b):
+        w = min(a.x1, b.x1) - max(a.x0, b.x0); h = min(a.y1, b.y1) - max(a.y0, b.y0)
+        return w * h if w > pad and h > pad else 0.0
+    data, clipped = [], []
+    for ax in fig.axes:
+        for p in ax.patches:
+            if p.get_visible() and p is not ax.patch:
+                bb = p.get_window_extent(r)
+                if bb.width > 0.5 and bb.height > 0.5:
+                    ab = ax.bbox
+                    if p.get_clip_on():
+                        if bb.x1 > ab.x1 + 2 or bb.x0 < ab.x0 - 2 or bb.y1 > ab.y1 + 2 or bb.y0 < ab.y0 - 2: clipped.append(ax)
+                        bb = Bbox.intersection(bb, ab)          # only the drawn part can cover anything
+                        if bb is None: continue
+                    data.append(("bar", p, bb))
+        for l in ax.lines:
+            if l.get_visible() and len(l.get_xdata()) > 0: data.append(("line", l, ax))
+        for c in ax.collections:
+            if c.get_visible(): data.append(("points" if isinstance(c, matplotlib.collections.PathCollection) else "line", c, ax))
+    items = [(t.get_text().strip().replace("\n", " ")[:40], t.get_window_extent(r)) for ax in fig.axes for t in ax.texts
+             if t.get_visible() and t.get_text().strip()]
+    colour_of = {t.get_text().strip().replace("\n", " ")[:40] + str(t.get_window_extent(r).bounds): t.get_color()
+                 for ax in fig.axes for t in ax.texts if t.get_visible() and t.get_text().strip()}
+    items += [(f"title {t.get_text()[:30]!r}", t.get_window_extent(r)) for ax in fig.axes for t in (ax.title, ax._left_title, ax._right_title)
+              if t.get_visible() and t.get_text().strip()]
+    if fig._suptitle is not None and fig._suptitle.get_text().strip():
+        items.append((f"suptitle {fig._suptitle.get_text()[:30]!r}", fig._suptitle.get_window_extent(r)))
+    # tick labels and axis labels sit outside their own axes; check them against every axes' data (a neighbouring
+    # panel's bars can run under them)
+    for ax in fig.axes:
+        for axis in (ax.xaxis, ax.yaxis):
+            for tk in axis._update_ticks():
+                for l in (tk.label1, tk.label2):
+                    if l.get_visible() and l.get_text().strip(): items.append((f"tick {l.get_text()[:25]!r}", l.get_window_extent(r)))
+            lab = axis.label
+            if lab.get_visible() and lab.get_text().strip(): items.append((f"axis label {lab.get_text()[:25]!r}", lab.get_window_extent(r)))
+    legs = [ax.get_legend() for ax in fig.axes if ax.get_legend()] + list(fig.legends)
+    items += [("legend", lg.get_window_extent(r)) for lg in legs if lg.get_visible()]
+    bad = []
+    for name, tb in items:
+        tb_in = Bbox.from_extents(tb.x0 + pad, tb.y0 + pad, tb.x1 - pad, tb.y1 - pad)
+        bars = [(p, bb, area(tb, bb)) for kind, p, bb in data if kind == "bar"]
+        hits = [(p, bb, a) for p, bb, a in bars if a > 0]
+        host = [p for p, bb, a in hits if bb.x0 - pad <= tb.x0 and tb.x1 <= bb.x1 + pad and bb.y0 - pad <= tb.y0 and tb.y1 <= bb.y1 + pad]
+        if name == "legend" or name.startswith(("title", "suptitle", "tick", "axis label")): host = []
+        others = [p for p, bb, a in hits if not host or p is not host[0]]
+        if others: bad.append(("covers a bar", name, f"{len(others)} bar(s)"))
+        tc = colour_of.get(name + str(tb.bounds))
+        if host and tc is not None and contrast(tc, host[0].get_facecolor()) < 3.0:
+            bad.append(("low contrast on its bar", name, f"ratio {contrast(tc, host[0].get_facecolor()):.1f}"))
+        for kind, a_, ax_ in data:
+            if kind == "bar": continue
+            # only the part of an artist that is actually drawn: clipped artists end at their axes
+            box = Bbox.intersection(tb_in, ax_.bbox) if a_.get_clip_on() else tb_in
+            if box is None: continue
+            if kind == "line":
+                paths = [a_.get_transform().transform_path(a_.get_path())] if isinstance(a_, matplotlib.lines.Line2D) else \
+                        [a_.get_transform().transform_path(pth) for pth in a_.get_paths()]
+                if any(pth.intersects_bbox(box) for pth in paths): bad.append(("covers a line", name, "")); break
+            elif kind == "points":
+                off = a_.get_offset_transform().transform(a_.get_offsets()) if len(a_.get_offsets()) else []
+                if any(box.contains(x, y) for x, y in off): bad.append(("covers data points", name, "")); break
+    for ax in dict.fromkeys(clipped):
+        bad.append(("data clipped by the axis limits", ax.get_title() or "panel", ""))
+    return bad
+
+
 def save(fig, path):
-    """save, refusing silently-broken layouts: report any overlapping or clipped text"""
-    bad = text_overlaps(fig)
+    """save, refusing silently-broken layouts: report overlapping text, and text or legends hiding data"""
+    bad = text_overlaps(fig) + obstructions(fig)
     for kind, a, b in bad: print(f"  LAYOUT {path.name}: {kind}: {a[:40]!r} {('x ' + repr(b[:40])) if b else ''}")
     fig.savefig(path); plt.close(fig)
     return not bad
@@ -221,7 +317,8 @@ def fig_holin_pair(s, G, out):
     if far: a1.scatter([p[1] for p in far], [p[0] for p in far], s=22, facecolor="none", edgecolor=COL["holin"], label="elsewhere")
     a1.plot([0, 1], [0, 1], color=MUTED, lw=0.8, ls="--"); a1.set_xlim(-0.02, 1.02); a1.set_ylim(-0.02, 1.02)
     a1.set_xlabel("P(holin), gene the annotation calls holin"); a1.set_ylabel("P(holin), the model's pick")
-    a1.legend(frameon=False, fontsize=8, loc="lower right"); a1.grid(True, color=GRID); a1.set_axisbelow(True)
+    a1.legend(frameon=False, fontsize=8, loc="upper center", bbox_to_anchor=(0.5, -0.2), ncol=2)
+    a1.grid(True, color=GRID); a1.set_axisbelow(True)
     a1.set_title(f"{len(adj)} of {len(pts)} disagreements: the pick is the\nannotated holin's neighbour", fontsize=9.5, loc="left")
     rk = Counter(min(p[3], 6) for p in pts)
     a2.bar(list(rk), [rk[k] for k in rk], color=COL["holin"], alpha=0.7, width=0.7)
