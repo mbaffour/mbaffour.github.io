@@ -52,7 +52,7 @@ resample `gene_content_cluster`, not genomes.
 | [`candidates_n4_adjacent_holins.csv`](#candidatesn4adjacentholinscsv) | 36 | 27 |
 | [`candidates_t4_endolysin_confusers.csv`](#candidatest4endolysinconfuserscsv) | 26 | 27 |
 | [`decisions.csv`](#decisionscsv) | 26 | 6 |
-| [`commit_log.csv`](#commitlogcsv) | 189 | 3 |
+| [`commit_log.csv`](#commitlogcsv) | 190 | 3 |
 
 ### genomes.csv
 
@@ -83,15 +83,16 @@ Columns: `set`, `prediction_version`, `description`, `used_in_reports`, `frozen_
 
 One row per scan x prediction version x genome x class. Scored against the genome's own GenBank annotation with the rules of scripts/52c: AGREEMENT WITH ANNOTATION, not accuracy.
 
-Columns: `set`, `prediction_version`, `genome`, `class`, `call_id`, `call_tier`, `call_start`, `call_stop`, `call_strand`, `call_length_aa`, `call_P`, `call_rank_by_P`, `call_annotated_as`, `call_annotated_id`, `call_verdict`, `genome_annotates_class`, `n_annotated_genes`, `annotated_genes`, `annotated_best_rank`, `annotated_in_top5`, `annotated_found_by_gene_finder`, `call_is_annotated_gene`, `call_is_annotated_gene_or_overlapping_partner`, `annotated_max_identity_to_training`, `annotated_novelty`, `top5_ids`, `top5_P`
+Columns: `set`, `prediction_version`, `genome`, `class`, `call_id`, `call_tier`, `call_start`, `call_stop`, `call_strand`, `call_length_aa`, `call_P`, `call_rank`, `call_annotated_as`, `call_annotated_id`, `call_verdict`, `genome_annotates_class`, `n_annotated_genes`, `annotated_genes`, `annotated_best_rank`, `annotated_in_top5`, `annotated_found_by_gene_finder`, `call_is_annotated_gene`, `call_is_annotated_gene_or_overlapping_partner`, `annotated_max_identity_to_training`, `annotated_novelty`, `top5_ids`, `top5_P`
 
 - `call_*`: the predictor's one call for the class (empty when it made none)
 - `call_tier`: confident / candidate / 'no call'
-- `call_rank_by_P`: rank of the call by its raw class probability (the call is chosen after genomic-context re-ranking, so it need not be rank 1)
+- `call_rank`: rank of the call within the genome by the score the predictor ranks on (holin, endolysin: context-adjusted z = logit P + beta x strongest other-class P nearby; spanin: the learned caller's score); the call is the top-ranked protein
+- `top5_ids / top5_P`: the five top-ranked proteins for the class (same ranking) and their raw probabilities, which need not be in descending order
 - `call_annotated_as`: product name of the annotated CDS the call matches ('(not in annotation)' if none)
 - `call_verdict`: agrees / annotated hypothetical/unknown / annotated with another function / annotated as another lysis class / unannotated gene
 - `annotated_genes`: annotated CDS of the class: id:product:start..stop strand
-- `annotated_best_rank`: best rank among the annotated genes in the predictor's per-class ranking
+- `annotated_best_rank`: best rank among the annotated genes in the predictor's per-class ranking (same ranking as call_rank)
 - `call_is_annotated_gene_or_overlapping_partner`: spanin pair-level agreement (the call overlaps an annotated gene of the class)
 - `annotated_max_identity_to_training`: max Smith-Waterman identity of the annotated gene(s) to that class's training positives
 - `annotated_novelty`: near-copy (>=95%) / known family (30-95%) / new family (<30%)
@@ -102,8 +103,8 @@ Every protein of every scanned genome, from the version used in the reports.
 
 Columns: `set`, `genome`, `id`, `start`, `stop`, `strand`, `length`, `P_holin`, `P_endolysin`, `P_spanin`, `rank_holin`, `rank_endolysin`, `rank_spanin`, `call`, `high_conf`, `lysis_call`, `cassette`, `annotated_id`, `annotated_product`
 
-- `P_holin / P_endolysin / P_spanin`: class probabilities
-- `rank_*`: rank within the genome by that probability
+- `P_holin / P_endolysin / P_spanin`: raw class probabilities from each model
+- `rank_*`: rank within the genome by the score the predictor ranks on (context-adjusted for holin and endolysin, the learned caller for spanin), not by raw P
 - `call / high_conf / lysis_call / cassette`: the predictor's own output columns (DEPLOY.md)
 - `annotated_id / annotated_product`: the annotated CDS this gene matches (same strand and stop codon, else sequence)
 
@@ -178,13 +179,13 @@ Columns: `acc`, `idx`, `dist_to_top`, `P`, `len`, `tm`, `cterm_charge`, `ann`, `
 
 N4-like genomes where the holin call is not the annotated holin (mostly the adjacent gene).
 
-Columns: `set`, `prediction_version`, `genome`, `class`, `top5_ids`, `top5_P`, `genome_annotates_class`, `n_annotated_genes`, `annotated_genes`, `annotated_best_rank`, `annotated_found_by_gene_finder`, `call_id`, `call_tier`, `call_start`, `call_stop`, `call_strand`, `call_length_aa`, `call_P`, `call_rank_by_P`, `call_annotated_as`, `call_annotated_id`, `call_verdict`, `call_is_annotated_gene`, `call_is_annotated_gene_or_overlapping_partner`, `annotated_max_identity_to_training`, `annotated_novelty`, `annotated_in_top5`
+Columns: `set`, `prediction_version`, `genome`, `class`, `top5_ids`, `top5_P`, `genome_annotates_class`, `n_annotated_genes`, `annotated_genes`, `annotated_best_rank`, `annotated_found_by_gene_finder`, `call_id`, `call_tier`, `call_start`, `call_stop`, `call_strand`, `call_length_aa`, `call_P`, `call_rank`, `call_annotated_as`, `call_annotated_id`, `call_verdict`, `call_is_annotated_gene`, `call_is_annotated_gene_or_overlapping_partner`, `annotated_max_identity_to_training`, `annotated_novelty`, `annotated_in_top5`
 
 ### candidates_t4_endolysin_confusers.csv
 
 T4-like genomes where the endolysin call is not the annotated endolysin: candidate hard negatives.
 
-Columns: `set`, `prediction_version`, `genome`, `class`, `top5_ids`, `top5_P`, `genome_annotates_class`, `n_annotated_genes`, `annotated_genes`, `annotated_best_rank`, `annotated_found_by_gene_finder`, `call_id`, `call_tier`, `call_start`, `call_stop`, `call_strand`, `call_length_aa`, `call_P`, `call_rank_by_P`, `call_annotated_as`, `call_annotated_id`, `call_verdict`, `call_is_annotated_gene`, `call_is_annotated_gene_or_overlapping_partner`, `annotated_max_identity_to_training`, `annotated_novelty`, `annotated_in_top5`
+Columns: `set`, `prediction_version`, `genome`, `class`, `top5_ids`, `top5_P`, `genome_annotates_class`, `n_annotated_genes`, `annotated_genes`, `annotated_best_rank`, `annotated_found_by_gene_finder`, `call_id`, `call_tier`, `call_start`, `call_stop`, `call_strand`, `call_length_aa`, `call_P`, `call_rank`, `call_annotated_as`, `call_annotated_id`, `call_verdict`, `call_is_annotated_gene`, `call_is_annotated_gene_or_overlapping_partner`, `annotated_max_identity_to_training`, `annotated_novelty`, `annotated_in_top5`
 
 ### decisions.csv
 

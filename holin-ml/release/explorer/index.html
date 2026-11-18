@@ -1,0 +1,461 @@
+<title>Lysis Gene Atlas</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Condensed:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+/* Layout: a search rail of genomes beside a detail sheet (calls, locus, membrane topology); stacks on phones.
+   Colour follows the lab's figures: holin blue, endolysin red, spanin green; topology tracks use compartment colours. */
+:root {
+  --bg: #f3f5f4; --surface: #ffffff; --sunken: #e9eeec; --ink: #1b2321; --muted: #5a6763; --line: #d6dedb;
+  --accent: #0d6b62; --accent-ink: #ffffff;
+  --holin: #3b6ea8; --endolysin: #c8553d; --spanin: #4f8a4e;
+  --ok: #2f7d4f; --ok-bg: #e1f1e6; --warn: #9a6200; --warn-bg: #fbefd6; --bad: #b3361f; --bad-bg: #f8e1db;
+  --info: #2f5fa0; --info-bg: #e2ebf7; --none: #6b7471; --none-bg: #eceeed;
+  --cyto: #9db7d8; --memb: #d39a2c; --peri: #b9d3b2; --signal: #8a63c2; --beta: #c46aa0;
+  --f-head: "IBM Plex Sans Condensed", "Arial Narrow", system-ui, sans-serif;
+  --f-body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --r: 6px;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #121816; --surface: #19211f; --sunken: #0f1413; --ink: #e3ebe8; --muted: #93a39e; --line: #2c3835;
+  --accent: #4fb8aa; --accent-ink: #062521;
+  --holin: #7ea6d8; --endolysin: #e48a73; --spanin: #85bf83;
+  --ok: #7fcf9b; --ok-bg: #173325; --warn: #e3b25a; --warn-bg: #3a2b0f; --bad: #f08f79; --bad-bg: #3d1d16;
+  --info: #8db4ea; --info-bg: #182a44; --none: #9aa5a1; --none-bg: #242d2a;
+  --cyto: #4f6f97; --memb: #d6a04a; --peri: #5d7d57; --signal: #a585d9; --beta: #c97fab; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #121816; --surface: #19211f; --sunken: #0f1413; --ink: #e3ebe8; --muted: #93a39e; --line: #2c3835;
+  --accent: #4fb8aa; --accent-ink: #062521;
+  --holin: #7ea6d8; --endolysin: #e48a73; --spanin: #85bf83;
+  --ok: #7fcf9b; --ok-bg: #173325; --warn: #e3b25a; --warn-bg: #3a2b0f; --bad: #f08f79; --bad-bg: #3d1d16;
+  --info: #8db4ea; --info-bg: #182a44; --none: #9aa5a1; --none-bg: #242d2a;
+  --cyto: #4f6f97; --memb: #d6a04a; --peri: #5d7d57; --signal: #a585d9; --beta: #c97fab; color-scheme: dark }
+
+* { box-sizing: border-box }
+body { background: var(--bg); color: var(--ink); font: 14px/1.5 var(--f-body); }
+.wrap { max-width: 1320px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 18px 40px }
+h1, h2, h3 { font-family: var(--f-head); font-weight: 600; text-wrap: balance; margin: 0 }
+h1 { font-size: 1.55rem; letter-spacing: .01em }
+h2 { font-size: 1.2rem }
+h3 { font-size: 1rem }
+a { color: var(--accent) }
+code, .mono { font-family: var(--f-mono); font-size: .86em }
+.muted { color: var(--muted) }
+.tnum { font-variant-numeric: tabular-nums }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px }
+
+header.top { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 10px 24px; padding-bottom: 14px; border-bottom: 1px solid var(--line) }
+header.top p { margin: 2px 0 0; color: var(--muted); max-width: 70ch }
+nav.tabs { display: flex; gap: 4px; flex-wrap: wrap }
+nav.tabs a { text-decoration: none; color: var(--muted); padding: 6px 12px; border-radius: 999px; font-weight: 500; border: 1px solid transparent }
+nav.tabs a[aria-current="page"] { color: var(--accent-ink); background: var(--accent) }
+nav.tabs a:hover:not([aria-current="page"]) { border-color: var(--line); color: var(--ink) }
+
+.view { padding-top: 16px }
+.split { display: grid; grid-template-columns: minmax(260px, 330px) minmax(0, 1fr); gap: 18px; align-items: start }
+@media (max-width: 860px) { .split { grid-template-columns: minmax(0, 1fr) } }
+
+/* rail */
+.rail { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); display: flex; flex-direction: column; min-width: 0; position: sticky; top: calc(env(safe-area-inset-top, 0px) + 8px); max-height: calc(100vh - 30px) }
+@media (max-width: 860px) { .rail { position: static; max-height: 360px } }
+.rail .controls { padding: 12px; display: grid; gap: 8px; border-bottom: 1px solid var(--line) }
+input[type="search"], select { width: 100%; font: inherit; color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: var(--r); padding: 7px 9px }
+.row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 8px }
+.count { font-size: 12px; color: var(--muted) }
+ul.list { list-style: none; margin: 0; padding: 4px; overflow-y: auto; min-height: 0 }
+ul.list li button { all: unset; box-sizing: border-box; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 2px 8px; width: 100%; padding: 7px 9px; border-radius: 5px; cursor: pointer }
+ul.list li button:hover { background: var(--sunken) }
+ul.list li button[aria-current="true"] { background: var(--sunken); box-shadow: inset 3px 0 0 var(--accent) }
+ul.list li button:focus-visible { outline: 2px solid var(--accent) }
+.li-org { font-weight: 500; overflow: hidden; text-overflow: ellipsis; white-space: nowrap }
+.li-sub { grid-column: 1 / -1; font-size: 12px; color: var(--muted); font-family: var(--f-mono) }
+.dots { display: flex; gap: 3px; align-items: center }
+.dot { width: 9px; height: 9px; border-radius: 50%; border: 1.5px solid currentColor }
+.dot.ok { background: currentColor } .dot.diff { background: transparent } .dot.add { background: transparent; border-style: dotted } .dot.na { opacity: .25 }
+.more { margin: 6px; }
+
+/* detail */
+.sheet { min-width: 0; display: grid; gap: 16px }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 14px 16px; min-width: 0 }
+.ghead { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 16px; align-items: baseline }
+.facts { display: flex; flex-wrap: wrap; gap: 4px 18px; margin-top: 8px; font-size: 13px }
+.facts span b { font-weight: 500; color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: .05em; margin-right: 5px }
+.chip { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; padding: 1px 8px; border-radius: 999px; background: var(--sunken); color: var(--ink); white-space: nowrap }
+.pill { display: inline-block; font-size: 11.5px; font-weight: 600; letter-spacing: .03em; padding: 2px 8px; border-radius: 4px; white-space: nowrap }
+.pill.ok { color: var(--ok); background: var(--ok-bg) } .pill.warn { color: var(--warn); background: var(--warn-bg) }
+.pill.bad { color: var(--bad); background: var(--bad-bg) } .pill.info { color: var(--info); background: var(--info-bg) }
+.pill.none { color: var(--none); background: var(--none-bg) }
+
+.calls { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px }
+@media (max-width: 1100px) { .calls { grid-template-columns: minmax(0, 1fr) } }
+.call { border: 1px solid var(--line); border-top: 3px solid var(--c); border-radius: var(--r); padding: 10px 12px; display: grid; gap: 6px; align-content: start; min-width: 0; background: var(--surface) }
+.call h3 { color: var(--c); display: flex; justify-content: space-between; gap: 8px; align-items: center; text-transform: capitalize }
+dl.kv { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 2px 10px; margin: 0; font-size: 13px }
+dl.kv dt { color: var(--muted) } dl.kv dd { margin: 0; overflow-wrap: anywhere }
+.t5 { font-family: var(--f-mono); font-size: 12px; display: grid; gap: 1px }
+.t5 div { display: grid; grid-template-columns: 1.3em minmax(0, 1fr) auto; gap: 6px }
+.t5 .hit { color: var(--c); font-weight: 500 }
+.note { font-size: 12.5px; color: var(--muted) }
+
+/* tracks */
+.track-wrap { overflow-x: auto }
+svg text { fill: var(--muted); font: 11px var(--f-body) }
+.legend { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: 12px; color: var(--muted); margin-top: 6px }
+.sw { display: inline-block; width: 12px; height: 8px; border-radius: 2px; vertical-align: middle; margin-right: 4px }
+
+.prot { display: grid; gap: 6px; padding: 12px 0; border-top: 1px solid var(--line) }
+.prot:first-of-type { border-top: 0; padding-top: 4px }
+.prot-h { display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: baseline }
+.prot-h .role { font-weight: 600; color: var(--c) }
+.topo-row { display: grid; grid-template-columns: 92px minmax(0, 1fr); gap: 8px; align-items: center; font-size: 12px }
+.topo-row .lab { color: var(--muted) }
+.ticks { display: flex; justify-content: space-between; font-size: 11px; color: var(--muted); font-family: var(--f-mono); margin-left: 100px }
+.tools { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 13px }
+.tools b { font-weight: 500 }
+button.btn { font: inherit; font-size: 12.5px; color: var(--ink); background: var(--sunken); border: 1px solid var(--line); border-radius: var(--r); padding: 3px 10px; cursor: pointer }
+button.btn:hover { border-color: var(--muted) }
+pre.seq { margin: 0; font: 12px/1.45 var(--f-mono); white-space: pre-wrap; word-break: break-all; background: var(--sunken); padding: 8px 10px; border-radius: var(--r) }
+
+/* tables */
+.tbl-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: var(--r); background: var(--surface) }
+table { border-collapse: collapse; width: 100%; font-size: 13px }
+th, td { text-align: left; padding: 6px 10px; border-bottom: 1px solid var(--line); vertical-align: top }
+th { font-weight: 600; font-size: 12px; color: var(--muted); background: var(--sunken); position: sticky; top: 0; white-space: nowrap }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums }
+tr:last-child td { border-bottom: 0 }
+.rk { display: inline-block; min-width: 2.2em; text-align: center; border-radius: 4px; padding: 0 4px; font-variant-numeric: tabular-nums; font-weight: 500 }
+.rk.r1 { color: var(--ok); background: var(--ok-bg) } .rk.r5 { color: var(--warn); background: var(--warn-bg) } .rk.rx { color: var(--bad); background: var(--bad-bg) } .rk.rn { color: var(--none); background: var(--none-bg) }
+.filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 10px; align-items: center }
+.filters > * { width: auto; min-width: 0 }
+.filters input[type="search"] { flex: 1 1 220px }
+.prose { max-width: 75ch }
+.prose p { margin: 6px 0 }
+.grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); gap: 16px }
+.loading { padding: 40px 0; color: var(--muted) }
+@media (prefers-reduced-motion: no-preference) { .sheet { animation: in .18s ease-out } @keyframes in { from { opacity: .6 } to { opacity: 1 } } }
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <div>
+      <h1>Lysis Gene Atlas</h1>
+      <p>Holin, endolysin and spanin calls made from DNA alone in 1,423 phage genomes, checked against each genome's annotation, with membrane topology from three predictors and the curated benchmarks.</p>
+    </div>
+    <nav class="tabs" aria-label="Views">
+      <a href="#genomes" data-view="genomes">Genomes</a>
+      <a href="#benchmark" data-view="benchmark">Benchmark genes</a>
+      <a href="#about" data-view="about">About the data</a>
+    </nav>
+  </header>
+
+  <section class="view" id="v-genomes">
+    <div class="split">
+      <aside class="rail" aria-label="Genome list">
+        <div class="controls">
+          <input type="search" id="q" placeholder="Accession, phage, host or gene id" aria-label="Search genomes">
+          <div class="row2">
+            <select id="fset" aria-label="Scan set"></select>
+            <select id="fstat" aria-label="Status">
+              <option value="">Any status</option>
+              <option value="diff">A call differs from annotation</option>
+              <option value="add">Possible addition</option>
+              <option value="agree">All annotated genes agree</option>
+            </select>
+          </div>
+          <div class="count" id="count">Loading genomes…</div>
+        </div>
+        <ul class="list" id="list"></ul>
+      </aside>
+      <div class="sheet" id="sheet"><div class="loading">Loading the release tables…</div></div>
+    </div>
+  </section>
+
+  <section class="view" id="v-benchmark" hidden>
+    <div class="prose" style="margin-bottom:12px">
+      <h2>Curated benchmark genes</h2>
+      <p class="muted">Each curated lysis gene, ranked in its own genome by a model trained with the gene's relatives removed at three levels. Rank 1 means the model's call is this gene. PHROGs is the profile database behind Pharokka, which has effectively seen these genomes.</p>
+    </div>
+    <div class="filters">
+      <input type="search" id="bq" placeholder="Gene, genome or product" aria-label="Search benchmark genes">
+      <select id="bset" aria-label="Benchmark"><option value="">All benchmarks</option><option value="cpt">CPT hand-curated</option><option value="validated">Experimental</option><option value="reviewed">Swiss-Prot reviewed</option></select>
+      <select id="bcls" aria-label="Class"><option value="">All classes</option><option>holin</option><option>endolysin</option><option>spanin</option></select>
+      <span class="count" id="bcount"></span>
+    </div>
+    <div class="tbl-wrap"><table id="btbl"></table></div>
+  </section>
+
+  <section class="view" id="v-about" hidden></section>
+</div>
+
+<script>
+(() => {
+  const CL = ["holin", "endolysin", "spanin"];
+  const SETS = ["blind", "blind2", "final", "n4", "lambda", "t7", "p2", "drexler", "t5", "herelle", "t4", "jumbo"];
+  const SHORT = { blind: "Blind set 1", blind2: "Blind set 2", final: "Final test", n4: "N4-like", lambda: "Lambdoid / P22-like", t7: "T7-like",
+    p2: "P2-like", drexler: "Drexlerviridae", t5: "T5-like", herelle: "Herelleviridae", t4: "T4-like", jumbo: "Jumbo",
+    cpt: "CPT curated", validated: "Experimental", reviewed: "Swiss-Prot reviewed" };
+  const ROLE = { holin: "Holin call", holin2: "Second holin", endolysin: "Endolysin call", spanin: "Spanin call", spanin_partner: "Spanin partner" };
+  const ROLECLS = { holin: "holin", holin2: "holin", endolysin: "endolysin", spanin: "spanin", spanin_partner: "spanin" };
+  const TOPO = { I: ["--cyto", "cytoplasm"], O: ["--peri", "outside"], M: ["--memb", "membrane helix"], S: ["--signal", "signal peptide"], B: ["--beta", "beta strand"], P: ["--peri", "periplasm"] };
+  const $ = (s) => document.querySelector(s);
+  const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  const fmtP = (p) => p == null ? "–" : p >= 0.9995 ? p.toFixed(4) : p.toFixed(3);
+  let G = [], S = {}, BENCH = [], META = {}, bySlug = {}, sel = null, shown = 150;
+
+  const slug = (set, acc) => ("g-" + set + "-" + acc).replace(/[^A-Za-z0-9]/g, "-");
+
+  function status(c, has) {
+    if (!c) return has ? ["Missed", "bad"] : ["No call", "none"];
+    if (has) {
+      if (c.ok) return ["Agrees", "ok"];
+      if (c.pair) return ["Pair partner", "ok"];
+      return [c.best ? `Differs · annotated ranked ${c.best}` : "Differs · annotated gene not called", "warn"];
+    }
+    if (c.v === "annotated with another function" || c.v === "annotated as another lysis class") return [c.tier === "confident" ? "Conflicts" : "Weak call, other function", c.tier === "confident" ? "bad" : "none"];
+    if (c.tier === "confident") return ["Possible addition", "info"];
+    return ["Weak call, nothing annotated", "none"];
+  }
+  function flags(k) {
+    const r = S[k]; if (!r) return { diff: false, add: false, agree: false, d: [] };
+    let diff = false, add = false, anyHas = false, allOk = true; const d = [];
+    for (const c of CL) {
+      const x = r.c[c]; const has = x ? x.has : false;
+      const [, kind] = status(x, has);
+      if (has) { anyHas = true; if (!(x && (x.ok || x.pair))) { diff = true; allOk = false } }
+      if (kind === "info") add = true;
+      d.push(has ? (x && (x.ok || x.pair) ? "ok" : "diff") : kind === "info" ? "add" : "na");
+    }
+    return { diff, add, agree: anyHas && allOk, d };
+  }
+
+  // ---------- genomes view
+  function buildFilters() {
+    const f = $("#fset");
+    f.innerHTML = `<option value="">All scans (${SETS.reduce((n, s) => n + G.filter(g => g.set === s).length, 0)})</option>` +
+      SETS.map(s => `<option value="${s}">${SHORT[s]} (${G.filter(g => g.set === s).length})</option>`).join("");
+  }
+  function filtered() {
+    const q = $("#q").value.trim().toLowerCase(), fs = $("#fset").value, st = $("#fstat").value;
+    return G.filter(g => {
+      if (!SETS.includes(g.set)) return false;
+      if (fs && g.set !== fs) return false;
+      if (st && !g.f[st]) return false;
+      if (q) {
+        const hay = (g.acc + " " + g.org + " " + g.host).toLowerCase();
+        if (!hay.includes(q)) {
+          const r = S[g.key]; if (!r || !r.p.some(p => p.id.toLowerCase().includes(q))) return false;
+        }
+      }
+      return true;
+    });
+  }
+  function renderList() {
+    const L = filtered();
+    $("#count").textContent = `${L.length.toLocaleString()} genome${L.length === 1 ? "" : "s"}` + (L.length > shown ? ` · showing ${shown}` : "");
+    const col = { 0: "var(--holin)", 1: "var(--endolysin)", 2: "var(--spanin)" };
+    $("#list").innerHTML = L.slice(0, shown).map(g => `<li><button type="button" data-k="${esc(g.key)}" aria-current="${sel === g.key}">
+      <span class="li-org">${esc(g.org || g.acc)}</span>
+      <span class="dots" aria-hidden="true">${g.f.d.map((d, i) => `<span class="dot ${d}" style="color:${col[i]}"></span>`).join("")}</span>
+      <span class="li-sub">${esc(g.acc)} · ${esc(SHORT[g.set])}</span></button></li>`).join("") +
+      (L.length > shown ? `<li class="more"><button type="button" class="btn" id="morebtn">Show 150 more</button></li>` : "");
+    const mb = $("#morebtn"); if (mb) mb.onclick = () => { shown += 150; renderList() };
+  }
+  $("#list").addEventListener("click", (e) => { const b = e.target.closest("button[data-k]"); if (b) select(b.dataset.k, true) });
+  for (const id of ["#q", "#fset", "#fstat"]) $(id).addEventListener("input", () => { shown = 150; renderList(); try { localStorage.setItem("atlas-f", JSON.stringify([$("#fset").value, $("#fstat").value])) } catch (e) {} });
+
+  function parseAnn(s) {
+    if (!s) return [];
+    return s.split(" | ").map(x => { const m = x.match(/^(.*?):(.*):(\d+)\.\.(\d+)([+-])$/); return m ? { id: m[1], prod: m[2], s: +m[3], e: +m[4], str: m[5] } : null }).filter(Boolean);
+  }
+
+  function locus(g, r) {
+    // window around the called proteins and annotated lysis genes
+    const items = [];
+    for (const p of r.p) items.push({ kind: "pred", role: p.role, c: ROLECLS[p.role], s: p.s, e: p.e, str: p.str, id: p.id });
+    for (const c of CL) if (r.c[c]) for (const a of parseAnn(r.c[c].ann)) items.push({ kind: "ann", c, s: a.s, e: a.e, str: a.str, id: a.id, prod: a.prod });
+    if (!items.length || !g.len) return "";
+    let lo = Math.min(...items.map(i => i.s)), hi = Math.max(...items.map(i => i.e));
+    const pad = 1500; lo = Math.max(1, lo - pad); hi = Math.min(g.len, hi + pad);
+    const full = (hi - lo) > g.len * 0.45; if (full) { lo = 1; hi = g.len }
+    const W = 1000, x = (v) => 10 + (v - lo) / (hi - lo) * (W - 20);
+    const arrow = (it, y) => {
+      const x1 = x(it.s), x2 = Math.max(x(it.e), x1 + 4), h = 12, tip = Math.min(6, (x2 - x1) * 0.5);
+      const pts = it.str === "+" ? `${x1},${y} ${x2 - tip},${y} ${x2},${y + h / 2} ${x2 - tip},${y + h} ${x1},${y + h}` : `${x1 + tip},${y} ${x2},${y} ${x2},${y + h} ${x1 + tip},${y + h} ${x1},${y + h / 2}`;
+      const fill = it.kind === "pred" ? (it.role.endsWith("2") || it.role.endsWith("partner") ? `var(--${it.c})` : `var(--${it.c})`) : "var(--surface)";
+      const op = it.kind === "pred" && (it.role === "holin2" || it.role === "spanin_partner") ? 0.5 : 1;
+      return `<polygon points="${pts}" fill="${fill}" fill-opacity="${op}" stroke="var(--${it.c})" stroke-width="1.5"><title>${esc(it.kind === "pred" ? ROLE[it.role] + " " + it.id : "Annotated " + it.c + ": " + it.id + " " + (it.prod || ""))} (${it.s}..${it.e} ${it.str})</title></polygon>`;
+    };
+    const ov = (v) => 10 + v / g.len * (W - 20);
+    const kb = (v) => (v / 1000).toFixed(v < 10000 ? 1 : 0) + " kb";
+    return `<div class="card"><div class="ghead"><h3>Lysis locus</h3><span class="note">${full ? "Lysis genes are spread over the genome; whole genome shown" : `${kb(lo)} – ${kb(hi)} of ${kb(g.len)}`}</span></div>
+      <div class="track-wrap"><svg viewBox="0 0 ${W} 92" width="100%" style="min-width:520px" role="img" aria-label="Positions of called and annotated lysis genes">
+        <rect x="10" y="4" width="${W - 20}" height="4" rx="2" fill="var(--sunken)"/>
+        ${full ? "" : `<rect x="${ov(lo)}" y="1" width="${Math.max(3, ov(hi) - ov(lo))}" height="10" rx="2" fill="var(--accent)" fill-opacity=".35"/>`}
+        <text x="10" y="26">predicted from DNA</text>
+        <line x1="10" x2="${W - 10}" y1="42" y2="42" stroke="var(--line)"/>
+        ${items.filter(i => i.kind === "pred").map(i => arrow(i, 36)).join("")}
+        <text x="10" y="68">annotated in GenBank</text>
+        <line x1="10" x2="${W - 10}" y1="82" y2="82" stroke="var(--line)"/>
+        ${items.filter(i => i.kind === "ann").map(i => arrow(i, 76)).join("")}
+      </svg></div>
+      <div class="legend"><span><span class="sw" style="background:var(--holin)"></span>holin</span><span><span class="sw" style="background:var(--endolysin)"></span>endolysin</span><span><span class="sw" style="background:var(--spanin)"></span>spanin</span><span>faded: second holin / spanin partner</span><span>outlined: annotated gene</span><span>hover an arrow for its id</span></div></div>`;
+  }
+
+  function callCard(c, x) {
+    const has = x ? x.has : false; const [lab, kind] = status(x, has);
+    let body = "";
+    if (x) {
+      body = `<dl class="kv tnum">
+        <dt>Protein</dt><dd class="mono">${esc(x.id)}</dd>
+        <dt>Position</dt><dd>${x.s.toLocaleString()}..${x.e.toLocaleString()} (${x.str}) · ${x.len} aa</dd>
+        <dt>P(${c})</dt><dd>${fmtP(x.P)} · <span class="pill ${x.tier === "confident" ? "ok" : "none"}">${esc(x.tier)}</span></dd>
+        <dt>Annotated as</dt><dd>${esc(x.as)}</dd></dl>`;
+    } else body = `<p class="note">The predictor named no ${c} in this genome.</p>`;
+    const ann = parseAnn(x && x.ann);
+    if (has) body += `<dl class="kv tnum"><dt>Annotated ${c}</dt><dd>${ann.map(a => `<span class="mono">${esc(a.id)}</span> ${esc(a.prod)}`).join("<br>")}</dd>
+      <dt>Its rank</dt><dd>${x && x.best ? x.best : "not called by the gene finder"}${x && x.top5 ? " (in the top 5)" : ""}</dd>
+      <dt>Similarity to training</dt><dd>${x && x.idn != null ? Math.round(x.idn * 100) + "% · " + esc(x.nov) : "–"}</dd></dl>`;
+    else body += `<p class="note">This genome's annotation has no ${c}.</p>`;
+    if (x && x.t5) {
+      const annIds = new Set(); // mark top-5 entries that are the annotated gene: via call match only
+      body += `<div><div class="note" style="margin-bottom:2px">Top 5 by ranking score (raw P shown)</div><div class="t5">${x.t5.map((t, i) => `<div class="${t[0] === x.id ? "hit" : ""}"><span>${i + 1}</span><span style="overflow:hidden;text-overflow:ellipsis">${esc(t[0])}</span><span>${fmtP(t[1])}</span></div>`).join("")}</div></div>`;
+    }
+    return `<article class="call" style="--c:var(--${c})"><h3>${c}<span class="pill ${kind}">${esc(lab)}</span></h3>${body}</article>`;
+  }
+
+  function topoSvg(p) {
+    const L = p.len || 1, segs = []; let pos = 0;
+    for (const m of (p.d.r || "").matchAll(/([A-Z])(\d+)/g)) { segs.push([m[1], pos, +m[2]]); pos += +m[2] }
+    const deep = segs.map(([t, s, n]) => `<rect x="${s}" y="0" width="${n}" height="10" fill="var(${(TOPO[t] || TOPO.I)[0]})"><title>${(TOPO[t] || ["", t])[1]} ${s + 1}–${s + n}</title></rect>`).join("");
+    const ours = (p.o.sp || "").split(";").filter(Boolean).map(x => { const [a, b] = x.split("-").map(Number); return `<rect x="${a - 1}" y="0" width="${b - a + 1}" height="10" fill="var(--memb)"><title>helix ${a}–${b}</title></rect>` }).join("");
+    const bar = (inner) => `<svg viewBox="0 0 ${L} 10" preserveAspectRatio="none" width="100%" height="12" aria-hidden="true"><rect x="0" y="3.5" width="${L}" height="3" fill="var(--line)"/>${inner}</svg>`;
+    return `<div class="topo-row"><span class="lab">DeepTMHMM</span>${segs.length ? bar(deep) : '<span class="muted">no result</span>'}</div>
+      <div class="topo-row"><span class="lab">Our predictor</span>${bar(ours)}</div>
+      <div class="ticks"><span>1</span><span>${L} aa</span></div>`;
+  }
+
+  function protBlock(p) {
+    const c = ROLECLS[p.role];
+    const lipo = p.sp.pr && p.sp.pr.length >= 3 ? p.sp.pr[2] : null, spP = p.sp.pr && p.sp.pr.length >= 2 ? p.sp.pr[1] : null;
+    let derived = "";
+    if (p.role === "holin" || p.role === "holin2") derived = `<span><b>Holin class</b> ${esc(p.hc[0] || "–")}${p.hc[1] && p.hc[1] !== p.hc[0] ? ` <span class="pill warn">ours: ${esc(p.hc[1])}</span>` : p.hc[1] ? ' <span class="pill ok">both agree</span>' : ""}</span>`;
+    if (p.role === "endolysin") derived = `<span><b>Export</b> ${esc(p.sar || "–")}</span>`;
+    if (p.role === "spanin" || p.role === "spanin_partner") derived = `<span><b>Spanin member</b> ${esc(p.sm || "–")}</span>`;
+    return `<div class="prot" style="--c:var(--${c})">
+      <div class="prot-h"><span class="role">${ROLE[p.role]}</span><span class="mono">${esc(p.id)}</span><span class="muted tnum">${p.s.toLocaleString()}..${p.e.toLocaleString()} (${p.str}) · ${p.len} aa</span>${p.tier ? `<span class="pill ${p.tier === "confident" ? "ok" : "none"}">${esc(p.tier)}</span>` : ""}</div>
+      ${topoSvg(p)}
+      <div class="tools tnum">
+        <span><b>DeepTMHMM</b> ${esc(p.d.t || "–")} · ${p.d.n ?? "–"} helices · N-term ${esc(p.d.nt || "–")}</span>
+        <span><b>Ours</b> ${p.o.n ?? "–"} helices · N-term ${esc(p.o.nt || "–")}${p.role === "endolysin" ? ` · SAR rule: ${esc(p.o.sar)}` : ""}</span>
+        <span><b>SignalP 6.0</b> ${esc(p.sp.p || "–")}${lipo != null ? ` · Sec/SPII ${lipo.toFixed(2)} · Sec/SPI ${spP.toFixed(2)}` : ""}</span>
+        ${derived}
+      </div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap"><button type="button" class="btn" data-copy="${esc(p.seq)}" data-id="${esc(p.id)}">Copy FASTA</button><button type="button" class="btn" data-toggle>Show sequence</button></div>
+      <pre class="seq" hidden>${esc(p.seq)}</pre></div>`;
+  }
+
+  function select(k, push) {
+    sel = k; const g = G.find(x => x.key === k); const r = S[k];
+    if (!g) return;
+    document.querySelectorAll("#list button[data-k]").forEach(b => b.setAttribute("aria-current", b.dataset.k === k));
+    const ncbi = `https://www.ncbi.nlm.nih.gov/nuccore/${encodeURIComponent(g.acc)}`;
+    let h = `<div class="card"><div class="ghead"><h2>${esc(g.org || g.acc)}</h2><span class="chip">${esc(SHORT[g.set] || g.set)}</span></div>
+      <div class="facts tnum"><span><b>Accession</b><a href="${ncbi}" target="_blank" rel="noopener">${esc(g.acc)}</a></span>
+      <span><b>Length</b>${g.len ? (g.len / 1000).toFixed(1) + " kb" : "–"}</span><span><b>Host</b>${esc(g.host || "–")}</span>
+      <span><b>Genes called</b>${g.ng ?? "–"}${g.nn ? ` (${g.nn} nested lipoprotein ORF${g.nn > 1 ? "s" : ""})` : ""}</span>
+      <span><b>First submitted</b>${g.yr ?? "–"}</span><span><b>Related group</b><span class="mono">${esc(g.gcl)}</span></span></div>
+      <p class="note" style="margin:8px 0 0">Genes were called from the DNA alone and the calls were committed before the annotation was read; "agrees" means agreement with GenBank's annotation, which can itself be wrong.</p></div>`;
+    if (r) {
+      h += `<div class="calls">${CL.map(c => callCard(c, r.c[c])).join("")}</div>`;
+      h += locus(g, r);
+      const order = ["holin", "holin2", "endolysin", "spanin", "spanin_partner"];
+      const P = [...r.p].sort((a, b) => order.indexOf(a.role) - order.indexOf(b.role));
+      h += `<div class="card"><div class="ghead"><h3>Membrane topology of the called proteins</h3></div>
+        <div class="legend" style="margin:4px 0 6px">${["I", "M", "O", "S"].map(t => `<span><span class="sw" style="background:var(${TOPO[t][0]})"></span>${TOPO[t][1]}</span>`).join("")}<span>our predictor draws helices only</span></div>
+        ${P.map(protBlock).join("") || '<p class="note">No called proteins.</p>'}</div>`;
+    }
+    const sheet = $("#sheet"); sheet.innerHTML = h;
+    const sl = slug(g.set, g.acc);
+    if (push && location.hash !== "#" + sl) history.replaceState(null, "", "#" + sl);
+  }
+  $("#sheet").addEventListener("click", async (e) => {
+    const t = e.target.closest("button[data-toggle]");
+    if (t) { const pre = t.closest(".prot").querySelector("pre.seq"); pre.hidden = !pre.hidden; t.textContent = pre.hidden ? "Show sequence" : "Hide sequence"; return }
+    const c = e.target.closest("button[data-copy]");
+    if (c) {
+      const txt = `>${c.dataset.id}\n${c.dataset.copy}\n`;
+      try { await navigator.clipboard.writeText(txt); c.textContent = "Copied" }
+      catch (err) { const pre = c.closest(".prot").querySelector("pre.seq"); pre.hidden = false; const rg = document.createRange(); rg.selectNodeContents(pre); const s = getSelection(); s.removeAllRanges(); s.addRange(rg); c.textContent = "Selected; press copy" }
+      setTimeout(() => c.textContent = "Copy FASTA", 1800);
+    }
+  });
+
+  // ---------- benchmark view
+  const rk = (v) => v == null ? '<span class="rk rn">–</span>' : `<span class="rk ${v === 1 ? "r1" : v <= 5 ? "r5" : "rx"}">${v}</span>`;
+  function renderBench() {
+    const q = $("#bq").value.trim().toLowerCase(), bs = $("#bset").value, bc = $("#bcls").value;
+    const L = BENCH.filter(b => (!bs || b.benchmark === bs) && (!bc || b.class === bc) && (!q || (b.gene_id + " " + b.genome + " " + b.product).toLowerCase().includes(q)));
+    const n1 = (k) => L.filter(b => b[k] === 1).length, n5 = (k) => L.filter(b => b[k] != null && b[k] <= 5).length;
+    $("#bcount").textContent = `${L.length} genes · ranked 1st: known ${n1("known_family_rank")}, unseen ${n1("unseen_family_rank")}, remote ${n1("remote_removed_rank")} · top 5: ${n5("known_family_rank")}, ${n5("unseen_family_rank")}, ${n5("remote_removed_rank")}`;
+    $("#btbl").innerHTML = `<thead><tr><th>Gene</th><th>Class</th><th>Benchmark · genome</th><th>Product</th><th class="num">aa</th><th class="num">Known family</th><th class="num">Unseen family</th><th class="num">Remote removed</th><th>PHROGs best hit</th><th class="num">PHROGs rank</th><th>Pfam lysis domains</th></tr></thead><tbody>` +
+      L.map(b => `<tr><td class="mono">${esc(b.gene_id)}</td><td style="color:var(--${b.class})">${b.class}</td><td>${esc(SHORT[b.benchmark])} · <span class="mono">${esc(b.genome)}</span></td><td>${esc(b.product)}</td><td class="num">${b.length_aa ?? ""}</td>
+        <td class="num">${rk(b.known_family_rank)}</td><td class="num">${rk(b.unseen_family_rank)}</td><td class="num">${rk(b.remote_removed_rank)}</td>
+        <td>${b.phrogs_best ? `${esc(b.phrogs_annotation || "(no annotation)")} <span class="muted mono">${esc(b.phrogs_best)} · ${b.phrogs_bitscore}</span>` : '<span class="muted">no hit</span>'}</td>
+        <td class="num">${b.phrogs_rank_for_class != null && b.phrogs_rank_for_class !== "" ? rk(+b.phrogs_rank_for_class) : '<span class="rk rn">not assigned</span>'}</td>
+        <td class="muted" style="max-width:280px">${esc((b.pfam_lysis_domains || "").split(";").map(x => x.split(" (")[0]).join("; "))}</td></tr>`).join("") + "</tbody>";
+  }
+  for (const id of ["#bq", "#bset", "#bcls"]) $(id).addEventListener("input", renderBench);
+
+  // ---------- about view
+  function renderAbout() {
+    const rows = SETS.map(s => {
+      const keys = G.filter(g => g.set === s).map(g => g.key);
+      const cell = (c, pair) => { const xs = keys.map(k => S[k] && S[k].c[c]).filter(x => x && x.has); if (!xs.length) return '<td class="num muted">none annotated</td>';
+        const v = xs.filter(x => pair ? (x.ok || x.pair) : x.ok).length / xs.length; return `<td class="num">${v.toFixed(2)} <span class="muted">(${xs.length})</span></td>` };
+      return `<tr><td>${SHORT[s]}</td><td class="num">${keys.length}</td>${cell("holin")}${cell("endolysin")}${cell("spanin", true)}</tr>`;
+    }).join("");
+    const ch = META.checks || {};
+    const vers = (META.versions || []).map(v => `<tr><td>${esc(SHORT[v.set] || v.set)}</td><td class="mono">${esc(v.prediction_version)}</td><td>${esc(v.description)}</td><td>${v.used_in_reports === "True" ? '<span class="pill ok">shown here</span>' : '<span class="pill none">kept for comparison</span>'}</td><td class="mono">${esc(v.frozen_in_commit)}</td><td class="tnum">${esc(v.date)}</td><td class="mono" title="${esc(v.endolysin_model_sha256)}">${esc((v.endolysin_model_sha256 || "").slice(0, 12))}…</td></tr>`).join("");
+    const dec = (META.decisions || []).map(d => `<tr><td>${esc(d.area)}</td><td>${esc(d.change)}</td><td>${esc(d.result)}</td><td><span class="pill ${/^adopted|corrected/.test(d.decision) ? "ok" : /rejected|not/.test(d.decision) ? "bad" : "info"}">${esc(d.decision)}</span></td><td class="mono">${esc(d.report)}</td></tr>`).join("");
+    $("#v-about").innerHTML = `<div class="grid2">
+      <div class="card prose"><h2>What this page shows</h2>
+        <p>Each scan genome was reduced to its DNA. Genes were called with Pyrodigal plus a finder for o-spanins nested inside another gene, each protein was scored by the holin, endolysin and spanin models, and one gene per class was named using genomic context. Those calls were committed to git before any annotation was opened, then compared with the genome's own GenBank annotation under rules fixed in advance.</p>
+        <p>"Agrees" therefore means agreement with an annotation that is largely automated, not proof. The curated benchmarks (CPT, experimental, Swiss-Prot reviewed) are the independent ground truth.</p>
+        <p>Topology comes from DeepTMHMM (primary for holin class), SignalP 6.0 (lipoproteins) and our own ESM-2 helix predictor (a cross-check). An endolysin is called SAR only where our rule and DeepTMHMM agree.</p>
+        <p>Related phages are not independent: the "related group" (shared gene content) is the unit every confidence interval in the manuscript resamples.</p>
+        <p class="muted">Every row here comes from <code>release/</code> in the project repository (branch <code>claude/holin-ml</code>), built by <code>scripts/62_build_release.py</code> and <code>scripts/63_release_explorer.py</code>. The build reproduced every reported scan score (${ch.scan_calls_match_reported_scores ? "all match" : "mismatch"}) and baseline (${ch.benchmarks_match_reported_baselines ? "all match" : "mismatch"}). Latest commit at build: <code>${esc((META.commit || {}).commit)}</code> ${esc((META.commit || {}).date)}.</p></div>
+      <div class="card" style="min-width:0"><h2>Agreement with annotation by scan</h2><p class="note">Share of genomes whose annotation has the gene in which the call is that gene (spanin: or its overlapping partner). In brackets, genomes annotating one.</p>
+        <div class="tbl-wrap"><table><thead><tr><th>Scan</th><th class="num">Genomes</th><th class="num">Holin</th><th class="num">Endolysin</th><th class="num">Spanin pair</th></tr></thead><tbody>${rows}</tbody></table></div></div></div>
+      <div class="card" style="margin-top:16px"><h2>Frozen prediction versions</h2><p class="note">Each set of predictions, the commit that froze it before scoring, and the endolysin model fingerprint (SHA-256). Full hashes for every model are in <code>release/prediction_versions.csv</code>.</p>
+        <div class="tbl-wrap"><table><thead><tr><th>Scan</th><th>Version</th><th>What changed</th><th>Status</th><th>Commit</th><th>Date</th><th>Endolysin model</th></tr></thead><tbody>${vers}</tbody></table></div></div>
+      <div class="card" style="margin-top:16px"><h2>Development decisions</h2><p class="note">Each change was adopted or rejected by a rule set before the run.</p>
+        <div class="tbl-wrap"><table><thead><tr><th>Area</th><th>Change</th><th>Result</th><th>Decision</th><th>Report</th></tr></thead><tbody>${dec}</tbody></table></div></div>`;
+  }
+
+  // ---------- routing
+  function route() {
+    const h = location.hash.slice(1);
+    const view = h === "benchmark" ? "benchmark" : h === "about" ? "about" : "genomes";
+    for (const v of ["genomes", "benchmark", "about"]) $("#v-" + v).hidden = v !== view;
+    document.querySelectorAll("nav.tabs a").forEach(a => a.setAttribute("aria-current", a.dataset.view === view ? "page" : "false"));
+    if (view === "genomes" && h.startsWith("g-") && bySlug[h] && bySlug[h] !== sel) select(bySlug[h], false);
+  }
+  window.addEventListener("hashchange", route);
+
+  Promise.all(["genomes", "scans", "bench", "meta"].map(n => fetch(`data/${n}.json`).then(r => { if (!r.ok) throw new Error(n); return r.json() })))
+    .then(([g, s, b, m]) => {
+      S = s; BENCH = b; META = m;
+      G = g.map(a => ({ set: a[0], acc: a[1], org: a[2], host: a[3], len: a[4], ng: a[5], nn: a[6], ani: a[7], gcl: a[8], yr: a[9], key: a[0] + "|" + a[1] }));
+      for (const x of G) { x.f = flags(x.key); bySlug[slug(x.set, x.acc)] = x.key }
+      buildFilters();
+      try { const f = JSON.parse(localStorage.getItem("atlas-f") || "null"); if (f) { $("#fset").value = f[0] || ""; $("#fstat").value = f[1] || "" } } catch (e) {}
+      renderList(); renderBench(); renderAbout();
+      const h = location.hash.slice(1);
+      if (h.startsWith("g-") && bySlug[h]) select(bySlug[h], false);
+      else select(G.find(x => x.key === "n4|FJ591093.1") ? "n4|FJ591093.1" : filtered()[0].key, false);
+      route();
+    })
+    .catch((err) => { $("#sheet").innerHTML = `<div class="card">The data files did not load (${esc(err.message)}). Reload the page; if it persists, the tables are in release/ in the repository.</div>`; $("#count").textContent = "" });
+})();
+</script>
