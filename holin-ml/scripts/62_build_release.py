@@ -264,7 +264,7 @@ CHECKS = {}
 def read_external():
     M = importlib.import_module("56b_compare_predictors")
     DT, SP = {}, {}
-    for d in (B / "reports/external", B / "reports/external/extra"):
+    for d in (B / "reports/external", B / "reports/external/extra", B / "reports/external/extra/rest"):
         M.OUT = d; DT.update(M.read_deeptmhmm()); SP.update(M.read_signalp())
     return DT, SP
 

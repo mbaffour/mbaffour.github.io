@@ -108,6 +108,24 @@ def external():
     M.run("deeptmhmm", 500); M.run("signalp", 500)
 
 
+def external_rest(n=200):
+    """SignalP for sequences still without a result (BioLib stops jobs past a maximum run time, so smaller chunks)"""
+    M = importlib.import_module("56_external_predictors"); C = importlib.import_module("56b_compare_predictors")
+    done = {}
+    for d in (B / "reports/external", B / "reports/external/extra"):
+        C.OUT = d; done.update(C.read_signalp())
+    seqs = {}
+    for ln in (B / "reports/external/extra/input.fasta").read_text().splitlines():
+        if ln.startswith(">"): k = ln[1:]
+        else: seqs[k] = ln
+    rest = {k: v for k, v in seqs.items() if k not in done}
+    M.OUT = B / "reports/external/extra/rest"; M.OUT.mkdir(parents=True, exist_ok=True)
+    if not (M.OUT / "input.fasta").exists():
+        (M.OUT / "input.fasta").write_text("".join(f">{k}\n{v}\n" for k, v in sorted(rest.items())))
+    print(f"{len(rest)} sequences without a SignalP result", flush=True)
+    M.run("signalp", n)
+
+
 if __name__ == "__main__":
-    ap = argparse.ArgumentParser(); ap.add_argument("step", choices=["collect", "ours", "external"]); a = ap.parse_args()
-    {"collect": collect, "ours": ours, "external": external}[a.step]()
+    ap = argparse.ArgumentParser(); ap.add_argument("step", choices=["collect", "ours", "external", "external_rest"]); a = ap.parse_args()
+    {"collect": collect, "ours": ours, "external": external, "external_rest": external_rest}[a.step]()
