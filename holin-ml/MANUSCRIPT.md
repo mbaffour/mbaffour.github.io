@@ -452,7 +452,13 @@ test are listed by SHA-256 in `reports/final/FROZEN.md`.
 ## 6. Data and code availability
 
 All code, models, reports and data provenance are in this repository (branch `claude/holin-ml`); the pipeline from
-sources to deployment is documented in `PROTOCOL.md`. Bulk sequence downloads are regenerable from the recorded
+sources to deployment is documented in `PROTOCOL.md`. Every individual result is in `release/` as flat tables with a
+data dictionary (`release/README.md`) and one Excel workbook: each genome and its relatedness clusters, each call in
+every scan with its annotation match and the frozen prediction version (with model SHA-256), every protein's scores,
+membrane topology from all three tools for every called protein, each curated benchmark gene's rank under every
+protocol with its PHROGs and Pfam hits, the family-level features, the candidate lists, and every development
+decision. The tables are rebuilt by `scripts/62_build_release.py`, which checks that they reproduce the reported
+numbers (`release/build_checks.json`). Bulk sequence downloads are regenerable from the recorded
 queries and accessions and are not version-controlled. Blind-scan predictions are in the commits named in each
 report, made before annotations were read. Public lysis-protein sequences were sent to the BioLib service to run
 DeepTMHMM and SignalP 6.0.

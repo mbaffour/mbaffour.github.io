@@ -11,6 +11,10 @@ evaluation, not around a headline number.
 
 > Everything here is a **prediction**. A high score is a hypothesis to test at the bench, not a demonstrated holin.
 
+**Where the current results are.** The project now covers holins, endolysins and spanins. The up-to-date account is
+`MANUSCRIPT.md`; every individual prediction, score, topology call and decision behind it is in `release/` (start at
+`release/README.md`, or open `release/lysis_release.xlsx`). Parts of this README describe the earlier holin-only stage.
+
 ## Run it on your computer
 
 The tool now calls all three lysis genes (holins, endolysins, spanins), from protein or nucleotide sequence.
