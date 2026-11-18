@@ -18,9 +18,9 @@ B = Path(__file__).resolve().parent.parent
 SETS, SHORT = FB.SETS, FB.SHORT
 FEATS = [  # (label, class whose call it rests on, denominator, predicate)
     ("cassette co-located", None, lambda r: True, lambda r: r["cassette"] == "co-located"),
-    ("holin class I (3 helices)", "holin", lambda r: bool(r.get("holin_class")), lambda r: r["holin_class"].startswith("I ")),
-    ("holin class II (2 helices)", "holin", lambda r: bool(r.get("holin_class")), lambda r: r["holin_class"].startswith("II ")),
-    ("holin class III (1 helix)", "holin", lambda r: bool(r.get("holin_class")), lambda r: r["holin_class"].startswith("III ")),
+    ("holin class I (3 helices)", "holin", lambda r: bool(r.get("holin_class_deeptmhmm")), lambda r: r["holin_class_deeptmhmm"].startswith("I ")),
+    ("holin class II (2 helices)", "holin", lambda r: bool(r.get("holin_class_deeptmhmm")), lambda r: r["holin_class_deeptmhmm"].startswith("II ")),
+    ("holin class III (1 helix)", "holin", lambda r: bool(r.get("holin_class_deeptmhmm")), lambda r: r["holin_class_deeptmhmm"].startswith("III ")),
     (">= 2 strong holin genes", "holin", lambda r: True, lambda r: int(r["holin_copies_P90"]) >= 2),
     ("endolysin glycosidase", "endolysin", lambda r: bool(r.get("endolysin_class")), lambda r: r["endolysin_class"] == "glycosidase"),
     ("endolysin amidase", "endolysin", lambda r: bool(r.get("endolysin_class")), lambda r: r["endolysin_class"] == "amidase"),

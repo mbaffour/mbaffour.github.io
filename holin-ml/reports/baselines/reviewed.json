@@ -1,0 +1,386 @@
+{
+ "holin": {
+  "PHROGs (Pharokka database)": {
+   "call": [
+    0.947,
+    0.824,
+    1.0
+   ],
+   "top5": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "coverage": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "genomes": 19
+  },
+  "Pfam lysis domains": {
+   "call": [
+    0.895,
+    0.722,
+    1.0
+   ],
+   "top5": [
+    0.947,
+    0.824,
+    1.0
+   ],
+   "coverage": [
+    0.947,
+    0.824,
+    1.0
+   ],
+   "genomes": 19
+  },
+  "ours, known family": {
+   "call": [
+    0.842,
+    0.647,
+    1.0
+   ],
+   "top5": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "coverage": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "genomes": 19
+  },
+  "PHROGs, else ours, known family": {
+   "call": [
+    0.947,
+    0.824,
+    1.0
+   ],
+   "top5": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "coverage": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "genomes": 19
+  },
+  "ours, unseen family (30%)": {
+   "call": [
+    0.789,
+    0.55,
+    1.0
+   ],
+   "top5": [
+    0.895,
+    0.7,
+    1.0
+   ],
+   "coverage": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "genomes": 19
+  },
+  "PHROGs, else ours, unseen family (30%)": {
+   "call": [
+    0.947,
+    0.824,
+    1.0
+   ],
+   "top5": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "coverage": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "genomes": 19
+  },
+  "ours, remote homology removed": {
+   "call": [
+    0.737,
+    0.5,
+    0.947
+   ],
+   "top5": [
+    0.895,
+    0.7,
+    1.0
+   ],
+   "coverage": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "genomes": 19
+  }
+ },
+ "endolysin": {
+  "PHROGs (Pharokka database)": {
+   "call": [
+    0.872,
+    0.75,
+    0.972
+   ],
+   "top5": [
+    0.872,
+    0.75,
+    0.972
+   ],
+   "coverage": [
+    0.872,
+    0.75,
+    0.972
+   ],
+   "genomes": 39
+  },
+  "Pfam lysis domains": {
+   "call": [
+    0.692,
+    0.5,
+    0.875
+   ],
+   "top5": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "coverage": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "genomes": 39
+  },
+  "ours, known family": {
+   "call": [
+    0.897,
+    0.786,
+    0.977
+   ],
+   "top5": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "coverage": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "genomes": 39
+  },
+  "PHROGs, else ours, known family": {
+   "call": [
+    0.923,
+    0.82,
+    1.0
+   ],
+   "top5": [
+    0.949,
+    0.865,
+    1.0
+   ],
+   "coverage": [
+    0.949,
+    0.865,
+    1.0
+   ],
+   "genomes": 39
+  },
+  "ours, unseen family (30%)": {
+   "call": [
+    0.615,
+    0.457,
+    0.765
+   ],
+   "top5": [
+    0.923,
+    0.829,
+    1.0
+   ],
+   "coverage": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "genomes": 39
+  },
+  "PHROGs, else ours, unseen family (30%)": {
+   "call": [
+    0.897,
+    0.784,
+    0.977
+   ],
+   "top5": [
+    0.949,
+    0.865,
+    1.0
+   ],
+   "coverage": [
+    0.949,
+    0.865,
+    1.0
+   ],
+   "genomes": 39
+  },
+  "ours, remote homology removed": {
+   "call": [
+    0.462,
+    0.282,
+    0.632
+   ],
+   "top5": [
+    0.846,
+    0.714,
+    0.952
+   ],
+   "coverage": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "genomes": 39
+  }
+ },
+ "spanin": {
+  "PHROGs (Pharokka database)": {
+   "call": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "top5": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "coverage": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "genomes": 10
+  },
+  "Pfam lysis domains": {
+   "call": [
+    0.8,
+    0.5,
+    1.0
+   ],
+   "top5": [
+    0.8,
+    0.5,
+    1.0
+   ],
+   "coverage": [
+    0.8,
+    0.5,
+    1.0
+   ],
+   "genomes": 10
+  },
+  "ours, known family": {
+   "call": [
+    0.8,
+    0.5,
+    1.0
+   ],
+   "top5": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "coverage": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "genomes": 10
+  },
+  "PHROGs, else ours, known family": {
+   "call": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "top5": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "coverage": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "genomes": 10
+  },
+  "ours, unseen family (30%)": {
+   "call": [
+    0.8,
+    0.5,
+    1.0
+   ],
+   "top5": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "coverage": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "genomes": 10
+  },
+  "PHROGs, else ours, unseen family (30%)": {
+   "call": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "top5": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "coverage": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "genomes": 10
+  },
+  "ours, remote homology removed": {
+   "call": [
+    0.6,
+    0.222,
+    0.9
+   ],
+   "top5": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "coverage": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "genomes": 10
+  }
+ }
+}

@@ -1,0 +1,136 @@
+{
+ "H1_endolysin_fix": {
+  "retired": 0.838,
+  "shipped": 0.863,
+  "delta": 0.025,
+  "one_sided_95_lower": 0.0,
+  "p_one_sided": 0.3733,
+  "genomes": 80,
+  "clusters": 31,
+  "fixed": 2,
+  "broken": 0
+ },
+ "holin": {
+  "call_is_annotated_gene": {
+   "value": 0.932,
+   "CI95": [
+    0.82,
+    1.0
+   ],
+   "genomes": 59,
+   "clusters": 25
+  },
+  "annotated_in_top5": {
+   "value": 0.983,
+   "CI95": [
+    0.938,
+    1.0
+   ],
+   "genomes": 59,
+   "clusters": 25
+  },
+  "by_identity_to_training": {
+   "near-copy (>=95%)": {
+    "n": 41,
+    "call_correct": 41,
+    "top5": 41,
+    "not_called_by_genefinder": 0
+   },
+   "known family (30-95%)": {
+    "n": 17,
+    "call_correct": 14,
+    "top5": 17,
+    "not_called_by_genefinder": 0
+   },
+   "new family (<30%)": {
+    "n": 1,
+    "call_correct": 0,
+    "top5": 0,
+    "not_called_by_genefinder": 0
+   }
+  }
+ },
+ "endolysin": {
+  "call_is_annotated_gene": {
+   "value": 0.863,
+   "CI95": [
+    0.703,
+    0.974
+   ],
+   "genomes": 80,
+   "clusters": 31
+  },
+  "annotated_in_top5": {
+   "value": 1.0,
+   "CI95": [
+    1.0,
+    1.0
+   ],
+   "genomes": 80,
+   "clusters": 31
+  },
+  "by_identity_to_training": {
+   "near-copy (>=95%)": {
+    "n": 45,
+    "call_correct": 41,
+    "top5": 45,
+    "not_called_by_genefinder": 0
+   },
+   "known family (30-95%)": {
+    "n": 33,
+    "call_correct": 26,
+    "top5": 33,
+    "not_called_by_genefinder": 0
+   },
+   "new family (<30%)": {
+    "n": 2,
+    "call_correct": 2,
+    "top5": 2,
+    "not_called_by_genefinder": 0
+   }
+  }
+ },
+ "spanin": {
+  "call_is_annotated_gene": {
+   "value": 0.739,
+   "CI95": [
+    0.535,
+    0.902
+   ],
+   "genomes": 69,
+   "clusters": 27
+  },
+  "annotated_in_top5": {
+   "value": 0.986,
+   "CI95": [
+    0.952,
+    1.0
+   ],
+   "genomes": 69,
+   "clusters": 27
+  },
+  "call_is_annotated_spanin_or_partner": {
+   "value": 0.851,
+   "CI95": [
+    0.671,
+    0.974
+   ],
+   "genomes": 67,
+   "clusters": 26
+  },
+  "by_identity_to_training": {
+   "near-copy (>=95%)": {
+    "n": 51,
+    "call_correct": 39,
+    "top5": 51,
+    "not_called_by_genefinder": 0
+   },
+   "known family (30-95%)": {
+    "n": 18,
+    "call_correct": 12,
+    "top5": 17,
+    "not_called_by_genefinder": 0
+   }
+  }
+ }
+}

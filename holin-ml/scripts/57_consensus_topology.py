@@ -52,6 +52,8 @@ def main():
             p = d["holin"]; f["holin_class_ours"] = cls(p["ours_helices"]); f["holin_class_deeptmhmm"] = cls(p["deeptmhmm_helices"] or 0)
             f["holin_class_agree"] = f["holin_class_ours"] == f["holin_class_deeptmhmm"]
             f["holin_nterm_ours"], f["holin_nterm_deeptmhmm"] = p["ours_nterm"], p["deeptmhmm_nterm"]
+        if "holin2" in d:
+            f["holin2_class_deeptmhmm"] = cls(d["holin2"]["deeptmhmm_helices"] or 0)
         if "endolysin" in d:
             p = d["endolysin"]; ours = T55.endolysin_type(p["sequence"]) == "SAR"; deep = p["deeptmhmm_type"] in ("SP", "SP+TM")
             f["endolysin_SAR"] = ("SAR (both)" if ours and deep else "canonical (both)" if not ours and not deep else
@@ -66,7 +68,7 @@ def main():
                                         "i-spanin only" if set(mem) == {"i-spanin"} else "other")
         rows.append(f)
     cols = ["set", "genome", "holin_class_ours", "holin_class_deeptmhmm", "holin_class_agree", "holin_nterm_ours",
-            "holin_nterm_deeptmhmm", "endolysin_SAR", "endolysin_signalp", "spanin_type_signalp", "spanin_members_signalp"]
+            "holin_nterm_deeptmhmm", "holin2_class_deeptmhmm", "endolysin_SAR", "endolysin_signalp", "spanin_type_signalp", "spanin_members_signalp"]
     out = B / "reports/distribution/topology_consensus_by_genome.csv"
     with open(out, "w", newline="") as fh:
         w = csv.DictWriter(fh, fieldnames=cols, lineterminator="\n", extrasaction="ignore"); w.writeheader(); w.writerows(rows)

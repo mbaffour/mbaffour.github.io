@@ -37,7 +37,7 @@ def phrog_class(annot):
 
 
 def load_benchmark(name):
-    gdir = {"cpt": "data/raw/cpt/genomes", "validated": "data/raw/validated/genomes"}[name]
+    gdir = {"cpt": "data/raw/cpt/genomes", "validated": "data/raw/validated/genomes", "reviewed": "data/raw/reviewed/genomes"}[name]
     T = json.load(open(B / f"data/raw/{name}/truth.json")); G = []
     for p in sorted(glob.glob(str(B / gdir / "*.gb"))):
         g = Path(p).stem
@@ -135,6 +135,8 @@ def summarise(rows, clusters, key=None):
 
 def ours_rows(name, cls, proto):
     f = {("cpt", "holin"): "cpt_holin_remote.json", ("cpt", "endolysin"): "cpt_endolysin_remote.json",
+         ("reviewed", "holin"): "reviewed_holin.json", ("reviewed", "endolysin"): "reviewed_endolysin.json",
+         ("reviewed", "spanin"): "reviewed_spanin.json",
          ("cpt", "spanin"): "cpt_spanin_remote.json", ("validated", "holin"): "validated_holin_spanin.json",
          ("validated", "endolysin"): "validated_endolysin_novirion.json", ("validated", "spanin"): "validated_spanin_audited.json"}[(name, cls)]
     r = json.load(open(B / "reports" / f))["classes"][cls]
@@ -148,6 +150,8 @@ def ours_rows(name, cls, proto):
 def ours(name, cls, proto, clusters):
     """our model's per-genome call / top 5 from the benchmark reports (shipped recipes)"""
     f = {("cpt", "holin"): "cpt_holin_remote.json", ("cpt", "endolysin"): "cpt_endolysin_remote.json",
+         ("reviewed", "holin"): "reviewed_holin.json", ("reviewed", "endolysin"): "reviewed_endolysin.json",
+         ("reviewed", "spanin"): "reviewed_spanin.json",
          ("cpt", "spanin"): "cpt_spanin_remote.json", ("validated", "holin"): "validated_holin_spanin.json",
          ("validated", "endolysin"): "validated_endolysin_novirion.json", ("validated", "spanin"): "validated_spanin_audited.json"}[(name, cls)]
     r = json.load(open(B / "reports" / f))["classes"][cls]
@@ -160,9 +164,10 @@ def ours(name, cls, proto, clusters):
 
 
 def main():
-    ap = argparse.ArgumentParser(); ap.add_argument("--phrogs", required=True); a = ap.parse_args()
+    ap = argparse.ArgumentParser(); ap.add_argument("--phrogs", required=True)
+    ap.add_argument("--sets", nargs="+", default=["cpt", "validated"]); a = ap.parse_args()
     out_dir = B / "reports/baselines"; out_dir.mkdir(parents=True, exist_ok=True)
-    for name in ("cpt", "validated"):
+    for name in a.sets:
         G = load_benchmark(name); clusters = json.load(open(B / f"reports/clusters/{name}.json"))
         P, F_ = phrog_scores(G, a.phrogs), pfam_scores(G)
         res = {}
@@ -185,7 +190,7 @@ def main():
                 print(f"   {k:32s} call {v['call'][0]:.2f} [{v['call'][1]:.2f},{v['call'][2]:.2f}]  top5 {v['top5'][0]:.2f} "
                       f"[{v['top5'][1]:.2f},{v['top5'][2]:.2f}]  coverage {v['coverage'][0]:.2f}  (n={v['genomes']})", flush=True)
         (out_dir / f"{name}.json").write_text(json.dumps(res, indent=1))
-    (out_dir / "per_genome_rows.json").write_text(json.dumps({"|".join(k): v for k, v in ROWS.items()}))
+    if a.sets == ["cpt", "validated"]: (out_dir / "per_genome_rows.json").write_text(json.dumps({"|".join(k): v for k, v in ROWS.items()}))
 
 
 if __name__ == "__main__":

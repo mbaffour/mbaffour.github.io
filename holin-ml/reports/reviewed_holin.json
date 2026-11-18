@@ -1,0 +1,559 @@
+{
+ "n_genomes_scanned": 42,
+ "boot": 2000,
+ "hyperparameters": {
+  "max_iter": 400,
+  "learning_rate": 0.06,
+  "max_leaf_nodes": 31,
+  "early_stopping": "auto"
+ },
+ "datasets": {
+  "endolysin": "data/processed/endolysin_positives.json",
+  "spanin": "data/processed/spanin_positives.json"
+ },
+ "note": "Expanded LOGO: the atlas evaluation used 19 endolysins/12 genomes and 15 spanins/9 genomes, which left every model comparison inside its confidence interval. This uses all annotated lysis genes in the scanned panel. Protocol and negative recipes are unchanged from scripts/22 and scripts/28, so the figures describe the models as deployed.",
+ "classes": {
+  "holin": {
+   "family_removal": {
+    "all": {
+     "AP": 0.6377,
+     "CI95_by_genome": [
+      0.4791,
+      0.8571
+     ],
+     "n_truths": 19,
+     "n_scored": 1539,
+     "n_genomes": 19,
+     "median_rank": 1.0,
+     "top1": 0.789,
+     "recall_at5": 0.895,
+     "recall_at0.5": 0.842
+    },
+    "exit_only": {
+     "AP": 0.6377,
+     "CI95_by_genome": [
+      0.4791,
+      0.8571
+     ],
+     "n_truths": 19,
+     "n_scored": 1539,
+     "n_genomes": 19,
+     "median_rank": 1.0,
+     "top1": 0.789,
+     "recall_at5": 0.895,
+     "recall_at0.5": 0.842
+    },
+    "unique_models_fitted": 17,
+    "genomes_from_checkpoint": 0,
+    "fits_note": "unique_models_fitted counts fits done in THIS process; with genomes_from_checkpoint > 0 the run resumed and earlier fits are not counted. Scores are identical either way.",
+    "seconds": 91,
+    "truth_ranks": [
+     {
+      "genome": "AB016282",
+      "id": "BAA36651.1",
+      "rank": 1,
+      "score": 0.9798,
+      "of": 51
+     },
+     {
+      "genome": "AF022214",
+      "id": "PBI_D29_11",
+      "rank": 1,
+      "score": 0.5504,
+      "of": 77
+     },
+     {
+      "genome": "AF063097",
+      "id": "AAD03275.1",
+      "rank": 1,
+      "score": 0.9178,
+      "of": 43
+     },
+     {
+      "genome": "AF158101",
+      "id": "AAD42661.1",
+      "rank": 15,
+      "score": 0.0015,
+      "of": 278
+     },
+     {
+      "genome": "AJ505558",
+      "id": "CAD44235.1",
+      "rank": 1,
+      "score": 0.9996,
+      "of": 48
+     },
+     {
+      "genome": "AY216660",
+      "id": "CPTT1_067",
+      "rank": 1,
+      "score": 0.9391,
+      "of": 79
+     },
+     {
+      "genome": "AY509815",
+      "id": "AAS19388.1",
+      "rank": 2,
+      "score": 0.0032,
+      "of": 17
+     },
+     {
+      "genome": "AY848689",
+      "id": "AAX45922.1",
+      "rank": 1,
+      "score": 0.9987,
+      "of": 31
+     },
+     {
+      "genome": "BK000583",
+      "id": "DAA01038.1",
+      "rank": 1,
+      "score": 1.0,
+      "of": 72
+     },
+     {
+      "genome": "U24159",
+      "id": "AAB09210.1",
+      "rank": 1,
+      "score": 0.9995,
+      "of": 41
+     },
+     {
+      "genome": "U38906",
+      "id": "AAB18723.1",
+      "rank": 1,
+      "score": 0.9886,
+      "of": 50
+     },
+     {
+      "genome": "V01146",
+      "id": "CAA24436.1",
+      "rank": 1,
+      "score": 0.9981,
+      "of": 60
+     },
+     {
+      "genome": "X97918",
+      "id": "CAA66517.2",
+      "rank": 3,
+      "score": 0.5124,
+      "of": 97
+     },
+     {
+      "genome": "Z18946",
+      "id": "PBI_L5_11",
+      "rank": 1,
+      "score": 0.9948,
+      "of": 90
+     },
+     {
+      "genome": "Z47794",
+      "id": "CAA87743.1",
+      "rank": 1,
+      "score": 0.8711,
+      "of": 28
+     },
+     {
+      "genome": "gi17570786",
+      "id": "T3p49",
+      "rank": 1,
+      "score": 0.9975,
+      "of": 55
+     },
+     {
+      "genome": "gi327198314",
+      "id": "StPhDp-1_gp58",
+      "rank": 1,
+      "score": 0.9995,
+      "of": 72
+     },
+     {
+      "genome": "gi3394828809",
+      "id": "YGR68232.1",
+      "rank": 21,
+      "score": 0.0014,
+      "of": 277
+     },
+     {
+      "genome": "gi9626243",
+      "id": "lambdap74",
+      "rank": 1,
+      "score": 0.9966,
+      "of": 73
+     }
+    ],
+    "missed_truths": [
+     {
+      "genome": "gi3394828809",
+      "id": "YGR68232.1",
+      "rank": 21,
+      "score": 0.0014,
+      "product": "holin"
+     },
+     {
+      "genome": "AF158101",
+      "id": "AAD42661.1",
+      "rank": 15,
+      "score": 0.0015,
+      "product": "t holin lysis mediator"
+     }
+    ]
+   },
+   "sequence_removal": {
+    "all": {
+     "AP": 0.6999,
+     "CI95_by_genome": [
+      0.5557,
+      0.9288
+     ],
+     "n_truths": 19,
+     "n_scored": 1539,
+     "n_genomes": 19,
+     "median_rank": 1.0,
+     "top1": 0.842,
+     "recall_at5": 1.0,
+     "recall_at0.5": 1.0
+    },
+    "exit_only": {
+     "AP": 0.6999,
+     "CI95_by_genome": [
+      0.5557,
+      0.9288
+     ],
+     "n_truths": 19,
+     "n_scored": 1539,
+     "n_genomes": 19,
+     "median_rank": 1.0,
+     "top1": 0.842,
+     "recall_at5": 1.0,
+     "recall_at0.5": 1.0
+    },
+    "unique_models_fitted": 12,
+    "genomes_from_checkpoint": 0,
+    "fits_note": "unique_models_fitted counts fits done in THIS process; with genomes_from_checkpoint > 0 the run resumed and earlier fits are not counted. Scores are identical either way.",
+    "seconds": 78,
+    "truth_ranks": [
+     {
+      "genome": "AB016282",
+      "id": "BAA36651.1",
+      "rank": 1,
+      "score": 0.9987,
+      "of": 51
+     },
+     {
+      "genome": "AF022214",
+      "id": "PBI_D29_11",
+      "rank": 1,
+      "score": 0.997,
+      "of": 77
+     },
+     {
+      "genome": "AF063097",
+      "id": "AAD03275.1",
+      "rank": 1,
+      "score": 0.9934,
+      "of": 43
+     },
+     {
+      "genome": "AF158101",
+      "id": "AAD42661.1",
+      "rank": 1,
+      "score": 0.999,
+      "of": 278
+     },
+     {
+      "genome": "AJ505558",
+      "id": "CAD44235.1",
+      "rank": 1,
+      "score": 0.9996,
+      "of": 48
+     },
+     {
+      "genome": "AY216660",
+      "id": "CPTT1_067",
+      "rank": 1,
+      "score": 0.9963,
+      "of": 79
+     },
+     {
+      "genome": "AY509815",
+      "id": "AAS19388.1",
+      "rank": 2,
+      "score": 0.9995,
+      "of": 17
+     },
+     {
+      "genome": "AY848689",
+      "id": "AAX45922.1",
+      "rank": 1,
+      "score": 0.9995,
+      "of": 31
+     },
+     {
+      "genome": "BK000583",
+      "id": "DAA01038.1",
+      "rank": 1,
+      "score": 0.9997,
+      "of": 72
+     },
+     {
+      "genome": "U24159",
+      "id": "AAB09210.1",
+      "rank": 1,
+      "score": 0.9999,
+      "of": 41
+     },
+     {
+      "genome": "U38906",
+      "id": "AAB18723.1",
+      "rank": 1,
+      "score": 0.9994,
+      "of": 50
+     },
+     {
+      "genome": "V01146",
+      "id": "CAA24436.1",
+      "rank": 1,
+      "score": 0.9998,
+      "of": 60
+     },
+     {
+      "genome": "X97918",
+      "id": "CAA66517.2",
+      "rank": 3,
+      "score": 0.7995,
+      "of": 97
+     },
+     {
+      "genome": "Z18946",
+      "id": "PBI_L5_11",
+      "rank": 1,
+      "score": 0.9995,
+      "of": 90
+     },
+     {
+      "genome": "Z47794",
+      "id": "CAA87743.1",
+      "rank": 1,
+      "score": 0.9338,
+      "of": 28
+     },
+     {
+      "genome": "gi17570786",
+      "id": "T3p49",
+      "rank": 1,
+      "score": 0.9996,
+      "of": 55
+     },
+     {
+      "genome": "gi327198314",
+      "id": "StPhDp-1_gp58",
+      "rank": 1,
+      "score": 0.9991,
+      "of": 72
+     },
+     {
+      "genome": "gi3394828809",
+      "id": "YGR68232.1",
+      "rank": 1,
+      "score": 0.9989,
+      "of": 277
+     },
+     {
+      "genome": "gi9626243",
+      "id": "lambdap74",
+      "rank": 2,
+      "score": 0.9997,
+      "of": 73
+     }
+    ],
+    "missed_truths": []
+   },
+   "remote_removal": {
+    "all": {
+     "AP": 0.6185,
+     "CI95_by_genome": [
+      0.4314,
+      0.8578
+     ],
+     "n_truths": 19,
+     "n_scored": 1539,
+     "n_genomes": 19,
+     "median_rank": 1.0,
+     "top1": 0.737,
+     "recall_at5": 0.895,
+     "recall_at0.5": 0.684
+    },
+    "exit_only": {
+     "AP": 0.6185,
+     "CI95_by_genome": [
+      0.4314,
+      0.8578
+     ],
+     "n_truths": 19,
+     "n_scored": 1539,
+     "n_genomes": 19,
+     "median_rank": 1.0,
+     "top1": 0.737,
+     "recall_at5": 0.895,
+     "recall_at0.5": 0.684
+    },
+    "unique_models_fitted": 14,
+    "genomes_from_checkpoint": 0,
+    "fits_note": "unique_models_fitted counts fits done in THIS process; with genomes_from_checkpoint > 0 the run resumed and earlier fits are not counted. Scores are identical either way.",
+    "seconds": 60,
+    "truth_ranks": [
+     {
+      "genome": "AB016282",
+      "id": "BAA36651.1",
+      "rank": 1,
+      "score": 0.5867,
+      "of": 51
+     },
+     {
+      "genome": "AF022214",
+      "id": "PBI_D29_11",
+      "rank": 1,
+      "score": 0.7999,
+      "of": 77
+     },
+     {
+      "genome": "AF063097",
+      "id": "AAD03275.1",
+      "rank": 1,
+      "score": 0.3823,
+      "of": 43
+     },
+     {
+      "genome": "AF158101",
+      "id": "AAD42661.1",
+      "rank": 15,
+      "score": 0.0015,
+      "of": 278
+     },
+     {
+      "genome": "AJ505558",
+      "id": "CAD44235.1",
+      "rank": 1,
+      "score": 0.9996,
+      "of": 48
+     },
+     {
+      "genome": "AY216660",
+      "id": "CPTT1_067",
+      "rank": 1,
+      "score": 0.5987,
+      "of": 79
+     },
+     {
+      "genome": "AY509815",
+      "id": "AAS19388.1",
+      "rank": 2,
+      "score": 0.0032,
+      "of": 17
+     },
+     {
+      "genome": "AY848689",
+      "id": "AAX45922.1",
+      "rank": 1,
+      "score": 0.9083,
+      "of": 31
+     },
+     {
+      "genome": "BK000583",
+      "id": "DAA01038.1",
+      "rank": 2,
+      "score": 0.9857,
+      "of": 72
+     },
+     {
+      "genome": "U24159",
+      "id": "AAB09210.1",
+      "rank": 1,
+      "score": 0.9379,
+      "of": 41
+     },
+     {
+      "genome": "U38906",
+      "id": "AAB18723.1",
+      "rank": 1,
+      "score": 0.9886,
+      "of": 50
+     },
+     {
+      "genome": "V01146",
+      "id": "CAA24436.1",
+      "rank": 1,
+      "score": 0.9967,
+      "of": 60
+     },
+     {
+      "genome": "X97918",
+      "id": "CAA66517.2",
+      "rank": 3,
+      "score": 0.3592,
+      "of": 97
+     },
+     {
+      "genome": "Z18946",
+      "id": "PBI_L5_11",
+      "rank": 1,
+      "score": 0.9792,
+      "of": 90
+     },
+     {
+      "genome": "Z47794",
+      "id": "CAA87743.1",
+      "rank": 1,
+      "score": 0.433,
+      "of": 28
+     },
+     {
+      "genome": "gi17570786",
+      "id": "T3p49",
+      "rank": 1,
+      "score": 0.9929,
+      "of": 55
+     },
+     {
+      "genome": "gi327198314",
+      "id": "StPhDp-1_gp58",
+      "rank": 1,
+      "score": 0.997,
+      "of": 72
+     },
+     {
+      "genome": "gi3394828809",
+      "id": "YGR68232.1",
+      "rank": 21,
+      "score": 0.0014,
+      "of": 277
+     },
+     {
+      "genome": "gi9626243",
+      "id": "lambdap74",
+      "rank": 1,
+      "score": 0.9936,
+      "of": 73
+     }
+    ],
+    "missed_truths": [
+     {
+      "genome": "gi3394828809",
+      "id": "YGR68232.1",
+      "rank": 21,
+      "score": 0.0014,
+      "product": "holin"
+     },
+     {
+      "genome": "AF158101",
+      "id": "AAD42661.1",
+      "rank": 15,
+      "score": 0.0015,
+      "product": "t holin lysis mediator"
+     }
+    ]
+   }
+  }
+ }
+}

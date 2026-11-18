@@ -86,8 +86,8 @@ def clusters(n, linked):
 def genomes(s):
     """(key, dna) pairs with the keys the reports use"""
     from Bio import SeqIO
-    if s in ("cpt", "validated"):
-        d = {"cpt": "data/raw/cpt/genomes", "validated": "data/raw/validated/genomes"}[s]
+    if s in ("cpt", "validated", "reviewed"):
+        d = {"cpt": "data/raw/cpt/genomes", "validated": "data/raw/validated/genomes", "reviewed": "data/raw/reviewed/genomes"}[s]
         tf = json.load(open(B / f"data/raw/{s}/truth.json"))
         for p in sorted(glob.glob(str(B / d / "*.gb"))):
             if Path(p).stem in tf: yield Path(p).stem, str(next(SeqIO.parse(p, "genbank")).seq)

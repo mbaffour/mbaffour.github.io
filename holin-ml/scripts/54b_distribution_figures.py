@@ -45,18 +45,18 @@ def ylabels(by):
 
 def heatmap(by):
     ALL = lambda r: True
-    HOL = lambda r: bool(r.get("holin_class"))
+    HOL = lambda r: bool(r.get("holin_class_deeptmhmm"))
     END = lambda r: bool(r.get("endolysin_class"))
     ENC = lambda r: bool(r.get("endolysin_type"))
     feats = [  # (column label, group, which genomes form the denominator, predicate)
         ("co-located", "cassette", ALL, lambda r: r["cassette"] == "co-located"),
         ("dispersed", "cassette", ALL, lambda r: r["cassette"] == "dispersed"),
         ("incomplete", "cassette", ALL, lambda r: r["cassette"] == "incomplete"),
-        ("class I (3 helices)", "holin", HOL, lambda r: r["holin_class"].startswith("I ")),
-        ("class II (2 helices)", "holin", HOL, lambda r: r["holin_class"].startswith("II ")),
-        ("class III (1 helix)", "holin", HOL, lambda r: r["holin_class"].startswith("III ")),
-        ("N terminus inside", "holin", HOL, lambda r: r.get("holin_nterm") == "in"),
-        ("class agrees with DeepTMHMM", "holin", lambda r: bool(r.get("holin_class_ours")),
+        ("class I (3 helices)", "holin", HOL, lambda r: r["holin_class_deeptmhmm"].startswith("I ")),
+        ("class II (2 helices)", "holin", HOL, lambda r: r["holin_class_deeptmhmm"].startswith("II ")),
+        ("class III (1 helix)", "holin", HOL, lambda r: r["holin_class_deeptmhmm"].startswith("III ")),
+        ("N terminus inside", "holin", HOL, lambda r: r.get("holin_nterm_deeptmhmm") == "in"),
+        ("our predictor agrees", "holin", lambda r: bool(r.get("holin_class_ours")),
          lambda r: r.get("holin_class_agree") == "True"),
         ("known Pfam holin family", "holin", HOL, lambda r: r.get("holin_pfam") not in ("", "none", None)),
         ("≥ 2 strong holin genes", "holin", ALL, lambda r: int(r["holin_copies_P90"]) >= 2),
@@ -222,28 +222,28 @@ def holin_topology_fig(by):
     cats = ["I (3 helices)", "II (2 helices)", "III (1 helix)", "no helix", "4+ helices"]
     cols = ["#08306b", "#2171b5", "#9ecae1", "#d9d9d9", "#6a51a3"]
     fig, (a1, a2, a3) = plt.subplots(1, 3, figsize=(14.2, 4.8), gridspec_kw={"width_ratios": [2.0, 0.9, 1.6]})
-    sub = {s: [r for r in by[s] if r.get("holin_class")] for s in SETS}
-    stacked(a1, sub, cats, cols, lambda r: r["holin_class"], "class of the called holin (predicted helices)")
+    sub = {s: [r for r in by[s] if r.get("holin_class_deeptmhmm")] for s in SETS}
+    stacked(a1, sub, cats, cols, lambda r: r["holin_class_deeptmhmm"], "class of the called holin (DeepTMHMM helices)")
     def agree(s):
         rr = [r for r in by[s] if r.get("holin_class_ours")]
         return 100 * sum(r["holin_class_agree"] == "True" for r in rr) / max(len(rr), 1)
-    a1.set_yticklabels([f"{SHORT[s]}  (n={len(sub[s])}; DeepTMHMM agrees {agree(s):.0f}%{' · unresolved' if agree(s) < 60 else ''})"
+    a1.set_yticklabels([f"{SHORT[s]}  (n={len(sub[s])}; our predictor agrees {agree(s):.0f}%{' · unresolved' if agree(s) < 60 else ''})"
                         for s in SETS], fontsize=8.5)
     a1.set_xlabel("% of confident holin calls")
     a1.legend(["class I (3)", "class II (2)", "class III (1)", "no helix", "4+"], loc="upper center",
               bbox_to_anchor=(0.5, -0.16), ncol=5, frameon=False, fontsize=8)
-    v = [frac(sub[s], lambda r: r.get("holin_nterm") == "in") for s in SETS]
+    v = [frac(sub[s], lambda r: r.get("holin_nterm_deeptmhmm") == "in") for s in SETS]
     a2.barh(range(len(SETS)), v, color=COL["holin"], height=0.6)
     for i, x in enumerate(v): a2.text(x + 1.5, i, f"{x:.0f}", va="center", fontsize=7.5)
     a2.set_yticks(range(len(SETS))); a2.set_yticklabels([]); a2.invert_yaxis(); a2.set_xlim(0, 118)
     a2.set_xticks([0, 50, 100]); a2.set_xlabel("% with N terminus inside")
     a2.set_title("orientation", loc="left", fontsize=10); a2.xaxis.grid(True, color=GRID); a2.set_axisbelow(True)
-    sub2 = {s: [r for r in by[s] if r.get("holin2_class")] for s in SETS}
-    stacked(a3, sub2, cats, cols, lambda r: r["holin2_class"], "the second strong holin-like gene")
+    sub2 = {s: [r for r in by[s] if r.get("holin2_class_deeptmhmm")] for s in SETS}
+    stacked(a3, sub2, cats, cols, lambda r: r["holin2_class_deeptmhmm"], "the second strong holin-like gene")
     a3.set_yticklabels([]); a3.set_xlabel("% of genomes with ≥ 2 strong holin-like genes")
     for i, s in enumerate(SETS): a3.text(101, i, f"n={len(sub2[s])}", va="center", fontsize=7.5, color=MUTED)
     a3.set_xlim(0, 115); a3.set_xticks([0, 25, 50, 75, 100])
-    fig.suptitle("Holin membrane topology by phage family (our ESM predictor; class checked against DeepTMHMM)",
+    fig.suptitle("Holin membrane topology by phage family (DeepTMHMM; our predictor as concordance check)",
                  x=0.01, ha="left", fontsize=12, y=1.0)
     return save(fig, OUT / "6_holin_topology.png")
 
