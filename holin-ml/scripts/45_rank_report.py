@@ -7,20 +7,43 @@ truths, not on which other genomes were in the run.
 Reported per class and protocol: top-1 and top-5 over genes; and per genome, whether the BEST-ranked curated gene is 1st
 or in the top 5 -- the fair measure for spanins, where an i/o pair cannot both rank first.
 
+Relatedness: with --clusters FILE[:UNIT] (scripts/58 output; UNIT gene by default, or ani95) the bootstrap resamples
+clusters of related genomes instead of single genomes. Related phages are not independent observations; resampling
+single genomes makes the intervals too narrow (reports/clusters/reassessment.md).
+
 Usage: python3 scripts/45_rank_report.py --truth-file data/raw/cpt/truth.json --results reports/cpt_*.json
+                                         [--clusters reports/clusters/cpt.json:gene]
+       python3 scripts/45_rank_report.py --compare TRUTH BASE.json NEW.json CLASS [OUT.json] [--clusters FILE[:UNIT]]
 """
 import argparse, glob, json, sys
 from collections import defaultdict
 from pathlib import Path
 import numpy as np
 B = Path(__file__).resolve().parent.parent
+CLUSTERS = None                      # {genome: cluster id}, set by --clusters
+
+
+def _load_clusters():
+    global CLUSTERS
+    if "--clusters" in sys.argv:
+        spec = sys.argv[sys.argv.index("--clusters") + 1]; f, _, unit = spec.partition(":")
+        CLUSTERS = {g: v[unit or "gene"] for g, v in json.load(open(B / f)).items()}
+        del sys.argv[sys.argv.index("--clusters"):sys.argv.index("--clusters") + 2]
+
+
+def units(keys):
+    """resampling units: one per genome, or one per cluster of related genomes"""
+    if CLUSTERS is None: return [[k] for k in keys]
+    d = defaultdict(list)
+    for k in keys: d[CLUSTERS.get(k, f"solo:{k}")].append(k)
+    return list(d.values())
 
 
 def boot(groups, stat, n=2000):
-    keys = sorted(groups); rng = np.random.default_rng(0); vals = []
+    U = units(sorted(groups)); rng = np.random.default_rng(0); vals = []
     for _ in range(n):
-        pick = rng.choice(len(keys), size=len(keys), replace=True)
-        vals.append(stat([groups[keys[i]] for i in pick]))
+        pick = [k for i in rng.integers(0, len(U), len(U)) for k in U[i]]
+        vals.append(stat([groups[k] for k in pick]))
     return [round(float(np.percentile(vals, 2.5)), 3), round(float(np.percentile(vals, 97.5)), 3)]
 
 
@@ -56,6 +79,7 @@ def main():
     if a.out: (B / a.out).write_text(json.dumps(out, indent=1))
 
 
+_load_clusters()
 if __name__ == "__main__" and "--compare" not in sys.argv:
     main()
 
@@ -77,10 +101,11 @@ def compare(truth_file, base_file, new_file, cls):
             ks = [k for g in sel for k in byg[g]]
             return float(np.mean([R[k] == 1 for k in ks])) if f == "top1" else float(np.mean([R[k] <= 5 for k in ks]))
         row = {"genomes": len(gs), "genes": len(keys)}
+        U = units(gs); row["resampling_units"] = len(U)
         for f in ("top1", "top5", "best1"):
             rng = np.random.default_rng(0); d = []
             for _ in range(4000):
-                sel = [gs[i] for i in rng.integers(0, len(gs), len(gs))]; d.append(stat(sel, b_, f) - stat(sel, a_, f))
+                sel = [g for i in rng.integers(0, len(U), len(U)) for g in U[i]]; d.append(stat(sel, b_, f) - stat(sel, a_, f))
             d = np.array(d); p = 2 * min((d <= 0).mean(), (d >= 0).mean())
             row[f] = {"base": round(stat(gs, a_, f), 3), "new": round(stat(gs, b_, f), 3),
                       "delta": round(stat(gs, b_, f) - stat(gs, a_, f), 3),

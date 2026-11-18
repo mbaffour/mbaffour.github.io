@@ -1,0 +1,266 @@
+[
+ {
+  "genome": {
+   "units": 119,
+   "delta": 0.059,
+   "CI95": [
+    0.017,
+    0.109
+   ],
+   "p": 0.0115
+  },
+  "ani95": {
+   "units": 81,
+   "delta": 0.059,
+   "CI95": [
+    0.0,
+    0.121
+   ],
+   "p": 0.059
+  },
+  "gene": {
+   "units": 57,
+   "delta": 0.059,
+   "CI95": [
+    0.0,
+    0.124
+   ],
+   "p": 0.065
+  },
+  "base": 0.681,
+  "new": 0.739,
+  "name": "Endolysin virion fix, CPT, unseen family, ranked 1st",
+  "decision": "adopted"
+ },
+ {
+  "genome": {
+   "units": 119,
+   "delta": 0.017,
+   "CI95": [
+    0.0,
+    0.038
+   ],
+   "p": 0.0905
+  },
+  "ani95": {
+   "units": 81,
+   "delta": 0.017,
+   "CI95": [
+    0.0,
+    0.044
+   ],
+   "p": 0.2425
+  },
+  "gene": {
+   "units": 57,
+   "delta": 0.017,
+   "CI95": [
+    0.0,
+    0.045
+   ],
+   "p": 0.279
+  },
+  "base": 0.975,
+  "new": 0.992,
+  "name": "Endolysin virion fix, CPT, known family, top 5",
+  "decision": "adopted"
+ },
+ {
+  "genome": {
+   "units": 114,
+   "delta": 0.061,
+   "CI95": [
+    0.018,
+    0.114
+   ],
+   "p": 0.012
+  },
+  "ani95": {
+   "units": 56,
+   "delta": 0.061,
+   "CI95": [
+    0.0,
+    0.149
+   ],
+   "p": 0.0665
+  },
+  "gene": {
+   "units": 43,
+   "delta": 0.061,
+   "CI95": [
+    0.0,
+    0.155
+   ],
+   "p": 0.0755
+  },
+  "base": 0.86,
+  "new": 0.921,
+  "name": "Endolysin virion fix, blind set 2, call = annotated endolysin",
+  "decision": "adopted"
+ },
+ {
+  "genome": {
+   "units": 90,
+   "delta": 0.131,
+   "CI95": [
+    0.087,
+    0.178
+   ],
+   "p": 0.0
+  },
+  "ani95": {
+   "units": 56,
+   "delta": 0.131,
+   "CI95": [
+    0.07,
+    0.208
+   ],
+   "p": 0.0
+  },
+  "gene": {
+   "units": 40,
+   "delta": 0.131,
+   "CI95": [
+    0.065,
+    0.216
+   ],
+   "p": 0.0
+  },
+  "base": 0.643,
+  "new": 0.774,
+  "name": "Nested o-spanin finder, CPT bare DNA, unseen family, curated spanins in top 5",
+  "decision": "adopted"
+ },
+ {
+  "genome": {
+   "units": 90,
+   "delta": 0.131,
+   "CI95": [
+    0.087,
+    0.178
+   ],
+   "p": 0.0
+  },
+  "ani95": {
+   "units": 56,
+   "delta": 0.131,
+   "CI95": [
+    0.07,
+    0.208
+   ],
+   "p": 0.0
+  },
+  "gene": {
+   "units": 40,
+   "delta": 0.131,
+   "CI95": [
+    0.065,
+    0.216
+   ],
+   "p": 0.0
+  },
+  "base": 0.665,
+  "new": 0.796,
+  "name": "Nested o-spanin finder, CPT bare DNA, known family, curated spanins in top 5",
+  "decision": "adopted"
+ },
+ {
+  "genome": {
+   "units": 78,
+   "delta": -0.077,
+   "CI95": [
+    -0.141,
+    -0.026
+   ],
+   "p": 0.0035
+  },
+  "ani95": {
+   "units": 60,
+   "delta": -0.077,
+   "CI95": [
+    -0.205,
+    0.0
+   ],
+   "p": 0.253
+  },
+  "gene": {
+   "units": 42,
+   "delta": -0.077,
+   "CI95": [
+    -0.225,
+    0.0
+   ],
+   "p": 0.7265
+  },
+  "base": 0.846,
+  "new": 0.769,
+  "name": "Holin ESM-2 150M, CPT, unseen family, top 5",
+  "decision": "rejected"
+ },
+ {
+  "genome": {
+   "units": 78,
+   "delta": -0.051,
+   "CI95": [
+    -0.115,
+    0.0
+   ],
+   "p": 0.1205
+  },
+  "ani95": {
+   "units": 60,
+   "delta": -0.051,
+   "CI95": [
+    -0.125,
+    0.013
+   ],
+   "p": 0.162
+  },
+  "gene": {
+   "units": 42,
+   "delta": -0.051,
+   "CI95": [
+    -0.118,
+    0.014
+   ],
+   "p": 0.175
+  },
+  "base": 0.538,
+  "new": 0.487,
+  "name": "Holin mined families v1, CPT, unseen family, ranked 1st",
+  "decision": "rejected"
+ },
+ {
+  "genome": {
+   "units": 78,
+   "delta": -0.064,
+   "CI95": [
+    -0.128,
+    -0.013
+   ],
+   "p": 0.013
+  },
+  "ani95": {
+   "units": 60,
+   "delta": -0.064,
+   "CI95": [
+    -0.146,
+    0.0
+   ],
+   "p": 0.093
+  },
+  "gene": {
+   "units": 42,
+   "delta": -0.064,
+   "CI95": [
+    -0.155,
+    0.0
+   ],
+   "p": 0.094
+  },
+  "base": 0.705,
+  "new": 0.641,
+  "name": "Holin mined families v2, CPT, known family, ranked 1st",
+  "decision": "rejected"
+ }
+]
