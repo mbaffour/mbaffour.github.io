@@ -145,6 +145,22 @@ def pos_truth_matrix(pos_seqs, truth_seqs, procs=4):
         return np.vstack(pool.map(_pt_row, pos_seqs, chunksize=8))
 
 
+def remote_hits(pos_seqs, truth_seqs, E=1e-3, iterations=3):
+    """positives x truths boolean: does a jackhmmer search seeded with the truth (iterative profile HMM, `iterations`
+    rounds, inclusion and reporting E <= `E`) find the positive? Detects far more distant relatives than the 30%
+    identity rule of the family protocol."""
+    import pyhmmer
+    alpha = pyhmmer.easel.Alphabet.amino()
+    db = pyhmmer.easel.DigitalSequenceBlock(alpha, [pyhmmer.easel.TextSequence(name=str(i).encode(), sequence=s).digitize(alpha)
+                                                    for i, s in enumerate(pos_seqs)])
+    qs = [pyhmmer.easel.TextSequence(name=f"q{j}".encode(), sequence=s).digitize(alpha) for j, s in enumerate(truth_seqs)]
+    M = np.zeros((len(pos_seqs), len(truth_seqs)), bool)
+    for j, res in enumerate(pyhmmer.hmmer.jackhmmer(qs, db, max_iterations=iterations, E=E, incE=E, cpus=4)):
+        for h in res.hits:
+            if h.evalue <= E: M[int(h.name.decode() if isinstance(h.name, bytes) else h.name), j] = True
+    return M
+
+
 def denovo_from_genbank(gb, nested=False):
     """genes called from the bare DNA of a GenBank record with Pyrodigal (meta mode); no annotation is read.
     nested: also the nested lipoprotein ORFs (embedded o-spanins) of scripts/genecall.py"""
@@ -297,6 +313,9 @@ def main():
                     help="with --de-novo: also call nested lipoprotein ORFs (embedded o-spanins), scripts/genecall.py")
     ap.add_argument("--endolysin-extra-negatives", default=None,
                     help="JSON of extra endolysin negatives (e.g. virion lytic proteins); joins the checkpoint key")
+    ap.add_argument("--remote-homology", action="store_true",
+                    help="add a third protocol, remote_removal: also remove every positive that a jackhmmer search "
+                         "seeded with the truth finds (3 iterations, E <= 1e-3), with its whole cluster")
     ap.add_argument("--holin-audit", default=None,
                     help="label-audit removals (scripts/59, data/processed/label_audit_removals.json): mislabelled holin "
                          "positives moved to the negatives; joins the checkpoint key")
@@ -465,6 +484,10 @@ def main():
                 tcol.setdefault(g["name"], []).append(len(tseqs)); tseqs.append(g["proteins"][i]["sequence"])
         PT = pos_truth_matrix(pos_seqs, tseqs)
         print(f"{cls}: positive-vs-truth identity {PT.shape} in {int(time.time()-t)}s", flush=True)
+        if a.remote_homology:
+            t = time.time(); RH = remote_hits(pos_seqs, tseqs)
+            print(f"{cls}: jackhmmer remote homology {RH.shape}, {int(RH.any(1).sum())} positives linked to some truth, "
+                  f"in {int(time.time()-t)}s", flush=True)
         if a.score_all:
             rest = [g for g in genomes if not g["truth"][cls]]
             t = time.time(); pending = [g for g in rest if any(ck_load(CK, cls, m, g["name"], len(g["proteins"])) is None
@@ -485,7 +508,7 @@ def main():
             print(f"{cls}: context scores for {len(rest)} genomes without a curated {cls} "
                   f"({len(pending)} computed, {len(fcache) if pending else 0} fits) in {int(time.time()-t)}s", flush=True)
         res = {}
-        for mode in ("family", "sequence"):
+        for mode in ("family", "sequence") + (("remote",) if a.remote_homology else ()):
             t = time.time(); cache = {}; rows = []; resumed = 0; nn_rows = []
             for g in gs:
                 s = ck_load(CK, cls, mode, g["name"], len(g["proteins"]))
@@ -493,8 +516,10 @@ def main():
                     resumed += 1
                 else:
                     ident = PT[:, tcol[g["name"]]].max(1)
-                    if mode == "family":
-                        dc = {cl_ids[i] for i, v in enumerate(ident) if v >= CL.MIN_ID}
+                    if mode in ("family", "remote"):
+                        hit = ident >= CL.MIN_ID
+                        if mode == "remote": hit = hit | RH[:, tcol[g["name"]]].any(1)
+                        dc = {cl_ids[i] for i in np.where(hit)[0]}
                         drop = np.isin(cl_ids, list(dc)) if dc else np.zeros(len(pos), bool)
                     else:
                         drop = np.array([v >= 0.95 for v in ident])
@@ -582,7 +607,8 @@ def main():
 
     print(f"\n{'class':<11}{'protocol':<11}{'n':>5}{'AP':>9}{'CI95':>20}{'top1':>7}{'r@5':>7}")
     for cls in out["classes"]:
-        for mode in ("family_removal", "sequence_removal"):
+        for mode in ("family_removal", "sequence_removal", "remote_removal"):
+            if mode not in out["classes"][cls]: continue
             v = out["classes"][cls][mode]["all"]
             if not v: continue
             print(f"{cls:<11}{mode.replace('_removal',''):<11}{v['n_truths']:>5}{v['AP']:>9.4f}"
