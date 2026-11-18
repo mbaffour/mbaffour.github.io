@@ -1,190 +1,496 @@
-# Sequence-only machine-learning identification of phage lysis genes — holins, endolysins and spanins — across bacteriophage diversity
+# Finding phage lysis genes — holins, endolysins and spanins — from DNA alone
 
-**Draft manuscript (in preparation).** Code, data provenance and all result files in this repository.
-Corresponding work: Michael Baffour Awuah, Center for Phage Technology.
+**Draft manuscript (in preparation).** Code, data provenance and every result file cited below are in this
+repository (branch `claude/holin-ml`). Corresponding work: Michael Baffour Awuah, Center for Phage Technology.
 
 ---
 
 ## Abstract
 
-Bacteriophages end infection by lysing the host cell with a small cassette of genes: a **holin** (triggers inner-membrane permeabilization and sets lysis timing), an **endolysin** (degrades peptidoglycan), and, in Gram-negative hosts, a **spanin** system (disrupts the outer membrane). These genes are short, fast-evolving and frequently mis- or un-annotated, and they do not always sit together in the genome. We built three protein classifiers — one per gene class — from hand-crafted biochemical features and ESM-2 protein-language-model embeddings, trained one-vs-rest so that each class is separated from the other two and from bulk bacterial and phage proteins. Under homology-controlled leave-one-genome-out scanning of 66 genomes carrying 180 annotated lysis genes, genome-scan average precision is **0.75** for a holin from a known family in a new phage and **0.61** for a never-before-seen family; endolysin reaches **0.81/0.61** and spanin **0.80/0.57**. The true gene is among the top five proteins of its genome 87–100 % of the time but ranked first only 50–70 %, so the classifiers are best used as shortlist generators, paired with lysis-domain HMM evidence that recovers genes the model under-scores. Applied to 300+ diverse phage genomes — including actinobacterial hosts — the caller recovers annotated lysis genes at high rates and runs directly on raw nucleotide assemblies via de-novo gene calling. Beyond recovery, a systematic analysis uncovered a reproducible biological signal: because the classifier has **no positional input**, its tendency to call a *second* holin-fold gene immediately next to the annotated holin cannot be an artefact of genomic context — and we show these second genes cluster adjacent to the first far more than chance (median 2 vs 22 genes apart), are membrane proteins with holin signatures, and are frequently either annotated second holins, holin–antiholin pairs, or un-annotated candidates. We release the models, a single-command tool that accepts protein or nucleotide input, and a Galaxy wrapper.
+Tailed phages lyse their host with a small set of genes: a **holin** that permeabilises the inner membrane and times
+lysis, an **endolysin** that degrades peptidoglycan, and, in Gram-negative hosts, a **spanin** complex that disrupts
+the outer membrane. These genes are short, diverse and often missing or mislabelled in genome annotations. We built
+one classifier per gene class from 36 biochemical features and ESM-2 protein-language-model embeddings, combined them
+with a gene finder that also recovers o-spanins nested inside another gene, and with a genomic-context rule that names
+one gene per class per genome. Every claim was tested with related phages grouped by shared gene content, so that
+near-identical genomes are not counted as independent evidence.
+
+On 129 genomes with hand-curated lysis genes, with the target's whole family (≥30% identity) removed from training,
+the curated gene was the model's top pick for 54% of holins and 74% of endolysins and was in the top five for 85%
+and 90%. Removing remote homologues found by profile search as well (jackhmmer) barely changed holins (50% / 83%) or
+spanins (top five 90%) but lowered endolysins to 55% / 82%: the endolysin model depends partly on remote similarity
+to ancient enzyme families. Compared with PHROGs, the profile database behind Pharokka, on curated genomes deposited
+after PHROGs was built, our model named the endolysin more often (0.92 vs 0.58) and the holin comparably (0.76 vs
+0.64, overlapping intervals), while PHROGs named the spanin more often (0.89 vs 0.65). Using PHROGs where it makes a
+call and our model where it makes none was at least as good as either alone for every class. On 1,423 phage genomes
+scanned from DNA alone in four blind designs, with calls committed before annotations were read, the annotated gene
+was usually among the top five calls (holin 0.96, endolysin 0.97, spanin 0.96 in the first blind set). A pre-registered final test on
+87 new genomes did not confirm the one model change it tested (endolysin training-label fix: 0.838 → 0.863,
+one-sided p = 0.37), and confirmed agreement with annotation mainly for genes close to the training data. Membrane
+topology from DeepTMHMM and SignalP 6.0, cross-checked with our own predictor, shows family-specific patterns
+(class III holins in T4- and T5-like phages, unimolecular spanins in Drexlerviridae, SAR endolysins in Drexlerviridae
+and P2-like phages). We release the models and a single command that accepts DNA or protein input, and recommend it
+alongside, not instead of, profile-based annotation.
 
 ---
 
 ## 1. Background
 
-The phage lysis cassette is one of the most intensively studied small genetic modules in molecular biology, yet it remains hard to annotate automatically. Holins in particular are extraordinarily diverse at the sequence level — they have been classed into dozens of unrelated families (TCDB superfamily 1.E) with little or no detectable homology between them — so homology search (BLAST/HMM) misses holins from families not already in the reference set. Endolysins are modular enzymes spanning many catalytic folds; spanins are small, membrane-embedded, and under-annotated. A method that recognises these genes from sequence *character* rather than only from homology would help close the annotation gap, especially for the under-characterised phages that dominate metagenomes.
+The phage lysis cassette is among the best-studied small genetic modules in biology (Young 2014; Cahill & Young 2019),
+yet it is hard to annotate automatically. Holins fall into dozens of families with little detectable homology
+between them (TCDB superfamily 1.E; Saier *et al.* 2021), so homology search misses holins from families absent from
+the reference set. Endolysins are modular enzymes with many catalytic folds, some exported by a signal-anchor-release
+(SAR) domain rather than by the holin (Xu *et al.* 2004). Spanins are small membrane proteins, often encoded as an
+outer-membrane lipoprotein (o-spanin) nested within the inner-membrane i-spanin gene, and are under-annotated
+(Summer *et al.* 2007; Kongari *et al.* 2018). Profile databases such as PHROGs (Terzian *et al.* 2021), used by
+Pharokka (Bouras *et al.* 2023), annotate known families well but by construction cannot recognise a family they have
+not seen.
 
-This work asks a narrow, testable question: **can a protein-language-model classifier identify each lysis gene class across phage diversity, and does it generalise beyond the families it was trained on?** We hold ourselves to homology-controlled evaluation throughout, because the central failure mode of "ML finds known genes" is measuring recovery of training data.
+We asked two questions: **can a sequence-based classifier find each lysis gene across phage diversity, including
+families it was not trained on, and how does it compare with profile-based annotation?** Because the central risk of
+such work is measuring recovery of training data, every estimate below states how much of the target's family was
+removed from training, and every interval accounts for related genomes.
 
 ## 2. Methods
 
-### 2.1 Data
+### 2.1 Training data and labels
 
-Positives were assembled per class from UniProt (reviewed and, where needed for depth, phage-taxonomy TrEMBL), Pfam/InterPro family members restricted to phage taxonomy, TCDB, the mined phage pool (below), and, for spanins, the curated Center for Phage Technology dataset from Kongari *et al.* 2018 (BMC Bioinformatics; Additional file 2). Final deduplicated, homology-clustered positive sets:
+Positives for each class came from UniProt (reviewed entries and phage TrEMBL), Pfam/InterPro family members of phage
+origin, TCDB, phage genomes mined from RefSeq, and, for spanins, the curated Center for Phage Technology (CPT) set of
+Kongari *et al.* (2018). Negatives were 7,884 bacterial transmembrane proteins, 1,619 Swiss-Prot phage proteins and
+3,382 phage proteins from 300 RefSeq genomes chosen to include hard confusables (Rz-like spanins and other
+lysis-neighbourhood proteins). Each one-vs-rest model also treats the other two lysis classes as negatives. Every
+source is recorded with URL, retrieval time and SHA-256 (`data/raw/*/provenance.json`).
 
-| class | positives | clusters | evidence tiers |
-|---|---|---|---|
-| holin | 558 + 4,497 curated | — | Swiss-Prot/TCDB + Pfam family depth |
-| endolysin | 1,529 | 229 | 378 validated (PE=1), 83 reviewed, 418 pool-annotated, 650 Pfam |
-| spanin | 2,045 | 185 | 10 validated, 18 reviewed, **910 CPT-curated (Kongari 2018)**, 25 pool, 1,023 phage TrEMBL, 59 Pfam |
-
-Negatives (shared, 9,503 + 3,382): 7,884 bacterial transmembrane proteins + 1,619 Swiss-Prot phage proteins, plus 3,382 phage proteins mined from 300 RefSeq genomes specifically to include the **hard confusables** the original set lacked — above all 101 Rz-like spanins and proteins drawn from lysis-cassette neighbourhoods. For each one-vs-rest model the negatives also include the *other two* lysis classes, forcing the model to separate holin from endolysin from spanin rather than merely "lysis-like from not."
-
-Every external source is recorded with its URL, retrieval time and SHA-256 (`data/raw/*/provenance.json`); bulk sequence dumps are regenerable and excluded from version control.
+**Label audits.** Training labels were audited after errors surfaced in testing:
+- *Endolysin positives:* 51 virion-associated lytic proteins (T4-type tail lysozymes, T7-type internal virion
+  proteins), found when they caused confident false calls in a blind scan, were moved to the negatives
+  (`reports/endolysin_virion_fix.md`). Positives labelled only from genome product names were removed
+  (`reports/evidence_only.md`).
+- *Spanin positives:* name-labelled TrEMBL entries were kept only when corroborated by a lipobox or i-spanin
+  topology, and 7 clearly wrong entries (plant RNA-binding proteins, peptidases, a phosphodiesterase, a holin) were
+  removed (`reports/label_audit/label_audit.md`).
+- *Holin positives:* 50 entries whose own database description names another function (15 PTS transporter subunits,
+  ribokinases, restriction enzymes, endolysin-type enzymes) were identified. Removing them did not pass the
+  pre-set non-inferiority rule (§2.6), so the shipped holin model still contains them; the list is released.
 
 ### 2.2 Features and models
 
-Each protein is represented by 36 hand-crafted biochemical features (length, transmembrane-segment count and fraction from a Kyte–Doolittle scan, terminal charges, amino-acid composition, hydrophobic-moment proxies) concatenated with a 480-dimensional mean-pooled embedding from **ESM-2** (`facebook/esm2_t12_35M_UR50D`), for a 516-dimensional vector. The classifier is a histogram gradient-boosted decision tree (scikit-learn `HistGradientBoostingClassifier`, 400 rounds, 31 leaves, learning rate 0.06). The shipped endolysin model trains **without early stopping**: scikit-learn's default enables it above 10,000 rows using a random 10 % validation split, which in homology-rich data is full of near-copies of the training rows. That stopped training at 104 of 400 rounds, and removing it raised realistic LOGO AP by 0.046 (paired 95 % CI +0.017 to +0.070) without affecting the strict protocol (`reports/capacity_sweep.md`). Because the resulting probabilities are more extreme, high-confidence thresholds are set per class (§3.1). We tested and **rejected** a transmembrane-anchored local-feature representation (it did not help the hard long-holin cases and cost recall; §3.2).
+Each protein is represented by 36 handcrafted features (length, Kyte–Doolittle transmembrane segments, terminal
+charges, composition, hydrophobic-moment proxies) and the 480-dimensional mean-pooled embedding of ESM-2
+(`esm2_t12_35M_UR50D`; Lin *et al.* 2023), 516 dimensions in all. Each class has a histogram gradient-boosted tree
+classifier (scikit-learn; Pedregosa *et al.* 2011; 400 rounds, 31 leaves, learning rate 0.06). The endolysin model
+trains without early stopping: scikit-learn's automatic early stopping holds out a random 10% of rows, which in
+homology-rich data are near-copies of training rows, and stopped training at 104 of 400 rounds
+(`reports/capacity_sweep.md`).
 
-### 2.3 Leakage control and evaluation
+### 2.3 Genes from DNA
 
-The project's discipline is that no performance number is trusted unless homology leakage between train and test is controlled:
+Genes are called with Pyrodigal (Larralde 2022; Hyatt *et al.* 2010). Standard gene finders do not report a gene
+embedded in another gene's reading frame, which is where many o-spanins lie. A narrow finder adds nested ORFs inside
+genes of 60–300 codons that begin with a lipoprotein signal: a lipobox ([LVI][ASTVI][GAS]C) with the cysteine at
+residue 15–35, preceded by a hydrophobic h-region (mean Kyte–Doolittle ≥ 1.5) (`scripts/genecall.py`). It adds about
+0.5 ORFs per genome.
 
-- **Homology clustering.** All sequences are clustered by exhaustive Smith–Waterman identity (greedy set-cover; a k-mer prefilter was rejected for ~10 % edge recall, and single-linkage for chaining). Splits never place homologues on both sides.
-- **Frozen gold hold-out.** 20 % of clusters per class, chosen once with a fixed seed, never used for model selection. It is frozen only *within* a dataset version: rebuilding a class's dataset re-clusters it, and the same seed then draws different clusters (an endolysin rebuild moved the held-out share from 13 % to 23 % of positives). Gold-hold-out scores are therefore never compared across dataset versions.
-- **Leave-one-genome-out (LOGO) genome scan.** For each evaluation genome we remove the target gene's homologues from training before scoring that genome, and report two protocols: **realistic** (remove ≥95 % identical near-duplicates — a newly sequenced phage whose gene belongs to a *known* family) and **strict** (remove the whole family at ≥30 % identity — a *never-seen* family). This is the honest deployment estimate.
+### 2.4 One call per class
 
-A recurring, important subtlety we surfaced and report throughout: **a genome being out-of-sample does not make its genes out-of-sample**, because characterised phages' lysis genes are in the public databases regardless of which genome they sit in. We therefore always report the exact-sequence in-sample fraction alongside any recovery rate.
+Each model scores proteins independently, but lysis genes usually sit together. For holins and endolysins the score
+is re-ranked with genomic context, z = logit(P) + β × (the strongest other-class score among the protein's
+neighbours), with β and the window fitted on CPT genomes (`scripts/46_context_rerank.py`, `models/context_params.json`).
+For spanins, a learned second-stage caller combines the three class scores, neighbour scores, rank within the genome
+and protein shape (`models/spanin_caller.pkl`). A learned caller was also tried for holins; its apparent gain vanished
+when related phages were kept in the same cross-validation fold, so it was not used (`reports/integrated_caller.md`).
+A call is marked confident when its context score clears a measured cut-off or it carries a catalytic lysis domain.
+
+### 2.5 Evaluation protocols
+
+**Leave-one-genome-out with homology removal.** For each test genome, before scoring it, training positives related
+to its curated lysis genes are removed at one of three levels (`scripts/40_logo_benchmark.py`):
+
+| protocol | removed from training | answers |
+|---|---|---|
+| known family | ≥95% identical sequences | a new phage whose gene is from a known family |
+| unseen family | ≥30% identity (Smith–Waterman, coverage ≥0.5, score ≥80) and their whole homology clusters | a family absent from training at the sequence level |
+| remote homology removed | additionally, every positive found by jackhmmer seeded with the curated gene (3 iterations, E ≤ 10⁻³; Johnson *et al.* 2010; PyHMMER, Larralde & Zeller 2023), and its cluster | a family with no detectable profile homologue in training |
+
+Per genome we report whether the call is the curated gene and whether the curated gene is in the top five proteins.
+
+**Benchmarks with independent ground truth.**
+- *CPT curated set:* 129 genomes whose lysis genes were assigned by hand at the CPT (125 endolysins, 78 holins,
+  162 spanins).
+- *Experimental set:* 24 genomes with UniProt lysis proteins evidenced at protein level, reduced to DNA.
+- *Reviewed set:* 42 genomes carrying Swiss-Prot reviewed lysis proteins (43 endolysins, 19 holins, 18 spanins).
+
+**Blind scans.** For the scans of unseen genomes, the predictor received DNA only, its calls were committed to git
+before any annotation was opened, and they were then scored against the genome's own annotation under matching rules
+fixed in advance (`scripts/52a–c`). These measure **agreement with annotation, not accuracy**: annotations of recent
+phage genomes are largely automated and some are wrong (§3.3).
+
+**Related genomes.** Phage benchmarks contain near-identical genomes (three lambda immunity variants in CPT, ten
+identical Vibrio phages in the lambdoid set), so resampling genomes as independent gives intervals that are too
+narrow. Genomes were grouped by single linkage on shared gene content: Jaccard ≥ 0.10 between MinHash sketches of all
+amino-acid 5-mers of their proteins (a genus-like level), with whole-genome ANI ≥ 95% (Mash-style DNA 21-mer sketches;
+Ondov *et al.* 2016) as a second, finer level (`scripts/58_genome_clusters.py`). The effective sample size is about
+half the genome count (CPT 129 genomes → 60 gene-content clusters; experimental set 24 → 20; blind set 1 152 → 65;
+blind set 2 123 → 45). **All 95% intervals and paired tests below resample gene-content clusters** (cluster bootstrap,
+4,000 draws; Field & Welsh 2007) unless stated otherwise.
+
+### 2.6 Decisions and the final test
+
+Development decisions were made on CPT and the experimental set, with the rule for adopting each change written down
+before the run. A change justified by correctness alone (a label fix) was adopted if it was non-inferior: the lower
+95% bound of the change in unseen-family top-1 and top-5 on CPT had to stay above −0.05. A change justified by
+performance needed a paired interval excluding zero.
+
+Before any final-test genome was selected, the pipeline was frozen (model and script SHA-256 hashes) together with a
+pre-registered analysis plan (`reports/final/FROZEN.md`, commit 2376b6e): one confirmatory hypothesis (H1, one-sided,
+α = 0.05, so no multiplicity correction), estimation endpoints with intervals but no tests, and descriptive secondary
+analyses. Anything else run on the final set is labelled exploratory.
+
+### 2.7 Comparison with existing tools
+
+- **PHROGs** v4 (38,880 profiles, 305 in the lysis category; from the Pharokka v1.11.0 database bundle, Zenodo record
+  21755221), searched with PyHMMER; as in Pharokka, each protein takes its best PHROG (E ≤ 10⁻⁵), and proteins whose
+  best PHROG is a holin, endolysin or spanin profile are ranked by bit score.
+- **Pfam lysis domains** (Mistry *et al.* 2021), ranked by E-value.
+- **Hybrid:** PHROGs where it assigns the class in a genome, our model where it assigns nothing.
+
+PHROGs was built from genomes available around 2019–2020 and has effectively seen most benchmark genes, so the
+fairest comparison is on CPT genomes deposited from 2022 on (`scripts/60_baselines.py`).
+
+### 2.8 Membrane topology
+
+Holin class (I/II/III = 3/2/1 transmembrane helices) and orientation, spanin type and SAR endolysins were assigned
+with DeepTMHMM (Hallgren *et al.* 2022) and SignalP 6.0 (Teufel *et al.* 2022), run on the public lysis-protein
+sequences via the BioLib service, and with our own predictor as an independent check. Our predictor is a per-residue
+logistic regression on ESM-2 embeddings and local hydropathy, trained on 3,225 Swiss-Prot bacterial and viral
+proteins (helical, soluble and signal-peptide) with all phage lysis proteins held out; orientation follows the
+positive-inside rule (von Heijne 1989), counting K+R within 15 residues of each helix end (`scripts/55_tm_predictor.py`).
+Both predictors were scored against the 449 reviewed proteins whose every transmembrane feature has experimental
+evidence (ECO:0000269) and that our predictor did not train on (`scripts/55c_tm_experimental.py`). A SAR endolysin is
+called only when our N-terminal SAR rule and DeepTMHMM (signal-like N terminus) agree; lipoproteins (o- and
+u-spanins) are taken from SignalP's Sec/SPII call (`scripts/57_consensus_topology.py`).
 
 ## 3. Results
 
-### 3.1 Classifier performance (homology-controlled)
+### 3.1 How well the models generalise
 
-Leave-one-genome-out genome-scan performance over every annotated lysis gene in a 66-genome panel (`scripts/40_logo_benchmark.py`; 95 % CIs by bootstrap over genomes):
+CPT curated genomes, per genome, 95% cluster-bootstrap intervals (`reports/remote_homology.md`):
 
-| gene | genes / genomes | realistic LOGO AP | strict LOGO AP | top-1 (real./strict) | recall@5 (real./strict) |
-|---|---|---|---|---|---|
-| holin | 53 / 50 | **0.754** (0.66–0.84) | **0.613** (0.49–0.74) | 0.70 / 0.66 | 0.98 / 0.93 |
-| endolysin | 95 / 63 | **0.809** (0.73–0.88) | **0.614** (0.51–0.73) | 0.58 / 0.59 | 0.93 / 0.87 |
-| spanin | 32 / 19 | **0.800** (0.67–0.94) | **0.568** (0.43–0.80) | 0.56 / 0.50 | 1.00 / 0.97 |
+| | known family | unseen family (30%) | remote homology removed |
+|---|---|---|---|
+| holin, call is the curated gene | 0.71 [0.53, 0.86] | 0.54 [0.39, 0.71] | **0.50** [0.35, 0.68] |
+| holin, curated gene in top 5 | 0.94 [0.88, 0.99] | 0.85 [0.74, 0.95] | **0.83** [0.72, 0.93] |
+| endolysin, call | 0.87 [0.79, 0.94] | 0.74 [0.63, 0.84] | **0.55** [0.39, 0.71] |
+| endolysin, top 5 | 0.99 [0.98, 1.00] | 0.90 [0.83, 0.96] | **0.82** [0.66, 0.94] |
+| spanin, curated gene in top 5 | 0.93 [0.83, 1.00] | 0.91 [0.79, 0.99] | **0.90** [0.77, 0.99] |
 
-These replace the figures from an earlier, smaller evaluation — holin 0.965 / 0.785, endolysin 0.843 / 0.729, spanin 0.834 / 0.729 — which rested on 12–16 genomes and 13–19 annotated genes per class and carried confidence intervals too wide to separate any two models. On the larger panel every class is lower, and the apparent lead of the holin model largely disappears.
+Holins and spanins lose little when remote homologues are removed, so their unseen-family performance does not rest
+on profile-detectable homologues left in training; the models appear to recognise membrane topology, lipoprotein
+signals and size rather than only family membership. Endolysins lose the most (top pick 0.74 → 0.55): their
+catalytic domains belong to ancient enzyme families, and the model draws on that remote similarity. For an endolysin
+of a genuinely new fold, the honest statement is "in the top five about 80% of the time".
 
-Reading: the right use is a **ranked shortlist**. For a new phage the true gene is in the top five almost always, but it is the single top-ranked protein only about 60 % of the time. For a genuinely novel family (strict) the shortlist still usually contains it (recall@5 0.87–0.97), at lower precision. With the endolysin class's 95 truths across 63 genomes, paired differences between models are resolvable only above about 0.05 AP; smaller claimed gains on this panel should be read as unmeasured.
+The pattern holds on the other curated sets (`reports/final/final_results.md`, `reports/validated_benchmark.md`).
+Reviewed Swiss-Prot set, call / top 5: holin 0.84/1.00 (known), 0.79/0.90 (unseen), 0.74/0.90 (remote removed);
+endolysin 0.90/1.00, 0.61/0.92, 0.46/0.85; spanin 0.80/1.00, 0.80/1.00, 0.60/1.00. The intervals on this set are wide
+(19 holins, 10 spanin genomes).
 
-**High-confidence calls use per-class cut-offs**, read from each model file and reported in the `high_conf` column: 0.95 for holin and spanin, **0.9995 for endolysin**. The endolysin model's probabilities are more extreme (§2.2); at 0.9995 it gives precision 0.976 / recall 0.421 (realistic) and 0.913 / 0.221 (strict), which beats the previous endolysin model at 0.95 on all four measures. That cut-off was chosen on the same panel it is reported on, so it is mildly optimistic.
+**Use as a shortlist.** In every protocol the curated gene is in the top five far more often than it is the top
+pick. The tool reports a ranked shortlist as well as one call per class.
 
-**Validation on curated and experimental evidence.** Product names are an imperfect yardstick, so the models were
-also tested against two sets graded without them. On **130 CPT genomes** whose lysis genes were curated by hand
-(125 endolysins, 78 holins, 162 spanins), the curated gene is in the top five proteins of its genome for 91 % of
-endolysins, 85 % of holins and 88 % of genomes' spanins under the novel-family protocol (95 %, 94 % and 96 % for known
-families) (`reports/cpt_benchmark.md`). On **24 genomes with experimentally proven lysis genes** (UniProt, evidence at
-protein level), reduced to bare DNA and re-called with Pyrodigal so that no annotation is used at all, the proven gene
-is in the top five for 20 of 21 endolysins, 7 of 8 holins and 3 of 4 spanins under the same protocol
-(`reports/validated_benchmark.md`). The two sets agree.
+**Development benchmark.** During development a 66-genome panel (180 annotated lysis genes) was scored by
+genome-scan average precision: holin 0.75 (known family) / 0.61 (unseen family), endolysin 0.81 / 0.61, spanin
+0.80 / 0.57 (`reports/genome_benchmark_*.json`). These intervals resampled genomes, not clusters, and are given only
+for continuity with earlier reports.
 
-A blind scan of 152 phage genomes published after the training data (DNA only, calls frozen before the annotations
-were read) put the annotated holin, endolysin and spanin in the top five ~96% of the time. Its main confident error,
-calling tail lysozymes as endolysins, traced to 51 virion proteins among the endolysin training positives; moving them
-to the negatives raised unseen-family ranked-first on CPT from 0.664 to 0.720 (+0.056, 95% CI +0.016 to +0.103) and,
-on a second fresh blind set of 123 genomes, the share of genomes where the endolysin call is the annotated one from
-0.860 to 0.921 (+0.061, +0.018 to +0.114) (`reports/blind/blind_scan.md`, `reports/endolysin_virion_fix.md`).
+**Gene finding.** From bare DNA, Pyrodigal does not produce 48 of CPT's 162 curated spanins. The nested lipoprotein
+ORF finder recovers 24 of them and raises the share of CPT genomes whose curated spanin is in the top five, from DNA
+under the unseen-family protocol, by +0.131 [+0.065, +0.216] (`reports/denovo_gene_calling.md`,
+`reports/clusters/reassessment.md`). On the experimental set it recovers all three missed o-spanins.
 
-Standard gene finders do not call genes embedded in another gene's reading frame, and embedded o-spanins are exactly
-that: from bare DNA, Pyrodigal does not produce 48 of CPT's 162 curated spanins. A narrow finder for nested ORFs that
-begin with a lipoprotein signal (0.5 extra ORFs per genome) recovers 24 of them, and raises the share of curated
-spanins in their genome's top five, from bare DNA under the novel-family protocol, from 61 % to 76 % (+14.8 points,
-95 % CI +9.9 to +19.9); on the experimental set it recovers all three missed o-spanins (6 of 7 spanins in the top
-five) (`reports/denovo_gene_calling.md`). It is on by default for raw assemblies.
+**Calling one gene.** The context rule raises the share of curated holins ranked first in 5-fold cross-validation
+over CPT genomes by about 10 points (54 → 64% unseen family; 71 → 81% known family), endolysins by 4–6 and spanins
+by 4, with no measure made worse. Out of fold, with related genomes kept together, confident calls were correct for
+85–98% of genes depending on class and protocol (`reports/integrated_caller.md`).
 
-Two genomes in the 66-genome panel were present twice (an accession with and without its version suffix); removing the
-copies lowers the endolysin figures by 0.005-0.009 AP, below the panel's resolution.
+### 3.2 Comparison with PHROGs and Pfam
 
-**Genomic context and calling.** Lysis genes sit together, but each model scores a protein alone. Re-ranking each
-class with the strongest other-class score among a protein's neighbours (z = logit P + beta x neighbouring score;
-`scripts/46_context_rerank.py`, parameters tuned on the CPT set) raises the fraction of curated genes ranked first, in
-5-fold cross-validation over CPT genomes, by 10 points for holins (54 -> 64 % novel family; 71 -> 81 % known; 95 % CIs
-exclude zero), 4-6 points for endolysins and 4 points for spanins (best per genome), with no measure made worse. The
-predictor now names one gene per class per genome, **confident** when its context score clears a measured cut-off or
-it carries a catalytic lysis domain. A learned second-stage caller over all three scores, neighbour scores, genome
-rank and protein shape was also built. Cross-validated by genome it appeared to raise novel-family holins ranked first
-from 62 % to 82 %, but with related phages kept in the same fold that gain vanished: it had learned families from shape
-in sibling genomes. It is used only for spanins, where lipobox and membrane topology generalise across families (top
-pick correct 0.91 known / 0.80 novel, against 0.83 / 0.73 for the context rule). Family-grouped, out of fold, confident
-calls are correct 95 % (endolysin), 93 % (holin) and 98 % (spanin) of the time for known families, and 85 %, 90 % and
-98 % for novel ones (`reports/integrated_caller.md`).
+CPT genomes deposited from 2022 on, call is the curated gene (`reports/baselines/baselines.md`):
 
-**Training on evidence only.** The shipped endolysin model is trained only on evidence-backed labels -- UniProt
-protein-level evidence, Swiss-Prot review, or a lysis Pfam domain -- with the 368 positives labelled from genome
-product names removed. Paired on 119 CPT genomes it is indistinguishable from the model it replaced (ranked first
--0.024 novel, +0.040 known, neither significant) and ranks 15 of 22 experimentally proven endolysins first (was 12).
-For spanins, removing all 760 name-labelled TrEMBL entries improved novel-family recall (top five +6.2 points,
-p = 0.008) but cost known-family ranking (-4.3 points, p = 0.002). Keeping only those whose label is corroborated by a
-sequence signal (an o-spanin lipobox or i-spanin topology) kept the novel-family gain (+5.6, p = 0.049) without the
-loss, and is the shipped spanin model (`reports/evidence_only.md`).
-
-### 3.2 What worked and what did not
-
-Four interventions were attempted under the same guards; two were adopted and two rejected, each on its own evidence:
-
-| intervention | outcome |
-|---|---|
-| Stacked specialist models (window/actino/short + gated stacker) | **rejected** — lowered gold AP; blending miscalibrated the decision threshold |
-| Guarded self-training on the mined pool | **rejected, rolled back** — did not beat baseline; candidate set was contaminated by spanins |
-| TM-anchored local features | **rejected** — no gain on the target long-holin cases, cost recall |
-| Phage-derived hard negatives (incl. spanins) | **adopted** — eliminated Rz-like spanin false positives the bacterial-negative model had never seen |
-| Curated holin/spanin depth (Pfam; CPT/Kongari spanins) | **adopted** — holin realistic AP 0.823 → 0.965 on the earlier small evaluation (0.754 on the 66-genome panel, §3.1); spanin recall@0.9 at strict removal 0.00 → working model |
-| Endolysin family expansion (+14 catalytic families, 1,529 → 2,788 positives) | **rejected** — realistic AP −0.061 (paired CI −0.113 to −0.011). Cut back to the original count with its new composition it still lost 90 % of that ground, while 820 extra records of the same mix changed AP by 0.006: the loss is composition, not volume (`reports/capacity_sweep.md`) |
-| Per-catalytic-fold endolysin models | **rejected** as a replacement — sharper within a fold, but loses cross-fold transfer, which is what the strict protocol measures |
-| Larger trees / more rounds (800 rounds, 63 leaves) | **rejected** — lower AP in all four paired contrasts |
-| Early stopping removed (endolysin) | **adopted** — realistic AP +0.046 (§2.2); no effect on the expanded data or on strict |
-
-The spanin result specifically depended on the CPT/Kongari curated set: the class went from 288 to 2,045 sequences and from unusable (zero strict recall) to the strongest gold-hold-out AP of the three.
-
-### 3.3 Breadth across phage diversity
-
-Scanning 300 pooled Caudoviricetes genomes (plus a fresh out-of-sample panel) the caller recovers annotated holins in **96.9 %** of genomes that have one (186/192), of which a majority (107) are out-of-sample. Endolysin and spanin recovery on the pool is near-total but largely in-sample (their positives were partly drawn from these annotations), so the honest generalisation estimates remain the LOGO figures above. The tool runs identically on annotated GenBank and on **raw nucleotide assemblies** via de-novo gene calling (Pyrodigal): on phage N4, the nucleotide path recovered the same holin/endolysin/spanin cassette as the annotation, from sequence alone.
-
-**Expanded out-of-sample panel (38 genomes, 23 actinobacterial).** To test generalisation on genomes with no overlap with training (verified against the pool, prior panel, atlas and benchmark), and specifically to probe the historical actinobacterial weakness, we scanned a fresh panel weighted toward *Mycobacterium*, *Streptomyces*, *Rhodococcus*, *Gordonia*, *Corynebacterium* and *Propionibacterium* phages. Reporting genuinely-unseen recovery (recovered gene is *not* an exact training sequence):
-
-| class | annotated | recovered | in-sample | genuinely unseen |
+| | PHROGs | ours, known family | ours, unseen family | PHROGs, else ours (unseen) |
 |---|---|---|---|---|
-| holin | 26 | 25 (96 %) | 11 | **14** |
-| endolysin | 37 | 36 (97 %) | 8 | **28** |
-| spanin | 6 | 6 | 6 | 0 (no generalisation test here) |
+| holin (33 genomes) | 0.64 [0.41, 0.87] | **0.76** [0.54, 0.97] | 0.48 [0.28, 0.74] | 0.67 [0.45, 0.90] |
+| endolysin (50) | 0.58 [0.33, 0.84] | **0.92** [0.82, 0.98] | 0.76 [0.58, 0.89] | 0.90 [0.80, 0.97] |
+| spanin (46) | **0.89** [0.71, 1.00] | 0.65 [0.41, 0.91] | 0.54 [0.32, 0.77] | **0.91** [0.74, 1.00] |
 
-Here "unseen" is the weaker criterion of *not an exact training sequence* — close homologues (e.g. *Mycobacterium* cluster siblings) may still be in training, so this is more permissive than the strict LOGO protocol (§2.3, §3.1), which removes the whole family at ≥30 % identity and remains the true never-seen-family estimate. Within the actinobacterial subset, **7 holins not identical to any training sequence** were recovered — Rosebush, Phlyer, Tweety, *Propionibacterium* PHL194M00, Barnyard, *Rhodococcus* ReqiPepy6, Predator — all at 0.975–1.000, together with 19 such endolysins (0.92–0.995). This is a marked improvement in evidence over the first panel, which contained only one, and gives no sign of the historical actinobacterial holin blind spot at this level of homology control. It is reported with its limits: the subset is *Mycobacterium*-dominated; 9 of 23 genomes have no annotated holin to score; the two misses are in less-represented hosts (*Corynebacterium* P1201 holin, 0.33; *Streptomyces* VWB endolysin, 0.21); and this measures sensitivity, not specificity. Separately, **marine cyanophage endolysins are a documented weakness** (S-PM2 0.60, P-SSM2 0.63). Across the panel there are ~1.6 high-confidence un-annotated calls per genome — i.e. the caller is sensitive but over-calls, and high-confidence use should apply the per-class cut-offs (§3.1) and context filtering. (This panel scan predates the current endolysin model.)
+- **Endolysins: our model is better.** PHROGs assigns no endolysin at all to 24% of CPT's curated endolysins (38% in
+  genomes from 2022 on); ours has the curated gene in the top five in every such genome.
+- **Holins: comparable.** Ours ahead on recent genomes, PHROGs ahead over all CPT genomes (0.76 vs 0.70), with
+  overlapping intervals.
+- **Spanins: PHROGs names the gene more often** (0.89 vs 0.65), although both put it in the top five equally often.
+- **Hybrid.** PHROGs where it calls and our model where it does not is at least as good as the better tool for every
+  class, and has the curated gene in the top five in every recent genome. Over all CPT genomes: holin 0.78, endolysin
+  0.90, spanin 0.93. **We therefore recommend running the predictor alongside Pharokka.**
 
-### 3.4 A reproducible biological finding: adjacent holin-fold gene pairs
+Pfam lysis domains alone call 0.54 (holin), 0.74 (endolysin) and 0.31 (spanin) on CPT. PHROGs has no equivalent of
+the unseen-family fallback: its misses are coverage gaps.
 
-The classifier sees only protein sequence — it has **no positional input**. It nonetheless repeatedly nominated a *second* holin-scoring gene immediately beside the annotated holin (first observed at phage N4, where an un-annotated gene *gp63* outscores the annotated holin *gp62*). Because the model cannot perceive adjacency, any genomic clustering of its high-scoring holins is real signal, not model bias. Testing this against a random-placement null across 300 genomes:
+### 3.3 Blind scans of unseen genomes from DNA
 
-- 99/300 genomes (33 %) carry ≥2 high-confidence (P≥0.9) holin-fold genes.
-- Minimum gene-distance between them: **median 2** observed vs **22** under random placement; **67 %** are within 3 genes vs **0 %** by chance.
+**Blind set 1** (`reports/blind/blind_scan.md`): 152 tailed-phage genomes deposited from June 2026, 26 host genera.
 
-Characterising the 138 "second" genes: 92 lie in the lysis region; 78 % have ≥1 predicted transmembrane helix and 60 % a positive C-terminal tail (holin signatures); by homology 116 match a known holin and 41 match a known antiholin (an antiholin *is* a holin homologue, so this is a correct fold call), with 22 matching neither. By annotation, 27 are already a second annotated holin, **71 are un-annotated hypotheticals** with holin character, and ~20 are structural/other (the specificity cost). The conclusion is that phage lysis regions commonly encode **two adjacent holin-fold proteins** — annotated dual holins, holin–antiholin pairs, and under-annotated candidates — and the model recovers both from fold alone. This is a general pattern, of which the N4 *gp63* observation was one instance.
+| | genomes with the gene annotated | call is the annotated gene | annotated gene in top 5 |
+|---|---|---|---|
+| holin | 104 | 0.885 | 0.962 |
+| endolysin | 130 | 0.838 | 0.969 |
+| spanin | 92 | 0.761 | 0.957 |
 
-### 3.5 Predictions
+(Intervals here resampled genomes; with gene-content clusters they widen but the point estimates stand.) Split by the
+annotated gene's identity to training, the known-family column (30–95%) is the fair estimate for a typical new phage:
+the gene was in the top five 95–96% of the time and named outright 71–80% of the time. Only 8 genes were from new
+families. The main confident error, calling virion tail lysozymes as endolysins, led to the label fix of §2.1.
 
-The method yields concrete, falsifiable outputs for experimental follow-up, all with scores and evidence in the result files:
+**The endolysin label fix.** Moving the 51 virion proteins to the negatives raised the endolysin top pick on CPT
+(unseen family) and the endolysin call on a second blind set of 123 genomes by about 6 points in each, borderline in
+each set alone (p ≈ 0.07 with cluster resampling) and significant when the two sets are pooled with clusters built
+jointly across them: +0.060 [+0.020, +0.103], p = 0.008. This pooled test was not planned in advance
+(`reports/clusters/reassessment.md`).
 
-- **Under-annotated second holins/antiholins:** 71 hypothetical genes with holin signatures adjacent to annotated holins (`reports/dual_holin_analysis.json`).
-- **Phage N4 (the lab's organism):** a complete cassette (*gp60* spanin, *gp61* SAR endolysin, *gp62/gp63* holin pair), with the SAR endolysin called out-of-sample at 0.976 (0.9993 by the current endolysin model) and the un-annotated *gp63* out-scoring the annotated holin — a dual-holin candidate for the N4 lysis system (`reports/n4_cassette_scan.*`).
-- **Novel-candidate scan of 24,064 unmined proteins:** homology-filtered putative holins with lysis-cassette context (`reports/novel_holin_candidates.*`); we note honestly that follow-up verification down-ranked most to adjacent-to-known-holin cases, leaving a small set of genuine leads.
+**Nine phage groups** (`reports/groups/groups_scan.md`, `reports/n4/n4_scan.md`): 1,061 GenBank genomes not used
+elsewhere, at most 15 per host genus, scanned from DNA with calls frozen before scoring.
 
-## 4. Deployment
+| group | genomes | holin call / top 5 | endolysin call / top 5 | spanin pair / top 5 |
+|---|---|---|---|---|
+| N4-like (Schitoviridae) | 255 | 0.64 / 0.99 | 0.97 / 1.00 | 0.90 / 1.00 |
+| Lambdoid / P22-like (mixed) | 120 | 0.80 / 0.85 | 0.92 / 0.95 | 0.98 / 0.98 |
+| T7-like (Autographiviridae) | 120 | 0.92 / 1.00 | 0.92 / 0.97 | 0.95 / 0.98 |
+| P2-like (Peduoviridae) | 111 | 0.92 / 1.00 | 0.95 / 0.99 | 1.00 / 1.00 |
+| Drexlerviridae | 101 | 0.97 / 1.00 | 0.97 / 0.98 | 0.98 / 0.98 |
+| T5-like (Demerecviridae) | 106 | 0.96 / 0.99 | 0.96 / 0.99 | 0.89 / 0.92 |
+| Herelleviridae (Gram-positive hosts) | 88 | 0.90 / 0.98 | 0.83 / 0.99 | none annotated |
+| T4-like (Straboviridae) | 100 | 0.89 / 0.99 | 0.61 / 0.97 | 0.94 / 1.00 |
+| Jumbo (> 200 kb) | 60 | 0.17 / 0.50 (6 annotated) | 0.61 / 0.84 | 0.46 / 0.91 |
 
-A single command, `scripts/32_predict_lysis.py`, accepts protein FASTA, nucleotide FASTA (de-novo gene calling), GenBank, or an NCBI accession, and returns per-protein P(holin/endolysin/spanin) plus cassette flags (`DEPLOY.md`). A Galaxy tool wrapper is provided for institutional deployment (Center for Phage Technology Galaxy instance). Dependencies are pinned (notably scikit-learn 1.9.1, as the models are pickled estimators); the ESM-2 weights (~130 MB) download on first run.
+Disagreements were examined case by case:
+- **Gram-positive control.** Herelleviridae hosts have no outer membrane and no spanins are annotated; the predictor
+  made a confident spanin call in 22 of 88 genomes (25%), against 87–99% in every Gram-negative group. It mostly
+  recognises the absence; the 22 are false positives.
+- **Lambdoid holins.** 10 of 16 disagreements are one protein, identical in 10 Vibrio phages, annotated "holin" but
+  119 aa with no transmembrane segment and no similarity to any known holin; the model ranks it ~78th. Excluding
+  these genomes, the call agrees in 63 of 69 (0.91).
+- **N4-like holins.** In 33 of 34 disagreements the called protein is the gene immediately next to the annotated
+  holin, and the annotated one is ranked second (§3.7).
+- **T4-like endolysins.** In 23 of 26 disagreements the annotated endolysin is ranked second; the call is a
+  180–215 aa protein annotated as hypothetical or as an RNA endonuclease with no real similarity to training
+  endolysins. T4's lysis genes are scattered, so context cannot help. These proteins are a candidate set of hard
+  negatives for a future model (not used in the frozen model).
+- **Jumbo phages** are the weakest group: few annotated lysis genes, and 300–600 genes per genome to choose among.
+
+Earlier, smaller panels gave consistent results: an out-of-sample panel of 38 genomes (23 actinobacterial) recovered
+25 of 26 annotated holins and 36 of 37 endolysins, including 7 actinobacterial holins not identical to any training
+sequence; marine cyanophage endolysins scored lowest (S-PM2 0.60, P-SSM2 0.63).
+
+### 3.4 The pre-registered final test
+
+The frozen rules (the blind-set query, every genome used anywhere in the project excluded by accession and by DNA
+identity, at most 25 per host genus) left 311 eligible genomes in only four host genera, giving **87 genomes**
+(Escherichia 25, Klebsiella 25, Pseudomonas 25, Salmonella 12) in 34 gene-content clusters — smaller and narrower than
+intended, and reported as defined (`reports/final/final_results.md`).
+
+**H1 (confirmatory): not confirmed.** The virion-fixed endolysin model's call matched the annotated endolysin in
+0.863 of genomes against 0.838 for the retired model (+0.025; 2 genomes fixed, 0 broken; 80 genomes, 31 clusters;
+one-sided p = 0.37). The direction agrees with development, but this set contains few phages with the virion
+lysozymes the fix targets. The fix stands because it corrects mislabelled training data; its effect on new genomes is
+not established.
+
+**Estimation endpoints (agreement with annotation):**
+
+| | call is the annotated gene | annotated gene in top 5 |
+|---|---|---|
+| holin (59 genomes, 25 clusters) | 0.93 [0.82, 1.00] | 0.98 [0.94, 1.00] |
+| endolysin (80, 31) | 0.86 [0.70, 0.97] | 1.00 |
+| spanin (69, 27) | 0.74 [0.54, 0.90]; either pair member 0.85 [0.67, 0.97] | 0.99 [0.95, 1.00] |
+
+Of the annotated genes, 137 were near-copies of training sequences (≥95%), 68 from known families and only 3 from
+new families. **The final test therefore confirms performance on familiar genes and says almost nothing about new
+families**; the evidence for those is §3.1.
+
+### 3.5 What was tried and what survived
+
+Every model variant tried during development is listed with its decision and report (`reports/final/final_results.md`,
+disclosure table). Summary:
+
+| change | decision | evidence |
+|---|---|---|
+| Phage-derived hard negatives (incl. Rz-like spanins) | adopted | removed Rz-like spanin false positives the bacterial negatives never showed the models |
+| CPT/Kongari curated spanins | adopted | spanin class went from unusable (zero strict recall) to working |
+| Endolysin early stopping off | adopted | development AP +0.046 [+0.017, +0.070] (genome resampling, before clustering was introduced) |
+| Endolysin: evidence-only labels, then virion proteins removed | adopted | §3.3; H1 not confirmed on the final set |
+| Spanin: signal-corroborated labels, then label audit | adopted | unseen-family top 5 +5.6 points (p = 0.049, genome resampling); audit non-inferior (+0.006 [0, +0.023]) |
+| Nested lipoprotein ORF finder | adopted | +0.131 [+0.065, +0.216] |
+| Genomic-context rule; learned caller for spanins only | adopted | §3.1 |
+| Holin label audit (50 mislabelled entries removed) | not adopted | top-1 −0.026 [−0.093, +0.043]: non-inferiority not shown |
+| Holin variants: family weighting, context-mined new families (2 versions), 3 ensembles, ESM-2 150M, topology features | rejected | none improved; earlier claims that some were *significantly worse* did not survive cluster resampling and are withdrawn |
+| Endolysin family expansion (+14 catalytic families) | rejected | AP −0.061 [−0.113, −0.011] (genome resampling); a composition effect, not volume |
+| Stacked specialists, self-training, similarity-to-training features, larger trees | rejected | `reports/capacity_sweep.md`, `reports/similarity_features.md` |
+
+A mined-family holin ensemble is kept as an opt-in "T4-aware" mode; it is not the default and was not part of the
+frozen pipeline.
+
+### 3.6 Membrane topology
+
+**Validation against experimental topologies** (`reports/tm_experimental.md`):
+
+| | our predictor | DeepTMHMM | hydropathy heuristic |
+|---|---|---|---|
+| bacteria + viruses (22 proteins): exact helix count | 0.86 | **0.95** | 0.59 |
+| all organisms (449): exact helix count | 0.51 | **0.86** | 0.29 |
+| all organisms: N-terminus side correct | 0.77 | **0.94** | – |
+
+Within its training domain our predictor is close to DeepTMHMM; outside it (mostly eukaryotic multi-pass proteins) it
+misses helices. DeepTMHMM is therefore the primary source for holin class; ours is a concordance check.
+
+**Agreement on lysis proteins** (2,693 distinct proteins; `reports/external/comparison.md`):
+- Holin class agreed in 76–100% of genomes in eight of nine families. Both give the literature topology for the
+  reference holins: lambda S and P22 gp13 three helices with the N terminus out (UniProt lists two; Gründling *et al.*
+  2001); T4 t one helix, N in (Ramanculov & Young 2001); phage 21 pinholin two helices (Pang *et al.* 2009).
+- **T7-like holins are unresolved** (48% agreement): for T7 gp17.5, UniProt and ours give one helix and DeepTMHMM two.
+- SAR endolysins: DeepTMHMM labels all 13 Swiss-Prot SAR endolysins as signal-like; SignalP only 6, as expected for an
+  uncleaved anchor. Our SAR rule and DeepTMHMM agree within a few points in six of nine families; our rule over-calls
+  N4-like endolysins (39% vs 1%), so only consensus calls are reported. Our rule was calibrated on the same 44
+  Swiss-Prot endolysins it separates, so it is not independently validated.
+- Lipoproteins: SignalP 6.0 confirms 577 of the 579 spanin members our lipobox motif calls, and finds 103 more.
+
+### 3.7 Lysis genes across phage families
+
+From the blind calls for 1,061 genomes in nine groups, with sequence properties and Pfam domains but no annotation
+names (`reports/distribution/lysis_distribution.md`). Every value is a model call and carries that group's error rate;
+95% intervals resample gene-content groups, and the effective sample sizes are small (Drexlerviridae 101 genomes → 9
+groups; T5-like 106 → 14; N4-like 255 → 42) (`reports/distribution/uncertainty.md`).
+
+**Patterns that are well supported** (narrow intervals, calls matching annotations in ≥80% of genomes), and that agree
+with known biology:
+- Drexlerviridae: unimolecular spanins 95% [91, 100] (as in phage T1, a member of this family); SAR endolysins 94%
+  [90, 99]; class III holins 99%.
+- Herelleviridae (Gram-positive hosts): no confident spanin in 75% [61, 87]; class II holins 91%; the longest,
+  most modular endolysins, amidase domains in 60% [30, 82].
+- T4-like: lysis genes never co-located (0%), consistent with T4's scattered lysis genes; two-component spanins 83%
+  [57, 94]; class III holins.
+- Unimolecular spanins are essentially absent outside Drexlerviridae.
+- Endolysin chemistry follows the family: T5-like mostly peptidases (T5's endolysin is a peptidase), T7-like often
+  amidases (T7 gp3.5), Drexlerviridae glycosidases.
+- Cassette order is conserved: holin–endolysin–spanin in 97–99% of co-located lambdoid, P2-like and Drexlerviridae
+  cassettes.
+
+**Patterns that are uncertain** and should be stated qualitatively: the holin class mix in N4-like (class I 40%
+[8, 72]) and lambdoid phages; T5-like endolysins as peptidases (87% [33, 96], 106 genomes in 14 groups, one of 69);
+holin copy number in most families. Group labels: "lambdoid" is a mixed set (48 P22-like, 42 records described as
+lambda-like, 12 Vibrio phages of doubtful membership); "jumbo" is a size class.
+
+### 3.8 Hypotheses for experimental follow-up
+
+These are predictions, not findings, and are listed with the evidence for each.
+
+- **Adjacent holin-family genes in N4-like phages.** In 33 of the 34 N4-like genomes where the holin call disagrees
+  with the annotation, the called gene is immediately next to the annotated holin; 29 of these belong to one family
+  (104–124 aa) whose annotations are inconsistent ("hypothetical", "antiholin", and implausibly "tape-measure
+  protein"). Both genes are holin-family proteins by sequence. Which one is the functional holin, and whether the pair
+  is a holin–antiholin system, is testable in N4. More generally, across 300 RefSeq genomes, genomes with two strong
+  holin-fold genes place them a median of 2 genes apart against 22 under random placement; the model has no positional
+  input, so this clustering is not a model artefact (`reports/dual_holin_analysis.json`).
+- **Unannotated o-spanins.** The nested-ORF finder applied to 5,113 RefSeq phage genomes found 303 high-confidence
+  (tier A) lipoprotein ORFs embedded in 301 genomes. In 238 of these RefSeq annotates the host gene as an i-spanin or
+  Rz-like spanin, and only 2 genomes annotate an o-spanin anywhere. On CPT, tier-A calls were correct for 22 of 24
+  (`reports/unannotated_ospanins.md`).
+- **Holins in genomes annotated without one.** In the first blind set, 22 confident holin calls with 1–3
+  transmembrane segments beside another lysis call, in genomes whose annotation lists no holin
+  (`reports/blind/candidate_additions.tsv`).
+- **Topology.** Drexlerviridae combine SAR endolysins with single-helix holins whose N terminus faces out — the
+  arrangement expected of a pinholin whose first helix is not detected.
+
+## 4. Software
+
+`scripts/32_predict_lysis.py` accepts protein FASTA, nucleotide FASTA, GenBank or an NCBI accession and reports, per
+protein, P(holin), P(endolysin), P(spanin), the context-ranked shortlist and one call per class with a confidence
+flag (`DEPLOY.md`). Raw DNA is gene-called with Pyrodigal plus the nested lipoprotein ORF finder (on by default;
+`--no-nested` to disable). A Galaxy wrapper is provided. Dependencies are pinned (scikit-learn 1.9.1, as the models
+are pickled estimators); the ESM-2 weights (~130 MB) download on first run. The frozen versions used for the final
+test are listed by SHA-256 in `reports/final/FROZEN.md`.
 
 ## 5. Limitations
 
-- Strict (never-seen-family) AP of 0.57–0.61 means the tool is a ranked shortlist for genuinely novel families, not a definitive caller.
-- More data of the same kind did not help the endolysin model, more capacity did not help, and adding domain-mined positives from new families made it worse. The remaining limit appears to be the representation (a mean-pooled embedding). Explicit similarity to the training set does not help: as an input it halves novel-family AP through shortcut learning, and as a promotion rule it adds nothing for known families (`reports/similarity_features.md`). Genomic context, which the models never see, is the main untested signal.
-- Some genuine lysis genes have no recognisable domain at all: the *Escherichia* phage Serwaa endolysin matches nothing in any of 23 InterPro member databases, so domain search cannot rescue it and only homology or genomic context can.
-- Spanin's honest generalisation number is the 0.57 strict figure, on only 32 annotated genes in 19 genomes.
-- The 66-genome panel resolves paired differences only above ~0.05 AP.
-- Pfam is effectively exhausted as a source of new holin architectures (4,700 of 4,701 curated records joined existing families), so further gains need newly characterised families.
-- Annotation is an imperfect ground truth; "recovery" and "false positive" are measured against it.
+- **Ground truth.** Blind scans and the final test measure agreement with GenBank annotation, which is largely
+  automated and sometimes wrong (§3.3). The curated CPT, experimental and reviewed sets are the independent ground
+  truth, and they are small: 60, 20 and fewer than 42 independent genome groups.
+- **New families.** The final test held only 3 annotated genes from new families. Generalisation rests on the
+  leave-one-genome-out protocols, where endolysins from genuinely new folds are ranked first only about half the time.
+- **H1 not confirmed.** The one confirmatory test failed to reach significance; the endolysin fix is supported by
+  pooled development data in a test that was not planned in advance.
+- **Final set breadth.** The final set covers four enterobacterial and Pseudomonas host genera only.
+- **Spanins.** PHROGs names the spanin more often than our model; the hybrid is recommended.
+- **Weak groups.** Jumbo phages, T4-like endolysins and N4-like holins have the lowest agreement; Gram-positive phages
+  receive false spanin calls in a quarter of genomes; marine cyanophage endolysins score low.
+- **Holin labels.** The shipped holin model still contains 50 positives we know to be mislabelled.
+- **Topology.** The T7-like holin class is unresolved; our SAR rule is calibrated rather than independently tested;
+  family-level topology patterns are model calls with the intervals given.
+- **Development reuse.** Model choices were made on CPT, so CPT figures for the chosen models are mildly optimistic;
+  the blind sets and the final set were not used for choices, except that blind set 1 revealed the virion-lysozyme
+  error.
 
 ## 6. Data and code availability
 
-All code, model files, evaluation reports, and data provenance are in this repository (branch `claude/holin-ml`). The full pipeline (sources → dataset → clustering → training → evaluation → scanning → deployment) is documented in `PROTOCOL.md`; deployment in `DEPLOY.md`.
+All code, models, reports and data provenance are in this repository (branch `claude/holin-ml`); the pipeline from
+sources to deployment is documented in `PROTOCOL.md`. Bulk sequence downloads are regenerable from the recorded
+queries and accessions and are not version-controlled. Blind-scan predictions are in the commits named in each
+report, made before annotations were read. Public lysis-protein sequences were sent to the BioLib service to run
+DeepTMHMM and SignalP 6.0.
 
-## References (to be completed)
+## References
 
-- Kongari R, Rajaure M, Cahill J, Rasche E, Mijalis E, Berry J, Young R. *Phage spanins: diversity, topological dynamics and gene convergence.* BMC Bioinformatics 2018;19:326.
-- Lin Z *et al.* / Rives A *et al.* ESM-2 protein language model (ESM-2, `esm2_t12_35M_UR50D`).
-- Larralde M. *Pyrodigal.* (de-novo prokaryotic/phage gene prediction.)
-- TCDB (Saier) superfamily 1.E holins; Pfam/InterPro lysis families.
-- *(Holin/endolysin/spanin biology reviews; N4 lysis system — to be added.)*
+References should be checked against the published records before submission.
+
+- Bouras G, Nepal R, Houtak G, Psaltis AJ, Wormald PJ, Vreugde S. Pharokka: a fast scalable bacteriophage annotation
+  tool. *Bioinformatics* 2023;39:btac776.
+- Cahill J, Young R. Phage lysis: multiple genes for multiple barriers. *Adv Virus Res* 2019;103:33–70.
+- Field CA, Welsh AH. Bootstrapping clustered data. *J R Stat Soc B* 2007;69:369–390.
+- Gründling A, Manson MD, Young R. Holins kill without warning. *Proc Natl Acad Sci USA* 2001;98:9348–9352.
+- Hallgren J, Tsirigos KD, Pedersen MD, *et al.* DeepTMHMM predicts alpha and beta transmembrane proteins using deep
+  neural networks. *bioRxiv* 2022. doi:10.1101/2022.04.08.487609.
+- Hyatt D, Chen GL, LoCascio PF, *et al.* Prodigal: prokaryotic gene recognition and translation initiation site
+  identification. *BMC Bioinformatics* 2010;11:119.
+- Johnson LS, Eddy SR, Portugaly E. Hidden Markov model speed heuristic and iterative HMM search procedure.
+  *BMC Bioinformatics* 2010;11:431.
+- Kongari R, Rajaure M, Cahill J, *et al.* Phage spanins: diversity, topological dynamics and gene convergence.
+  *BMC Bioinformatics* 2018;19:326.
+- Kyte J, Doolittle RF. A simple method for displaying the hydropathic character of a protein. *J Mol Biol*
+  1982;157:105–132.
+- Larralde M. Pyrodigal: Python bindings and interface to Prodigal, an efficient method for gene prediction in
+  prokaryotes. *J Open Source Softw* 2022;7:4296.
+- Larralde M, Zeller G. PyHMMER: a Python library binding to HMMER for efficient sequence analysis. *Bioinformatics*
+  2023;39:btad214.
+- Lin Z, Akin H, Rao R, *et al.* Evolutionary-scale prediction of atomic-level protein structure with a language
+  model. *Science* 2023;379:1123–1130.
+- Mistry J, Chuguransky S, Williams L, *et al.* Pfam: the protein families database in 2021. *Nucleic Acids Res*
+  2021;49:D412–D419.
+- Ondov BD, Treangen TJ, Melsted P, *et al.* Mash: fast genome and metagenome distance estimation using MinHash.
+  *Genome Biol* 2016;17:132.
+- Pang T, Savva CG, Fleming KG, Struck DK, Young R. Structure of the lethal phage pinhole. *Proc Natl Acad Sci USA*
+  2009;106:18966–18971.
+- Pedregosa F, Varoquaux G, Gramfort A, *et al.* Scikit-learn: machine learning in Python. *J Mach Learn Res*
+  2011;12:2825–2830.
+- Ramanculov E, Young R. An ancient player unmasked: T4 *rI* encodes a t-specific antiholin. *Mol Microbiol*
+  2001;41:575–583.
+- Saier MH Jr, Reddy VS, Moreno-Hagelsieb G, *et al.* The Transporter Classification Database (TCDB): 2021 update.
+  *Nucleic Acids Res* 2021;49:D461–D467.
+- Summer EJ, Berry J, Tran TAT, Niu L, Struck DK, Young R. Rz/Rz1 lysis gene equivalents in phages of Gram-negative
+  hosts. *J Mol Biol* 2007;373:1098–1112.
+- Terzian P, Olo Ndela E, Galiez C, *et al.* PHROG: families of prokaryotic virus proteins clustered using remote
+  homology. *NAR Genom Bioinform* 2021;3:lqab067.
+- Teufel F, Almagro Armenteros JJ, Johansen AR, *et al.* SignalP 6.0 predicts all five types of signal peptides using
+  protein language models. *Nat Biotechnol* 2022;40:1023–1025.
+- von Heijne G. Control of topology and mode of assembly of a polytopic membrane protein by positively charged
+  residues. *Nature* 1989;341:456–458.
+- Xu M, Struck DK, Deaton J, Wang IN, Young R. A signal-arrest-release sequence mediates export and control of the
+  phage P1 endolysin. *Proc Natl Acad Sci USA* 2004;101:6415–6420.
+- Young R. Phage lysis: three steps, three choices, one outcome. *J Microbiol* 2014;52:243–258.
