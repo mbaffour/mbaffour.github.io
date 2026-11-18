@@ -1,0 +1,66 @@
+{
+ "bacteria_viruses": {
+  "ours": {
+   "proteins": 22,
+   "helix_count_exact": 0.864,
+   "helix_precision": 0.988,
+   "helix_recall": 0.955,
+   "n_terminus_correct": [
+    8,
+    10
+   ]
+  },
+  "DeepTMHMM": {
+   "proteins": 22,
+   "helix_count_exact": 0.955,
+   "helix_precision": 0.989,
+   "helix_recall": 0.978,
+   "n_terminus_correct": [
+    9,
+    10
+   ]
+  },
+  "hydropathy heuristic": {
+   "proteins": 22,
+   "helix_count_exact": 0.591,
+   "helix_precision": 0.957,
+   "helix_recall": 0.742,
+   "n_terminus_correct": [
+    0,
+    0
+   ]
+  }
+ },
+ "all_organisms": {
+  "ours": {
+   "proteins": 449,
+   "helix_count_exact": 0.508,
+   "helix_precision": 0.985,
+   "helix_recall": 0.828,
+   "n_terminus_correct": [
+    142,
+    185
+   ]
+  },
+  "DeepTMHMM": {
+   "proteins": 449,
+   "helix_count_exact": 0.862,
+   "helix_precision": 0.97,
+   "helix_recall": 0.967,
+   "n_terminus_correct": [
+    176,
+    188
+   ]
+  },
+  "hydropathy heuristic": {
+   "proteins": 449,
+   "helix_count_exact": 0.287,
+   "helix_precision": 0.955,
+   "helix_recall": 0.682,
+   "n_terminus_correct": [
+    0,
+    0
+   ]
+  }
+ }
+}
