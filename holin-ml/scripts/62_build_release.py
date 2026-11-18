@@ -308,7 +308,7 @@ def call_proteins():
     cols = list(dict.fromkeys([k for r in rows for k in r if k != "sequence"] + ["sequence"]))
     write_csv("call_proteins.csv", rows, cols)
     (OUT / "call_proteins.faa").write_text("".join(f">{k}\n{v}\n" for k, v in sorted(fa.items())))
-    cov = {t: sum(bool(r.get(t)) for r in rows) for t in ("ours_helices", "deeptmhmm_type", "signalp")}
+    cov = {t: sum(r.get(t) is not None for r in rows) for t in ("ours_helices", "deeptmhmm_type", "signalp")}
     print(f"  topology coverage of {len(rows)} call proteins: {cov}", flush=True); CHECKS["topology_coverage"] = cov
     ref = [p for p in csv.DictReader(open(B / "reports/external/per_protein.csv")) if "swissprot" in p["roles"]]
     write_csv("topology_reference.csv", ref)

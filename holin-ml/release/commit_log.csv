@@ -1,0 +1,190 @@
+commit,date,message
+bcd1e78,2026-11-18,SignalP for remaining called proteins in smaller chunks (BioLib max run time); first 500 results
+ee02328,2026-11-18,"Data release builder (scripts/62, 62a); DeepTMHMM on the 1,025 remaining called proteins; docs point to release/"
+6f1152d,2026-11-18,Fix PHROGs baseline: pre-filter missed 24 endolysin-named PHROGs outside the lysis category
+89e3cc8,2026-11-18,Manuscript: rewrite around the frozen pipeline and final results
+8a7e518,2026-11-18,DeepTMHMM input and summary for the experimental-topology validation
+9f8823b,2026-11-18,"Final pre-registered test: H1 not confirmed (+0.025, p=0.37); agreement holin 0.93, endolysin 0.86, spanin pair 0.85; reviewed benchmark; holin classes from DeepTMHMM; variants disclosure"
+63c8145,2026-11-18,Final test: 87 never-used genomes scanned from DNA with the frozen predictor (and the retired endolysin model for H1); predictions frozen before any annotation is read
+2376b6e,2026-11-18,"Pre-registration: frozen model hashes, final test set definition and endpoints (committed before selecting any final genome)"
+a5c361b,2026-11-18,"Topology validated on experimental data (ours 0.86 vs DeepTMHMM 0.95 exact, bacteria/viruses); DeepTMHMM to be primary. Reviewed Swiss-Prot lysis benchmark: 43/19/18 genes in 42 genomes"
+cef1029,2026-11-18,"Uncertainty for family-level lysis patterns: cluster-bootstrap CIs, effective sample sizes, call-reliability flags, group-definition caveats"
+aea9518,2026-11-18,Comparison with PHROGs (Pharokka database) and Pfam baselines; time-split test on genomes newer than PHROGs
+757cd45,2026-11-18,"Stricter generalisation test: jackhmmer remote-homology removal; holins and spanins hold, endolysins drop to top-5 0.82"
+288e9f5,2026-11-18,"Label audit of holin and spanin positives: 50 mislabelled holins, 7 spanins; spanin cleaning adopted, holin cleaning fails non-inferiority"
+03c0507,2026-11-18,"Relatedness-aware statistics: genome clusters (ANI 95%, gene content) and cluster-bootstrap re-test of headline results"
+701a658,2026-11-16,Consensus topology (ours + DeepTMHMM + SignalP) in the distribution figures; stricter figure checks
+9024dbb,2026-11-15,"DeepTMHMM and SignalP 6.0 on 2,693 lysis proteins, compared with our transmembrane predictor"
+3f354b1,2026-11-15,"Membrane topology of lysis genes across nine phage families: ESM transmembrane predictor, holin classes, spanin types, SAR endolysins"
+21235fd,2026-11-15,"Lysis-gene distribution across nine phage families (1,061 genomes, DNA-only calls); figures checked for text overlap"
+047df08,2026-11-15,"Blind lysis scans across eight phage groups (806 genomes): scores, per-group and comparison figures, write-up"
+2003c11,2026-11-15,"Phage-group blind scans: Herelleviridae, T4-like, jumbo phages from DNA alone, frozen before scoring"
+66bc7ff,2026-11-15,"Phage-group blind scans: T7-like, P2-like, lambdoid, Drexlerviridae, T5-like from DNA alone, frozen before scoring"
+3c51b22,2026-11-15,"Figures for the N4-like blind scan (agreement, novelty, cassette architecture, holin pairs)"
+57449b0,2026-11-15,"N4-like scan scored: endolysin 0.97 (55/58 on unseen families), spanin pairs 0.90; holin: two adjacent holin-family genes, model and annotation pick different ones"
+dc9418c,2026-11-15,"N4-like phages (Schitoviridae): blind scan of 255 genomes from DNA alone, frozen before any annotation is read"
+2da4389,2026-11-14,"Endolysin residual errors diagnosed; distance-weighted proximity tested (net zero on both blind sets), not adopted"
+bb513d4,2026-11-13,"Endolysin virion fix confirmed on a fresh blind set: endolysin call right 0.860 -> 0.921 (+0.061 [+0.018, +0.114])"
+45a360e,2026-11-13,"Endolysin: virion lytic proteins out of the positives (into the negatives); new model shipped. Blind set 2 scanned with old and new, frozen before scoring"
+c1483b0,2026-11-13,Blind scan scored against annotations: annotated lysis gene in top 5 ~96%; ~40 well-supported unannotated lysis genes
+6057406,2026-11-13,"Blind scan: lysis calls on 152 recent phage genomes from DNA alone, frozen before any annotation is read"
+a630907,2026-11-13,Survey: 303 likely o-spanins missing from RefSeq phage annotations (301 genomes)
+750cc54,2026-11-13,Predictor: optional --holin-mode t4aware (standard holin model averaged with the mined-family model)
+30277bc,2026-11-13,Holin ensembles from saved LOGO scores: none beats the shipped model beyond noise; shipped+mined keeps the T4-type gain
+db8fe25,2026-11-13,Galaxy wrapper: say that --genome adds nested lipoprotein ORFs
+e7d0ffa,2026-11-13,Bare DNA: find embedded o-spanins standard gene finders miss; place intron-split genes on fragments
+21b46fd,2026-11-13,"Holin: mine new families by genomic context (37 families from 5,111 genomes); tested, not adopted"
+e28bd3d,2026-11-13,"Holin generalisation: ESM-2 150M tested and rejected (novel-family top-5 -0.077, CI excludes 0; T4-type holins lost)"
+4456985,2026-11-13,"general holin signal: seven variants, none better; the embedding carries the transferable signal"
+0963139,2026-11-13,holin generalisation sweep: validated_holin_bothtopo_cluster.json
+657de08,2026-11-13,holin generalisation sweep: cpt_holin_bothtopo_cluster.json
+ecd0791,2026-11-13,holin generalisation sweep: validated_holin_bothtopo.json
+d479125,2026-11-13,holin generalisation sweep: cpt_holin_bothtopo.json
+100c4c6,2026-11-13,holin generalisation sweep: validated_holin_handtopo.json
+5bb619d,2026-11-13,fix: the embedding width variable shadowed the domains module (D)
+1a4b23a,2026-11-13,holin generalisation sweep: cpt_holin_handtopo.json
+e2021f6,2026-11-13,general holin signal: the reweighting and biophysics routes fail; prepare a larger embedding
+c1b27e0,2026-11-13,holin generalisation sweep: validated_holin_hand_cluster.json
+95e4f0a,2026-11-13,holin generalisation sweep: cpt_holin_hand_cluster.json
+6bac62f,2026-11-13,holin generalisation sweep: validated_holin_hand.json
+c8fa3ae,2026-11-13,holin generalisation sweep: cpt_holin_hand.json
+7c08ff9,2026-11-13,holin generalisation sweep: validated_holin_sqrt.json
+70ecdd2,2026-11-13,holin generalisation sweep: cpt_holin_sqrt.json
+207dd97,2026-11-13,"holin generalisation sweep: family-balanced variant, experimental set"
+d17821d,2026-11-13,holin generalisation sweep: results as they land (family-balanced weights first)
+803ce57,2026-11-13,"family weighting by resampling, not sample_weight (10x faster, same in expectation)"
+23fb8a8,2026-11-12,membrane-topology descriptors for a general holin signal
+b997a0d,2026-11-12,general holin signal: family-balanced weights and a biophysics-only option; the test
+c42fdd0,2026-11-12,integrated caller: method per class chosen by family-grouped validation; learned caller ships for spanins
+73e27db,2026-11-12,"integrated caller, part 1: score every class in every genome; the second-stage model"
+d896ffb,2026-11-12,signal-filtered spanin: raw benchmark outputs (CPT-curated and experimental sets)
+09c60d2,2026-11-12,ship the signal-filtered spanin model; context re-tuned for the current models
+f6b3232,2026-11-12,spanin middle path: keep name-labelled TrEMBL spanins only where a sequence signal agrees
+5bc6401,2026-11-12,ship the evidence-only endolysin model; spanin keeps the shipped one
+e6097d7,2026-11-12,evidence-only training: validated_spanin_evidence
+2eb5d6b,2026-11-12,context re-checked on the evidence-only endolysin model's scores
+0f71abc,2026-11-12,evidence-only training: validated_endolysin_evidence
+1be2789,2026-11-12,scripts/46 --endo-positives: re-tune context on a candidate endolysin model's scores
+16d155b,2026-11-12,"evidence-only spanin vs shipped, paired on 90 CPT genomes: better on novel, worse on known -> not adopted"
+be03944,2026-11-12,evidence-only training: cpt_spanin_evidence
+29b5141,2026-11-12,"evidence-only endolysin vs shipped, paired on 119 CPT genomes: no measurable difference"
+edd0ba8,2026-11-12,evidence-only training: cpt_endolysin_evidence
+aec44d5,2026-11-12,scripts/45 --compare: paired rank comparison of two runs; decision rule fixed in advance
+ec74c1f,2026-11-12,evidence-only training sets: drop labels that came from annotation names
+7029999,2026-11-12,"genomic context and gene calls: holins ranked first +10 points, one called gene per class"
+0d3778c,2026-11-12,CPT-curated benchmark: curated lysis genes rank in the top 5 for 85-91% under novel-family conditions
+4756952,2026-11-12,CPT benchmark: holin spanin results
+68ccdeb,2026-11-12,CPT benchmark: holin results (spanin still running)
+ddab38e,2026-11-12,CPT benchmark: endolysin results
+72e93f8,2026-11-12,"scripts/40: compute positive-vs-truth identities once per class, not once per genome"
+5d36e96,2026-11-12,"CPT-curated benchmark: 186 Center for Phage Technology genomes, lysis genes curated by hand"
+22541b9,2026-11-12,"proven lysis genes found from bare DNA: 20/21 endolysins in the top 5, novel-family conditions"
+dbce9f9,2026-11-12,"validated benchmark, spanin on annotated genes: 7/7 in the top 5 (known), 6/7 (novel)"
+dd08d22,2026-11-12,"validated benchmark, holin on annotated genes: 7/8 ranked first in their genome"
+3d91cde,2026-11-12,"validated benchmark, endolysin on annotated genes: 22/22 in the top 5 (known), 21/22 (novel)"
+393756b,2026-11-12,"scripts/40 --de-novo: score genes called from bare DNA, as for a new phage"
+06f0b1d,2026-11-12,"benchmark on experimental evidence: proven lysis genes placed by sequence, not by name"
+f31322a,2026-11-12,"similarity features: tested, not adopted -- they halve novel-family AP"
+38ddc09,2026-11-12,scripts/40 --sim-features: max identity to the kept training positives as an input
+d86db02,2026-11-12,promote the early-stopping-off endolysin model; correct every published figure
+5f37418,2026-11-12,"shipped vs candidate endolysin, paired: candidate wins on realistic, ties on strict"
+2a7ae47,2026-11-12,"candidate endolysin model: v1 positives, current spanin negatives, early stopping off"
+854d4e4,2026-11-12,"scripts/28: --early-stopping and --other-suffix, defaults unchanged"
+56ae2df,2026-11-12,capacity sweep report: correct the early-stopping answer and the ceiling paragraph
+05ba6cf,2026-11-12,Serwaa endolysin: InterProScan finds no domain anywhere; and the v1 early-stopping effect is real
+ba262c7,2026-11-11,restore test: the 127 curated positives were not the cause
+355e653,2026-11-11,restore test: ctrl127_s2
+50c9aa5,2026-11-11,restore test: ctrl127_s1
+f5af5ee,2026-11-11,restore test: ctrl127_s0
+f4ad5ba,2026-11-11,restore test: restore127
+e513528,2026-11-11,"restore-127 test sets, and a correction: the curated records were never discarded"
+7eef922,2026-11-11,"subsample test answers the confound: composition did the damage, count did nothing"
+1666433,2026-11-11,"subsample test: v2 cut to 1337 positives, seed 2"
+502bba2,2026-11-11,"subsample test: v2 cut to 1337 positives, seed 1"
+18aa85c,2026-11-11,"subsample test: v2 cut to 1337 positives, seed 0"
+b24b770,2026-11-11,"subsample test: separate ""more data hurt"" from ""the expansion's mix hurt"""
+d7aff6a,2026-11-11,the data effect replicates at the second capacity setting; twelve contrasts in all
+120a2a4,2026-11-11,"capacity sweep complete: the data lever is the one that moved, and it moved the wrong way"
+194e1e6,2026-11-11,paired bootstrap on the sweep differences: all three effects are unresolvable
+fccb550,2026-11-11,"capacity sweep: v2_noes_800_63 (False ES, 800 iter, 63 leaves, lr 0.04)"
+5cdaf7c,2026-11-11,"capacity sweep: v2_noes_400_31 (False ES, 400 iter, 31 leaves, lr 0.06)"
+df7b413,2026-11-11,fix a bash bug that silently skipped two of the three v2 configs
+9c7e3b3,2026-11-11,"capacity sweep: v2_base_es (auto ES, 400 iter, 31 leaves, lr 0.06)"
+9bfb812,2026-11-11,"checkpoint mechanism verified exact, both paths; add the v2 runner"
+cafdd86,2026-11-11,"checkpoint per-genome scores, so a container restart stops costing hours of fitting"
+86cd66c,2026-11-11,"commit the capacity sweep driver, made resumable after a container restart ate it"
+741af87,2026-11-11,"capacity sweep: first 3 of 8 configs (v1 data), plus a confound I have to flag"
+4dfd245,2026-11-11,"v1 vs v2 endolysin data on the expanded benchmark: a wash, not a win either way"
+d1c9704,2026-11-11,"Capacity sweep: make capacity a real dial, and fix a leak inside the estimator"
+de478a8,2026-11-11,Expanded LOGO benchmark complete: all three models are weaker than the atlas said
+aa5dbf2,2026-11-11,Expanded LOGO benchmark (partial): the 16-phage atlas was OPTIMISTIC
+7cf4fd8,2026-11-11,"Add scripts/40: expanded leave-one-genome-out benchmark, 66 genomes / 180 genes"
+7a165f6,2026-11-10,Per-fold endolysin architecture FAILS as a replacement at full negative budget
+c59fb65,2026-11-10,scripts/39: add --arch gated after pure routing collapsed on the strict protocol
+2212ee4,2026-11-10,Record the matched-budget control result; keep ablation model pickles out of the repo
+e82aadd,2026-11-10,scripts/39: add --arch single control and --arch routed; matched-budget control vindicates per-fold
+6852b26,2026-11-10,Add scripts/39: per-fold endolysin architecture
+e2e4b9d,2026-11-10,"Pipeline evaluation over 72 genomes: the hybrid helps narrowly, endolysin is still the weak part"
+310e88c,2026-11-10,"Add Serwaa + 8 crAss-like genomes and scripts/37, the hybrid-vs-model-only evaluation"
+cbbac0c,2026-11-10,"DeepTMHMM + SignalP 6.0 on DAC15: three-way disagreement on gp039, and gp004 is not a spanin"
+b31eb81,2026-11-10,Integrate the HMM scan: shared domains module and evidence-aware ranking
+a507701,2026-11-10,DAC15: correct 'secreted endolysin' -- the gp039 N-terminus does not support it
+86c8783,2026-11-10,Final DAC15 run with the full pipeline; consolidated report
+cfd556f,2026-11-10,"Improve scan output: per-class ranks, ranked shortlist, optional domain column"
+9ebb8d7,2026-11-10,Ablation attributes the endolysin regression to breadth dilution; the guard HELPS
+fc01f01,2026-11-10,"Fill in reports/retrain_v2_report.md: spanin, holin arm C, confusables, DAC15"
+8661907,2026-11-10,Promote spanin v2; keep endolysin v1 and holin arm B; add guard ablation plumbing
+535c0aa,2026-11-10,"Confusable negatives fail for BOTH classes, each via its own nearest confusable"
+8298db2,2026-11-10,spanin v2: adding the missing i-spanin class IMPROVES both protocols
+a671fb1,2026-11-10,Draft reports/retrain_v2_report.md with the endolysin findings settled
+8353c35,2026-11-10,endolysin confusables arm: regression confirms the benchmark label conflict
+0c03142,2026-11-10,endolysin v2 runs: family expansion REGRESSES on the atlas benchmark
+da0105f,2026-11-10,"scripts/33: report nearest training neighbour per class, with a coverage floor"
+3189d5a,2026-11-10,Add scripts/35: v1-vs-v2 comparison with the ship rule fixed in advance
+741daa1,2026-11-10,Expand lysis family coverage per class and retrain pipeline
+72b03b5,2026-11-10,Record provenance of the Pfam HMMs used by scripts/33
+b64c478,2026-11-10,DAC15 lysis-gene analysis + verification tool with whole-proteome domain rescue
+4c12301,2026-11-10,"holin-ml: ""Run it on your computer"" quickstart, verified on a clean machine"
+7d20eb8,2026-11-10,"holin-ml: make it installable locally -- requirements files, drop a hidden pyopal dependency"
+cac067e,2026-11-10,"holin-ml: expanded out-of-sample panel (38 genomes, 23 actino); finalize manuscript 3.3"
+9e752c6,2026-11-10,holin-ml: draft manuscript + Galaxy tool wrapper
+6084bd8,2026-11-10,holin-ml: predict_lysis.py -- single deployable entrypoint (protein + nucleotide) + DEPLOY.md
+01bcb30,2026-11-10,"holin-ml: the adjacent-holin pattern is REAL dual-holin biology, not model bias"
+339c5aa,2026-11-10,holin-ml: out-of-sample panel scan (12 diverse phages incl. 5 actinobacterial)
+ec5d842,2026-11-10,holin-ml: scripts/30 -- read organism from GenBank so the actino subset stat works
+71d797c,2026-11-10,holin-ml: batch-scan 300 phage genomes -- breadth test of the lysis caller
+837170c,2026-11-10,holin-ml: scan phage N4 (NC_008720.1) -- full lysis cassette recovered
+19ed3a4,2026-11-10,holin-ml: lysis-cassette scanner -- calls holin/endolysin/spanin individually + detects cassettes
+324f0a2,2026-11-10,holin-ml: endolysin and spanin models trained -- the data augmentation lands
+b072e7a,2026-11-10,holin-ml: add the CPT (Kongari 2018) curated spanin dataset; fix eval bug
+05c8814,2026-11-10,holin-ml: fetch broader spanin set + experimentally-validated gold tiers
+86a65f7,2026-11-10,holin-ml: build labelled endolysin/spanin sets and the one-vs-rest train/eval harness
+a06d123,2026-11-10,holin-ml: fetch endolysin and spanin sources for lysis-cassette models
+2daafdd,2026-11-10,"holin-ml: candidate investigation tempers the discovery -- 1 weak lead, not 10"
+b20272f,2026-11-10,holin-ml: correct the phage-negative rationale and two stale docstrings
+0aa4f6d,2026-11-10,holin-ml: rewrite README and PROTOCOL for the final state
+4af9df0,2026-11-10,holin-ml: save the deployable curated model and run the novel-holin discovery scan
+76a2c2c,2026-11-09,"holin-ml: curated holins ADOPTED -- genome AP 0.823 -> 0.965, T4 t and T5 C1 recovered"
+c4a04b3,2026-11-09,"holin-ml: curate 2,886 more holins; Pfam adds depth, not new architectures"
+8d8dbf2,2026-11-09,holin-ml: fetch the 38 Pfam holin families to cover the missing architectures
+120cf20,2026-11-09,"holin-ml: signature discovery, controlled -- no novel compositional signature survives"
+da0784e,2026-11-09,holin-ml: TM-anchored local features REJECTED; the remaining failures are family novelty
+a45a351,2026-11-09,"holin-ml: TM-anchored local features, and a signature-discovery pass"
+50d93dd,2026-11-09,holin-ml: leave-one-genome-out results -- the first uncontaminated estimate
+c05268c,2026-11-09,"holin-ml: phage-derived negatives, and an uncontaminated genome evaluation"
+14aa927,2026-11-08,holin-ml: cross-check genome hits against independent membrane evidence
+c6fc3e4,2026-11-08,holin-ml: self-training loop rolled back; pin the LOFO family set so rounds are comparable
+db603d4,2026-11-08,holin-ml: specialist models evaluated and REJECTED on the frozen gold holdout
+9ace8bf,2026-11-08,"holin-ml: freeze the gold holdout (2978 sequences, 194 holins, whole clusters, seed 0)"
+86b673f,2026-11-08,"holin-ml: mined pool of 24,064 phage proteins with lysis-neighbour context"
+dcddefc,2026-11-08,"holin-ml: track mined-pool provenance, not the 300 downloaded GenBank records"
+c506ba2,2026-11-08,holin-ml: add a short-peptide specialist and gate the stacker by domain
+1b6dd42,2026-11-08,holin-ml: complete leave-one-family-out analysis over 32 families
+35951f6,2026-11-08,holin-ml: specialists for the two measured failure modes
+83bd0e9,2026-11-08,holin-ml: guarded self-training loop (pool mining + iteration with rollback)
+8dbcce3,2026-11-08,holin-ml: complete the portable protocol with reference results and failure modes
+50a8578,2026-11-08,holin-ml: genome benchmark with corrected holdout (SW score >= 80)
+55a315b,2026-11-08,"holin-ml: add PROTOCOL.md, a portable prompt for rerunning this method elsewhere"
+96142aa,2026-11-08,"holin-ml: genome benchmark with the corrected holdout, and per-family generalisation analysis"
+2ff76cf,2026-11-08,"holin-ml: trained model, genome benchmark, and the holdout-filter fix"
+f004c05,2026-11-08,"holin-ml: new project — labelled holin set, leakage-free clustering, features, training and genome-scan pipeline"

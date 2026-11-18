@@ -1,0 +1,109 @@
+family,set,feature,percent,ci_low,ci_high,genomes,clusters,call_agreement_in_blind_scan
+N4-like,n4,cassette co-located,82.4,69.6,90.4,255,42,
+N4-like,n4,holin class I (3 helices),37.5,7.3,69.2,240,35,0.64
+N4-like,n4,holin class II (2 helices),28.3,9.1,48.3,240,35,0.64
+N4-like,n4,holin class III (1 helix),30.8,13.6,52.8,240,35,0.64
+N4-like,n4,>= 2 strong holin genes,50.6,25.5,75.6,255,42,0.64
+N4-like,n4,endolysin glycosidase,53.3,25.0,81.8,255,42,0.97
+N4-like,n4,endolysin amidase,7.8,0.8,21.2,255,42,0.97
+N4-like,n4,endolysin peptidase,2.0,0.3,5.7,255,42,0.97
+N4-like,n4,SAR endolysin (two tools agree),0.0,0.0,0.0,251,39,0.97
+N4-like,n4,spanin two-component (i + o),43.1,18.1,69.0,255,42,0.9
+N4-like,n4,spanin unimolecular (u),0.0,0.0,0.0,255,42,0.9
+N4-like,n4,no confident spanin,1.2,0.0,3.6,255,42,0.9
+Lambdoid,lambda,cassette co-located,82.5,58.2,89.1,120,31,
+Lambdoid,lambda,holin class I (3 helices),59.8,15.5,76.6,112,29,0.8
+Lambdoid,lambda,holin class II (2 helices),16.1,8.5,26.1,112,29,0.8
+Lambdoid,lambda,holin class III (1 helix),21.4,5.7,64.3,112,29,0.8
+Lambdoid,lambda,>= 2 strong holin genes,31.7,14.5,77.0,120,31,0.8
+Lambdoid,lambda,endolysin glycosidase,50.0,39.5,76.4,120,31,0.92
+Lambdoid,lambda,endolysin amidase,0.8,0.0,5.3,120,31,0.92
+Lambdoid,lambda,endolysin peptidase,5.8,0.0,12.8,120,31,0.92
+Lambdoid,lambda,SAR endolysin (two tools agree),32.5,18.8,70.3,114,28,0.92
+Lambdoid,lambda,spanin two-component (i + o),68.3,38.6,78.8,120,31,0.98
+Lambdoid,lambda,spanin unimolecular (u),0.0,0.0,0.0,120,31,0.98
+Lambdoid,lambda,no confident spanin,4.2,0.0,8.0,120,31,0.98
+P2-like,p2,cassette co-located,82.0,57.1,91.9,111,31,
+P2-like,p2,holin class I (3 helices),40.9,23.1,50.4,110,31,0.92
+P2-like,p2,holin class II (2 helices),32.7,12.7,44.2,110,31,0.92
+P2-like,p2,holin class III (1 helix),13.6,3.8,36.7,110,31,0.92
+P2-like,p2,>= 2 strong holin genes,34.2,18.8,61.3,111,31,0.92
+P2-like,p2,endolysin glycosidase,62.2,50.0,81.5,111,31,0.95
+P2-like,p2,endolysin amidase,0.0,0.0,0.0,111,31,0.95
+P2-like,p2,endolysin peptidase,6.3,1.2,20.8,111,31,0.95
+P2-like,p2,SAR endolysin (two tools agree),44.2,22.7,61.5,104,27,0.95
+P2-like,p2,spanin two-component (i + o),29.7,13.6,46.2,111,31,1.0
+P2-like,p2,spanin unimolecular (u),0.0,0.0,0.0,111,31,1.0
+P2-like,p2,no confident spanin,6.3,1.3,20.4,111,31,1.0
+Drexlerviridae,drexler,cassette co-located,85.1,51.1,100.0,101,9,
+Drexlerviridae,drexler,holin class I (3 helices),0.0,0.0,0.0,90,9,0.97
+Drexlerviridae,drexler,holin class II (2 helices),7.8,0.0,29.0,90,9,0.97
+Drexlerviridae,drexler,holin class III (1 helix),92.2,71.0,100.0,90,9,0.97
+Drexlerviridae,drexler,>= 2 strong holin genes,46.5,0.0,64.3,101,9,0.97
+Drexlerviridae,drexler,endolysin glycosidase,96.0,94.1,100.0,101,9,0.97
+Drexlerviridae,drexler,endolysin amidase,0.0,0.0,0.0,101,9,0.97
+Drexlerviridae,drexler,endolysin peptidase,1.0,0.0,1.7,101,9,0.97
+Drexlerviridae,drexler,SAR endolysin (two tools agree),94.0,89.9,98.9,100,9,0.97
+Drexlerviridae,drexler,spanin two-component (i + o),0.0,0.0,0.0,101,9,0.98
+Drexlerviridae,drexler,spanin unimolecular (u),95.0,90.6,100.0,101,9,0.98
+Drexlerviridae,drexler,no confident spanin,1.0,0.0,4.4,101,9,0.98
+T7-like,t7,cassette co-located,21.7,9.7,37.6,120,52,
+T7-like,t7,holin class I (3 helices),6.4,0.0,20.7,94,37,0.92
+T7-like,t7,holin class II (2 helices),63.8,47.2,76.8,94,37,0.92
+T7-like,t7,holin class III (1 helix),26.6,16.0,38.9,94,37,0.92
+T7-like,t7,>= 2 strong holin genes,15.8,6.4,29.5,120,52,0.92
+T7-like,t7,endolysin glycosidase,36.7,20.3,57.2,120,52,0.92
+T7-like,t7,endolysin amidase,33.3,10.5,55.6,120,52,0.92
+T7-like,t7,endolysin peptidase,3.3,0.0,10.1,120,52,0.92
+T7-like,t7,SAR endolysin (two tools agree),33.6,17.5,55.3,107,47,0.92
+T7-like,t7,spanin two-component (i + o),32.5,17.9,46.5,120,52,0.95
+T7-like,t7,spanin unimolecular (u),9.2,2.4,19.3,120,52,0.95
+T7-like,t7,no confident spanin,8.3,2.7,16.2,120,52,0.95
+T5-like,t5,cassette co-located,65.1,17.9,77.6,106,14,
+T5-like,t5,holin class I (3 helices),0.0,0.0,0.0,101,14,0.96
+T5-like,t5,holin class II (2 helices),5.0,0.0,32.1,101,14,0.96
+T5-like,t5,holin class III (1 helix),78.2,42.9,85.6,101,14,0.96
+T5-like,t5,>= 2 strong holin genes,26.4,16.5,65.6,106,14,0.96
+T5-like,t5,endolysin glycosidase,1.9,0.0,15.8,106,14,0.96
+T5-like,t5,endolysin amidase,0.0,0.0,0.0,106,14,0.96
+T5-like,t5,endolysin peptidase,86.8,33.3,96.5,106,14,0.96
+T5-like,t5,SAR endolysin (two tools agree),1.0,0.0,8.3,105,13,0.96
+T5-like,t5,spanin two-component (i + o),63.2,53.8,91.9,106,14,0.89
+T5-like,t5,spanin unimolecular (u),0.0,0.0,0.0,106,14,0.89
+T5-like,t5,no confident spanin,9.4,2.9,14.6,106,14,0.89
+T4-like,t4,cassette co-located,0.0,0.0,0.0,100,17,
+T4-like,t4,holin class I (3 helices),1.3,0.0,10.3,76,13,0.89
+T4-like,t4,holin class II (2 helices),25.0,0.0,48.6,76,13,0.89
+T4-like,t4,holin class III (1 helix),68.4,43.3,92.0,76,13,0.89
+T4-like,t4,>= 2 strong holin genes,38.0,28.8,65.8,100,17,0.89
+T4-like,t4,endolysin glycosidase,42.0,1.5,63.8,100,17,0.61
+T4-like,t4,endolysin amidase,0.0,0.0,0.0,100,17,0.61
+T4-like,t4,endolysin peptidase,3.0,0.0,16.7,100,17,0.61
+T4-like,t4,SAR endolysin (two tools agree),28.0,11.7,79.3,100,17,0.61
+T4-like,t4,spanin two-component (i + o),83.0,57.4,94.4,100,17,0.94
+T4-like,t4,spanin unimolecular (u),0.0,0.0,0.0,100,17,0.94
+T4-like,t4,no confident spanin,3.0,0.0,13.0,100,17,0.94
+Herelleviridae,herelle,cassette co-located,1.1,0.0,4.4,88,25,
+Herelleviridae,herelle,holin class I (3 helices),0.0,0.0,0.0,79,23,0.9
+Herelleviridae,herelle,holin class II (2 helices),91.1,77.8,97.7,79,23,0.9
+Herelleviridae,herelle,holin class III (1 helix),7.6,1.9,19.6,79,23,0.9
+Herelleviridae,herelle,>= 2 strong holin genes,73.9,55.4,86.9,88,25,0.9
+Herelleviridae,herelle,endolysin glycosidase,14.8,2.1,35.9,88,25,0.83
+Herelleviridae,herelle,endolysin amidase,60.2,30.0,82.1,88,25,0.83
+Herelleviridae,herelle,endolysin peptidase,15.9,2.3,37.0,88,25,0.83
+Herelleviridae,herelle,SAR endolysin (two tools agree),17.0,3.3,41.6,88,25,0.83
+Herelleviridae,herelle,spanin two-component (i + o),0.0,0.0,0.0,88,25,
+Herelleviridae,herelle,spanin unimolecular (u),0.0,0.0,0.0,88,25,
+Herelleviridae,herelle,no confident spanin,75.0,60.7,87.0,88,25,
+Jumbo (>200 kb),jumbo,cassette co-located,10.0,2.7,20.0,60,39,
+Jumbo (>200 kb),jumbo,holin class I (3 helices),15.2,4.2,29.3,46,31,0.17
+Jumbo (>200 kb),jumbo,holin class II (2 helices),60.9,41.0,78.4,46,31,0.17
+Jumbo (>200 kb),jumbo,holin class III (1 helix),17.4,4.9,34.0,46,31,0.17
+Jumbo (>200 kb),jumbo,>= 2 strong holin genes,56.7,38.5,73.7,60,39,0.17
+Jumbo (>200 kb),jumbo,endolysin glycosidase,40.0,22.2,58.3,60,39,0.61
+Jumbo (>200 kb),jumbo,endolysin amidase,15.0,1.8,32.3,60,39,0.61
+Jumbo (>200 kb),jumbo,endolysin peptidase,10.0,1.5,22.6,60,39,0.61
+Jumbo (>200 kb),jumbo,SAR endolysin (two tools agree),16.7,7.0,27.9,60,39,0.61
+Jumbo (>200 kb),jumbo,spanin two-component (i + o),43.3,27.4,59.2,60,39,0.46
+Jumbo (>200 kb),jumbo,spanin unimolecular (u),0.0,0.0,0.0,60,39,0.46
+Jumbo (>200 kb),jumbo,no confident spanin,21.7,7.2,38.3,60,39,0.46

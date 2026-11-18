@@ -1,0 +1,11 @@
+{
+ "scan_calls_match_reported_scores": true,
+ "scan_calls_mismatches": [],
+ "topology_coverage": {
+  "ours_helices": 5632,
+  "deeptmhmm_type": 5632,
+  "signalp": 5632
+ },
+ "benchmarks_match_reported_baselines": true,
+ "benchmark_mismatches": []
+}

@@ -1,0 +1,27 @@
+area,change,decision_rule,result,decision,report
+negatives,phage-derived hard negatives incl. Rz-like spanins,fewer confident false positives on held-out genomes,Rz-like spanin false positives removed,adopted,reports/hard_negatives (PROTOCOL.md)
+spanin positives,CPT/Kongari curated spanins,strict-protocol recall > 0,class went from zero strict recall to working,adopted,MANUSCRIPT.md 3.5
+endolysin training,early stopping off,paired AP interval excludes 0,"+0.046 [+0.017, +0.070] (genome resampling)",adopted,reports/capacity_sweep.md
+endolysin training,family expansion (+14 catalytic families),paired AP interval excludes 0,"-0.061 [-0.113, -0.011]",rejected,reports/capacity_sweep.md
+endolysin training,larger trees / more rounds,paired AP interval excludes 0,lower in all four contrasts,rejected,reports/capacity_sweep.md
+endolysin labels,evidence-only positives (name-labelled removed),non-inferior on CPT,"ranked first -0.024 unseen, +0.040 known (n.s.)",adopted,reports/evidence_only.md
+endolysin labels,51 virion proteins moved to negatives,blind set 2 improvement,"+0.061 per set (p~0.07 by cluster); pooled +0.060 [+0.020, +0.103]",adopted,reports/endolysin_virion_fix.md; reports/clusters/reassessment.md
+endolysin labels,"virion fix on the final set (H1, pre-registered)","one-sided p < 0.05, cluster bootstrap","+0.025, p = 0.37",not confirmed (fix kept: corrects labels),reports/final/final_results.md
+spanin labels,signal-corroborated TrEMBL positives,unseen-family gain without known-family loss,"top 5 +5.6 points (p = 0.049, genome resampling)",adopted,reports/evidence_only.md
+spanin labels,label audit (7 removed),lower 95% bound of change > -0.05,"+0.006 [0, +0.023]",adopted,reports/label_audit/label_audit.md
+holin labels,label audit (50 removed),lower 95% bound of change > -0.05,"-0.026 [-0.093, +0.043]",not adopted,reports/label_audit/label_audit.md
+holin training,"family-balanced / 1/sqrt weighting, biophysics only, topology features",paired interval excludes 0,none better,rejected,reports/holin_generalisation.md
+holin training,ESM-2 150M embedding,paired interval excludes 0,"-0.077 top 5 unseen ([-0.225, 0] by cluster)",rejected,reports/holin_generalisation.md; reports/clusters/reassessment.md
+holin training,"context-mined new families (v1, v2)",paired interval excludes 0,-0.051 / -0.064 (n.s. by cluster),rejected,reports/holin_context_mining.md
+holin training,three ensembles; T4-aware mined ensemble,paired interval excludes 0,none beyond noise,rejected (T4-aware kept as opt-in mode),reports/holin_generalisation.md
+features,similarity-to-training features,paired interval excludes 0,halved unseen-family AP (shortcut),rejected,reports/similarity_features.md
+models,stacked specialists; self-training on the mined pool,gold hold-out AP improves,lower AP; contaminated candidate set,rejected,MANUSCRIPT.md 3.5
+calling,genomic-context rule,"5-fold CV over CPT genomes, no measure worse",holin ranked first +10 points,adopted,reports/integrated_caller.md
+calling,learned second-stage caller,family-grouped validation,holin gain vanished; spanin 0.91/0.80 vs 0.83/0.73,adopted for spanins only,reports/integrated_caller.md
+calling,distance decay in context,improvement on both blind sets,net zero,rejected,reports/endolysin_virion_fix.md
+gene finding,nested lipoprotein ORF finder,curated spanins in top 5 from DNA improve,"+0.131 [+0.065, +0.216] (cluster)",adopted,reports/denovo_gene_calling.md
+topology,holin class source,agreement with experimental topologies,DeepTMHMM 0.95 vs ours 0.86 exact (bacteria/viruses),"DeepTMHMM primary, ours as concordance",reports/tm_experimental.md
+topology,SAR endolysins,agreement of rule and DeepTMHMM,N4-like 39% vs 1%,consensus only,reports/external/comparison.md
+topology,lipoproteins,agreement with SignalP 6.0,577/579 agree; SignalP finds 103 more,SignalP LIPO,reports/external/comparison.md
+baselines,PHROGs pre-filter: lysis-named PHROGs as well as the lysis category (bug fix),release rows must reproduce reported numbers,"PHROGs endolysin call CPT 0.69 -> 0.78, 2022+ 0.58 -> 0.82; 'ours clearly better on endolysins' withdrawn",corrected,reports/baselines/baselines.md
+statistics,resample gene-content clusters instead of genomes,-,effective n about half the genomes,adopted for all intervals,reports/clusters/reassessment.md
