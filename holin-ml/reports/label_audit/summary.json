@@ -1,0 +1,34 @@
+{
+ "holin": {
+  "records": 5055,
+  "flagged_any": 449,
+  "by_flag": {
+   "bacterial": 321,
+   "no_helix": 89,
+   "description": 50,
+   "lipobox": 13
+  },
+  "by_tier_flagged": {
+   "curated": 282,
+   "putative": 46,
+   "tested": 2,
+   "pfam_unreviewed": 116,
+   "pfam_reviewed": 3
+  }
+ },
+ "spanin": {
+  "records": 1804,
+  "flagged_any": 474,
+  "by_flag": {
+   "no_topology": 474,
+   "description": 1
+  },
+  "by_tier_flagged": {
+   "validated": 4,
+   "reviewed": 5,
+   "curated": 220,
+   "trembl": 150,
+   "pfam": 95
+  }
+ }
+}

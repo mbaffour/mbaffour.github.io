@@ -70,7 +70,7 @@ def hgb():
     return HistGradientBoostingClassifier(random_state=0, **HP)
 
 
-def load_sets(cls, endo_pos_path, spa_pos_path, holin_extra=None, endo_extra_neg=None):
+def load_sets(cls, endo_pos_path, spa_pos_path, holin_extra=None, endo_extra_neg=None, holin_audit=None):
     """(training positives, negatives) for one class, using that class's SHIPPED negative recipe.
     holin_extra: a JSON of additional holin positives (e.g. scripts/49's context-mined new families), either a list
     of records or {"records": [...]}; each needs sequence and cluster, so family removal drops whole families."""
@@ -86,6 +86,10 @@ def load_sets(cls, endo_pos_path, spa_pos_path, holin_extra=None, endo_extra_neg
         pos = [r for r in base if r["label"] == "holin" and r["id"] not in gold_ids] \
               + [r for r in cur if r["label"] == "holin" and not r.get("excluded_gold_cluster")]
         neg = bact + negs                      # arm B recipe, as shipped (no cross-class)
+        if holin_audit:                        # label audit (scripts/59): mislabelled positives become negatives
+            rm = set(json.load(open(B / holin_audit))["holin_removed_to_negatives"])
+            moved = [dict(r, label="negative") for r in pos if r["id"] in rm]
+            pos = [r for r in pos if r["id"] not in rm]; neg = neg + moved
         if holin_extra:
             ex = json.load(open(B / holin_extra)); ex = ex["records"] if isinstance(ex, dict) else ex
             pos = pos + [r for r in ex if r.get("label", "holin") == "holin"]
@@ -293,6 +297,9 @@ def main():
                     help="with --de-novo: also call nested lipoprotein ORFs (embedded o-spanins), scripts/genecall.py")
     ap.add_argument("--endolysin-extra-negatives", default=None,
                     help="JSON of extra endolysin negatives (e.g. virion lytic proteins); joins the checkpoint key")
+    ap.add_argument("--holin-audit", default=None,
+                    help="label-audit removals (scripts/59, data/processed/label_audit_removals.json): mislabelled holin "
+                         "positives moved to the negatives; joins the checkpoint key")
     ap.add_argument("--holin-extra", default=None,
                     help="JSON of extra holin training positives (scripts/49 output); joins the checkpoint key")
     ap.add_argument("--esm-model", default=None,
@@ -324,6 +331,8 @@ def main():
     if a.features != "both": EXTRA["features"] = a.features
     if a.esm_model: EXTRA["esm_model"] = a.esm_model
     if a.nested_orfs: EXTRA["nested_orfs"] = "genecall_v1"
+    if a.holin_audit:
+        EXTRA["holin_audit"] = hashlib.sha256((B / a.holin_audit).read_bytes()).hexdigest()[:16]
     if a.endolysin_extra_negatives:
         EXTRA["endolysin_extra_negatives"] = a.endolysin_extra_negatives
         EXTRA["endolysin_extra_negatives_sha"] = hashlib.sha256((B / a.endolysin_extra_negatives).read_bytes()).hexdigest()[:16]
@@ -421,7 +430,8 @@ def main():
     for cls in a.classes:
         gs = [g for g in genomes if g["truth"][cls]]
         if not gs: print(f"{cls}: no truths, skipped"); continue
-        pos, neg = load_sets(cls, a.endolysin_positives, a.spanin_positives, a.holin_extra, a.endolysin_extra_negatives)
+        pos, neg = load_sets(cls, a.endolysin_positives, a.spanin_positives, a.holin_extra, a.endolysin_extra_negatives,
+                             a.holin_audit)
         if SUB:
             n_before = len(pos)
             pos, strata = stratified_subsample(pos, SUB["n"], SUB["seed"], SUB["strata"])
