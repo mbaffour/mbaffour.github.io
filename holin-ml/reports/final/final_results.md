@@ -37,8 +37,11 @@ Leave-one-genome-out, per genome, 95% CI over gene-content clusters (`../baselin
 | call / top 5 | known family | unseen family (30%) | remote homology removed | PHROGs (has seen these) | PHROGs, else ours (unseen) |
 |---|---|---|---|---|---|
 | holin (19) | 0.84 / 1.00 | 0.79 / 0.90 | 0.74 / 0.90 | 0.95 / 1.00 | 0.95 / 1.00 |
-| endolysin (39) | 0.90 / 1.00 | 0.61 / 0.92 | 0.46 / 0.85 | 0.87 / 0.87 | 0.90 / 0.95 |
+| endolysin (39) | 0.90 / 1.00 | 0.61 / 0.92 | 0.46 / 0.85 | 0.87 / 0.90 | 0.90 / 0.97 |
 | spanin (10) | 0.80 / 1.00 | 0.80 / 1.00 | 0.60 / 1.00 | 1.00 / 1.00 | 1.00 / 1.00 |
+
+PHROGs columns corrected on 2026-11-18 (endolysin top 5 0.87 -> 0.90, hybrid 0.95 -> 0.97) after a pre-filter bug in
+the baseline script was found; see `../baselines/baselines.md`. This is a secondary, descriptive endpoint.
 
 ## Every model variant tried during development (disclosure)
 

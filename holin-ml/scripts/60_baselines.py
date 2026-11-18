@@ -48,7 +48,13 @@ def load_benchmark(name):
     return G
 
 
-def phrog_scores(G, pdir):
+def phrog_best(G, pdir, extra=()):
+    """{(genome index, protein index): (phrog, bitscore, evalue, annotation, category)}: each protein's best PHROG
+    (E <= 1e-5), as Pharokka assigns it. For speed, only proteins that hit a PHROG whose annotation names a lysis class
+    (or that sits in the lysis category) are searched against all PHROGs: a protein whose best PHROG names a lysis class
+    must hit that PHROG, so this is exact for the class assignment. `extra`: (genome, protein) pairs to search anyway.
+    (Before 2026-11-18 the first step used only the lysis CATEGORY, which misses 24 endolysin-named PHROGs filed under
+    "other" or "head and packaging"; that understated PHROGs on endolysins.)"""
     import pyhmmer
     alpha = pyhmmer.easel.Alphabet.amino()
     annot = {}
@@ -62,10 +68,11 @@ def phrog_scores(G, pdir):
     with pyhmmer.plan7.HMMFile(str(Path(pdir) / "all_phrogs.h3m")) as hf:
         hmms = list(hf)
     name = lambda h: h.name.decode() if isinstance(h.name, bytes) else h.name
-    lysis = [h for h in hmms if annot.get(name(h), ("", ""))[1] == "lysis"]
-    print(f"loaded {len(hmms)} PHROG HMMs ({len(lysis)} lysis) in {time.time()-t:.0f}s; {len(allp)} proteins", flush=True)
-    cand = set()
-    for hits in pyhmmer.hmmer.hmmsearch(lysis, block, E=1e-5, cpus=4):
+    first = [h for h in hmms if annot.get(name(h), ("", ""))[1] == "lysis" or phrog_class(annot.get(name(h), ("", ""))[0])]
+    print(f"loaded {len(hmms)} PHROG HMMs ({len(first)} lysis-named or lysis-category) in {time.time()-t:.0f}s; "
+          f"{len(allp)} proteins", flush=True)
+    extra = set(extra); cand = {k for k, (gi, i, _) in enumerate(allp) if (gi, i) in extra}
+    for hits in pyhmmer.hmmer.hmmsearch(first, block, E=1e-5, cpus=4):
         for h in hits:
             if h.evalue <= 1e-5: cand.add(int(name(h)))
     cand = sorted(cand)
@@ -77,13 +84,27 @@ def phrog_scores(G, pdir):
         for h in hits:
             if h.evalue > 1e-5: continue
             k = int(name(h))
-            if k not in best or h.score > best[k][1]: best[k] = (q, h.score)
+            if k not in best or h.score > best[k][1]: best[k] = (q, round(float(h.score), 1), float(h.evalue), *annot.get(q, ("", "")))
     print(f"{len(cand)} candidate proteins searched against all PHROGs in {time.time()-t:.0f}s", flush=True)
+    return {(allp[k][0], allp[k][1]): v for k, v in best.items()}
+
+
+def phrog_scores(G, pdir, best=None):
+    best = best if best is not None else phrog_best(G, pdir)
     S = [{c: np.full(len(g["seqs"]), -np.inf) for c in CLASSES} for g in G]
-    for k, (q, sc) in best.items():
-        cls = phrog_class(annot.get(q, ("", ""))[0])
-        if cls: gi, i, _ = allp[k]; S[gi][cls][i] = sc
+    for (gi, i), b in best.items():
+        cls = phrog_class(b[3])
+        if cls: S[gi][cls][i] = b[1]
     return S
+
+
+def submitted_year(gb):
+    """first submission year of a GenBank record ('Submitted (DD-MON-YYYY)' reference)"""
+    from Bio import SeqIO
+    rec = next(SeqIO.parse(gb, "genbank"))
+    ys = [int(m.group(1)) for r in rec.annotations.get("references", [])
+          for m in [re.search(r"Submitted \(\d+-\w+-(\d{4})\)", r.journal or "")] if m]
+    return min(ys) if ys else None
 
 
 def pfam_scores(G):
@@ -163,10 +184,40 @@ def ours(name, cls, proto, clusters):
     return summarise(rows, clusters)
 
 
+def paired_vs_phrogs():
+    """paired cluster bootstrap on CPT: each method's call minus PHROGs' call, all genomes and those from 2022 on"""
+    out_dir = B / "reports/baselines"
+    R = json.load(open(out_dir / "per_genome_rows.json")); yr = json.load(open(out_dir / "cpt_2022plus.json"))["submitted_year"]
+    cl = json.load(open(B / "reports/clusters/cpt.json")); res = {}
+    for cls in CLASSES:
+        P = R[f"cpt|{cls}|PHROGs (Pharokka database)"]
+        for m in ("ours, known family", "ours, unseen family (30%)", "PHROGs, else ours, unseen family (30%)"):
+            O = R[f"cpt|{cls}|{m}"]
+            for split, keep in (("all", lambda g: True), ("2022+", lambda g: (yr.get(g) or 0) >= 2022)):
+                G = sorted(g for g in P if g in O and keep(g)); d = defaultdict(list)
+                for i, g in enumerate(G): d[cl.get(g, {}).get("gene", g)].append(i)
+                U = list(d.values()); va = np.array([P[g]["call"] for g in G]); vb = np.array([O[g]["call"] for g in G])
+                rng = np.random.default_rng(0); bs = []
+                for _ in range(4000):
+                    idx = [i for u in rng.integers(0, len(U), len(U)) for i in U[u]]; bs.append((vb[idx] - va[idx]).mean())
+                bs = np.array(bs)
+                r = {"method": m, "phrogs": round(float(va.mean()), 3), "method_value": round(float(vb.mean()), 3),
+                     "difference": round(float(vb.mean() - va.mean()), 3),
+                     "CI95": [round(float(np.percentile(bs, 2.5)), 3), round(float(np.percentile(bs, 97.5)), 3)],
+                     "p_two_sided": round(float(min(1.0, 2 * min((bs <= 0).mean(), (bs >= 0).mean()))), 3),
+                     "genomes": len(G), "clusters": len(U)}
+                res[f"{cls}|{m}|{split}"] = r
+                print(f"{cls:9s} {split:5s} {m:40s} {r['method_value']:.2f} vs PHROGs {r['phrogs']:.2f}: "
+                      f"{r['difference']:+.3f} {r['CI95']} p={r['p_two_sided']}", flush=True)
+    (out_dir / "paired_vs_phrogs.json").write_text(json.dumps(res, indent=1))
+
+
 def main():
-    ap = argparse.ArgumentParser(); ap.add_argument("--phrogs", required=True)
-    ap.add_argument("--sets", nargs="+", default=["cpt", "validated"]); a = ap.parse_args()
+    ap = argparse.ArgumentParser(); ap.add_argument("--phrogs")
+    ap.add_argument("--paired-only", action="store_true", help="only the paired tests, from saved per-genome rows")
+    ap.add_argument("--sets", nargs="+", default=["cpt", "validated", "reviewed"]); a = ap.parse_args()
     out_dir = B / "reports/baselines"; out_dir.mkdir(parents=True, exist_ok=True)
+    if a.paired_only: return paired_vs_phrogs()
     for name in a.sets:
         G = load_benchmark(name); clusters = json.load(open(B / f"reports/clusters/{name}.json"))
         P, F_ = phrog_scores(G, a.phrogs), pfam_scores(G)
@@ -190,7 +241,25 @@ def main():
                 print(f"   {k:32s} call {v['call'][0]:.2f} [{v['call'][1]:.2f},{v['call'][2]:.2f}]  top5 {v['top5'][0]:.2f} "
                       f"[{v['top5'][1]:.2f},{v['top5'][2]:.2f}]  coverage {v['coverage'][0]:.2f}  (n={v['genomes']})", flush=True)
         (out_dir / f"{name}.json").write_text(json.dumps(res, indent=1))
-    if a.sets == ["cpt", "validated"]: (out_dir / "per_genome_rows.json").write_text(json.dumps({"|".join(k): v for k, v in ROWS.items()}))
+        if name == "cpt":
+            # time split: genomes first submitted to GenBank from 2022 on, after PHROGs v4 was built
+            gb = {Path(p).stem: p for p in glob.glob(str(B / "data/raw/cpt/genomes/*.gb"))}
+            yr = {g["genome"]: submitted_year(gb[g["genome"]]) for g in G}
+            sub = {}
+            for cls in CLASSES:
+                sub[cls] = {}
+                for m in ("PHROGs (Pharokka database)", "ours, known family", "ours, unseen family (30%)",
+                          "PHROGs, else ours, unseen family (30%)"):
+                    r = {g: v for g, v in ROWS.get(("cpt", cls, m), {}).items() if (yr.get(g) or 0) >= 2022}
+                    sub[cls][m] = summarise(r, clusters)
+                    v = sub[cls][m]
+                    print(f"   cpt 2022+ {cls:9s} {m:40s} call {v['call'][0]:.2f} [{v['call'][1]:.2f},{v['call'][2]:.2f}] "
+                          f"top5 {v['top5'][0]:.2f} coverage {v['coverage'][0]:.2f} (n={v['genomes']})", flush=True)
+            sub["submitted_year"] = yr
+            (out_dir / "cpt_2022plus.json").write_text(json.dumps(sub, indent=1))
+    f = out_dir / "per_genome_rows.json"; old = json.load(open(f)) if f.exists() else {}
+    old.update({"|".join(k): v for k, v in ROWS.items()}); f.write_text(json.dumps(old))
+    if "cpt" in a.sets: paired_vs_phrogs()
 
 
 if __name__ == "__main__":

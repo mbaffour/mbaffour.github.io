@@ -19,10 +19,11 @@ On 129 genomes with hand-curated lysis genes, with the target's whole family (�
 the curated gene was the model's top pick for 54% of holins and 74% of endolysins and was in the top five for 85%
 and 90%. Removing remote homologues found by profile search as well (jackhmmer) barely changed holins (50% / 83%) or
 spanins (top five 90%) but lowered endolysins to 55% / 82%: the endolysin model depends partly on remote similarity
-to ancient enzyme families. Compared with PHROGs, the profile database behind Pharokka, on curated genomes deposited
-after PHROGs was built, our model named the endolysin more often (0.92 vs 0.58) and the holin comparably (0.76 vs
-0.64, overlapping intervals), while PHROGs named the spanin more often (0.89 vs 0.65). Using PHROGs where it makes a
-call and our model where it makes none was at least as good as either alone for every class. On 1,423 phage genomes
+to ancient enzyme families. Compared with PHROGs, the profile database behind Pharokka, on curated genomes first submitted
+after PHROGs was built, our model named the endolysin (0.92 vs 0.82) and the holin (0.76 vs 0.64) about as often,
+with no significant difference, while PHROGs named the spanin more often (0.89 vs 0.65). PHROGs assigned no class to
+the curated gene in 4–10% of these genomes; using PHROGs where it makes a call and our model where it makes none never
+did worse than PHROGs alone and improved endolysin and spanin calls. On 1,423 phage genomes
 scanned from DNA alone in four blind designs, with calls committed before annotations were read, the annotated gene
 was usually among the top five calls (holin 0.96, endolysin 0.97, spanin 0.96 in the first blind set). A pre-registered final test on
 87 new genomes did not confirm the one model change it tested (endolysin training-label fix: 0.838 → 0.863,
@@ -151,12 +152,15 @@ analyses. Anything else run on the final set is labelled exploratory.
 
 - **PHROGs** v4 (38,880 profiles, 305 in the lysis category; from the Pharokka v1.11.0 database bundle, Zenodo record
   21755221), searched with PyHMMER; as in Pharokka, each protein takes its best PHROG (E ≤ 10⁻⁵), and proteins whose
-  best PHROG is a holin, endolysin or spanin profile are ranked by bit score.
+  best PHROG's name marks it as a holin, endolysin or spanin (the same name rules as for annotations) are ranked by
+  bit score.
 - **Pfam lysis domains** (Mistry *et al.* 2021), ranked by E-value.
 - **Hybrid:** PHROGs where it assigns the class in a genome, our model where it assigns nothing.
 
 PHROGs was built from genomes available around 2019–2020 and has effectively seen most benchmark genes, so the
-fairest comparison is on CPT genomes deposited from 2022 on (`scripts/60_baselines.py`).
+fairest comparison is on CPT genomes first submitted to GenBank from 2022 on (`scripts/60_baselines.py`). Differences
+from PHROGs are tested with a paired cluster bootstrap; these tests were added after the comparison was first made and
+are not corrected for multiplicity.
 
 ### 2.8 Membrane topology
 
@@ -216,22 +220,29 @@ by 4, with no measure made worse. Out of fold, with related genomes kept togethe
 
 ### 3.2 Comparison with PHROGs and Pfam
 
-CPT genomes deposited from 2022 on, call is the curated gene (`reports/baselines/baselines.md`):
+CPT genomes first submitted from 2022 on, call is the curated gene (`reports/baselines/baselines.md`):
 
 | | PHROGs | ours, known family | ours, unseen family | PHROGs, else ours (unseen) |
 |---|---|---|---|---|
-| holin (33 genomes) | 0.64 [0.41, 0.87] | **0.76** [0.54, 0.97] | 0.48 [0.28, 0.74] | 0.67 [0.45, 0.90] |
-| endolysin (50) | 0.58 [0.33, 0.84] | **0.92** [0.82, 0.98] | 0.76 [0.58, 0.89] | 0.90 [0.80, 0.97] |
+| holin (33 genomes) | 0.64 [0.41, 0.87] | 0.76 [0.54, 0.97] | 0.48 [0.28, 0.74] | 0.67 [0.45, 0.90] |
+| endolysin (50) | 0.82 [0.62, 0.95] | 0.92 [0.82, 0.98] | 0.76 [0.58, 0.89] | 0.92 [0.79, 1.00] |
 | spanin (46) | **0.89** [0.71, 1.00] | 0.65 [0.41, 0.91] | 0.54 [0.32, 0.77] | **0.91** [0.74, 1.00] |
 
-- **Endolysins: our model is better.** PHROGs assigns no endolysin at all to 24% of CPT's curated endolysins (38% in
-  genomes from 2022 on); ours has the curated gene in the top five in every such genome.
-- **Holins: comparable.** Ours ahead on recent genomes, PHROGs ahead over all CPT genomes (0.76 vs 0.70), with
-  overlapping intervals.
-- **Spanins: PHROGs names the gene more often** (0.89 vs 0.65), although both put it in the top five equally often.
-- **Hybrid.** PHROGs where it calls and our model where it does not is at least as good as the better tool for every
-  class, and has the curated gene in the top five in every recent genome. Over all CPT genomes: holin 0.78, endolysin
-  0.90, spanin 0.93. **We therefore recommend running the predictor alongside Pharokka.**
+- **Holins and endolysins: no significant difference.** Ours minus PHROGs, paired, on all CPT genomes: holin −0.05
+  [−0.27, +0.15], endolysin +0.12 [−0.02, +0.27] (known family); under the unseen-family protocol, −0.22 [−0.44, +0.01]
+  and −0.03 [−0.18, +0.13].
+- **Spanins: PHROGs names the gene more often** (0.89 vs 0.65 on recent genomes; −0.35 [−0.58, −0.09] against our
+  unseen-family protocol), although both put it in the top five equally often.
+- **Coverage.** PHROGs assigns no class to the curated gene in 6–8% of CPT genomes per class (endolysin 8%, 10% from
+  2022 on); our model always ranks it.
+- **Hybrid.** PHROGs where it calls and our model where it does not improves on PHROGs alone for endolysins (+0.08
+  [+0.01, +0.16]) and spanins (+0.04 [+0.01, +0.10]), never does worse, and has the curated gene in the top five in
+  every recent genome. Over all CPT genomes: holin 0.78, endolysin 0.86, spanin 0.93 (our model alone, known family:
+  0.70, 0.90, 0.79). **We therefore recommend running the predictor alongside Pharokka.**
+
+An earlier version of this comparison understated PHROGs on endolysins (0.58 on recent genomes) because a speed-up
+skipped 24 endolysin-named PHROGs outside the lysis category; the error was found when the per-gene data release was
+rebuilt from scratch and checked against the reported numbers.
 
 Pfam lysis domains alone call 0.54 (holin), 0.74 (endolysin) and 0.31 (spanin) on CPT. PHROGs has no equivalent of
 the unseen-family fallback: its misses are coverage gaps.
