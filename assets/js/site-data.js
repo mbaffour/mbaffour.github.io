@@ -16,6 +16,7 @@ const publications = [
         doi: "https://doi.org/10.1128/jb.00538-25",
         status: "published",
         firstAuthor: true,
+        authorRole: "Co-first author",
         latest: true,
         code: "https://github.com/mbaffour/N4-Lysis-paper-codes",
         /* The preprint stays reachable: it has its own PMID and is what earlier
@@ -25,7 +26,7 @@ const publications = [
         ],
         /* From the published CRediT statement. */
         contribution: "Co-first author. Conceptualization, data curation, formal analysis, investigation, software, supervision, visualization, and writing (original draft, review and editing).",
-        summary: "First author study of how phage N4 takes its host cell apart, showing it lyses via a SAR endolysin–holin system and mapping genomic regions — inside and outside the lysis cassette — involved in lysis inhibition.",
+        summary: "Co-first-author study of how phage N4 takes its host cell apart, showing it lyses via a SAR endolysin–holin system and mapping genomic regions — inside and outside the lysis cassette — involved in lysis inhibition.",
         citation: {
             plain: "Awuah MB, Martin C, Chamblee JS, Tomaszewski AJ, Sullivan TE, Emilia Q, Tran S, Snowden JH, Niemiec KA, Zhu J, Ramsey J. Phage N4 uses a SAR endolysin-holin system for host cell lysis. J Bacteriol. 2026. doi:10.1128/jb.00538-25",
             bibtex: "@article{awuah2026n4lysis,\n  title   = {Phage {N4} uses a {SAR} endolysin-holin system for host cell lysis},\n  author  = {Awuah, Michael Baffour and Martin, Cody and Chamblee, Jake S. and Tomaszewski, Adam J. and Sullivan, Teresa E. and Emilia, Qori and Tran, Steven and Snowden, Jason H. and Niemiec, Kaylyn A. and Zhu, Jiatong and Ramsey, Jolene},\n  journal = {Journal of Bacteriology},\n  year    = {2026},\n  doi     = {10.1128/jb.00538-25}\n}"
@@ -96,6 +97,27 @@ const publications = [
         status: "talk"
     },
     /* ── Posters ─────────────────────────────────────────── */
+    {
+        kind: "poster",
+        title: "Why So Cryptic? Hidden Regulators of Bacteriophage N4 Lysis Inhibition",
+        journal: "Students' &amp; Postdoc Research Conference · College Station, TX",
+        year: 2026,
+        status: "poster"
+    },
+    {
+        kind: "poster",
+        title: "An Antisense ORF Delays Lysis Timing in Bacteriophage N4",
+        journal: "Molecular Genetics of Bacteria &amp; Phages Meeting · UW–Madison",
+        year: 2026,
+        status: "poster"
+    },
+    {
+        kind: "poster",
+        title: "Unravelling the Bacteriophage N4 Lysis Pathway",
+        journal: "Molecular Genetics of Bacteria &amp; Phages Meeting · UW–Madison",
+        year: 2025,
+        status: "poster"
+    },
     {
         kind: "poster",
         title: "Phage N4 lysis inhibition — the viral death race",

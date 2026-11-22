@@ -730,6 +730,7 @@ footer a { color: var(--accent); text-decoration: none; }
     <div class="nav-links">
       <a href="#education">Education</a>
       <a href="#research">Research</a>
+      <a href="#software">Software</a>
       <a href="#publications">Publications</a>
       <a href="#presentations">Talks</a>
       <a href="#teaching">Teaching</a>
@@ -789,6 +790,15 @@ footer a { color: var(--accent); text-decoration: none; }
   </div>
 </header>
 
+<!-- Research Profile -->
+<section id="profile" class="cv-sec">
+  <h2 class="section-title">Research Profile</h2>
+  <hr class="section-rule">
+  <div class="card">
+    <p style="font-size:0.88rem;line-height:1.7;">Microbiologist and biochemist working across the bench and the computer. Hands-on experience in molecular cloning, protein expression, protein-protein interaction assays (formaldehyde crosslinking, His-tag pull-down, Western blotting), genetic engineering of phage and host, genomics and transcriptomics, and analytical assays such as endotoxin (LAL) and protein quantification, building on clinical and diagnostic laboratory work in Ghana. Ph.D. research on how bacteriophage N4 times the lysis of its host produced a co-first-author paper in <em>Journal of Bacteriology</em>. Builds and validates open-source software for protein-structure, image and sequence analysis with AI coding assistants; one tool is used by another laboratory in a published paper. Communicates science clearly to specialist and general audiences through 14 conference presentations, teaching, and mentoring 11 undergraduate researchers.</p>
+  </div>
+</section>
+
 <!-- Education -->
 <section id="education" class="cv-sec">
   <h2 class="section-title">Education</h2>
@@ -797,18 +807,21 @@ footer a { color: var(--accent); text-decoration: none; }
   <div class="card">
     <div class="card-header">
       <div class="card-title">Ph.D., Biology (Microbiology)</div>
-      <span class="card-date">Aug 2022 – Present</span>
+      <span class="card-date">Aug 2022 – Expected Dec 2027</span>
     </div>
     <div class="card-subtitle">Texas A&amp;M University, College Station, TX</div>
     <ul class="bullets">
       <li><strong>Dissertation:</strong> Delaying the Inevitable – Lysis Inhibition in Bacteriophage N4</li>
       <li><strong>Advisor:</strong> Dr. Jolene Ramsey</li>
+      <li><strong>Committee:</strong> Dr. Jolene Ramsey (chair), Dr. Deborah Siegele, Dr. James Erickson, Dr. Jason Gill</li>
+      <li><strong>Advanced to candidacy:</strong> December 2024</li>
+      <li><strong>GPA:</strong> 4.0</li>
     </ul>
   </div>
 
   <div class="card">
     <div class="card-header">
-      <div class="card-title">B.Sc., Biochemistry (Second Class Upper Division)</div>
+      <div class="card-title">B.Sc., Biochemistry (Second Class Upper Honours)</div>
       <span class="card-date">Aug 2016 – Jun 2020</span>
     </div>
     <div class="card-subtitle">University of Cape Coast, Cape Coast, Ghana</div>
@@ -816,6 +829,7 @@ footer a { color: var(--accent); text-decoration: none; }
       <li><strong>Dissertation:</strong> Physicochemical, Functional and Nutritional Analysis of a Juice Blend and Mixed Fruit Nectar Formulated From Pineapple and Underutilized Tropical Fruits</li>
       <li><strong>Mini Project:</strong> Qualitative Phytochemical Analysis, Total Antioxidant Activity and Total Phenolics of <em>Terminalia catappa</em></li>
       <li><strong>Advisor:</strong> Dr. Jerry Ampofo-Asiama</li>
+      <li><strong>GPA:</strong> 3.5/4.0</li>
     </ul>
   </div>
 </section>
@@ -833,11 +847,11 @@ footer a { color: var(--accent); text-decoration: none; }
     <div class="card-subtitle">Graduate Researcher, Ramsey Laboratory</div>
     <div class="card-location">College Station, TX</div>
     <ul class="bullets">
-      <li>Identified and characterized the minimal gene set required for Bacteriophage N4 lysis through systematic CRISPR-based deletion analysis and functional genomics, discovering a novel lysis regulator.</li>
-      <li>Performed RNA-seq transcriptomic profiling to uncover transcriptional differences between wild-type N4 and rapid-lysis lineages, revealing key regulatory networks governing lysis timing.</li>
-      <li>Engineered bacteriophage N4 mutants using combinatorial genetics, designing complex genetic circuits to study how bacterial growth phases affect translation machinery availability during infection.</li>
-      <li>Isolated, purified, and characterized three novel <em>E. coli</em> 4s-infecting bacteriophages from environmental samples using TEM, restriction analysis, and lysis phenotype assays.</li>
-      <li>Quantified LPS/endotoxin content and total protein in phage lysates via BCA assays, comparing disruptin vs. spanin LPS-quenching properties.</li>
+      <li>Co-first author of the study establishing that N4 lyses through a SAR endolysin-holin system: expressed each lysis protein (SAR endolysin, holin, pinholin, spanins) in <em>E. coli</em>, scored growth and lysis phenotypes, and mapped genomic regions inside and outside the lysis cassette that delay lysis (<em>Journal of Bacteriology</em>, 2026).</li>
+      <li>Discovered and characterized a regulator of N4 lysis timing: a custom six-frame HMM search tool (built with Claude Code) surfaced the candidate gene – invisible to standard annotation and curated protein databases – which systematic CRISPR-based deletion, complementation, and functional phenotyping then confirmed as the regulator; recognized by the Thomas L. Patterson Graduate Student Fellowship.</li>
+      <li>Map protein-protein interactions of a His-tagged N4 protein: formaldehyde crosslinking under a range of fixation conditions, His-tag affinity purification (pull-down) of the crosslinked complexes, and detection of partners by SDS-PAGE and Western blot.</li>
+      <li>Prioritize candidate interaction partners for these experiments from AlphaFold 3 structure predictions scored by interface confidence.</li>
+      <li>Designed and built more than 30 plasmids and expression constructs in SnapGene, including primer design, construction and sequence verification, for gene expression and complementation studies.</li>
     </ul>
     <button class="expand-toggle" onclick="toggle(this)">
       Show more
@@ -845,9 +859,11 @@ footer a { color: var(--accent); text-decoration: none; }
     </button>
     <div class="expandable">
       <ul class="bullets">
-        <li>Sequenced, assembled, and annotated genomes of three novel phages, integrating morphological, genomic, and lysis kinetics data to classify phage diversity.</li>
-        <li>Designed and optimized primers for molecular cloning, including plasmid design, construction, and verification for gene expression and complementation studies using SnapGene.</li>
-        <li>Developed fluorophore-based reporter assays (GFP/mCherry) for real-time monitoring of lysis protein expression.</li>
+        <li>Image phage-infected cells by phase-contrast and fluorescence microscopy (time-lapse and snapshot) and quantify cell morphology with replicate-aware statistics; use GFP and mCherry reporter constructs to monitor lysis-protein expression in real time.</li>
+        <li>Performed RNA-seq transcriptomic profiling to uncover transcriptional differences between wild-type N4 and rapid-lysis lineages, revealing key regulatory networks governing lysis timing.</li>
+        <li>Quantified endotoxin (LAL assay) and total protein (BCA assay) in phage lysates, comparing the LPS-quenching properties of a novel outer membrane lysis protein (disruptin) against canonical spanin proteins.</li>
+        <li>Isolated, purified and characterized three novel <em>E. coli</em> 4s-infecting phages from environmental samples by plaque assays, host-range profiling, restriction analysis and lysis phenotyping, with TEM imaging carried out alongside a postdoctoral colleague; co-authored the peer-reviewed genome announcement for phage Serwaa.</li>
+        <li>Sequenced, assembled, annotated and publicly deposited the genomes of three novel phages (GenBank PX021331, BioProject PRJNA222858, SRA SRR34773693).</li>
       </ul>
     </div>
   </div>
@@ -860,8 +876,8 @@ footer a { color: var(--accent); text-decoration: none; }
     <div class="card-subtitle">Graduate Intern, Molecular Biology Laboratory</div>
     <div class="card-location">University of Ghana, Legon, Ghana</div>
     <ul class="bullets">
-      <li>Performed antimicrobial susceptibility testing on sixteen drug-resistant bacterial strains from the Greater Accra Regional Hospital, providing data-driven disinfectant recommendations for infection control.</li>
-      <li>Determined MICs of three commonly used disinfectants against bacteria isolated from nose masks, contributing to public health research.</li>
+      <li>Performed antimicrobial susceptibility testing on sixteen drug-resistant bacterial strains isolated from the Greater Accra Regional Hospital autopsy room, providing data-driven disinfectant concentration recommendations for infection control.</li>
+      <li>Determined minimum inhibitory concentrations (MICs) of three commonly used disinfectants against bacteria isolated from nose masks, contributing to public health and nosocomial pathogen surveillance.</li>
     </ul>
   </div>
 
@@ -963,24 +979,101 @@ footer a { color: var(--accent); text-decoration: none; }
   </div>
 </section>
 
+<!-- Selected Scientific Software -->
+<section id="software" class="cv-sec">
+  <h2 class="section-title">Selected Scientific Software</h2>
+  <hr class="section-rule">
+  <div class="card">
+    <p style="font-size:0.88rem;line-height:1.7;">19 open-source tools at <a href="https://github.com/mbaffour" target="_blank" rel="noopener" style="color:var(--accent);">github.com/mbaffour</a>, built with AI coding assistants (Claude Code, OpenAI Codex) and validated against independent references; several are used by members of the Ramsey Laboratory. Selected tools:</p>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">FigureLab</div>
+    </div>
+    <div class="card-subtitle">JavaScript, reproducible scientific figures</div>
+    <p style="font-size:0.85rem;line-height:1.6;">Browser-based publication-figure assembly with image calibration, scale bars, metadata, session files, and exported R/Python reproduction scripts, built collaboratively with Claude; archived on Zenodo (DOI 10.5281/zenodo.21269456). Used and credited by another laboratory in a published genome announcement (Hoxha et al., <em>Microbiology Resource Announcements</em>, 2026).</p>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">Protein Structure Viewer</div>
+    </div>
+    <div class="card-subtitle">JavaScript, AlphaFold 3, structural biology</div>
+    <p style="font-size:0.85rem;line-height:1.6;">Browser viewer for AlphaFold 3, ColabFold, Boltz and Chai-1 predictions and experimental structures; computes interface confidence (ipSAE, pDockQ, LIS), residue contacts and distance maps. Matched the published reference implementation (ipsae.py) on 304,650 values across 31 AlphaFold 3 runs; contacts checked against Biopython and PDBePISA. Archived on Zenodo (DOI 10.5281/zenodo.22741487).</p>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">Plaque Toolkit</div>
+    </div>
+    <div class="card-subtitle">Python, computer vision, assay quantification</div>
+    <p style="font-size:0.85rem;line-height:1.6;">Desktop/CLI workflow for plaque size, count, turbidity, and titer, built with Claude Code. Validated its in-house detection engine against 100 independently-traced Fiji/ImageJ measurements (ICC=0.97, r=0.98, bias &minus;1.8%) before trusting it – a cross-check that also caught a real 680&times; calibration bug a synthetic self-test had missed. Trained and evaluated a ResNet-18 plaque-versus-artefact classifier on 15,659 labelled boxes (leave-one-plate-out F1 0.954).</p>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">PooledPPI</div>
+    </div>
+    <div class="card-subtitle">R Shiny, AlphaFold 3</div>
+    <p style="font-size:0.85rem;line-height:1.6;">Designs pooled proteome-scale AlphaFold 3 screens; collapses N4's 72-protein proteome into ~43 pools in 0.07s versus thousands of pairwise combinations (a comparable published study needed 2,027 pools over ~68 days for a 476-protein proteome).</p>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">HMM Homologue Finder</div>
+    </div>
+    <div class="card-subtitle">Python, HMMER, bioinformatics</div>
+    <p style="font-size:0.85rem;line-height:1.6;">Surfaced the candidate N4 lysis-timing regulator: six-frame translation search recovers antisense/out-of-frame homologs standard annotation misses (zero hits in curated databases for this candidate). Calibrated with composition-matched controls (ROC-quantified) and &ge;70% seed self-recovery before any search runs; outputs include evidence tables, synteny, phylogeny, and full provenance.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">CellMorphR</div>
+    </div>
+    <div class="card-subtitle">R Shiny + Python, single-cell statistics</div>
+    <p style="font-size:0.85rem;line-height:1.6;">Analyzes time-resolved phage-infection morphometry with replicate-aware inference; prevents treating ~4,800 individual cell measurements as N=4,800 rather than the true N=3 biological replicates – the pseudoreplication error that manufactures false statistical significance.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">Lysis Curve App + N4 Paper Code</div>
+    </div>
+    <div class="card-subtitle">R Shiny</div>
+    <p style="font-size:0.85rem;line-height:1.6;">Converts raw plate-reader exports into 19 growth/lysis metrics, replicate QC, statistical comparisons, fitted curves, figures, and reproducible exports; includes the analysis code released with the N4 lysis paper (<em>Journal of Bacteriology</em>, 2026).</p>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">DataMask</div>
+    </div>
+    <div class="card-subtitle">JavaScript, data privacy</div>
+    <p style="font-size:0.85rem;line-height:1.6;">Browser-based tool that anonymizes sensitive research datasets locally, so confidential data never leaves the device before it is used with AI tools.</p>
+  </div>
+
+  <div class="card">
+    <p style="font-size:0.85rem;line-height:1.6;"><em>Other tools:</em> CFU Plot Studio, Alignment Workbench, Phage Evidence Annotator, Gibson Assembly Calculator, Dilution Designer and Stop Codon Finder.</p>
+  </div>
+</section>
+
 <!-- Publications -->
 <section id="publications" class="cv-sec">
   <h2 class="section-title">Publications</h2>
   <hr class="section-rule">
   <div class="card">
     <p style="font-size:0.88rem;line-height:1.7;">
-      <strong>Awuah MB</strong>&#8224;, Martin C&#8224;, Chamblee JS, Tomaszewski AJ, Sullivan TE, Emilia Q, Tran S, Snowden JH, Niemiec KA, Zhu J, Ramsey J.
+      <strong>Awuah MB</strong>#, Martin C#, Chamblee JS, Tomaszewski AJ, Sullivan TE, Emilia Q, Tran S, Snowden JH, Niemiec KA, Zhu J, Ramsey J.
       <em>Phage N4 uses a SAR endolysin-holin system for host cell lysis.</em>
-      <span style="color:var(--text-secondary);">Journal of Bacteriology. 2026.
+      <span style="color:var(--text-secondary);">Journal of Bacteriology. 2026;208(11).
       doi: <a href="https://doi.org/10.1128/jb.00538-25" target="_blank" rel="noopener" style="color:var(--accent);">10.1128/jb.00538-25</a>.
       Preprint: bioRxiv 2025, doi: <a href="https://doi.org/10.1101/2025.11.12.688109" target="_blank" rel="noopener" style="color:var(--accent);">10.1101/2025.11.12.688109</a>.
-      &#8224;Equal contribution.</span>
+      #Equal contribution; <strong>co-first author.</strong></span>
     </p>
   </div>
   <div class="card">
     <p style="font-size:0.88rem;line-height:1.7;">
       Debrah MA, <strong>Awuah MB</strong>, Koh A, Ramsey J.
-      <em>Complete genome sequence of Escherichia Siphophage Serwaa.</em>
+      <em>Complete genome sequence of Escherichia siphophage Serwaa.</em>
       <span style="color:var(--text-secondary);">Microbiology Resource Announcements. 2026;e01222-25.
       doi: <a href="https://doi.org/10.1128/mra.01222-25" target="_blank" rel="noopener" style="color:var(--accent);">10.1128/mra.01222-25</a>.</span>
     </p>
@@ -992,15 +1085,20 @@ footer a { color: var(--accent); text-decoration: none; }
   <h2 class="section-title">Presentations</h2>
   <hr class="section-rule">
   <div class="card">
+    <div class="pres-year">2026</div>
+    <div class="pres-item">"Why So Cryptic? Hidden Regulators of Bacteriophage N4 Lysis Inhibition" — Students' Postdoc Research Conference, Texas A&amp;M University, College Station, TX <span class="ptype">Poster</span></div>
+    <div class="pres-item">"An Antisense ORF Delays Lysis Timing in Bacteriophage N4" — Molecular Genetics of Bacteria &amp; Phages Meeting, UW-Madison, WI <span class="ptype">Poster</span></div>
+
     <div class="pres-year">2025</div>
+    <div class="pres-item">"Unravelling the Bacteriophage N4 Lysis Pathway" — Molecular Genetics of Bacteria &amp; Phages Meeting, UW-Madison, WI <span class="ptype">Poster</span></div>
     <div class="pres-item">"Phage N4 lysis inhibition – the viral death race" — Students' Postdoc Research Conference, College Station, TX <span class="ptype">Poster</span></div>
 
     <div class="pres-year">2024</div>
     <div class="pres-item">"Breaking Up The Breakdown: How An Open Reading Frame Inhibits Lysis In Bacteriophage N4" — Texas ASM Branch Meeting, UTMB, Galveston, TX <span class="ptype">Poster</span></div>
-    <div class="pres-item">"Breaking Up The Breakdown: How An Open Reading Frame Inhibits Lysis In Bacteriophage N4" — Mol. Genetics of Bacteria &amp; Phages Meeting, UW-Madison <span class="ptype">Poster</span></div>
-    <div class="pres-item">"Bacteriophage N4 Lysis Inhibition Unraveling Ancient Mechanism With Modern Insights" — Bio &amp; Chem Sci Symposium, College Station, TX <span class="ptype">Oral</span></div>
+    <div class="pres-item">"Breaking Up The Breakdown: How An Open Reading Frame Inhibits Lysis In Bacteriophage N4" — Molecular Genetics of Bacteria &amp; Phages Meeting, UW-Madison, WI <span class="ptype">Poster</span></div>
+    <div class="pres-item">"Bacteriophage N4 Lysis Inhibition Unraveling Ancient Mechanism With Modern Insights" — Biological &amp; Chemical Sciences Symposium, College Station, TX <span class="ptype">Oral</span></div>
     <div class="pres-item">"Bacteriophage N4 Lysis Inhibition – Ancient Conundrum Meets Novel Culprit" — Texas ASM Branch Meeting, Cedar Hill, TX <span class="ptype">Oral</span></div>
-    <div class="pres-item">"Phage N4 lysis inhibition – the viral death race" — Students' Postdoc Research Conference, College Station, TX <span class="ptype">Poster + Blitz</span></div>
+    <div class="pres-item">"Phage N4 lysis inhibition – the viral death race" — Students' Postdoc Research Conference, College Station, TX <span class="ptype">Poster &amp; Data Blitz</span></div>
     <div class="pres-item">"Delaying the Inevitable – Bacteriophage N4 Lysis Inhibition" — BIOGSA, College Station, TX <span class="ptype">Oral</span></div>
 
     <button class="expand-toggle" onclick="toggle(this)">
@@ -1009,15 +1107,15 @@ footer a { color: var(--accent); text-decoration: none; }
     </button>
     <div class="expandable">
       <div class="pres-year">2023</div>
-      <div class="pres-item">"Delaying the Inevitable – Bacteriophage N4 Lysis Inhibition" — Mol. Genetics of Bacteria &amp; Phages Meeting, UW-Madison <span class="ptype">Poster</span></div>
-      <div class="pres-item">"Phage Lysis Inhibition is Phruitful Procrastination" — Diversity in Science Symposium, Texas A&amp;M University <span class="ptype">Poster</span></div>
-      <div class="pres-item">"Phage Lysis Inhibition is Phruitful Procrastination" — Texas ASM Branch Meeting, Abilene Christian University <span class="ptype">Poster</span></div>
+      <div class="pres-item">"Delaying the Inevitable – Bacteriophage N4 Lysis Inhibition" — Molecular Genetics of Bacteria &amp; Phages Meeting, UW-Madison, WI <span class="ptype">Poster</span></div>
+      <div class="pres-item">"Phage Lysis Inhibition is Phruitful Procrastination" — Diversity in Science Symposium, Texas A&amp;M, College Station, TX <span class="ptype">Poster</span></div>
+      <div class="pres-item">"Phage Lysis Inhibition is Phruitful Procrastination" — Texas ASM Branch Meeting, Abilene Christian University, TX <span class="ptype">Poster</span></div>
 
       <div class="pres-year">2021</div>
-      <div class="pres-item">"Mendeley Referencing Tool For Dissertation Writing" — GHABSA, UCC <span class="ptype">Lecture</span></div>
+      <div class="pres-item">"Mendeley Referencing Tool For Dissertation Writing" — Ghana Biochemistry Students' Association, UCC <span class="ptype">Lecture</span></div>
 
       <div class="pres-year">2020</div>
-      <div class="pres-item">"G6PD Deficiency" — GHABSA National Congress, UCC <span class="ptype">Poster</span></div>
+      <div class="pres-item">"G6PD Deficiency" — GHABSA National Congress, UCC, Cape Coast, Ghana <span class="ptype">Poster</span></div>
     </div>
   </div>
 </section>
@@ -1032,14 +1130,14 @@ footer a { color: var(--accent); text-decoration: none; }
         <tr><th>Course</th><th>Students</th><th>Term</th><th>Institution</th></tr>
       </thead>
       <tbody>
-        <tr><td>BIOL 111 Intro Biology I</td><td>48</td><td>Fall 2022</td><td>Texas A&amp;M</td></tr>
-        <tr><td>BIOL 112 Intro Biology II</td><td>48</td><td>Spring 2023</td><td>Texas A&amp;M</td></tr>
+        <tr><td>BIOL 111 Introductory Biology I</td><td>48</td><td>Fall 2022</td><td>Texas A&amp;M</td></tr>
+        <tr><td>BIOL 112 Introductory Biology II</td><td>48</td><td>Spring 2023</td><td>Texas A&amp;M</td></tr>
         <tr><td>General Biochemistry Practical</td><td>209</td><td>Fall 2020</td><td>U. Cape Coast</td></tr>
         <tr><td>Biochemical Techniques I</td><td>150</td><td>Fall 2020</td><td>U. Cape Coast</td></tr>
         <tr><td>Diversity of Living Organisms</td><td>Class of 2023</td><td>Fall 2020</td><td>U. Cape Coast</td></tr>
         <tr><td>Biological Oxidation &amp; Bioenergetics</td><td>169</td><td>Fall 2020</td><td>U. Cape Coast</td></tr>
         <tr><td>Biostatistics</td><td>Class of 2022</td><td>Fall 2020</td><td>U. Cape Coast</td></tr>
-        <tr><td>Enzyme Action &amp; Catalysis</td><td>169</td><td>Fall 2021</td><td>U. Cape Coast</td></tr>
+        <tr><td>Mechanisms of Enzyme Action &amp; Catalysis</td><td>169</td><td>Fall 2021</td><td>U. Cape Coast</td></tr>
         <tr><td>Biochemical Techniques (Mini Project)</td><td>5</td><td>Fall 2021</td><td>U. Cape Coast</td></tr>
       </tbody>
     </table>
@@ -1053,16 +1151,30 @@ footer a { color: var(--accent); text-decoration: none; }
   <hr class="section-rule">
   <div class="card">
     <div class="award-item">
+      <div class="award-icon">🎓</div>
+      <div>
+        <div class="award-name">BIOGSA Engagement Scholarship and Travel Award (2026)</div>
+        <div class="award-desc">$1,000 – Texas A&amp;M Department of Biology</div>
+      </div>
+    </div>
+    <div class="award-item">
       <div class="award-icon">🏆</div>
       <div>
         <div class="award-name">Thomas L. Patterson Graduate Student Fellowship (2025)</div>
-        <div class="award-desc">Outstanding research in bacteriophage biology – discovery of a novel lysis regulator in Bacteriophage N4</div>
+        <div class="award-desc">Awarded by the Center for Phage Technology at Texas A&amp;M for research in bacteriophage biology and discovery of a novel N4 lysis regulator. The fellowship, established by Drs. Steffanie Strathdee and Thomas L. Patterson following the landmark phage-therapy case that saved Dr. Patterson's life, recognizes discovery-driven research in phage biology and therapy.</div>
       </div>
     </div>
     <div class="award-item">
       <div class="award-icon">🎓</div>
       <div>
-        <div class="award-name">Mol. Genetics of Bacteria &amp; Phages Meeting Registration Waiver (2024)</div>
+        <div class="award-name">BIOGSA Engagement Scholarship and Travel Award (2025)</div>
+        <div class="award-desc">$500 – Texas A&amp;M Department of Biology</div>
+      </div>
+    </div>
+    <div class="award-item">
+      <div class="award-icon">🎓</div>
+      <div>
+        <div class="award-name">Molecular Genetics of Bacteria &amp; Phages Meeting Registration Waiver (2024)</div>
         <div class="award-desc">$525</div>
       </div>
     </div>
@@ -1076,7 +1188,7 @@ footer a { color: var(--accent); text-decoration: none; }
     <div class="award-item">
       <div class="award-icon">🎓</div>
       <div>
-        <div class="award-name">Mol. Genetics of Bacteria &amp; Phages Meeting Registration Waiver (2023)</div>
+        <div class="award-name">Molecular Genetics of Bacteria &amp; Phages Meeting Registration Waiver (2023)</div>
         <div class="award-desc">$500</div>
       </div>
     </div>
@@ -1097,15 +1209,16 @@ footer a { color: var(--accent); text-decoration: none; }
   <div class="card">
     <div class="card-title" style="margin-bottom:12px;">Graduate Student Mentor — Texas A&amp;M University</div>
     <div class="mentee-grid">
-      <div class="mentee-chip"><div class="mname">Annie Koh</div><div class="mtopic">Characterization of three <em>E. coli</em> 4s phages</div></div>
-      <div class="mentee-chip"><div class="mname">Philip Lotaire</div><div class="mtopic">N4 Lysis Inhibition, Host Specificity &amp; Receptor Discovery</div></div>
-      <div class="mentee-chip"><div class="mname">Matthew Fan</div><div class="mtopic">Mechanism of action of bacteriocins</div></div>
-      <div class="mentee-chip"><div class="mname">Teja Vemulapalli</div><div class="mtopic">Bacteriophage N4 Lysis Inhibition</div></div>
+      <div class="mentee-chip"><div class="mname">Annie Koh</div><div class="mtopic">Characterization of three <em>E. coli</em> 4s phages</div><div class="mtopic">June 2023 – Present; co-author, <em>Microbiology Resource Announcements</em> (2026); now applying to medical school</div></div>
+      <div class="mentee-chip"><div class="mname">Philip Lotaire</div><div class="mtopic">Bacteriophage N4: Lysis Inhibition, Host Specificity &amp; Receptor Discovery</div><div class="mtopic">June – July 2024; now in a biology Ph.D. program</div></div>
+      <div class="mentee-chip"><div class="mname">Matthew Fan</div><div class="mtopic">Mechanism of action of bacteriocins</div><div class="mtopic">Ongoing</div></div>
+      <div class="mentee-chip"><div class="mname">Teja Vemulapalli</div><div class="mtopic">Bacteriophage N4 Lysis Inhibition</div><div class="mtopic">Ongoing</div></div>
+      <div class="mentee-chip"><div class="mname">Cameron Harley</div><div class="mtopic">Bacteriophage N4 &amp; its unknown friend gp75</div><div class="mtopic">Summer 2026</div></div>
     </div>
   </div>
 
   <div class="card">
-    <div class="card-title" style="margin-bottom:12px;">Research Mentor — University of Cape Coast</div>
+    <div class="card-title" style="margin-bottom:12px;">Research Mentor (Teaching Assistant) — University of Cape Coast, Aug – Oct 2021</div>
     <div class="mentee-grid">
       <div class="mentee-chip"><div class="mname">Bridget Ahema Agyemang</div><div class="mtopic">Phytochemical eval. of <em>Garcinia kola</em></div></div>
       <div class="mentee-chip"><div class="mname">Bertha Klenam Hamenu</div><div class="mtopic">Phytochemical eval. of <em>Garcinia kola</em></div></div>
@@ -1122,18 +1235,20 @@ footer a { color: var(--accent); text-decoration: none; }
   <h2 class="section-title">Leadership, Service &amp; Community</h2>
   <hr class="section-rule">
   <div class="card">
-    <div class="lead-item"><span class="lead-role">Judge</span><span class="lead-sep">—</span><span class="lead-org">Texas Junior Science &amp; Humanities Symposium</span><span class="lead-date">Jan 2025</span></div>
+    <div class="lead-item"><span class="lead-role">Representative</span><span class="lead-sep">—</span><span class="lead-org">Biology Graduate Students Association in graduate student government; member, Senate Committee for Community &amp; Engagement, Texas A&amp;M University</span><span class="lead-date">2026 – Present</span></div>
+    <div class="lead-item"><span class="lead-role">Judge</span><span class="lead-sep">—</span><span class="lead-org">Texas Junior Science &amp; Humanities Symposium</span><span class="lead-date">Jan 2025; Oct 2026</span></div>
     <div class="lead-item"><span class="lead-role">Judge</span><span class="lead-sep">—</span><span class="lead-org">SACNAS Diversity in Science Symposium</span><span class="lead-date">Apr 2024</span></div>
-    <div class="lead-item"><span class="lead-role">Volunteer</span><span class="lead-sep">—</span><span class="lead-org">Darwin Day, Texas A&amp;M University</span><span class="lead-date">Feb 2024 &amp; 2025</span></div>
-    <div class="lead-item"><span class="lead-role">Microteaching Mentor</span><span class="lead-sep">—</span><span class="lead-org">Biology Dept, TAMU</span><span class="lead-date">Aug 2023 &amp; 2024</span></div>
-    <div class="lead-item"><span class="lead-role">Invited Speaker</span><span class="lead-sep">—</span><span class="lead-org">Vizta Edu – Study Abroad Journey</span><span class="lead-date">Aug 2023</span></div>
-    <div class="lead-item"><span class="lead-role">Editor-in-Chief</span><span class="lead-sep">—</span><span class="lead-org">GHABSA UCC Chapter</span><span class="lead-date">2019–2020</span></div>
-    <div class="lead-item"><span class="lead-role">National Editor</span><span class="lead-sep">—</span><span class="lead-org">Ghana Biochemistry Students Association</span><span class="lead-date">2019–2020</span></div>
-    <div class="lead-item"><span class="lead-role">Co-founder &amp; Editor</span><span class="lead-sep">—</span><span class="lead-org">FillaHQ.com (UCC campus media)</span><span class="lead-date">2017–2020</span></div>
-    <div class="lead-item"><span class="lead-role">Volunteer</span><span class="lead-sep">—</span><span class="lead-org">Verifie Health</span><span class="lead-date">Nov 2018 – Present</span></div>
-    <div class="lead-item"><span class="lead-role">Member</span><span class="lead-sep">—</span><span class="lead-org">NUGS UCC Research &amp; Sponsorship Committee</span><span class="lead-date">2018–2019</span></div>
-    <div class="lead-item"><span class="lead-role">Volunteer</span><span class="lead-sep">—</span><span class="lead-org">UCC SRC Community Outreach</span><span class="lead-date">May 2017</span></div>
-    <div class="lead-item"><span class="lead-role">Volunteer Teacher</span><span class="lead-sep">—</span><span class="lead-org">Great Messiah International School</span><span class="lead-date">2015–2016</span></div>
+    <div class="lead-item"><span class="lead-role">Volunteer</span><span class="lead-sep">—</span><span class="lead-org">Darwin Day, Texas A&amp;M University</span><span class="lead-date">Feb 2024, Feb 2025</span></div>
+    <div class="lead-item"><span class="lead-role">Microteaching Mentor</span><span class="lead-sep">—</span><span class="lead-org">Incoming teaching assistants, Biology Department, Texas A&amp;M University</span><span class="lead-date">Annually, 2023–2026</span></div>
+    <div class="lead-item"><span class="lead-role">Invited Speaker</span><span class="lead-sep">—</span><span class="lead-org">Vizta Edu – My Study Abroad Application Journey</span><span class="lead-date">Aug 2023</span></div>
+    <div class="lead-item"><span class="lead-role">Volunteer</span><span class="lead-sep">—</span><span class="lead-org">Verifie Health Limited – sampling and analysis team for a young-professional-led initiative providing STI education, testing, and counseling services</span><span class="lead-date">2019 – Present</span></div>
+    <div class="lead-item"><span class="lead-role">Editor-in-Chief</span><span class="lead-sep">—</span><span class="lead-org">Ghana Biochemistry Students Association, UCC Chapter</span><span class="lead-date">May 2019 – Aug 2020</span></div>
+    <div class="lead-item"><span class="lead-role">National Editor</span><span class="lead-sep">—</span><span class="lead-org">Ghana Biochemistry Students Association</span><span class="lead-date">May 2019 – Aug 2020</span></div>
+    <div class="lead-item"><span class="lead-role">Co-founder &amp; Editor</span><span class="lead-sep">—</span><span class="lead-org">FillaHQ.com (University of Cape Coast campus media)</span><span class="lead-date">Sep 2017 – Aug 2020</span></div>
+    <div class="lead-item"><span class="lead-role">Member</span><span class="lead-sep">—</span><span class="lead-org">NUGS UCC Research &amp; Sponsorship Committee</span><span class="lead-date">Sep 2018 – May 2019</span></div>
+    <div class="lead-item"><span class="lead-role">Volunteer</span><span class="lead-sep">—</span><span class="lead-org">HIV Outreach, University of Cape Coast Students' Representative Council – educated residents of Moree, Ghana on HIV and assisted with community screening</span><span class="lead-date">Apr 2016</span></div>
+    <div class="lead-item"><span class="lead-role">Volunteer</span><span class="lead-sep">—</span><span class="lead-org">UCC Students' Representative Council Community Outreach Project</span><span class="lead-date">May 2017</span></div>
+    <div class="lead-item"><span class="lead-role">Volunteer Teacher</span><span class="lead-sep">—</span><span class="lead-org">Great Messiah International School</span><span class="lead-date">Nov 2015 – Aug 2016</span></div>
   </div>
 </section>
 
@@ -1146,71 +1261,93 @@ footer a { color: var(--accent); text-decoration: none; }
       <div class="skill-group-title">Molecular Virology &amp; Synthetic Biology</div>
       <div class="pills">
         <span class="pill">Phage Isolation &amp; Characterization</span>
-        <span class="pill">Phage Genomics</span>
-        <span class="pill">CRISPR-based Engineering</span>
+        <span class="pill">Phage Genomics &amp; Engineering</span>
         <span class="pill">Lysis Mechanism Elucidation</span>
-        <span class="pill">Phage-Host Interactions</span>
+        <span class="pill">CRISPR-based Phage Engineering</span>
+        <span class="pill">Phage-Host Interaction Studies</span>
         <!-- "High-titer Production" was a goal, not a skill: the homepage says
              plainly it has not been done, and a CV chip claiming it contradicted
-             that. Replaced with the measurement it actually rests on. -->
+             that. Replaced with the measurement it actually rests on.
+             cv.tex no longer lists it either (removed 2026-11-22). -->
         <span class="pill">Lysis Timing &amp; Kinetics</span>
       </div>
     </div>
     <div class="skill-group">
       <div class="skill-group-title">Molecular Biology</div>
       <div class="pills">
-        <span class="pill">PCR / qPCR</span>
+        <span class="pill">PCR &amp; qPCR</span>
+        <span class="pill">Primer Design &amp; Optimization</span>
         <span class="pill">Molecular Cloning</span>
-        <span class="pill">DNA/RNA Extraction</span>
+        <span class="pill">DNA/RNA Extraction &amp; Purification</span>
         <span class="pill">Gel Electrophoresis</span>
-        <span class="pill">Genome Assembly</span>
+        <span class="pill">Genome Assembly &amp; Annotation</span>
         <span class="pill">Restriction Digestion</span>
-        <span class="pill">TEM</span>
-        <span class="pill">SDS-PAGE</span>
-        <span class="pill">Western Blotting</span>
       </div>
     </div>
     <div class="skill-group">
       <div class="skill-group-title">Protein Biochemistry</div>
       <div class="pills">
-        <span class="pill">BCA / Bradford Assays</span>
-        <span class="pill">LPS / Endotoxin Quantification (LAL, phage lysates)</span>
-        <span class="pill">OM Protein Characterization</span>
-        <span class="pill">Fluorophore Reporters (GFP/mCherry)</span>
+        <span class="pill">Protein Expression in <em>E. coli</em></span>
+        <span class="pill">His-tag Affinity Purification</span>
+        <span class="pill">Pull-down Assays</span>
+        <span class="pill">Formaldehyde Crosslinking</span>
+        <span class="pill">SDS-PAGE</span>
+        <span class="pill">Western Blotting</span>
+        <span class="pill">Multi-column Chromatography (NCTM training)</span>
+        <span class="pill">BCA &amp; Bradford Protein Quantification</span>
+        <span class="pill">LPS Quantification</span>
+        <span class="pill">Outer Membrane Protein Characterization</span>
+        <span class="pill">Fluorophore-based Reporter Constructs (GFP/mCherry)</span>
       </div>
     </div>
     <div class="skill-group">
       <div class="skill-group-title">Microbiology &amp; Biochemistry</div>
       <div class="pills">
-        <span class="pill">BSL2 Culture (8+ yrs)</span>
-        <span class="pill">AST / MIC Determination</span>
-        <span class="pill">Phytochemical Profiling</span>
-        <span class="pill">DPPH / Folin-Ciocalteu</span>
+        <span class="pill">BSL2 Bacterial Culture (8+ years)</span>
+        <span class="pill">Antimicrobial Susceptibility Testing</span>
+        <span class="pill">MIC Determination</span>
+        <span class="pill">Disinfectant Efficacy Assays</span>
+        <span class="pill">Phytochemical &amp; Antioxidant Activity Assays (DPPH, Folin-Ciocalteu)</span>
       </div>
     </div>
     <div class="skill-group">
       <div class="skill-group-title">Genomics &amp; Bioinformatics</div>
       <div class="pills">
-        <span class="pill">NGS / RNA-seq</span>
+        <span class="pill">Next-generation Sequencing (NGS)</span>
+        <span class="pill">RNA-seq Analysis</span>
         <span class="pill">Comparative Genomics</span>
         <span class="pill">Phylogenetics</span>
-        <span class="pill">Differential Expression</span>
+        <span class="pill">Differential Expression &amp; Pathway Analysis</span>
         <span class="pill">Functional Annotation</span>
         <span class="pill">SnapGene</span>
       </div>
     </div>
     <div class="skill-group">
+      <div class="skill-group-title">Instrumentation</div>
+      <div class="pills">
+        <span class="pill">Microplate Reader (absorbance and fluorescence kinetics)</span>
+        <span class="pill">Thermocyclers and qPCR</span>
+        <span class="pill">UV-Vis Spectrophotometry</span>
+        <span class="pill">Gel Documentation and Western Blot Imaging</span>
+        <span class="pill">Phase-contrast and Fluorescence Microscopy</span>
+      </div>
+    </div>
+    <div class="skill-group">
       <div class="skill-group-title">Computational &amp; Data Science</div>
       <div class="pills">
+        <span class="pill">AlphaFold 3 and Protein Structure Analysis</span>
+        <span class="pill">Image Classification (PyTorch, ResNet-18)</span>
         <span class="pill">R</span>
         <span class="pill">R Shiny</span>
         <span class="pill">Python</span>
+        <span class="pill">JavaScript</span>
+        <span class="pill">Data Visualization</span>
+        <span class="pill">Bioinformatic Pipeline Development</span>
+        <span class="pill">AI-assisted Development (Claude / Claude Code, OpenAI Codex)</span>
         <span class="pill">Git / GitHub</span>
         <span class="pill">CLI Development</span>
         <span class="pill">Reproducible Environments</span>
         <span class="pill">Regression Testing</span>
-        <span class="pill">Data Visualization</span>
-        <span class="pill">Pipeline Development</span>
       </div>
     </div>
     <!-- Every chip below maps to a named, linked tool on the site: PlaqSeg
@@ -1238,24 +1375,30 @@ footer a { color: var(--accent); text-decoration: none; }
   <hr class="section-rule">
   <div class="card">
     <ul class="bullets">
+      <li>Responsible Conduct of Research (RCR) Basic – CITI Program (Apr 2026)</li>
+      <li>Multi-Column Chromatography – National Center for Therapeutics Manufacturing (NCTM) (Mar 2026)</li>
+      <li>Introduction to Claude Cowork – Anthropic (Mar 2026)</li>
+      <li>Claude 101 – Anthropic (Jan 2026)</li>
+      <li>AI Fluency for Educators – Anthropic (Jan 2026)</li>
+      <li>AI Fluency Framework &amp; Foundations Certificate – Anthropic (Jan 2026)</li>
+      <li>Strategic Thinking Certificate – LinkedIn (Apr 2025)</li>
+      <li>Biomedical Research Investigators and Key Personnel Certification – CITI Program (Apr 2023 – Apr 2028)</li>
       <li>Academy For Future Faculty, Texas A&amp;M University (Fall 2023)</li>
       <li>IBRO-ARC Workshop on Zebrafish as a Tool for Neuroscience Research in Africa (Nov 2021)</li>
       <li>GHABSA Annual National Congress (Feb 2020)</li>
-      <li>Training on Food Value Chain Standards (Nov 2019)</li>
-      <li>NMIMR Biosafety Training (Jun 2018)</li>
-      <li>AI Fluency Framework &amp; Foundations Certificate</li>
-      <li>Strategic Thinking Certificate</li>
-      <li>Biomedical Research Investigators and Key Personnel Certification</li>
+      <li>Training on Food Value Chain Standards: Prospects and Opportunities (Nov 2019)</li>
+      <li>NMIMR Biosafety Training (Jun 2019)</li>
     </ul>
   </div>
 </section>
 
 <!-- Membership -->
 <section id="membership" class="cv-sec">
-  <h2 class="section-title">Professional Membership</h2>
+  <h2 class="section-title">Professional Memberships</h2>
   <hr class="section-rule">
   <div class="card">
     <p style="font-size:0.88rem;">American Society for Microbiology (ASM) — January 2021 – Present</p>
+    <p style="font-size:0.88rem;">International Society for Viruses of Microbes (ISVM)</p>
   </div>
 </section>
 

@@ -573,7 +573,7 @@ function renderPublications(filter = 'all') {
                 ${pub.summary ? `<div class="pub-summary" style="color:var(--ink-2); font-size:0.9rem; margin-top:6px; line-height:1.55;">${pub.summary}</div>` : ''}
                 <div class="pub-meta">
                     <span class="pub-status ${pub.status}">${labelFor(pub.status)}</span>
-                    ${pub.firstAuthor ? '<span class="pub-status first-author">★ First author</span>' : ''}
+                    ${pub.firstAuthor ? '<span class="pub-status first-author">★ ' + (pub.authorRole || 'First author') + '</span>' : ''}
                     ${pub.latest ? '<span class="pub-status preprint">★ Latest</span>' : ''}
                 </div>
                 ${linkRow}
